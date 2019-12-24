@@ -1,8 +1,8 @@
 group 'org.yuan.boot.webmvc'
 
 dependencies {
-    implementation project(':webmvc-modules:webmvc-core')
-    implementation project(':db-modules:db-mybatis-base')
+    compile  project(':webmvc-modules:webmvc-core')
+    compile  project(':db-modules:db-mybatis-base')
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
