@@ -1,3 +1,4 @@
+rootProject.name = 'learning-demo-02'
 include 'db-modules'
 include 'db-modules:db-core'
 include 'db-modules:db-mybatis-base'
