@@ -1,0 +1,16 @@
+group 'org.yuan.bootd.db'
+
+dependencies {
+    implementation project(':db-modules:db-core')
+    implementation group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
+    implementation group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.13'
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = true
+}
