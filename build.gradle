@@ -18,7 +18,7 @@ allprojects {
             url "http://maven.aliyun.com/nexus/content/groups/public/"
         }
     }
-    
+
 }
 
 bootJar {
@@ -64,12 +64,15 @@ subprojects {
     }
 
     dependencies {
-        implementation group: 'cn.hutool', name: 'hutool-all', version: '5.1.0'
+        compile group: 'org.mapstruct', name: 'mapstruct', version: '1.3.1.Final'
+        compile group: 'cn.hutool', name: 'hutool-all', version: '5.1.0'
         implementation 'org.springframework.boot:spring-boot-starter'
         compileOnly 'org.projectlombok:lombok'
+        compileOnly group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.3.1.Final'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         annotationProcessor 'org.projectlombok:lombok'
+        annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.3.1.Final'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }

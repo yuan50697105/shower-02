@@ -1,0 +1,16 @@
+group 'org.yuan.boot.webmvc.app'
+
+
+dependencies {
+    compile project(':webmvc-modules:webmvc-mybatis-base')
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+bootJar {
+    enabled = true
+    classifier = 'exec'
+}
+
+jar {
+    enabled = true
+}
