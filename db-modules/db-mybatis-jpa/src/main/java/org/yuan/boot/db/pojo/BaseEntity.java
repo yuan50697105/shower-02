@@ -4,12 +4,14 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.yuan.boot.db.core.BaseCoreEntity;
 
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
 public abstract class BaseEntity<T> extends BaseCoreEntity<T> {
+    @Id
     private Long id;
 
     public BaseEntity() {
