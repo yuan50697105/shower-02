@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class PageResult<T> extends PageCollectionResult<T> {
+public class PageResult<T> extends PageIterableResult<T> {
     public PageResult(PageInfo<T> pageInfo) {
         super(pageInfo.getList(), pageInfo.getPageNum(), pageInfo.getSize(), pageInfo.getTotal(), pageInfo.getPages());
     }
