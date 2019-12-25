@@ -90,4 +90,12 @@ subprojects {
         useJUnitPlatform()
     }
 
+    bootJar {
+        enabled = true
+        classifier = 'exec'
+    }
+
+    jar {
+        enabled = true
+    }
 }
