@@ -3,11 +3,13 @@ package org.yuan.boot.webmvc.pojo;
 import cn.hutool.http.HttpStatus;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class Result {
+public class Result implements Serializable {
     public static final String OK_MESSAGE = "操作成功";
     public static final String ERROR_MESSAGE = "操作失败";
-    private int code;
+    private Integer code;
     private String message;
 
     public Result() {
@@ -15,16 +17,20 @@ public class Result {
         this.message = OK_MESSAGE;
     }
 
-    public Result(int code, String message) {
+    public Result(Integer code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public Result ok() {
+    public static Result ok() {
         return new Result(HttpStatus.HTTP_OK, OK_MESSAGE);
     }
 
-    public Result error(int code) {
-        return new Result(code, ERROR_MESSAGE);
+    public static Result ok(String message) {
+        return new Result(HttpStatus.HTTP_OK, message);
+    }
+
+    public static Result error(Integer code, String message) {
+        return new Result(code, message);
     }
 }
