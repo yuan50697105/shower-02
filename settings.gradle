@@ -33,4 +33,5 @@ findProject(':webmvc-modules:webmvc-mybatis-plus')?.name = 'webmvc-mybatis-plus'
 findProject(':webmvc-modules:webmvc-mybatis-base-sqlhelper')?.name = 'webmvc-mybatis-base-sqlhelper'
 findProject(':webmvc-modules:webmvc-mybatis-mapper-sqlhelper')?.name = 'webmvc-mybatis-mapper-sqlhelper'
 findProject(':webmvc-modules:webmvc-mybatis-plus-sqlhelper')?.name = 'webmvc-mybatis-plus-sqlhelper'
+include 'webmvc-app-project'
 
