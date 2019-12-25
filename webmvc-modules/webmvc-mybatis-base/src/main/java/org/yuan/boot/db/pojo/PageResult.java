@@ -1,9 +1,10 @@
-package org.yuan.boot.webmvc.pojo;
+package org.yuan.boot.db.pojo;
 
 
 import com.github.pagehelper.PageInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.yuan.boot.webmvc.pojo.PageIterableResult;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

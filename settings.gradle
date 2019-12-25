@@ -15,4 +15,6 @@ findProject(':db-modules:db-mybatis-plus')?.name = 'db-mybatis-plus'
 findProject(':db-modules:db-mybatis-jpa')?.name = 'db-mybatis-jpa'
 findProject(':webmvc-modules:webmvc-core')?.name = 'webmvc-core'
 findProject(':webmvc-modules:webmvc-mybatis-base')?.name = 'webmvc-mybatis-base'
+include 'webmvc-modules:webmvc-mybatis-plus'
+findProject(':webmvc-modules:webmvc-mybatis-plus')?.name = 'webmvc-mybatis-plus'
 
