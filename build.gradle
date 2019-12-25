@@ -11,12 +11,12 @@ allprojects {
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '11'
     repositories {
-        jcenter()
-        mavenCentral()
         maven {
             name "aliyunmaven"
             url "http://maven.aliyun.com/nexus/content/groups/public/"
         }
+        mavenCentral()
+        jcenter()
     }
 
 }
