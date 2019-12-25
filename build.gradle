@@ -18,13 +18,12 @@ allprojects {
             url "http://maven.aliyun.com/nexus/content/groups/public/"
         }
     }
+    
 }
-
 
 bootJar {
     enabled = false
 }
-
 jar {
     enabled = false
 }
