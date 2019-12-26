@@ -36,4 +36,8 @@ findProject(':webmvc-modules:webmvc-mybatis-base-sqlhelper')?.name = 'webmvc-myb
 findProject(':webmvc-modules:webmvc-mybatis-mapper-sqlhelper')?.name = 'webmvc-mybatis-mapper-sqlhelper'
 findProject(':webmvc-modules:webmvc-mybatis-plus-sqlhelper')?.name = 'webmvc-mybatis-plus-sqlhelper'
 findProject(':webmvc-app-project:webmvc-app-project-01')?.name = 'webmvc-app-project-01'
+include 'webmvc-modules:webmvc-mybatis-jpa'
+findProject(':webmvc-modules:webmvc-mybatis-jpa')?.name = 'webmvc-mybatis-jpa'
+include 'webmvc-modules:webmvc-mybatis-jpa-sqlhelper'
+findProject(':webmvc-modules:webmvc-mybatis-jpa-sqlhelper')?.name = 'webmvc-mybatis-jpa-sqlhelper'
 
