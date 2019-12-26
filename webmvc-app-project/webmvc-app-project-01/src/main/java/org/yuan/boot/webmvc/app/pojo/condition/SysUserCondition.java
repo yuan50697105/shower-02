@@ -3,7 +3,7 @@ package org.yuan.boot.webmvc.app.pojo.condition;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.core.BaseCondition;
+import org.yuan.boot.webmvc.db.core.pojo.BaseCondition;
 
 import java.util.Date;
 import java.util.List;
@@ -18,6 +18,7 @@ public class SysUserCondition extends BaseCondition {
     private String username;
     private String realName;
     private String nickName;
+    private String createUser;
     private Date createDate;
     private Date createDateStart;
     private Date createDateEnd;

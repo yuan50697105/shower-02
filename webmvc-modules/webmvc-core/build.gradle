@@ -1,16 +1,11 @@
 group 'org.yuan.boot.webmvc'
-
-
+buildscript {
+    configurations {
+        compile.exclude module: "spring-boot-starter-tomcat"
+    }
+}
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
-
-    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow'
 }
 
-bootJar {
-    enabled = false
-}
-
-jar {
-    enabled = true
-}

@@ -1,0 +1,10 @@
+group 'org.yuan.boot.webmvc.db'
+
+dependencies {
+    compile project(':webmvc-modules:webmvc-core')
+    compile project(':db-modules:db-mybatis-mapper')
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+

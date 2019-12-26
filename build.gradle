@@ -5,10 +5,9 @@ plugins {
     id 'java'
 }
 
-
 allprojects {
     group = 'org.yuan.boot'
-    version = '0.0.1-SNAPSHOT'
+    version = '0.0.1-DEV'
     sourceCompatibility = '11'
     repositories {
         maven {

@@ -1,0 +1,10 @@
+group 'org.yuan.boot.webflux,app'
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+

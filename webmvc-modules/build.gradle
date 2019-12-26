@@ -1,10 +1,6 @@
 group 'org.yuan.boot.webmvc'
 
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-}
-
 bootJar {
     enabled = false
 }
