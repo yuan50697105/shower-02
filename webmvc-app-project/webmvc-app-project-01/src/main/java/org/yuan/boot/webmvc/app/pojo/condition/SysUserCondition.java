@@ -18,6 +18,7 @@ public class SysUserCondition extends BaseCondition {
     private String username;
     private String realName;
     private String nickName;
+    private String createUser;
     private Date createDate;
     private Date createDateStart;
     private Date createDateEnd;

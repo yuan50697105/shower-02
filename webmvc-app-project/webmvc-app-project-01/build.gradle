@@ -2,15 +2,9 @@ group 'org.yuan.boot.webmvc.app'
 
 
 dependencies {
-    compile project(':webmvc-modules:webmvc-mybatis-base')
+    compile project(':webmvc-modules:webmvc-db-mybatis-base')
+    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
-bootJar {
-    enabled = true
-    classifier = 'exec'
-}
 
-jar {
-    enabled = true
-}
