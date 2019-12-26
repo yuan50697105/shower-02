@@ -14,8 +14,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class IterateDataResultModel<T> extends DataResultModel<Iterable<T>> {
-    public IterateDataResultModel() {
-    }
 
     public IterateDataResultModel(Iterable<T> data) {
         super(data);
