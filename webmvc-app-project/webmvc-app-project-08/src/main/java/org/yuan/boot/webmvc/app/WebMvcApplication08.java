@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @create: 2019-12-27 22:23
  */
 @SpringBootApplication
-public class WebMvcApplication03 {
+public class WebMvcApplication08 {
     public static void main(String[] args) {
-        SpringApplication.run(WebMvcApplication03.class, args);
+        SpringApplication.run(WebMvcApplication08.class, args);
     }
 }
