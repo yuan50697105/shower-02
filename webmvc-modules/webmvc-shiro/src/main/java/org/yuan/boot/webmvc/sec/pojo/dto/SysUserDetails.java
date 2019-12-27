@@ -5,9 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
-import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  * @program: learning-demo-02
@@ -20,18 +19,12 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Accessors(chain = true)
-public class SysUserDetails implements UserDetails {
+public class SysUserDetails {
     private Long id;
     private String username;
     private String password;
     private String realName;
     private String nickName;
-    private boolean accountNonExpired;
-    private boolean accountNonLocked;
-    private boolean credentialsNonExpired;
-    private boolean enabled;
-    private Set<String> roles;
-    private Set<String> permission;
-    private Set<String> authorities;
-
+    private List<String> roles;
+    private List<String> permission;
 }
