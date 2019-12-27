@@ -19,6 +19,7 @@ public class PageIterableDataResultModel<T> extends IterateDataResultModel<T> {
     private long totalNumberOfRows;
     private long totalPages;
 
+
     public PageIterableDataResultModel(Iterable<T> data, long page, long size, long totalNumberOfRows, long totalPages) {
         super(data);
         this.page = page;

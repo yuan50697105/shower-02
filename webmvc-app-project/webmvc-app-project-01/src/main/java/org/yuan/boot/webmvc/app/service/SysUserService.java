@@ -1,10 +1,10 @@
 package org.yuan.boot.webmvc.app.service;
 
 import com.github.pagehelper.PageInfo;
-import org.yuan.boot.db.service.BaseService;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
+import org.yuan.boot.webmvc.db.service.BaseService;
 
 import java.util.List;
 import java.util.Optional;
