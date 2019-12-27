@@ -1,6 +1,15 @@
 group 'org.yuan.boot.webflux'
 version '0.0.1-SNAPSHOT'
 
+buildscript {
+    configurations {
+        compile.exclude module: "spring-boot-starter-reactor-netty"
+    }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow'
+}
 bootJar {
     enabled = false
 }
