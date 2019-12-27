@@ -51,14 +51,14 @@ public class SysUserController extends ResultController {
     public Result save(@RequestBody @Validated SysUserVo sysUserVo, BindingResult result) {
         validate(result);
         sysUserService.save(sysUserVo);
-        return ok();
+        return Result.ok();
     }
 
     @PutMapping
     public Result modify(@RequestBody @Validated SysUserVo sysUserVo, BindingResult result) {
         validate(result);
         sysUserService.modify(sysUserVo);
-        return ok();
+        return Result.ok();
     }
 
     @DeleteMapping("{id}")

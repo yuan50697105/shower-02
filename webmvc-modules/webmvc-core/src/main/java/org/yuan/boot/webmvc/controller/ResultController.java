@@ -27,17 +27,6 @@ public class ResultController {
         return e.getResult();
     }
 
-    public Result ok() {
-        return Result.ok();
-    }
-
-    public Result ok(String message) {
-        return Result.ok(message);
-    }
-
-    public Result error(int code, String message) {
-        return Result.error(code, message);
-    }
 
     public void validate(BindingResult result) {
         if (result.hasErrors()) {
