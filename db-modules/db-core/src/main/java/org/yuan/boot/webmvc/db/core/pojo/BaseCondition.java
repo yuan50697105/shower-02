@@ -1,4 +1,4 @@
-package org.yuan.boot.webmvc.db.core;
+package org.yuan.boot.webmvc.db.core.pojo;
 
 import lombok.Data;
 
