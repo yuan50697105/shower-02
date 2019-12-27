@@ -1,6 +1,7 @@
-group 'org.yuan.boot.webmvc.hateoas'
+group 'org.yuan.boot.webflux.hateoas'
+
 dependencies {
-    compile project(':webmvc-modules:webmvc-core')
+    compile project(':webflux-modules:webflux-core')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas'
 }
 
