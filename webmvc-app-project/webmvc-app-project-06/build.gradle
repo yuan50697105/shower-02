@@ -1,8 +1,7 @@
 group 'org.yuan.boot.webmvc.app'
 
 dependencies {
-    compile project(':webmvc-modules:webmvc-db-mybatis-base')
+    compile project(':webmvc-modules:webmvc-db-mybatis-plus-sqlhelper')
     compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
 }
-
 
