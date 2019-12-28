@@ -56,4 +56,17 @@ public class SysRoleController extends ResultController {
         sysRoleService.saveVo(sysRoleVo);
         return Result.ok();
     }
+
+    @PutMapping
+    public Result modify(@RequestBody @Validated SysRoleVo sysRoleVo, BindingResult result) {
+        validate(result);
+        sysRoleService.modifyVo(sysRoleVo);
+        return Result.ok();
+    }
+
+    @DeleteMapping("{id}")
+    public Result delete(@PathVariable("id") Long id) {
+        sysRoleService.delete(id);
+        return Result.ok();
+    }
 }

@@ -50,14 +50,14 @@ public class SysUserController extends ResultController {
     @PostMapping
     public Result save(@RequestBody @Validated SysUserVo sysUserVo, BindingResult result) {
         validate(result);
-        sysUserService.save(sysUserVo);
+        sysUserService.saveVo(sysUserVo);
         return Result.ok();
     }
 
     @PutMapping
     public Result modify(@RequestBody @Validated SysUserVo sysUserVo, BindingResult result) {
         validate(result);
-        sysUserService.modify(sysUserVo);
+        sysUserService.modifyVo(sysUserVo);
         return Result.ok();
     }
 

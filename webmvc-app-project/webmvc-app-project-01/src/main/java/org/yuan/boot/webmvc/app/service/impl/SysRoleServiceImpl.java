@@ -5,6 +5,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.webmvc.app.mapper.SysRoleMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
@@ -52,8 +53,21 @@ public class SysRoleServiceImpl extends BaseServiceImpl<SysRole, SysRoleMapper> 
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveVo(SysRoleVo sysRoleVo) {
         SysRole sysRole = sysRoleConverter.convert(sysRoleVo).setId(snowflake.nextId()).setCreateTime(new Date());
         baseMapper().insertSelective(sysRole);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void modifyVo(SysRoleVo sysRoleVo) {
+        SysRole sysRole = sysRoleConverter.convert(sysRoleVo).setUpdateTime(new Date());
+        baseMapper().updateByPrimaryKeySelective(sysRole);
+    }
+
+    @Override
+    public void delete(Long id) {
+        baseMapper().deleteByPrimaryKey(id);
     }
 }

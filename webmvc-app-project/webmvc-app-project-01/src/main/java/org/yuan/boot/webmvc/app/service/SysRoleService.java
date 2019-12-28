@@ -35,4 +35,8 @@ public interface SysRoleService extends BaseService<SysRole> {
     Optional<SysRole> selectById(Long id);
 
     void saveVo(SysRoleVo sysRoleVo);
+
+    void modifyVo(SysRoleVo sysRoleVo);
+
+    void delete(Long id);
 }

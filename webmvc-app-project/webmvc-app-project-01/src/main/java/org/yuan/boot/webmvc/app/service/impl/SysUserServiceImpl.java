@@ -35,13 +35,14 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserMapper> 
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(SysUserVo sysUserVo) {
+    public void saveVo(SysUserVo sysUserVo) {
         SysUser sysUser = sysUserConverter.convert(sysUserVo).setId(snowflake.nextId()).setCreateTime(new Date());
-        baseMapper().insert(sysUser);
+        baseMapper().insertSelective(sysUser);
     }
 
     @Override
-    public void modify(SysUserVo sysUserVo) {
+    @Transactional(rollbackFor = Exception.class)
+    public void modifyVo(SysUserVo sysUserVo) {
         SysUser sysUser = sysUserConverter.convert(sysUserVo).setUpdateTime(new Date());
         baseMapper().updateByPrimaryKeySelective(sysUser);
     }

@@ -3,7 +3,6 @@ package org.yuan.boot.webmvc.app.pojo;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.With;
 import lombok.experimental.Accessors;
 import org.yuan.boot.webmvc.db.pojo.BaseEntity;
 
@@ -13,24 +12,16 @@ import java.util.Date;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Accessors(chain = true)
-public class SysUser extends BaseEntity<SysUser> implements Serializable {
+public class SysPermission extends BaseEntity<SysPermission> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
-     * username
+     * authority
      */
-    private String username;
+    private String authority;
     /**
-     * password
+     * name
      */
-    private String password;
-    /**
-     * realName
-     */
-    private String realName;
-    /**
-     * nickName
-     */
-    private String nickName;
+    private String name;
     /**
      * createUser
      */
@@ -52,20 +43,18 @@ public class SysUser extends BaseEntity<SysUser> implements Serializable {
      */
     private Integer enabled;
 
-    public SysUser() {
+    public SysPermission() {
     }
 
-    public SysUser(Long id) {
+    public SysPermission(Long id) {
         super(id);
     }
 
     @Builder
-    public SysUser(Long id, String username, String password, String realName, String nickName, String createUser, String updateUser, Date createTime, Date updateTime, Integer enabled) {
+    public SysPermission(Long id, String authority, String name, String createUser, String updateUser, Date createTime, Date updateTime, Integer enabled) {
         super(id);
-        this.username = username;
-        this.password = password;
-        this.realName = realName;
-        this.nickName = nickName;
+        this.authority = authority;
+        this.name = name;
         this.createUser = createUser;
         this.updateUser = updateUser;
         this.createTime = createTime;

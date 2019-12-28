@@ -19,14 +19,14 @@ public interface SysUserService extends BaseService<SysUser> {
      *
      * @param sysUserVo 用户实体VO
      */
-    void save(SysUserVo sysUserVo);
+    void saveVo(SysUserVo sysUserVo);
 
     /**
      * 修改用户
      *
      * @param sysUserVo 用户实体VO
      */
-    void modify(SysUserVo sysUserVo);
+    void modifyVo(SysUserVo sysUserVo);
 
     /**
      * 删除用户
