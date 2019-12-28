@@ -7,5 +7,6 @@ buildscript {
 }
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-rsocket'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow'
 }
