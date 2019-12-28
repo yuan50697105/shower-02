@@ -1,4 +1,4 @@
-package org.yuan.boot.webmvc.db.core.configuration;
+package org.yuan.boot.webmvc.db.configuration;
 
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;

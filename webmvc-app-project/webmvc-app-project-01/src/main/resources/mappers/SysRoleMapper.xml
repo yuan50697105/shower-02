@@ -256,4 +256,48 @@
         enabled = #{enabled,jdbcType=INTEGER}
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+        <where>
+            <if test="condition.id != null">
+                and id=#{condition.id,jdbcType=BIGINT}
+            </if>
+            <if test="condition.ids != null and condition.ids.size() != 0">
+                and id in
+                <foreach item="item" index="index" collection="condition.ids" open="(" separator="," close=")">
+                    #{item,jdbcType=BIGINT}
+                </foreach>
+            </if>
+            <if test="condition.name != null and condition.name != ''">
+                and name like #{condition.name,jdbcType=VARCHAR}
+            </if>
+            <if test="condition.createUser != null and condition.createUser != ''">
+                and create_user like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="condition.createDate != null">
+                and date(create_time) = date(#{condition.createDate,jdbcType=TIMESTAMP})
+            </if>
+            <if test="condition.createDateStart != null">
+                <![CDATA[and date(create_time) >= date(#{condition.createDateStart,jdbcType=TIMESTAMP})]]>
+            </if>
+            <if test="condition.createDateEnd != null">
+                <![CDATA[and date(create_time) <= date(#{condition.createDateEnd,jdbcType=TIMESTAMP})]]>
+            </if>
+        </where>
+    </select>
+    <select id="selectOne" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_role
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="name != null and name != ''">
+                and name = #{name,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
 </mapper>

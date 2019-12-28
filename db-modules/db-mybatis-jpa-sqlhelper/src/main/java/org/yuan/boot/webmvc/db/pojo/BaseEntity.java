@@ -2,7 +2,6 @@ package org.yuan.boot.webmvc.db.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.yuan.boot.webmvc.db.core.pojo.BaseCoreEntity;
 
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;

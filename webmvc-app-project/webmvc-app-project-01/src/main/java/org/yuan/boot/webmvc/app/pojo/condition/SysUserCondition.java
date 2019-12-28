@@ -2,7 +2,7 @@ package org.yuan.boot.webmvc.app.pojo.condition;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.yuan.boot.webmvc.db.core.pojo.BaseCondition;
+import org.yuan.boot.webmvc.db.pojo.BaseCondition;
 
 import java.util.Date;
 import java.util.List;
