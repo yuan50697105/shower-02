@@ -1,6 +1,9 @@
 package org.yuan.boot.webmvc.app.pojo;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.yuan.boot.webmvc.db.pojo.BaseEntity;
 
@@ -11,7 +14,6 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
-@NoArgsConstructor
 @Accessors(chain = true)
 public class SysUser extends BaseEntity<SysUser> implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -51,4 +53,11 @@ public class SysUser extends BaseEntity<SysUser> implements Serializable {
      * enabled
      */
     private Integer enabled;
+
+    public SysUser() {
+    }
+
+    public SysUser(Long id) {
+        super(id);
+    }
 }

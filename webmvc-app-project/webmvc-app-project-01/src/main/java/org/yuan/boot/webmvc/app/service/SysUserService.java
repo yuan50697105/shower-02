@@ -1,6 +1,7 @@
 package org.yuan.boot.webmvc.app.service;
 
 import com.github.pagehelper.PageInfo;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
@@ -65,4 +66,6 @@ public interface SysUserService extends BaseService<SysUser> {
      * @return 分页结果
      */
     PageInfo<SysUser> selectPage(SysUserCondition condition);
+
+    Workbook exportWorkBook(SysUserCondition condition);
 }

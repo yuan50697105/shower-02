@@ -96,4 +96,7 @@ findProject(':webmvc-app-project:webmvc-hateoas-app-project-07')?.name = 'webmvc
 findProject(':webmvc-app-project:webmvc-hateoas-app-project-08')?.name = 'webmvc-hateoas-app-project-08'
 findProject(':webflux-modules:webflux-core')?.name = 'webflux-core'
 findProject(':webflux-modules:webflux-hateoas-core')?.name = 'webflux-hateoas-core'
+include 'utils-modules'
+include 'utils-modules:spell-utils'
+findProject(':utils-modules:spell-utils')?.name = 'spell-utils'
 

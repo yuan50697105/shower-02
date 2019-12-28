@@ -3,8 +3,6 @@ package org.yuan.boot.webmvc.pojo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import java.util.List;
-
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class PageIterableResult<T> extends IterableResult<T> {

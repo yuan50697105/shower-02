@@ -1,7 +1,10 @@
 package org.yuan.boot.webmvc.app.service.impl;
 
+import cn.afterturn.easypoi.excel.ExcelExportUtil;
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -9,6 +12,7 @@ import org.yuan.boot.webmvc.app.mapper.SysUserMapper;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.converter.SysUserConverter;
+import org.yuan.boot.webmvc.app.pojo.dto.SysUserExcel;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
 import org.yuan.boot.webmvc.app.service.SysUserService;
 import org.yuan.boot.webmvc.db.service.impl.BaseServiceImpl;
@@ -64,5 +68,15 @@ public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserMapper> 
     @Override
     public Optional<SysUser> selectById(Long id) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
+    }
+
+    @Override
+    public Workbook exportWorkBook(SysUserCondition condition) {
+        ExportParams exportParams = new ExportParams();
+        exportParams.setTitle("用户表");
+        exportParams.setSecondTitle("用户表");
+        List<SysUser> sysUsers = selectList(condition);
+        List<SysUserExcel> sysUserExcels = sysUserConverter.convertToExcel(sysUsers);
+        return ExcelExportUtil.exportExcel(exportParams, SysUserExcel.class, sysUserExcels);
     }
 }
