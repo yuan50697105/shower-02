@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.yuan.boot.webmvc.db.pojo.BaseEntity;
+import org.yuan.boot.db.pojo.BaseEntity;
 
 import java.io.Serializable;
 import java.util.Date;

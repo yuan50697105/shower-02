@@ -15,4 +15,6 @@ public class SysPermissionVo {
     private Long id;
     @NotEmpty
     private String name;
+    @NotEmpty
+    private String authority;
 }

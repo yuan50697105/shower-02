@@ -2,9 +2,9 @@ package org.yuan.boot.webmvc.app.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample;
-import org.yuan.boot.webmvc.db.mapper.BaseMapper;
 
 import java.util.List;
 

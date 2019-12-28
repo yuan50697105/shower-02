@@ -1,7 +1,7 @@
 package org.yuan.boot.webmvc.app.service;
 
+import org.yuan.boot.db.service.BaseService;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
-import org.yuan.boot.webmvc.db.service.BaseService;
 
 /**
  * @program: learning-demo-02

@@ -2,10 +2,10 @@ package org.yuan.boot.webmvc.app.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.example.SysUserExample;
-import org.yuan.boot.webmvc.db.mapper.BaseMapper;
 
 import java.util.List;
 import java.util.Optional;

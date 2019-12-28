@@ -6,13 +6,13 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.db.service.impl.BaseServiceImpl;
 import org.yuan.boot.webmvc.app.mapper.SysRoleMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.converter.SysRoleConverter;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
 import org.yuan.boot.webmvc.app.service.SysRoleService;
-import org.yuan.boot.webmvc.db.service.impl.BaseServiceImpl;
 
 import java.util.Date;
 import java.util.List;

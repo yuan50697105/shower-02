@@ -1,10 +1,10 @@
 package org.yuan.boot.webmvc.app.service.impl;
 
 import org.springframework.stereotype.Service;
+import org.yuan.boot.db.service.impl.BaseServiceImpl;
 import org.yuan.boot.webmvc.app.mapper.SysPermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.service.SysPermissionService;
-import org.yuan.boot.webmvc.db.service.impl.BaseServiceImpl;
 
 /**
  * @program: learning-demo-02
