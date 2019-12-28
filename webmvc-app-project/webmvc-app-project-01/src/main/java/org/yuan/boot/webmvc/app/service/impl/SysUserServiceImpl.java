@@ -2,6 +2,7 @@ package org.yuan.boot.webmvc.app.service.impl;
 
 import cn.afterturn.easypoi.excel.ExcelExportUtil;
 import cn.afterturn.easypoi.excel.entity.ExportParams;
+import cn.hutool.core.lang.Snowflake;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -29,11 +30,13 @@ import java.util.Optional;
 public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserMapper> implements SysUserService {
     @Autowired
     private SysUserConverter sysUserConverter;
+    @Autowired
+    private Snowflake snowflake;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(SysUserVo sysUserVo) {
-        SysUser sysUser = sysUserConverter.convert(sysUserVo).setCreateTime(new Date());
+        SysUser sysUser = sysUserConverter.convert(sysUserVo).setId(snowflake.nextId()).setCreateTime(new Date());
         baseMapper().insert(sysUser);
     }
 

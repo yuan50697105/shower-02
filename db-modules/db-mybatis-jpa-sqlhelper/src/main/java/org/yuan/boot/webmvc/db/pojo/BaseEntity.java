@@ -21,5 +21,9 @@ public class BaseEntity<T> extends BaseCoreEntity<T> {
         this.id = id;
     }
 
-
+    @SuppressWarnings("unchecked")
+    public T setId(Long id) {
+        this.id = id;
+        return (T) this;
+    }
 }
