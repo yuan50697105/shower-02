@@ -15,6 +15,10 @@ import java.util.Date;
 public class SysRole extends BaseEntity<SysRole> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
+     * authority
+     */
+    private String authority;
+    /**
      * name
      */
     private String name;
@@ -47,8 +51,9 @@ public class SysRole extends BaseEntity<SysRole> implements Serializable {
     }
 
     @Builder
-    public SysRole(Long id, String name, String createUser, String updateUser, Date createTime, Date updateTime, Integer enabled) {
+    public SysRole(Long id, String authority, String name, String createUser, String updateUser, Date createTime, Date updateTime, Integer enabled) {
         super(id);
+        this.authority = authority;
         this.name = name;
         this.createUser = createUser;
         this.updateUser = updateUser;

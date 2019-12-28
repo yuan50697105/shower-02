@@ -15,20 +15,20 @@ public class SysRoleExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -162,6 +162,76 @@ public class SysRoleExample {
 
         public Criteria andIdNotBetween(Long value1, Long value2) {
             addCriterion("id not between", value1, value2, "id");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityIsNull() {
+            addCriterion("authority is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityIsNotNull() {
+            addCriterion("authority is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityEqualTo(String value) {
+            addCriterion("authority =", value, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityNotEqualTo(String value) {
+            addCriterion("authority <>", value, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityGreaterThan(String value) {
+            addCriterion("authority >", value, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityGreaterThanOrEqualTo(String value) {
+            addCriterion("authority >=", value, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityLessThan(String value) {
+            addCriterion("authority <", value, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityLessThanOrEqualTo(String value) {
+            addCriterion("authority <=", value, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityLike(String value) {
+            addCriterion("authority like", value, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityNotLike(String value) {
+            addCriterion("authority not like", value, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityIn(List<String> values) {
+            addCriterion("authority in", values, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityNotIn(List<String> values) {
+            addCriterion("authority not in", values, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityBetween(String value1, String value2) {
+            addCriterion("authority between", value1, value2, "authority");
+            return (Criteria) this;
+        }
+
+        public Criteria andAuthorityNotBetween(String value1, String value2) {
+            addCriterion("authority not between", value1, value2, "authority");
             return (Criteria) this;
         }
 
@@ -580,6 +650,38 @@ public class SysRoleExample {
 
         private String typeHandler;
 
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;
@@ -614,38 +716,6 @@ public class SysRoleExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }

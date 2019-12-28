@@ -3,7 +3,7 @@ DROP TABLE IF EXISTS sys_user;
 CREATE TABLE sys_user
 (
     id          BIGINT(15) NOT NULL AUTO_INCREMENT COMMENT 'id',
-    username    VARCHAR(50) COMMENT 'username',
+    username    VARCHAR(50) unique COMMENT 'username',
     `password`  VARCHAR(50) COMMENT 'password',
     real_name   VARCHAR(50) COMMENT 'realName',
     nick_name   VARCHAR(50) COMMENT 'nickName',
