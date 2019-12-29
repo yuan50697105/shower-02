@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.db.pojo.BaseEntity;
 import org.yuan.boot.db.repository.BaseRepository;
-import org.yuan.boot.db.service.BaseService;
+import org.yuan.boot.db.service.BaseDbService;
 
 @SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpringJavaInjectionPointsAutowiringInspection"})
 @Service
-public abstract class BaseServiceImpl<T extends BaseEntity<T>, R extends BaseRepository<T>, M extends BaseMapper<T>> implements BaseService<T> {
+public abstract class BaseDbServiceImpl<T extends BaseEntity<T>, R extends BaseRepository<T>, M extends BaseMapper<T>> implements BaseDbService<T> {
     @Autowired
     private R baseRepository;
     @Autowired

@@ -1,4 +1,4 @@
 package org.yuan.boot.db.service;
 
-public interface BaseService<T> {
+public interface BaseDbService<T> {
 }
