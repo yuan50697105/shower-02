@@ -1,6 +1,8 @@
 group 'org.yuan.boot.db'
 
-
+buildscript {
+    exclude module 'persistence-api'
+}
 dependencies {
     compile project(':db-modules:db-core')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
