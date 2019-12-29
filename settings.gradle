@@ -23,4 +23,8 @@ findProject(':db-modules:db-mybatis-plus')?.name = 'db-mybatis-plus'
 findProject(':db-modules:db-mybatis-plus-sqlhelper')?.name = 'db-mybatis-plus-sqlhelper'
 findProject(':db-modules:db-mybatis-jpa')?.name = 'db-mybatis-jpa'
 findProject(':db-modules:db-mybatis-jpa-sqlhelper')?.name = 'db-mybatis-jpa-sqlhelper'
+include 'db-modules:db-mybatis-mapper-plus'
+findProject(':db-modules:db-mybatis-mapper-plus')?.name = 'db-mybatis-mapper-plus'
+include 'db-modules:db-mybatis-mapper-plus-sqlhelper'
+findProject(':db-modules:db-mybatis-mapper-plus-sqlhelper')?.name = 'db-mybatis-mapper-plus-sqlhelper'
 

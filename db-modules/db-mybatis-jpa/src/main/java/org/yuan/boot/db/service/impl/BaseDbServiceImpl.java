@@ -7,9 +7,11 @@ import org.yuan.boot.db.pojo.BaseEntity;
 import org.yuan.boot.db.repository.BaseRepository;
 import org.yuan.boot.db.service.BaseDbService;
 
+import java.io.Serializable;
+
 @SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpringJavaInjectionPointsAutowiringInspection"})
 @Service
-public abstract class BaseDbServiceImpl<T extends BaseEntity<T>, R extends BaseRepository<T>, M extends BaseMapper<T>> implements BaseDbService<T> {
+public abstract class BaseDbServiceImpl<T extends BaseEntity<T>, ID extends Serializable, R extends BaseRepository<T, ID>, M extends BaseMapper<T>> implements BaseDbService<T, ID> {
     @Autowired
     private R baseRepository;
     @Autowired
