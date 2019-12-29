@@ -39,3 +39,8 @@ findProject(':db-modules:db-jpa-mybatis-plus')?.name = 'db-jpa-mybatis-plus'
 findProject(':db-modules:db-jpa-mybatis-plus-sqlhelper')?.name = 'db-jpa-mybatis-plus-sqlhelper'
 findProject(':db-modules:db-jpa-mybatis-mapper-plus')?.name = 'db-jpa-mybatis-mapper-plus'
 findProject(':db-modules:db-jpa-mybatis-mapper-plus-sqlhelper')?.name = 'db-jpa-mybatis-mapper-plus-sqlhelper'
+include 'webmvc-modules:webmvc-core'
+findProject(':webmvc-modules:webmvc-core')?.name = 'webmvc-core'
+include 'webmvc-modules:webmvc-hateoas-core'
+findProject(':webmvc-modules:webmvc-hateoas-core')?.name = 'webmvc-hateoas-core'
+
