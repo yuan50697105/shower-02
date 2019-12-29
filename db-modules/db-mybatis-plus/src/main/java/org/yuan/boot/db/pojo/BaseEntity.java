@@ -2,7 +2,6 @@ package org.yuan.boot.db.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.yuan.boot.webmvc.db.pojo.BaseCoreEntity;
 
 import java.io.Serializable;
 

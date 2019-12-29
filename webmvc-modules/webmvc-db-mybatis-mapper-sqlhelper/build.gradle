@@ -1,4 +1,4 @@
-group 'org.yuan.boot.webmvc.db'
+group 'org.yuan.boot.db'
 
 
 dependencies {

@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Singular;
 import lombok.experimental.Accessors;
-import org.yuan.boot.webmvc.db.pojo.BaseCondition;
+import org.yuan.boot.db.pojo.BaseCondition;
 
 import java.util.Date;
 import java.util.List;
