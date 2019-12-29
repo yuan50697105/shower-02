@@ -9,7 +9,7 @@ import javax.persistence.MappedSuperclass;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
-public abstract class BaseEntity<T> extends BaseCoreEntity<T> {
+public abstract class BaseEntity<T> extends CoreEntity<T> {
     @Id
     private Long id;
 

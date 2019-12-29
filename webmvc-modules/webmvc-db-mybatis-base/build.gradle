@@ -1,7 +1,0 @@
-group 'org.yuan.boot.db'
-
-dependencies {
-    compile project(':webmvc-modules:webmvc-core')
-    compile project(':db-modules:db-mybatis-base')
-}
-
