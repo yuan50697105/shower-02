@@ -3,14 +3,14 @@ package org.yuan.boot.db.pojo;
 import lombok.Data;
 
 @Data
-public class BaseCoreCondition {
+public abstract class AbstractBaseCoreCondition {
     private int page = 1;
     private int size = 20;
 
-    public BaseCoreCondition() {
+    public AbstractBaseCoreCondition() {
     }
 
-    public BaseCoreCondition(int page, int size) {
+    public AbstractBaseCoreCondition(int page, int size) {
         this.page = page;
         this.size = size;
     }

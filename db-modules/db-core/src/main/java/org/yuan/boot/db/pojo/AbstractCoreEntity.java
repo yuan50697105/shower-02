@@ -13,7 +13,7 @@ import java.util.Map;
  * @create: 2019-12-29 13:13
  */
 @Data
-public class CoreEntity<T> {
+public abstract class AbstractCoreEntity<T> {
     @SuppressWarnings("unchecked")
     public T copyFromByOptions(T t, CopyOptions copyOptions) {
         BeanUtil.copyProperties(t, this, copyOptions);

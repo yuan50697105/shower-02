@@ -11,14 +11,14 @@ import java.util.List;
  * @create: 2019-12-29 13:53
  */
 @Data
-public class CorePageResult<T> {
+public abstract class AbstractCorePageResult<T> {
     private long page;
     private long size;
     private List<T> data;
     private long totalNumberOfRows;
     private long totalPages;
 
-    public CorePageResult(long page, long size, List<T> data, long totalNumberOfRows, long totalPages) {
+    public AbstractCorePageResult(long page, long size, List<T> data, long totalNumberOfRows, long totalPages) {
         this.page = page;
         this.size = size;
         this.data = data;

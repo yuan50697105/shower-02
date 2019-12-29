@@ -8,6 +8,6 @@ import javax.persistence.MappedSuperclass;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @MappedSuperclass
-public abstract class BaseEntity<T> extends CoreEntity<T> {
+public class BaseEntity<T> extends AbstractCoreEntity<T> {
 
 }

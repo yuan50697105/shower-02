@@ -11,7 +11,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class BaseCondition extends BaseCoreCondition {
+public class BaseCondition extends AbstractBaseCoreCondition {
     public BaseCondition() {
     }
 

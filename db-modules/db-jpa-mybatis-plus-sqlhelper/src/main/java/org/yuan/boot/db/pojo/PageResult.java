@@ -18,7 +18,7 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class PageResult<T> extends CorePageResult<T> {
+public class PageResult<T> extends AbstractCorePageResult<T> {
 
     public PageResult(Page<T> page) {
         super(page.getPageable().getPageNumber() + 1, page.getPageable().getPageSize(), page.getContent(), page.getTotalElements(), page.getTotalPages());
