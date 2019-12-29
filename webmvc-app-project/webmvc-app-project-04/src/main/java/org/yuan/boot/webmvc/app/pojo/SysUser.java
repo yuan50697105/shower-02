@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.Accessors;
 import org.yuan.boot.db.pojo.BaseEntity;
 
+import javax.persistence.Id;
 import java.util.Date;
 
 /**
@@ -19,6 +20,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SysUser extends BaseEntity<SysUser> {
+    @Id
     private Long id;
     private String username;
     private String password;
