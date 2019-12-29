@@ -57,4 +57,6 @@ include 'webmvc-app-project:webmvc-app-project-06'
 findProject(':webmvc-app-project:webmvc-app-project-06')?.name = 'webmvc-app-project-06'
 include 'webmvc-app-project:webmvc-app-project-07'
 findProject(':webmvc-app-project:webmvc-app-project-07')?.name = 'webmvc-app-project-07'
+include 'webmvc-app-project:webmvc-app-project-08'
+findProject(':webmvc-app-project:webmvc-app-project-08')?.name = 'webmvc-app-project-08'
 
