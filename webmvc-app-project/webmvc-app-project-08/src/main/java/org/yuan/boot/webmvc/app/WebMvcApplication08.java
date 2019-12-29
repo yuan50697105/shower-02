@@ -3,7 +3,7 @@ package org.yuan.boot.webmvc.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.yuan.boot.DbCoreApplication;
-import org.yuan.boot.db.DbMybatisMapperPlusApplication;
+import org.yuan.boot.db.DbMybatisMapperPlusSqlHelperApplication;
 import org.yuan.boot.webmvc.WebMvcCoreApplication;
 
 /**
@@ -12,9 +12,9 @@ import org.yuan.boot.webmvc.WebMvcCoreApplication;
  * @author: yuane
  * @create: 2019-12-29 23:37
  */
-@SpringBootApplication(scanBasePackageClasses = {WebMvcCoreApplication.class, DbCoreApplication.class, DbMybatisMapperPlusApplication.class})
-public class WebMvcApplication07 {
+@SpringBootApplication(scanBasePackageClasses = {WebMvcCoreApplication.class, DbCoreApplication.class, DbMybatisMapperPlusSqlHelperApplication.class})
+public class WebMvcApplication08 {
     public static void main(String[] args) {
-        SpringApplication.run(WebMvcApplication07.class, args);
+        SpringApplication.run(WebMvcApplication08.class, args);
     }
 }

@@ -7,5 +7,5 @@ import org.yuan.boot.db.service.BaseDbService;
 
 import java.io.Serializable;
 
-public abstract class BaseDbServiceImpl<T extends BaseEntity<T>, ID extends Serializable, M extends BaseMapper<T>> extends ServiceImpl<M, T> implements BaseDbService<T, ID> {
+public class BaseDbServiceImpl<T extends BaseEntity<T>, ID extends Serializable, M extends BaseMapper<T>> extends ServiceImpl<M, T> implements BaseDbService<T, ID> {
 }
