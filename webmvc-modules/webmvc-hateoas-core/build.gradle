@@ -1,4 +1,4 @@
-group 'org.yuan.boot.webmvc'
+group 'org.yuan.boot.webmvc.hateoas'
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'

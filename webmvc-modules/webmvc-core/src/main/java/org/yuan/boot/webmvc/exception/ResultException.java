@@ -15,6 +15,9 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class ResultException extends Exception {
     private Result result;
 
+    public ResultException() {
+    }
+
     public ResultException(Result result) {
         this.result = result;
     }
