@@ -1,7 +1,10 @@
 package org.yuan.boot.webmvc.hateoas.pojo;
 
 import cn.hutool.http.HttpStatus;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.hateoas.ResourceSupport;
 
 /**
  * @program: learning-demo-02
@@ -9,11 +12,13 @@ import lombok.Data;
  * @author: yuane
  * @create: 2019-12-29 16:49
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class Result {
+public class Result extends ResourceSupport {
     public static final String OK_MESSAGE = "操作成功";
     private int code;
     private String message;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object data;
 
     public Result() {

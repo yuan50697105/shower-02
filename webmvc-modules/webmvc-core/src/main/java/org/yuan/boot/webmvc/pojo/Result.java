@@ -1,6 +1,7 @@
 package org.yuan.boot.webmvc.pojo;
 
 import cn.hutool.http.HttpStatus;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 /**
@@ -14,6 +15,7 @@ public class Result {
     public static final String OK_MESSAGE = "操作成功";
     private int code;
     private String message;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Object data;
 
     public Result() {

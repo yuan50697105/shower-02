@@ -1,0 +1,16 @@
+server:
+  compression:
+    enabled: true
+  http2:
+    enabled: true
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/learning?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  main:
+    allow-bean-definition-overriding: true
+mybatis:
+  mapper-locations: classpath*:/mappers/*Mapper.xml
