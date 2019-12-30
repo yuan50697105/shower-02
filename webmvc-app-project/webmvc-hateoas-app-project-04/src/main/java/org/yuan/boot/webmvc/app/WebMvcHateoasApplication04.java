@@ -3,7 +3,7 @@ package org.yuan.boot.webmvc.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.yuan.boot.DbCoreApplication;
-import org.yuan.boot.db.DbMybatisMapperApplication;
+import org.yuan.boot.db.DbMybatisMapperSqlHelperApplication;
 import org.yuan.boot.webmvc.hateoas.WebMvcHateoasCoreApplication;
 
 /**
@@ -12,7 +12,7 @@ import org.yuan.boot.webmvc.hateoas.WebMvcHateoasCoreApplication;
  * @author: yuane
  * @create: 2019-12-29 22:11
  */
-@SpringBootApplication(scanBasePackageClasses = {WebMvcHateoasCoreApplication.class, DbCoreApplication.class, DbMybatisMapperApplication.class})
+@SpringBootApplication(scanBasePackageClasses = {WebMvcHateoasCoreApplication.class, DbCoreApplication.class, DbMybatisMapperSqlHelperApplication.class})
 public class WebMvcHateoasApplication04 {
     public static void main(String[] args) {
         SpringApplication.run(WebMvcHateoasApplication04.class, args);
