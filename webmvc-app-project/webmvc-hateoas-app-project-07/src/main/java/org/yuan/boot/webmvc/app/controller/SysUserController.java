@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yuan.boot.webmvc.app.service.SysUserService;
-import org.yuan.boot.webmvc.controller.ResultController;
+import org.yuan.boot.webmvc.hateoas.controller.ResultController;
 
 /**
  * @program: learning-demo-02
