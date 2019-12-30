@@ -13,8 +13,8 @@ import org.yuan.boot.webmvc.WebMvcCoreApplication;
  * @create: 2019-12-29 23:37
  */
 @SpringBootApplication(scanBasePackageClasses = {WebMvcCoreApplication.class, DbCoreApplication.class, DbJpaMybatisSqlHelperApplication.class})
-public class WebMvcApplication09 {
+public class WebMvcApplication10 {
     public static void main(String[] args) {
-        SpringApplication.run(WebMvcApplication09.class, args);
+        SpringApplication.run(WebMvcApplication10.class, args);
     }
 }

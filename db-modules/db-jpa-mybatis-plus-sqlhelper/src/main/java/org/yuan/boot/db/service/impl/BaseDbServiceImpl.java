@@ -15,8 +15,6 @@ import java.io.Serializable;
 public abstract class BaseDbServiceImpl<T extends BaseEntity<T>, ID extends Serializable, R extends BaseRepository<T, ID>, M extends BaseMapper<T>> extends ServiceImpl<M, T> implements BaseDbService<T, ID> {
     @Autowired
     private R baseRepository;
-    @Autowired
-    private M baseMapper;
 
     public R baseRepository() {
         return baseRepository;
