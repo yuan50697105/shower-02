@@ -12,7 +12,7 @@ import java.io.Serializable;
 
 @SuppressWarnings({"SpringJavaAutowiredFieldsWarningInspection", "SpringJavaInjectionPointsAutowiringInspection"})
 @Service
-public abstract class BaseDbServiceImpl<T extends BaseEntity<T>, ID extends Serializable, R extends BaseRepository<T, ID>, M extends BaseMapper<T>> extends ServiceImpl<M, T> implements BaseDbService<T, ID> {
+public class BaseDbServiceImpl<T extends BaseEntity<T>, ID extends Serializable, R extends BaseRepository<T, ID>, M extends BaseMapper<T>> extends ServiceImpl<M, T> implements BaseDbService<T, ID> {
     @Autowired
     private R baseRepository;
 
