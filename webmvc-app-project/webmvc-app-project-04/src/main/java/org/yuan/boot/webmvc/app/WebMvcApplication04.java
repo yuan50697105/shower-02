@@ -1,5 +1,6 @@
 package org.yuan.boot.webmvc.app;
 
+import org.minbox.framework.api.boot.autoconfigure.swagger.annotation.EnableApiBootSwagger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.yuan.boot.DbCoreApplication;
