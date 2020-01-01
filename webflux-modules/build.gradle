@@ -1,6 +1,4 @@
 group 'org.yuan.boot.webflux'
-version '0.0.1-SNAPSHOT'
-
 
 bootJar {
     enabled = false
