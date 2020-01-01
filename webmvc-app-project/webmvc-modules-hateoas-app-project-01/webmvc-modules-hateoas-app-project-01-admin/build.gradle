@@ -2,7 +2,6 @@ plugins {
     id 'java'
 }
 
-
 group 'org.yuan.boot.webmvc.app.admin'
 
 dependencies {
