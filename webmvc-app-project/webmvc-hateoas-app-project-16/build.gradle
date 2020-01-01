@@ -7,6 +7,7 @@ group 'org.yuan.boot.webmvc.app'
 dependencies {
     compile project(':webmvc-modules:webmvc-hateoas-core')
     compile project(':db-modules:db-jpa-mybatis-mapper-plus-sqlhelper')
+    compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
     compile group: 'mysql', name: 'mysql-connector-java'
 }
 
