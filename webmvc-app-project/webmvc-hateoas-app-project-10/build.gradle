@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+group 'org.yuan.boot.webmvc.app'
+
+dependencies {
+    compile project(':webmvc-modules:webmvc-hateoas-core')
+    compile project(':db-modules:db-jpa-mybatis-base-sqlhelper')
+    compile group: 'mysql', name: 'mysql-connector-java'
+}
+

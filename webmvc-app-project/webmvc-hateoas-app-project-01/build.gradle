@@ -1,7 +1,12 @@
-group 'org.yuan.boot.webmvc.hateoas.app'
-
-dependencies {
-    compile project(':webmvc-modules:webmvc-hateoas-db-mybatis-base')
-    compile group: 'mysql', name: 'mysql-connector-java', version: '8.0.18'
+plugins {
+    id 'java'
 }
 
+group 'org.yuan.boot.webmvc.app'
+
+dependencies {
+    compile project(':webmvc-modules:webmvc-hateoas-core')
+    compile project(':db-modules:db-mybatis-base')
+    compile group: 'mysql', name: 'mysql-connector-java'
+
+}

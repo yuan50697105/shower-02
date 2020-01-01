@@ -12,21 +12,23 @@ import org.yuan.boot.webmvc.pojo.Result;
 import java.util.StringJoiner;
 
 /**
- * @author yuane
+ * @program: learning-demo-02
+ * @description:
+ * @author: yuane
+ * @create: 2019-12-29 16:51
  */
 @RestControllerAdvice
 public class ResultController {
 
     @ExceptionHandler(NoValidateResultException.class)
-    public Result noValidateResultExceptionHandler(NoValidateResultException e) {
+    public Result noValidateResultException(NoValidateResultException e) {
         return e.getResult();
     }
 
     @ExceptionHandler(NoValidateResultRuntimeException.class)
-    public Result noValidateResultExceptionHandler(NoValidateResultRuntimeException e) {
+    public Result noValidateResultRuntimeException(NoValidateResultRuntimeException e) {
         return e.getResult();
     }
-
 
     public void validate(BindingResult result) {
         if (result.hasErrors()) {

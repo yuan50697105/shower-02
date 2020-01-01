@@ -1,0 +1,10 @@
+group 'org.yuan.boot.db'
+
+
+dependencies {
+    compile project(':db-modules:db-core')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa'
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
+    compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.13'
+}
+

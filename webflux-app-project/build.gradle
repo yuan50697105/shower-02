@@ -1,4 +1,4 @@
-group 'org.yuan.boot.webflux,app'
+group 'org.yuan.boot.webflux.app'
 
 bootJar {
     enabled = false
