@@ -1,0 +1,12 @@
+plugins {
+    id 'java'
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+group 'org.yuan.boot.webmvc.app.db'
