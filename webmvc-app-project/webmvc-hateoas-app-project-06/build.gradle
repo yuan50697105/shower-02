@@ -8,6 +8,8 @@ dependencies {
     compile project(':webmvc-modules:webmvc-hateoas-core')
     compile project(':db-modules:db-mybatis-plus-sqlhelper')
     compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
     compile group: 'mysql', name: 'mysql-connector-java'
 
 }

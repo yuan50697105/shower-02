@@ -8,5 +8,7 @@ dependencies {
     compile project(':webmvc-modules:webmvc-core')
     compile project(':db-modules:db-jpa-mybatis-mapper-plus')
     compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
+    compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+    compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
     compile group: 'mysql', name: 'mysql-connector-java'
 }
