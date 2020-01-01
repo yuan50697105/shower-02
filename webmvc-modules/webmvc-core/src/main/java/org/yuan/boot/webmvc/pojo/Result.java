@@ -4,6 +4,8 @@ import cn.hutool.http.HttpStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
+import java.io.Serializable;
+
 /**
  * @program: learning-demo-02
  * @description:
@@ -11,7 +13,7 @@ import lombok.Data;
  * @create: 2019-12-29 16:49
  */
 @Data
-public class Result {
+public class Result implements Serializable {
     public static final String OK_MESSAGE = "操作成功";
     private int code;
     private String message;
