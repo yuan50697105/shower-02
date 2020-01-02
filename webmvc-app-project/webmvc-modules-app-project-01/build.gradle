@@ -9,6 +9,7 @@ bootJar {
 jar {
     enabled = false
 }
+
 subprojects {
     group 'org.yuan.boot.webmvc.app'
 
