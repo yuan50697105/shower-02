@@ -1,4 +1,4 @@
-echo off
+@echo off
 call gradlew clean build
 call mkdir %USERPROFILE%\desktop\gradle
 call mkdir %USERPROFILE%\desktop\gradle\exe
