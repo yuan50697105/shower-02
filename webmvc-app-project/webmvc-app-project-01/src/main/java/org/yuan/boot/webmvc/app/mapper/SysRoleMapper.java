@@ -4,7 +4,9 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
+import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;
+import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
 
@@ -31,4 +33,8 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
     int updateByPrimaryKeySelective(SysRole record);
 
     int updateByPrimaryKey(SysRole record);
+
+    List<SysRole> selectByCondition(SysRoleCondition condition);
+
+    SysRole selectOne(SysRole sysRole);
 }

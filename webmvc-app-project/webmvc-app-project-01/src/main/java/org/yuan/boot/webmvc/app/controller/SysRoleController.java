@@ -13,6 +13,8 @@ import org.yuan.boot.webmvc.app.service.SysRoleService;
 import org.yuan.boot.webmvc.controller.ResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import java.util.List;
+
 /**
  * @program: learning-demo-02
  * @description:
@@ -25,20 +27,24 @@ public class SysRoleController extends ResultController {
     @Autowired
     private SysRoleService sysRoleService;
 
+    @ApiOperation("分页查询")
     @GetMapping("data")
     public Result data(SysRoleCondition condition) {
         return sysRoleService.page(condition);
     }
 
+    @ApiOperation("列表查询")
     @GetMapping("list")
     public Result list(SysRoleCondition condition) {
         return sysRoleService.list(condition);
     }
 
+    @ApiOperation("精确查询")
     @GetMapping("get")
     public Result get(SysRole sysRole) {
         return sysRoleService.get(sysRole);
     }
+
     @ApiOperation(value = "主键保存", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     @GetMapping("{id}")
     public Result get(@PathVariable("id") Long id) {
@@ -46,9 +52,25 @@ public class SysRoleController extends ResultController {
     }
 
     @ApiOperation(value = "保存", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @PostMapping({"save", ""})
+    @PostMapping({"save"})
     public Result save(@RequestBody @Validated SysRoleVo sysRoleVo, BindingResult result) {
         validate(result);
         return sysRoleService.save(sysRoleVo);
+    }
+
+    @PostMapping("update")
+    public Result update(@RequestBody @Validated SysRoleVo sysRoleVo, BindingResult result) {
+        validate(result);
+        return sysRoleService.update(sysRoleVo);
+    }
+
+    @GetMapping(value = "delete", params = "ids")
+    public Result delete(List<Long> ids) {
+        return sysRoleService.delete(ids);
+    }
+
+    @GetMapping(value = "delete", params = "id")
+    public Result delete(Long id) {
+        return sysRoleService.delete(id);
     }
 }

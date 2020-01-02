@@ -6,6 +6,8 @@ import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import java.util.List;
+
 /**
  * @program: learning-demo-02
  * @description:
@@ -22,4 +24,10 @@ public interface SysRoleService extends BaseDbService<SysRole, Long> {
     Result get(Long id);
 
     Result save(SysRoleVo sysRoleVo);
+
+    Result update(SysRoleVo sysRoleVo);
+
+    Result delete(Long id);
+
+    Result delete(List<Long> ids);
 }
