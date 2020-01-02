@@ -8,3 +8,9 @@ bootJar {
 jar {
     enabled = false
 }
+
+subprojects{
+    // bootJar {
+        // enabled = false
+    // }
+}

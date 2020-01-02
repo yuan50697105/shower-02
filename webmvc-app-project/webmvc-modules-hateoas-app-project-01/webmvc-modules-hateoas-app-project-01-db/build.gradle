@@ -1,12 +1,10 @@
 plugins {
     id 'java'
-<<<<<<< HEAD
-=======
 }
 
 group 'org.yuan.boot.webmvc.app.db'
 
 bootJar {
     enabled = false
->>>>>>> origin/dev-02
 }
+

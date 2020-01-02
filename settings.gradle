@@ -111,6 +111,12 @@ include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-pro
 findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-db')?.name = 'webmvc-modules-app-project-01-db'
 include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin'
 findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin')?.name = 'webmvc-modules-app-project-01-admin'
+include 'webmvc-app-project:webmvc-modules-hateoas-app-project-01'
+findProject(':webmvc-app-project:webmvc-modules-hateoas-app-project-01')?.name = 'webmvc-modules-hateoas-app-project-01'
+include 'webmvc-app-project:webmvc-modules-hateoas-app-project-01:webmvc-modules-hateoas-app-project-01-db'
+findProject(':webmvc-app-project:webmvc-modules-hateoas-app-project-01:webmvc-modules-hateoas-app-project-01-db')?.name = 'webmvc-modules-hateoas-app-project-01-db'
+include 'webmvc-app-project:webmvc-modules-hateoas-app-project-01:webmvc-modules-hateoas-app-project-01-admin'
+findProject(':webmvc-app-project:webmvc-modules-hateoas-app-project-01:webmvc-modules-hateoas-app-project-01-admin')?.name = 'webmvc-modules-hateoas-app-project-01-admin'
 include 'webflux-modules'
 include 'webflux-app-project'
 
