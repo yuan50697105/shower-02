@@ -1,7 +1,6 @@
 plugins {
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'com.github.ben-manes.versions' version '0.11.1'
     id 'java'
 }
 
@@ -10,40 +9,18 @@ allprojects {
     version = '0.0.1-DEV'
     sourceCompatibility = '1.8'
     repositories {
-        maven {
-            name "aliyunmaven"
-            url "http://maven.aliyun.com/nexus/content/groups/public/"
-        }
+//        maven {
+//            name "aliyunmaven"
+//            url "http://maven.aliyun.com/nexus/content/groups/public/"
+//        }
         mavenCentral()
-        jcenter()
+//        jcenter()
     }
 
-}
-
-bootJar {
-    enabled = false
-}
-jar {
-    enabled = false
-}
-
-subprojects {
     apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
-    apply plugin: "com.github.ben-manes.versions"
-    buildscript {
-        repositories {
-            repositories {
-                jcenter()
-                mavenCentral()
-            }
 
-            dependencies {
-                classpath "com.github.ben-manes:gradle-versions-plugin:0.11.1"
-            }
-        }
-    }
     configurations {
         developmentOnly
         runtimeClasspath {
@@ -80,9 +57,10 @@ subprojects {
 
     dependencyManagement {
         imports {
+            mavenBom "org.springframework.boot:spring-boot-dependencies:2.2.2.RELEASE"
             mavenBom "org.minbox.framework:api-boot-dependencies:2.2.1.RELEASE"
-            mavenBom "ai.ylyue:yue-library-dependencies:Greenwich.SR2.1"
-            mavenBom "com.alipay.sofa:sofaboot-dependencies:3.2.1"
+//            mavenBom "ai.ylyue:yue-library-dependencies:Greenwich.SR2.1"
+//            mavenBom "com.alipay.sofa:sofaboot-dependencies:3.2.1"
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
             mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.1.1.RELEASE"
         }
@@ -100,5 +78,11 @@ subprojects {
     jar {
         enabled = true
     }
+}
 
+bootJar {
+    enabled = false
+}
+jar {
+    enabled = false
 }
