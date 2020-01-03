@@ -120,11 +120,12 @@
     <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.yuan.boot.webmvc.app.pojo.SysUser"
             useGeneratedKeys="true">
         <!--@mbg.generated-->
-        insert into sys_user (username, `password`, real_name,
+        insert into sys_user (id,username, `password`, real_name,
         nick_name, create_user, update_user,
         create_time, update_time, enabled
         )
-        values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{realName,jdbcType=VARCHAR},
+        values (#{id,jdbcType=BIGINT},#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        #{realName,jdbcType=VARCHAR},
         #{nickName,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR},
         #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{enabled,jdbcType=TINYINT}
         )
@@ -134,6 +135,9 @@
         <!--@mbg.generated-->
         insert into sys_user
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
             <if test="username != null">
                 username,
             </if>
@@ -163,6 +167,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
             <if test="username != null">
                 #{username,jdbcType=VARCHAR},
             </if>

@@ -29,4 +29,5 @@ public class WebMvcApplication01 {
     public Snowflake snowflake() {
         return IdUtil.createSnowflake(1, 2);
     }
+
 }

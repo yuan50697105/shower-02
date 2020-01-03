@@ -1,9 +1,0 @@
-plugins {
-    id 'java'
-}
-
-group 'org.yuan.boot.webmvc.app.admin'
-
-dependencies {
-    implementation project(':webmvc-app-project:webmvc-modules-hateoas-app-project-01:webmvc-modules-hateoas-app-project-01-db')
-}
