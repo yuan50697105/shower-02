@@ -60,7 +60,8 @@ public class SysUserServiceImpl extends BaseDbServiceImpl<SysUser, Long, SysUser
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result save(SysUserVo sysUserVo) {
-        baseMapper().insertSelective(sysUserConverter.convert(sysUserVo).setId(snowflake.nextId()).setCreateTime(new Date()));
+        SysUser sysUser = sysUserConverter.convert(sysUserVo).setId(snowflake.nextId()).setCreateTime(new Date());
+        baseMapper().insertSelective(sysUser);
         return Result.ok();
     }
 }

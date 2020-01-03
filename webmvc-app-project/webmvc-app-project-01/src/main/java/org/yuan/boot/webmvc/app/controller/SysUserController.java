@@ -1,6 +1,7 @@
 package org.yuan.boot.webmvc.app.controller;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +9,16 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.yuan.boot.db.pojo.PageResult;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
 import org.yuan.boot.webmvc.app.service.SysUserService;
 import org.yuan.boot.webmvc.controller.ResultController;
 import org.yuan.boot.webmvc.pojo.Result;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: learning-demo-02
@@ -30,7 +35,7 @@ public class SysUserController extends ResultController {
 
     @ApiOperation(value = "分页查询")
     @GetMapping("data")
-    public Result data(@ApiParam SysUserCondition condition) {
+    public Result data( SysUserCondition condition) {
         return sysUserService.page(condition);
     }
 

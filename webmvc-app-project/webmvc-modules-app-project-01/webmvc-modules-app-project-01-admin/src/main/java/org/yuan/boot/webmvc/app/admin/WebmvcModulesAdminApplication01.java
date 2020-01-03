@@ -11,7 +11,7 @@ import org.yuan.boot.webmvc.app.db.WebMvcModulesDbApplication01;
  * @create: 2020-01-01 19:57
  */
 @SpringBootApplication
-public class WebmvcModulesAdminApplication01 {
+public class WebMvcModulesAdminApplication01 {
     public static void main(String[] args) {
         SpringApplication.run(WebMvcModulesDbApplication01.class, args);
     }

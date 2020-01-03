@@ -8,7 +8,7 @@ plugins {
 allprojects {
     group = 'org.yuan.boot'
     version = '0.0.1-DEV'
-    sourceCompatibility = '11'
+    sourceCompatibility = '1.8'
     repositories {
         maven {
             name "aliyunmaven"
