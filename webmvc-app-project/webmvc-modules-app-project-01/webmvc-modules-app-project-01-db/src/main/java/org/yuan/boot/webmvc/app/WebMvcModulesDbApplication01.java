@@ -1,4 +1,4 @@
-package org.yuan.boot.webmvc.app.db;
+package org.yuan.boot.webmvc.app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
