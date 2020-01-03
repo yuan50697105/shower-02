@@ -2,71 +2,72 @@ package org.yuan.boot.webmvc.app.pojo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import java.io.Serializable;
+import java.util.Date;
+
 import lombok.*;
 import lombok.experimental.Accessors;
 import org.yuan.boot.db.pojo.BaseEntity;
 
-import java.io.Serializable;
-import java.util.Date;
-
 @EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "org-yuan-boot-webmvc-app-pojo-SysUser")
+@ApiModel(value = "org-yuan-boot-webmvc-app-pojo-SysPermission")
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
-public class SysUser extends BaseEntity<SysUser> implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class SysPermission extends BaseEntity<SysPermission> implements Serializable {
     /**
      * id
      */
     @ApiModelProperty(value = "id")
     private Long id;
+
     /**
-     * username
+     * authority
      */
-    @ApiModelProperty(value = "username")
-    private String username;
+    @ApiModelProperty(value = "authority")
+    private String authority;
+
     /**
-     * password
+     * name
      */
-    @ApiModelProperty(value = "password")
-    private String password;
-    /**
-     * realName
-     */
-    @ApiModelProperty(value = "realName")
-    private String realName;
-    /**
-     * nickName
-     */
-    @ApiModelProperty(value = "nickName")
-    private String nickName;
+    @ApiModelProperty(value = "name")
+    private String name;
+
     /**
      * createUser
      */
     @ApiModelProperty(value = "createUser")
     private String createUser;
+
     /**
      * updateUser
      */
     @ApiModelProperty(value = "updateUser")
     private String updateUser;
+
     /**
      * createTime
      */
     @ApiModelProperty(value = "createTime")
     private Date createTime;
+
     /**
      * updateTime
      */
     @ApiModelProperty(value = "updateTime")
     private Date updateTime;
+
     /**
      * enabled
      */
     @ApiModelProperty(value = "enabled")
-    private Byte enabled;
+    private Integer enabled;
 
+    private static final long serialVersionUID = 1L;
+
+    public static SysPermissionBuilder builder() {
+        return new SysPermissionBuilder();
+    }
 }

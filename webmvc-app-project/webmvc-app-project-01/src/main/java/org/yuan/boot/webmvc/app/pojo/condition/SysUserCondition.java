@@ -21,11 +21,11 @@ import java.util.List;
 @Accessors(chain = true)
 @ApiModel
 public class SysUserCondition extends BaseCondition {
-    @ApiModelProperty("主键")
+//    @ApiModelProperty("主键")
     private Long id;
-    @ApiModelProperty("主键集合")
+//    @ApiModelProperty("主键集合")
     private List<Long> ids;
-    @ApiModelProperty("名称")
+//    @ApiModelProperty("名称")
     private String name;
     private String username;
     private String realName;

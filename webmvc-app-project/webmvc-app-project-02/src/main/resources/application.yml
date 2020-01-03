@@ -3,6 +3,7 @@ server:
     enabled: true
   http2:
     enabled: true
+  port: 8002
 
 spring:
   datasource:
@@ -12,5 +13,20 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   main:
     allow-bean-definition-overriding: true
+  application:
+    name: webmvc-app-project-02
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
 mybatis:
   mapper-locations: classpath*:/mappers/*Mapper.xml
+
+logging:
+  level:
+    org.minbox.framework.api.boot.plugin.logging: debug
+
+api:
+  boot:
+    logging:
+      admin:
+        format-console-log-json: true
+      show-console-log: true
