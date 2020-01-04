@@ -4,6 +4,8 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.EqualsAndHashCode;
+import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
@@ -26,11 +28,12 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2019-12-29 22:35
  */
+@EqualsAndHashCode(callSuper = true)
 @Api("用户信息")
 @RestController
 @RequestMapping("sys/user")
+@Value
 public class SysUserController extends ResultController {
-    @Autowired
     private SysUserService sysUserService;
 
     @ApiOperation(value = "分页查询")

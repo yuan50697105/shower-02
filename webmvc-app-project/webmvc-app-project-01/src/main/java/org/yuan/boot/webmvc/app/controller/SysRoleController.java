@@ -1,6 +1,8 @@
 package org.yuan.boot.webmvc.app.controller;
 
 import io.swagger.annotations.ApiOperation;
+import lombok.EqualsAndHashCode;
+import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
@@ -21,10 +23,11 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-01-01 18:13
  */
+@EqualsAndHashCode(callSuper = true)
 @RestController
 @RequestMapping("sys/role")
+@Value
 public class SysRoleController extends ResultController {
-    @Autowired
     private SysRoleService sysRoleService;
 
     @ApiOperation("分页查询")

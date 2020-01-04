@@ -1,12 +1,16 @@
 package org.yuan.boot.webmvc.app.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
+import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample;
 
 import java.util.List;
+import java.util.Optional;
 
+@Mapper
 public interface SysPermissionMapper extends BaseMapper<SysPermission> {
     long countByExample(SysPermissionExample example);
 
@@ -29,4 +33,8 @@ public interface SysPermissionMapper extends BaseMapper<SysPermission> {
     int updateByPrimaryKeySelective(SysPermission record);
 
     int updateByPrimaryKey(SysPermission record);
+
+    List<SysPermission> selectByCondition(SysPermissionCondition condition);
+
+    Optional<SysPermission> selectOne(SysPermission sysPermission);
 }

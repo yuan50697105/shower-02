@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.service;
 
-import org.yuan.boot.db.service.BaseDbService;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 
 /**
@@ -9,5 +8,5 @@ import org.yuan.boot.webmvc.app.pojo.SysUser;
  * @author: yuane
  * @create: 2019-12-29 22:31
  */
-public interface SysUserService extends BaseDbService<SysUser, Long> {
+public interface SysUserService extends BaseService<SysUser> {
 }

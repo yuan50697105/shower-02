@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.repository;
 
-import org.yuan.boot.db.repository.BaseRepository;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 
 /**
@@ -9,5 +8,5 @@ import org.yuan.boot.webmvc.app.pojo.SysUser;
  * @author: yuane
  * @create: 2019-12-30 00:35
  */
-public interface SysUserRepository extends BaseRepository<SysUser, Long> {
+public interface SysUserRepository extends BaseRepository<SysUser> {
 }
