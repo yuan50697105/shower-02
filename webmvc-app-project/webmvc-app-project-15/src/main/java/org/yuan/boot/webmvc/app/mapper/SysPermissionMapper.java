@@ -8,7 +8,6 @@ import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mapper
 public interface SysPermissionMapper extends BaseMapper<SysPermission> {

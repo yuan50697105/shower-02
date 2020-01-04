@@ -1,10 +1,10 @@
 package org.yuan.boot.webmvc.app.pojo.condition;
 
 import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import lombok.experimental.SuperBuilder;
 import org.yuan.boot.db.pojo.BaseCondition;
 
 import java.util.Date;
@@ -21,11 +21,11 @@ import java.util.List;
 @Accessors(chain = true)
 @ApiModel
 public class SysUserCondition extends BaseCondition {
-//    @ApiModelProperty("主键")
+    //    @ApiModelProperty("主键")
     private Long id;
-//    @ApiModelProperty("主键集合")
+    //    @ApiModelProperty("主键集合")
     private List<Long> ids;
-//    @ApiModelProperty("名称")
+    //    @ApiModelProperty("名称")
     private String name;
     private String username;
     private String realName;

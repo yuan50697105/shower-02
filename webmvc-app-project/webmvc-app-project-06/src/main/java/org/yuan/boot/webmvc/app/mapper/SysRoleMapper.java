@@ -20,5 +20,4 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
     List<SysRole> selectByNameLike(@Param("likeName") String likeName);
 
 
-
 }

@@ -1,10 +1,10 @@
 package org.yuan.boot.webmvc.app.pojo;
 
-import java.io.Serializable;
-import java.util.Date;
-
 import lombok.*;
 import lombok.experimental.Accessors;
+
+import java.io.Serializable;
+import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

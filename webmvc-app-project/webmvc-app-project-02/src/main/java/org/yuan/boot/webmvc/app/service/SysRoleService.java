@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.service;
 
-import org.yuan.boot.db.service.BaseDbService;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;

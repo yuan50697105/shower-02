@@ -1,15 +1,12 @@
 package org.yuan.boot.webmvc.app.service.impl;
 
-import cn.hutool.core.lang.Snowflake;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
-import org.yuan.boot.db.service.impl.BaseDbServiceImpl;
 import org.yuan.boot.webmvc.app.mapper.SysPermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;

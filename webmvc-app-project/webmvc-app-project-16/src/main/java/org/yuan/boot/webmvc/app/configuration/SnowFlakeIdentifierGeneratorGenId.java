@@ -20,6 +20,7 @@ import java.io.Serializable;
 @Value
 public class SnowFlakeIdentifierGeneratorGenId implements IdentifierGenerator, com.baomidou.mybatisplus.core.incrementer.IdentifierGenerator, GenId<Long> {
     private Snowflake snowflake;
+
     @Override
     public Serializable generate(SharedSessionContractImplementor session, Object object) throws HibernateException {
         return snowflake.nextId();

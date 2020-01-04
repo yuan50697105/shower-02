@@ -1,11 +1,8 @@
 package org.yuan.boot.webmvc.app;
 
-import cn.hutool.core.lang.Snowflake;
-import cn.hutool.core.util.IdUtil;
 import org.minbox.framework.api.boot.autoconfigure.swagger.annotation.EnableApiBootSwagger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 import org.yuan.boot.DbCoreApplication;
 import org.yuan.boot.DbMybatisBaseApplication;
 import org.yuan.boot.webmvc.WebMvcCoreApplication;
