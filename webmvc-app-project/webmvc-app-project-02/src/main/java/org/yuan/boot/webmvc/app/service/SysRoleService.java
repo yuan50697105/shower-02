@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.service;
 
-import org.yuan.boot.db.service.BaseDbService;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
@@ -14,7 +13,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-01-01 18:12
  */
-public interface SysRoleService extends BaseDbService<SysRole, Long> {
+public interface SysRoleService extends BaseService<SysRole> {
     Result page(SysRoleCondition condition);
 
     Result list(SysRoleCondition condition);

@@ -9,5 +9,5 @@ import org.springframework.data.repository.NoRepositoryBean;
  * @create: 2020-01-04 14:36
  */
 @NoRepositoryBean
-public interface BaseRepository<T> extends org.yuan.boot.db.repository.BaseRepository<T,Long> {
+public interface BaseRepository<T> extends org.yuan.boot.db.repository.BaseRepository<T, Long> {
 }

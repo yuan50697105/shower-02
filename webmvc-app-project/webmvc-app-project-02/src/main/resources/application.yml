@@ -3,7 +3,7 @@ server:
     enabled: true
   http2:
     enabled: true
-  port: 8002
+  port: 8001
 
 spring:
   datasource:
@@ -14,7 +14,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   application:
-    name: webmvc-app-project-02
+    name: webmvc-app-project-01
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 mybatis:

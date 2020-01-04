@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.service;
 
-import org.yuan.boot.db.service.BaseDbService;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
@@ -12,7 +11,7 @@ import org.yuan.boot.webmvc.pojo.Result;
  * @author: yuane
  * @create: 2020-01-04 13:15
  */
-public interface SysPermissionService extends BaseDbService<SysPermission, Long> {
+public interface SysPermissionService extends BaseService<SysPermission> {
     Result page(SysPermissionCondition condition);
 
     Result list(SysPermissionCondition condition);

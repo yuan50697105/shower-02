@@ -7,17 +7,19 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+import java.io.Serializable;
+
 /**
  * @program: learning-demo-02
  * @description:
  * @author: yuane
- * @create: 2020-01-04 14:15
+ * @create: 2020-01-04 13:57
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> {
+public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> implements Serializable {
     @TableId(type = IdType.NONE)
     private Long id;
 

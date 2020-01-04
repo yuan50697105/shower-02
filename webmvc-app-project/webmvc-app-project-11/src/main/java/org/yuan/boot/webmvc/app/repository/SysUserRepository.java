@@ -1,5 +1,6 @@
 package org.yuan.boot.webmvc.app.repository;
 
+import org.springframework.stereotype.Repository;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 
 /**
@@ -8,5 +9,6 @@ import org.yuan.boot.webmvc.app.pojo.SysUser;
  * @author: yuane
  * @create: 2019-12-30 00:35
  */
+@Repository
 public interface SysUserRepository extends BaseRepository<SysUser> {
 }

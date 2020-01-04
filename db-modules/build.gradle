@@ -9,7 +9,7 @@ jar {
     enabled = false
 }
 
-subprojects{
+subprojects {
     // bootJar {
     //     enabled = false
     // }

@@ -9,7 +9,7 @@ import org.yuan.boot.webmvc.app.service.BaseService;
  * @program: learning-demo-02
  * @description:
  * @author: yuane
- * @create: 2020-01-04 14:23
+ * @create: 2020-01-04 14:02
  */
 public class BaseServiceImpl<T extends BaseEntity<T>, M extends BaseMapper<T>> extends BaseDbServiceImpl<T, Long, M> implements BaseService<T> {
 }
