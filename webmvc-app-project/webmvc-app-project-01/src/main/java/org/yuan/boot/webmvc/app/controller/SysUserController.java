@@ -60,7 +60,7 @@ public class SysUserController extends ResultController {
         return sysUserService.get(SysUser.builder().id(id).build());
     }
 
-    @ApiOperation(value = "保存", httpMethod = "POST", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "保存", httpMethod = "POST", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping({"save",""})
     public Result save(@RequestBody @Validated SysUserVo sysUserVo, BindingResult result) {
         validate(result);

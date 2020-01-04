@@ -20,5 +20,7 @@ subprojects {
         compile group: 'com.oracle.ojdbc', name: 'ojdbc8'
         compile group: 'org.postgresql', name: 'postgresql'
         compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc'
+        compile group: 'cn.afterturn', name: 'easypoi-spring-boot-starter', version: '4.1.3'
+
     }
 }

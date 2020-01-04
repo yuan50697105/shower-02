@@ -1,7 +1,5 @@
 package org.yuan.boot.webmvc.app.pojo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.*;
 import lombok.experimental.Accessors;
 
@@ -27,10 +25,11 @@ public class SysUser extends BaseEntity<SysUser> {
     private String updateUser;
     private Date createTime;
     private Date updateTime;
-    private Integer enabled;
+    private Boolean enabled;
+
 
     @Builder
-    public SysUser(Long id, String username, String password, String realName, String nickName, String createUser, String updateUser, Date createTime, Date updateTime, Integer enabled) {
+    public SysUser(Long id, String username, String password, String realName, String nickName, String createUser, String updateUser, Date createTime, Date updateTime, Boolean enabled) {
         super(id);
         this.username = username;
         this.password = password;

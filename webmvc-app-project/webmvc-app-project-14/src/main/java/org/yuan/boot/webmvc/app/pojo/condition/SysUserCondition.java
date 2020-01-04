@@ -1,7 +1,10 @@
 package org.yuan.boot.webmvc.app.pojo.condition;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+import lombok.*;
+import lombok.experimental.Accessors;
+import lombok.experimental.SuperBuilder;
 import org.yuan.boot.db.pojo.BaseCondition;
 
 import java.util.Date;
@@ -15,9 +18,14 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@Accessors(chain = true)
+@ApiModel
 public class SysUserCondition extends BaseCondition {
+//    @ApiModelProperty("主键")
     private Long id;
+//    @ApiModelProperty("主键集合")
     private List<Long> ids;
+//    @ApiModelProperty("名称")
     private String name;
     private String username;
     private String realName;
@@ -33,5 +41,21 @@ public class SysUserCondition extends BaseCondition {
 
     public SysUserCondition(int page, int size) {
         super(page, size);
+    }
+
+    @Builder
+    public SysUserCondition(int page, int size, Long id, List<Long> ids, String name, String username, String realName, String nickName, String createUser, Date createDate, Date createDateStart, Date createDateEnd, Integer enabled) {
+        super(page, size);
+        this.id = id;
+        this.ids = ids;
+        this.name = name;
+        this.username = username;
+        this.realName = realName;
+        this.nickName = nickName;
+        this.createUser = createUser;
+        this.createDate = createDate;
+        this.createDateStart = createDateStart;
+        this.createDateEnd = createDateEnd;
+        this.enabled = enabled;
     }
 }

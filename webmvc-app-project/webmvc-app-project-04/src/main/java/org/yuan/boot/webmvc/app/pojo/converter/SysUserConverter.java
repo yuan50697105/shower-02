@@ -24,5 +24,6 @@ public interface SysUserConverter {
     })
     SysUser convert(SysUserVo sysUserVo);
 
+
     List<SysUser> convert(List<SysUserVo> sysUserVos);
 }

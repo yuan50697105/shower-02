@@ -48,13 +48,13 @@ public class SysRoleController extends ResultController {
         return sysRoleService.get(sysRole);
     }
 
-    @ApiOperation(value = "主键保存", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "主键查询", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("{id}")
     public Result get(@PathVariable("id") Long id) {
         return sysRoleService.get(id);
     }
 
-    @ApiOperation(value = "保存", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @ApiOperation(value = "保存", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping({"save"})
     public Result save(@RequestBody @Validated SysRoleVo sysRoleVo, BindingResult result) {
         validate(result);

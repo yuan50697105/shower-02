@@ -9,7 +9,7 @@ import java.io.Serializable;
 public abstract class BaseDbServiceImpl<T extends BaseEntity<T>, ID extends Serializable, M extends BaseMapper<T>> implements BaseDbService<T, ID> {
     private M baseMapper;
 
-    private M baseMapper() {
+    public M baseMapper() {
         return baseMapper;
     }
 }
