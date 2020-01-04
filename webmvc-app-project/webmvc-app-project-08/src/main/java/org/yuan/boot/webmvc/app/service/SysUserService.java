@@ -9,5 +9,5 @@ import org.yuan.boot.webmvc.app.pojo.SysUser;
  * @author: yuane
  * @create: 2019-12-29 22:31
  */
-public interface SysUserService extends BaseDbService<SysUser, Long> {
+public interface SysUserService extends BaseService<SysUser> {
 }

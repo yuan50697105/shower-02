@@ -2,7 +2,6 @@ package org.yuan.boot.webmvc.app.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.BaseEntity;
 
 import javax.persistence.Id;
 import java.util.Date;
@@ -15,13 +14,10 @@ import java.util.Date;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Builder
 @Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class SysUser extends BaseEntity<SysUser> {
-    @Id
-    private Long id;
     private String username;
     private String password;
     private String realName;
@@ -31,4 +27,18 @@ public class SysUser extends BaseEntity<SysUser> {
     private Date createTime;
     private Date updateTime;
     private Boolean enabled;
+
+    @Builder
+    public SysUser(Long id, String username, String password, String realName, String nickName, String createUser, String updateUser, Date createTime, Date updateTime, Boolean enabled) {
+        super(id);
+        this.username = username;
+        this.password = password;
+        this.realName = realName;
+        this.nickName = nickName;
+        this.createUser = createUser;
+        this.updateUser = updateUser;
+        this.createTime = createTime;
+        this.updateTime = updateTime;
+        this.enabled = enabled;
+    }
 }
