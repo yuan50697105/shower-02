@@ -111,19 +111,22 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.yuan.boot.webmvc.app.pojo.SysPermission" useGeneratedKeys="true">
+  <insert id="insert" parameterType="org.yuan.boot.webmvc.app.pojo.SysPermission">
     <!--@mbg.generated-->
-    insert into sys_permission (authority, `name`, create_user, 
-      update_user, create_time, update_time, 
-      enabled)
-    values (#{authority,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{enabled,jdbcType=INTEGER})
+    insert into sys_permission (id, authority, `name`, 
+      create_user, update_user, create_time, 
+      update_time, enabled)
+    values (#{id,jdbcType=BIGINT}, #{authority,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{enabled,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.yuan.boot.webmvc.app.pojo.SysPermission" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="org.yuan.boot.webmvc.app.pojo.SysPermission">
     <!--@mbg.generated-->
     insert into sys_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="authority != null">
         authority,
       </if>
@@ -147,6 +150,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="authority != null">
         #{authority,jdbcType=VARCHAR},
       </if>
@@ -265,4 +271,36 @@
       enabled = #{enabled,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_permission
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="ids != null and ids.size() != 0">
+                and id in
+                <foreach close=")" collection="ids" index="index" item="item" open="(" separator=",">
+                    #{item,jdbcType=BIGINT}
+                </foreach>
+            </if>
+            <if test="name != null and name != ''">
+                and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
+    <select id="selectOne" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from sys_permission
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="name != null and name != ''">
+                and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
 </mapper>

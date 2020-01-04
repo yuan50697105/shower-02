@@ -14,5 +14,5 @@ import org.yuan.boot.webmvc.app.service.SysUserService;
  * @create: 2019-12-29 22:31
  */
 @Service
-public class SysUserServiceImpl extends BaseDbServiceImpl<SysUser, Long, SysUserRepository, SysUserMapper> implements SysUserService {
+public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserRepository, SysUserMapper> implements SysUserService {
 }

@@ -1,7 +1,6 @@
 package org.yuan.boot.webmvc.app.service.impl;
 
 import org.springframework.stereotype.Service;
-import org.yuan.boot.db.service.impl.BaseDbServiceImpl;
 import org.yuan.boot.webmvc.app.mapper.SysUserMapper;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.service.SysUserService;
@@ -13,5 +12,6 @@ import org.yuan.boot.webmvc.app.service.SysUserService;
  * @create: 2019-12-29 22:31
  */
 @Service
-public class SysUserServiceImpl extends BaseDbServiceImpl<SysUser, Long, SysUserMapper> implements SysUserService {
+public class SysUserServiceImpl extends BaseServiceImpl<SysUser, SysUserMapper> implements SysUserService {
+
 }
