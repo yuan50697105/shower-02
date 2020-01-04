@@ -25,9 +25,9 @@ public class WebMvcApplication01 {
         SpringApplication.run(WebMvcCoreApplication.class, args);
     }
 
-    @Bean
-    public Snowflake snowflake() {
-        return IdUtil.createSnowflake(1, 2);
-    }
+//    @Bean
+//    public Snowflake snowflake() {
+//        return IdUtil.createSnowflake(1, 2);
+//    }
 
 }
