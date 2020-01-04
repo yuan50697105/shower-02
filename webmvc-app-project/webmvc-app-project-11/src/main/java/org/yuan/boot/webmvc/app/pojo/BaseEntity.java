@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.yuan.boot.webmvc.app.configuration.SnowFlakeIdGenerator;
+import org.yuan.boot.webmvc.app.configuration.SnowFlakeIdentifierGeneratorGenId;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.GeneratedValue;
@@ -24,8 +24,8 @@ import javax.persistence.MappedSuperclass;
 @AllArgsConstructor
 public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> {
     @Id
-    @GeneratedValue(generator = "org.yuan.boot.webmvc.app.configuration.SnowFlakeIdGenerator")
-    @KeySql(genId = SnowFlakeIdGenerator.class)
+    @GeneratedValue(generator = "org.yuan.boot.webmvc.app.configuration.SnowFlakeIdentifierGeneratorGenId")
+    @KeySql(genId = SnowFlakeIdentifierGeneratorGenId.class)
     private Long id;
 
     @SuppressWarnings("unchecked")

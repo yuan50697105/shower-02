@@ -22,7 +22,7 @@ import javax.persistence.MappedSuperclass;
 @AllArgsConstructor
 public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> {
     @Id
-    @GeneratedValue(generator = "org.yuan.boot.webmvc.app.configuration.SnowFlakeIdGenerator")
+    @GeneratedValue(generator = "org.yuan.boot.webmvc.app.configuration.SnowFlakeIdentifierGenerator")
     private Long id;
 
     @SuppressWarnings("unchecked")

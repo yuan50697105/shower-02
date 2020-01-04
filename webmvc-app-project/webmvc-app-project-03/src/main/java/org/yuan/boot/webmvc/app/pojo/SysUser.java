@@ -1,35 +1,70 @@
 package org.yuan.boot.webmvc.app.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
 
+import java.io.Serializable;
 import java.util.Date;
 
-/**
- * @program: learning-demo-02
- * @description: 用户实体
- * @author: yuane
- * @create: 2019-12-29 22:16
- */
 @EqualsAndHashCode(callSuper = true)
+@ApiModel(value = "org-yuan-boot-webmvc-app-pojo-SysUser")
 @Data
-@Accessors(chain = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class SysUser extends BaseEntity<SysUser> {
+@Accessors(chain = true)
+public class SysUser extends BaseEntity<SysUser> implements Serializable {
+    private static final long serialVersionUID = 1L;
+    /**
+     * username
+     */
+    @ApiModelProperty(value = "username")
     private String username;
+    /**
+     * password
+     */
+    @ApiModelProperty(value = "password")
     private String password;
+    /**
+     * realName
+     */
+    @ApiModelProperty(value = "realName")
     private String realName;
+    /**
+     * nickName
+     */
+    @ApiModelProperty(value = "nickName")
     private String nickName;
+    /**
+     * createUser
+     */
+    @ApiModelProperty(value = "createUser")
     private String createUser;
+    /**
+     * updateUser
+     */
+    @ApiModelProperty(value = "updateUser")
     private String updateUser;
+    /**
+     * createTime
+     */
+    @ApiModelProperty(value = "createTime")
     private Date createTime;
+    /**
+     * updateTime
+     */
+    @ApiModelProperty(value = "updateTime")
     private Date updateTime;
-    private Boolean enabled;
+    /**
+     * enabled
+     */
+    @ApiModelProperty(value = "enabled")
+    private Byte enabled;
 
 
     @Builder
-    public SysUser(Long id, String username, String password, String realName, String nickName, String createUser, String updateUser, Date createTime, Date updateTime, Boolean enabled) {
+    public SysUser(Long id, String username, String password, String realName, String nickName, String createUser, String updateUser, Date createTime, Date updateTime, Byte enabled) {
         super(id);
         this.username = username;
         this.password = password;

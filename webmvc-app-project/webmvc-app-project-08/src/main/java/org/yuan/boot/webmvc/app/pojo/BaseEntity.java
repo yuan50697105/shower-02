@@ -6,25 +6,26 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.yuan.boot.webmvc.app.configuration.SnowFlakeIdGenerator;
+import org.yuan.boot.webmvc.app.configuration.SnowFlakeIdGeneratorGenId;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Id;
+import java.io.Serializable;
 
 /**
  * @program: learning-demo-02
  * @description:
  * @author: yuane
- * @create: 2020-01-04 14:20
+ * @create: 2020-01-04 13:57
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> {
-    @TableId(type = IdType.NONE)
+public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> implements Serializable {
     @Id
-    @KeySql(genId = SnowFlakeIdGenerator.class)
+    @KeySql(genId = SnowFlakeIdGeneratorGenId.class)
+    @TableId(type = IdType.NONE)
     private Long id;
 
     @SuppressWarnings("unchecked")
