@@ -14,7 +14,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-01-01 18:12
  */
-public interface SysRoleService extends BaseDbService<SysRole, Long> {
+public interface SysRoleService extends BaseService<SysRole> {
     Result page(SysRoleCondition condition);
 
     Result list(SysRoleCondition condition);

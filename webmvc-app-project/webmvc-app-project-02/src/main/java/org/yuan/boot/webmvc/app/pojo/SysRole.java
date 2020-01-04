@@ -5,7 +5,6 @@ import java.util.Date;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.BaseEntity;
 
 @EqualsAndHashCode(callSuper = true)
 @Data

@@ -54,7 +54,7 @@ public class SysRoleController extends ResultController {
         return sysRoleService.get(id);
     }
 
-    @ApiOperation(value = "主键保存", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiOperation(value = "保存", consumes = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping({"save"})
     public Result save(@RequestBody @Validated SysRoleVo sysRoleVo, BindingResult result) {
         validate(result);

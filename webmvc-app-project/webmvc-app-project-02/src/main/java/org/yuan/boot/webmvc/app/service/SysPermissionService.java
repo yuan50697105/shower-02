@@ -12,7 +12,7 @@ import org.yuan.boot.webmvc.pojo.Result;
  * @author: yuane
  * @create: 2020-01-04 13:15
  */
-public interface SysPermissionService extends BaseDbService<SysPermission, Long> {
+public interface SysPermissionService extends BaseService<SysPermission> {
     Result page(SysPermissionCondition condition);
 
     Result list(SysPermissionCondition condition);
