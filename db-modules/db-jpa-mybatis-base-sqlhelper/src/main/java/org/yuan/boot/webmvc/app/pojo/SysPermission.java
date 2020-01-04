@@ -1,20 +1,16 @@
 package org.yuan.boot.webmvc.app.pojo;
 
-import java.io.Serializable;
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import lombok.*;
-import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.BaseEntity;
-
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Accessors(chain = true)
-public class SysRole extends BaseEntity<SysRole> implements Serializable {
-    private static final long serialVersionUID = 1L;
+public class SysPermission {
     /**
      * id
      */
@@ -55,7 +51,7 @@ public class SysRole extends BaseEntity<SysRole> implements Serializable {
      */
     private Integer enabled;
 
-    public static SysRoleBuilder builder() {
-        return new SysRoleBuilder();
+    public static SysPermissionBuilder builder() {
+        return new SysPermissionBuilder();
     }
 }

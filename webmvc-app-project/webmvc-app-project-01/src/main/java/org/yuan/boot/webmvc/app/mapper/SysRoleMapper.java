@@ -6,7 +6,6 @@ import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;
-import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
 
