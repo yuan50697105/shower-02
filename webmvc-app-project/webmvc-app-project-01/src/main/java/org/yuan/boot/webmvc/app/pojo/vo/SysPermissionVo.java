@@ -3,6 +3,8 @@ package org.yuan.boot.webmvc.app.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.webmvc.app.pojo.SysPermission;
 
 /**
  * @program: learning-demo-02
@@ -12,7 +14,7 @@ import lombok.Data;
  */
 @ApiModel("权限模型")
 @Data
-public class SysPermissionVo {
+public final class SysPermissionVo {
     @ApiModelProperty("主键")
     private Long id;
     @ApiModelProperty(value = "权限描述", required = true)

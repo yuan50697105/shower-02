@@ -3,6 +3,8 @@ package org.yuan.boot.webmvc.app.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.validate.SaveOrUpdateValidate;
 import org.yuan.boot.webmvc.app.pojo.validate.SaveValidate;
 
@@ -17,7 +19,7 @@ import java.util.List;
  */
 @ApiModel("角色模型")
 @Data
-public class SysRoleVo {
+public final class SysRoleVo {
     @ApiModelProperty(value = "主键")
     private Long id;
     @ApiModelProperty(value = "名称", required = true)

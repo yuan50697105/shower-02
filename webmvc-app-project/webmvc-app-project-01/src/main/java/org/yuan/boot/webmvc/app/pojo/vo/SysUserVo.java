@@ -3,6 +3,8 @@ package org.yuan.boot.webmvc.app.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.validate.SaveOrUpdateValidate;
 import org.yuan.boot.webmvc.app.pojo.validate.SaveValidate;
 
@@ -17,7 +19,7 @@ import java.util.List;
  */
 @ApiModel
 @Data
-public class SysUserVo {
+public final class SysUserVo {
     @ApiModelProperty
     private Long id;
     @ApiModelProperty

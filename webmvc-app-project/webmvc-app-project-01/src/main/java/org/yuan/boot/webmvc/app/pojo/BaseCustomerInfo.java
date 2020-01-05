@@ -1,10 +1,9 @@
 package org.yuan.boot.webmvc.app.pojo;
 
+import java.util.Date;
+
 import lombok.*;
 import lombok.experimental.Accessors;
-
-import java.io.Serializable;
-import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -12,21 +11,36 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public final class SysPermission extends BaseEntity<SysPermission> implements Serializable {
+public final class BaseCustomerInfo extends BaseEntity<BaseCustomerInfo> {
     /**
      * id
      */
     private Long id;
 
     /**
-     * authority
+     * actualName
      */
-    private String authority;
+    private String actualName;
 
     /**
-     * name
+     * contactAddress
      */
-    private String name;
+    private String contactAddress;
+
+    /**
+     * contactNumber
+     */
+    private String contactNumber;
+
+    /**
+     * identityNumber
+     */
+    private String identityNumber;
+
+    /**
+     * enabled
+     */
+    private Integer enabled;
 
     /**
      * createUser
@@ -48,12 +62,7 @@ public final class SysPermission extends BaseEntity<SysPermission> implements Se
      */
     private Date updateTime;
 
-    /**
-     * enabled
-     */
-    private Integer enabled;
-
-    public static SysPermissionBuilder builder() {
-        return new SysPermissionBuilder();
+    public static BaseCustomerInfoBuilder builder() {
+        return new BaseCustomerInfoBuilder();
     }
 }

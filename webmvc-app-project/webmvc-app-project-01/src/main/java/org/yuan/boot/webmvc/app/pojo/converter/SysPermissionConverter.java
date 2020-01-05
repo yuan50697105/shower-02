@@ -20,9 +20,9 @@ public interface SysPermissionConverter {
 
             @org.mapstruct.Mapping(target = "createTime", ignore = true),
             @org.mapstruct.Mapping(target = "createUser", ignore = true),
+            @org.mapstruct.Mapping(target = "updateTime", ignore = true),
             @org.mapstruct.Mapping(target = "updateUser", ignore = true),
-            @org.mapstruct.Mapping(target = "enabled", ignore = true),
-            @org.mapstruct.Mapping(target = "updateTime", ignore = true)
+            @org.mapstruct.Mapping(target = "enabled", ignore = true)
     })
     SysPermission convert(SysPermissionVo sysPermissionVo);
 

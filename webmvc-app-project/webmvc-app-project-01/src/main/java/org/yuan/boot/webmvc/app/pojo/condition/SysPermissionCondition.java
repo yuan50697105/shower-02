@@ -17,7 +17,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class SysPermissionCondition extends BaseCondition {
+public final class SysPermissionCondition extends BaseCondition {
     private Long id;
     private List<Long> ids;
     private String name;

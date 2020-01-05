@@ -21,7 +21,7 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 @ApiModel
-public class SysUserCondition extends BaseCondition {
+public final class SysUserCondition extends BaseCondition {
     @ApiModelProperty("主键")
     private Long id;
     @ApiModelProperty("主键集合")
