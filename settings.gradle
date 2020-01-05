@@ -81,4 +81,7 @@ include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-pro
 findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin')?.name = 'webmvc-modules-app-project-01-admin'
 include 'webflux-modules'
 include 'webflux-app-project'
+include 'graphql-app-project'
+include 'graphql-app-project:graphql-app-project-01'
+findProject(':graphql-app-project:graphql-app-project-01')?.name = 'graphql-app-project-01'
 
