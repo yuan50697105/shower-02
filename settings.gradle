@@ -37,6 +37,8 @@ findProject(':db-modules:db-jpa-mybatis-mapper-plus-sqlhelper')?.name = 'db-jpa-
 include 'utils-modules'
 include 'utils-modules:restrofit'
 findProject(':utils-modules:restrofit')?.name = 'restrofit'
+include 'utils-modules:wx'
+findProject(':utils-modules:wx')?.name = 'wx'
 include 'webmvc-modules'
 include 'webmvc-modules:webmvc-core'
 findProject(':webmvc-modules:webmvc-core')?.name = 'webmvc-core'
