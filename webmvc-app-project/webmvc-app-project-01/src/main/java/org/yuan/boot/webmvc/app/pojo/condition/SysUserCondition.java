@@ -1,6 +1,7 @@
 package org.yuan.boot.webmvc.app.pojo.condition;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -20,21 +21,30 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 @ApiModel
-public class SysUserCondition extends BaseCondition {
-    //    @ApiModelProperty("主键")
+public final class SysUserCondition extends BaseCondition {
+    @ApiModelProperty("主键")
     private Long id;
-    //    @ApiModelProperty("主键集合")
+    @ApiModelProperty("主键集合")
     private List<Long> ids;
-    //    @ApiModelProperty("名称")
+    @ApiModelProperty("名称")
     private String name;
+    @ApiModelProperty("账户名")
     private String username;
+    @ApiModelProperty("姓名")
     private String realName;
+    @ApiModelProperty("昵称")
     private String nickName;
+    @ApiModelProperty("创建人")
     private String createUser;
+    @ApiModelProperty("创建日期")
     private Date createDate;
+    @ApiModelProperty("起始创建日期")
     private Date createDateStart;
+    @ApiModelProperty("截至创建日期")
     private Date createDateEnd;
+    @ApiModelProperty(value = "启用状态", access = "0：停用，1：启用")
     private Integer enabled;
+    private List<Date> createDateRange;
 
     public SysUserCondition() {
     }
@@ -44,7 +54,7 @@ public class SysUserCondition extends BaseCondition {
     }
 
     @Builder
-    public SysUserCondition(int page, int size, Long id, List<Long> ids, String name, String username, String realName, String nickName, String createUser, Date createDate, Date createDateStart, Date createDateEnd, Integer enabled) {
+    public SysUserCondition(int page, int size, Long id, List<Long> ids, String name, String username, String realName, String nickName, String createUser, Date createDate, Date createDateStart, Date createDateEnd, Integer enabled, List<Date> createDateRange) {
         super(page, size);
         this.id = id;
         this.ids = ids;
@@ -57,5 +67,6 @@ public class SysUserCondition extends BaseCondition {
         this.createDateStart = createDateStart;
         this.createDateEnd = createDateEnd;
         this.enabled = enabled;
+        this.createDateRange = createDateRange;
     }
 }

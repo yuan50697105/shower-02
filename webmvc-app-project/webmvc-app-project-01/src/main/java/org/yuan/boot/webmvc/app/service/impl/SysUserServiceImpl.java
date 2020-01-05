@@ -4,6 +4,8 @@ import cn.hutool.core.lang.Snowflake;
 import cn.hutool.http.HttpStatus;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.EqualsAndHashCode;
+import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
@@ -28,11 +30,11 @@ import java.util.List;
  * @author: yuane
  * @create: 2019-12-29 22:31
  */
+@EqualsAndHashCode(callSuper = true)
+@Value
 @Service
-public class SysUserServiceImpl extends BaseDbServiceImpl<SysUser, Long, SysUserMapper> implements SysUserService {
-    @Autowired
+public class SysUserServiceImpl extends BaseServiceImpl<SysUser,  SysUserMapper> implements SysUserService {
     private SysUserConverter sysUserConverter;
-    @Autowired
     private Snowflake snowflake;
 
     @Override

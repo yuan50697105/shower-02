@@ -17,7 +17,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class SysRoleCondition extends BaseCondition {
+public final class SysRoleCondition extends BaseCondition {
     private Long id;
     private List<Long> ids;
     private String name;
