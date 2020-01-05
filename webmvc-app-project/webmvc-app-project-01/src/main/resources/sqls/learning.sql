@@ -2,18 +2,17 @@ create schema if not exists learning collate utf8mb4_0900_ai_ci;
 
 create table if not exists base_customer_info
 (
-    id                    bigint(15) auto_increment comment 'id'
+    id              bigint(15) auto_increment comment 'id'
         primary key,
-    name                  varchar(50) null comment 'name',
-    age                   int         null comment 'age',
-    identification_number varchar(50) null comment 'identificationNumber',
-    mailing_address       varchar(50) null comment 'mailingAddress',
-    contact_number        varchar(50) null comment 'contactNumber',
-    work_place            varchar(50) null comment 'workPlace',
-    create_user           varchar(50) null comment 'createUser',
-    update_user           varchar(50) null comment 'updateUser',
-    create_time           datetime    null comment 'createTime',
-    update_time           datetime    null comment 'updateTime'
+    actual_name     varchar(50) null comment 'actualName',
+    contact_address varchar(50) null comment 'contactAddress',
+    contact_number  varchar(50) null comment 'contactNumber',
+    identity_number varchar(50) null comment 'identityNumber',
+    enabled         int         null comment 'enabled',
+    create_user     varchar(50) null comment 'createUser',
+    update_user     varchar(50) null comment 'updateUser',
+    create_time     datetime    null comment 'createTime',
+    update_time     timestamp   null comment 'updateTime'
 )
     comment 'base_customer_info';
 

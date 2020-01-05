@@ -2,6 +2,7 @@ package org.yuan.boot.webmvc.app.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.springframework.http.MediaType;
@@ -31,7 +32,7 @@ public class SysUserController extends ResultController {
 
     @ApiOperation(value = "分页查询")
     @GetMapping("data")
-    public Result data(SysUserCondition condition) {
+    public Result data(@ApiParam SysUserCondition condition) {
         return sysUserService.page(condition);
     }
 

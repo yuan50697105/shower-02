@@ -3,6 +3,8 @@ package org.yuan.boot.webmvc.app.service.impl;
 import cn.hutool.core.lang.Snowflake;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.EqualsAndHashCode;
+import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -26,11 +28,11 @@ import java.util.Date;
  * @author: yuane
  * @create: 2020-01-04 13:15
  */
+@EqualsAndHashCode(callSuper = true)
+@Value
 @Service
-public class SysPermissionServiceImpl extends BaseDbServiceImpl<SysPermission, Long, SysPermissionMapper> implements SysPermissionService {
-    @Autowired
+public class SysPermissionServiceImpl extends BaseServiceImpl<SysPermission, SysPermissionMapper> implements SysPermissionService {
     private SysPermissionConverter sysPermissionConverter;
-    @Autowired
     private Snowflake snowflake;
 
     @Override

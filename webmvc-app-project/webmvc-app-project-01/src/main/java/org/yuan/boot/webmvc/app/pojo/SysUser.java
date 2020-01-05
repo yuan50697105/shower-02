@@ -15,7 +15,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class SysUser extends BaseEntity<SysUser> implements Serializable {
+public final class SysUser extends BaseEntity<SysUser> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * id

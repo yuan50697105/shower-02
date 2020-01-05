@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class SysPermission extends BaseEntity<SysPermission> implements Serializable {
+public final class SysPermission extends BaseEntity<SysPermission> implements Serializable {
     /**
      * id
      */

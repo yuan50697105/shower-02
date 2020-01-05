@@ -11,5 +11,7 @@ import org.yuan.boot.webmvc.app.service.BaseService;
  * @author: yuane
  * @create: 2020-01-05 00:14
  */
-public class BaseServiceImpl<T extends BaseEntity<T>, M extends BaseMapper<T>> extends BaseDbServiceImpl<T, Long, M> implements BaseService<T> {
+
+
+public abstract class BaseServiceImpl<T extends BaseEntity<T>, M extends BaseMapper<T>> extends BaseDbServiceImpl<T, Long, M> implements BaseService<T> {
 }
