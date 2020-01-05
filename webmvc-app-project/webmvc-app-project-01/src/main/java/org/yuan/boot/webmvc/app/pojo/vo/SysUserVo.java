@@ -3,6 +3,10 @@ package org.yuan.boot.webmvc.app.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.yuan.boot.webmvc.app.pojo.validate.SaveValidate;
+
+import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * @program: learning-demo-02
@@ -23,4 +27,7 @@ public class SysUserVo {
     private String realName;
     @ApiModelProperty
     private String nickName;
+    @ApiModelProperty
+    @NotEmpty(groups = SaveValidate.class)
+    private List<Long> roleIds;
 }

@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import java.util.List;
 
 /**
  * @program: learning-demo-02
@@ -23,4 +24,7 @@ public class SysRoleVo {
     @ApiModelProperty(value = "权限描述", required = true)
     @NotEmpty
     private String authority;
+    @ApiModelProperty(value = "权限列表", required = true)
+    @NotEmpty
+    private List<Long> permissionIds;
 }
