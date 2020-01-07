@@ -3,6 +3,7 @@ package org.yuan.boot.webmvc.app.service.impl;
 import cn.hutool.core.lang.Snowflake;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-01-01 18:13
  */
-@EqualsAndHashCode(callSuper = true)
-@Value
+@AllArgsConstructor
 @Service
 public class SysRoleServiceImpl extends BaseServiceImpl<SysRole, SysRoleMapper> implements SysRoleService {
     private SysRoleConverter sysRoleConverter;
