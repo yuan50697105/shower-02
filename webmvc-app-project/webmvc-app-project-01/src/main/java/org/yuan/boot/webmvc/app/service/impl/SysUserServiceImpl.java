@@ -4,6 +4,7 @@ import cn.hutool.core.lang.Snowflake;
 import cn.hutool.http.HttpStatus;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2019-12-29 22:31
  */
-@EqualsAndHashCode(callSuper = true)
-@Value
+@AllArgsConstructor
 @Service
 public class SysUserServiceImpl extends BaseServiceImpl<SysUser,  SysUserMapper> implements SysUserService {
     private SysUserConverter sysUserConverter;

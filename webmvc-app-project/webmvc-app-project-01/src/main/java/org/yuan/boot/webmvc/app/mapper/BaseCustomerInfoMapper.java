@@ -1,5 +1,6 @@
 package org.yuan.boot.webmvc.app.mapper;
 
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfo;
@@ -7,6 +8,7 @@ import org.yuan.boot.webmvc.app.pojo.example.BaseCustomerInfoExample;
 
 import java.util.List;
 
+@Mapper
 public interface BaseCustomerInfoMapper extends BaseMapper<BaseCustomerInfo> {
     long countByExample(BaseCustomerInfoExample example);
 
