@@ -66,7 +66,6 @@ allprojects {
 
     dependencyManagement {
         imports {
-            mavenBom "org.springframework.boot:spring-boot-dependencies:2.2.2.RELEASE"
             mavenBom "org.minbox.framework:api-boot-dependencies:2.2.2.RELEASE"
             mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
             mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.1.1.RELEASE"
