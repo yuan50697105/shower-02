@@ -1,4 +1,0 @@
-type Query {
-    findUser:[SysUser]
-    findUser1:SysUser
-}

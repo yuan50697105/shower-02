@@ -1,0 +1,3 @@
+group 'org.yuan.boot.webflux.core'
+version '0.0.1-DEV'
+

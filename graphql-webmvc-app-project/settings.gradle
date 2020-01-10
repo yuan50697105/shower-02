@@ -8,4 +8,3 @@
  */
 
 rootProject.name = 'graphql-app-project'
-include 'graphql-app-project-01'

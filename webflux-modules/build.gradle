@@ -1,5 +1,3 @@
-group 'org.yuan.boot.webflux'
-
 bootJar {
     enabled = false
 }
@@ -8,10 +6,9 @@ jar {
     enabled = false
 }
 
-subprojects {
+allprojects {
+    group 'org.yuan.boot.webflux'
     dependencies {
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
-        compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas'
-        compile group: 'org.springframework.boot', name: 'spring-boot-starter-rsocket'
     }
 }

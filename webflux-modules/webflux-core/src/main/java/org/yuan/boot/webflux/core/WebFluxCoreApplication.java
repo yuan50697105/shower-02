@@ -1,4 +1,4 @@
-package org.yuan.boot.graphql;
+package org.yuan.boot.webflux.core;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -7,11 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @program: learning-demo-02
  * @description:
  * @author: yuane
- * @create: 2020-01-05 16:15
+ * @create: 2020-01-11 18:37
  */
 @SpringBootApplication
-public class GraphQLApplication01 {
+public class WebFluxCoreApplication {
     public static void main(String[] args) {
-        SpringApplication.run(GraphQLApplication01.class, args);
+        SpringApplication.run(WebFluxCoreApplication.class, args);
     }
 }
