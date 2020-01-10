@@ -86,4 +86,6 @@ include 'webflux-app-project'
 include 'graphql-app-project'
 include 'graphql-app-project:graphql-app-project-01'
 findProject(':graphql-app-project:graphql-app-project-01')?.name = 'graphql-app-project-01'
+include 'webmvc-modules:webmvc-disrupter'
+findProject(':webmvc-modules:webmvc-disrupter')?.name = 'webmvc-disrupter'
 

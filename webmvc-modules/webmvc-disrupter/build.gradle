@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':webmvc-modules:webmvc-core')
+    compile group: 'com.github.vindell', name: 'spring-boot-starter-disruptor', version: '1.0.2.RELEASE'
+
+}
