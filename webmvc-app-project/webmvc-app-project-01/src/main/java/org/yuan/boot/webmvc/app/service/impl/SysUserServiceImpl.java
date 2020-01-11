@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.webmvc.app.dao.SysUserDao;
 import org.yuan.boot.webmvc.app.dao.SysUserRoleDao;
+import org.yuan.boot.webmvc.app.pojo.ResultConstants;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.SysUserRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
@@ -71,8 +72,8 @@ public class SysUserServiceImpl implements SysUserService {
     public Result changePwd(SysUserVo sysUserVo) {
         Result result;
         Optional<SysUser> optional = sysUserDao.selectByUsername(sysUserVo.getUsername());
-        if (optional.isPresent()) {
-            result = Result.error(101, "用户不存在");
+        if (!optional.isPresent()) {
+            result = Result.error(ResultConstants.CHANGE_PASSWORD_USER_NOT_HADDEN, "用户不存在");
         } else {
             SysUser sysUser = optional.get();
             String password = sysUser.getPassword();
@@ -83,7 +84,7 @@ public class SysUserServiceImpl implements SysUserService {
                 sysUserDao.update(sysUser);
                 result = Result.ok();
             } else {
-                result = Result.error(102, "密码不正确");
+                result = Result.error(ResultConstants.CHANGE_PASSWORD_USER_OLD_PWD_ERROR, "密码不正确");
             }
         }
         return result;
@@ -98,7 +99,7 @@ public class SysUserServiceImpl implements SysUserService {
         for (Long roleId : roleIds) {
             sysUserRoles.add(SysUserRole.builder().userId(userId).roleId(roleId).build());
         }
-        sysUserRoleDao.batchSave(sysUserRoles);
+        sysUserRoleDao.batchUpdate(new SysUser().setId(userId), sysUserRoles);
         return Result.ok();
     }
 
@@ -106,6 +107,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Transactional(rollbackFor = Exception.class)
     public Result delete(List<Long> ids) {
         sysUserDao.delete(ids);
+        sysUserRoleDao.deleteByUserIds(ids);
         return Result.ok();
     }
 
@@ -113,6 +115,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Transactional(rollbackFor = Exception.class)
     public Result delete(Long id) {
         sysUserDao.delete(id);
+        sysUserRoleDao.deleteByUserId(id);
         return Result.ok();
     }
 }

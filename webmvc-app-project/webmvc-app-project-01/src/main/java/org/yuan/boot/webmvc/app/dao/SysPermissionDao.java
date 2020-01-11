@@ -2,8 +2,9 @@ package org.yuan.boot.webmvc.app.dao;
 
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
-import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
 import org.yuan.boot.webmvc.pojo.Result;
+
+import java.util.List;
 
 /**
  * @program: learning-demo-02
@@ -20,11 +21,11 @@ public interface SysPermissionDao extends BaseDao<SysPermission> {
 
     Result get(Long id);
 
-    Result save(SysPermissionVo sysPermissionVo);
+    Result save(SysPermission sysPermission);
 
-    Result update(SysPermissionVo sysPermissionVo);
+    Result update(SysPermission sysPermissionVo);
 
     Result delete(Long id);
 
-    Result delete(Long[] ids);
+    Result delete(List<Long> ids);
 }

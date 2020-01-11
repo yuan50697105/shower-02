@@ -26,13 +26,16 @@ public final class SysRoleVo {
     @NotEmpty(groups = {Save.class, Update.class})
     private String authority;
     @ApiModelProperty(value = "权限列表")
-    @NotEmpty(groups = {Save.class, Update.class})
+    @NotEmpty(groups = {Save.class, Update.class, ChangePermission.class})
     private List<Long> permissionIds;
 
     public interface Save {
     }
 
     public interface Update {
+    }
+
+    public interface ChangePermission {
     }
 
 

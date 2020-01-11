@@ -51,7 +51,7 @@ public class SysUserController extends ResultController {
     }
 
     @ApiOperation(value = "精确查询", produces = MediaType.APPLICATION_JSON_VALUE)
-    @GetMapping(value = "get", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(SysUser condition) {
         return sysUserService.get(condition);
     }
@@ -77,14 +77,14 @@ public class SysUserController extends ResultController {
     }
 
     @ApiOperation(value = "修改密码", consumes = MediaType.APPLICATION_JSON_VALUE, httpMethod = HTTP_METHOD_POST)
-    @PostMapping(value = "changePwd", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "update/pwd", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Result changePwd(@RequestBody @Validated(SysUserVo.ChangePwd.class) SysUserVo sysUserVo, BindingResult result) {
         validate(result);
         return sysUserService.changePwd(sysUserVo);
     }
 
     @ApiOperation(value = "修改角色", httpMethod = HTTP_METHOD_POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    @PostMapping(value = "changeRole", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "update/role", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Result changeRole(@RequestBody @Validated({SysUserVo.ChangeRole.class}) SysUserVo sysUserVo, BindingResult result) {
         validate(result);
         return sysUserService.changeRole(sysUserVo);

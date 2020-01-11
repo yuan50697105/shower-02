@@ -7,12 +7,14 @@ import lombok.EqualsAndHashCode;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.yuan.boot.webmvc.app.dao.SysPermissionDao;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
+import org.yuan.boot.webmvc.app.service.SysPermissionService;
 import org.yuan.boot.webmvc.controller.ResultController;
 import org.yuan.boot.webmvc.pojo.Result;
+
+import java.util.List;
 
 /**
  * @program: learning-demo-02
@@ -26,7 +28,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 @AllArgsConstructor
 @Api("权限信息")
 public class SysPermissionController extends ResultController {
-    private SysPermissionDao sysPermissionService;
+    private SysPermissionService sysPermissionService;
 
 
     @ApiOperation(value = "分页查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -48,7 +50,7 @@ public class SysPermissionController extends ResultController {
     }
 
     @ApiOperation(value = "查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @GetMapping(value = "get", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(SysPermission permission) {
         return sysPermissionService.get(permission);
     }
@@ -64,5 +66,24 @@ public class SysPermissionController extends ResultController {
     public Result save(SysPermissionVo sysPermissionVo, BindingResult result) {
         validate(result);
         return sysPermissionService.save(sysPermissionVo);
+    }
+
+    @ApiOperation(value = "修改", httpMethod = HTTP_METHOD_POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "update", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Result update(SysPermissionVo sysPermissionVo, BindingResult result) {
+        validate(result);
+        return sysPermissionService.update(sysPermissionVo);
+    }
+
+    @ApiOperation(value = "修改", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "delete", params = "id", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Result delete(Long id) {
+        return sysPermissionService.delete(id);
+    }
+
+    @ApiOperation(value = "修改", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "delete", params = "ids", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Result delete(List<Long> ids) {
+        return sysPermissionService.delete(ids);
     }
 }

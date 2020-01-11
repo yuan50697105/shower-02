@@ -5,20 +5,18 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.webmvc.app.dao.SysPermissionDao;
 import org.yuan.boot.webmvc.app.mapper.SysPermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.app.pojo.converter.SysPermissionConverter;
 import org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample;
-import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
-import org.yuan.boot.webmvc.app.dao.SysPermissionDao;
 import org.yuan.boot.webmvc.pojo.Result;
 
-import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: learning-demo-02
@@ -55,8 +53,7 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result save(SysPermissionVo sysPermissionVo) {
-        SysPermission sysPermission = sysPermissionConverter.convert(sysPermissionVo);
+    public Result save(SysPermission sysPermission) {
         sysPermission.setId(snowflake.nextId());
         sysPermission.setCreateTime(new Date());
         baseMapper().insertSelective(sysPermission);
@@ -65,8 +62,7 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result update(SysPermissionVo sysPermissionVo) {
-        SysPermission sysPermission = sysPermissionConverter.convert(sysPermissionVo);
+    public Result update(SysPermission sysPermission) {
         sysPermission.setUpdateTime(new Date());
         baseMapper().updateByPrimaryKeySelective(sysPermission);
         return Result.ok();
@@ -81,9 +77,9 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result delete(Long[] ids) {
+    public Result delete(List<Long> ids) {
         SysPermissionExample example = new SysPermissionExample();
-        example.or().andIdIn(Arrays.asList(ids));
+        example.or().andIdIn(ids);
         baseMapper().deleteByExample(example);
         return Result.ok();
     }

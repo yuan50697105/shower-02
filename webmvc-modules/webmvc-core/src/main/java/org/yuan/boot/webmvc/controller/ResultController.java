@@ -39,7 +39,7 @@ public class ResultController {
             for (FieldError fieldError : result.getFieldErrors()) {
                 joiner.add(fieldError.getDefaultMessage());
             }
-            throw new NoValidateResultRuntimeException(Result.error(HttpStatus.HTTP_NOT_ACCEPTABLE, joiner.toString()));
+            throw new NoValidateResultRuntimeException(Result.error(HttpStatus.HTTP_BAD_REQUEST, joiner.toString()));
         }
     }
 }

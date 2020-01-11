@@ -10,7 +10,6 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
-import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
 import org.yuan.boot.webmvc.app.service.SysRoleService;
 import org.yuan.boot.webmvc.controller.ResultController;
@@ -45,7 +44,7 @@ public class SysRoleController extends ResultController {
     }
 
     @ApiOperation(value = "精确查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    @GetMapping(value = "get", produces = MediaType.APPLICATION_JSON_VALUE)
+    @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(SysRole sysRole) {
         return sysRoleService.get(sysRole);
     }
@@ -68,6 +67,13 @@ public class SysRoleController extends ResultController {
     public Result update(@RequestBody @Validated(SysRoleVo.Update.class) SysRoleVo sysRoleVo, BindingResult result) {
         validate(result);
         return sysRoleService.update(sysRoleVo);
+    }
+
+    @ApiOperation(value = "修改权限", httpMethod = HTTP_METHOD_POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "update/permission", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Result changePermission(@RequestBody @Validated(SysRoleVo.ChangePermission.class) SysRoleVo sysRoleVo, BindingResult result) {
+        validate(result);
+        return sysRoleService.changePermission(sysRoleVo);
     }
 
     @ApiOperation(value = "删除", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
