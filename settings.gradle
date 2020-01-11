@@ -82,6 +82,8 @@ findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-ap
 include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin'
 findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin')?.name = 'webmvc-modules-app-project-01-admin'
 include 'webflux-modules'
+include 'webflux-modules:webflux-core'
+findProject(':webflux-modules:webflux-core')?.name = 'webflux-core'
 include 'webflux-app-project'
 include 'graphql-webmvc-app-project'
 include 'graphql-webmvc-app-project:graphql-webmvc-app-project-01'
@@ -89,8 +91,6 @@ findProject(':graphql-webmvc-app-project:graphql-webmvc-app-project-01')?.name =
 include 'webmvc-modules:webmvc-disrupter'
 findProject(':webmvc-modules:webmvc-disrupter')?.name = 'webmvc-disrupter'
 include 'graphql-webflux-app-project'
-include 'webflux-modules:webflux-core'
-findProject(':webflux-modules:webflux-core')?.name = 'webflux-core'
 include 'hateoas-webmvc-app-project'
 include 'hateoas-webflux-app-project'
 
