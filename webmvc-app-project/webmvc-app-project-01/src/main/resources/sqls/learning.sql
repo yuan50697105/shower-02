@@ -115,6 +115,52 @@ create table if not exists sys_user_role
 )
     comment 'sys_user_role';
 
+create or replace definer = root@localhost view sys_user_role_permission_view as
+select `su`.`id`          AS `id`,
+       `su`.`username`    AS `username`,
+       `su`.`password`    AS `password`,
+       `su`.`real_name`   AS `real_name`,
+       `su`.`nick_name`   AS `nick_name`,
+       `su`.`create_user` AS `create_user`,
+       `su`.`update_user` AS `update_user`,
+       `su`.`create_time` AS `create_time`,
+       `su`.`update_time` AS `update_time`,
+       `su`.`enabled`     AS `enabled`,
+       `sr`.`name`        AS `role_name`,
+       `sr`.`authority`   AS `role_authority`,
+       `sp`.`name`        AS `permission_name`,
+       `sp`.`authority`   AS `permission_authority`
+from ((((`learning`.`sys_user` `su` left join `learning`.`sys_user_role` `sur` on ((`sur`.`user_id` = `su`.`id`))) left join `learning`.`sys_role` `sr` on ((`sr`.`id` = `sur`.`role_id`))) left join `learning`.`sys_role_permission` `srp` on ((`srp`.`role_id` = `sr`.`id`)))
+         left join `learning`.`sys_permission` `sp` on ((`sp`.`id` = `srp`.`permission_id`)));
+
+-- comment on column sys_user_role_permission_view.id not supported: id
+
+-- comment on column sys_user_role_permission_view.username not supported: username
+
+-- comment on column sys_user_role_permission_view.password not supported: password
+
+-- comment on column sys_user_role_permission_view.real_name not supported: realName
+
+-- comment on column sys_user_role_permission_view.nick_name not supported: nickName
+
+-- comment on column sys_user_role_permission_view.create_user not supported: createUser
+
+-- comment on column sys_user_role_permission_view.update_user not supported: updateUser
+
+-- comment on column sys_user_role_permission_view.create_time not supported: createTime
+
+-- comment on column sys_user_role_permission_view.update_time not supported: updateTime
+
+-- comment on column sys_user_role_permission_view.enabled not supported: enabled
+
+-- comment on column sys_user_role_permission_view.role_name not supported: name
+
+-- comment on column sys_user_role_permission_view.role_authority not supported: authority
+
+-- comment on column sys_user_role_permission_view.permission_name not supported: name
+
+-- comment on column sys_user_role_permission_view.permission_authority not supported: authority
+
 create or replace definer = root@localhost view sys_user_role_view as
 select `user`.`id`          AS `id`,
        `user`.`username`    AS `username`,
@@ -154,50 +200,4 @@ from ((`learning`.`sys_user` `user` left join `learning`.`sys_user_role` `user_r
 -- comment on column sys_user_role_view.authority not supported: authority
 
 -- comment on column sys_user_role_view.role_name not supported: name
-
-create or replace definer = root@localhost view user_role_permission_view as
-select `su`.`id`          AS `id`,
-       `su`.`username`    AS `username`,
-       `su`.`password`    AS `password`,
-       `su`.`real_name`   AS `real_name`,
-       `su`.`nick_name`   AS `nick_name`,
-       `su`.`create_user` AS `create_user`,
-       `su`.`update_user` AS `update_user`,
-       `su`.`create_time` AS `create_time`,
-       `su`.`update_time` AS `update_time`,
-       `su`.`enabled`     AS `enabled`,
-       `sr`.`name`        AS `role_name`,
-       `sr`.`authority`   AS `role_authority`,
-       `sp`.`name`        AS `permission_name`,
-       `sp`.`authority`   AS `permission_authority`
-from ((((`learning`.`sys_user` `su` left join `learning`.`sys_user_role` `sur` on ((`sur`.`user_id` = `su`.`id`))) left join `learning`.`sys_role` `sr` on ((`sr`.`id` = `sur`.`role_id`))) left join `learning`.`sys_role_permission` `srp` on ((`srp`.`role_id` = `sr`.`id`)))
-         left join `learning`.`sys_permission` `sp` on ((`sp`.`id` = `srp`.`permission_id`)));
-
--- comment on column user_role_permission_view.id not supported: id
-
--- comment on column user_role_permission_view.username not supported: username
-
--- comment on column user_role_permission_view.password not supported: password
-
--- comment on column user_role_permission_view.real_name not supported: realName
-
--- comment on column user_role_permission_view.nick_name not supported: nickName
-
--- comment on column user_role_permission_view.create_user not supported: createUser
-
--- comment on column user_role_permission_view.update_user not supported: updateUser
-
--- comment on column user_role_permission_view.create_time not supported: createTime
-
--- comment on column user_role_permission_view.update_time not supported: updateTime
-
--- comment on column user_role_permission_view.enabled not supported: enabled
-
--- comment on column user_role_permission_view.role_name not supported: name
-
--- comment on column user_role_permission_view.role_authority not supported: authority
-
--- comment on column user_role_permission_view.permission_name not supported: name
-
--- comment on column user_role_permission_view.permission_authority not supported: authority
 
