@@ -20,6 +20,9 @@ import java.util.StringJoiner;
 @RestControllerAdvice
 public class ResultController {
 
+    public final static String HTTP_METHOD_POST = "POST";
+    public final static String HTTP_METHOD_GET = "GET";
+
     @ExceptionHandler(NoValidateResultException.class)
     public Result noValidateResultException(NoValidateResultException e) {
         return e.getResult();

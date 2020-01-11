@@ -3,10 +3,6 @@ package org.yuan.boot.webmvc.app.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.yuan.boot.webmvc.app.pojo.SysRole;
-import org.yuan.boot.webmvc.app.pojo.validate.SaveOrUpdateValidate;
-import org.yuan.boot.webmvc.app.pojo.validate.SaveValidate;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -21,14 +17,23 @@ import java.util.List;
 @Data
 public final class SysRoleVo {
     @ApiModelProperty(value = "主键")
+    @NotEmpty(groups = {Update.class})
     private Long id;
-    @ApiModelProperty(value = "名称", required = true)
-    @NotEmpty(groups = SaveOrUpdateValidate.class)
+    @ApiModelProperty(value = "名称")
+    @NotEmpty(groups = {Save.class, Update.class})
     private String name;
-    @ApiModelProperty(value = "权限描述", required = true)
-    @NotEmpty(groups = SaveOrUpdateValidate.class)
+    @ApiModelProperty(value = "权限描述")
+    @NotEmpty(groups = {Save.class, Update.class})
     private String authority;
-    @ApiModelProperty(value = "权限列表", required = true)
-    @NotEmpty(groups = SaveValidate.class)
+    @ApiModelProperty(value = "权限列表")
+    @NotEmpty(groups = {Save.class, Update.class})
     private List<Long> permissionIds;
+
+    public interface Save {
+    }
+
+    public interface Update {
+    }
+
+
 }

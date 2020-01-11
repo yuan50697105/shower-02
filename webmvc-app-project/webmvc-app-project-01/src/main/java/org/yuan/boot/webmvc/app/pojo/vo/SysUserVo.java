@@ -3,10 +3,6 @@ package org.yuan.boot.webmvc.app.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.yuan.boot.webmvc.app.pojo.SysUser;
-import org.yuan.boot.webmvc.app.pojo.validate.SaveOrUpdateValidate;
-import org.yuan.boot.webmvc.app.pojo.validate.SaveValidate;
 
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
@@ -21,21 +17,39 @@ import java.util.List;
 @Data
 public final class SysUserVo {
     @ApiModelProperty
+    @NotEmpty(groups = {Update.class, ChangeRole.class})
     private Long id;
     @ApiModelProperty
-    @NotEmpty(groups = SaveOrUpdateValidate.class)
+    @NotEmpty(groups = {Save.class, Update.class, ChangePwd.class})
     private String username;
     @ApiModelProperty
-    @NotEmpty(groups = SaveOrUpdateValidate.class)
+    @NotEmpty(groups = {Save.class})
     private String password;
     @ApiModelProperty
-    @NotEmpty(groups = SaveOrUpdateValidate.class)
+    @NotEmpty(groups = {Save.class, Update.class})
     private String realName;
     @ApiModelProperty
-    @NotEmpty(groups = SaveOrUpdateValidate.class)
+    @NotEmpty(groups = {Save.class, Update.class})
     private String nickName;
     @ApiModelProperty
-    @NotEmpty(groups = SaveValidate.class)
+    @NotEmpty(groups = {Save.class, Update.class, ChangeRole.class})
     private List<Long> roleIds;
+    @NotEmpty(groups = {ChangePwd.class})
+    private String oldPwd;
+    @NotEmpty(groups = {ChangePwd.class})
+    private String newPwd;
+
+    public interface Save {
+    }
+
+    public interface Update {
+    }
+
+    public interface ChangePwd {
+    }
+
+    public interface ChangeRole {
+    }
+
 
 }

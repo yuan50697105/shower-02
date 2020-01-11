@@ -1,9 +1,12 @@
 package org.yuan.boot.webmvc.app.dao;
 
+import org.yuan.boot.db.pojo.PageResult;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
-import org.yuan.boot.webmvc.pojo.Result;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: learning-demo-02
@@ -12,11 +15,19 @@ import org.yuan.boot.webmvc.pojo.Result;
  * @create: 2019-12-29 22:31
  */
 public interface SysUserDao extends BaseDao<SysUser> {
-    Result page(SysUserCondition condition);
+    PageResult<SysUser> page(SysUserCondition condition);
 
-    Result list(SysUserCondition condition);
+    List<SysUser> list(SysUserCondition condition);
 
-    Result get(SysUser condition) throws NoValidateResultRuntimeException;
+    Optional<SysUser> get(SysUser condition) throws NoValidateResultRuntimeException;
 
-    Result save(SysUser sysUserVo);
+    void save(SysUser sysUserVo);
+
+    void update(SysUser sysUser);
+
+    Optional<SysUser> selectByUsername(String username);
+
+    void delete(List<Long> ids);
+
+    void delete(Long id);
 }

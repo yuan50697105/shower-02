@@ -9,16 +9,18 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.webmvc.app.dao.SysUserDao;
 import org.yuan.boot.webmvc.app.mapper.SysUserMapper;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.converter.SysUserConverter;
-import org.yuan.boot.webmvc.app.dao.SysUserDao;
+import org.yuan.boot.webmvc.app.pojo.example.SysUserExample;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: learning-demo-02
@@ -28,26 +30,26 @@ import java.util.List;
  */
 @AllArgsConstructor
 @Component
-public class SysUserDaoImpl extends BaseDaoImpl<SysUser,  SysUserMapper> implements SysUserDao {
+public class SysUserDaoImpl extends BaseDaoImpl<SysUser, SysUserMapper> implements SysUserDao {
     private SysUserConverter sysUserConverter;
     private Snowflake snowflake;
 
     @Override
-    public Result page(SysUserCondition condition) {
+    public PageResult<SysUser> page(SysUserCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
         List<SysUser> list = baseMapper().selectByCondition(condition);
-        return Result.data(new PageResult<>(PageInfo.of(list)));
+        return new PageResult<>(PageInfo.of(list));
     }
 
     @Override
-    public Result list(SysUserCondition condition) {
-        return Result.data(baseMapper().selectByCondition(condition));
+    public List<SysUser> list(SysUserCondition condition) {
+        return baseMapper().selectByCondition(condition);
     }
 
     @Override
-    public Result get(SysUser condition) throws NoValidateResultRuntimeException {
+    public Optional<SysUser> get(SysUser condition) throws NoValidateResultRuntimeException {
         try {
-            return Result.data(baseMapper().selectOne(condition));
+            return Optional.ofNullable(baseMapper().selectOne(condition));
         } catch (DataAccessException e) {
             e.printStackTrace();
             throw new NoValidateResultRuntimeException(Result.error(HttpStatus.HTTP_INTERNAL_ERROR, "访问错误"));
@@ -55,10 +57,35 @@ public class SysUserDaoImpl extends BaseDaoImpl<SysUser,  SysUserMapper> impleme
     }
 
     @Override
+    public Optional<SysUser> selectByUsername(String username) {
+        return Optional.ofNullable(baseMapper().selectOneByUsername(username));
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result save(SysUser sysUser) {
+    public void save(SysUser sysUser) {
         sysUser = sysUser.setId(snowflake.nextId()).setCreateTime(new Date());
         baseMapper().insertSelective(sysUser);
-        return Result.ok();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void update(SysUser sysUser) {
+        sysUser.setUpdateTime(new Date());
+        baseMapper().updateByPrimaryKeySelective(sysUser);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(List<Long> ids) {
+        SysUserExample example = new SysUserExample();
+        example.or().andIdIn(ids);
+        baseMapper().deleteByExample(example);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Long id) {
+        baseMapper().deleteByPrimaryKey(id);
     }
 }

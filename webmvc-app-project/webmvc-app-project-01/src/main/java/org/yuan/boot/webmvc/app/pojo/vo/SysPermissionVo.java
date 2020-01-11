@@ -15,15 +15,15 @@ import javax.validation.constraints.NotEmpty;
 @ApiModel("权限模型")
 @Data
 public final class SysPermissionVo {
-    @ApiModelProperty("主键")
-    @NotEmpty(groups = {Update.class})
+    @ApiModelProperty(value = "主键")
+    @NotEmpty(groups = {SysRoleVo.Update.class})
     private Long id;
-    @ApiModelProperty(value = "权限描述", required = true)
-    @NotEmpty(groups = {Save.class, Update.class})
-    private String authority;
-    @ApiModelProperty(value = "名称", required = true)
-    @NotEmpty(groups = {Save.class, Update.class})
+    @ApiModelProperty(value = "名称")
+    @NotEmpty(groups = {SysRoleVo.Save.class, SysRoleVo.Update.class})
     private String name;
+    @ApiModelProperty(value = "权限描述")
+    @NotEmpty(groups = {SysRoleVo.Save.class, SysRoleVo.Update.class})
+    private String authority;
 
     public interface Save {
     }

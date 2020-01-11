@@ -1,11 +1,11 @@
 package org.yuan.boot.webmvc.app.dao;
 
+import org.yuan.boot.db.pojo.PageResult;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
-import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
-import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: learning-demo-02
@@ -14,19 +14,19 @@ import java.util.List;
  * @create: 2020-01-01 18:12
  */
 public interface SysRoleDao extends BaseDao<SysRole> {
-    Result page(SysRoleCondition condition);
+    PageResult<SysRole> page(SysRoleCondition condition);
 
-    Result list(SysRoleCondition condition);
+    List<SysRole> list(SysRoleCondition condition);
 
-    Result get(SysRole sysRole);
+    Optional<SysRole> get(SysRole sysRole);
 
-    Result get(Long id);
+    Optional<SysRole> get(Long id);
 
-    Result save(SysRoleVo sysRoleVo);
+    void save(SysRole sysRole);
 
-    Result update(SysRoleVo sysRoleVo);
+    void update(SysRole sysRole);
 
-    Result delete(Long id);
+    void delete(Long id);
 
-    Result delete(List<Long> ids);
+    void delete(List<Long> ids);
 }

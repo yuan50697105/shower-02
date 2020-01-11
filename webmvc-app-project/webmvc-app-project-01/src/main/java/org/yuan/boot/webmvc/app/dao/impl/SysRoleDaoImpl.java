@@ -5,20 +5,17 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.webmvc.app.dao.SysRoleDao;
 import org.yuan.boot.webmvc.app.mapper.SysRoleMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
-import org.yuan.boot.webmvc.app.pojo.converter.SysRoleConverter;
 import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;
-import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
-import org.yuan.boot.webmvc.app.dao.SysRoleDao;
-import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: learning-demo-02
@@ -29,60 +26,55 @@ import java.util.List;
 @AllArgsConstructor
 @Component
 public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, SysRoleMapper> implements SysRoleDao {
-    private SysRoleConverter sysRoleConverter;
     private Snowflake snowflake;
 
     @Override
-    public Result page(SysRoleCondition condition) {
+    public PageResult<SysRole> page(SysRoleCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
-        return Result.data(new PageResult<>(PageInfo.of(baseMapper().selectByCondition(condition))));
+        return new PageResult<>(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
     @Override
-    public Result list(SysRoleCondition condition) {
-        return Result.data(baseMapper().selectByCondition(condition));
+    public List<SysRole> list(SysRoleCondition condition) {
+        return baseMapper().selectByCondition(condition);
     }
 
     @Override
-    public Result get(SysRole sysRole) {
-        return Result.data(baseMapper().selectOne(sysRole));
+    public Optional<SysRole> get(SysRole sysRole) {
+        return Optional.ofNullable(baseMapper().selectOne(sysRole));
     }
 
     @Override
-    public Result get(Long id) {
-        return Result.data(baseMapper().selectByPrimaryKey(id));
+    public Optional<SysRole> get(Long id) {
+        return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result save(SysRoleVo sysRoleVo) {
-        SysRole sysRole = sysRoleConverter.convert(sysRoleVo).setId(snowflake.nextId()).setCreateTime(new Date());
+    public void save(SysRole sysRole) {
+        sysRole = sysRole.setId(snowflake.nextId()).setCreateTime(new Date());
         baseMapper().insertSelective(sysRole);
-        return Result.ok();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result update(SysRoleVo sysRoleVo) {
-        SysRole sysRole = sysRoleConverter.convert(sysRoleVo).setUpdateTime(new Date());
+    public void update(SysRole sysRole) {
+        sysRole = sysRole.setUpdateTime(new Date());
         baseMapper().updateByPrimaryKeySelective(sysRole);
-        return Result.ok();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result delete(Long id) {
+    public void delete(Long id) {
         baseMapper().deleteByPrimaryKey(id);
-        return Result.ok();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result delete(List<Long> ids) {
+    public void delete(List<Long> ids) {
         SysRoleExample example = new SysRoleExample();
         example.createCriteria().andIdIn(ids);
         baseMapper().deleteByExample(example);
-        return Result.ok();
     }
 
 }
