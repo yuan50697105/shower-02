@@ -3,6 +3,7 @@ package org.yuan.boot.webmvc.pojo;
 import cn.hutool.http.HttpStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import org.yuan.boot.db.pojo.AbstractCorePageResult;
 
 import java.io.Serializable;
 
@@ -52,6 +53,10 @@ public class Result implements Serializable {
 
     public static Result data(Object data) {
         return new Result(data);
+    }
+
+    public static <T> Result data(AbstractCorePageResult<T> pageResult) {
+        return new Result(pageResult);
     }
 
     public static Result data(int code, String message, Object data) {

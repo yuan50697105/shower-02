@@ -86,7 +86,7 @@ include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-pro
 findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-db')?.name = 'webmvc-modules-app-project-01-db'
 include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin'
 findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin')?.name = 'webmvc-modules-app-project-01-admin'
-include 'webflux-app-project'
+include 'base-webflux-app-project'
 include 'graphql-webmvc-app-project'
 include 'graphql-webflux-app-project'
 include 'hateoas-webmvc-app-project'
