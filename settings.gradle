@@ -91,4 +91,6 @@ findProject(':webmvc-modules:webmvc-disrupter')?.name = 'webmvc-disrupter'
 include 'graphql-webflux-app-project'
 include 'webflux-modules:webflux-core'
 findProject(':webflux-modules:webflux-core')?.name = 'webflux-core'
+include 'hateoas-webmvc-app-project'
+include 'hateoas-webflux-app-project'
 

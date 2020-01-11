@@ -1,6 +1,0 @@
-
-
-type SysUser{
-    id:Int
-    name:String
-}
