@@ -9,9 +9,11 @@ jar {
     enabled = false
 }
 
-subprojects {
+allprojects {
     dependencies {
         compile project(':webmvc-modules:webmvc-core')
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
         compile group: 'org.minbox.framework', name: 'api-boot-starter-security-oauth-jwt'
         compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
         compile group: 'mysql', name: 'mysql-connector-java'
