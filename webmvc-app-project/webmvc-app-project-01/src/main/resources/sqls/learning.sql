@@ -16,26 +16,18 @@ create table if not exists base_customer_info
 )
     comment 'base_customer_info';
 
-create table if not exists goods_info
+create table if not exists base_goods_info
 (
-    id     bigint(15) auto_increment comment 'id'
+    id                bigint auto_increment
         primary key,
-    code   varchar(50)    null comment 'code',
-    name   varchar(50)    null comment 'name',
-    number int            null comment 'number',
-    price  decimal(13, 4) null comment 'price'
-)
-    comment 'goods_info';
-
-create table if not exists order_info
-(
-    id        bigint(15) auto_increment comment 'id'
-        primary key,
-    code      varchar(50)    null comment 'code',
-    user_id   bigint(15)     null comment 'userId',
-    `decimal` decimal(13, 4) null comment 'decimal'
-)
-    comment 'order_info';
+    goods_sn          varchar(255)   null,
+    goods_name        varchar(255)   null,
+    goods_price       decimal(10, 2) null,
+    goods_number      decimal        null,
+    goods_description text           null,
+    is_out            int(255)       null,
+    is_on_sale        int(255)       null
+);
 
 create table if not exists sys_module
 (
@@ -85,6 +77,17 @@ create table if not exists sys_role
 )
     comment 'sys_role';
 
+create table if not exists sys_role_permission
+(
+    id            bigint auto_increment
+        primary key,
+    role_id       bigint                             not null,
+    permission_id bigint                             not null,
+    create_time   datetime default CURRENT_TIMESTAMP null,
+    create_user   bigint                             null
+)
+    comment '角色权限';
+
 create table if not exists sys_user
 (
     id          bigint(15) auto_increment comment 'id'
@@ -100,4 +103,55 @@ create table if not exists sys_user
     enabled     tinyint(3)  default 0                     not null comment 'enabled'
 )
     comment 'sys_user';
+
+create table if not exists sys_user_role
+(
+    id          bigint(15) auto_increment comment 'id'
+        primary key,
+    role_id     bigint(15)  not null comment 'roleId',
+    user_id     bigint(15)  not null comment 'userId',
+    create_user varchar(50) null comment 'createUser',
+    create_time datetime    null comment 'createTime'
+)
+    comment 'sys_user_role';
+
+create or replace definer = root@localhost view sys_user_role_view as
+select `user`.`id`          AS `id`,
+       `user`.`username`    AS `username`,
+       `user`.`password`    AS `password`,
+       `user`.`real_name`   AS `real_name`,
+       `user`.`nick_name`   AS `nick_name`,
+       `user`.`create_user` AS `create_user`,
+       `user`.`update_user` AS `update_user`,
+       `user`.`create_time` AS `create_time`,
+       `user`.`update_time` AS `update_time`,
+       `user`.`enabled`     AS `enabled`,
+       `role`.`authority`   AS `authority`,
+       `role`.`name`        AS `role_name`
+from ((`learning`.`sys_user` `user` left join `learning`.`sys_user_role` `user_role` on ((`user_role`.`user_id` = `user`.`id`)))
+         left join `learning`.`sys_role` `role` on ((`role`.`id` = `user_role`.`role_id`)));
+
+-- comment on column sys_user_role_view.id not supported: id
+
+-- comment on column sys_user_role_view.username not supported: username
+
+-- comment on column sys_user_role_view.password not supported: password
+
+-- comment on column sys_user_role_view.real_name not supported: realName
+
+-- comment on column sys_user_role_view.nick_name not supported: nickName
+
+-- comment on column sys_user_role_view.create_user not supported: createUser
+
+-- comment on column sys_user_role_view.update_user not supported: updateUser
+
+-- comment on column sys_user_role_view.create_time not supported: createTime
+
+-- comment on column sys_user_role_view.update_time not supported: updateTime
+
+-- comment on column sys_user_role_view.enabled not supported: enabled
+
+-- comment on column sys_user_role_view.authority not supported: authority
+
+-- comment on column sys_user_role_view.role_name not supported: name
 

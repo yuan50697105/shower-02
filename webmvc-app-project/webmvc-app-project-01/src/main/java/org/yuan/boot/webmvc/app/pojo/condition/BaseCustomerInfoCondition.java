@@ -1,6 +1,8 @@
 package org.yuan.boot.webmvc.app.pojo.condition;
 
-import lombok.*;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.yuan.boot.db.pojo.BaseCondition;
 

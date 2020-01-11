@@ -1,9 +1,9 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
 import org.springframework.stereotype.Service;
+import org.yuan.boot.webmvc.app.dao.SysUserService;
 import org.yuan.boot.webmvc.app.mapper.SysUserMapper;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
-import org.yuan.boot.webmvc.app.dao.SysUserService;
 
 /**
  * @program: learning-demo-02

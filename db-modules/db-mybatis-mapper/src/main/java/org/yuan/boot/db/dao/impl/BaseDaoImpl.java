@@ -1,8 +1,8 @@
 package org.yuan.boot.db.dao.impl;
 
+import org.yuan.boot.db.dao.BaseDao;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.db.pojo.BaseEntity;
-import org.yuan.boot.db.dao.BaseDao;
 
 import java.io.Serializable;
 

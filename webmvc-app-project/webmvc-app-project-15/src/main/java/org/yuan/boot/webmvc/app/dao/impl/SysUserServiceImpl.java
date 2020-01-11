@@ -9,13 +9,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.webmvc.app.dao.SysUserService;
 import org.yuan.boot.webmvc.app.mapper.SysUserMapper;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.converter.SysUserConverter;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
 import org.yuan.boot.webmvc.app.repository.SysUserRepository;
-import org.yuan.boot.webmvc.app.dao.SysUserService;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 

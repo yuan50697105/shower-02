@@ -7,6 +7,7 @@ import lombok.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.webmvc.app.dao.SysRoleService;
 import org.yuan.boot.webmvc.app.mapper.SysRoleMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
@@ -14,7 +15,6 @@ import org.yuan.boot.webmvc.app.pojo.converter.SysRoleConverter;
 import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
 import org.yuan.boot.webmvc.app.repository.SysRoleRepository;
-import org.yuan.boot.webmvc.app.dao.SysRoleService;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.Date;

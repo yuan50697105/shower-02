@@ -2,7 +2,6 @@ package org.yuan.boot.webmvc.app.service;
 
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
-import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
 import org.yuan.boot.webmvc.pojo.Result;
 

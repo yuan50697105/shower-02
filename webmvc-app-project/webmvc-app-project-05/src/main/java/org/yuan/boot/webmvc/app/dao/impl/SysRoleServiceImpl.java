@@ -3,9 +3,9 @@ package org.yuan.boot.webmvc.app.dao.impl;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.springframework.stereotype.Service;
+import org.yuan.boot.webmvc.app.dao.SysRoleService;
 import org.yuan.boot.webmvc.app.mapper.SysRoleMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
-import org.yuan.boot.webmvc.app.dao.SysRoleService;
 
 /**
  * @program: learning-demo-02

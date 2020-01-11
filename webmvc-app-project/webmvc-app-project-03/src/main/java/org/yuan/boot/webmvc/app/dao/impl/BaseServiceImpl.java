@@ -1,9 +1,9 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
-import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.db.dao.impl.BaseDaoImpl;
-import org.yuan.boot.webmvc.app.pojo.BaseEntity;
+import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.dao.BaseService;
+import org.yuan.boot.webmvc.app.pojo.BaseEntity;
 
 /**
  * @program: learning-demo-02

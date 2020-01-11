@@ -2,10 +2,9 @@ package org.yuan.boot.webmvc.app.dao.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
+import org.yuan.boot.webmvc.app.dao.BaseCustomerInfoDao;
 import org.yuan.boot.webmvc.app.mapper.BaseCustomerInfoMapper;
 import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfo;
-import org.yuan.boot.webmvc.app.dao.BaseCustomerInfoDao;
 
 /**
  * @program: learning-demo-02

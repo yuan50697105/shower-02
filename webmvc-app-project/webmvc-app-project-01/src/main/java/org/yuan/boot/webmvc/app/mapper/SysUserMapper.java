@@ -37,7 +37,7 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
 
     SysUser selectOne(SysUser condition);
 
-    SysUser selectOneByUsername(@Param("username")String username);
+    SysUser selectOneByUsername(@Param("username") String username);
 
 
 }

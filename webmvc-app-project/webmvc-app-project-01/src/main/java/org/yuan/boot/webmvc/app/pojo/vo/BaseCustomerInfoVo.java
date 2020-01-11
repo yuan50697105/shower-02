@@ -1,8 +1,6 @@
 package org.yuan.boot.webmvc.app.pojo.vo;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfo;
 
 import javax.validation.constraints.NotEmpty;
 

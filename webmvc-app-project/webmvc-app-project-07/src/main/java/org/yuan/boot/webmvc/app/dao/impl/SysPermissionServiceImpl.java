@@ -3,9 +3,9 @@ package org.yuan.boot.webmvc.app.dao.impl;
 import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.springframework.stereotype.Service;
+import org.yuan.boot.webmvc.app.dao.SysPermissionService;
 import org.yuan.boot.webmvc.app.mapper.SysPermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
-import org.yuan.boot.webmvc.app.dao.SysPermissionService;
 
 /**
  * @program: learning-demo-02

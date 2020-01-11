@@ -7,6 +7,7 @@ import lombok.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.webmvc.app.dao.SysPermissionService;
 import org.yuan.boot.webmvc.app.mapper.SysPermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
@@ -14,7 +15,6 @@ import org.yuan.boot.webmvc.app.pojo.converter.SysPermissionConverter;
 import org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample;
 import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
 import org.yuan.boot.webmvc.app.repository.SysPermissionRepository;
-import org.yuan.boot.webmvc.app.dao.SysPermissionService;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.Arrays;

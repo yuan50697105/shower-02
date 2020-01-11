@@ -1,4 +1,4 @@
-group='org.yuan.boot.utils.wx'
+group = 'org.yuan.boot.utils.wx'
 dependencies {
     compile group: 'com.github.binarywang', name: 'wx-java-mp-spring-boot-starter', version: '3.6.4.B'
     compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.6.4.B'
