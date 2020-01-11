@@ -1,5 +1,3 @@
-
-
 allprojects {
     group 'org.yuan.boot.webflux.hateoas.app'
 
@@ -8,4 +6,12 @@ allprojects {
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas'
 
     }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
 }

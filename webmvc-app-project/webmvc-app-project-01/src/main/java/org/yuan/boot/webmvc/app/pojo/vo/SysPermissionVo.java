@@ -3,8 +3,8 @@ package org.yuan.boot.webmvc.app.pojo.vo;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import org.yuan.boot.webmvc.app.pojo.SysPermission;
+
+import javax.validation.constraints.NotEmpty;
 
 /**
  * @program: learning-demo-02
@@ -16,9 +16,18 @@ import org.yuan.boot.webmvc.app.pojo.SysPermission;
 @Data
 public final class SysPermissionVo {
     @ApiModelProperty("主键")
+    @NotEmpty(groups = {Update.class})
     private Long id;
     @ApiModelProperty(value = "权限描述", required = true)
+    @NotEmpty(groups = {Save.class, Update.class})
     private String authority;
     @ApiModelProperty(value = "名称", required = true)
+    @NotEmpty(groups = {Save.class, Update.class})
     private String name;
+
+    public interface Save {
+    }
+
+    public interface Update {
+    }
 }

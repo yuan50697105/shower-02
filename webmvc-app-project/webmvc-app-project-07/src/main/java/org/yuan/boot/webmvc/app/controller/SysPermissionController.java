@@ -4,7 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yuan.boot.webmvc.app.service.SysPermissionService;
+import org.yuan.boot.webmvc.app.dao.SysPermissionService;
 import org.yuan.boot.webmvc.controller.ResultController;
 
 /**

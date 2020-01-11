@@ -3,8 +3,8 @@ package org.yuan.boot.webmvc.app.controller;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
-import lombok.Value;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -26,7 +26,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 @Api("用户信息")
 @RestController
 @RequestMapping("sys/user")
-@Value
+@AllArgsConstructor
 public class SysUserController extends ResultController {
     private SysUserService sysUserService;
 

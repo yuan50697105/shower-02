@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
-import org.yuan.boot.webmvc.app.service.SysRoleService;
+import org.yuan.boot.webmvc.app.dao.SysRoleDao;
 import org.yuan.boot.webmvc.controller.ResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
@@ -27,7 +27,7 @@ import java.util.List;
 @RequestMapping("sys/role")
 @Value
 public class SysRoleController extends ResultController {
-    private SysRoleService sysRoleService;
+    private SysRoleDao sysRoleService;
 
     @ApiOperation("分页查询")
     @GetMapping("data")
