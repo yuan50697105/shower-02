@@ -44,7 +44,6 @@ public final class SysUserCondition extends AbstractBaseCondition {
     private Date createDateEnd;
     @ApiModelProperty(value = "启用状态", access = "0：停用，1：启用")
     private Integer enabled;
-    private List<Date> createDateRange;
 
     public SysUserCondition() {
     }
@@ -54,7 +53,7 @@ public final class SysUserCondition extends AbstractBaseCondition {
     }
 
     @Builder
-    public SysUserCondition(int page, int size, Long id, List<Long> ids, String name, String username, String realName, String nickName, String createUser, Date createDate, Date createDateStart, Date createDateEnd, Integer enabled, List<Date> createDateRange) {
+    public SysUserCondition(int page, int size, Long id, List<Long> ids, String name, String username, String realName, String nickName, String createUser, Date createDate, Date createDateStart, Date createDateEnd, Integer enabled) {
         super(page, size);
         this.id = id;
         this.ids = ids;
@@ -67,6 +66,5 @@ public final class SysUserCondition extends AbstractBaseCondition {
         this.createDateStart = createDateStart;
         this.createDateEnd = createDateEnd;
         this.enabled = enabled;
-        this.createDateRange = createDateRange;
     }
 }

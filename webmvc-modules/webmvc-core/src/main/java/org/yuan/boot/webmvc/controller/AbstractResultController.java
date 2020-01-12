@@ -1,5 +1,6 @@
 package org.yuan.boot.webmvc.controller;
 
+import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,6 +18,7 @@ import java.util.StringJoiner;
  * @create: 2019-12-29 16:51
  */
 @RestControllerAdvice
+@Log4j2
 public abstract class AbstractResultController {
 
     public final static String HTTP_METHOD_POST = "POST";
@@ -36,7 +38,9 @@ public abstract class AbstractResultController {
 
     @ExceptionHandler(Exception.class)
     public Result exceptionHandler(Exception e) {
-        return Result.error(Result.SYSTEM_ERROR_CODE, e.getMessage());
+        e.printStackTrace();
+        log.error(e.getLocalizedMessage(), e.getCause());
+        return Result.error(Result.SYSTEM_ERROR_CODE, "系统异常");
     }
 
     public void validate(BindingResult result) {
