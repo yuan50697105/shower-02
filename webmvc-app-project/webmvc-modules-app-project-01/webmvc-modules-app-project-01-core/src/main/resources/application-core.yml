@@ -1,0 +1,6 @@
+server:
+  port: 8001
+  http2:
+    enabled: true
+  compression:
+    enabled: true
