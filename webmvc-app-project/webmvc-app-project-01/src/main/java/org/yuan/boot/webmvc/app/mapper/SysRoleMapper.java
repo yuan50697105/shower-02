@@ -34,4 +34,8 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
     List<SysRole> selectByCondition(SysRoleCondition condition);
 
     SysRole selectOne(SysRole sysRole);
+
+    SysRole selectOneByName(@Param("name")String name);
+
+
 }

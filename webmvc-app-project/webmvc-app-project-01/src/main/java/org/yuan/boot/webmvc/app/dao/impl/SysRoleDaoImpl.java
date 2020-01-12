@@ -10,6 +10,7 @@ import org.yuan.boot.webmvc.app.dao.SysRoleDao;
 import org.yuan.boot.webmvc.app.mapper.SysRoleMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
+import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;
 
 import java.util.Collections;
 import java.util.Date;
