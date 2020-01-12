@@ -40,7 +40,7 @@ public abstract class AbstractResultController {
     public Result exceptionHandler(Exception e) {
         e.printStackTrace();
         log.error(e.getLocalizedMessage(), e.getCause());
-        return Result.error(Result.SYSTEM_ERROR_CODE, "系统异常");
+        return Result.systemError();
     }
 
     public void validate(BindingResult result) {
@@ -49,7 +49,7 @@ public abstract class AbstractResultController {
             for (FieldError fieldError : result.getFieldErrors()) {
                 joiner.add(fieldError.getDefaultMessage());
             }
-            throw new NoValidateResultRuntimeException(Result.error(Result.DATA_PARAMS_ERROR_CODE, joiner.toString()));
+            throw new NoValidateResultRuntimeException(Result.paramsError(joiner.toString()));
         }
     }
 }

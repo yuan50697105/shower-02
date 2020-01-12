@@ -17,7 +17,9 @@ import java.io.Serializable;
 public class Result implements Serializable {
     public final static Integer OK_CODE = 200;
     public final static Integer SYSTEM_ERROR_CODE = 1000;
+    public final static String SYSTEM_ERROR_MESSAGE = "系统错误";
     public final static Integer DATA_PARAMS_ERROR_CODE = 2000;
+    public final static String DATA_PARAMS_ERROR_MESSAGE = "参数错误";
     public static final String OK_MESSAGE = "操作成功";
     private int code;
     private String message;
@@ -68,5 +70,17 @@ public class Result implements Serializable {
 
     public static Result error(int code, String message) {
         return new Result(code, message);
+    }
+
+    public static Result systemError() {
+        return error(SYSTEM_ERROR_CODE, SYSTEM_ERROR_MESSAGE);
+    }
+
+    public static Result paramsError(String message) {
+        return error(DATA_PARAMS_ERROR_CODE, message);
+    }
+
+    public static Result paramsError() {
+        return paramsError(DATA_PARAMS_ERROR_MESSAGE);
     }
 }
