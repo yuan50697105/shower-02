@@ -24,4 +24,8 @@ allprojects {
         compile group: 'com.github.liaochong', name: 'myexcel', version: '3.3.1'
 
     }
+
+    jar{
+        enabled=false
+    }
 }

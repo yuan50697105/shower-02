@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
-import cn.hutool.core.lang.Snowflake;
 import cn.hutool.http.HttpStatus;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -13,7 +12,6 @@ import org.yuan.boot.webmvc.app.dao.SysUserDao;
 import org.yuan.boot.webmvc.app.mapper.SysUserMapper;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
-import org.yuan.boot.webmvc.app.pojo.converter.SysUserConverter;
 import org.yuan.boot.webmvc.app.pojo.example.SysUserExample;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;

@@ -11,4 +11,8 @@ allprojects {
     dependencies {
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
     }
+
+    bootJar {
+        enabled = false
+    }
 }

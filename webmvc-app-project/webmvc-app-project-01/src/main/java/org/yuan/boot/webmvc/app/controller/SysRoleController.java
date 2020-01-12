@@ -12,7 +12,6 @@ import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
 import org.yuan.boot.webmvc.app.service.SysRoleService;
-import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;

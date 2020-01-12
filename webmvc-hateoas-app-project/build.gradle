@@ -6,6 +6,10 @@ allprojects {
         compile project(':webmvc-modules:webmvc-core')
 
     }
+
+    jar {
+    enabled = false
+}
 }
 
 bootJar {

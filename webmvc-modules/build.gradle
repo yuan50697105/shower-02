@@ -16,7 +16,7 @@ subprojects {
         compile project(':db-modules:db-core')
     }
 
-    // bootJar {
-    // enabled = false
-    // }
+    bootJar {
+        enabled = false
+    }
 }

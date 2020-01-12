@@ -5,6 +5,10 @@ allprojects {
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
         compile project(':webflux-modules:webflux-core')
     }
+
+    jar {
+    enabled = false
+}
 }
 
 bootJar {

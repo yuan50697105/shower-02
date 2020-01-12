@@ -6,6 +6,10 @@ allprojects {
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas'
 
     }
+
+    jar {
+    enabled = false
+}
 }
 
 bootJar {

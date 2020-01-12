@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
-import cn.hutool.core.lang.Snowflake;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

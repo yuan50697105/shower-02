@@ -3,9 +3,9 @@ package org.yuan.boot.db.jpa.dao.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.yuan.boot.db.jpa.dao.BaseDao;
 import org.yuan.boot.db.jpa.mapper.BaseMapper;
 import org.yuan.boot.db.jpa.pojo.AbstractBaseEntity;
-import org.yuan.boot.db.jpa.dao.BaseDao;
 import org.yuan.boot.db.jpa.repository.BaseRepository;
 
 import java.io.Serializable;

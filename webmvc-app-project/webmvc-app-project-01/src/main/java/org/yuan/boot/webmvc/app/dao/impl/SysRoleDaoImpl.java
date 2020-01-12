@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
-import cn.hutool.core.lang.Snowflake;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
