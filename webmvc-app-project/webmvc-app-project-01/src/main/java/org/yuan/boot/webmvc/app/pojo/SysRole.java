@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class SysRole extends BaseEntity<SysRole> implements Serializable {
+public final class SysRole extends BaseEntity<SysRole> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * id

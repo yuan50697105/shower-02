@@ -10,7 +10,7 @@ import org.yuan.boot.webmvc.app.dao.SysRoleDao;
 import org.yuan.boot.webmvc.app.dao.SysUserDao;
 import org.yuan.boot.webmvc.app.dao.SysUserRoleDao;
 import org.yuan.boot.webmvc.app.exception.ExistResultRuntimeException;
-import org.yuan.boot.webmvc.app.pojo.ResultConstants;
+import org.yuan.boot.webmvc.app.utils.ResultConstants;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.SysUserRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;

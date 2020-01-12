@@ -1,4 +1,4 @@
-package org.yuan.boot.webmvc.app.pojo;
+package org.yuan.boot.webmvc.app.utils;
 
 /**
  * @program: learning-demo-02

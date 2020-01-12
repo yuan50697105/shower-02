@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.utils;
 
-import org.yuan.boot.webmvc.app.pojo.ResultConstants;
 import org.yuan.boot.webmvc.pojo.Result;
 
 /**

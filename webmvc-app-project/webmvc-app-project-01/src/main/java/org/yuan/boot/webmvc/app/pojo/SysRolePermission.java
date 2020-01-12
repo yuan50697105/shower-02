@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class SysRolePermission extends BaseEntity<SysRolePermission> implements Serializable {
+public final class SysRolePermission extends BaseEntity<SysRolePermission> implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private Long roleId;

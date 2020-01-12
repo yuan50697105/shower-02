@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class SysUserRole extends BaseEntity<SysUserRole> implements Serializable {
+public final class SysUserRole extends BaseEntity<SysUserRole> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * id
