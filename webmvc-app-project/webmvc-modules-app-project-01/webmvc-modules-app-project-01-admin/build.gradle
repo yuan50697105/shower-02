@@ -9,3 +9,11 @@ dependencies {
     implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-core')
 }
 
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = true
+}
+

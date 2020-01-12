@@ -8,3 +8,11 @@ dependencies {
     implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-wx')
     implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-device')
 }
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = true
+}

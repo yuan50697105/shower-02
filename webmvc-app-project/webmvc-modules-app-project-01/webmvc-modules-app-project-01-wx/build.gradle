@@ -7,3 +7,11 @@ dependencies {
     compile project(':utils-modules:restrofit')
     compile project(':utils-modules:wx')
 }
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = true
+}
