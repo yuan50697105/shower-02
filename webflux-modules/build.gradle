@@ -16,7 +16,7 @@ allprojects {
         enabled = false
     }
 
-    jar{
+    jar {
         enabled = true
     }
 }

@@ -7,8 +7,8 @@ allprojects {
     }
 
     jar {
-    enabled = false
-}
+        enabled = false
+    }
 }
 
 bootJar {

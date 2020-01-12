@@ -8,11 +8,11 @@ jar {
     enabled = false
 }
 
-allprojects{
+allprojects {
     group 'org.yuan.boot.webflux.app'
 
-    jar{
-        enabled=false
+    jar {
+        enabled = false
     }
 }
 
