@@ -4,7 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.BaseCondition;
+import org.yuan.boot.db.pojo.AbstractBaseCondition;
 
 import java.util.Date;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public final class BaseCustomerInfoCondition extends BaseCondition {
+public final class BaseCustomerInfoCondition extends AbstractBaseCondition {
     private Long id;
     private List<Long> ids;
     private String value;

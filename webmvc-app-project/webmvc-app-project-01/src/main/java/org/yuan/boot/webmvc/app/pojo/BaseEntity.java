@@ -2,6 +2,7 @@ package org.yuan.boot.webmvc.app.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import org.yuan.boot.db.pojo.AbstractBaseEntity;
 
 /**
  * @program: learning-demo-02
@@ -11,5 +12,5 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> {
+public class BaseEntity<T> extends AbstractBaseEntity<T> {
 }

@@ -2,7 +2,7 @@ package org.yuan.boot.webmvc.app.pojo.condition;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import org.yuan.boot.db.pojo.BaseCondition;
+import org.yuan.boot.db.pojo.AbstractBaseCondition;
 
 import java.util.Date;
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class SysUserCondition extends BaseCondition {
+public class SysUserCondition extends AbstractBaseCondition {
     private Long id;
     private List<Long> ids;
     private String name;

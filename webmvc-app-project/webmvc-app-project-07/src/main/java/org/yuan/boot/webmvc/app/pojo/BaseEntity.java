@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.yuan.boot.db.pojo.AbstractBaseEntity;
 import org.yuan.boot.webmvc.app.configuration.SnowFlakeIdGeneratorGenId;
 import tk.mybatis.mapper.annotation.KeySql;
 
@@ -22,7 +23,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> implements Serializable {
+public class BaseEntity<T> extends AbstractBaseEntity<T> implements Serializable {
     @Id
     @KeySql(genId = SnowFlakeIdGeneratorGenId.class)
     @TableId(type = IdType.NONE)

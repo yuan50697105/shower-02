@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.BaseCondition;
+import org.yuan.boot.db.pojo.AbstractBaseCondition;
 
 import java.util.List;
 
@@ -20,7 +20,7 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 @ApiModel("权限查询")
-public final class SysPermissionCondition extends BaseCondition {
+public final class SysPermissionCondition extends AbstractBaseCondition {
     @ApiModelProperty("主键")
     private Long id;
     @ApiModelProperty("主键集合")

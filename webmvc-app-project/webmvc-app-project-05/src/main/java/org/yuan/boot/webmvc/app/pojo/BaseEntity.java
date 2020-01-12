@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.yuan.boot.db.pojo.AbstractBaseEntity;
 
 import java.io.Serializable;
 
@@ -19,7 +20,7 @@ import java.io.Serializable;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BaseEntity<T> extends org.yuan.boot.db.pojo.BaseEntity<T> implements Serializable {
+public class BaseEntity<T> extends AbstractBaseEntity<T> implements Serializable {
     @TableId(type = IdType.NONE)
     private Long id;
 
