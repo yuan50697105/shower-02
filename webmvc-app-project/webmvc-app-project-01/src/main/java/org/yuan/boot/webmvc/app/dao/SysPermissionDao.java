@@ -28,4 +28,6 @@ public interface SysPermissionDao extends BaseDao<SysPermission> {
     Result delete(Long id);
 
     Result delete(List<Long> ids);
+
+    List<Long> selectByIds(List<Long> permissionIds);
 }

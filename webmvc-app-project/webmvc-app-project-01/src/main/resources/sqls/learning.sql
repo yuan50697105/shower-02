@@ -92,15 +92,17 @@ create table if not exists sys_user
 (
     id          bigint(15) auto_increment comment 'id'
         primary key,
-    username    varchar(50) default ''                    not null comment 'username',
-    password    varchar(50) default ''                    not null comment 'password',
-    real_name   varchar(50) default ''                    not null comment 'realName',
-    nick_name   varchar(50) default ''                    not null comment 'nickName',
-    create_user varchar(50) default ''                    not null comment 'createUser',
-    update_user varchar(50) default ''                    not null comment 'updateUser',
-    create_time datetime    default '1000-01-01 00:00:00' not null comment 'createTime',
-    update_time timestamp   default CURRENT_TIMESTAMP     not null on update CURRENT_TIMESTAMP comment 'updateTime',
-    enabled     tinyint(3)  default 0                     not null comment 'enabled'
+    username    varchar(50)  default ''                    not null comment 'username',
+    password    varchar(255) default ''                    not null comment 'password',
+    real_name   varchar(50)  default ''                    not null comment 'realName',
+    nick_name   varchar(50)  default ''                    not null comment 'nickName',
+    create_user varchar(50)  default ''                    not null comment 'createUser',
+    update_user varchar(50)  default ''                    not null comment 'updateUser',
+    create_time datetime     default '1000-01-01 00:00:00' not null comment 'createTime',
+    update_time timestamp    default CURRENT_TIMESTAMP     not null on update CURRENT_TIMESTAMP comment 'updateTime',
+    enabled     tinyint(3)   default 0                     not null comment 'enabled',
+    constraint sys_user_username_uindex
+        unique (username)
 )
     comment 'sys_user';
 

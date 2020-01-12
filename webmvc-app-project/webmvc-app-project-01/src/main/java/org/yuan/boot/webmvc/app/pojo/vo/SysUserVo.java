@@ -17,22 +17,22 @@ import java.util.List;
 @Data
 public final class SysUserVo {
     @ApiModelProperty
-    @NotEmpty(groups = {Update.class, ChangeRole.class})
+    @NotEmpty(groups = {Update.class, ChangeRole.class}, message = "ID不能为空")
     private Long id;
     @ApiModelProperty
-    @NotEmpty(groups = {Save.class, Update.class, ChangePwd.class})
+    @NotEmpty(groups = {Save.class, Update.class, ChangePwd.class}, message = "username不能为空")
     private String username;
     @ApiModelProperty
-    @NotEmpty(groups = {Save.class})
+    @NotEmpty(groups = {Save.class}, message = "password不能为空")
     private String password;
     @ApiModelProperty
-    @NotEmpty(groups = {Save.class, Update.class})
+    @NotEmpty(groups = {Save.class, Update.class}, message = "realName不能为空")
     private String realName;
     @ApiModelProperty
-    @NotEmpty(groups = {Save.class, Update.class})
+    @NotEmpty(groups = {Save.class, Update.class}, message = "nickName不能为空")
     private String nickName;
     @ApiModelProperty
-    @NotEmpty(groups = {Save.class, Update.class, ChangeRole.class})
+    @NotEmpty(groups = {Save.class, Update.class, ChangeRole.class}, message = "roleIds不能为空")
     private List<Long> roleIds;
     @NotEmpty(groups = {ChangePwd.class})
     private String oldPwd;

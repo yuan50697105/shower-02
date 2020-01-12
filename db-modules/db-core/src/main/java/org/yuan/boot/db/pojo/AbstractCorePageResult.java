@@ -14,14 +14,14 @@ import java.util.List;
 public abstract class AbstractCorePageResult<T> {
     private long page;
     private long size;
-    private List<T> data;
+    private List<T> contents;
     private long totalNumberOfRows;
     private long totalPages;
 
-    public AbstractCorePageResult(long page, long size, List<T> data, long totalNumberOfRows, long totalPages) {
+    public AbstractCorePageResult(long page, long size, List<T> contents, long totalNumberOfRows, long totalPages) {
         this.page = page;
         this.size = size;
-        this.data = data;
+        this.contents = contents;
         this.totalNumberOfRows = totalNumberOfRows;
         this.totalPages = totalPages;
     }

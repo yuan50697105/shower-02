@@ -29,4 +29,6 @@ public interface SysRoleDao extends BaseDao<SysRole> {
     void delete(Long id);
 
     void delete(List<Long> ids);
+
+    List<Long> selectByIds(List<Long> roleIds);
 }

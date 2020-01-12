@@ -1,9 +1,11 @@
 package org.yuan.boot.webmvc.app.service.impl;
 
+import cn.hutool.core.thread.ThreadUtil;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.webmvc.app.dao.SysPermissionDao;
 import org.yuan.boot.webmvc.app.dao.SysRoleDao;
 import org.yuan.boot.webmvc.app.dao.SysRolePermissionDao;
 import org.yuan.boot.webmvc.app.dao.SysUserRoleDao;
@@ -32,6 +34,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     private SysRoleDao sysRoleDao;
     private SysRolePermissionDao sysRolePermissionDao;
     private SysUserRoleDao sysUserRoleDao;
+    private SysPermissionDao sysPermissionDao;
 
     @Override
     public Result page(SysRoleCondition condition) {
@@ -58,11 +61,15 @@ public class SysRoleServiceImpl implements SysRoleService {
     public Result save(SysRoleVo sysRoleVo) {
         SysRole sysRole = sysRoleConverter.convert(sysRoleVo);
         sysRoleDao.save(sysRole);
-        ArrayList<SysRolePermission> sysRolePermissions = new ArrayList<>(sysRoleVo.getPermissionIds().size());
-        for (Long permissionId : sysRoleVo.getPermissionIds()) {
-            sysRolePermissions.add(new SysRolePermission().setRoleId(sysRole.getId()).setPermissionId(permissionId));
-        }
-        sysRolePermissionDao.batchSave(sysRolePermissions);
+        ThreadUtil.execAsync(() -> {
+            List<Long> permissionIds = sysPermissionDao.selectByIds(sysRoleVo.getPermissionIds());
+            ArrayList<SysRolePermission> sysRolePermissions = new ArrayList<>(permissionIds.size());
+            for (Long permissionId : permissionIds) {
+                sysRolePermissions.add(new SysRolePermission().setRoleId(sysRole.getId()).setPermissionId(permissionId));
+            }
+            sysRolePermissionDao.batchSave(sysRolePermissions);
+        });
+
         return Result.ok();
     }
 
@@ -71,11 +78,6 @@ public class SysRoleServiceImpl implements SysRoleService {
     public Result update(SysRoleVo sysRoleVo) {
         SysRole sysRole = sysRoleConverter.convert(sysRoleVo);
         sysRoleDao.update(sysRole);
-        ArrayList<SysRolePermission> sysRolePermissions = new ArrayList<>(sysRoleVo.getPermissionIds().size());
-        for (Long permissionId : sysRoleVo.getPermissionIds()) {
-            sysRolePermissions.add(new SysRolePermission().setRoleId(sysRole.getId()).setPermissionId(permissionId));
-        }
-        sysRolePermissionDao.batchUpdate(sysRole, sysRolePermissions);
         return Result.ok();
     }
 

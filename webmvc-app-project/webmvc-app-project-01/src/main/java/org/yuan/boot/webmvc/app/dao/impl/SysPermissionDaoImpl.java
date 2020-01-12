@@ -13,8 +13,10 @@ import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @program: learning-demo-02
@@ -78,5 +80,17 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
         example.or().andIdIn(ids);
         baseMapper().deleteByExample(example);
         return Result.ok();
+    }
+
+    @Override
+    public List<Long> selectByIds(List<Long> permissionIds) {
+        SysPermissionExample example = new SysPermissionExample();
+        example.or().andIdIn(permissionIds);
+        List<SysPermission> sysPermissions = baseMapper().selectByExample(example);
+        if (null != sysPermissions) {
+            return sysPermissions.stream().map(SysPermission::getId).collect(Collectors.toList());
+        }else {
+            return Collections.emptyList();
+        }
     }
 }

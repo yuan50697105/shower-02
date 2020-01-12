@@ -3,6 +3,7 @@ package org.yuan.boot.webmvc.app.dao;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.SysUserRole;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**

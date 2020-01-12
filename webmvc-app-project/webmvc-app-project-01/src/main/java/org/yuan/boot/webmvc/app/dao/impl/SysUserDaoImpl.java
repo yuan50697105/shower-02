@@ -1,10 +1,12 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.http.HttpStatus;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.dao.DataAccessException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
@@ -29,6 +31,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Component
 public class SysUserDaoImpl extends BaseDaoImpl<SysUser, SysUserMapper> implements SysUserDao {
+    private PasswordEncoder passwordEncoder;
 
     @Override
     public PageResult<SysUser> page(SysUserCondition condition) {
@@ -60,7 +63,7 @@ public class SysUserDaoImpl extends BaseDaoImpl<SysUser, SysUserMapper> implemen
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(SysUser sysUser) {
-        sysUser = sysUser.setId(snowflake().nextId()).setCreateTime(new Date());
+        sysUser = sysUser.setId(snowflake().nextId()).setCreateTime(new Date()).setPassword(passwordEncoder.encode(sysUser.getPassword()));
         baseMapper().insertSelective(sysUser);
     }
 

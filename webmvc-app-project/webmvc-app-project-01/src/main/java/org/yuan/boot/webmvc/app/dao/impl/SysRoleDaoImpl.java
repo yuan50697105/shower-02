@@ -12,9 +12,8 @@ import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @program: learning-demo-02
@@ -73,6 +72,19 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, SysRoleMapper> implemen
         SysRoleExample example = new SysRoleExample();
         example.createCriteria().andIdIn(ids);
         baseMapper().deleteByExample(example);
+    }
+
+    @Override
+    public List<Long> selectByIds(List<Long> roleIds) {
+        SysRoleExample example = new SysRoleExample();
+        example.or().andIdIn(roleIds);
+        List<SysRole> sysRoles = baseMapper().selectByExample(example);
+        if (null != sysRoles) {
+            return sysRoles.stream().map(SysRole::getId).collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
+
     }
 
 }

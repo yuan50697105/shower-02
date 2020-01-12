@@ -1,10 +1,13 @@
 package org.yuan.boot.webmvc.app.service.impl;
 
+import cn.hutool.core.thread.ThreadUtil;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.webmvc.app.dao.SysRoleDao;
 import org.yuan.boot.webmvc.app.dao.SysUserDao;
 import org.yuan.boot.webmvc.app.dao.SysUserRoleDao;
 import org.yuan.boot.webmvc.app.pojo.ResultConstants;
@@ -35,6 +38,7 @@ public class SysUserServiceImpl implements SysUserService {
     private SysUserConverter sysUserConverter;
     private PasswordEncoder passwordEncoder;
     private SysUserRoleDao sysUserRoleDao;
+    private SysRoleDao sysRoleDao;
 
     @Override
     public Result page(SysUserCondition condition) {
@@ -53,16 +57,25 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
+    @SneakyThrows(Exception.class)
     public Result save(SysUserVo sysUserVo) {
         SysUser sysUser = sysUserConverter.convert(sysUserVo);
         sysUserDao.save(sysUser);
+        ThreadUtil.execAsync(() -> {
+            List<Long> roleIds = sysRoleDao.selectByIds(sysUserVo.getRoleIds());
+            ArrayList<SysUserRole> sysUserRoles = new ArrayList<>(roleIds.size());
+            for (Long roleId : roleIds) {
+                sysUserRoles.add(new SysUserRole().setRoleId(roleId).setUserId(sysUser.getId()));
+            }
+            sysUserRoleDao.batchSave(sysUserRoles);
+        });
         return Result.ok();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result update(SysUserVo sysUserVo) {
-        SysUser sysUser = sysUserConverter.convert(sysUserVo).setUpdateTime(new Date());
+        SysUser sysUser = sysUserConverter.convert(sysUserVo).setPassword(null).setUpdateTime(new Date());
         sysUserDao.update(sysUser);
         return Result.ok();
     }
@@ -80,7 +93,7 @@ public class SysUserServiceImpl implements SysUserService {
             String oldPwd = sysUserVo.getOldPwd();
             String newPwd = sysUserVo.getNewPwd();
             if (passwordEncoder.matches(oldPwd, password)) {
-                sysUser.setPassword(newPwd);
+                sysUser.setPassword(passwordEncoder.encode(newPwd));
                 sysUserDao.update(sysUser);
                 result = Result.ok();
             } else {
