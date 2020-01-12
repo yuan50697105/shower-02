@@ -7,6 +7,7 @@ package org.yuan.boot.webmvc.app.pojo;
  * @create: 2020-01-12 02:39
  */
 public class ResultConstants {
+    public final static Integer EXIST_ENTITY_ERROR = 2001;
     /**
      * 用户操作错误编码
      */

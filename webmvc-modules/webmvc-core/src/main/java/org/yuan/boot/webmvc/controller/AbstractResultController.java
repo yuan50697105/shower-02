@@ -36,6 +36,11 @@ public abstract class AbstractResultController {
         return e.getResult();
     }
 
+    @ExceptionHandler(IllegalArgumentException.class)
+    public Result illegalArgumentExceptionHandler(IllegalArgumentException e) {
+        return Result.paramsError();
+    }
+
     @ExceptionHandler(Exception.class)
     public Result exceptionHandler(Exception e) {
         e.printStackTrace();
