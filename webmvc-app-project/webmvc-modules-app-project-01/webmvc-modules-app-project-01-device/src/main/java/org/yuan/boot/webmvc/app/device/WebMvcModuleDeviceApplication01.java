@@ -1,4 +1,4 @@
-package org.yuan.boot.webmvc.app.wx;
+package org.yuan.boot.webmvc.app.device;
 
 import org.minbox.framework.api.boot.autoconfigure.swagger.annotation.EnableApiBootSwagger;
 import org.springframework.boot.SpringApplication;

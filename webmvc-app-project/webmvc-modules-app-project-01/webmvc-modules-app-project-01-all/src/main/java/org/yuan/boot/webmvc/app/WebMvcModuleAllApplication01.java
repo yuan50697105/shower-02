@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.yuan.boot.webmvc.app.admin.WebMvcModulesAdminApplication01;
 import org.yuan.boot.webmvc.app.core.WebMvcModuleCoreApplication01;
-import org.yuan.boot.webmvc.app.wx.WebMvcModuleDeviceApplication01;
+import org.yuan.boot.webmvc.app.device.WebMvcModuleDeviceApplication01;
 import org.yuan.boot.webmvc.app.wx.WebMvcModuleWxApplication01;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
