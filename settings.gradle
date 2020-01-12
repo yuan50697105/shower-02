@@ -90,9 +90,14 @@ include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-pro
 findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin')?.name = 'webmvc-modules-app-project-01-admin'
 include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-wx'
 findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-wx')?.name = 'webmvc-modules-app-project-01-wx'
+include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-device'
+findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-device')?.name = 'webmvc-modules-app-project-01-device'
+include 'webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-all'
+findProject(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-all')?.name = 'webmvc-modules-app-project-01-all'
 include 'webflux-app-project'
 include 'webmvc-graphql-app-project'
 include 'webflux-graphql-app-project'
 include 'webmvc-hateoas-app-project'
 include 'webflux-hateoas-app-project'
+
 
