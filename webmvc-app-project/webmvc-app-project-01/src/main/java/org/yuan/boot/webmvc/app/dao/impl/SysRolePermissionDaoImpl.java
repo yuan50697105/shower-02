@@ -22,12 +22,11 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 public class SysRolePermissionDaoImpl extends BaseDaoImpl<SysRolePermission, SysRolePermissionMapper> implements SysRolePermissionDao {
-    private Snowflake snowflake;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(SysRolePermission sysRolePermission) {
-        sysRolePermission = sysRolePermission.setId(snowflake.nextId()).setCreateTime(new Date());
+        sysRolePermission = sysRolePermission.setId(snowflake().nextId()).setCreateTime(new Date());
         baseMapper().insertSelective(sysRolePermission);
     }
 

@@ -9,6 +9,7 @@ import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.SysUserRole;
 import org.yuan.boot.webmvc.app.pojo.example.SysUserRoleExample;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +24,7 @@ public class SysUserRoleDaoImpl extends BaseDaoImpl<SysUserRole, SysUserRoleMapp
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(SysUserRole sysUserRole) {
+        sysUserRole.setId(snowflake().nextId()).setCreateTime(new Date());
         baseMapper().insertSelective(sysUserRole);
     }
 

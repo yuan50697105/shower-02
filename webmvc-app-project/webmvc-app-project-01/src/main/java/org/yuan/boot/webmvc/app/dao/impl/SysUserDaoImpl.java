@@ -31,8 +31,6 @@ import java.util.Optional;
 @AllArgsConstructor
 @Component
 public class SysUserDaoImpl extends BaseDaoImpl<SysUser, SysUserMapper> implements SysUserDao {
-    private SysUserConverter sysUserConverter;
-    private Snowflake snowflake;
 
     @Override
     public PageResult<SysUser> page(SysUserCondition condition) {
@@ -64,7 +62,7 @@ public class SysUserDaoImpl extends BaseDaoImpl<SysUser, SysUserMapper> implemen
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(SysUser sysUser) {
-        sysUser = sysUser.setId(snowflake.nextId()).setCreateTime(new Date());
+        sysUser = sysUser.setId(snowflake().nextId()).setCreateTime(new Date());
         baseMapper().insertSelective(sysUser);
     }
 

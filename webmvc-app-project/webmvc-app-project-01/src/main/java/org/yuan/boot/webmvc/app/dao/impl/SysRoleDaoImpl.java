@@ -26,7 +26,6 @@ import java.util.Optional;
 @AllArgsConstructor
 @Component
 public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, SysRoleMapper> implements SysRoleDao {
-    private Snowflake snowflake;
 
     @Override
     public PageResult<SysRole> page(SysRoleCondition condition) {
@@ -52,7 +51,7 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, SysRoleMapper> implemen
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(SysRole sysRole) {
-        sysRole = sysRole.setId(snowflake.nextId()).setCreateTime(new Date());
+        sysRole = sysRole.setId(snowflake().nextId()).setCreateTime(new Date());
         baseMapper().insertSelective(sysRole);
     }
 

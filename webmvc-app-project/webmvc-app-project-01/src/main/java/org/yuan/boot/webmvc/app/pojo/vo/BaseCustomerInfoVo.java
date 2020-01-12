@@ -12,13 +12,22 @@ import javax.validation.constraints.NotEmpty;
  */
 @Data
 public final class BaseCustomerInfoVo {
+    @NotEmpty(groups = {Update.class})
     private Long id;
-    @NotEmpty
+    @NotEmpty(groups = {Save.class})
     private String actualName;
-    @NotEmpty
+    @NotEmpty(groups = {Save.class})
     private String contactAddress;
-    @NotEmpty
+    @NotEmpty(groups = {Save.class})
     private String contactNumber;
-    @NotEmpty
+    @NotEmpty(groups = {Save.class})
     private String identityNumber;
+
+    public interface Save {
+    }
+
+    public interface Update {
+    }
+
+
 }

@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfo;
+import org.yuan.boot.webmvc.app.pojo.condition.BaseCustomerInfoCondition;
 import org.yuan.boot.webmvc.app.pojo.example.BaseCustomerInfoExample;
 
 import java.util.List;
@@ -31,4 +32,8 @@ public interface BaseCustomerInfoMapper extends BaseMapper<BaseCustomerInfo> {
     int updateByPrimaryKeySelective(BaseCustomerInfo record);
 
     int updateByPrimaryKey(BaseCustomerInfo record);
+
+    List<BaseCustomerInfo> selectByCondition(BaseCustomerInfoCondition condition);
+
+    BaseCustomerInfo selectOneByCondition(BaseCustomerInfo customerInfo);
 }

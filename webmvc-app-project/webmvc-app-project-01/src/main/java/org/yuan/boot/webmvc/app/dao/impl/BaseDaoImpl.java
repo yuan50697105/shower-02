@@ -1,5 +1,7 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
+import cn.hutool.core.lang.Snowflake;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.dao.BaseDao;
 import org.yuan.boot.webmvc.app.pojo.BaseEntity;
@@ -13,4 +15,10 @@ import org.yuan.boot.webmvc.app.pojo.BaseEntity;
 
 
 public abstract class BaseDaoImpl<T extends BaseEntity<T>, M extends BaseMapper<T>> extends org.yuan.boot.db.dao.impl.BaseDaoImpl<T, Long, M> implements BaseDao<T> {
+    @Autowired
+    private Snowflake snowflake;
+
+    public Snowflake snowflake() {
+        return snowflake;
+    }
 }

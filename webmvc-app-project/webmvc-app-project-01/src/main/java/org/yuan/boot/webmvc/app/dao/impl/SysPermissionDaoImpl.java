@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
-import cn.hutool.core.lang.Snowflake;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
@@ -11,7 +10,6 @@ import org.yuan.boot.webmvc.app.dao.SysPermissionDao;
 import org.yuan.boot.webmvc.app.mapper.SysPermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
-import org.yuan.boot.webmvc.app.pojo.converter.SysPermissionConverter;
 import org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample;
 import org.yuan.boot.webmvc.pojo.Result;
 
@@ -27,8 +25,6 @@ import java.util.List;
 @AllArgsConstructor
 @Component
 public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissionMapper> implements SysPermissionDao {
-    private SysPermissionConverter sysPermissionConverter;
-    private Snowflake snowflake;
 
     @Override
     public Result page(SysPermissionCondition condition) {
@@ -54,7 +50,7 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result save(SysPermission sysPermission) {
-        sysPermission.setId(snowflake.nextId());
+        sysPermission.setId(snowflake().nextId());
         sysPermission.setCreateTime(new Date());
         baseMapper().insertSelective(sysPermission);
         return Result.ok();
