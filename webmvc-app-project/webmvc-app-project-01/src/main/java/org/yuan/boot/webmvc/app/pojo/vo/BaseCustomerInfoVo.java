@@ -1,5 +1,6 @@
 package org.yuan.boot.webmvc.app.pojo.vo;
 
+import io.swagger.annotations.ApiModel;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotEmpty;
  * @create: 2020-01-05 19:22
  */
 @Data
+@ApiModel
 public final class BaseCustomerInfoVo {
     @NotEmpty(groups = {Update.class})
     private Long id;
