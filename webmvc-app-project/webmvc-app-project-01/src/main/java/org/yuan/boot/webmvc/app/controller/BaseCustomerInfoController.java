@@ -42,8 +42,8 @@ public class BaseCustomerInfoController extends ResultController {
 
     @ApiOperation(value = "列表", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("list/{name}")
-    public Result list(@PathVariable("name") String name) {
-        return baseCustomerInfoService.list(BaseCustomerInfoCondition.builder().name(name).build());
+    public Result list(@PathVariable("name") String value) {
+        return baseCustomerInfoService.list(BaseCustomerInfoCondition.builder().value(value).build());
     }
 
     @ApiOperation(value = "查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)

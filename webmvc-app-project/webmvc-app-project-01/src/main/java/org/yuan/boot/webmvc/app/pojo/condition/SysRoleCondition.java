@@ -1,5 +1,7 @@
 package org.yuan.boot.webmvc.app.pojo.condition;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -17,9 +19,13 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
+@ApiModel("角色查询")
 public final class SysRoleCondition extends BaseCondition {
+    @ApiModelProperty("主键")
     private Long id;
+    @ApiModelProperty("主键集合")
     private List<Long> ids;
+    @ApiModelProperty("名称")
     private String name;
 
     public SysRoleCondition() {
