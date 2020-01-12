@@ -5,7 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.AbstractBaseCondition;
+import org.yuan.boot.db.jpa.pojo.AbstractBaseCondition;
 
 import java.util.Date;
 import java.util.List;

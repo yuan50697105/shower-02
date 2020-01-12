@@ -6,7 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.db.jpa.pojo.PageResult;
 import org.yuan.boot.webmvc.app.dao.SysPermissionService;
 import org.yuan.boot.webmvc.app.mapper.SysPermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import org.yuan.boot.db.pojo.AbstractBaseEntity;
+import org.yuan.boot.db.jpa.pojo.AbstractBaseEntity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;

@@ -1,6 +1,6 @@
 package org.yuan.boot.webmvc.app.dao;
 
-import org.yuan.boot.db.dao.BaseDao;
+import org.yuan.boot.db.jpa.dao.BaseDao;
 import org.yuan.boot.webmvc.app.pojo.BaseEntity;
 
 /**

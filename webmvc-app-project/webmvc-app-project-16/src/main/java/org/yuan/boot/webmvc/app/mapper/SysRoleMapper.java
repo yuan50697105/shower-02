@@ -2,7 +2,7 @@ package org.yuan.boot.webmvc.app.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.yuan.boot.db.mapper.BaseMapper;
+import org.yuan.boot.db.jpa.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;

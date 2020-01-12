@@ -4,7 +4,7 @@ import org.minbox.framework.api.boot.autoconfigure.swagger.annotation.EnableApiB
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.yuan.boot.DbCoreApplication;
-import org.yuan.boot.db.DbJpaMybatisSqlHelperApplication;
+import org.yuan.boot.db.jpa.DbJpaMybatisSqlHelperApplication;
 import org.yuan.boot.webmvc.WebMvcCoreApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
