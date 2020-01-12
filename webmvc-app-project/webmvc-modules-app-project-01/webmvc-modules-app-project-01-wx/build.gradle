@@ -1,11 +1,7 @@
-plugins {
-    id 'java'
-}
-
-group 'org.yuan.boot.webmvc.app.admin'
+group 'org.yuan.boot.webmvc.app.wx'
+version '0.0.1-DEV'
 
 dependencies {
     implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-db')
     implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-core')
 }
-
