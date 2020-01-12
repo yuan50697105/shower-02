@@ -1,10 +1,10 @@
 package org.yuan.boot.webmvc.app.pojo;
 
-import lombok.*;
-import lombok.experimental.Accessors;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.*;
+import lombok.experimental.Accessors;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -12,16 +12,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public final class SysPermission extends BaseEntity<SysPermission> implements Serializable {
+public class SysPermission extends BaseEntity<SysPermission> implements Serializable {
     /**
      * id
      */
     private Long id;
-
-    /**
-     * authority
-     */
-    private String authority;
 
     /**
      * name
@@ -52,6 +47,8 @@ public final class SysPermission extends BaseEntity<SysPermission> implements Se
      * enabled
      */
     private Integer enabled;
+
+    private static final long serialVersionUID = 1L;
 
     public static SysPermissionBuilder builder() {
         return new SysPermissionBuilder();

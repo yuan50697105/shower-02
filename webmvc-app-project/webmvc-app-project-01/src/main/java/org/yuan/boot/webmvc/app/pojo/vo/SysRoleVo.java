@@ -22,9 +22,6 @@ public final class SysRoleVo {
     @ApiModelProperty(value = "名称")
     @NotEmpty(groups = {Save.class, Update.class}, message = "name不能为空")
     private String name;
-    @ApiModelProperty(value = "权限描述")
-    @NotEmpty(groups = {Save.class, Update.class},message = "authority不能为空")
-    private String authority;
     @ApiModelProperty(value = "权限列表")
     @NotEmpty(groups = {Save.class, ChangePermission.class},message = "permissionIds不能为空")
     private List<Long> permissionIds;

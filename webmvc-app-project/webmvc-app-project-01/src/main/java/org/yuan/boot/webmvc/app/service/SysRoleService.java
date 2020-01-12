@@ -14,19 +14,19 @@ import java.util.List;
  * @create: 2020-01-11 19:58
  */
 public interface SysRoleService {
-    Result page(SysRoleCondition condition);
+    Result selectPage(SysRoleCondition condition);
 
-    Result list(SysRoleCondition condition);
+    Result selectList(SysRoleCondition condition);
 
-    Result get(SysRole sysRole);
+    Result selectOne(SysRole sysRole);
 
-    Result get(Long id);
+    Result selectById(Long id);
 
     Result save(SysRoleVo sysRoleVo);
 
     Result update(SysRoleVo sysRoleVo);
 
-    Result changePermission(SysRoleVo sysRoleVo);
+    Result updatePermission(SysRoleVo sysRoleVo);
 
     Result delete(List<Long> ids);
 

@@ -28,23 +28,23 @@ public class BaseCustomerInfoServiceImpl implements BaseCustomerInfoService {
     private BaseCustomerInfoConverter baseCustomerInfoConverter;
 
     @Override
-    public Result page(BaseCustomerInfoCondition condition) {
-        return Result.data(baseCustomerInfoDao.page(condition));
+    public Result selectPage(BaseCustomerInfoCondition condition) {
+        return Result.data(baseCustomerInfoDao.selectPage(condition));
     }
 
     @Override
-    public Result list(BaseCustomerInfoCondition condition) {
-        return Result.data(baseCustomerInfoDao.list(condition));
+    public Result selectList(BaseCustomerInfoCondition condition) {
+        return Result.data(baseCustomerInfoDao.selectList(condition));
     }
 
     @Override
-    public Result get(BaseCustomerInfo customerInfo) {
-        return Result.data(baseCustomerInfoDao.get(customerInfo));
+    public Result selectOne(BaseCustomerInfo customerInfo) {
+        return Result.data(baseCustomerInfoDao.selectOne(customerInfo));
     }
 
     @Override
-    public Result get(Long id) {
-        return Result.data(baseCustomerInfoDao.get(id));
+    public Result selectById(Long id) {
+        return Result.data(baseCustomerInfoDao.selectById(id));
     }
 
     @Override

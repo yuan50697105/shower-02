@@ -1,10 +1,10 @@
 package org.yuan.boot.webmvc.app.pojo;
 
-import lombok.*;
-import lombok.experimental.Accessors;
-
 import java.io.Serializable;
 import java.util.Date;
+
+import lombok.*;
+import lombok.experimental.Accessors;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -12,17 +12,12 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public final class SysRole extends BaseEntity<SysRole> implements Serializable {
+public class SysRole extends BaseEntity<SysRole> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * id
      */
     private Long id;
-
-    /**
-     * authority
-     */
-    private String authority;
 
     /**
      * name

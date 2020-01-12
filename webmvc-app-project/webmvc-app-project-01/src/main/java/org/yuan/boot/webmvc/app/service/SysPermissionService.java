@@ -14,13 +14,13 @@ import java.util.List;
  * @create: 2020-01-11 19:58
  */
 public interface SysPermissionService {
-    Result page(SysPermissionCondition condition);
+    Result selectPage(SysPermissionCondition condition);
 
-    Result list(SysPermissionCondition condition);
+    Result selectList(SysPermissionCondition condition);
 
-    Result get(SysPermission permission);
+    Result selectOne(SysPermission permission);
 
-    Result get(Long id);
+    Result selectById(Long id);
 
     Result save(SysPermissionVo sysPermissionVo);
 

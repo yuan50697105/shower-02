@@ -34,19 +34,19 @@ public class SysUserDaoImpl extends BaseDaoImpl<SysUser, SysUserMapper> implemen
     private PasswordEncoder passwordEncoder;
 
     @Override
-    public PageResult<SysUser> page(SysUserCondition condition) {
+    public PageResult<SysUser> selectPage(SysUserCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
         List<SysUser> list = baseMapper().selectByCondition(condition);
         return new PageResult<>(PageInfo.of(list));
     }
 
     @Override
-    public List<SysUser> list(SysUserCondition condition) {
+    public List<SysUser> selectList(SysUserCondition condition) {
         return baseMapper().selectByCondition(condition);
     }
 
     @Override
-    public Optional<SysUser> get(SysUser condition) throws NoValidateResultRuntimeException {
+    public Optional<SysUser> selectOne(SysUser condition) throws NoValidateResultRuntimeException {
         try {
             return Optional.ofNullable(baseMapper().selectOne(condition));
         } catch (DataAccessException e) {

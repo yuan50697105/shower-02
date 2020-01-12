@@ -29,24 +29,24 @@ import java.util.Optional;
 public class BaseCustomerInfoDaoImpl extends BaseDaoImpl<BaseCustomerInfo, BaseCustomerInfoMapper> implements BaseCustomerInfoDao {
 
     @Override
-    public PageResult<BaseCustomerInfo> page(BaseCustomerInfoCondition condition) {
+    public PageResult<BaseCustomerInfo> selectPage(BaseCustomerInfoCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
         List<BaseCustomerInfo> customerInfos = baseMapper().selectByCondition(condition);
         return new PageResult<>(PageInfo.of(customerInfos));
     }
 
     @Override
-    public List<BaseCustomerInfo> list(BaseCustomerInfoCondition condition) {
+    public List<BaseCustomerInfo> selectList(BaseCustomerInfoCondition condition) {
         return baseMapper().selectByCondition(condition);
     }
 
     @Override
-    public Optional<BaseCustomerInfo> get(BaseCustomerInfo customerInfo) {
+    public Optional<BaseCustomerInfo> selectOne(BaseCustomerInfo customerInfo) {
         return Optional.ofNullable(baseMapper().selectOneByCondition(customerInfo));
     }
 
     @Override
-    public Optional<BaseCustomerInfo> get(Long id) {
+    public Optional<BaseCustomerInfo> selectById(Long id) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
     }
 

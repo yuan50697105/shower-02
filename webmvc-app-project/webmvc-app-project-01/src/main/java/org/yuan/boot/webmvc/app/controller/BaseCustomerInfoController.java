@@ -31,31 +31,31 @@ public class BaseCustomerInfoController extends ResultController {
     @ApiOperation(value = "分页", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "data", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result data(BaseCustomerInfoCondition condition) {
-        return baseCustomerInfoService.page(condition);
+        return baseCustomerInfoService.selectPage(condition);
     }
 
     @ApiOperation(value = "列表", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result list(BaseCustomerInfoCondition condition) {
-        return baseCustomerInfoService.list(condition);
+        return baseCustomerInfoService.selectList(condition);
     }
 
     @ApiOperation(value = "列表", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping("list/{name}")
     public Result list(@PathVariable("name") String value) {
-        return baseCustomerInfoService.list(BaseCustomerInfoCondition.builder().value(value).build());
+        return baseCustomerInfoService.selectList(BaseCustomerInfoCondition.builder().value(value).build());
     }
 
     @ApiOperation(value = "查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(BaseCustomerInfo customerInfo) {
-        return baseCustomerInfoService.get(customerInfo);
+        return baseCustomerInfoService.selectOne(customerInfo);
     }
 
     @ApiOperation(value = "查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(@PathVariable("id") Long id) {
-        return baseCustomerInfoService.get(id);
+        return baseCustomerInfoService.selectById(id);
     }
 
     @ApiOperation(value = "增加", httpMethod = HTTP_METHOD_POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

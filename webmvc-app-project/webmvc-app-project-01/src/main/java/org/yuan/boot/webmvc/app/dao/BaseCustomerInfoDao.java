@@ -14,13 +14,13 @@ import java.util.Optional;
  * @create: 2020-01-05 19:40
  */
 public interface BaseCustomerInfoDao extends BaseDao<BaseCustomerInfo> {
-    PageResult<BaseCustomerInfo> page(BaseCustomerInfoCondition condition);
+    PageResult<BaseCustomerInfo> selectPage(BaseCustomerInfoCondition condition);
 
-    List<BaseCustomerInfo> list(BaseCustomerInfoCondition condition);
+    List<BaseCustomerInfo> selectList(BaseCustomerInfoCondition condition);
 
-    Optional<BaseCustomerInfo> get(BaseCustomerInfo customerInfo);
+    Optional<BaseCustomerInfo> selectOne(BaseCustomerInfo customerInfo);
 
-    Optional<BaseCustomerInfo> get(Long id);
+    Optional<BaseCustomerInfo> selectById(Long id);
 
     void save(BaseCustomerInfo customerInfo);
 

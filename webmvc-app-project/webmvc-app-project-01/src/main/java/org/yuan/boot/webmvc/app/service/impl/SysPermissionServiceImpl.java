@@ -30,22 +30,22 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     private SysPermissionConverter sysPermissionConverter;
 
     @Override
-    public Result page(SysPermissionCondition condition) {
+    public Result selectPage(SysPermissionCondition condition) {
         return Result.data(sysPermissionDao.page(condition));
     }
 
     @Override
-    public Result list(SysPermissionCondition condition) {
+    public Result selectList(SysPermissionCondition condition) {
         return Result.data(sysPermissionDao.list(condition));
     }
 
     @Override
-    public Result get(SysPermission permission) {
+    public Result selectOne(SysPermission permission) {
         return Result.data(sysPermissionDao.get(permission));
     }
 
     @Override
-    public Result get(Long id) {
+    public Result selectById(Long id) {
         return Result.data(sysPermissionDao.get(id));
     }
 

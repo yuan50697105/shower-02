@@ -14,13 +14,13 @@ import java.util.List;
  * @create: 2020-01-11 19:58
  */
 public interface BaseCustomerInfoService {
-    Result page(BaseCustomerInfoCondition condition);
+    Result selectPage(BaseCustomerInfoCondition condition);
 
-    Result list(BaseCustomerInfoCondition condition);
+    Result selectList(BaseCustomerInfoCondition condition);
 
-    Result get(BaseCustomerInfo customerInfo);
+    Result selectOne(BaseCustomerInfo customerInfo);
 
-    Result get(Long id);
+    Result selectById(Long id);
 
     Result save(BaseCustomerInfoVo baseCustomerInfoVo);
 

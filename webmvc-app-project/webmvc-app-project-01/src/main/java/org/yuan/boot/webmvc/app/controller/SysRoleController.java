@@ -33,25 +33,25 @@ public class SysRoleController extends ResultController {
     @ApiOperation(value = "分页查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "data", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result data(SysRoleCondition condition) {
-        return sysRoleService.page(condition);
+        return sysRoleService.selectPage(condition);
     }
 
     @ApiOperation(value = "列表查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result list(SysRoleCondition condition) {
-        return sysRoleService.list(condition);
+        return sysRoleService.selectList(condition);
     }
 
     @ApiOperation(value = "精确查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(SysRole sysRole) {
-        return sysRoleService.get(sysRole);
+        return sysRoleService.selectOne(sysRole);
     }
 
     @ApiOperation(value = "主键查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(@PathVariable("id") Long id) {
-        return sysRoleService.get(id);
+        return sysRoleService.selectById(id);
     }
 
     @ApiOperation(value = "增加", httpMethod = HTTP_METHOD_POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -72,7 +72,7 @@ public class SysRoleController extends ResultController {
     @PostMapping(value = "update/permission", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
     public Result changePermission(@RequestBody @Validated(SysRoleVo.ChangePermission.class) SysRoleVo sysRoleVo, BindingResult result) {
         validate(result);
-        return sysRoleService.changePermission(sysRoleVo);
+        return sysRoleService.updatePermission(sysRoleVo);
     }
 
     @ApiOperation(value = "删除", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -34,31 +34,31 @@ public class SysUserController extends ResultController {
     @ApiOperation(value = "分页查询", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "data", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result data(@ApiParam SysUserCondition condition) {
-        return sysUserService.page(condition);
+        return sysUserService.selectPage(condition);
     }
 
     @ApiOperation(value = "列表查询", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result list(SysUserCondition condition) {
-        return sysUserService.list(condition);
+        return sysUserService.selectList(condition);
     }
 
     @ApiOperation(value = "列表查询", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "list/{name}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result list(@PathVariable("name") String name) {
-        return sysUserService.list(new SysUserCondition().setName(name));
+        return sysUserService.selectList(new SysUserCondition().setName(name));
     }
 
     @ApiOperation(value = "精确查询", produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(SysUser condition) {
-        return sysUserService.get(condition);
+        return sysUserService.selectOne(condition);
     }
 
     @ApiOperation(value = "主键查询")
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(@PathVariable("id") Long id) {
-        return sysUserService.get(SysUser.builder().id(id).build());
+        return sysUserService.selectOne(SysUser.builder().id(id).build());
     }
 
     @ApiOperation(value = "增加", httpMethod = HTTP_METHOD_POST, consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -79,14 +79,14 @@ public class SysUserController extends ResultController {
     @PostMapping(value = "update/pwd", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Result changePwd(@RequestBody @Validated(SysUserVo.ChangePwd.class) SysUserVo sysUserVo, BindingResult result) {
         validate(result);
-        return sysUserService.changePwd(sysUserVo);
+        return sysUserService.updatePwd(sysUserVo);
     }
 
     @ApiOperation(value = "修改角色", httpMethod = HTTP_METHOD_POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     @PostMapping(value = "update/role", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public Result changeRole(@RequestBody @Validated({SysUserVo.ChangeRole.class}) SysUserVo sysUserVo, BindingResult result) {
         validate(result);
-        return sysUserService.changeRole(sysUserVo);
+        return sysUserService.updateRole(sysUserVo);
     }
 
     @ApiOperation(value = "删除", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)

@@ -15,11 +15,11 @@ import java.util.Optional;
  * @create: 2019-12-29 22:31
  */
 public interface SysUserDao extends BaseDao<SysUser> {
-    PageResult<SysUser> page(SysUserCondition condition);
+    PageResult<SysUser> selectPage(SysUserCondition condition);
 
-    List<SysUser> list(SysUserCondition condition);
+    List<SysUser> selectList(SysUserCondition condition);
 
-    Optional<SysUser> get(SysUser condition) throws NoValidateResultRuntimeException;
+    Optional<SysUser> selectOne(SysUser condition) throws NoValidateResultRuntimeException;
 
     void save(SysUser sysUserVo);
 

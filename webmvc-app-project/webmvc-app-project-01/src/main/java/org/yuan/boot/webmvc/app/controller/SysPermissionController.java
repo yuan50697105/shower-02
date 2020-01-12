@@ -33,13 +33,13 @@ public class SysPermissionController extends ResultController {
     @ApiOperation(value = "分页查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "data", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result data(SysPermissionCondition condition) {
-        return sysPermissionService.page(condition);
+        return sysPermissionService.selectPage(condition);
     }
 
     @ApiOperation(value = "列表查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result list(SysPermissionCondition condition) {
-        return sysPermissionService.list(condition);
+        return sysPermissionService.selectList(condition);
     }
 
     @ApiOperation(value = "列表查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -51,13 +51,13 @@ public class SysPermissionController extends ResultController {
     @ApiOperation(value = "查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(SysPermission permission) {
-        return sysPermissionService.get(permission);
+        return sysPermissionService.selectOne(permission);
     }
 
     @ApiOperation(value = "查询", httpMethod = HTTP_METHOD_GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @GetMapping(value = "{id}", produces = MediaType.APPLICATION_JSON_VALUE)
     public Result get(@PathVariable("id") Long id) {
-        return sysPermissionService.get(id);
+        return sysPermissionService.selectById(id);
     }
 
     @ApiOperation(value = "增加", httpMethod = HTTP_METHOD_POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)

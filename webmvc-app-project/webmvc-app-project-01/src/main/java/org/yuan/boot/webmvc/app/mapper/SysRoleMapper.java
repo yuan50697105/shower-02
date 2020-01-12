@@ -1,13 +1,11 @@
 package org.yuan.boot.webmvc.app.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
-import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
-import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;
-
-import java.util.List;
+import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 
 @Mapper
 public interface SysRoleMapper extends BaseMapper<SysRole> {

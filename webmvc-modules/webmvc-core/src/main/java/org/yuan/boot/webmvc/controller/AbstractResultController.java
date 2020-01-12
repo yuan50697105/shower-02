@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.yuan.boot.webmvc.exception.NoValidateResultException;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
+import org.yuan.boot.webmvc.exception.ResultException;
+import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.StringJoiner;
@@ -25,6 +27,16 @@ public abstract class AbstractResultController {
     public final static String HTTP_METHOD_GET = "GET";
     public final static String HTTP_METHOD_DELETE = "DELETE";
     public final static String HTTP_METHOD_PUT = "PUT";
+
+    @ExceptionHandler(ResultException.class)
+    public Result resultExceptionHandler(ResultException e) {
+        return e.getResult();
+    }
+
+    @ExceptionHandler(ResultRuntimeException.class)
+    public Result resultRuntimeExceptionHandler(ResultRuntimeException e) {
+        return e.getResult();
+    }
 
     @ExceptionHandler(NoValidateResultException.class)
     public Result noValidateResultException(NoValidateResultException e) {

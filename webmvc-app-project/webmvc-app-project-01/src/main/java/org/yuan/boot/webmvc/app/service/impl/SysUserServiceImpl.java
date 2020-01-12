@@ -2,7 +2,6 @@ package org.yuan.boot.webmvc.app.service.impl;
 
 import cn.hutool.core.thread.ThreadUtil;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -43,18 +42,23 @@ public class SysUserServiceImpl implements SysUserService {
     private SysRoleDao sysRoleDao;
 
     @Override
-    public Result page(SysUserCondition condition) {
-        return Result.data(sysUserDao.page(condition));
+    public Result selectPage(SysUserCondition condition) {
+        return Result.data(sysUserDao.selectPage(condition));
     }
 
     @Override
-    public Result list(SysUserCondition condition) {
-        return Result.data(sysUserDao.list(condition));
+    public Result selectList(SysUserCondition condition) {
+        return Result.data(sysUserDao.selectList(condition));
     }
 
     @Override
-    public Result get(SysUser condition) {
-        return Result.data(sysUserDao.get(condition));
+    public Result selectOne(SysUser condition) {
+        return Result.data(sysUserDao.selectOne(condition));
+    }
+
+    @Override
+    public Result selectById(Long id) {
+        return Result.data(sysRoleDao.selectById(id));
     }
 
     @Override
@@ -87,7 +91,7 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result changePwd(SysUserVo sysUserVo) {
+    public Result updatePwd(SysUserVo sysUserVo) {
         Result result;
         Optional<SysUser> optional = sysUserDao.selectByUsername(sysUserVo.getUsername());
         if (!optional.isPresent()) {
@@ -110,7 +114,7 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result changeRole(SysUserVo sysUserVo) {
+    public Result updateRole(SysUserVo sysUserVo) {
         Long userId = sysUserVo.getId();
         List<Long> roleIds = sysUserVo.getRoleIds();
         ArrayList<SysUserRole> sysUserRoles = new ArrayList<>(roleIds.size());

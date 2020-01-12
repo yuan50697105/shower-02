@@ -10,9 +10,11 @@ import org.yuan.boot.webmvc.app.dao.SysRoleDao;
 import org.yuan.boot.webmvc.app.mapper.SysRoleMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
-import org.yuan.boot.webmvc.app.pojo.example.SysRoleExample;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -26,24 +28,42 @@ import java.util.stream.Collectors;
 public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, SysRoleMapper> implements SysRoleDao {
 
     @Override
-    public PageResult<SysRole> page(SysRoleCondition condition) {
+    public PageResult<SysRole> selectPage(SysRoleCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
         return new PageResult<>(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
     @Override
-    public List<SysRole> list(SysRoleCondition condition) {
+    public List<SysRole> selectList(SysRoleCondition condition) {
         return baseMapper().selectByCondition(condition);
     }
 
     @Override
-    public Optional<SysRole> get(SysRole sysRole) {
+    public Optional<SysRole> selectOne(SysRole sysRole) {
         return Optional.ofNullable(baseMapper().selectOne(sysRole));
     }
 
     @Override
-    public Optional<SysRole> get(Long id) {
+    public Optional<SysRole> selectById(Long id) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
+    }
+
+    @Override
+    public List<Long> selectByIds(List<Long> roleIds) {
+        SysRoleExample example = new SysRoleExample();
+        example.or().andIdIn(roleIds);
+        List<SysRole> sysRoles = baseMapper().selectByExample(example);
+        if (null != sysRoles) {
+            return sysRoles.stream().map(SysRole::getId).collect(Collectors.toList());
+        } else {
+            return Collections.emptyList();
+        }
+
+    }
+
+    @Override
+    public Optional<SysRole> selectByName(String name) {
+        return Optional.ofNullable(baseMapper().selectOneByName(name));
     }
 
     @Override
@@ -72,19 +92,6 @@ public class SysRoleDaoImpl extends BaseDaoImpl<SysRole, SysRoleMapper> implemen
         SysRoleExample example = new SysRoleExample();
         example.createCriteria().andIdIn(ids);
         baseMapper().deleteByExample(example);
-    }
-
-    @Override
-    public List<Long> selectByIds(List<Long> roleIds) {
-        SysRoleExample example = new SysRoleExample();
-        example.or().andIdIn(roleIds);
-        List<SysRole> sysRoles = baseMapper().selectByExample(example);
-        if (null != sysRoles) {
-            return sysRoles.stream().map(SysRole::getId).collect(Collectors.toList());
-        } else {
-            return Collections.emptyList();
-        }
-
     }
 
 }

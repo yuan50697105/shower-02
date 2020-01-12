@@ -21,9 +21,6 @@ public final class SysPermissionVo {
     @ApiModelProperty(value = "名称")
     @NotEmpty(groups = {SysRoleVo.Save.class, SysRoleVo.Update.class})
     private String name;
-    @ApiModelProperty(value = "权限描述")
-    @NotEmpty(groups = {SysRoleVo.Save.class, SysRoleVo.Update.class})
-    private String authority;
 
     public interface Save {
     }

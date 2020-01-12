@@ -14,19 +14,21 @@ import java.util.List;
  * @create: 2020-01-11 19:57
  */
 public interface SysUserService {
-    Result page(SysUserCondition condition);
+    Result selectPage(SysUserCondition condition);
 
-    Result list(SysUserCondition condition);
+    Result selectList(SysUserCondition condition);
 
-    Result get(SysUser condition);
+    Result selectOne(SysUser condition);
+
+    Result selectById(Long id);
 
     Result save(SysUserVo sysUserVo);
 
     Result update(SysUserVo sysUserVo);
 
-    Result changePwd(SysUserVo sysUserVo);
+    Result updatePwd(SysUserVo sysUserVo);
 
-    Result changeRole(SysUserVo sysUserVo);
+    Result updateRole(SysUserVo sysUserVo);
 
     Result delete(List<Long> ids);
 

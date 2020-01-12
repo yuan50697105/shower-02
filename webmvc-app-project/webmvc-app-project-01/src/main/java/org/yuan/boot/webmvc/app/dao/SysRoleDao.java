@@ -14,13 +14,13 @@ import java.util.Optional;
  * @create: 2020-01-01 18:12
  */
 public interface SysRoleDao extends BaseDao<SysRole> {
-    PageResult<SysRole> page(SysRoleCondition condition);
+    PageResult<SysRole> selectPage(SysRoleCondition condition);
 
-    List<SysRole> list(SysRoleCondition condition);
+    List<SysRole> selectList(SysRoleCondition condition);
 
-    Optional<SysRole> get(SysRole sysRole);
+    Optional<SysRole> selectOne(SysRole sysRole);
 
-    Optional<SysRole> get(Long id);
+    Optional<SysRole> selectById(Long id);
 
     void save(SysRole sysRole);
 
@@ -31,4 +31,6 @@ public interface SysRoleDao extends BaseDao<SysRole> {
     void delete(List<Long> ids);
 
     List<Long> selectByIds(List<Long> roleIds);
+
+    Optional<SysRole> selectByName(String name);
 }
