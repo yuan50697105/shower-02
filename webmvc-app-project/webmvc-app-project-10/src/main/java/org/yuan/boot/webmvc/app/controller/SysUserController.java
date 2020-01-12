@@ -12,7 +12,7 @@ import org.yuan.boot.webmvc.app.dao.SysUserService;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
-import org.yuan.boot.webmvc.controller.ResultController;
+import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
 /**
@@ -26,7 +26,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 @RestController
 @RequestMapping("sys/user")
 @Value
-public class SysUserController extends ResultController {
+public class SysUserController extends AbstractResultController {
     private SysUserService sysUserService;
 
     @ApiOperation(value = "分页查询")

@@ -11,7 +11,7 @@ import org.yuan.boot.webmvc.app.dao.SysRoleService;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysRoleCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysRoleVo;
-import org.yuan.boot.webmvc.controller.ResultController;
+import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
@@ -26,7 +26,7 @@ import java.util.List;
 @RestController
 @RequestMapping("sys/role")
 @Value
-public class SysRoleController extends ResultController {
+public class SysRoleController extends AbstractResultController {
     private SysRoleService sysRoleService;
 
     @ApiOperation("分页查询")

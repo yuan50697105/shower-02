@@ -11,7 +11,6 @@ import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfo;
 import org.yuan.boot.webmvc.app.pojo.condition.BaseCustomerInfoCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.BaseCustomerInfoVo;
 import org.yuan.boot.webmvc.app.service.BaseCustomerInfoService;
-import org.yuan.boot.webmvc.controller.ResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;

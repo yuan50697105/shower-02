@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yuan.boot.webmvc.app.dao.SysPermissionService;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
-import org.yuan.boot.webmvc.controller.ResultController;
+import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
 /**
@@ -20,7 +20,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 @RestController
 @RequestMapping("sys/permission")
 @Value
-public class SysPermissionController extends ResultController {
+public class SysPermissionController extends AbstractResultController {
     private SysPermissionService sysPermissionService;
 
 

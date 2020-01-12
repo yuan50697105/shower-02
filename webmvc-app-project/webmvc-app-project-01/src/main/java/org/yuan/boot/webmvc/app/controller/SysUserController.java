@@ -13,7 +13,7 @@ import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
 import org.yuan.boot.webmvc.app.service.SysUserService;
-import org.yuan.boot.webmvc.controller.ResultController;
+import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;

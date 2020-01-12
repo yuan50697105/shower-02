@@ -11,7 +11,7 @@ import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
 import org.yuan.boot.webmvc.app.service.SysPermissionService;
-import org.yuan.boot.webmvc.controller.ResultController;
+import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;

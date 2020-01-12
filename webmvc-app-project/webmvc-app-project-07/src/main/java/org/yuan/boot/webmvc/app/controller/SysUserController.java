@@ -5,7 +5,7 @@ import lombok.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.yuan.boot.webmvc.app.dao.SysUserService;
-import org.yuan.boot.webmvc.controller.ResultController;
+import org.yuan.boot.webmvc.controller.AbstractResultController;
 
 /**
  * @program: learning-demo-02
@@ -17,7 +17,7 @@ import org.yuan.boot.webmvc.controller.ResultController;
 @RestController
 @RequestMapping("sys/user")
 @Value
-public class SysUserController extends ResultController {
+public class SysUserController extends AbstractResultController {
     private SysUserService sysUserService;
 
 }

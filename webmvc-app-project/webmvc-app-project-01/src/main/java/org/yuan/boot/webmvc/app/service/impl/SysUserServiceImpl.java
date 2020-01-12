@@ -73,7 +73,7 @@ public class SysUserServiceImpl implements SysUserService {
         Result result;
         Optional<SysUser> optional = sysUserDao.selectByUsername(sysUserVo.getUsername());
         if (!optional.isPresent()) {
-            result = Result.error(ResultConstants.CHANGE_PASSWORD_USER_NOT_HADDEN, "用户不存在");
+            result = Result.error(ResultConstants.CHANGE_PASSWORD_USER_NOT_HAD, "用户不存在");
         } else {
             SysUser sysUser = optional.get();
             String password = sysUser.getPassword();

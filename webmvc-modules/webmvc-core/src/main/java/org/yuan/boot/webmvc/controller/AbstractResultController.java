@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.controller;
 
-import cn.hutool.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,10 +17,12 @@ import java.util.StringJoiner;
  * @create: 2019-12-29 16:51
  */
 @RestControllerAdvice
-public class ResultController {
+public abstract class AbstractResultController {
 
     public final static String HTTP_METHOD_POST = "POST";
     public final static String HTTP_METHOD_GET = "GET";
+    public final static String HTTP_METHOD_DELETE = "DELETE";
+    public final static String HTTP_METHOD_PUT = "PUT";
 
     @ExceptionHandler(NoValidateResultException.class)
     public Result noValidateResultException(NoValidateResultException e) {
@@ -33,13 +34,18 @@ public class ResultController {
         return e.getResult();
     }
 
+    @ExceptionHandler(Exception.class)
+    public Result exceptionHandler(Exception e) {
+        return Result.error(Result.SYSTEM_ERROR_CODE, e.getMessage());
+    }
+
     public void validate(BindingResult result) {
         if (result.hasErrors()) {
             StringJoiner joiner = new StringJoiner(",");
             for (FieldError fieldError : result.getFieldErrors()) {
                 joiner.add(fieldError.getDefaultMessage());
             }
-            throw new NoValidateResultRuntimeException(Result.error(HttpStatus.HTTP_BAD_REQUEST, joiner.toString()));
+            throw new NoValidateResultRuntimeException(Result.error(Result.DATA_PARAMS_ERROR_CODE, joiner.toString()));
         }
     }
 }

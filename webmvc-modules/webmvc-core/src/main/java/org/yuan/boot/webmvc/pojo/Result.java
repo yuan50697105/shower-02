@@ -15,6 +15,9 @@ import java.io.Serializable;
  */
 @Data
 public class Result implements Serializable {
+    public final static Integer OK_CODE = 200;
+    public final static Integer SYSTEM_ERROR_CODE = 1000;
+    public final static Integer DATA_PARAMS_ERROR_CODE = 2000;
     public static final String OK_MESSAGE = "操作成功";
     private int code;
     private String message;
@@ -22,7 +25,7 @@ public class Result implements Serializable {
     private Object data;
 
     public Result() {
-        this.code = HttpStatus.HTTP_OK;
+        this.code = OK_CODE;
         this.message = OK_MESSAGE;
     }
 
