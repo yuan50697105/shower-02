@@ -18,7 +18,7 @@ public abstract class BaseDaoImpl<T extends BaseEntity<T>, M extends BaseMapper<
     @Autowired
     private Snowflake snowflake;
 
-    public Snowflake snowflake() {
+    public synchronized Snowflake snowflake() {
         return snowflake;
     }
 }
