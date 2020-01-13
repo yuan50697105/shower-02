@@ -62,7 +62,4 @@ public final class BaseCustomerInfo extends BaseEntity<BaseCustomerInfo> {
      */
     private Date updateTime;
 
-    public static BaseCustomerInfoBuilder builder() {
-        return new BaseCustomerInfoBuilder();
-    }
 }

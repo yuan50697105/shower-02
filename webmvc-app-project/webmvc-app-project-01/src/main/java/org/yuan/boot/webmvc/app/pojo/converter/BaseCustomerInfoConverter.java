@@ -25,8 +25,4 @@ public interface BaseCustomerInfoConverter {
             @Mapping(target = "updateUser", ignore = true)
     })
     BaseCustomerInfo convert(BaseCustomerInfoVo baseCustomerInfoVo);
-
-    List<BaseCustomerInfo> convert(List<BaseCustomerInfoVo> baseCustomerInfoVos);
-
-    BaseCustomerInfo[] convert(BaseCustomerInfoVo[] baseCustomerInfoVos);
 }

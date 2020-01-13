@@ -21,7 +21,6 @@ import org.yuan.boot.webmvc.app.utils.ResultUtils;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -64,7 +63,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result save(SysUserVo sysUserVo) {
-        SysUser sysUser = sysUserConverter.convert(sysUserVo);
+        SysUser sysUser = sysUserConverter.convertForSave(sysUserVo);
         Optional<SysUser> optional = sysUserDao.selectByUsername(sysUser.getUsername());
         if (!optional.isPresent()) {
             throw new ExistResultRuntimeException(ResultUtils.existError("username已存在"));
@@ -84,7 +83,7 @@ public class SysUserServiceImpl implements SysUserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result update(SysUserVo sysUserVo) {
-        SysUser sysUser = sysUserConverter.convert(sysUserVo).setPassword(null).setUpdateTime(new Date());
+        SysUser sysUser = sysUserConverter.convertForUpdate(sysUserVo);
         sysUserDao.update(sysUser);
         return Result.ok();
     }
@@ -117,6 +116,7 @@ public class SysUserServiceImpl implements SysUserService {
     public Result updateRole(SysUserVo sysUserVo) {
         Long userId = sysUserVo.getId();
         List<Long> roleIds = sysUserVo.getRoleIds();
+        roleIds = sysRoleDao.selectByIds(roleIds);
         ArrayList<SysUserRole> sysUserRoles = new ArrayList<>(roleIds.size());
         for (Long roleId : roleIds) {
             sysUserRoles.add(SysUserRole.builder().userId(userId).roleId(roleId).build());

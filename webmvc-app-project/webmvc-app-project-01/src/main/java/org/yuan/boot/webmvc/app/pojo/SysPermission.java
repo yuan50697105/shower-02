@@ -43,7 +43,4 @@ public final class SysPermission extends BaseEntity<SysPermission> implements Se
      */
     private Integer enabled;
 
-    public static SysPermissionBuilder builder() {
-        return new SysPermissionBuilder();
-    }
 }

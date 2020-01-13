@@ -15,16 +15,23 @@ import java.util.List;
  */
 @Mapper(componentModel = "spring")
 public interface SysUserConverter {
-    @Mappings({
 
+    @Mappings({
             @org.mapstruct.Mapping(target = "createTime", ignore = true),
             @org.mapstruct.Mapping(target = "createUser", ignore = true),
+            @org.mapstruct.Mapping(target = "enabled", ignore = true),
+            @org.mapstruct.Mapping(target = "updateTime", ignore = true),
+            @org.mapstruct.Mapping(target = "updateUser", ignore = true)
+    })
+    SysUser convertForSave(SysUserVo sysUserVo);
+
+    @Mappings({
+            @org.mapstruct.Mapping(target = "createTime", ignore = true),
+            @org.mapstruct.Mapping(target = "createUser", ignore = true),
+            @org.mapstruct.Mapping(target = "enabled", ignore = true),
             @org.mapstruct.Mapping(target = "updateTime", ignore = true),
             @org.mapstruct.Mapping(target = "updateUser", ignore = true),
-            @org.mapstruct.Mapping(target = "enabled", ignore = true)
+            @org.mapstruct.Mapping(target = "password", ignore = true)
     })
-    SysUser convert(SysUserVo sysUserVo);
-
-
-    List<SysUser> convert(List<SysUserVo> sysUserVos);
+    SysUser convertForUpdate(SysUserVo sysUserVo);
 }

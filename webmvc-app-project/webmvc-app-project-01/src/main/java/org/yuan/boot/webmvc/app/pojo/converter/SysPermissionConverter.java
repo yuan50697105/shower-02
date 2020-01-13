@@ -25,6 +25,4 @@ public interface SysPermissionConverter {
             @org.mapstruct.Mapping(target = "enabled", ignore = true)
     })
     SysPermission convert(SysPermissionVo sysPermissionVo);
-
-    List<SysPermission> convert(List<SysPermissionVo> sysPermissionVos);
 }

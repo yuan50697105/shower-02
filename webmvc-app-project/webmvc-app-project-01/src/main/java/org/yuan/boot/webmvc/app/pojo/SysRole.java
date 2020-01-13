@@ -49,7 +49,4 @@ public final class SysRole extends BaseEntity<SysRole> implements Serializable {
      */
     private Integer enabled;
 
-    public static SysRoleBuilder builder() {
-        return new SysRoleBuilder();
-    }
 }
