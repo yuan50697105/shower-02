@@ -32,7 +32,7 @@ public final class SysUserVo {
     @NotEmpty(groups = {Save.class, Update.class}, message = "nickName不能为空")
     private String nickName;
     @ApiModelProperty
-    @NotEmpty(groups = {Save.class, Update.class, ChangeRole.class}, message = "roleIds不能为空")
+    @NotEmpty(groups = {Save.class, ChangeRole.class}, message = "roleIds不能为空")
     private List<Long> roleIds;
     @NotEmpty(groups = {ChangePwd.class})
     private String oldPwd;
