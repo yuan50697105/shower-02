@@ -14,9 +14,14 @@ import org.yuan.boot.webmvc.pojo.Result;
 @Data
 public class NoValidateResultRuntimeException extends ResultRuntimeException {
     public NoValidateResultRuntimeException() {
+        super(Result.paramsError());
     }
 
     public NoValidateResultRuntimeException(Result result) {
         super(result);
+    }
+
+    public NoValidateResultRuntimeException(String message) {
+        super(Result.paramsError(message));
     }
 }

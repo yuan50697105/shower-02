@@ -5,7 +5,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
-import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.StringJoiner;
 
@@ -30,7 +29,7 @@ public abstract class AbstractResultController {
             for (FieldError fieldError : result.getFieldErrors()) {
                 joiner.add(fieldError.getDefaultMessage());
             }
-            throw new NoValidateResultRuntimeException(Result.paramsError(joiner.toString()));
+            throw new NoValidateResultRuntimeException(joiner.toString());
         }
     }
 }
