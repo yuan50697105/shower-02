@@ -89,7 +89,7 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
         List<SysPermission> sysPermissions = baseMapper().selectByExample(example);
         if (null != sysPermissions) {
             return sysPermissions.stream().map(SysPermission::getId).collect(Collectors.toList());
-        }else {
+        } else {
             return Collections.emptyList();
         }
     }

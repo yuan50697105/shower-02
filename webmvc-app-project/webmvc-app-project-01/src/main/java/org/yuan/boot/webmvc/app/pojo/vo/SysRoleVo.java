@@ -23,7 +23,7 @@ public final class SysRoleVo {
     @NotEmpty(groups = {Save.class, Update.class}, message = "name不能为空")
     private String name;
     @ApiModelProperty(value = "权限列表")
-    @NotEmpty(groups = {Save.class, ChangePermission.class},message = "permissionIds不能为空")
+    @NotEmpty(groups = {Save.class, ChangePermission.class}, message = "permissionIds不能为空")
     private List<Long> permissionIds;
 
     public interface Save {

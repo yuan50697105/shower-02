@@ -13,5 +13,4 @@ import org.yuan.boot.webmvc.exception.handler.GlobalExceptionHandler;
 @RestControllerAdvice
 @ControllerAdvice
 public class AppExceptionHandler extends GlobalExceptionHandler {
-
 }

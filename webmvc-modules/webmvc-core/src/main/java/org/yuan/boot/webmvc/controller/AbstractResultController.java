@@ -3,12 +3,8 @@ package org.yuan.boot.webmvc.controller;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.yuan.boot.webmvc.exception.NoValidateResultException;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
-import org.yuan.boot.webmvc.exception.ResultException;
-import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.StringJoiner;
