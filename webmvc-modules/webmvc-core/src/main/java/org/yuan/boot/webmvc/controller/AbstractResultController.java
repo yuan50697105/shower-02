@@ -28,37 +28,6 @@ public abstract class AbstractResultController {
     public final static String HTTP_METHOD_DELETE = "DELETE";
     public final static String HTTP_METHOD_PUT = "PUT";
 
-    @ExceptionHandler(ResultException.class)
-    public Result resultExceptionHandler(ResultException e) {
-        return e.getResult();
-    }
-
-    @ExceptionHandler(ResultRuntimeException.class)
-    public Result resultRuntimeExceptionHandler(ResultRuntimeException e) {
-        return e.getResult();
-    }
-
-    @ExceptionHandler(NoValidateResultException.class)
-    public Result noValidateResultException(NoValidateResultException e) {
-        return e.getResult();
-    }
-
-    @ExceptionHandler(NoValidateResultRuntimeException.class)
-    public Result noValidateResultRuntimeException(NoValidateResultRuntimeException e) {
-        return e.getResult();
-    }
-
-    @ExceptionHandler(IllegalArgumentException.class)
-    public Result illegalArgumentExceptionHandler(IllegalArgumentException e) {
-        return Result.paramsError();
-    }
-
-    @ExceptionHandler(Exception.class)
-    public Result exceptionHandler(Exception e) {
-        log.error(e.getLocalizedMessage(), e.getCause());
-        return Result.systemError();
-    }
-
     public void validate(BindingResult result) {
         if (result.hasErrors()) {
             StringJoiner joiner = new StringJoiner(",");
