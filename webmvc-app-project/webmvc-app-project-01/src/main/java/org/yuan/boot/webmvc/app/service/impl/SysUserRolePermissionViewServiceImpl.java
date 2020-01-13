@@ -2,10 +2,8 @@ package org.yuan.boot.webmvc.app.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.yuan.boot.db.pojo.PageResult;
 import org.yuan.boot.webmvc.app.dao.SysUserRolePermissionViewDao;
 import org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView;
-import org.yuan.boot.webmvc.app.pojo.condition.SysUserRolePermissionViewCondition;
 import org.yuan.boot.webmvc.app.pojo.converter.SysUserRolePermissionViewConverter;
 import org.yuan.boot.webmvc.app.pojo.result.SysUserRolePermissionViewResult;
 import org.yuan.boot.webmvc.app.service.SysUserRolePermissionViewService;
@@ -24,6 +22,7 @@ import java.util.List;
 public class SysUserRolePermissionViewServiceImpl implements SysUserRolePermissionViewService {
     private SysUserRolePermissionViewDao sysUserRolePermissionViewDao;
     private SysUserRolePermissionViewConverter sysUserRolePermissionViewConverter;
+
     @Override
     public Result list() {
         List<SysUserRolePermissionView> sysUserRolePermissionViews = sysUserRolePermissionViewDao.list();

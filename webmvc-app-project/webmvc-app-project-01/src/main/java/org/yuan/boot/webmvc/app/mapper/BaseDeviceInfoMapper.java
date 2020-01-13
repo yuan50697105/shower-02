@@ -1,11 +1,12 @@
 package org.yuan.boot.webmvc.app.mapper;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.BaseDeviceInfo;
 import org.yuan.boot.webmvc.app.pojo.BaseDeviceInfoExample;
+
+import java.util.List;
 
 @Mapper
 public interface BaseDeviceInfoMapper extends BaseMapper<BaseDeviceInfo> {

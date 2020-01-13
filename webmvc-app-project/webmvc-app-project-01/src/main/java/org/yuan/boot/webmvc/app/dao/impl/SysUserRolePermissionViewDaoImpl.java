@@ -1,6 +1,5 @@
 package org.yuan.boot.webmvc.app.dao.impl;
 
-import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.yuan.boot.webmvc.app.dao.SysUserRolePermissionViewDao;

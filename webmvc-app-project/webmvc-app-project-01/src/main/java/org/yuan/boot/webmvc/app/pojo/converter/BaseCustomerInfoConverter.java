@@ -6,8 +6,6 @@ import org.mapstruct.Mappings;
 import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfo;
 import org.yuan.boot.webmvc.app.pojo.vo.BaseCustomerInfoVo;
 
-import java.util.List;
-
 /**
  * @program: learning-demo-02
  * @description:

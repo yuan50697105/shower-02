@@ -5,8 +5,6 @@ import org.mapstruct.Mappings;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.vo.SysPermissionVo;
 
-import java.util.List;
-
 /**
  * @program: learning-demo-02
  * @description:

@@ -1,272 +1,276 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.yuan.boot.webmvc.app.mapper.SysUserRolePermissionViewMapper">
-  <resultMap id="BaseResultMap" type="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
-    <!--@mbg.generated-->
-    <!--@Table sys_user_role_permission_view-->
-    <result column="id" jdbcType="BIGINT" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="enabled" jdbcType="TINYINT" property="enabled" />
-    <result column="role_name" jdbcType="VARCHAR" property="roleName" />
-    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
-  </resultMap>
+    <resultMap id="BaseResultMap" type="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
+        <!--@mbg.generated-->
+        <!--@Table sys_user_role_permission_view-->
+        <result column="id" jdbcType="BIGINT" property="id"/>
+        <result column="username" jdbcType="VARCHAR" property="username"/>
+        <result column="password" jdbcType="VARCHAR" property="password"/>
+        <result column="real_name" jdbcType="VARCHAR" property="realName"/>
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="enabled" jdbcType="TINYINT" property="enabled"/>
+        <result column="role_name" jdbcType="VARCHAR" property="roleName"/>
+        <result column="permission_name" jdbcType="VARCHAR" property="permissionName"/>
+    </resultMap>
 
-  <sql id="Example_Where_Clause">
-    <!--@mbg.generated-->
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <sql id="Example_Where_Clause">
+        <!--@mbg.generated-->
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <!--@mbg.generated-->
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <!--@mbg.generated-->
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, username, `password`, real_name, nick_name, create_user, update_user, create_time,
+        update_time, enabled, role_name, permission_name
+    </sql>
+    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample"
+            resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, username, `password`, real_name, nick_name, create_user, update_user, create_time, 
-    update_time, enabled, role_name, permission_name
-  </sql>
-  <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from sys_user_role_permission_view
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample">
-    <!--@mbg.generated-->
-    delete from sys_user_role_permission_view
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
-    <!--@mbg.generated-->
-    insert into sys_user_role_permission_view (id, username, `password`, 
-      real_name, nick_name, create_user, 
-      update_user, create_time, update_time, 
-      enabled, role_name, permission_name
-      )
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{realName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{enabled,jdbcType=TINYINT}, #{roleName,jdbcType=VARCHAR}, #{permissionName,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
-    <!--@mbg.generated-->
-    insert into sys_user_role_permission_view
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="password != null">
-        `password`,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="nickName != null">
-        nick_name,
-      </if>
-      <if test="createUser != null">
-        create_user,
-      </if>
-      <if test="updateUser != null">
-        update_user,
-      </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
-      <if test="enabled != null">
-        enabled,
-      </if>
-      <if test="roleName != null">
-        role_name,
-      </if>
-      <if test="permissionName != null">
-        permission_name,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="username != null">
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null">
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
-      </if>
-      <if test="nickName != null">
-        #{nickName,jdbcType=VARCHAR},
-      </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="enabled != null">
-        #{enabled,jdbcType=TINYINT},
-      </if>
-      <if test="roleName != null">
-        #{roleName,jdbcType=VARCHAR},
-      </if>
-      <if test="permissionName != null">
-        #{permissionName,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample" resultType="java.lang.Long">
-    <!--@mbg.generated-->
-    select count(*) from sys_user_role_permission_view
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    <!--@mbg.generated-->
-    update sys_user_role_permission_view
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.username != null">
+        <include refid="Base_Column_List"/>
+        from sys_user_role_permission_view
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample">
+        <!--@mbg.generated-->
+        delete from sys_user_role_permission_view
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
+        <!--@mbg.generated-->
+        insert into sys_user_role_permission_view (id, username, `password`,
+        real_name, nick_name, create_user,
+        update_user, create_time, update_time,
+        enabled, role_name, permission_name
+        )
+        values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
+        #{realName,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR},
+        #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
+        #{enabled,jdbcType=TINYINT}, #{roleName,jdbcType=VARCHAR}, #{permissionName,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="insertSelective" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
+        <!--@mbg.generated-->
+        insert into sys_user_role_permission_view
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="username != null">
+                username,
+            </if>
+            <if test="password != null">
+                `password`,
+            </if>
+            <if test="realName != null">
+                real_name,
+            </if>
+            <if test="nickName != null">
+                nick_name,
+            </if>
+            <if test="createUser != null">
+                create_user,
+            </if>
+            <if test="updateUser != null">
+                update_user,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+            <if test="updateTime != null">
+                update_time,
+            </if>
+            <if test="enabled != null">
+                enabled,
+            </if>
+            <if test="roleName != null">
+                role_name,
+            </if>
+            <if test="permissionName != null">
+                permission_name,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="username != null">
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="realName != null">
+                #{realName,jdbcType=VARCHAR},
+            </if>
+            <if test="nickName != null">
+                #{nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="createUser != null">
+                #{createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="updateUser != null">
+                #{updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="updateTime != null">
+                #{updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="enabled != null">
+                #{enabled,jdbcType=TINYINT},
+            </if>
+            <if test="roleName != null">
+                #{roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="permissionName != null">
+                #{permissionName,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample"
+            resultType="java.lang.Long">
+        <!--@mbg.generated-->
+        select count(*) from sys_user_role_permission_view
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        <!--@mbg.generated-->
+        update sys_user_role_permission_view
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.username != null">
+                username = #{record.username,jdbcType=VARCHAR},
+            </if>
+            <if test="record.password != null">
+                `password` = #{record.password,jdbcType=VARCHAR},
+            </if>
+            <if test="record.realName != null">
+                real_name = #{record.realName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.nickName != null">
+                nick_name = #{record.nickName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createUser != null">
+                create_user = #{record.createUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.updateUser != null">
+                update_user = #{record.updateUser,jdbcType=VARCHAR},
+            </if>
+            <if test="record.createTime != null">
+                create_time = #{record.createTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.updateTime != null">
+                update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.enabled != null">
+                enabled = #{record.enabled,jdbcType=TINYINT},
+            </if>
+            <if test="record.roleName != null">
+                role_name = #{record.roleName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.permissionName != null">
+                permission_name = #{record.permissionName,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        <!--@mbg.generated-->
+        update sys_user_role_permission_view
+        set id = #{record.id,jdbcType=BIGINT},
         username = #{record.username,jdbcType=VARCHAR},
-      </if>
-      <if test="record.password != null">
         `password` = #{record.password,jdbcType=VARCHAR},
-      </if>
-      <if test="record.realName != null">
         real_name = #{record.realName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.nickName != null">
         nick_name = #{record.nickName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createUser != null">
         create_user = #{record.createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="record.updateUser != null">
         update_user = #{record.updateUser,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null">
         create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateTime != null">
         update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.enabled != null">
         enabled = #{record.enabled,jdbcType=TINYINT},
-      </if>
-      <if test="record.roleName != null">
         role_name = #{record.roleName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.permissionName != null">
-        permission_name = #{record.permissionName,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    <!--@mbg.generated-->
-    update sys_user_role_permission_view
-    set id = #{record.id,jdbcType=BIGINT},
-      username = #{record.username,jdbcType=VARCHAR},
-      `password` = #{record.password,jdbcType=VARCHAR},
-      real_name = #{record.realName,jdbcType=VARCHAR},
-      nick_name = #{record.nickName,jdbcType=VARCHAR},
-      create_user = #{record.createUser,jdbcType=VARCHAR},
-      update_user = #{record.updateUser,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      enabled = #{record.enabled,jdbcType=TINYINT},
-      role_name = #{record.roleName,jdbcType=VARCHAR},
-      permission_name = #{record.permissionName,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
+        permission_name = #{record.permissionName,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
 </mapper>

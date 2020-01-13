@@ -4,8 +4,8 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfo;
-import org.yuan.boot.webmvc.app.pojo.condition.BaseCustomerInfoCondition;
 import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfoExample;
+import org.yuan.boot.webmvc.app.pojo.condition.BaseCustomerInfoCondition;
 
 import java.util.List;
 

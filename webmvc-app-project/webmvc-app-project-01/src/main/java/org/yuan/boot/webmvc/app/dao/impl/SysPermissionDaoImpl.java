@@ -9,8 +9,8 @@ import org.yuan.boot.db.pojo.PageResult;
 import org.yuan.boot.webmvc.app.dao.SysPermissionDao;
 import org.yuan.boot.webmvc.app.mapper.SysPermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
-import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.app.pojo.SysPermissionExample;
+import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.Collections;

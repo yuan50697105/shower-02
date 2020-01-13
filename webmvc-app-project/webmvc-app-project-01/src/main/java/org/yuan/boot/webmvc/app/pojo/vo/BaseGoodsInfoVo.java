@@ -20,7 +20,7 @@ public final class BaseGoodsInfoVo {
     private BigDecimal priceRange;
     private Integer enabled;
 
-    public interface Save{
+    public interface Save {
     }
 
     public interface Update {
