@@ -7,7 +7,7 @@ import org.yuan.boot.webmvc.app.dao.SysRolePermissionDao;
 import org.yuan.boot.webmvc.app.mapper.SysRolePermissionMapper;
 import org.yuan.boot.webmvc.app.pojo.SysRole;
 import org.yuan.boot.webmvc.app.pojo.SysRolePermission;
-import org.yuan.boot.webmvc.app.pojo.example.SysRolePermissionExample;
+import org.yuan.boot.webmvc.app.pojo.SysRolePermissionExample;
 
 import java.util.Date;
 import java.util.List;

@@ -76,7 +76,7 @@
         <!--@mbg.generated-->
         id, role_id, permission_id, create_time, create_user
     </sql>
-    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysRolePermissionExample"
+    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRolePermissionExample"
             resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -104,7 +104,7 @@
         delete from sys_role_permission
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysRolePermissionExample">
+    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRolePermissionExample">
         <!--@mbg.generated-->
         delete from sys_role_permission
         <if test="_parameter != null">
@@ -156,7 +156,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysRolePermissionExample"
+    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRolePermissionExample"
             resultType="java.lang.Long">
         <!--@mbg.generated-->
         select count(*) from sys_role_permission

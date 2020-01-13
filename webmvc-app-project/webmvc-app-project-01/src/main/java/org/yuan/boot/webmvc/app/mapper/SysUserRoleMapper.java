@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysUserRole;
-import org.yuan.boot.webmvc.app.pojo.example.SysUserRoleExample;
+import org.yuan.boot.webmvc.app.pojo.SysUserRoleExample;
 
 import java.util.List;
 

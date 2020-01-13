@@ -11,7 +11,7 @@ import org.yuan.boot.webmvc.app.dao.BaseCustomerInfoDao;
 import org.yuan.boot.webmvc.app.mapper.BaseCustomerInfoMapper;
 import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfo;
 import org.yuan.boot.webmvc.app.pojo.condition.BaseCustomerInfoCondition;
-import org.yuan.boot.webmvc.app.pojo.example.BaseCustomerInfoExample;
+import org.yuan.boot.webmvc.app.pojo.BaseCustomerInfoExample;
 
 import java.util.Date;
 import java.util.List;

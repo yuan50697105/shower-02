@@ -78,7 +78,7 @@
         <!--@mbg.generated-->
         id, `name`, create_user, update_user, create_time, update_time, enabled
     </sql>
-    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample"
+    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysPermissionExample"
             resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -106,7 +106,7 @@
         delete from sys_permission
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample">
+    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysPermissionExample">
         <!--@mbg.generated-->
         delete from sys_permission
         <if test="_parameter != null">
@@ -172,7 +172,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample"
+    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysPermissionExample"
             resultType="java.lang.Long">
         <!--@mbg.generated-->
         select count(*) from sys_permission

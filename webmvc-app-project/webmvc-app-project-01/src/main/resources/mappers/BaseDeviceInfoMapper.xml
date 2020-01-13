@@ -80,7 +80,7 @@
     id, create_user, create_time, code, `name`, address, point, enabled, enabled_time, 
     disabled_time
   </sql>
-  <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseDeviceInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseDeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -107,7 +107,7 @@
     delete from base_device_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseDeviceInfoExample">
+  <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseDeviceInfoExample">
     <!--@mbg.generated-->
     delete from base_device_info
     <if test="_parameter != null">
@@ -193,7 +193,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseDeviceInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseDeviceInfoExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from base_device_info
     <if test="_parameter != null">

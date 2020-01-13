@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.SysPermission;
 import org.yuan.boot.webmvc.app.pojo.condition.SysPermissionCondition;
-import org.yuan.boot.webmvc.app.pojo.example.SysPermissionExample;
+import org.yuan.boot.webmvc.app.pojo.SysPermissionExample;
 
 import java.util.List;
 import java.util.Optional;

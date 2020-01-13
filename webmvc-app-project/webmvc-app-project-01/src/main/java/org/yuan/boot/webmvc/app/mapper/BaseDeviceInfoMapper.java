@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.BaseDeviceInfo;
-import org.yuan.boot.webmvc.app.pojo.example.BaseDeviceInfoExample;
+import org.yuan.boot.webmvc.app.pojo.BaseDeviceInfoExample;
 
 @Mapper
 public interface BaseDeviceInfoMapper extends BaseMapper<BaseDeviceInfo> {

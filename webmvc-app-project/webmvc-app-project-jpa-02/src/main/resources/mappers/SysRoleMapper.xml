@@ -79,7 +79,7 @@
         <!--@mbg.generated-->
         id, authority, `name`, create_user, update_user, create_time, update_time, enabled
     </sql>
-    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysRoleExample"
+    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRoleExample"
             resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -107,7 +107,7 @@
         delete from sys_role
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysRoleExample">
+    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRoleExample">
         <!--@mbg.generated-->
         delete from sys_role
         <if test="_parameter != null">
@@ -179,7 +179,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.SysRoleExample"
+    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRoleExample"
             resultType="java.lang.Long">
         <!--@mbg.generated-->
         select count(*) from sys_role

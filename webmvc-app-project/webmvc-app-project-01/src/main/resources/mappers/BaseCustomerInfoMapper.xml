@@ -82,7 +82,7 @@
         id, actual_name, contact_address, contact_number, identity_number, enabled, create_user,
         update_user, create_time, update_time
     </sql>
-    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseCustomerInfoExample"
+    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseCustomerInfoExample"
             resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -110,7 +110,7 @@
         delete from base_customer_info
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseCustomerInfoExample">
+    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseCustomerInfoExample">
         <!--@mbg.generated-->
         delete from base_customer_info
         <if test="_parameter != null">
@@ -196,7 +196,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseCustomerInfoExample"
+    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseCustomerInfoExample"
             resultType="java.lang.Long">
         <!--@mbg.generated-->
         select count(*) from base_customer_info

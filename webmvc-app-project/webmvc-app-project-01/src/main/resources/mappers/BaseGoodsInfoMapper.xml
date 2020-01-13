@@ -81,7 +81,7 @@
     id, create_user, update_user, create_time, update_time, code, `name`, price, min_price, 
     price_range, enabled
   </sql>
-  <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseGoodsInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -108,7 +108,7 @@
     delete from base_goods_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseGoodsInfoExample">
+  <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfoExample">
     <!--@mbg.generated-->
     delete from base_goods_info
     <if test="_parameter != null">
@@ -200,7 +200,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.example.BaseGoodsInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfoExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from base_goods_info
     <if test="_parameter != null">

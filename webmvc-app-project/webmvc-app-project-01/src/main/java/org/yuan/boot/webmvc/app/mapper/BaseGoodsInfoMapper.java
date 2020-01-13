@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.pojo.BaseGoodsInfo;
-import org.yuan.boot.webmvc.app.pojo.example.BaseGoodsInfoExample;
+import org.yuan.boot.webmvc.app.pojo.BaseGoodsInfoExample;
 
 @Mapper
 public interface BaseGoodsInfoMapper extends BaseMapper<BaseGoodsInfo> {
