@@ -4,24 +4,55 @@ import lombok.*;
 import lombok.experimental.Accessors;
 
 import java.io.Serializable;
+import java.util.Date;
 
-/**
- * @program: learning-demo-02
- * @description: 设备信息
- * @author: yuanez
- * @create: 2020-01-13 14:52
- **/
 @EqualsAndHashCode(callSuper = true)
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Accessors(chain = true)
 public class BaseDeviceInfo extends BaseEntity<BaseDeviceInfo> implements Serializable {
+    private static final long serialVersionUID = 1L;
+    /**
+     * id
+     */
     private Long id;
+    /**
+     * createUser
+     */
+    private String createUser;
+    /**
+     * createTime
+     */
+    private Date createTime;
+    /**
+     * code
+     */
     private String code;
+    /**
+     * name
+     */
     private String name;
+    /**
+     * address
+     */
     private String address;
+    /**
+     * point
+     */
     private String point;
+    /**
+     * enabled
+     */
     private Integer enabled;
+    /**
+     * enabledTime
+     */
+    private Date enabledTime;
+    /**
+     * disabledTime
+     */
+    private Date disabledTime;
+
 }

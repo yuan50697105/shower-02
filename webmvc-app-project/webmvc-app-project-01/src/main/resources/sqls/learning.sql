@@ -16,18 +16,42 @@ create table if not exists base_customer_info
 )
     comment 'base_customer_info';
 
+create table if not exists base_device_info
+(
+    id            bigint(15) auto_increment comment 'id'
+        primary key,
+    create_user   varchar(50) default ''                    null comment 'createUser',
+    create_time   datetime    default '1000-01-01 00:00:00' null comment 'createTime',
+    code          varchar(50) default ''                    null comment 'code',
+    name          varchar(50) default ''                    null comment 'name',
+    address       varchar(50) default ''                    null comment 'address',
+    point         varchar(50) default ''                    null comment 'point',
+    enabled       int         default -1                    null comment 'enabled',
+    enabled_time  datetime    default '1000-01-01 00:00:00' null comment 'enabledTime',
+    disabled_time datetime    default '1000-01-01 00:00:00' null comment 'disabledTime',
+    constraint code
+        unique (code)
+)
+    comment 'base_device_info';
+
 create table if not exists base_goods_info
 (
-    id                bigint auto_increment
+    id          bigint(15) auto_increment comment 'id'
         primary key,
-    goods_sn          varchar(255)   null,
-    goods_name        varchar(255)   null,
-    goods_price       decimal(10, 2) null,
-    goods_number      decimal        null,
-    goods_description text           null,
-    is_out            int(255)       null,
-    is_on_sale        int(255)       null
-);
+    create_user varchar(50)    null comment 'createUser',
+    update_user varchar(50)    null comment 'updateUser',
+    create_time datetime       null comment 'createTime',
+    update_time timestamp      null comment 'updateTime',
+    code        varchar(50)    null comment 'code',
+    name        varchar(50)    null comment 'name',
+    price       decimal(13, 4) null comment 'price',
+    min_price   decimal(13, 4) null comment 'minPrice',
+    price_range decimal(13, 4) null comment 'priceRange',
+    enabled     int            null comment 'enabled',
+    constraint code
+        unique (code)
+)
+    comment 'base_goods_info';
 
 create table if not exists sys_module
 (
