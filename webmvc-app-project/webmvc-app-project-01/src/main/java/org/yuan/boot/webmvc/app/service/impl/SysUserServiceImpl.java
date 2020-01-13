@@ -11,16 +11,15 @@ import org.yuan.boot.webmvc.app.dao.SysUserDao;
 import org.yuan.boot.webmvc.app.dao.SysUserRoleDao;
 import org.yuan.boot.webmvc.app.exception.ExistResultRuntimeException;
 import org.yuan.boot.webmvc.app.pojo.SysUser;
-import org.yuan.boot.webmvc.app.pojo.SysUserRole;
 import org.yuan.boot.webmvc.app.pojo.condition.SysUserCondition;
 import org.yuan.boot.webmvc.app.pojo.converter.SysUserConverter;
+import org.yuan.boot.webmvc.app.pojo.converter.SysUserRoleConverter;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
 import org.yuan.boot.webmvc.app.service.SysUserService;
 import org.yuan.boot.webmvc.app.utils.ResultConstants;
 import org.yuan.boot.webmvc.app.utils.ResultUtils;
 import org.yuan.boot.webmvc.pojo.Result;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,8 +33,9 @@ import java.util.Optional;
 @Service
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class SysUserServiceImpl implements SysUserService {
-    private SysUserDao sysUserDao;
     private SysUserConverter sysUserConverter;
+    private SysUserRoleConverter sysUserRoleConverter;
+    private SysUserDao sysUserDao;
     private PasswordEncoder passwordEncoder;
     private SysUserRoleDao sysUserRoleDao;
     private SysRoleDao sysRoleDao;
@@ -65,17 +65,13 @@ public class SysUserServiceImpl implements SysUserService {
     public Result save(SysUserVo sysUserVo) {
         SysUser sysUser = sysUserConverter.convertForSave(sysUserVo);
         Optional<SysUser> optional = sysUserDao.selectByUsername(sysUser.getUsername());
-        if (!optional.isPresent()) {
+        if (optional.isPresent()) {
             throw new ExistResultRuntimeException(ResultUtils.existError("username已存在"));
         }
         sysUserDao.save(sysUser);
         ThreadUtil.execAsync(() -> {
             List<Long> roleIds = sysRoleDao.selectByIds(sysUserVo.getRoleIds());
-            ArrayList<SysUserRole> sysUserRoles = new ArrayList<>(roleIds.size());
-            for (Long roleId : roleIds) {
-                sysUserRoles.add(new SysUserRole().setRoleId(roleId).setUserId(sysUser.getId()));
-            }
-            sysUserRoleDao.batchSave(sysUserRoles);
+            sysUserRoleDao.batchSave(sysUserRoleConverter.convert(sysUser.getId(), roleIds));
         });
         return Result.ok();
     }
@@ -117,11 +113,7 @@ public class SysUserServiceImpl implements SysUserService {
         Long userId = sysUserVo.getId();
         List<Long> roleIds = sysUserVo.getRoleIds();
         roleIds = sysRoleDao.selectByIds(roleIds);
-        ArrayList<SysUserRole> sysUserRoles = new ArrayList<>(roleIds.size());
-        for (Long roleId : roleIds) {
-            sysUserRoles.add(SysUserRole.builder().userId(userId).roleId(roleId).build());
-        }
-        sysUserRoleDao.batchUpdate(new SysUser().setId(userId), sysUserRoles);
+        sysUserRoleDao.batchUpdate(new SysUser().setId(userId), sysUserRoleConverter.convert(userId, roleIds));
         return Result.ok();
     }
 
