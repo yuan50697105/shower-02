@@ -4,8 +4,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.yuan.boot.webmvc.exception.NoValidateResultException;
-import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
 import org.yuan.boot.webmvc.exception.ResultException;
 import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
@@ -27,16 +25,6 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(ResultRuntimeException.class)
     public Result resultRuntimeExceptionHandler(ResultRuntimeException e) {
-        return e.getResult();
-    }
-
-    @ExceptionHandler(NoValidateResultException.class)
-    public Result noValidateResultException(NoValidateResultException e) {
-        return e.getResult();
-    }
-
-    @ExceptionHandler(NoValidateResultRuntimeException.class)
-    public Result noValidateResultRuntimeException(NoValidateResultRuntimeException e) {
         return e.getResult();
     }
 
