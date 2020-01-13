@@ -6,6 +6,7 @@ import org.yuan.boot.webmvc.app.pojo.SysUser;
 import org.yuan.boot.webmvc.app.pojo.vo.SysUserVo;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * @program: learning-demo-02
@@ -25,6 +26,10 @@ public interface SysUserConverter {
     })
     SysUser convertForSave(SysUserVo sysUserVo);
 
+    default List<SysUser> convertForSave(List<SysUserVo> sysUserVo) {
+        return sysUserVo.stream().map(this::convertForSave).collect(Collectors.toList());
+    }
+
     @Mappings({
             @org.mapstruct.Mapping(target = "createTime", ignore = true),
             @org.mapstruct.Mapping(target = "createUser", ignore = true),
@@ -34,4 +39,8 @@ public interface SysUserConverter {
             @org.mapstruct.Mapping(target = "password", ignore = true)
     })
     SysUser convertForUpdate(SysUserVo sysUserVo);
+
+    default List<SysUser> convertForUpdate(List<SysUserVo> sysUserVo) {
+        return sysUserVo.stream().map(this::convertForUpdate).collect(Collectors.toList());
+    }
 }
