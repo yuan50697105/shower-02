@@ -65,11 +65,13 @@ public final class SysUserRolePermissionViewResult {
 
     @Data
     public static final class SysRoleResult {
+        private Long id;
         private String name;
     }
 
     @Data
     public static final class SysPermissionResult {
+        private Long id;
         private String name;
     }
 
