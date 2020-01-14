@@ -1,0 +1,22 @@
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+
+allprojects {
+    group 'org.yuan.boot.webflux'
+    dependencies {
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+    }
+
+    bootJar {
+        enabled = false
+    }
+
+    jar {
+        enabled = true
+    }
+}

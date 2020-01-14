@@ -1,0 +1,10 @@
+plugins {
+    id 'java'
+}
+
+group 'org.yuan.boot.webmvc.app'
+
+dependencies {
+    compile project(':db-modules:db-jpa-mybatis-plus-sqlhelper')
+    compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
+}

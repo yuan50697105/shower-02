@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+group 'org.yuan.boot.webmvc.app.admin'
+
+dependencies {
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-db')
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-core')
+}
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = true
+}
+

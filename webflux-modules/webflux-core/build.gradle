@@ -1,0 +1,17 @@
+<<<<<<< HEAD
+group 'org.yuan.boot.webflux'
+
+buildscript {
+    configurations {
+        compile.exclude module: "spring-boot-starter-reactor-netty"
+    }
+}
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-undertow'
+}
+=======
+group 'org.yuan.boot.webflux.core'
+version '0.0.1-DEV'
+
+>>>>>>> 63ef19cf0634f92295bda954434dd921435d640e

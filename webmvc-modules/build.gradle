@@ -1,0 +1,26 @@
+group 'org.yuan.boot.webmvc'
+
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+
+subprojects {
+    dependencies {
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
+        compile project(':db-modules:db-core')
+    }
+
+    bootJar {
+        enabled = false
+    }
+
+    jar {
+        enabled = true
+    }
+}

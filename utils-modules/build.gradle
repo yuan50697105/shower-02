@@ -1,0 +1,17 @@
+group 'org.yuan.boot.utils'
+
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+
+subprojects {
+    bootJar {
+        enabled = false
+    }
+}
+

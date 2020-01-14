@@ -1,0 +1,18 @@
+group 'org.yuan.boot.webflux.app'
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+
+allprojects {
+    group 'org.yuan.boot.webflux.app'
+
+    jar {
+        enabled = false
+    }
+}
+

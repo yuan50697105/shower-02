@@ -1,0 +1,6 @@
+include 'webmvc-modules-app-project-01-db'
+include 'webmvc-modules-app-project-01-core'
+include 'webmvc-modules-app-project-01-admin'
+include 'webmvc-modules-app-project-01-wx'
+include 'webmvc-modules-app-project-01-device'
+include 'webmvc-modules-app-project-01-all'

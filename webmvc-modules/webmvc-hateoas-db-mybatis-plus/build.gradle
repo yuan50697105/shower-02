@@ -1,0 +1,7 @@
+group 'org.yuan.boot.webmvc.hateoas.db'
+
+dependencies {
+    compile project(':webmvc-modules:webmvc-hateoas-core')
+    compile project(':webmvc-modules:webmvc-db-mybatis-plus')
+}
+

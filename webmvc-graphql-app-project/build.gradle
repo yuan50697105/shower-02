@@ -1,0 +1,21 @@
+allprojects {
+    group = 'org.yuan.boot.graphql.webmvc.app'
+
+    dependencies {
+        compile project(':webmvc-modules:webmvc-core')
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+        compile group: 'com.graphql-java', name: 'graphql-java-spring-boot-starter-webmvc', version: '2019-06-24T11-47-27-31ab4f9'
+    }
+
+    jar {
+        enabled = false
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}

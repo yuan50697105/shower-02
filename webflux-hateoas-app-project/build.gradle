@@ -1,0 +1,21 @@
+allprojects {
+    group 'org.yuan.boot.webflux.hateoas.app'
+
+    dependencies {
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas'
+
+    }
+
+    jar {
+        enabled = false
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}

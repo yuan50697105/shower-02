@@ -1,0 +1,17 @@
+group 'org.yuan.boot.webmvc.app.wx'
+version '0.0.1-DEV'
+
+dependencies {
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-db')
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-core')
+    compile project(':utils-modules:restrofit')
+    compile project(':utils-modules:wx')
+}
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = true
+}

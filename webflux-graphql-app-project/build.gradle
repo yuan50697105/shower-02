@@ -1,0 +1,22 @@
+allprojects {
+    group 'org.yuan.boot.graphql.webflux.app'
+    dependencies {
+        compile group: 'com.graphql-java', name: 'graphql-java-spring-boot-starter-webflux', version: '2019-06-24T11-47-27-31ab4f9'
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-webflux'
+        compile project(':webflux-modules:webflux-core')
+    }
+
+    jar {
+        enabled = false
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+
+

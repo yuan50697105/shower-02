@@ -1,0 +1,18 @@
+group 'org.yuan.boot.webmvc.app'
+version '0.0.1-DEV'
+
+dependencies {
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-core')
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-db')
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-admin')
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-wx')
+    implementation project(':webmvc-app-project:webmvc-modules-app-project-01:webmvc-modules-app-project-01-device')
+}
+
+bootJar {
+    enabled = true
+}
+
+jar {
+    enabled = true
+}

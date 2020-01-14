@@ -1,0 +1,24 @@
+allprojects {
+    group 'org.yuan.boot.webmvc.hateoas.app'
+    dependencies {
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+        compile group: 'org.springframework.boot', name: 'spring-boot-starter-hateoas'
+        compile project(':webmvc-modules:webmvc-core')
+
+    }
+
+    jar {
+        enabled = false
+    }
+}
+
+bootJar {
+    enabled = false
+}
+
+jar {
+    enabled = false
+}
+
+
+
