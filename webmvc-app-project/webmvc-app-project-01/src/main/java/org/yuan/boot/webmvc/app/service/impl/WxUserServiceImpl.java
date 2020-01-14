@@ -8,7 +8,9 @@ import org.yuan.boot.webmvc.app.dao.BaseGoodsInfoDao;
 import org.yuan.boot.webmvc.app.dao.OrderInfoDao;
 import org.yuan.boot.webmvc.app.pojo.converter.BaseCustomerInfoConverter;
 import org.yuan.boot.webmvc.app.pojo.converter.OrderInfoConverter;
+import org.yuan.boot.webmvc.app.pojo.vo.WxUserOrderVo;
 import org.yuan.boot.webmvc.app.service.WxUserService;
+import org.yuan.boot.webmvc.pojo.Result;
 
 /**
  * @program: learning-demo-02
@@ -25,4 +27,19 @@ public class WxUserServiceImpl implements WxUserService {
     private OrderInfoConverter orderInfoConverter;
     private BaseGoodsInfoDao baseGoodsInfoDao;
     private BaseDeviceInfoDao baseDeviceInfoDao;
+
+    @Override
+    public Result getInfoByOpenId(String openId) {
+        return null;
+    }
+
+    @Override
+    public Result getOrderInfoByOpenId(String openId) {
+        return null;
+    }
+
+    @Override
+    public Result addOrder(WxUserOrderVo wxUserOrderVo) {
+        return null;
+    }
 }
