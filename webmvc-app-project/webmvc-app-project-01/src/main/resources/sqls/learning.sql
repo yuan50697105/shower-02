@@ -53,6 +53,32 @@ create table if not exists base_goods_info
 )
     comment 'base_goods_info';
 
+create table if not exists order_info
+(
+    id             bigint(15) auto_increment comment 'id'
+        primary key,
+    order_no       varchar(50)    null comment 'orderNo',
+    user_id        bigint(15)     null comment 'userId',
+    user_open_id   bigint(15)     null comment 'userOpenId',
+    user_name      varchar(50)    null comment 'userName',
+    order_price    decimal(13, 4) null comment 'orderPrice',
+    create_time    datetime       null comment 'createTime',
+    update_time    timestamp      null comment 'updateTime',
+    start_time     datetime       null comment 'startTime',
+    pay_status     int            null comment 'payStatus',
+    pay_time       datetime       null comment 'payTime',
+    use_status     int            null comment 'useStatus',
+    use_start_time datetime       null comment 'useStartTime',
+    use_end_time   datetime       null comment 'useEndTime',
+    device_id      bigint(15)     null comment 'deviceId',
+    device_code    varchar(50)    null comment 'deviceCode',
+    device_address varchar(50)    null comment 'deviceAddress',
+    device_point   varchar(50)    null comment 'devicePoiny',
+    constraint order_no
+        unique (order_no)
+)
+    comment 'order_info';
+
 create table if not exists sys_module
 (
     id        bigint(15) auto_increment comment 'id'

@@ -88,7 +88,7 @@ allprojects {
     jar {
         enabled = true
     }
-    
+
     // dependencyUpdates {
     //     checkConstraints = true
     //     resolutionStrategy {
