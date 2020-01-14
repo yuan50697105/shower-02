@@ -4,7 +4,6 @@ import lombok.extern.log4j.Log4j2;
 import org.minbox.framework.api.boot.autoconfigure.swagger.annotation.EnableApiBootSwagger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.yuan.boot.DbCoreApplication;
 import org.yuan.boot.DbMybatisBaseApplication;
 import org.yuan.boot.webmvc.WebMvcCoreApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -17,10 +16,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  */
 @EnableSwagger2
 @EnableApiBootSwagger
-@SpringBootApplication(scanBasePackageClasses = {WebMvcCoreApplication.class, DbCoreApplication.class, DbMybatisBaseApplication.class})
+@SpringBootApplication(scanBasePackageClasses = {WebMvcCoreApplication.class, DbMybatisBaseApplication.class})
 @Log4j2
 public class WebMvcApplication01 {
     public static void main(String[] args) {
-        SpringApplication.run(WebMvcCoreApplication.class, args);
+        SpringApplication.run(WebMvcApplication01.class, args);
     }
 }
