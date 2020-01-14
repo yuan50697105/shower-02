@@ -1,9 +1,16 @@
-package org.yuan.boot.webmvc.db;
+package org.yuan.boot.db;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.yuan.boot.DbCoreApplication;
 
-@SpringBootApplication
+/**
+ * @program: learning-demo-02
+ * @description:
+ * @author: yuane
+ * @create: 2020-01-15 00:30
+ */
+@SpringBootApplication(scanBasePackageClasses = {DbCoreApplication.class})
 public class DbMybatisPlusApplication {
     public static void main(String[] args) {
         SpringApplication.run(DbMybatisPlusApplication.class, args);

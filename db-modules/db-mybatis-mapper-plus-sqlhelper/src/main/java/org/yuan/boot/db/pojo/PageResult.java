@@ -26,7 +26,7 @@ public final class PageResult<T> extends AbstractCorePageResult<T> {
     }
 
     public PageResult(PagingResult<T> result) {
-        super(result.getPageNo(), result.getPageSize(), result.getItems(), result.getTotal(), result.getMaxPageCount());
+        super(result.getPageNo(), result.getPageSize(), result.getItems(), result.getTotal(), result.getMaxPage());
     }
 
     public PageResult(long page, long size, List<T> data, long totalNumberOfRows, long totalPages) {

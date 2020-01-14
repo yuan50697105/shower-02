@@ -2,9 +2,9 @@ package org.yuan.boot.webmvc.app.dao.impl;
 
 import cn.hutool.core.lang.Snowflake;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.webmvc.app.dao.BaseDao;
 import org.yuan.boot.webmvc.app.pojo.BaseEntity;
+import org.yuan.boot.db.mapper.BaseMapper;
 
 /**
  * @program: learning-demo-02

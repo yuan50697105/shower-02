@@ -2,8 +2,8 @@ package org.yuan.boot.db.dao.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.yuan.boot.db.dao.BaseDao;
-import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.db.pojo.AbstractBaseEntity;
+import org.yuan.boot.db.mapper.BaseMapper;
 
 import java.io.Serializable;
 

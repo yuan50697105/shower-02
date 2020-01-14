@@ -1,4 +1,4 @@
-package org.yuan.boot.webmvc.db.mapper;
+package org.yuan.boot.db.mapper;
 
 import tk.mybatis.mapper.annotation.RegisterMapper;
 import tk.mybatis.mapper.common.ConditionMapper;
