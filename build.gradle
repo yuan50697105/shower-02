@@ -1,9 +1,11 @@
 plugins {
+    id 'java'
     id 'org.springframework.boot' version '2.2.2.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
     id "com.github.ben-manes.versions" version "0.27.0"
     id 'se.patrikerdes.use-latest-versions' version '0.2.13'
-    id 'java'
+    id 'idea'
+    id 'eclipse'
 }
 
 allprojects {
@@ -23,9 +25,9 @@ allprojects {
     }
 
 
+    apply plugin: 'java'
     apply plugin: 'idea'
     apply plugin: 'eclipse'
-    apply plugin: 'java'
     apply plugin: 'org.springframework.boot'
     apply plugin: 'io.spring.dependency-management'
     apply plugin: 'com.github.ben-manes.versions'
