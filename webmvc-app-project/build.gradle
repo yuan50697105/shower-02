@@ -17,6 +17,7 @@ allprojects {
         compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
         compile group: 'org.minbox.framework', name: 'api-boot-starter-security-oauth-jwt'
         compile group: 'org.minbox.framework', name: 'api-boot-starter-http-converter'
+        compile group: 'org.minbox.framework', name: 'api-boot-starter-logging'
         compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
         compile group: 'mysql', name: 'mysql-connector-java'
         compile group: 'com.oracle.ojdbc', name: 'ojdbc8'
