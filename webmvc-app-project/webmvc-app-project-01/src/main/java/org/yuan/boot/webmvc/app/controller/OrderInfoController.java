@@ -9,8 +9,6 @@ import org.yuan.boot.webmvc.app.pojo.vo.OrderInfoVo;
 import org.yuan.boot.webmvc.app.service.OrderInfoService;
 import org.yuan.boot.webmvc.pojo.Result;
 
-import javax.servlet.http.HttpServletRequest;
-
 /**
  * @program: learning-demo-02
  * @description:

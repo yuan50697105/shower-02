@@ -1,7 +1,10 @@
 package org.yuan.boot.webmvc.app.controller;
 
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.yuan.boot.webmvc.app.pojo.vo.WxUserOrderVo;
 import org.yuan.boot.webmvc.app.service.WxUserService;
 import org.yuan.boot.webmvc.pojo.Result;
