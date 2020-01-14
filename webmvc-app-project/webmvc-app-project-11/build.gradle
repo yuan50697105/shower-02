@@ -1,9 +1,0 @@
-plugins {
-    id 'java'
-}
-
-group 'org.yuan.boot.webmvc.app'
-
-dependencies {
-    compile project(':db-modules:db-jpa-mybatis-mapper')
-}
