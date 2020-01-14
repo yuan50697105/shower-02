@@ -4,7 +4,9 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.yuan.boot.webmvc.app.dao.OrderInfoDao;
 import org.yuan.boot.webmvc.app.pojo.converter.OrderInfoConverter;
+import org.yuan.boot.webmvc.app.pojo.vo.OrderInfoVo;
 import org.yuan.boot.webmvc.app.service.OrderInfoService;
+import org.yuan.boot.webmvc.pojo.Result;
 
 /**
  * @program: learning-demo-02
@@ -17,4 +19,16 @@ import org.yuan.boot.webmvc.app.service.OrderInfoService;
 public class OrderInfoServiceImpl implements OrderInfoService {
     private OrderInfoConverter orderInfoConverter;
     private OrderInfoDao orderInfoDao;
+
+    @Override
+    public Result add(OrderInfoVo orderInfoVo) {
+        // TODO: 2020/1/14 添加订单
+        return null;
+    }
+
+    @Override
+    public Result prepay(OrderInfoVo orderInfoVo) {
+        // TODO: 2020/1/14 预支付
+        return null;
+    }
 }

@@ -35,11 +35,7 @@ public class OrderInfoController extends ResultController {
         return orderInfoService.prepay(orderInfoVo);
     }
 
-//    @PostMapping()
-    public String notify(HttpServletRequest request) {
+    // TODO: 2020/1/14 支付回调
 
-        return "SUCCESS";
 
-    }
-    
 }
