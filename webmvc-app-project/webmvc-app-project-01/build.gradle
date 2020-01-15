@@ -6,4 +6,5 @@ group 'org.yuan.boot.webmvc.app'
 
 dependencies {
     compile project(':db-modules:db-mybatis-base')
+    compile project(':utils-modules:wx')
 }

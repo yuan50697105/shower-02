@@ -36,8 +36,15 @@ public class WxUserController extends ResultController {
         return wxUserService.addOrder(wxUserOrderVo);
     }
 
-    // TODO: 2020/1/14 微信预支付
+    @RequestMapping("order/pay")
+    public Result payOrder(WxUserOrderVo orderVo) {
+        return wxUserService.payOrder(orderVo);
+    }
+
     // TODO: 2020/1/14 微信回调
+    public Result payNotify(WxUserOrderVo orderVo) {
+        return wxUserService.payNotify(orderVo);
+    }
     // TODO: 2020/1/14 微信结束使用
 
 }
