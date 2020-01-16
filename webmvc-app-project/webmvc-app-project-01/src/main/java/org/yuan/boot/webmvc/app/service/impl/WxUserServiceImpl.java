@@ -43,6 +43,7 @@ public class WxUserServiceImpl implements WxUserService {
 
     @SneakyThrows
     private Result getOpenIdByAuthCode(String authCode) {
+        
         return null;
     }
 
