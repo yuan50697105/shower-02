@@ -1,6 +1,0 @@
-group 'org.yuan.boot.webmvc.sec'
-dependencies {
-    compile project(':webmvc-modules:webmvc-core')
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
-}
-
