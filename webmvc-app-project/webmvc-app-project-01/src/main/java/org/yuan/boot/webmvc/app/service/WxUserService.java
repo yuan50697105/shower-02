@@ -17,7 +17,7 @@ public interface WxUserService {
 
     Result addOrder(WxUserOrderVo wxUserOrderVo);
 
-    Result payOrder(WxUserOrderVo orderVo) throws WxPayException;
+    Result payOrder(WxUserOrderVo orderVo);
 
     Result payNotify(WxUserOrderVo orderVo);
 }
