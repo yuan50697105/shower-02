@@ -172,5 +172,4 @@ dist/
 nbdist/
 .nb-gradle/
 
-# vscode
-/.vscode
+.vscode
