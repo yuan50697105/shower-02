@@ -1,1 +1,1 @@
-call gradlew clean useLatestVersions clean
+call gradlew clean useLatestVersions clean --no-daemon
