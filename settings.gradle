@@ -1,4 +1,4 @@
-rootProject.name = 'learning-demo-02'
+rootProject.name = 'shower-01'
 
 include 'db-core'
 include 'db-mybatis-base'
