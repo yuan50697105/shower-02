@@ -10,3 +10,7 @@ dependencies {
     compile group: 'com.microsoft.sqlserver', name: 'mssql-jdbc'
 
 }
+
+bootJar{
+    enabled=false
+}
