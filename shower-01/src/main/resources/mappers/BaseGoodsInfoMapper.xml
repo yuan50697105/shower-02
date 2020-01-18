@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.yuan.boot.webmvc.app.mapper.BaseGoodsInfoMapper">
-    <resultMap id="BaseResultMap" type="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfo">
+<mapper namespace="org.yuan.boot.shower.mapper.BaseGoodsInfoMapper">
+    <resultMap id="BaseResultMap" type="org.yuan.boot.shower.pojo.BaseGoodsInfo">
         <!--@mbg.generated-->
         <!--@Table base_goods_info-->
         <id column="id" jdbcType="BIGINT" property="id"/>
@@ -83,7 +83,7 @@
         id, create_user, update_user, create_time, update_time, code, `name`, price, min_price,
         price_range, enabled
     </sql>
-    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfoExample"
+    <select id="selectByExample" parameterType="org.yuan.boot.shower.pojo.BaseGoodsInfoExample"
             resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -111,14 +111,14 @@
         delete from base_goods_info
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfoExample">
+    <delete id="deleteByExample" parameterType="org.yuan.boot.shower.pojo.BaseGoodsInfoExample">
         <!--@mbg.generated-->
         delete from base_goods_info
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfo">
+    <insert id="insert" parameterType="org.yuan.boot.shower.pojo.BaseGoodsInfo">
         <!--@mbg.generated-->
         insert into base_goods_info (id, create_user, update_user,
         create_time, update_time, code,
@@ -129,7 +129,7 @@
         #{name,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{minPrice,jdbcType=DECIMAL},
         #{priceRange,jdbcType=DECIMAL}, #{enabled,jdbcType=INTEGER})
     </insert>
-    <insert id="insertSelective" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfo">
+    <insert id="insertSelective" parameterType="org.yuan.boot.shower.pojo.BaseGoodsInfo">
         <!--@mbg.generated-->
         insert into base_goods_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -203,7 +203,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfoExample"
+    <select id="countByExample" parameterType="org.yuan.boot.shower.pojo.BaseGoodsInfoExample"
             resultType="java.lang.Long">
         <!--@mbg.generated-->
         select count(*) from base_goods_info
@@ -271,7 +271,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfo">
+    <update id="updateByPrimaryKeySelective" parameterType="org.yuan.boot.shower.pojo.BaseGoodsInfo">
         <!--@mbg.generated-->
         update base_goods_info
         <set>
@@ -308,7 +308,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="org.yuan.boot.webmvc.app.pojo.BaseGoodsInfo">
+    <update id="updateByPrimaryKey" parameterType="org.yuan.boot.shower.pojo.BaseGoodsInfo">
         <!--@mbg.generated-->
         update base_goods_info
         set create_user = #{createUser,jdbcType=VARCHAR},

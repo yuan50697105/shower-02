@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.yuan.boot.webmvc.app.mapper.SysRoleMapper">
-    <resultMap id="BaseResultMap" type="org.yuan.boot.webmvc.app.pojo.SysRole">
+<mapper namespace="org.yuan.boot.shower.mapper.SysRoleMapper">
+    <resultMap id="BaseResultMap" type="org.yuan.boot.shower.pojo.SysRole">
         <!--@mbg.generated-->
         <!--@Table sys_role-->
         <id column="id" jdbcType="BIGINT" property="id"/>
@@ -78,7 +78,7 @@
         <!--@mbg.generated-->
         id, `name`, create_user, update_user, create_time, update_time, enabled
     </sql>
-    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRoleExample"
+    <select id="selectByExample" parameterType="org.yuan.boot.shower.pojo.SysRoleExample"
             resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -106,14 +106,14 @@
         delete from sys_role
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRoleExample">
+    <delete id="deleteByExample" parameterType="org.yuan.boot.shower.pojo.SysRoleExample">
         <!--@mbg.generated-->
         delete from sys_role
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="org.yuan.boot.webmvc.app.pojo.SysRole">
+    <insert id="insert" parameterType="org.yuan.boot.shower.pojo.SysRole">
         <!--@mbg.generated-->
         insert into sys_role (id, `name`, create_user,
         update_user, create_time, update_time,
@@ -122,7 +122,7 @@
         #{updateUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP},
         #{enabled,jdbcType=INTEGER})
     </insert>
-    <insert id="insertSelective" parameterType="org.yuan.boot.webmvc.app.pojo.SysRole">
+    <insert id="insertSelective" parameterType="org.yuan.boot.shower.pojo.SysRole">
         <!--@mbg.generated-->
         insert into sys_role
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -172,7 +172,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysRoleExample"
+    <select id="countByExample" parameterType="org.yuan.boot.shower.pojo.SysRoleExample"
             resultType="java.lang.Long">
         <!--@mbg.generated-->
         select count(*) from sys_role
@@ -224,7 +224,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="org.yuan.boot.webmvc.app.pojo.SysRole">
+    <update id="updateByPrimaryKeySelective" parameterType="org.yuan.boot.shower.pojo.SysRole">
         <!--@mbg.generated-->
         update sys_role
         <set>
@@ -249,7 +249,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="org.yuan.boot.webmvc.app.pojo.SysRole">
+    <update id="updateByPrimaryKey" parameterType="org.yuan.boot.shower.pojo.SysRole">
         <!--@mbg.generated-->
         update sys_role
         set `name` = #{name,jdbcType=VARCHAR},

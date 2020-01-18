@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.yuan.boot.webmvc.app.mapper.SysUserRolePermissionViewMapper">
-    <resultMap id="BaseResultMap" type="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
+<mapper namespace="org.yuan.boot.shower.mapper.SysUserRolePermissionViewMapper">
+    <resultMap id="BaseResultMap" type="org.yuan.boot.shower.pojo.SysUserRolePermissionView">
         <!--@mbg.generated-->
         <!--@Table sys_user_role_permission_view-->
         <result column="id" jdbcType="BIGINT" property="id"/>
@@ -85,7 +85,7 @@
         id, username, `password`, real_name, nick_name, create_user, update_user, create_time,
         update_time, enabled, role_name, permission_name
     </sql>
-    <select id="selectByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample"
+    <select id="selectByExample" parameterType="org.yuan.boot.shower.pojo.SysUserRolePermissionViewExample"
             resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -101,14 +101,14 @@
             order by ${orderByClause}
         </if>
     </select>
-    <delete id="deleteByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample">
+    <delete id="deleteByExample" parameterType="org.yuan.boot.shower.pojo.SysUserRolePermissionViewExample">
         <!--@mbg.generated-->
         delete from sys_user_role_permission_view
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
+    <insert id="insert" parameterType="org.yuan.boot.shower.pojo.SysUserRolePermissionView">
         <!--@mbg.generated-->
         insert into sys_user_role_permission_view (id, username, `password`,
         real_name, nick_name, create_user,
@@ -121,7 +121,7 @@
         #{enabled,jdbcType=TINYINT}, #{roleName,jdbcType=VARCHAR}, #{permissionName,jdbcType=VARCHAR}
         )
     </insert>
-    <insert id="insertSelective" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionView">
+    <insert id="insertSelective" parameterType="org.yuan.boot.shower.pojo.SysUserRolePermissionView">
         <!--@mbg.generated-->
         insert into sys_user_role_permission_view
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -201,7 +201,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="org.yuan.boot.webmvc.app.pojo.SysUserRolePermissionViewExample"
+    <select id="countByExample" parameterType="org.yuan.boot.shower.pojo.SysUserRolePermissionViewExample"
             resultType="java.lang.Long">
         <!--@mbg.generated-->
         select count(*) from sys_user_role_permission_view

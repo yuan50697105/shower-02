@@ -2,7 +2,7 @@ plugins {
     id 'java'
 }
 
-group 'org.yuan.boot.webmvc.app'
+group 'org.yuan.boot.app'
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
