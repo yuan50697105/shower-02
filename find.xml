@@ -1,0 +1,8 @@
+<application>
+  <component name="FindSettings">
+    <option name="customScope" value="File '...\webmvc-app-project\webmvc-app-project-01\src\main\java\org\yuan\boot\webmvc\app\pojo\example\SysUserRoleExample.java [learning-demo-02.webmvc-app-project.webmvc-app-project-01.main]'" />
+    <option name="defaultScopeName" value="File '...\webmvc-app-project\webmvc-app-project-01\src\main\java\org\yuan\boot\webmvc\app\pojo\example\SysUserRoleExample.java [learning-demo-02.webmvc-app-project.webmvc-app-project-01.main]'" />
+    <option name="SEARCH_SCOPE" value="File '...\webmvc-app-project\webmvc-app-project-01\src\main\java\org\yuan\boot\webmvc\app\pojo\example\SysUserRoleExample.java [learning-demo-02.webmvc-app-project.webmvc-app-project-01.main]'" />
+    <option name="FILE_MASK" value="*.java" />
+  </component>
+</application>
