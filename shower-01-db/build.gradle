@@ -14,3 +14,9 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp'
 }
+
+tasks {
+    bootJar {
+        enabled = false
+    }
+}
