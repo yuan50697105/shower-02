@@ -16,8 +16,7 @@ import org.yuan.boot.shower.pojo.converter.SysUserConverter;
 import org.yuan.boot.shower.pojo.converter.SysUserRoleConverter;
 import org.yuan.boot.shower.pojo.vo.SysUserVo;
 import org.yuan.boot.shower.service.SysUserService;
-import org.yuan.boot.shower.utils.ResultConstants;
-import org.yuan.boot.shower.utils.ResultUtils;
+import org.yuan.boot.shower.utils.Results;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
@@ -42,22 +41,22 @@ public class SysUserServiceImpl implements SysUserService {
 
     @Override
     public Result selectPage(SysUserCondition condition) {
-        return Result.data(sysUserDao.selectPage(condition));
+        return Results.data(sysUserDao.selectPage(condition));
     }
 
     @Override
     public Result selectList(SysUserCondition condition) {
-        return Result.data(sysUserDao.selectList(condition));
+        return Results.data(sysUserDao.selectList(condition));
     }
 
     @Override
     public Result selectOne(SysUser condition) {
-        return Result.data(sysUserDao.selectOne(condition));
+        return Results.data(sysUserDao.selectOne(condition));
     }
 
     @Override
     public Result selectById(Long id) {
-        return Result.data(sysRoleDao.selectById(id));
+        return Results.data(sysRoleDao.selectById(id));
     }
 
     @Override
@@ -66,14 +65,14 @@ public class SysUserServiceImpl implements SysUserService {
         SysUser sysUser = sysUserConverter.convertForSave(sysUserVo);
         Optional<SysUser> optional = sysUserDao.selectByUsername(sysUser.getUsername());
         if (optional.isPresent()) {
-            throw new ExistResultRuntimeException(ResultUtils.existError("username已存在"));
+            throw new ExistResultRuntimeException(Results.existError("username已存在"));
         }
         sysUserDao.save(sysUser);
         ThreadUtil.execAsync(() -> {
             List<Long> roleIds = sysRoleDao.selectByIds(sysUserVo.getRoleIds());
             sysUserRoleDao.batchSave(sysUserRoleConverter.convert(sysUser.getId(), roleIds));
         });
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -81,7 +80,7 @@ public class SysUserServiceImpl implements SysUserService {
     public Result update(SysUserVo sysUserVo) {
         SysUser sysUser = sysUserConverter.convertForUpdate(sysUserVo);
         sysUserDao.update(sysUser);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -90,7 +89,7 @@ public class SysUserServiceImpl implements SysUserService {
         Result result;
         Optional<SysUser> optional = sysUserDao.selectByUsername(sysUserVo.getUsername());
         if (!optional.isPresent()) {
-            result = Result.error(ResultConstants.CHANGE_PASSWORD_USER_NOT_HAD, "用户不存在");
+            result = Results.error(Results.USER_ERROR, "用户不存在");
         } else {
             SysUser sysUser = optional.get();
             String password = sysUser.getPassword();
@@ -99,9 +98,9 @@ public class SysUserServiceImpl implements SysUserService {
             if (passwordEncoder.matches(oldPwd, password)) {
                 sysUser.setPassword(passwordEncoder.encode(newPwd));
                 sysUserDao.update(sysUser);
-                result = Result.ok();
+                result = Results.ok();
             } else {
-                result = Result.error(ResultConstants.CHANGE_PASSWORD_USER_OLD_PWD_ERROR, "密码不正确");
+                result = Results.error(Results.CHANGE_PASSWORD_USER_OLD_PWD_ERROR, "密码不正确");
             }
         }
         return result;
@@ -114,7 +113,7 @@ public class SysUserServiceImpl implements SysUserService {
         List<Long> roleIds = sysUserVo.getRoleIds();
         roleIds = sysRoleDao.selectByIds(roleIds);
         sysUserRoleDao.batchUpdate(new SysUser().setId(userId), sysUserRoleConverter.convert(userId, roleIds));
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -122,7 +121,7 @@ public class SysUserServiceImpl implements SysUserService {
     public Result delete(List<Long> ids) {
         sysUserDao.delete(ids);
         sysUserRoleDao.deleteByUserIds(ids);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -130,6 +129,6 @@ public class SysUserServiceImpl implements SysUserService {
     public Result delete(Long id) {
         sysUserDao.delete(id);
         sysUserRoleDao.deleteByUserId(id);
-        return Result.ok();
+        return Results.ok();
     }
 }
