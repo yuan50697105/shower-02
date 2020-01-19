@@ -1,14 +1,11 @@
 package org.yuan.boot.shower.mapper;
 
+import java.util.List;import java.util.Optional;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.shower.pojo.SysPermission;
-import org.yuan.boot.shower.pojo.SysPermissionExample;
-import org.yuan.boot.shower.pojo.condition.SysPermissionCondition;
-
-import java.util.List;
-import java.util.Optional;
+import org.yuan.boot.shower.pojo.SysPermissionExample;import org.yuan.boot.shower.pojo.condition.SysPermissionCondition;
 
 @Mapper
 public interface SysPermissionMapper extends BaseMapper<SysPermission> {

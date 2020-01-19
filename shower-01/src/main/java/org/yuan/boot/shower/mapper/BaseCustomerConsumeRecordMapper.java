@@ -1,16 +1,13 @@
 package org.yuan.boot.shower.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord;
-import org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample;
-import org.yuan.boot.shower.pojo.condition.BaseCustomerConsumeRecordCondition;
-
-import java.util.List;
+import org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample;import org.yuan.boot.shower.pojo.condition.BaseCustomerConsumeRecordCondition;
 
 @Mapper
-public interface BaseCustomerConsumeRecordMapper extends BaseMapper<BaseCustomerConsumeRecord> {
+public interface BaseCustomerConsumeRecordMapper {
     long countByExample(BaseCustomerConsumeRecordExample example);
 
     int deleteByExample(BaseCustomerConsumeRecordExample example);

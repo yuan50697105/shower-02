@@ -1,26 +1,38 @@
 package org.yuan.boot.shower.pojo;
 
-import lombok.*;
-import lombok.experimental.Accessors;
-import org.yuan.boot.shower.interceptor.annotation.CreateTime;
-import org.yuan.boot.shower.interceptor.annotation.Id;
-
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
+@ApiModel(value = "org-yuan-boot-shower-pojo-SysRolePermission")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Accessors(chain = true)
-public final class SysRolePermission extends BaseEntity<SysRolePermission> implements Serializable {
-    private static final long serialVersionUID = 1L;
-    @Id
+public class SysRolePermission implements Serializable {
+    @ApiModelProperty(value = "")
     private Long id;
+
+    @ApiModelProperty(value = "")
     private Long roleId;
+
+    @ApiModelProperty(value = "")
     private Long permissionId;
-    @CreateTime
+
+    @ApiModelProperty(value = "")
     private Date createTime;
+
+    @ApiModelProperty(value = "")
     private Long createUser;
+
+    private static final long serialVersionUID = 1L;
+
+    public static SysRolePermissionBuilder builder() {
+        return new SysRolePermissionBuilder();
+    }
 }

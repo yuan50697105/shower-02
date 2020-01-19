@@ -2,76 +2,82 @@ package org.yuan.boot.shower.pojo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.*;
-import lombok.experimental.Accessors;
-import org.yuan.boot.shower.interceptor.annotation.CreateTime;
-import org.yuan.boot.shower.interceptor.annotation.Id;
-import org.yuan.boot.shower.interceptor.annotation.UpdateTime;
-
 import java.io.Serializable;
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper = true)
-@ApiModel(value = "org-yuan-boot-webmvc-app-pojo-SysUser")
+@ApiModel(value = "org-yuan-boot-shower-pojo-SysUser")
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
-@Accessors(chain = true)
-public final class SysUser extends BaseEntity<SysUser> implements Serializable {
-    private static final long serialVersionUID = 1L;
+@NoArgsConstructor
+public class SysUser implements Serializable {
     /**
      * id
      */
     @ApiModelProperty(value = "id")
-    @Id
     private Long id;
+
     /**
      * username
      */
     @ApiModelProperty(value = "username")
     private String username;
+
     /**
      * password
      */
     @ApiModelProperty(value = "password")
     private String password;
+
     /**
      * realName
      */
     @ApiModelProperty(value = "realName")
     private String realName;
+
     /**
      * nickName
      */
     @ApiModelProperty(value = "nickName")
     private String nickName;
+
     /**
      * createUser
      */
     @ApiModelProperty(value = "createUser")
     private String createUser;
+
     /**
      * updateUser
      */
     @ApiModelProperty(value = "updateUser")
     private String updateUser;
+
     /**
      * createTime
      */
     @ApiModelProperty(value = "createTime")
-    @CreateTime
     private Date createTime;
+
     /**
      * updateTime
      */
     @ApiModelProperty(value = "updateTime")
-    @UpdateTime
     private Date updateTime;
+
     /**
      * enabled
      */
     @ApiModelProperty(value = "enabled")
     private Byte enabled;
 
+    private static final long serialVersionUID = 1L;
+
+    public static SysUserBuilder builder() {
+        return new SysUserBuilder();
+    }
 }

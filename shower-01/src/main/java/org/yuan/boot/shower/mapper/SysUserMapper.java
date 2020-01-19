@@ -1,13 +1,11 @@
 package org.yuan.boot.shower.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.shower.pojo.SysUser;
-import org.yuan.boot.shower.pojo.SysUserExample;
-import org.yuan.boot.shower.pojo.condition.SysUserCondition;
-
-import java.util.List;
+import org.yuan.boot.shower.pojo.SysUserExample;import org.yuan.boot.shower.pojo.condition.SysUserCondition;
 
 @Mapper
 public interface SysUserMapper extends BaseMapper<SysUser> {
@@ -38,6 +36,4 @@ public interface SysUserMapper extends BaseMapper<SysUser> {
     SysUser selectOne(SysUser condition);
 
     SysUser selectOneByUsername(@Param("username") String username);
-
-
 }

@@ -1,13 +1,11 @@
 package org.yuan.boot.shower.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.shower.pojo.SysRole;
-import org.yuan.boot.shower.pojo.SysRoleExample;
-import org.yuan.boot.shower.pojo.condition.SysRoleCondition;
-
-import java.util.List;
+import org.yuan.boot.shower.pojo.SysRoleExample;import org.yuan.boot.shower.pojo.condition.SysRoleCondition;
 
 @Mapper
 public interface SysRoleMapper extends BaseMapper<SysRole> {
@@ -38,6 +36,4 @@ public interface SysRoleMapper extends BaseMapper<SysRole> {
     SysRole selectOne(SysRole sysRole);
 
     SysRole selectOneByName(@Param("name") String name);
-
-
 }

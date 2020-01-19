@@ -1,13 +1,11 @@
 package org.yuan.boot.shower.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.shower.pojo.BaseCustomerInfo;
-import org.yuan.boot.shower.pojo.BaseCustomerInfoExample;
-import org.yuan.boot.shower.pojo.condition.BaseCustomerInfoCondition;
-
-import java.util.List;
+import org.yuan.boot.shower.pojo.BaseCustomerInfoExample;import org.yuan.boot.shower.pojo.condition.BaseCustomerInfoCondition;
 
 @Mapper
 public interface BaseCustomerInfoMapper extends BaseMapper<BaseCustomerInfo> {

@@ -14,4 +14,5 @@ include 'shower-01-core'
 include 'shower-01-db'
 include 'shower-01-mq'
 include 'shower-01-redis'
+include 'shower-02'
 

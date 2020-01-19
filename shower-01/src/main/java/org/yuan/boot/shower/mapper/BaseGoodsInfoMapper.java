@@ -1,12 +1,11 @@
 package org.yuan.boot.shower.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.shower.pojo.BaseGoodsInfo;
 import org.yuan.boot.shower.pojo.BaseGoodsInfoExample;
-
-import java.util.List;
 
 @Mapper
 public interface BaseGoodsInfoMapper extends BaseMapper<BaseGoodsInfo> {

@@ -1,15 +1,14 @@
 package org.yuan.boot.shower.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.shower.pojo.SysUserRolePermissionView;
 import org.yuan.boot.shower.pojo.SysUserRolePermissionViewExample;
 
-import java.util.List;
-
 @Mapper
-public interface SysUserRolePermissionViewMapper extends BaseMapper<SysUserRolePermissionView> {
+public interface SysUserRolePermissionViewMapper  extends BaseMapper<SysUserRolePermissionView> {
     long countByExample(SysUserRolePermissionViewExample example);
 
     int deleteByExample(SysUserRolePermissionViewExample example);
