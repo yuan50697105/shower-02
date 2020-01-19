@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.yuan.boot.webmvc.exception.ResultException;
 import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
+import org.yuan.boot.webmvc.utils.Results;
 
 /**
  * @program: learning-demo-02
@@ -31,12 +32,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public Result illegalArgumentExceptionHandler(IllegalArgumentException e) {
         log.error(e.getMessage(), e.getCause());
-        return Result.paramsError();
+        return Results.dataParamsError();
     }
 
     @ExceptionHandler(Exception.class)
     public Result exceptionHandler(Exception e) {
         log.error(e.getLocalizedMessage(), e.getCause());
-        return Result.systemError();
+        return Results.systemError();
     }
 }
