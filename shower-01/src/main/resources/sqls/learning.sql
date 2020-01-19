@@ -1,10 +1,27 @@
 create schema if not exists learning collate utf8mb4_0900_ai_ci;
 
+create table if not exists base_customer_consume_record
+(
+    id               bigint(15) auto_increment comment 'id'
+        primary key,
+    customer_id      bigint(15)     null comment 'customerId',
+    customer_open_id varchar(50)    null comment 'customerOpenId',
+    customer_name    varchar(50)    null comment 'customerName',
+    price            decimal(13, 4) null comment 'price',
+    time             decimal(13, 4) null comment 'time',
+    total_price      decimal(13, 4) null comment 'totalPrice',
+    operation        varchar(50)    null comment 'operation',
+    device_id        bigint(15)     null comment 'deviceId',
+    device_code      varchar(50)    null comment 'deviceCode'
+)
+    comment 'base_customer_consume_record';
+
 create table if not exists base_customer_info
 (
     id              bigint(15) auto_increment comment 'id'
         primary key,
     actual_name     varchar(50) null comment 'actualName',
+    open_id         varchar(50) null comment 'openId',
     contact_address varchar(50) null comment 'contactAddress',
     contact_number  varchar(50) null comment 'contactNumber',
     identity_number varchar(50) null comment 'identityNumber',
