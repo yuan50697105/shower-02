@@ -11,6 +11,7 @@ import org.yuan.boot.shower.pojo.converter.BaseCustomerInfoConverter;
 import org.yuan.boot.shower.pojo.vo.BaseCustomerInfoVo;
 import org.yuan.boot.shower.service.BaseCustomerInfoService;
 import org.yuan.boot.webmvc.pojo.Result;
+import org.yuan.boot.webmvc.utils.Results;
 
 import java.util.List;
 
@@ -29,22 +30,22 @@ public class BaseCustomerInfoServiceImpl implements BaseCustomerInfoService {
 
     @Override
     public Result selectPage(BaseCustomerInfoCondition condition) {
-        return Result.data(baseCustomerInfoDao.selectPage(condition));
+        return Results.data(baseCustomerInfoDao.selectPage(condition));
     }
 
     @Override
     public Result selectList(BaseCustomerInfoCondition condition) {
-        return Result.data(baseCustomerInfoDao.selectList(condition));
+        return Results.data(baseCustomerInfoDao.selectList(condition));
     }
 
     @Override
     public Result selectOne(BaseCustomerInfo customerInfo) {
-        return Result.data(baseCustomerInfoDao.selectOne(customerInfo));
+        return Results.data(baseCustomerInfoDao.selectOne(customerInfo));
     }
 
     @Override
     public Result selectById(Long id) {
-        return Result.data(baseCustomerInfoDao.selectById(id));
+        return Results.data(baseCustomerInfoDao.selectById(id));
     }
 
     @Override
@@ -52,7 +53,7 @@ public class BaseCustomerInfoServiceImpl implements BaseCustomerInfoService {
     public Result save(BaseCustomerInfoVo baseCustomerInfoVo) {
         BaseCustomerInfo customerInfo = baseCustomerInfoConverter.convert(baseCustomerInfoVo);
         baseCustomerInfoDao.save(customerInfo);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -60,20 +61,20 @@ public class BaseCustomerInfoServiceImpl implements BaseCustomerInfoService {
     public Result update(BaseCustomerInfoVo customerInfoVo) {
         BaseCustomerInfo customerInfo = baseCustomerInfoConverter.convert(customerInfoVo);
         baseCustomerInfoDao.update(customerInfo);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result delete(Long id) {
         baseCustomerInfoDao.delete(id);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result delete(List<Long> ids) {
         baseCustomerInfoDao.delete(ids);
-        return Result.ok();
+        return Results.ok();
     }
 }

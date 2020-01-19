@@ -24,6 +24,8 @@ public final class BaseCustomerInfoVo {
     private String contactNumber;
     @NotEmpty(groups = {Save.class})
     private String identityNumber;
+    @NotEmpty(groups = {Save.class})
+    private String openId;
 
     public interface Save {
     }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.yuan.boot.shower.dao.BaseCustomerConsumeRecordDao;
 import org.yuan.boot.shower.pojo.converter.BaseCustomerConsumeRecordConverter;
 import org.yuan.boot.shower.service.BaseCustomerConsumeRecordService;
+import org.yuan.boot.webmvc.pojo.Result;
 
 /**
  * @program: shower-01

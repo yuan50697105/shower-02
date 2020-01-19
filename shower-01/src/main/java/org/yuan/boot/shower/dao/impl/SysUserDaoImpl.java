@@ -14,6 +14,7 @@ import org.yuan.boot.shower.mapper.SysUserMapper;
 import org.yuan.boot.shower.pojo.SysUser;
 import org.yuan.boot.shower.pojo.SysUserExample;
 import org.yuan.boot.shower.pojo.condition.SysUserCondition;
+import org.yuan.boot.shower.utils.Results;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
@@ -50,7 +51,7 @@ public class SysUserDaoImpl extends BaseDaoImpl<SysUser, SysUserMapper> implemen
             return Optional.ofNullable(baseMapper().selectOne(condition));
         } catch (DataAccessException e) {
             e.printStackTrace();
-            throw new NoValidateResultRuntimeException(Result.error(HttpStatus.HTTP_INTERNAL_ERROR, "访问错误"));
+            throw new NoValidateResultRuntimeException(Results.dataResultError());
         }
     }
 

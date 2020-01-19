@@ -11,6 +11,7 @@ import org.yuan.boot.shower.mapper.SysPermissionMapper;
 import org.yuan.boot.shower.pojo.SysPermission;
 import org.yuan.boot.shower.pojo.SysPermissionExample;
 import org.yuan.boot.shower.pojo.condition.SysPermissionCondition;
+import org.yuan.boot.shower.utils.Results;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.Collections;
@@ -31,22 +32,22 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
     @Override
     public Result page(SysPermissionCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
-        return new Result(new PageResult<>(new PageInfo<>(baseMapper().selectByCondition(condition))));
+        return Results.data(new PageResult<>(new PageInfo<>(baseMapper().selectByCondition(condition))));
     }
 
     @Override
     public Result list(SysPermissionCondition condition) {
-        return Result.data(baseMapper().selectByCondition(condition));
+        return Results.data(baseMapper().selectByCondition(condition));
     }
 
     @Override
     public Result get(SysPermission sysPermission) {
-        return Result.data(baseMapper().selectOne(sysPermission));
+        return Results.data(baseMapper().selectOne(sysPermission));
     }
 
     @Override
     public Result get(Long id) {
-        return Result.data(baseMapper().selectByPrimaryKey(id));
+        return Results.data(baseMapper().selectByPrimaryKey(id));
     }
 
     @Override
@@ -55,7 +56,7 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
         sysPermission.setId(snowflake().nextId());
         sysPermission.setCreateTime(new Date());
         baseMapper().insertSelective(sysPermission);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -63,14 +64,14 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
     public Result update(SysPermission sysPermission) {
         sysPermission.setUpdateTime(new Date());
         baseMapper().updateByPrimaryKeySelective(sysPermission);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result delete(Long id) {
         baseMapper().deleteByPrimaryKey(id);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -79,7 +80,7 @@ public class SysPermissionDaoImpl extends BaseDaoImpl<SysPermission, SysPermissi
         SysPermissionExample example = new SysPermissionExample();
         example.or().andIdIn(ids);
         baseMapper().deleteByExample(example);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
