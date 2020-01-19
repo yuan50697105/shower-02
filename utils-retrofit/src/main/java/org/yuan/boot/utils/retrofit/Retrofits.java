@@ -11,10 +11,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
  * @author: yuane
  * @create: 2020-01-04 20:23
  */
+
 public class Retrofits {
 
-    public static Retrofit retrofit() {
-        return new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create()).addConverterFactory(ScalarsConverterFactory.create()).addConverterFactory(JacksonConverterFactory.create()).build();
+    public static Retrofit retrofit(String baseUrl) {
+        return new Retrofit.Builder().baseUrl(baseUrl).addCallAdapterFactory(RxJava2CallAdapterFactory.create()).addConverterFactory(ScalarsConverterFactory.create()).addConverterFactory(JacksonConverterFactory.create()).build();
     }
 
 
