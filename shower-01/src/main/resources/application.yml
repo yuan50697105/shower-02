@@ -51,7 +51,6 @@ wx:
     aes-key:
     app-id:
     config-storage:
-      redis:
-      type: redis
+      type: memory
     secret:
     token:
