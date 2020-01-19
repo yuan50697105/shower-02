@@ -16,6 +16,10 @@ import org.yuan.boot.shower.service.BaseCodeService;
 public class BaseCodeServiceImpl implements BaseCodeService {
     private Snowflake snowflake;
 
+    private Long getId() {
+        return snowflake.nextId();
+    }
+
     @Override
     public String getOrderSn() {
         return snowflake.nextIdStr();

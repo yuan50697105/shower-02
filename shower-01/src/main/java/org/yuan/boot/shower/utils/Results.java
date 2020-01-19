@@ -30,4 +30,12 @@ public class Results extends org.yuan.boot.webmvc.utils.Results {
         return Result.builder().code(EXIST_ENTITY_ERROR).message(message).build();
     }
 
+    public static Result userError(String message) {
+        return Result.builder().code(USER_ERROR).message(message).build();
+    }
+
+    public static Result deviceError(String message) {
+        return Result.builder().code(DEVICE_ERROR).message(message).build();
+    }
+
 }
