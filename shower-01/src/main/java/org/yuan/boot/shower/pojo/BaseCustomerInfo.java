@@ -2,6 +2,9 @@ package org.yuan.boot.shower.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.yuan.boot.shower.interceptor.annotation.CreateTime;
+import org.yuan.boot.shower.interceptor.annotation.Id;
+import org.yuan.boot.shower.interceptor.annotation.UpdateTime;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +20,7 @@ public class BaseCustomerInfo extends BaseEntity<BaseCustomerInfo> implements Se
     /**
      * id
      */
+    @Id
     private Long id;
     /**
      * actualName
@@ -53,10 +57,12 @@ public class BaseCustomerInfo extends BaseEntity<BaseCustomerInfo> implements Se
     /**
      * createTime
      */
+    @CreateTime
     private Date createTime;
     /**
      * updateTime
      */
+    @UpdateTime
     private Date updateTime;
 
     public static BaseCustomerInfoBuilder builder() {
