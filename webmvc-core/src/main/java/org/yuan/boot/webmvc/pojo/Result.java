@@ -14,7 +14,7 @@ import java.io.Serializable;
 @Value
 @Builder
 public class Result implements Serializable {
-    private int code;
+    private Integer code;
     private String message;
     private Object data;
 }
