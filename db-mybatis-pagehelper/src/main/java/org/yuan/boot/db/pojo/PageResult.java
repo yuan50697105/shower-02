@@ -22,4 +22,6 @@ public final class PageResult<T> extends AbstractCorePageResult<T> {
     public PageResult(long page, long size, List<T> data, long totalNumberOfRows, long totalPages) {
         super(page, size, data, totalNumberOfRows, totalPages);
     }
+
+
 }

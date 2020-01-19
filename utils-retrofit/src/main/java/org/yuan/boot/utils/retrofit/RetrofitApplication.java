@@ -1,4 +1,4 @@
-package org.yuan.boot.utils.restrofit;
+package org.yuan.boot.utils.retrofit;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -3,6 +3,7 @@ package org.yuan.boot.webmvc.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.yuan.boot.webmvc.pojo.Result;
+import org.yuan.boot.webmvc.utils.Results;
 
 /**
  * @program: learning-demo-02
@@ -14,7 +15,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 @Data
 public class NoValidateResultException extends ResultException {
     public NoValidateResultException() {
-        super(Result.paramsError());
+        super(Results.dataParamsError());
     }
 
     public NoValidateResultException(Result result) {
@@ -22,6 +23,6 @@ public class NoValidateResultException extends ResultException {
     }
 
     public NoValidateResultException(String message) {
-        super(Result.paramsError(message));
+        super(Results.dataParamsError(message));
     }
 }
