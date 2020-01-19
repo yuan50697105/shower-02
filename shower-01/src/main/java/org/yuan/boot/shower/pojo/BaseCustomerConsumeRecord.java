@@ -1,19 +1,16 @@
 package org.yuan.boot.shower.pojo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import org.yuan.boot.db.pojo.AbstractBaseEntity;
+import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseCustomerConsumeRecord extends AbstractBaseEntity<BaseCustomerConsumeRecord> implements Serializable {
+public class BaseCustomerConsumeRecord extends BaseEntity<BaseCustomerConsumeRecord> implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * id

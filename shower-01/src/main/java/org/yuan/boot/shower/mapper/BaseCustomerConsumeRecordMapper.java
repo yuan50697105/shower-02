@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.db.mapper.BaseMapper;
 import org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord;
 import org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample;
+import org.yuan.boot.shower.pojo.condition.BaseCustomerConsumeRecordCondition;
 
 import java.util.List;
 
@@ -31,4 +32,6 @@ public interface BaseCustomerConsumeRecordMapper extends BaseMapper<BaseCustomer
     int updateByPrimaryKeySelective(BaseCustomerConsumeRecord record);
 
     int updateByPrimaryKey(BaseCustomerConsumeRecord record);
+
+    List<BaseCustomerConsumeRecord> selectByCondition(@Param("condition") BaseCustomerConsumeRecordCondition condition);
 }

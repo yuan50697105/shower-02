@@ -2,7 +2,6 @@ package org.yuan.boot.shower.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.AbstractBaseEntity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,63 +12,52 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public class BaseCustomerInfo extends AbstractBaseEntity<BaseCustomerInfo> implements Serializable {
+public class BaseCustomerInfo extends BaseEntity<BaseCustomerInfo> implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * id
      */
     private Long id;
-
     /**
      * actualName
      */
     private String actualName;
-
     /**
      * openId
      */
     private String openId;
-
     /**
      * contactAddress
      */
     private String contactAddress;
-
     /**
      * contactNumber
      */
     private String contactNumber;
-
     /**
      * identityNumber
      */
     private String identityNumber;
-
     /**
      * enabled
      */
     private Integer enabled;
-
     /**
      * createUser
      */
     private String createUser;
-
     /**
      * updateUser
      */
     private String updateUser;
-
     /**
      * createTime
      */
     private Date createTime;
-
     /**
      * updateTime
      */
     private Date updateTime;
-
-    private static final long serialVersionUID = 1L;
 
     public static BaseCustomerInfoBuilder builder() {
         return new BaseCustomerInfoBuilder();

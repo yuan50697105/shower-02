@@ -1,307 +1,330 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.yuan.boot.shower.mapper.BaseCustomerConsumeRecordMapper">
-  <resultMap id="BaseResultMap" type="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
-    <!--@mbg.generated-->
-    <!--@Table base_customer_consume_record-->
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
-    <result column="customer_open_id" jdbcType="VARCHAR" property="customerOpenId" />
-    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
-    <result column="price" jdbcType="DECIMAL" property="price" />
-    <result column="time" jdbcType="DECIMAL" property="time" />
-    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
-    <result column="operation" jdbcType="VARCHAR" property="operation" />
-    <result column="device_id" jdbcType="BIGINT" property="deviceId" />
-    <result column="device_code" jdbcType="VARCHAR" property="deviceCode" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <!--@mbg.generated-->
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
+        <!--@mbg.generated-->
+        <!--@Table base_customer_consume_record-->
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="customer_id" jdbcType="BIGINT" property="customerId"/>
+        <result column="customer_open_id" jdbcType="VARCHAR" property="customerOpenId"/>
+        <result column="customer_name" jdbcType="VARCHAR" property="customerName"/>
+        <result column="price" jdbcType="DECIMAL" property="price"/>
+        <result column="time" jdbcType="DECIMAL" property="time"/>
+        <result column="total_price" jdbcType="DECIMAL" property="totalPrice"/>
+        <result column="operation" jdbcType="VARCHAR" property="operation"/>
+        <result column="device_id" jdbcType="BIGINT" property="deviceId"/>
+        <result column="device_code" jdbcType="VARCHAR" property="deviceCode"/>
+    </resultMap>
+    <sql id="Example_Where_Clause">
+        <!--@mbg.generated-->
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <!--@mbg.generated-->
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Example_Where_Clause">
+        <!--@mbg.generated-->
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+        <!--@mbg.generated-->
+        id, customer_id, customer_open_id, customer_name, price, `time`, total_price, `operation`,
+        device_id, device_code
+    </sql>
+    <select id="selectByExample" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample"
+            resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    <!--@mbg.generated-->
-    id, customer_id, customer_open_id, customer_name, price, `time`, total_price, `operation`, 
-    device_id, device_code
-  </sql>
-  <select id="selectByExample" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from base_customer_consume_record
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
-    <!--@mbg.generated-->
-    select 
-    <include refid="Base_Column_List" />
-    from base_customer_consume_record
-    where id = #{id,jdbcType=BIGINT}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    <!--@mbg.generated-->
-    delete from base_customer_consume_record
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <delete id="deleteByExample" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample">
-    <!--@mbg.generated-->
-    delete from base_customer_consume_record
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
-    <!--@mbg.generated-->
-    insert into base_customer_consume_record (id, customer_id, customer_open_id, 
-      customer_name, price, `time`, 
-      total_price, `operation`, device_id, 
-      device_code)
-    values (#{id,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{customerOpenId,jdbcType=VARCHAR}, 
-      #{customerName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{time,jdbcType=DECIMAL}, 
-      #{totalPrice,jdbcType=DECIMAL}, #{operation,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
-      #{deviceCode,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
-    <!--@mbg.generated-->
-    insert into base_customer_consume_record
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
-      <if test="customerId != null">
-        customer_id,
-      </if>
-      <if test="customerOpenId != null">
-        customer_open_id,
-      </if>
-      <if test="customerName != null">
-        customer_name,
-      </if>
-      <if test="price != null">
-        price,
-      </if>
-      <if test="time != null">
-        `time`,
-      </if>
-      <if test="totalPrice != null">
-        total_price,
-      </if>
-      <if test="operation != null">
-        `operation`,
-      </if>
-      <if test="deviceId != null">
-        device_id,
-      </if>
-      <if test="deviceCode != null">
-        device_code,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
-      <if test="customerId != null">
-        #{customerId,jdbcType=BIGINT},
-      </if>
-      <if test="customerOpenId != null">
-        #{customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerName != null">
-        #{customerName,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
-        #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="time != null">
-        #{time,jdbcType=DECIMAL},
-      </if>
-      <if test="totalPrice != null">
-        #{totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="operation != null">
-        #{operation,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceId != null">
-        #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceCode != null">
-        #{deviceCode,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample" resultType="java.lang.Long">
-    <!--@mbg.generated-->
-    select count(*) from base_customer_consume_record
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    <!--@mbg.generated-->
-    update base_customer_consume_record
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
-      </if>
-      <if test="record.customerId != null">
+        <include refid="Base_Column_List"/>
+        from base_customer_consume_record
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        <!--@mbg.generated-->
+        select
+        <include refid="Base_Column_List"/>
+        from base_customer_consume_record
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        <!--@mbg.generated-->
+        delete from base_customer_consume_record
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <delete id="deleteByExample" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample">
+        <!--@mbg.generated-->
+        delete from base_customer_consume_record
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
+        <!--@mbg.generated-->
+        insert into base_customer_consume_record (id, customer_id, customer_open_id,
+        customer_name, price, `time`,
+        total_price, `operation`, device_id,
+        device_code)
+        values (#{id,jdbcType=BIGINT}, #{customerId,jdbcType=BIGINT}, #{customerOpenId,jdbcType=VARCHAR},
+        #{customerName,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{time,jdbcType=DECIMAL},
+        #{totalPrice,jdbcType=DECIMAL}, #{operation,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT},
+        #{deviceCode,jdbcType=VARCHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
+        <!--@mbg.generated-->
+        insert into base_customer_consume_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="customerId != null">
+                customer_id,
+            </if>
+            <if test="customerOpenId != null">
+                customer_open_id,
+            </if>
+            <if test="customerName != null">
+                customer_name,
+            </if>
+            <if test="price != null">
+                price,
+            </if>
+            <if test="time != null">
+                `time`,
+            </if>
+            <if test="totalPrice != null">
+                total_price,
+            </if>
+            <if test="operation != null">
+                `operation`,
+            </if>
+            <if test="deviceId != null">
+                device_id,
+            </if>
+            <if test="deviceCode != null">
+                device_code,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="customerId != null">
+                #{customerId,jdbcType=BIGINT},
+            </if>
+            <if test="customerOpenId != null">
+                #{customerOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null">
+                #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="time != null">
+                #{time,jdbcType=DECIMAL},
+            </if>
+            <if test="totalPrice != null">
+                #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="operation != null">
+                #{operation,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceId != null">
+                #{deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="deviceCode != null">
+                #{deviceCode,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByExample" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecordExample"
+            resultType="java.lang.Long">
+        <!--@mbg.generated-->
+        select count(*) from base_customer_consume_record
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
+        <!--@mbg.generated-->
+        update base_customer_consume_record
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=BIGINT},
+            </if>
+            <if test="record.customerId != null">
+                customer_id = #{record.customerId,jdbcType=BIGINT},
+            </if>
+            <if test="record.customerOpenId != null">
+                customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="record.customerName != null">
+                customer_name = #{record.customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.price != null">
+                price = #{record.price,jdbcType=DECIMAL},
+            </if>
+            <if test="record.time != null">
+                `time` = #{record.time,jdbcType=DECIMAL},
+            </if>
+            <if test="record.totalPrice != null">
+                total_price = #{record.totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="record.operation != null">
+                `operation` = #{record.operation,jdbcType=VARCHAR},
+            </if>
+            <if test="record.deviceId != null">
+                device_id = #{record.deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="record.deviceCode != null">
+                device_code = #{record.deviceCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByExample" parameterType="map">
+        <!--@mbg.generated-->
+        update base_customer_consume_record
+        set id = #{record.id,jdbcType=BIGINT},
         customer_id = #{record.customerId,jdbcType=BIGINT},
-      </if>
-      <if test="record.customerOpenId != null">
         customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.customerName != null">
         customer_name = #{record.customerName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.price != null">
         price = #{record.price,jdbcType=DECIMAL},
-      </if>
-      <if test="record.time != null">
         `time` = #{record.time,jdbcType=DECIMAL},
-      </if>
-      <if test="record.totalPrice != null">
         total_price = #{record.totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.operation != null">
         `operation` = #{record.operation,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deviceId != null">
         device_id = #{record.deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="record.deviceCode != null">
-        device_code = #{record.deviceCode,jdbcType=VARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    <!--@mbg.generated-->
-    update base_customer_consume_record
-    set id = #{record.id,jdbcType=BIGINT},
-      customer_id = #{record.customerId,jdbcType=BIGINT},
-      customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      customer_name = #{record.customerName,jdbcType=VARCHAR},
-      price = #{record.price,jdbcType=DECIMAL},
-      `time` = #{record.time,jdbcType=DECIMAL},
-      total_price = #{record.totalPrice,jdbcType=DECIMAL},
-      `operation` = #{record.operation,jdbcType=VARCHAR},
-      device_id = #{record.deviceId,jdbcType=BIGINT},
-      device_code = #{record.deviceCode,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
-    <!--@mbg.generated-->
-    update base_customer_consume_record
-    <set>
-      <if test="customerId != null">
-        customer_id = #{customerId,jdbcType=BIGINT},
-      </if>
-      <if test="customerOpenId != null">
+        device_code = #{record.deviceCode,jdbcType=VARCHAR}
+        <if test="_parameter != null">
+            <include refid="Update_By_Example_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
+        <!--@mbg.generated-->
+        update base_customer_consume_record
+        <set>
+            <if test="customerId != null">
+                customer_id = #{customerId,jdbcType=BIGINT},
+            </if>
+            <if test="customerOpenId != null">
+                customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
+            </if>
+            <if test="customerName != null">
+                customer_name = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="price != null">
+                price = #{price,jdbcType=DECIMAL},
+            </if>
+            <if test="time != null">
+                `time` = #{time,jdbcType=DECIMAL},
+            </if>
+            <if test="totalPrice != null">
+                total_price = #{totalPrice,jdbcType=DECIMAL},
+            </if>
+            <if test="operation != null">
+                `operation` = #{operation,jdbcType=VARCHAR},
+            </if>
+            <if test="deviceId != null">
+                device_id = #{deviceId,jdbcType=BIGINT},
+            </if>
+            <if test="deviceCode != null">
+                device_code = #{deviceCode,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
+        <!--@mbg.generated-->
+        update base_customer_consume_record
+        set customer_id = #{customerId,jdbcType=BIGINT},
         customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerName != null">
         customer_name = #{customerName,jdbcType=VARCHAR},
-      </if>
-      <if test="price != null">
         price = #{price,jdbcType=DECIMAL},
-      </if>
-      <if test="time != null">
         `time` = #{time,jdbcType=DECIMAL},
-      </if>
-      <if test="totalPrice != null">
         total_price = #{totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="operation != null">
         `operation` = #{operation,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceId != null">
         device_id = #{deviceId,jdbcType=BIGINT},
-      </if>
-      <if test="deviceCode != null">
-        device_code = #{deviceCode,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=BIGINT}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="org.yuan.boot.shower.pojo.BaseCustomerConsumeRecord">
-    <!--@mbg.generated-->
-    update base_customer_consume_record
-    set customer_id = #{customerId,jdbcType=BIGINT},
-      customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      customer_name = #{customerName,jdbcType=VARCHAR},
-      price = #{price,jdbcType=DECIMAL},
-      `time` = #{time,jdbcType=DECIMAL},
-      total_price = #{totalPrice,jdbcType=DECIMAL},
-      `operation` = #{operation,jdbcType=VARCHAR},
-      device_id = #{deviceId,jdbcType=BIGINT},
-      device_code = #{deviceCode,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+        device_code = #{deviceCode,jdbcType=VARCHAR}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from base_customer_consume_record
+        <where>
+            <if test="condition.id != null">
+                and id = #{condition.id,jdbcType=BIGINT}
+            </if>
+            <if test="condition.ids != null and condition.ids.size() != 0">
+                and id in
+                <foreach item="item" index="index" collection="condition.ids" open="(" separator="," close=")">
+                    #{item,jdbcType=BIGINT}
+                </foreach>
+            </if>
+            <if test="condition.name != null and condition.name != ''">
+                and customer_name like concat('%',#{condition.name,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+    </select>
 </mapper>
