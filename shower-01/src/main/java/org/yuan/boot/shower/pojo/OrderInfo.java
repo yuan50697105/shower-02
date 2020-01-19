@@ -2,6 +2,9 @@ package org.yuan.boot.shower.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.yuan.boot.shower.interceptor.annotation.CreateTime;
+import org.yuan.boot.shower.interceptor.annotation.Id;
+import org.yuan.boot.shower.interceptor.annotation.UpdateTime;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -18,10 +21,12 @@ public class OrderInfo extends BaseEntity<OrderInfo> implements Serializable {
     /**
      * id
      */
+    @Id
     private Long id;
     /**
      * orderNo
      */
+    @Id
     private String orderNo;
     /**
      * userId
@@ -42,10 +47,12 @@ public class OrderInfo extends BaseEntity<OrderInfo> implements Serializable {
     /**
      * createTime
      */
+    @CreateTime
     private Date createTime;
     /**
      * updateTime
      */
+    @UpdateTime
     private Date updateTime;
     /**
      * startTime

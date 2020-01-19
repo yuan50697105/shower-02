@@ -2,6 +2,8 @@ package org.yuan.boot.shower.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.yuan.boot.shower.interceptor.annotation.CreateTime;
+import org.yuan.boot.shower.interceptor.annotation.Id;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +19,7 @@ public class BaseDeviceInfo extends BaseEntity<BaseDeviceInfo> implements Serial
     /**
      * id
      */
+    @Id
     private Long id;
     /**
      * createUser
@@ -25,6 +28,7 @@ public class BaseDeviceInfo extends BaseEntity<BaseDeviceInfo> implements Serial
     /**
      * createTime
      */
+    @CreateTime
     private Date createTime;
     /**
      * code

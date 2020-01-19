@@ -1,6 +1,5 @@
 package org.yuan.boot.shower.dao.impl;
 
-import cn.hutool.http.HttpStatus;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
@@ -16,7 +15,6 @@ import org.yuan.boot.shower.pojo.SysUserExample;
 import org.yuan.boot.shower.pojo.condition.SysUserCondition;
 import org.yuan.boot.shower.utils.Results;
 import org.yuan.boot.webmvc.exception.NoValidateResultRuntimeException;
-import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.Date;
 import java.util.List;
@@ -63,14 +61,15 @@ public class SysUserDaoImpl extends BaseDaoImpl<SysUser, SysUserMapper> implemen
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(SysUser sysUser) {
-        sysUser = sysUser.setId(snowflake().nextId()).setCreateTime(new Date()).setPassword(passwordEncoder.encode(sysUser.getPassword()));
+//        sysUser = sysUser.setId(snowflake().nextId()).setCreateTime(new Date()).setPassword(passwordEncoder.encode(sysUser.getPassword()));
+        sysUser = sysUser.setPassword(passwordEncoder.encode(sysUser.getPassword()));
         baseMapper().insertSelective(sysUser);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void update(SysUser sysUser) {
-        sysUser.setUpdateTime(new Date());
+//        sysUser.setUpdateTime(new Date());
         baseMapper().updateByPrimaryKeySelective(sysUser);
     }
 

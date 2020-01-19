@@ -4,6 +4,9 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.yuan.boot.shower.interceptor.annotation.CreateTime;
+import org.yuan.boot.shower.interceptor.annotation.Id;
+import org.yuan.boot.shower.interceptor.annotation.UpdateTime;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -21,6 +24,7 @@ public final class SysUser extends BaseEntity<SysUser> implements Serializable {
      * id
      */
     @ApiModelProperty(value = "id")
+    @Id
     private Long id;
     /**
      * username
@@ -56,11 +60,13 @@ public final class SysUser extends BaseEntity<SysUser> implements Serializable {
      * createTime
      */
     @ApiModelProperty(value = "createTime")
+    @CreateTime
     private Date createTime;
     /**
      * updateTime
      */
     @ApiModelProperty(value = "updateTime")
+    @UpdateTime
     private Date updateTime;
     /**
      * enabled

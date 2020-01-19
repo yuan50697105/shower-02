@@ -2,6 +2,8 @@ package org.yuan.boot.shower.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.yuan.boot.shower.interceptor.annotation.CreateTime;
+import org.yuan.boot.shower.interceptor.annotation.Id;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +19,7 @@ public final class SysUserRole extends BaseEntity<SysUserRole> implements Serial
     /**
      * id
      */
+    @Id
     private Long id;
     /**
      * roleId
@@ -33,5 +36,6 @@ public final class SysUserRole extends BaseEntity<SysUserRole> implements Serial
     /**
      * createTime
      */
+    @CreateTime
     private Date createTime;
 }

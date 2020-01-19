@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 /**
@@ -17,7 +18,7 @@ import java.util.List;
 @Data
 public final class SysUserVo {
     @ApiModelProperty
-    @NotEmpty(groups = {Update.class, ChangeRole.class}, message = "ID不能为空")
+    @NotNull(groups = {Update.class, ChangeRole.class}, message = "ID不能为空")
     private Long id;
     @ApiModelProperty
     @NotEmpty(groups = {Save.class, Update.class, ChangePwd.class}, message = "username不能为空")

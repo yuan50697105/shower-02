@@ -2,6 +2,8 @@ package org.yuan.boot.shower.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.yuan.boot.shower.interceptor.annotation.CreateTime;
+import org.yuan.boot.shower.interceptor.annotation.Id;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -17,6 +19,7 @@ public final class SysPermission extends BaseEntity<SysPermission> implements Se
     /**
      * id
      */
+    @Id
     private Long id;
     /**
      * name
@@ -33,6 +36,7 @@ public final class SysPermission extends BaseEntity<SysPermission> implements Se
     /**
      * createTime
      */
+    @CreateTime
     private Date createTime;
     /**
      * updateTime

@@ -2,6 +2,7 @@ package org.yuan.boot.shower.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.yuan.boot.shower.interceptor.annotation.Id;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -18,6 +19,7 @@ public class BaseGoodsInfo extends BaseEntity<BaseGoodsInfo> implements Serializ
     /**
      * id
      */
+    @Id
     private Long id;
     /**
      * createUser
