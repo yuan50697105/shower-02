@@ -1,7 +1,10 @@
 group 'org.yuan.boot'
 
 dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp'
     compile group: 'org.minbox.framework', name: 'api-boot-starter-security-oauth-jwt'
     compile group: 'org.minbox.framework', name: 'api-boot-starter-http-converter'
     compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
@@ -11,8 +14,6 @@ dependencies {
     compile project(':db-mybatis-pagehelper')
     compile project(':utils-wx')
     compile project(':utils-retrofit')
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp'
     compile project(':shower-01-core')
     compile project(':shower-01-db')
     compile project(':shower-01-mq')
