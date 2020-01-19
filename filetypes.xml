@@ -1,0 +1,11 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping ext="stfl" type="FTL" />
+      <mapping ext="gradle.kts" type="Kotlin" />
+      <mapping pattern="aaa" type="PLAIN_TEXT" />
+      <mapping pattern="aaaa" type="PLAIN_TEXT" />
+      <mapping pattern="application-hikari,yml" type="PLAIN_TEXT" />
+    </extensionMap>
+  </component>
+</application>
