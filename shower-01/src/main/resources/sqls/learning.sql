@@ -2,7 +2,7 @@ create schema if not exists learning collate utf8mb4_0900_ai_ci;
 
 create table if not exists base_customer_consume_record
 (
-    id               bigint(15) auto_increment comment 'id'
+    id               bigint(15)     not null comment 'id'
         primary key,
     customer_id      bigint(15)     null comment 'customerId',
     customer_open_id varchar(50)    null comment 'customerOpenId',
@@ -18,7 +18,7 @@ create table if not exists base_customer_consume_record
 
 create table if not exists base_customer_info
 (
-    id              bigint(15) auto_increment comment 'id'
+    id              bigint(15)  not null comment 'id'
         primary key,
     actual_name     varchar(50) null comment 'actualName',
     open_id         varchar(50) null comment 'openId',
@@ -35,7 +35,7 @@ create table if not exists base_customer_info
 
 create table if not exists base_device_info
 (
-    id            bigint(15) auto_increment comment 'id'
+    id            bigint(15)                                not null comment 'id'
         primary key,
     create_user   varchar(50) default ''                    null comment 'createUser',
     create_time   datetime    default '1000-01-01 00:00:00' null comment 'createTime',
@@ -53,7 +53,7 @@ create table if not exists base_device_info
 
 create table if not exists base_goods_info
 (
-    id          bigint(15) auto_increment comment 'id'
+    id          bigint(15)     not null comment 'id'
         primary key,
     create_user varchar(50)    null comment 'createUser',
     update_user varchar(50)    null comment 'updateUser',
@@ -72,7 +72,7 @@ create table if not exists base_goods_info
 
 create table if not exists order_info
 (
-    id             bigint(15) auto_increment comment 'id'
+    id             bigint(15)     not null comment 'id'
         primary key,
     order_no       varchar(50)    null comment 'orderNo',
     user_id        bigint(15)     null comment 'userId',
@@ -96,9 +96,216 @@ create table if not exists order_info
 )
     comment 'order_info';
 
+create table if not exists qrtz_calendars
+(
+    SCHED_NAME    varchar(120) not null,
+    CALENDAR_NAME varchar(200) not null,
+    CALENDAR      blob         not null,
+    primary key (SCHED_NAME, CALENDAR_NAME)
+);
+
+create table if not exists qrtz_fired_triggers
+(
+    SCHED_NAME        varchar(120) not null,
+    ENTRY_ID          varchar(95)  not null,
+    TRIGGER_NAME      varchar(200) not null,
+    TRIGGER_GROUP     varchar(200) not null,
+    INSTANCE_NAME     varchar(200) not null,
+    FIRED_TIME        bigint(13)   not null,
+    SCHED_TIME        bigint(13)   not null,
+    PRIORITY          int          not null,
+    STATE             varchar(16)  not null,
+    JOB_NAME          varchar(200) null,
+    JOB_GROUP         varchar(200) null,
+    IS_NONCONCURRENT  varchar(1)   null,
+    REQUESTS_RECOVERY varchar(1)   null,
+    primary key (SCHED_NAME, ENTRY_ID)
+);
+
+create index IDX_QRTZ_FT_INST_JOB_REQ_RCVRY
+    on qrtz_fired_triggers (SCHED_NAME, INSTANCE_NAME, REQUESTS_RECOVERY);
+
+create index IDX_QRTZ_FT_JG
+    on qrtz_fired_triggers (SCHED_NAME, JOB_GROUP);
+
+create index IDX_QRTZ_FT_J_G
+    on qrtz_fired_triggers (SCHED_NAME, JOB_NAME, JOB_GROUP);
+
+create index IDX_QRTZ_FT_TG
+    on qrtz_fired_triggers (SCHED_NAME, TRIGGER_GROUP);
+
+create index IDX_QRTZ_FT_TRIG_INST_NAME
+    on qrtz_fired_triggers (SCHED_NAME, INSTANCE_NAME);
+
+create index IDX_QRTZ_FT_T_G
+    on qrtz_fired_triggers (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP);
+
+create table if not exists qrtz_job_details
+(
+    SCHED_NAME        varchar(120) not null,
+    JOB_NAME          varchar(200) not null,
+    JOB_GROUP         varchar(200) not null,
+    DESCRIPTION       varchar(250) null,
+    JOB_CLASS_NAME    varchar(250) not null,
+    IS_DURABLE        varchar(1)   not null,
+    IS_NONCONCURRENT  varchar(1)   not null,
+    IS_UPDATE_DATA    varchar(1)   not null,
+    REQUESTS_RECOVERY varchar(1)   not null,
+    JOB_DATA          blob         null,
+    primary key (SCHED_NAME, JOB_NAME, JOB_GROUP)
+);
+
+create index IDX_QRTZ_J_GRP
+    on qrtz_job_details (SCHED_NAME, JOB_GROUP);
+
+create index IDX_QRTZ_J_REQ_RECOVERY
+    on qrtz_job_details (SCHED_NAME, REQUESTS_RECOVERY);
+
+create table if not exists qrtz_locks
+(
+    SCHED_NAME varchar(120) not null,
+    LOCK_NAME  varchar(40)  not null,
+    primary key (SCHED_NAME, LOCK_NAME)
+);
+
+create table if not exists qrtz_paused_trigger_grps
+(
+    SCHED_NAME    varchar(120) not null,
+    TRIGGER_GROUP varchar(200) not null,
+    primary key (SCHED_NAME, TRIGGER_GROUP)
+);
+
+create table if not exists qrtz_scheduler_state
+(
+    SCHED_NAME        varchar(120) not null,
+    INSTANCE_NAME     varchar(200) not null,
+    LAST_CHECKIN_TIME bigint(13)   not null,
+    CHECKIN_INTERVAL  bigint(13)   not null,
+    primary key (SCHED_NAME, INSTANCE_NAME)
+);
+
+create table if not exists qrtz_triggers
+(
+    SCHED_NAME     varchar(120) not null,
+    TRIGGER_NAME   varchar(200) not null,
+    TRIGGER_GROUP  varchar(200) not null,
+    JOB_NAME       varchar(200) not null,
+    JOB_GROUP      varchar(200) not null,
+    DESCRIPTION    varchar(250) null,
+    NEXT_FIRE_TIME bigint(13)   null,
+    PREV_FIRE_TIME bigint(13)   null,
+    PRIORITY       int          null,
+    TRIGGER_STATE  varchar(16)  not null,
+    TRIGGER_TYPE   varchar(8)   not null,
+    START_TIME     bigint(13)   not null,
+    END_TIME       bigint(13)   null,
+    CALENDAR_NAME  varchar(200) null,
+    MISFIRE_INSTR  smallint(2)  null,
+    JOB_DATA       blob         null,
+    primary key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
+    constraint qrtz_triggers_ibfk_1
+        foreign key (SCHED_NAME, JOB_NAME, JOB_GROUP) references qrtz_job_details (SCHED_NAME, JOB_NAME, JOB_GROUP)
+);
+
+create table if not exists qrtz_blob_triggers
+(
+    SCHED_NAME    varchar(120) not null,
+    TRIGGER_NAME  varchar(200) not null,
+    TRIGGER_GROUP varchar(200) not null,
+    BLOB_DATA     blob         null,
+    primary key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
+    constraint qrtz_blob_triggers_ibfk_1
+        foreign key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP) references qrtz_triggers (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
+);
+
+create index SCHED_NAME
+    on qrtz_blob_triggers (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP);
+
+create table if not exists qrtz_cron_triggers
+(
+    SCHED_NAME      varchar(120) not null,
+    TRIGGER_NAME    varchar(200) not null,
+    TRIGGER_GROUP   varchar(200) not null,
+    CRON_EXPRESSION varchar(120) not null,
+    TIME_ZONE_ID    varchar(80)  null,
+    primary key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
+    constraint qrtz_cron_triggers_ibfk_1
+        foreign key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP) references qrtz_triggers (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
+);
+
+create table if not exists qrtz_simple_triggers
+(
+    SCHED_NAME      varchar(120) not null,
+    TRIGGER_NAME    varchar(200) not null,
+    TRIGGER_GROUP   varchar(200) not null,
+    REPEAT_COUNT    bigint(7)    not null,
+    REPEAT_INTERVAL bigint(12)   not null,
+    TIMES_TRIGGERED bigint(10)   not null,
+    primary key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
+    constraint qrtz_simple_triggers_ibfk_1
+        foreign key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP) references qrtz_triggers (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
+);
+
+create table if not exists qrtz_simprop_triggers
+(
+    SCHED_NAME    varchar(120)   not null,
+    TRIGGER_NAME  varchar(200)   not null,
+    TRIGGER_GROUP varchar(200)   not null,
+    STR_PROP_1    varchar(512)   null,
+    STR_PROP_2    varchar(512)   null,
+    STR_PROP_3    varchar(512)   null,
+    INT_PROP_1    int            null,
+    INT_PROP_2    int            null,
+    LONG_PROP_1   bigint         null,
+    LONG_PROP_2   bigint         null,
+    DEC_PROP_1    decimal(13, 4) null,
+    DEC_PROP_2    decimal(13, 4) null,
+    BOOL_PROP_1   varchar(1)     null,
+    BOOL_PROP_2   varchar(1)     null,
+    primary key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP),
+    constraint qrtz_simprop_triggers_ibfk_1
+        foreign key (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP) references qrtz_triggers (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP)
+);
+
+create index IDX_QRTZ_T_C
+    on qrtz_triggers (SCHED_NAME, CALENDAR_NAME);
+
+create index IDX_QRTZ_T_G
+    on qrtz_triggers (SCHED_NAME, TRIGGER_GROUP);
+
+create index IDX_QRTZ_T_J
+    on qrtz_triggers (SCHED_NAME, JOB_NAME, JOB_GROUP);
+
+create index IDX_QRTZ_T_JG
+    on qrtz_triggers (SCHED_NAME, JOB_GROUP);
+
+create index IDX_QRTZ_T_NEXT_FIRE_TIME
+    on qrtz_triggers (SCHED_NAME, NEXT_FIRE_TIME);
+
+create index IDX_QRTZ_T_NFT_MISFIRE
+    on qrtz_triggers (SCHED_NAME, MISFIRE_INSTR, NEXT_FIRE_TIME);
+
+create index IDX_QRTZ_T_NFT_ST
+    on qrtz_triggers (SCHED_NAME, TRIGGER_STATE, NEXT_FIRE_TIME);
+
+create index IDX_QRTZ_T_NFT_ST_MISFIRE
+    on qrtz_triggers (SCHED_NAME, MISFIRE_INSTR, NEXT_FIRE_TIME, TRIGGER_STATE);
+
+create index IDX_QRTZ_T_NFT_ST_MISFIRE_GRP
+    on qrtz_triggers (SCHED_NAME, MISFIRE_INSTR, NEXT_FIRE_TIME, TRIGGER_GROUP, TRIGGER_STATE);
+
+create index IDX_QRTZ_T_N_G_STATE
+    on qrtz_triggers (SCHED_NAME, TRIGGER_GROUP, TRIGGER_STATE);
+
+create index IDX_QRTZ_T_N_STATE
+    on qrtz_triggers (SCHED_NAME, TRIGGER_NAME, TRIGGER_GROUP, TRIGGER_STATE);
+
+create index IDX_QRTZ_T_STATE
+    on qrtz_triggers (SCHED_NAME, TRIGGER_STATE);
+
 create table if not exists sys_module
 (
-    id        bigint(15) auto_increment comment 'id'
+    id        bigint(15)             not null comment 'id'
         primary key,
     name      varchar(50) default '' null comment 'name',
     content   varchar(50) default '' null comment 'content',
@@ -110,7 +317,7 @@ create table if not exists sys_module
 
 create table if not exists sys_permission
 (
-    id          bigint(15) auto_increment comment 'id'
+    id          bigint(15)  not null comment 'id'
         primary key,
     name        varchar(50) null comment 'name',
     create_user varchar(50) null comment 'createUser',
@@ -125,7 +332,7 @@ create table if not exists sys_permission
 
 create table if not exists sys_role
 (
-    id          bigint(15) auto_increment comment 'id'
+    id          bigint(15)  not null comment 'id'
         primary key,
     name        varchar(50) null comment 'name',
     create_user varchar(50) null comment 'createUser',
@@ -140,7 +347,7 @@ create table if not exists sys_role
 
 create table if not exists sys_role_permission
 (
-    id            bigint auto_increment
+    id            bigint                             not null
         primary key,
     role_id       bigint                             not null,
     permission_id bigint                             not null,
@@ -151,7 +358,7 @@ create table if not exists sys_role_permission
 
 create table if not exists sys_user
 (
-    id          bigint(15) auto_increment comment 'id'
+    id          bigint(15)                                 not null comment 'id'
         primary key,
     username    varchar(50)  default ''                    not null comment 'username',
     password    varchar(255) default ''                    not null comment 'password',
@@ -169,7 +376,7 @@ create table if not exists sys_user
 
 create table if not exists sys_user_role
 (
-    id          bigint(15) auto_increment comment 'id'
+    id          bigint(15)  not null comment 'id'
         primary key,
     role_id     bigint(15)  not null comment 'roleId',
     user_id     bigint(15)  not null comment 'userId',
