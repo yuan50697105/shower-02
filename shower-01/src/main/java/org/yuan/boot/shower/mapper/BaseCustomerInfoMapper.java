@@ -33,7 +33,7 @@ public interface BaseCustomerInfoMapper extends BaseMapper<BaseCustomerInfo> {
 
     int updateByPrimaryKey(BaseCustomerInfo record);
 
-    List<BaseCustomerInfo> selectByCondition(BaseCustomerInfoCondition condition);
+    List<BaseCustomerInfo> selectByCondition(@Param("condition") BaseCustomerInfoCondition condition);
 
-    BaseCustomerInfo selectOneByCondition(BaseCustomerInfo customerInfo);
+    BaseCustomerInfo selectOneByCondition(@Param("customerInfo") BaseCustomerInfo customerInfo);
 }

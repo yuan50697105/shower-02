@@ -16,7 +16,7 @@ import org.yuan.boot.shower.pojo.converter.SysRoleConverter;
 import org.yuan.boot.shower.pojo.converter.SysRolePermissionConverter;
 import org.yuan.boot.shower.pojo.vo.SysRoleVo;
 import org.yuan.boot.shower.service.SysRoleService;
-import org.yuan.boot.shower.utils.ResultUtils;
+import org.yuan.boot.shower.utils.Results;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
@@ -41,22 +41,22 @@ public class SysRoleServiceImpl implements SysRoleService {
 
     @Override
     public Result selectPage(SysRoleCondition condition) {
-        return Result.data(sysRoleDao.selectPage(condition));
+        return Results.data(sysRoleDao.selectPage(condition));
     }
 
     @Override
     public Result selectList(SysRoleCondition condition) {
-        return Result.data(sysRoleDao.selectList(condition));
+        return Results.data(sysRoleDao.selectList(condition));
     }
 
     @Override
     public Result selectOne(SysRole sysRole) {
-        return Result.data(sysRoleDao.selectOne(sysRole));
+        return Results.data(sysRoleDao.selectOne(sysRole));
     }
 
     @Override
     public Result selectById(Long id) {
-        return Result.data(sysRoleDao.selectById(id));
+        return Results.data(sysRoleDao.selectById(id));
     }
 
     @Override
@@ -65,14 +65,14 @@ public class SysRoleServiceImpl implements SysRoleService {
         SysRole sysRole = sysRoleConverter.convert(sysRoleVo);
         Optional<SysRole> optional = sysRoleDao.selectByName(sysRole.getName());
         if (optional.isPresent()) {
-            throw new ExistResultRuntimeException(ResultUtils.existError("name已存在"));
+            throw new ExistResultRuntimeException(Results.existError("name已存在"));
         }
         sysRoleDao.save(sysRole);
         ThreadUtil.execAsync(() -> {
             List<Long> permissionIds = sysPermissionDao.selectByIds(sysRoleVo.getPermissionIds());
             sysRolePermissionDao.batchSave(sysRolePermissionConverter.convert(sysRole.getId(), permissionIds));
         });
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -80,7 +80,7 @@ public class SysRoleServiceImpl implements SysRoleService {
     public Result update(SysRoleVo sysRoleVo) {
         SysRole sysRole = sysRoleConverter.convert(sysRoleVo);
         sysRoleDao.update(sysRole);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -90,7 +90,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         List<Long> permissionIds = sysRoleVo.getPermissionIds();
         permissionIds = sysPermissionDao.selectByIds(permissionIds);
         sysRolePermissionDao.batchUpdate(new SysRole().setId(roleId), sysRolePermissionConverter.convert(roleId, permissionIds));
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -99,7 +99,7 @@ public class SysRoleServiceImpl implements SysRoleService {
         sysRoleDao.delete(ids);
         sysUserRoleDao.deleteByRoleIds(ids);
         sysRolePermissionDao.deleteByRoleIds(ids);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -108,6 +108,6 @@ public class SysRoleServiceImpl implements SysRoleService {
         sysRoleDao.delete(id);
         sysUserRoleDao.deleteByRoleId(id);
         sysRolePermissionDao.deleteByRoleId(id);
-        return Result.ok();
+        return Results.ok();
     }
 }

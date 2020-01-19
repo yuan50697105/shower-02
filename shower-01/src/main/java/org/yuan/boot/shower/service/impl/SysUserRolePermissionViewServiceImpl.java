@@ -7,6 +7,7 @@ import org.yuan.boot.shower.pojo.SysUserRolePermissionView;
 import org.yuan.boot.shower.pojo.converter.SysUserRolePermissionViewConverter;
 import org.yuan.boot.shower.pojo.result.SysUserRolePermissionViewResult;
 import org.yuan.boot.shower.service.SysUserRolePermissionViewService;
+import org.yuan.boot.shower.utils.Results;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class SysUserRolePermissionViewServiceImpl implements SysUserRolePermissi
     public Result list() {
         List<SysUserRolePermissionView> sysUserRolePermissionViews = sysUserRolePermissionViewDao.list();
         SysUserRolePermissionViewResult sysUserRolePermissionViewResult = sysUserRolePermissionViewConverter.convertOne(sysUserRolePermissionViews);
-        return Result.data(sysUserRolePermissionViewResult);
+        return Results.data(sysUserRolePermissionViewResult);
     }
 
 }

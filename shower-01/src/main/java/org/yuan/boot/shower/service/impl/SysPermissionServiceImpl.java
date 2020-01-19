@@ -11,6 +11,7 @@ import org.yuan.boot.shower.pojo.condition.SysPermissionCondition;
 import org.yuan.boot.shower.pojo.converter.SysPermissionConverter;
 import org.yuan.boot.shower.pojo.vo.SysPermissionVo;
 import org.yuan.boot.shower.service.SysPermissionService;
+import org.yuan.boot.shower.utils.Results;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
@@ -31,22 +32,22 @@ public class SysPermissionServiceImpl implements SysPermissionService {
 
     @Override
     public Result selectPage(SysPermissionCondition condition) {
-        return Result.data(sysPermissionDao.page(condition));
+        return Results.data(sysPermissionDao.page(condition));
     }
 
     @Override
     public Result selectList(SysPermissionCondition condition) {
-        return Result.data(sysPermissionDao.list(condition));
+        return Results.data(sysPermissionDao.list(condition));
     }
 
     @Override
     public Result selectOne(SysPermission permission) {
-        return Result.data(sysPermissionDao.get(permission));
+        return Results.data(sysPermissionDao.get(permission));
     }
 
     @Override
     public Result selectById(Long id) {
-        return Result.data(sysPermissionDao.get(id));
+        return Results.data(sysPermissionDao.get(id));
     }
 
     @Override
@@ -54,7 +55,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     public Result save(SysPermissionVo sysPermissionVo) {
         SysPermission sysPermission = sysPermissionConverter.convert(sysPermissionVo);
         sysPermissionDao.save(sysPermission);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -62,7 +63,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     public Result update(SysPermissionVo sysPermissionVo) {
         SysPermission sysPermission = sysPermissionConverter.convert(sysPermissionVo);
         sysPermissionDao.update(sysPermission);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -70,7 +71,7 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     public Result delete(Long id) {
         sysPermissionDao.delete(id);
         sysRolePermissionDao.deleteByPermissionId(id);
-        return Result.ok();
+        return Results.ok();
     }
 
     @Override
@@ -78,6 +79,6 @@ public class SysPermissionServiceImpl implements SysPermissionService {
     public Result delete(List<Long> ids) {
         sysPermissionDao.delete(ids);
         sysRolePermissionDao.deleteByPermissionIds(ids);
-        return Result.ok();
+        return Results.ok();
     }
 }
