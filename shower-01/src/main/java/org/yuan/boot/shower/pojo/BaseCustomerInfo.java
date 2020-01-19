@@ -2,7 +2,9 @@ package org.yuan.boot.shower.pojo;
 
 import lombok.*;
 import lombok.experimental.Accessors;
+import org.yuan.boot.db.pojo.AbstractBaseEntity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
@@ -11,7 +13,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-public final class BaseCustomerInfo extends BaseEntity<BaseCustomerInfo> {
+public class BaseCustomerInfo extends AbstractBaseEntity<BaseCustomerInfo> implements Serializable {
     /**
      * id
      */
@@ -21,6 +23,11 @@ public final class BaseCustomerInfo extends BaseEntity<BaseCustomerInfo> {
      * actualName
      */
     private String actualName;
+
+    /**
+     * openId
+     */
+    private String openId;
 
     /**
      * contactAddress
@@ -62,4 +69,9 @@ public final class BaseCustomerInfo extends BaseEntity<BaseCustomerInfo> {
      */
     private Date updateTime;
 
+    private static final long serialVersionUID = 1L;
+
+    public static BaseCustomerInfoBuilder builder() {
+        return new BaseCustomerInfoBuilder();
+    }
 }

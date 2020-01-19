@@ -15,20 +15,20 @@ public class BaseCustomerInfoExample {
         oredCriteria = new ArrayList<>();
     }
 
-    public String getOrderByClause() {
-        return orderByClause;
-    }
-
     public void setOrderByClause(String orderByClause) {
         this.orderByClause = orderByClause;
     }
 
-    public boolean isDistinct() {
-        return distinct;
+    public String getOrderByClause() {
+        return orderByClause;
     }
 
     public void setDistinct(boolean distinct) {
         this.distinct = distinct;
+    }
+
+    public boolean isDistinct() {
+        return distinct;
     }
 
     public List<Criteria> getOredCriteria() {
@@ -232,6 +232,76 @@ public class BaseCustomerInfoExample {
 
         public Criteria andActualNameNotBetween(String value1, String value2) {
             addCriterion("actual_name not between", value1, value2, "actualName");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdIsNull() {
+            addCriterion("open_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdIsNotNull() {
+            addCriterion("open_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdEqualTo(String value) {
+            addCriterion("open_id =", value, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdNotEqualTo(String value) {
+            addCriterion("open_id <>", value, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdGreaterThan(String value) {
+            addCriterion("open_id >", value, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdGreaterThanOrEqualTo(String value) {
+            addCriterion("open_id >=", value, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdLessThan(String value) {
+            addCriterion("open_id <", value, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdLessThanOrEqualTo(String value) {
+            addCriterion("open_id <=", value, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdLike(String value) {
+            addCriterion("open_id like", value, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdNotLike(String value) {
+            addCriterion("open_id not like", value, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdIn(List<String> values) {
+            addCriterion("open_id in", values, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdNotIn(List<String> values) {
+            addCriterion("open_id not in", values, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdBetween(String value1, String value2) {
+            addCriterion("open_id between", value1, value2, "openId");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenIdNotBetween(String value1, String value2) {
+            addCriterion("open_id not between", value1, value2, "openId");
             return (Criteria) this;
         }
 
@@ -790,6 +860,38 @@ public class BaseCustomerInfoExample {
 
         private String typeHandler;
 
+        public String getCondition() {
+            return condition;
+        }
+
+        public Object getValue() {
+            return value;
+        }
+
+        public Object getSecondValue() {
+            return secondValue;
+        }
+
+        public boolean isNoValue() {
+            return noValue;
+        }
+
+        public boolean isSingleValue() {
+            return singleValue;
+        }
+
+        public boolean isBetweenValue() {
+            return betweenValue;
+        }
+
+        public boolean isListValue() {
+            return listValue;
+        }
+
+        public String getTypeHandler() {
+            return typeHandler;
+        }
+
         protected Criterion(String condition) {
             super();
             this.condition = condition;
@@ -824,38 +926,6 @@ public class BaseCustomerInfoExample {
 
         protected Criterion(String condition, Object value, Object secondValue) {
             this(condition, value, secondValue, null);
-        }
-
-        public String getCondition() {
-            return condition;
-        }
-
-        public Object getValue() {
-            return value;
-        }
-
-        public Object getSecondValue() {
-            return secondValue;
-        }
-
-        public boolean isNoValue() {
-            return noValue;
-        }
-
-        public boolean isSingleValue() {
-            return singleValue;
-        }
-
-        public boolean isBetweenValue() {
-            return betweenValue;
-        }
-
-        public boolean isListValue() {
-            return listValue;
-        }
-
-        public String getTypeHandler() {
-            return typeHandler;
         }
     }
 }
