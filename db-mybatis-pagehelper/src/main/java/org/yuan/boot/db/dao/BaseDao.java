@@ -4,5 +4,5 @@ import org.yuan.boot.db.pojo.AbstractBaseEntity;
 
 import java.io.Serializable;
 
-public interface BaseDao<T extends AbstractBaseEntity<T>, ID extends Serializable> {
+public interface BaseDao<T, ID extends Serializable> {
 }
