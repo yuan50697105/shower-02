@@ -4,6 +4,8 @@ import org.yuan.boot.shower.db.pojo.WxOrderInfoCondition;
 import org.yuan.boot.shower.wx.pojo.WxOrderVO;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @program: shower-01
  * @description:
@@ -16,4 +18,6 @@ public interface WxOrderService {
     Result getOrderList(WxOrderInfoCondition wxOrderInfoCondition);
 
     Result pay(Long orderId);
+
+    Result doNotify(HttpServletRequest request);
 }

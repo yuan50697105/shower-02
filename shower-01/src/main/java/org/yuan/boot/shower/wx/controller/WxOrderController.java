@@ -10,6 +10,8 @@ import org.yuan.boot.shower.wx.service.WxOrderService;
 import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @program: shower-01
  * @description:
@@ -36,5 +38,9 @@ public class WxOrderController extends AbstractResultController {
     @PostMapping(value = "pay", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Result pay(@RequestBody Long orderId) {
         return wxOrderService.pay(orderId);
+    }
+
+    public Result notify(HttpServletRequest request) {
+        return wxOrderService.doNotify(request);
     }
 }
