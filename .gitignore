@@ -173,3 +173,6 @@ nbdist/
 .nb-gradle/
 
 .vscode
+
+gradle.settings.xml
+bin

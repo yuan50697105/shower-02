@@ -23,7 +23,8 @@ public interface BaseCustomerConsumeRecordConverter {
             @org.mapstruct.Mapping(target = "customerOpenId", ignore = true),
             @org.mapstruct.Mapping(target = "deviceCode", source = "deviceInfo.code"),
             @org.mapstruct.Mapping(target = "deviceId", source = "deviceInfo.id"),
-            @org.mapstruct.Mapping(target = "id", ignore = true)
+            @org.mapstruct.Mapping(target = "id", ignore = true),
+            @org.mapstruct.Mapping(target = "createTime", ignore = true)
     })
     BaseCustomerConsumeRecord convertForSave(BaseCustomerInfo customerInfo, BaseDeviceInfo deviceInfo, BigDecimal price, BigDecimal time, BigDecimal totalPrice, String operation);
 }
