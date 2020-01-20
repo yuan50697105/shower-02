@@ -18,18 +18,25 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 public class DeviceInfo extends BaseEntity<DeviceInfo> implements Serializable {
-    private Long id;
+    /**
+     * 编号
+     */
     private String code;
+    /**
+     * 地址
+     */
     private String address;
+    /**
+     * 坐标值
+     */
     private String point;
 
     public DeviceInfo() {
     }
 
     @Builder
-    public DeviceInfo(Long id, Long id1, String code, String address, String point) {
+    public DeviceInfo(Long id, String code, String address, String point) {
         super(id);
-        this.id = id1;
         this.code = code;
         this.address = address;
         this.point = point;

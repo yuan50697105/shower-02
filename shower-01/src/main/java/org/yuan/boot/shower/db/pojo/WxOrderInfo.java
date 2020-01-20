@@ -4,6 +4,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.yuan.boot.shower.commons.interceptor.annotation.CreateTime;
+import org.yuan.boot.shower.commons.interceptor.annotation.UpdateTime;
 import org.yuan.boot.shower.commons.pojo.BaseEntity;
 
 import java.io.Serializable;
@@ -102,5 +103,9 @@ public class WxOrderInfo extends BaseEntity<WxOrderInfo> implements Serializable
      * 客户离开时间
      */
     private Date leaveTime;
+    @CreateTime
+    private Date crateTime;
+    @UpdateTime
+    private Date updateTime;
 
 }

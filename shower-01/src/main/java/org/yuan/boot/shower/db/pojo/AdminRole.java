@@ -18,6 +18,9 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 public class AdminRole extends BaseEntity<AdminRole> implements Serializable {
+    /**
+     * 名称
+     */
     private String name;
 
     public AdminRole() {

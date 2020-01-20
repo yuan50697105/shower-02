@@ -18,7 +18,13 @@ import java.io.Serializable;
 @Data
 @Accessors(chain = true)
 public class AdminUserRole extends BaseEntity<AdminUserRole> implements Serializable {
+    /**
+     * 用户ID
+     */
     private Long userId;
+    /**
+     * 角色ID
+     */
     private Long roleId;
 
     public AdminUserRole() {

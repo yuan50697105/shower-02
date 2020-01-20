@@ -19,14 +19,34 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class WxCustomer extends BaseEntity<WxCustomer> implements Serializable {
+    /**
+     * 微信OPENID
+     */
     private String openId;
+    /**
+     * 微信UNIONID
+     */
     private String unionId;
-    private String username;
+    /**
+     * 昵称
+     */
+    private String nickName;
+    /**
+     * 电话
+     */
     private String phone;
-    private String idNum;
+    /**
+     * 性别
+     */
     private Integer gender;
+    /**
+     * 创建时间
+     */
     @CreateTime
     private Date createTime;
+    /**
+     * 修改时间
+     */
     @UpdateTime
     private Date updateTime;
 
@@ -35,13 +55,12 @@ public class WxCustomer extends BaseEntity<WxCustomer> implements Serializable {
 
 
     @Builder
-    public WxCustomer(Long id, String openId, String unionId, String username, String phone, String idNum, Date createTime, Date updateTime) {
+    public WxCustomer(Long id, String openId, String unionId, String nickName, String phone, Date createTime, Date updateTime) {
         super(id);
         this.openId = openId;
         this.unionId = unionId;
-        this.username = username;
+        this.nickName = nickName;
         this.phone = phone;
-        this.idNum = idNum;
         this.createTime = createTime;
         this.updateTime = updateTime;
     }
