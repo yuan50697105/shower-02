@@ -5,17 +5,16 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
+import lombok.*;
+
+@EqualsAndHashCode(callSuper = true)
 @ApiModel(value = "org-yuan-boot-shower-pojo-BaseCustomerConsumeRecord")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BaseCustomerConsumeRecord extends BaseEntity<> implements Serializable {
+public class BaseCustomerConsumeRecord extends BaseEntity<BaseCustomerConsumeRecord> implements Serializable {
     /**
      * id
      */
