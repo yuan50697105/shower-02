@@ -3,18 +3,19 @@ package org.yuan.boot.shower.wx.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.yuan.boot.shower.wx.service.WxUserService;
+import org.yuan.boot.shower.wx.service.WxOrderService;
 import org.yuan.boot.webmvc.controller.AbstractResultController;
 
 /**
  * @program: shower-01
  * @description:
  * @author: yuane
- * @create: 2020-01-20 18:51
+ * @create: 2020-01-20 19:03
  */
 @RestController
-@RequestMapping("wx/user")
+@RequestMapping("wx/order")
 @AllArgsConstructor
-public class WxUserController extends AbstractResultController {
-    private WxUserService wxUserService;
+public class WxOrderController extends AbstractResultController {
+    private WxOrderService wxOrderService;
+
 }
