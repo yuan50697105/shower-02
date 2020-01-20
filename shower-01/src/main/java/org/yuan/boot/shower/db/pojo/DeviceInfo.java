@@ -17,17 +17,17 @@ import java.io.Serializable;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class WxDeviceInfo extends BaseEntity<WxDeviceInfo> implements Serializable {
+public class DeviceInfo extends BaseEntity<DeviceInfo> implements Serializable {
     private Long id;
     private String code;
     private String address;
     private String point;
 
-    public WxDeviceInfo() {
+    public DeviceInfo() {
     }
 
     @Builder
-    public WxDeviceInfo(Long id, Long id1, String code, String address, String point) {
+    public DeviceInfo(Long id, Long id1, String code, String address, String point) {
         super(id);
         this.id = id1;
         this.code = code;
