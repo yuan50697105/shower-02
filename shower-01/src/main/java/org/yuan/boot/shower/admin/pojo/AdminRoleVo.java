@@ -2,6 +2,8 @@ package org.yuan.boot.shower.admin.pojo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
+
 /**
  * @program: shower-01
  * @description:
@@ -10,5 +12,13 @@ import lombok.Data;
  */
 @Data
 public class AdminRoleVo {
+    @NotEmpty(groups = {Save.class, Update.class})
     private String name;
+
+    public interface Save {
+    }
+
+    public interface Update {
+    }
+
 }

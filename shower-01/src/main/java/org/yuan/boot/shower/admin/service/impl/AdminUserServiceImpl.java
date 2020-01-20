@@ -50,7 +50,7 @@ public class AdminUserServiceImpl implements AdminUserService {
         adminUserDao.save(adminUser);
         adminUserVO.setRoleIds(new ArrayList<>(new HashSet<>(adminUserVO.getRoleIds())));
         adminUserVO.setRoleIds(adminRoleDao.selectRoleIdsByRoleIds(adminUserVO.getRoleIds()));
-        List<AdminUserRole> adminUserRoles = adminUserRoleConverter.convert(adminUser.getId(), adminUserVO.getRoleIds());
+        List<AdminUserRole> adminUserRoles = adminUserRoleConverter.convertToUserRole(adminUser.getId(), adminUserVO.getRoleIds());
         adminUserRoleDao.batchSaveByUser(adminUserRoles);
         return Results.ok();
     }
@@ -95,6 +95,14 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Transactional(rollbackFor = Exception.class)
     public Result changeInfo(AdminUserVO adminUserVO) {
         return null;
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Result changeRole(AdminUserVO adminUserVO) {
+        List<AdminUserRole> adminUserRoles = adminUserRoleConverter.convertToUserRole(adminUserVO);
+        adminUserRoleDao.batchSave(adminUserRoles);
+        return Results.ok();
     }
 
 }

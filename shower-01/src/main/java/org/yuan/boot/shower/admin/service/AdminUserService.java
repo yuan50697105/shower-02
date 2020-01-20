@@ -22,4 +22,6 @@ public interface AdminUserService {
     Result changePwd(AdminUserVO adminUserVO);
 
     Result changeInfo(AdminUserVO adminUserVO);
+
+    Result changeRole(AdminUserVO adminUserVO);
 }

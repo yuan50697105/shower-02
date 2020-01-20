@@ -2,6 +2,7 @@ package org.yuan.boot.shower.admin.converter;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.Mappings;
+import org.yuan.boot.shower.admin.pojo.AdminUserVO;
 import org.yuan.boot.shower.db.pojo.AdminUserRole;
 
 import java.util.ArrayList;
@@ -22,15 +23,19 @@ public interface AdminUserRoleConverter {
             @org.mapstruct.Mapping(target = "copyFromIgnoreNull", ignore = true),
             @org.mapstruct.Mapping(target = "id", ignore = true)
     })
-    AdminUserRole convert(Long userId, Long roleId);
+    AdminUserRole convertToUserRole(Long userId, Long roleId);
 
-    default List<AdminUserRole> convert(Long userId, List<Long> roleIds) {
+    default List<AdminUserRole> convertToUserRole(Long userId, List<Long> roleIds) {
         ArrayList<AdminUserRole> adminUserRoles = new ArrayList<>();
         roleIds = new ArrayList<>(new HashSet<>(roleIds));
         for (Long roleId : roleIds) {
-            adminUserRoles.add(convert(userId, roleId));
+            adminUserRoles.add(convertToUserRole(userId, roleId));
         }
         return adminUserRoles;
+    }
+
+    default List<AdminUserRole> convertToUserRole(AdminUserVO adminUserVO) {
+        return convertToUserRole(adminUserVO.getId(), adminUserVO.getRoleIds());
     }
 
 }

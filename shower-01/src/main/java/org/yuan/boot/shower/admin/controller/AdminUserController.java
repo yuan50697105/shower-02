@@ -56,5 +56,11 @@ public class AdminUserController extends AbstractResultController {
         return adminUserService.changePwd(adminUserVO);
     }
 
+    @PostMapping("change_role")
+    public Result changeRole(@RequestBody @Validated(AdminUserVO.ChangeRole.class) AdminUserVO adminUserVO, BindingResult result) {
+        validate(result);
+        return adminUserService.changeRole(adminUserVO);
+    }
+
 
 }
