@@ -1,6 +1,7 @@
 package org.yuan.boot.shower.wx.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,8 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class WxOrderController extends AbstractResultController {
     private WxOrderService wxOrderService;
 
-    @GetMapping("orderList")
+    @SuppressWarnings("deprecation")
+    @GetMapping(value = "orderList",produces = MediaType.APPLICATION_PROBLEM_JSON_UTF8_VALUE)
     public Result orderList(WxOrderInfoCondition wxOrderInfoCondition) {
         return wxOrderService.getOrderList(wxOrderInfoCondition);
     }

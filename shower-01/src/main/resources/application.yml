@@ -4,7 +4,6 @@ server:
   http2:
     enabled: true
   port: 8001
-
 spring:
   datasource:
     username: root
@@ -14,7 +13,7 @@ spring:
   main:
     allow-bean-definition-overriding: true
   application:
-    name: webmvc-app-project-01
+    name: shower-01
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
 mybatis:
@@ -23,6 +22,7 @@ mybatis:
 logging:
   level:
     org.minbox.framework.api.boot.plugin.logging: debug
+    org.yuan.boot.shower.db.mapper: debug
 
 api:
   boot:
@@ -30,8 +30,11 @@ api:
       admin:
         format-console-log-json: true
       show-console-log: true
+      format-console-log-json: true
     security:
       away: jdbc
+    quartz:
+      job-store-type: memory
 
 wx:
   miniapp:

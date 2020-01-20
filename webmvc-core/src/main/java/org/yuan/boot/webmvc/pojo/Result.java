@@ -1,7 +1,7 @@
 package org.yuan.boot.webmvc.pojo;
 
 import lombok.Builder;
-import lombok.Value;
+import lombok.Data;
 
 import java.io.Serializable;
 
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * @author: yuane
  * @create: 2019-12-29 16:49
  */
-@Value
+@Data
 @Builder
 public class Result implements Serializable {
     private Integer code;

@@ -19,7 +19,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class WxUserController extends AbstractResultController {
     private WxUserService wxUserService;
 
-    @PostMapping("login")
+    @GetMapping("login")
     public Result wxLogin(String jsCode) {
         return wxUserService.wxLogin(jsCode);
     }
