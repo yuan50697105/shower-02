@@ -1,5 +1,6 @@
 package org.yuan.boot.webmvc.exception;
 
+import cn.hutool.core.util.ObjectUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.yuan.boot.webmvc.pojo.Result;
@@ -23,6 +24,6 @@ public class NoValidateResultRuntimeException extends ResultRuntimeException {
     }
 
     public NoValidateResultRuntimeException(String message) {
-        super(Results.dataParamsError(message));
+        super(Results.dataParamsError(ObjectUtil.isNotEmpty(message) ? message : Results.DATA_PARAMS_ERROR_MESSAGE));
     }
 }

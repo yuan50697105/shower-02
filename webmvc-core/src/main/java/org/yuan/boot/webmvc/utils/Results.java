@@ -1,5 +1,6 @@
 package org.yuan.boot.webmvc.utils;
 
+import cn.hutool.core.util.ObjectUtil;
 import org.yuan.boot.webmvc.pojo.Result;
 
 /**
@@ -55,7 +56,11 @@ public class Results {
     }
 
     public static Result dataParamsError(String message) {
-        return Result.builder().code(DATA_PARAMS_ERROR_CODE).message(message).build();
+        if (ObjectUtil.isNotEmpty(message)) {
+            return Result.builder().code(DATA_PARAMS_ERROR_CODE).message(message).build();
+        } else {
+            return dataParamsError();
+        }
     }
 
     public static Result dataParamsError(String message, Object data) {
@@ -71,7 +76,11 @@ public class Results {
     }
 
     public static Result dataResultError(String message) {
-        return Result.builder().code(DATA_RESULT_ERROR_CODE).message(message).build();
+        if (!ObjectUtil.isNotEmpty(message)) {
+            return dataResultError();
+        } else {
+            return Result.builder().code(DATA_RESULT_ERROR_CODE).message(DATA_RESULT_ERROR_MESSAGE).build();
+        }
     }
 
     public static Result dataResultError(String message, Object data) {
