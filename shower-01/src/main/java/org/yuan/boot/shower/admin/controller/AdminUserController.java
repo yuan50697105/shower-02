@@ -34,7 +34,7 @@ public class AdminUserController extends AbstractResultController {
         return adminUserService.list(condition);
     }
 
-    @GetMapping("get")
+    @GetMapping(value = "get", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Result get(Long id) {
         return adminUserService.get(id);
     }
