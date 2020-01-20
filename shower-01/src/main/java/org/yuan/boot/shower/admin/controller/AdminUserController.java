@@ -24,12 +24,12 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class AdminUserController extends AbstractResultController {
     private AdminUserService adminUserService;
 
-    @GetMapping(value = "data", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "data", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Result data(AdminUserCondition condition) {
         return adminUserService.data(condition);
     }
 
-    @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(value = "list", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Result list(AdminUserCondition condition) {
         return adminUserService.list(condition);
     }

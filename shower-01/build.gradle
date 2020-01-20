@@ -5,7 +5,9 @@ plugins {
 group 'org.yuan.boot.shower'
 
 dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
     compile group: 'org.minbox.framework', name: 'api-boot-starter-security-oauth-jwt'
     compile group: 'org.minbox.framework', name: 'api-boot-starter-http-converter'
     compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'

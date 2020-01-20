@@ -10,12 +10,15 @@ spring:
     password: root
     url: jdbc:mysql://localhost:3306/shower?serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
   main:
     allow-bean-definition-overriding: true
   application:
     name: shower-01
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss
+  cache:
+    type: simple
 mybatis:
   mapper-locations: classpath*:/mappers/*Mapper.xml
 

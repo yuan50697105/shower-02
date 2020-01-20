@@ -1,6 +1,8 @@
 package org.yuan.boot.shower.admin.service.impl;
 
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -35,6 +37,7 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
+@Cacheable(keyGenerator = "keyGenerator")
 public class AdminUserServiceImpl implements AdminUserService {
     private AdminUserDao adminUserDao;
     private AdminRoleDao adminRoleDao;
@@ -57,12 +60,13 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     @Override
     public Result data(AdminUserCondition condition) {
-        return Results.data(PageResults.of(adminUserDao.selectPage(condition)));
+        return Results.data(PageResults.of(adminUserDao.selectPage((AdminUserCondition) condition.setOrder("create_time").setSort("desc"))));
     }
 
     @Override
+    @Caching
     public Result list(AdminUserCondition condition) {
-        return Results.data(adminUserDao.selectList(condition));
+        return Results.data(adminUserDao.selectList((AdminUserCondition) condition.setOrder("create_time").setSort("desc")));
     }
 
     @Override
