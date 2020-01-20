@@ -54,11 +54,27 @@ public class Results {
         return Result.builder().code(DATA_PARAMS_ERROR_CODE).message(DATA_PARAMS_ERROR_MESSAGE).data(data).build();
     }
 
+    public static Result dataParamsError(String message) {
+        return Result.builder().code(DATA_PARAMS_ERROR_CODE).message(message).build();
+    }
+
+    public static Result dataParamsError(String message, Object data) {
+        return Result.builder().code(DATA_PARAMS_ERROR_CODE).message(message).data(data).build();
+    }
+
     public static Result dataResultError() {
         return Result.builder().code(DATA_RESULT_ERROR_CODE).message(DATA_RESULT_ERROR_MESSAGE).build();
     }
 
     public static Result dataResultError(Object data) {
         return Result.builder().code(DATA_RESULT_ERROR_CODE).message(DATA_RESULT_ERROR_MESSAGE).data(data).build();
+    }
+
+    public static Result dataResultError(String message) {
+        return Result.builder().code(DATA_RESULT_ERROR_CODE).message(message).build();
+    }
+
+    public static Result dataResultError(String message, Object data) {
+        return Result.builder().code(DATA_RESULT_ERROR_CODE).message(message).data(data).build();
     }
 }
