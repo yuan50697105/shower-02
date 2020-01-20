@@ -45,6 +45,7 @@ public class AdminUserController extends AbstractResultController {
         return adminUserService.save(adminUserVO);
     }
 
+    @PostMapping("change/info")
     public Result changeInfo(@RequestBody @Validated(AdminUserVO.Update.class) AdminUserVO adminUserVO, BindingResult result) {
         validate(result);
         return adminUserService.changeInfo(adminUserVO);
