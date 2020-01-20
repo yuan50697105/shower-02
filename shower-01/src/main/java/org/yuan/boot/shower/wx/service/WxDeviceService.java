@@ -11,5 +11,5 @@ import org.yuan.boot.webmvc.pojo.Result;
 public interface WxDeviceService {
     Result nearList(String point);
 
-    Result getDeviceInfo(String id);
+    Result getDeviceInfo(Long id);
 }

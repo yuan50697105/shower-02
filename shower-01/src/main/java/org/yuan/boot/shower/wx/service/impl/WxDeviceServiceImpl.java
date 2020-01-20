@@ -27,7 +27,7 @@ public class WxDeviceServiceImpl implements WxDeviceService {
     }
 
     @Override
-    public Result getDeviceInfo(String id) {
+    public Result getDeviceInfo(Long id) {
         return Results.data(deviceInfoDao.getById(id));
     }
 

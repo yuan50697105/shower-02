@@ -28,7 +28,7 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     }
 
     @Override
-    public Optional<DeviceInfo> getById(String id) {
+    public Optional<DeviceInfo> getById(Long id) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
     }
 }

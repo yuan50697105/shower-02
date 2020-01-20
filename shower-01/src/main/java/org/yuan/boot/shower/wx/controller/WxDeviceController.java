@@ -28,7 +28,7 @@ public class WxDeviceController extends AbstractResultController {
     }
 
     @GetMapping(value = "deviceInfo", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public Result deviceInfo(String id) {
+    public Result deviceInfo(Long id) {
         return wxDeviceService.getDeviceInfo(id);
     }
 }

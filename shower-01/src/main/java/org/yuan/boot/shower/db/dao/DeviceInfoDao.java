@@ -16,5 +16,5 @@ import java.util.Optional;
 public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
     PageInfo<DeviceInfo> selectPage(DeviceInfoCondition condition);
 
-    Optional<DeviceInfo> getById(String id);
+    Optional<DeviceInfo> getById(Long id);
 }
