@@ -4,6 +4,7 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
+import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.service.WxPayService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -54,9 +55,11 @@ public class WxOrderServiceImpl implements WxOrderService {
         return Results.data(PageResults.of(wxOrderInfoDao.selectPageOrderByCreateTimeDesc(wxOrderInfoCondition)));
     }
 
+    // TODO: 2020/1/20 支付需测试
     @SneakyThrows
     @Override
     public Result pay(Long orderId) {
+
         Optional<WxOrderInfo> optional = wxOrderInfoDao.getById(orderId);
         if (!optional.isPresent()) {
             throw new ResultRuntimeException(Results.error(Results.WX_ERROR, "订单不存在"));
@@ -64,12 +67,13 @@ public class WxOrderServiceImpl implements WxOrderService {
             WxOrderInfo wxOrderInfo = optional.get();
             String orderNo = wxOrderInfo.getOrderNo();
             BigDecimal totalDecimal = wxOrderInfo.getTotalDecimal();
-            WxPayUnifiedOrderRequest request = WxPayUnifiedOrderRequest.newBuilder().outTradeNo(orderNo).totalFee(WxPayUnifiedOrderRequest.yuanToFen(totalDecimal.toPlainString())).build();
+            WxPayUnifiedOrderRequest request = WxPayUnifiedOrderRequest.newBuilder().tradeType(WxPayConstants.TradeType.JSAPI).outTradeNo(orderNo).totalFee(WxPayUnifiedOrderRequest.yuanToFen(totalDecimal.toPlainString())).build();
             WxPayUnifiedOrderResult result = wxPayService.unifiedOrder(request);
             return Results.data(result);
         }
     }
 
+    // TODO: 2020/1/20 回调需测试
     @SneakyThrows
     @Override
     public Result doNotify(HttpServletRequest request) {
