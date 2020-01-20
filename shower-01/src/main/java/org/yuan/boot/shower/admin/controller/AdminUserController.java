@@ -45,19 +45,19 @@ public class AdminUserController extends AbstractResultController {
         return adminUserService.save(adminUserVO);
     }
 
-    @PostMapping("change/info")
+    @PostMapping(value = "change/info", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Result changeInfo(@RequestBody @Validated(AdminUserVO.Update.class) AdminUserVO adminUserVO, BindingResult result) {
         validate(result);
         return adminUserService.changeInfo(adminUserVO);
     }
 
-    @PostMapping("change/pwd")
+    @PostMapping(value = "change/pwd", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Result changePwd(@RequestBody @Validated(AdminUserVO.ChangePwd.class) AdminUserVO adminUserVO, BindingResult result) {
         validate(result);
         return adminUserService.changePwd(adminUserVO);
     }
 
-    @PostMapping("change/role")
+    @PostMapping(value = "change/role", produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Result changeRole(@RequestBody @Validated(AdminUserVO.ChangeRole.class) AdminUserVO adminUserVO, BindingResult result) {
         validate(result);
         return adminUserService.changeRole(adminUserVO);
