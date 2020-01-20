@@ -25,17 +25,14 @@ public class WxCustomerDaoImpl extends BaseDaoImpl<WxCustomer, WxCustomerMapper>
     public void saveWxCustomer(WxCustomer wxCustomer) {
         String unionId = wxCustomer.getUnionId();
         if (checkWxCustomer(unionId)) {
-            // TODO: 2020/1/20 更新信息
             baseMapper().updateByPrimaryKeySelective(wxCustomer);
         } else {
-            // TODO: 2020/1/20 插入信息
             baseMapper().insertSelective(wxCustomer);
         }
     }
 
     @Override
     public boolean checkWxCustomer(String unionId) {
-// TODO: 2020/1/20 验证 客户是否存在
         WxCustomerExample example = new WxCustomerExample();
         example.or().andUnionIdEqualTo(unionId);
         return baseMapper().countByExample(example) > 0;
