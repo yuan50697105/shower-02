@@ -5,6 +5,8 @@ import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
 import org.yuan.boot.db.pojo.AbstractBaseCondition;
 
+import java.util.Date;
+
 /**
  * @program: shower-01
  * @description:
@@ -15,10 +17,22 @@ import org.yuan.boot.db.pojo.AbstractBaseCondition;
 @Data
 @Accessors(chain = true)
 public class WxOrderInfoCondition extends AbstractBaseCondition {
+    private String openId;
+    private String customerId;
+    private String orderNo;
+    private String deviceCode;
+    private Date createDateStart;
+    private Date createDateEnd;
+
     public WxOrderInfoCondition() {
     }
 
     public WxOrderInfoCondition(int page, int size) {
         super(page, size);
+    }
+
+
+    public WxOrderInfoCondition(int page, int size, String order, String sort) {
+        super(page, size, order, sort);
     }
 }

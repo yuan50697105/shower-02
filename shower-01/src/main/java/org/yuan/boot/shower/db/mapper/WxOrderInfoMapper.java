@@ -1,12 +1,11 @@
 package org.yuan.boot.shower.db.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.shower.commons.mapper.BaseMapper;
 import org.yuan.boot.shower.db.pojo.WxOrderInfo;
-import org.yuan.boot.shower.db.pojo.WxOrderInfoExample;
-
-import java.util.List;
+import org.yuan.boot.shower.db.pojo.WxOrderInfoCondition;import org.yuan.boot.shower.db.pojo.WxOrderInfoExample;
 
 @Mapper
 public interface WxOrderInfoMapper extends BaseMapper<WxOrderInfo> {
@@ -31,4 +30,6 @@ public interface WxOrderInfoMapper extends BaseMapper<WxOrderInfo> {
     int updateByPrimaryKeySelective(WxOrderInfo record);
 
     int updateByPrimaryKey(WxOrderInfo record);
+
+    List<WxOrderInfo> selectByCondition(WxOrderInfoCondition condition);
 }

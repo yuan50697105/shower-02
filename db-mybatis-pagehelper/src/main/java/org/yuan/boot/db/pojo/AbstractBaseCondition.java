@@ -18,4 +18,8 @@ public abstract class AbstractBaseCondition extends AbstractBaseCoreCondition {
     public AbstractBaseCondition(int page, int size) {
         super(page, size);
     }
+
+    public AbstractBaseCondition(int page, int size, String order, String sort) {
+        super(page, size, order, sort);
+    }
 }

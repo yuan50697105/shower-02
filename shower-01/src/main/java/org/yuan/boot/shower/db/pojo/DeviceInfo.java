@@ -2,14 +2,12 @@ package org.yuan.boot.shower.db.pojo;
 
 import java.io.Serializable;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.shower.commons.pojo.BaseEntity;
 
 @Data
-public class DeviceInfo implements Serializable {
-    /**
-     * id
-     */
-    private Long id;
-
+@EqualsAndHashCode(callSuper = true)
+public class DeviceInfo extends BaseEntity implements Serializable {
     /**
      * 编号
      */
@@ -27,7 +25,4 @@ public class DeviceInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static org.yuan.boot.shower.db.pojo.DeviceInfo.DeviceInfoBuilder builder() {
-        return new org.yuan.boot.shower.db.pojo.DeviceInfo.DeviceInfoBuilder();
-    }
 }

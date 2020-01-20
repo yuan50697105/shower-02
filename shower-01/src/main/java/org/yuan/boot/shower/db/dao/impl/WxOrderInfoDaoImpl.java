@@ -1,8 +1,14 @@
 package org.yuan.boot.shower.db.dao.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.yuan.boot.shower.commons.dao.impl.BaseDaoImpl;
 import org.yuan.boot.shower.db.dao.WxOrderInfoDao;
+import org.yuan.boot.shower.db.mapper.WxOrderInfoMapper;
+import org.yuan.boot.shower.db.pojo.WxOrderInfo;
+import org.yuan.boot.shower.db.pojo.WxOrderInfoCondition;
 
 /**
  * @program: shower-01
@@ -12,5 +18,17 @@ import org.yuan.boot.shower.db.dao.WxOrderInfoDao;
  */
 @Component
 @AllArgsConstructor
-public class WxOrderInfoDaoImpl implements WxOrderInfoDao {
+public class WxOrderInfoDaoImpl extends BaseDaoImpl<WxOrderInfo, WxOrderInfoMapper> implements WxOrderInfoDao {
+    @Override
+    public PageInfo<WxOrderInfo> selectPage(WxOrderInfoCondition condition) {
+        PageHelper.startPage(condition.getPage(), condition.getSize());
+        return PageInfo.of(baseMapper().selectByCondition(condition));
+    }
+
+    @Override
+    public PageInfo<WxOrderInfo> selectPageOrderByCreateTimeDesc(WxOrderInfoCondition condition) {
+        return selectPage((WxOrderInfoCondition) condition.setOrder("create_time").setSort("desc"));
+    }
+
+
 }

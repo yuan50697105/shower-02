@@ -3,14 +3,12 @@ package org.yuan.boot.shower.db.pojo;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.shower.commons.pojo.BaseEntity;
 
 @Data
-public class AdminUser implements Serializable {
-    /**
-     * id
-     */
-    private Long id;
-
+@EqualsAndHashCode(callSuper = true)
+public class AdminUser extends BaseEntity implements Serializable {
     /**
      * 账户
      */
@@ -42,8 +40,4 @@ public class AdminUser implements Serializable {
     private Date updateTime;
 
     private static final long serialVersionUID = 1L;
-
-    public static org.yuan.boot.shower.db.pojo.AdminUser.AdminUserBuilder builder() {
-        return new org.yuan.boot.shower.db.pojo.AdminUser.AdminUserBuilder();
-    }
 }

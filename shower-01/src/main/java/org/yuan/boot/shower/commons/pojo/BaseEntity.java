@@ -2,6 +2,7 @@ package org.yuan.boot.shower.commons.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
 import org.yuan.boot.db.pojo.AbstractBaseEntity;
 import org.yuan.boot.shower.commons.interceptor.annotation.Id;
 
@@ -13,24 +14,10 @@ import org.yuan.boot.shower.commons.interceptor.annotation.Id;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class BaseEntity<T> extends AbstractBaseEntity<T> {
+@Accessors(chain = true)
+public class BaseEntity extends AbstractBaseEntity {
     @Id
     private Long id;
 
-    public BaseEntity() {
-    }
 
-    public BaseEntity(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    @SuppressWarnings("unchecked")
-    public T setId(Long id) {
-        this.id = id;
-        return (T) this;
-    }
 }

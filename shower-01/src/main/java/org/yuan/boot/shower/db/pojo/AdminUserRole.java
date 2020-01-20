@@ -2,14 +2,12 @@ package org.yuan.boot.shower.db.pojo;
 
 import java.io.Serializable;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.shower.commons.pojo.BaseEntity;
 
 @Data
-public class AdminUserRole implements Serializable {
-    /**
-     * id
-     */
-    private Long id;
-
+@EqualsAndHashCode(callSuper = true)
+public class AdminUserRole extends BaseEntity implements Serializable {
     /**
      * 用户ID
      */
@@ -22,7 +20,4 @@ public class AdminUserRole implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static org.yuan.boot.shower.db.pojo.AdminUserRole.AdminUserRoleBuilder builder() {
-        return new org.yuan.boot.shower.db.pojo.AdminUserRole.AdminUserRoleBuilder();
-    }
 }

@@ -1,5 +1,6 @@
 package org.yuan.boot.shower.wx.service;
 
+import org.yuan.boot.shower.db.pojo.WxOrderInfoCondition;
 import org.yuan.boot.shower.wx.pojo.WxOrderVO;
 import org.yuan.boot.webmvc.pojo.Result;
 
@@ -11,5 +12,7 @@ import org.yuan.boot.webmvc.pojo.Result;
  */
 public interface WxOrderService {
     Result addOrder(WxOrderVO wxOrderVO);
+
+    Result getOrderList(WxOrderInfoCondition wxOrderInfoCondition);
 
 }

@@ -4,14 +4,12 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.shower.commons.pojo.BaseEntity;
 
 @Data
-public class WxOrderInfo implements Serializable {
-    /**
-     * id
-     */
-    private Long id;
-
+@EqualsAndHashCode(callSuper = true)
+public class WxOrderInfo extends BaseEntity implements Serializable {
     /**
      * createTime
      */
@@ -41,6 +39,11 @@ public class WxOrderInfo implements Serializable {
      * 客户微信openId
      */
     private String customerOpenId;
+
+    /**
+     * 微信UNIONID
+     */
+    private String customerUnionId;
 
     /**
      * 设备编号ID

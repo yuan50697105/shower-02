@@ -3,14 +3,12 @@ package org.yuan.boot.shower.db.pojo;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.shower.commons.pojo.BaseEntity;
 
 @Data
-public class DeviceOrderInfo implements Serializable {
-    /**
-     * id
-     */
-    private Long id;
-
+@EqualsAndHashCode(callSuper = true)
+public class DeviceOrderInfo extends BaseEntity implements Serializable {
     /**
      * 设备ID
      */

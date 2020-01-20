@@ -3,14 +3,12 @@ package org.yuan.boot.shower.db.pojo;
 import java.io.Serializable;
 import java.util.Date;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.yuan.boot.shower.commons.pojo.BaseEntity;
 
 @Data
-public class WxCustomer implements Serializable {
-    /**
-     * id
-     */
-    private Long id;
-
+@EqualsAndHashCode(callSuper = true)
+public class WxCustomer extends BaseEntity implements Serializable {
     /**
      * 微信OPENID
      */
@@ -48,7 +46,4 @@ public class WxCustomer implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    public static org.yuan.boot.shower.db.pojo.WxCustomer.WxCustomerBuilder builder() {
-        return new org.yuan.boot.shower.db.pojo.WxCustomer.WxCustomerBuilder();
-    }
 }

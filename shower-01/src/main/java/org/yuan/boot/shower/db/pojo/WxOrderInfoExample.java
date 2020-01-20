@@ -556,6 +556,76 @@ public class WxOrderInfoExample {
             return (Criteria) this;
         }
 
+        public Criteria andCustomerUnionIdIsNull() {
+            addCriterion("customer_union_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdIsNotNull() {
+            addCriterion("customer_union_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdEqualTo(String value) {
+            addCriterion("customer_union_id =", value, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdNotEqualTo(String value) {
+            addCriterion("customer_union_id <>", value, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdGreaterThan(String value) {
+            addCriterion("customer_union_id >", value, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdGreaterThanOrEqualTo(String value) {
+            addCriterion("customer_union_id >=", value, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdLessThan(String value) {
+            addCriterion("customer_union_id <", value, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdLessThanOrEqualTo(String value) {
+            addCriterion("customer_union_id <=", value, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdLike(String value) {
+            addCriterion("customer_union_id like", value, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdNotLike(String value) {
+            addCriterion("customer_union_id not like", value, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdIn(List<String> values) {
+            addCriterion("customer_union_id in", values, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdNotIn(List<String> values) {
+            addCriterion("customer_union_id not in", values, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdBetween(String value1, String value2) {
+            addCriterion("customer_union_id between", value1, value2, "customerUnionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCustomerUnionIdNotBetween(String value1, String value2) {
+            addCriterion("customer_union_id not between", value1, value2, "customerUnionId");
+            return (Criteria) this;
+        }
+
         public Criteria andDeviceIdIsNull() {
             addCriterion("device_id is null");
             return (Criteria) this;

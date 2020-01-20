@@ -16,15 +16,16 @@ import org.yuan.boot.shower.db.pojo.WxCustomer;
 public interface WxCustomerConverter {
 
     @Mappings({
-
-            @org.mapstruct.Mapping(target = "createTime", source = "", ignore = true),
-            @org.mapstruct.Mapping(target = "id", source = "", ignore = true),
-            @org.mapstruct.Mapping(target = "idNum", source = "", ignore = true),
+            @org.mapstruct.Mapping(target = "createTime", ignore = true),
+            @org.mapstruct.Mapping(target = "id", ignore = true),
             @org.mapstruct.Mapping(target = "openId", source = "userInfo.openId"),
             @org.mapstruct.Mapping(target = "phone", source = "phoneNoInfo.phoneNumber"),
             @org.mapstruct.Mapping(target = "unionId", source = "userInfo.unionId"),
-            @org.mapstruct.Mapping(target = "updateTime", source = "", ignore = true),
-            @org.mapstruct.Mapping(target = "username", source = "userInfo.nickName")
+            @org.mapstruct.Mapping(target = "updateTime", ignore = true),
+            @org.mapstruct.Mapping(target = "copyFrom", ignore = true),
+            @org.mapstruct.Mapping(target = "copyFromIgnoreNull", ignore = true),
+            @org.mapstruct.Mapping(target = "nickName", ignore = true),
+            @org.mapstruct.Mapping(target = "gender", source = "userInfo.gender")
     })
     WxCustomer convertToWxCustomer(WxMaUserInfo userInfo, WxMaPhoneNumberInfo phoneNoInfo);
 }

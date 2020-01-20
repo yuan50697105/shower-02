@@ -13,31 +13,31 @@ import java.util.Map;
  * @create: 2019-12-29 13:13
  */
 @Data
-public abstract class AbstractCoreEntity<T> {
+public abstract class AbstractCoreEntity {
     @SuppressWarnings("unchecked")
-    public T copyFromByOptions(T t, CopyOptions copyOptions) {
+    public AbstractCoreEntity copyFromByOptions(AbstractCoreEntity t, CopyOptions copyOptions) {
         BeanUtil.copyProperties(t, this, copyOptions);
-        return (T) this;
+        return this;
     }
 
     @SuppressWarnings("unchecked")
-    public T copyFromByOptions(Map<?, ?> map, CopyOptions copyOptions) {
-        return (T) BeanUtil.fillBeanWithMap(map, this, copyOptions);
+    public AbstractCoreEntity copyFromByOptions(Map<?, ?> map, CopyOptions copyOptions) {
+        return BeanUtil.fillBeanWithMap(map, this, copyOptions);
     }
 
-    public T copyFromIgnoreNull(T t) {
+    public AbstractCoreEntity copyFromIgnoreNull(AbstractCoreEntity t) {
         return copyFromByOptions(t, CopyOptions.create().ignoreNullValue());
     }
 
-    public T copyFromIgnoreNull(Map<?, ?> map) {
+    public AbstractCoreEntity copyFromIgnoreNull(Map<?, ?> map) {
         return copyFromByOptions(map, CopyOptions.create().ignoreNullValue());
     }
 
-    public T copyFrom(T t) {
+    public AbstractCoreEntity copyFrom(AbstractCoreEntity t) {
         return copyFromByOptions(t, CopyOptions.create());
     }
 
-    public T copyFrom(Map<?, ?> map) {
+    public AbstractCoreEntity copyFrom(Map<?, ?> map) {
         return copyFromByOptions(map, CopyOptions.create());
     }
 

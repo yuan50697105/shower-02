@@ -21,4 +21,8 @@ public class AdminRoleCondition extends AbstractBaseCondition {
     public AdminRoleCondition(int page, int size) {
         super(page, size);
     }
+
+    public AdminRoleCondition(int page, int size, String order, String sort) {
+        super(page, size, order, sort);
+    }
 }

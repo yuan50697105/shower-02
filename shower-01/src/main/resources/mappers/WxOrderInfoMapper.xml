@@ -11,6 +11,7 @@
     <result column="customer_id" jdbcType="BIGINT" property="customerId" />
     <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
     <result column="customer_open_id" jdbcType="VARCHAR" property="customerOpenId" />
+    <result column="customer_union_id" jdbcType="VARCHAR" property="customerUnionId" />
     <result column="device_id" jdbcType="BIGINT" property="deviceId" />
     <result column="device_code" jdbcType="VARCHAR" property="deviceCode" />
     <result column="pay_status" jdbcType="INTEGER" property="payStatus" />
@@ -92,9 +93,9 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, create_time, order_type, order_no, customer_id, customer_name, customer_open_id, 
-    device_id, device_code, pay_status, predicate_pay_time, final_pay_time, predicate_decimal, 
-    remain_decimal, start_time, end_time, spend_time, min_decimal, per_decimal, ext_decimal, 
-    total_decimal, leave_time, crate_time, update_time
+    customer_union_id, device_id, device_code, pay_status, predicate_pay_time, final_pay_time, 
+    predicate_decimal, remain_decimal, start_time, end_time, spend_time, min_decimal, 
+    per_decimal, ext_decimal, total_decimal, leave_time, crate_time, update_time
   </sql>
   <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.WxOrderInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -134,22 +135,22 @@
     <!--@mbg.generated-->
     insert into wx_order_info (id, create_time, order_type, 
       order_no, customer_id, customer_name, 
-      customer_open_id, device_id, device_code, 
-      pay_status, predicate_pay_time, final_pay_time, 
-      predicate_decimal, remain_decimal, start_time, 
-      end_time, spend_time, min_decimal, 
-      per_decimal, ext_decimal, total_decimal, 
-      leave_time, crate_time, update_time
-      )
+      customer_open_id, customer_union_id, device_id, 
+      device_code, pay_status, predicate_pay_time, 
+      final_pay_time, predicate_decimal, remain_decimal, 
+      start_time, end_time, spend_time, 
+      min_decimal, per_decimal, ext_decimal, 
+      total_decimal, leave_time, crate_time, 
+      update_time)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{orderType,jdbcType=INTEGER}, 
       #{orderNo,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, 
-      #{customerOpenId,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, 
-      #{payStatus,jdbcType=INTEGER}, #{predicatePayTime,jdbcType=TIMESTAMP}, #{finalPayTime,jdbcType=TIMESTAMP}, 
-      #{predicateDecimal,jdbcType=DECIMAL}, #{remainDecimal,jdbcType=DECIMAL}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{spendTime,jdbcType=DECIMAL}, #{minDecimal,jdbcType=DECIMAL}, 
-      #{perDecimal,jdbcType=DECIMAL}, #{extDecimal,jdbcType=DECIMAL}, #{totalDecimal,jdbcType=DECIMAL}, 
-      #{leaveTime,jdbcType=TIMESTAMP}, #{crateTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
-      )
+      #{customerOpenId,jdbcType=VARCHAR}, #{customerUnionId,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
+      #{deviceCode,jdbcType=VARCHAR}, #{payStatus,jdbcType=INTEGER}, #{predicatePayTime,jdbcType=TIMESTAMP}, 
+      #{finalPayTime,jdbcType=TIMESTAMP}, #{predicateDecimal,jdbcType=DECIMAL}, #{remainDecimal,jdbcType=DECIMAL}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{spendTime,jdbcType=DECIMAL}, 
+      #{minDecimal,jdbcType=DECIMAL}, #{perDecimal,jdbcType=DECIMAL}, #{extDecimal,jdbcType=DECIMAL}, 
+      #{totalDecimal,jdbcType=DECIMAL}, #{leaveTime,jdbcType=TIMESTAMP}, #{crateTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="org.yuan.boot.shower.db.pojo.WxOrderInfo">
     <!--@mbg.generated-->
@@ -175,6 +176,9 @@
       </if>
       <if test="customerOpenId != null">
         customer_open_id,
+      </if>
+      <if test="customerUnionId != null">
+        customer_union_id,
       </if>
       <if test="deviceId != null">
         device_id,
@@ -249,6 +253,9 @@
       </if>
       <if test="customerOpenId != null">
         #{customerOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerUnionId != null">
+        #{customerUnionId,jdbcType=VARCHAR},
       </if>
       <if test="deviceId != null">
         #{deviceId,jdbcType=BIGINT},
@@ -335,6 +342,9 @@
       <if test="record.customerOpenId != null">
         customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
       </if>
+      <if test="record.customerUnionId != null">
+        customer_union_id = #{record.customerUnionId,jdbcType=VARCHAR},
+      </if>
       <if test="record.deviceId != null">
         device_id = #{record.deviceId,jdbcType=BIGINT},
       </if>
@@ -401,6 +411,7 @@
       customer_id = #{record.customerId,jdbcType=BIGINT},
       customer_name = #{record.customerName,jdbcType=VARCHAR},
       customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
+      customer_union_id = #{record.customerUnionId,jdbcType=VARCHAR},
       device_id = #{record.deviceId,jdbcType=BIGINT},
       device_code = #{record.deviceCode,jdbcType=VARCHAR},
       pay_status = #{record.payStatus,jdbcType=INTEGER},
@@ -443,6 +454,9 @@
       </if>
       <if test="customerOpenId != null">
         customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerUnionId != null">
+        customer_union_id = #{customerUnionId,jdbcType=VARCHAR},
       </if>
       <if test="deviceId != null">
         device_id = #{deviceId,jdbcType=BIGINT},
@@ -507,6 +521,7 @@
       customer_id = #{customerId,jdbcType=BIGINT},
       customer_name = #{customerName,jdbcType=VARCHAR},
       customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
+      customer_union_id = #{customerUnionId,jdbcType=VARCHAR},
       device_id = #{deviceId,jdbcType=BIGINT},
       device_code = #{deviceCode,jdbcType=VARCHAR},
       pay_status = #{payStatus,jdbcType=INTEGER},
@@ -526,4 +541,29 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from wx_order_info
+        <where>
+            <if test="openId != null and openId != ''">
+                and customer_open_id = #{openId,jdbcType=VARCHAR}
+            </if>
+            <if test="customerId != null and customerId != ''">
+                and customer_id=#{customerId,jdbcType=VARCHAR}
+            </if>
+            <if test="createDateStart != null">
+                and date(create_time) &gt;= date(#{createDateStart,jdbcType=TIMESTAMP})
+            </if>
+            <if test="createDateEnd != null">
+                <![CDATA[and date(create_time) <= date(#{createDateEnd,jdbcType=TIMESTAMP})]]>
+            </if>
+        </where>
+        <if test="order != null and order != ''">
+            order by ${order}
+            <if test="sort != null and sort != ''">
+                ${sort}
+            </if>
+        </if>
+    </select>
 </mapper>
