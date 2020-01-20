@@ -4,7 +4,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.shower.commons.dao.BaseDao;
 import org.yuan.boot.shower.db.pojo.AdminUserRole;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

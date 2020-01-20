@@ -1,6 +1,5 @@
 package org.yuan.boot.shower.commons.dao.impl;
 
-import org.springframework.stereotype.Component;
 import org.yuan.boot.shower.commons.dao.BaseDao;
 import org.yuan.boot.shower.commons.mapper.BaseMapper;
 

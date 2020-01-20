@@ -1,6 +1,5 @@
 package org.yuan.boot.shower.commons.configuration;
 
-import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import lombok.extern.log4j.Log4j2;
@@ -24,7 +23,6 @@ public class CacheConfiguration {
         return new KeyGenerator() {
             private final static int NO_PARAM_KEY = 0;
             private String keyPrefix = "jf";// key前缀，用于区分不同项目的缓存，建议每个项目单独设置
-
 
 
             @Override
@@ -55,7 +53,6 @@ public class CacheConfiguration {
                 log.info(strBuilder.toString());
                 return strBuilder.toString();
             }
-
 
 
             public String getKeyPrefix() {

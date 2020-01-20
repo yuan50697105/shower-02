@@ -1,11 +1,12 @@
 package org.yuan.boot.shower.db.mapper;
 
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.shower.commons.mapper.BaseMapper;
 import org.yuan.boot.shower.db.pojo.AdminRole;
 import org.yuan.boot.shower.db.pojo.AdminRoleExample;
+
+import java.util.List;
 
 @Mapper
 public interface AdminRoleMapper extends BaseMapper<AdminRole> {
