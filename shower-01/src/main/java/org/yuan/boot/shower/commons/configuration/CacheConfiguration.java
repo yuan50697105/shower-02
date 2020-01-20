@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
  */
 @Configuration
 @Log4j2
-public class CacheConfiguraton {
+public class CacheConfiguration {
     @Bean
     KeyGenerator keyGenerator() {
         return new KeyGenerator() {
