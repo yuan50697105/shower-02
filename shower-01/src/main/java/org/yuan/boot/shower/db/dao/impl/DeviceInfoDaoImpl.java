@@ -22,7 +22,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper> implements DeviceInfoDao {
     @Override
-    public PageInfo<DeviceInfo> selectPage(DeviceInfoCondition condition) {
+    public PageInfo<DeviceInfo> selectPageByCondition(DeviceInfoCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
         return PageInfo.of(baseMapper().selectByCondition(condition));
     }

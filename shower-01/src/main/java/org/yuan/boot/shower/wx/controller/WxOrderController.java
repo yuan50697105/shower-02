@@ -40,6 +40,7 @@ public class WxOrderController extends AbstractResultController {
         return wxOrderService.pay(orderId);
     }
 
+    @PostMapping("notify")
     public Result notify(HttpServletRequest request) {
         return wxOrderService.doNotify(request);
     }

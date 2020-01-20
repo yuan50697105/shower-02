@@ -14,7 +14,7 @@ import java.util.Optional;
  * @create: 2020-01-20 18:12
  */
 public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
-    PageInfo<DeviceInfo> selectPage(DeviceInfoCondition condition);
+    PageInfo<DeviceInfo> selectPageByCondition(DeviceInfoCondition condition);
 
     Optional<DeviceInfo> getById(Long id);
 }

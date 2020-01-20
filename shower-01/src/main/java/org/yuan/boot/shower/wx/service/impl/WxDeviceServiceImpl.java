@@ -23,7 +23,7 @@ public class WxDeviceServiceImpl implements WxDeviceService {
     @Override
     public Result nearList(String point) {
         DeviceInfoCondition condition = new DeviceInfoCondition().setEnabled(1).setPoint(point);
-        return Results.data(PageResults.of(deviceInfoDao.selectPage(condition)));
+        return Results.data(PageResults.of(deviceInfoDao.selectPageByCondition(condition)));
     }
 
     @Override
