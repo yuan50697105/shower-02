@@ -1,4 +1,4 @@
-package org.yuan.boot.shower.db.mapper;
+package org.yuan.boot.shower.db.dao;
 
 import org.yuan.boot.shower.commons.dao.BaseDao;
 import org.yuan.boot.shower.db.pojo.WxOrderInfo;

@@ -11,4 +11,6 @@ import org.yuan.boot.shower.db.pojo.WxCustomer;
  */
 public interface WxCustomerDao extends BaseDao<WxCustomer> {
     void saveWxCustomer(WxCustomer wxCustomer);
+
+    boolean checkWxCustomer(String unionId);
 }

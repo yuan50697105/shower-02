@@ -2,7 +2,7 @@ package org.yuan.boot.shower.db.dao.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.yuan.boot.shower.db.mapper.WxOrderInfoDao;
+import org.yuan.boot.shower.db.dao.WxOrderInfoDao;
 
 /**
  * @program: shower-01
