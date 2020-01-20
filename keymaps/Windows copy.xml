@@ -1,0 +1,5 @@
+<keymap version="1" name="Windows copy" parent="$default">
+  <action id="FixDocComment">
+    <keyboard-shortcut first-keystroke="ctrl semicolon" />
+  </action>
+</keymap>
