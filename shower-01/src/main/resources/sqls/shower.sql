@@ -82,6 +82,7 @@ create table if not exists wx_order_info
     customer_id        bigint(15)     null comment '客户ID',
     customer_name      varchar(50)    null comment '客户姓名',
     customer_open_id   varchar(50)    null comment '客户微信openId',
+    customer_union_id  varchar(50)    null comment '微信UNIONID',
     device_id          bigint(15)     null comment '设备编号ID',
     device_code        varchar(50)    null comment '设备编号',
     pay_status         int            null comment '支付状态 （0未支付 ，11 预支付订单支付定金， 12 使用结束未完成支付，13 使用完成并完成支付，22使用结束未支付，23 完成支持，31 ，32 ，33',

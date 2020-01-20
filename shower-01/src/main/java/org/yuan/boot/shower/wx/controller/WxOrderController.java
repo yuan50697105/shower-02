@@ -16,13 +16,13 @@ import org.yuan.boot.webmvc.pojo.Result;
  * @author: yuane
  * @create: 2020-01-20 19:03
  */
+@SuppressWarnings("AliDeprecation")
 @RestController
 @RequestMapping("wx/order")
 @AllArgsConstructor
 public class WxOrderController extends AbstractResultController {
     private WxOrderService wxOrderService;
 
-    @SuppressWarnings("deprecation")
     @GetMapping(value = "orderList", produces = MediaType.APPLICATION_PROBLEM_JSON_UTF8_VALUE)
     public Result orderList(WxOrderInfoCondition wxOrderInfoCondition) {
         return wxOrderService.getOrderList(wxOrderInfoCondition);

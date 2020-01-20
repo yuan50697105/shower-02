@@ -41,7 +41,6 @@ public interface WxOrderConverter {
             @Mapping(target = "spendTime", ignore = true),
             @Mapping(target = "startTime", ignore = true),
             @Mapping(target = "totalDecimal", ignore = true),
-            @Mapping(target = "updateTime", ignore = true),
             @Mapping(target = "updateTime", ignore = true)
     })
     WxOrderInfo convertToWxOrderInfo(WxOrderVO wxOrderVO);
