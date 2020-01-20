@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
  * @author: yuane
  * @create: 2020-01-20 19:03
  */
-@SuppressWarnings("AliDeprecation")
+@SuppressWarnings("deprecation")
 @RestController
 @RequestMapping("wx/order")
 @AllArgsConstructor

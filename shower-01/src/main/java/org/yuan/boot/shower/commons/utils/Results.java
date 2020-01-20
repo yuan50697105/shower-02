@@ -38,4 +38,16 @@ public class Results extends org.yuan.boot.webmvc.utils.Results {
         return Result.builder().code(DEVICE_ERROR).message(message).build();
     }
 
+    public static Result deviceError(String message, Object data) {
+        return Result.builder().code(DEVICE_ERROR).message(message).data(data).build();
+    }
+
+    public static Result wxError(String message) {
+        return Result.builder().code(WX_ERROR).message(message).build();
+    }
+
+    public static Result wxError(String message, Object data) {
+        return Result.builder().code(WX_ERROR).message(message).data(data).build();
+    }
+
 }

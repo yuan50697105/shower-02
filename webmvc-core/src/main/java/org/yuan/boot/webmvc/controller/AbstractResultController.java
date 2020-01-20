@@ -22,7 +22,7 @@ public abstract class AbstractResultController {
     public final static String HTTP_METHOD_GET = "GET";
     public final static String HTTP_METHOD_DELETE = "DELETE";
     public final static String HTTP_METHOD_PUT = "PUT";
-
+    public final static String APPLICATON_JSON_UTF8 = "application/problem+json;charset=UTF-8";
     public void validate(BindingResult result) {
         if (result.hasErrors()) {
             StringJoiner joiner = new StringJoiner(",");
