@@ -15,4 +15,5 @@ public interface WxOrderService {
 
     Result getOrderList(WxOrderInfoCondition wxOrderInfoCondition);
 
+    Result pay(Long orderId);
 }

@@ -2,6 +2,7 @@ package org.yuan.boot.shower.wx.pojo;
 
 import lombok.Data;
 
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 
 /**
@@ -12,8 +13,13 @@ import java.math.BigDecimal;
  */
 @Data
 public class WxOrderVO {
+    @NotEmpty
     private Integer type;
+    @NotEmpty
     private String openId;
+    @NotEmpty
+    private String unionId;
+    @NotEmpty
     private String deviceCode;
     private BigDecimal decimal;
 }

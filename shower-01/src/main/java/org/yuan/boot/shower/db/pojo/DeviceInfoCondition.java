@@ -15,10 +15,17 @@ import org.yuan.boot.db.pojo.AbstractBaseCondition;
 @Data
 @Accessors(chain = true)
 public class DeviceInfoCondition extends AbstractBaseCondition {
+    private Integer enabled;
+    private String point;
+
     public DeviceInfoCondition() {
     }
 
     public DeviceInfoCondition(int page, int size) {
         super(page, size);
+    }
+
+    public DeviceInfoCondition(int page, int size, String order, String sort) {
+        super(page, size, order, sort);
     }
 }
