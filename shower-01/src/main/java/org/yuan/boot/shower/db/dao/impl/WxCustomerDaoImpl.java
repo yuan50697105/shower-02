@@ -16,4 +16,20 @@ import org.yuan.boot.shower.db.pojo.WxCustomer;
 @Component
 @AllArgsConstructor
 public class WxCustomerDaoImpl extends BaseDaoImpl<WxCustomer, WxCustomerMapper> implements WxCustomerDao {
+    @Override
+    public void saveWxCustomer(WxCustomer wxCustomer) {
+        String unionId = wxCustomer.getUnionId();
+        if (checkWxCustomer(unionId)) {
+            // TODO: 2020/1/20 更新信息
+        }else {
+            // TODO: 2020/1/20 插入信息
+        }
+    }
+
+    private boolean checkWxCustomer(String unionId) {
+// TODO: 2020/1/20 验证 客户是否存在
+        return false;
+    }
+
+
 }

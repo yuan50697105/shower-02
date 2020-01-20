@@ -20,9 +20,11 @@ import java.util.Date;
 @Data
 public class WxCustomer extends BaseEntity<WxCustomer> implements Serializable {
     private String openId;
+    private String unionId;
     private String username;
     private String phone;
     private String idNum;
+    private Integer gender;
     @CreateTime
     private Date createTime;
     @UpdateTime
@@ -31,10 +33,12 @@ public class WxCustomer extends BaseEntity<WxCustomer> implements Serializable {
     public WxCustomer() {
     }
 
+
     @Builder
-    public WxCustomer(Long id, String openId, String username, String phone, String idNum, Date createTime, Date updateTime) {
+    public WxCustomer(Long id, String openId, String unionId, String username, String phone, String idNum, Date createTime, Date updateTime) {
         super(id);
         this.openId = openId;
+        this.unionId = unionId;
         this.username = username;
         this.phone = phone;
         this.idNum = idNum;

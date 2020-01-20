@@ -10,4 +10,5 @@ import org.yuan.boot.shower.db.pojo.WxCustomer;
  * @create: 2020-01-20 18:14
  */
 public interface WxCustomerDao extends BaseDao<WxCustomer> {
+    void saveWxCustomer(WxCustomer wxCustomer);
 }
