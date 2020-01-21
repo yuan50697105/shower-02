@@ -3,7 +3,6 @@ package org.yuan.boot.shower.commons.pojo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.AbstractBaseEntity;
 import org.yuan.boot.shower.commons.interceptor.annotation.Id;
 
 /**
@@ -15,7 +14,7 @@ import org.yuan.boot.shower.commons.interceptor.annotation.Id;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class BaseEntity extends AbstractBaseEntity {
+public class BaseEntity extends org.yuan.boot.db.pojo.BaseEntity {
     @Id
     private Long id;
 
