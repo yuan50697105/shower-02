@@ -10,9 +10,7 @@ import org.apache.ibatis.plugin.Intercepts;
 import org.apache.ibatis.plugin.Invocation;
 import org.apache.ibatis.plugin.Signature;
 import org.springframework.stereotype.Component;
-import org.yuan.boot.shower.commons.interceptor.annotation.CreateTime;
-import org.yuan.boot.shower.commons.interceptor.annotation.Id;
-import org.yuan.boot.shower.commons.interceptor.annotation.UpdateTime;
+import org.yuan.boot.shower.commons.interceptor.annotation.*;
 
 import java.lang.reflect.Field;
 import java.util.Date;
@@ -49,14 +47,29 @@ public class CustomInterceptor implements Interceptor {
                     field.set(parameter, snowflake.nextId());
                 }
             }
+
             if (field.getAnnotation(CreateTime.class) != null) {
-                if (SqlCommandType.INSERT.equals(sqlCommandType)) { // insert 语句插入 createTime
+                if (SqlCommandType.INSERT.equals(sqlCommandType)) {
                     field.setAccessible(true);
                     field.set(parameter, new Date());
                 }
             }
 
-            if (field.getAnnotation(UpdateTime.class) != null) { // insert 或 update 语句插入 updateTime
+            if (field.getAnnotation(CreateUser.class) != null) {
+                if (SqlCommandType.INSERT.equals(sqlCommandType)) {
+                    field.setAccessible(true);
+                    field.set(parameter, new Date());
+                }
+            }
+
+            if (field.getAnnotation(UpdateTime.class) != null) {
+                if (SqlCommandType.INSERT.equals(sqlCommandType) || SqlCommandType.UPDATE.equals(sqlCommandType)) {
+                    field.setAccessible(true);
+                    field.set(parameter, new Date());
+                }
+            }
+
+            if (field.getAnnotation(UpdateUser.class) != null) {
                 if (SqlCommandType.INSERT.equals(sqlCommandType) || SqlCommandType.UPDATE.equals(sqlCommandType)) {
                     field.setAccessible(true);
                     field.set(parameter, new Date());
