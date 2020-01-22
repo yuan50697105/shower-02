@@ -24,6 +24,6 @@ public class NoValidateResultRuntimeException extends ResultRuntimeException {
     }
 
     public NoValidateResultRuntimeException(String message) {
-        super(Results.dataParamsError(ObjectUtil.isNotEmpty(message) ? message : Results.DATA_PARAMS_ERROR_MESSAGE));
+        super(Results.dataParamsError(ObjectUtil.isNotEmpty(message) ? message : Results.Resulconstants.DATA_PARAMS_ERROR_MESSAGE));
     }
 }

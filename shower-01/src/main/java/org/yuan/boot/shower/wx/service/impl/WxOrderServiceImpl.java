@@ -62,7 +62,7 @@ public class WxOrderServiceImpl implements WxOrderService {
 
         Optional<WxOrderInfo> optional = wxOrderInfoDao.getById(orderId);
         if (!optional.isPresent()) {
-            throw new ResultRuntimeException(Results.error(Results.WX_ERROR, "订单不存在"));
+            throw new ResultRuntimeException(Results.error(Results.Resulconstants.WX_ERROR, "订单不存在"));
         } else {
             WxOrderInfo wxOrderInfo = optional.get();
             String orderNo = wxOrderInfo.getOrderNo();
