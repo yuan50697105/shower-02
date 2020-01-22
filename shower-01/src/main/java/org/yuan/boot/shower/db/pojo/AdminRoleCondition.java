@@ -15,6 +15,9 @@ import org.yuan.boot.db.pojo.AbstractBaseCondition;
 @Data
 @Accessors(chain = true)
 public class AdminRoleCondition extends AbstractBaseCondition {
+    private Long id;
+    private String name;
+
     public AdminRoleCondition() {
     }
 

@@ -2,7 +2,7 @@ package org.yuan.boot.shower.wx.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.yuan.boot.shower.commons.utils.PageResults;
+import org.yuan.boot.db.utils.PageResults;
 import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.DeviceInfoDao;
 import org.yuan.boot.shower.db.pojo.DeviceInfoCondition;

@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.shower.commons.mapper.BaseMapper;
 import org.yuan.boot.shower.db.pojo.AdminRole;
+import org.yuan.boot.shower.db.pojo.AdminRoleCondition;
 import org.yuan.boot.shower.db.pojo.AdminRoleExample;
 
 import java.util.List;
@@ -31,4 +32,6 @@ public interface AdminRoleMapper extends BaseMapper<AdminRole> {
     int updateByPrimaryKeySelective(AdminRole record);
 
     int updateByPrimaryKey(AdminRole record);
+
+    List<AdminRole> selectByCondition(AdminRoleCondition condition);
 }

@@ -181,4 +181,23 @@
         set `name` = #{name,jdbcType=VARCHAR}
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from admin_role
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="name != null and name != ''">
+                and name like concat('%',#{name,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+        <if test="order != null and order != ''">
+            order by ${order}
+            <if test="sort != null and sort != ''">
+                ${sort}
+            </if>
+        </if>
+    </select>
 </mapper>
