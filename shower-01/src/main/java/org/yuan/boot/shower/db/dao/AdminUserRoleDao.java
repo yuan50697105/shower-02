@@ -25,6 +25,13 @@ public interface AdminUserRoleDao extends BaseDao<AdminUserRole> {
 
     void batchSave(List<AdminUserRole> adminUserRoles);
 
-    @Transactional(rollbackFor = Exception.class)
+    void deleteByRoleId(Long id);
+
     void deleteByRoleIds(List<AdminUserRole> adminUserRoles);
+
+    List<AdminUserRole> selectByRoleId(Long roleId);
+
+    Long countByRoleId(Long roleId);
+
+    Boolean existByRoleId(Long roleId);
 }

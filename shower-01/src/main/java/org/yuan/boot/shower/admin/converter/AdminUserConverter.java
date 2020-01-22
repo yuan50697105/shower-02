@@ -37,7 +37,8 @@ public interface AdminUserConverter {
             @org.mapstruct.Mapping(target = "createTime", ignore = true),
             @org.mapstruct.Mapping(target = "createUser", ignore = true),
             @org.mapstruct.Mapping(target = "updateTime", ignore = true),
-            @Mapping(target = "password", ignore = true)
+            @Mapping(target = "password", ignore = true),
+            @Mapping(target = "username", ignore = true)
     })
     AdminUser convertForChangeInfo(AdminUserVO adminUserVO);
 

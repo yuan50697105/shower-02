@@ -22,32 +22,36 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class AdminRoleController extends AbstractResultController {
     private AdminRoleService adminRoleService;
 
-    @GetMapping("data")
+    @GetMapping(value = "data", produces = APPLICATON_JSON_UTF8)
     public Result data(AdminRoleCondition condition) {
         return adminRoleService.data(condition);
     }
 
-    @GetMapping("list")
+    @GetMapping(value = "list", produces = APPLICATON_JSON_UTF8)
     public Result list(AdminRoleCondition condition) {
         return adminRoleService.list(condition);
     }
 
-    @GetMapping("get")
+    @GetMapping(value = "get", produces = APPLICATON_JSON_UTF8)
     public Result get(Long id) {
         return adminRoleService.get(id);
     }
 
-    @PostMapping("save")
+    @PostMapping(value = "save", produces = APPLICATON_JSON_UTF8, consumes = APPLICATON_JSON_UTF8)
     public Result save(@RequestBody @Validated(AdminRoleVo.Save.class) AdminRoleVo adminRoleVo, BindingResult result) {
         validate(result);
         return adminRoleService.save(adminRoleVo);
     }
 
-    @PostMapping("update")
+    @PostMapping(value = "update",produces = APPLICATON_JSON_UTF8,consumes = APPLICATON_JSON_UTF8)
     public Result update(@RequestBody @Validated(AdminRoleVo.Update.class) AdminRoleVo adminRoleVo, BindingResult result) {
         validate(result);
         return adminRoleService.update(adminRoleVo);
     }
 
+    @GetMapping("delete/{id}")
+    public Result delete(@PathVariable("id") Long id) {
+        return adminRoleService.delete(id);
+    }
 
 }

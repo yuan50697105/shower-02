@@ -78,4 +78,31 @@ public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRo
         example.or().andRoleIdIn(roleIds);
         baseMapper().deleteByExample(example);
     }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void deleteByRoleId(Long id) {
+        AdminUserRoleExample example = new AdminUserRoleExample();
+        example.or().andRoleIdEqualTo(id);
+        baseMapper().deleteByExample(example);
+    }
+
+    @Override
+    public List<AdminUserRole> selectByRoleId(Long roleId) {
+        AdminUserRoleExample example = new AdminUserRoleExample();
+        example.or().andRoleIdEqualTo(roleId);
+        return baseMapper().selectByExample(example);
+    }
+
+    @Override
+    public Long countByRoleId(Long roleId) {
+        AdminUserRoleExample example = new AdminUserRoleExample();
+        example.or().andRoleIdEqualTo(roleId);
+        return baseMapper().countByExample(example);
+    }
+
+    @Override
+    public Boolean existByRoleId(Long roleId) {
+        return countByRoleId(roleId) > 0;
+    }
 }

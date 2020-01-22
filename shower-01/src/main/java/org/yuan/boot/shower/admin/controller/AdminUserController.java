@@ -16,7 +16,6 @@ import org.yuan.boot.webmvc.pojo.Result;
  * @author: yuane
  * @create: 2020-01-21 00:00
  */
-@SuppressWarnings("deprecation")
 @RestController
 @RequestMapping("admin/user")
 @AllArgsConstructor
@@ -31,6 +30,11 @@ public class AdminUserController extends AbstractResultController {
     @GetMapping(value = "list", produces = APPLICATON_JSON_UTF8)
     public Result list(AdminUserCondition condition) {
         return adminUserService.list(condition);
+    }
+
+    @GetMapping(value = "list/{name}", produces = APPLICATON_JSON_UTF8)
+    public Result list(@PathVariable("name") String name) {
+        return list(new AdminUserCondition().setName(name));
     }
 
     @GetMapping(value = "get", produces = APPLICATON_JSON_UTF8)

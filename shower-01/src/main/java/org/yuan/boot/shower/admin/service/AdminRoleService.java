@@ -2,6 +2,7 @@ package org.yuan.boot.shower.admin.service;
 
 import org.yuan.boot.shower.admin.pojo.AdminRoleVo;
 import org.yuan.boot.shower.db.pojo.AdminRoleCondition;
+import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
 /**
@@ -20,4 +21,6 @@ public interface AdminRoleService {
     Result save(AdminRoleVo adminRoleVo);
 
     Result update(AdminRoleVo adminRoleVo);
+
+    Result delete(Long id) throws ResultRuntimeException;
 }

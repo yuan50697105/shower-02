@@ -98,7 +98,9 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result changeInfo(AdminUserVO adminUserVO) {
-        return null;
+        AdminUser adminUser = adminUserConverter.convertForChangeInfo(adminUserVO);
+        adminUserDao.updateById(adminUser);
+        return Results.ok();
     }
 
     @Override

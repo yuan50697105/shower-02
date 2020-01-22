@@ -10,8 +10,10 @@ import org.yuan.boot.shower.admin.pojo.AdminRoleVo;
 import org.yuan.boot.shower.admin.service.AdminRoleService;
 import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.AdminRoleDao;
+import org.yuan.boot.shower.db.dao.AdminUserRoleDao;
 import org.yuan.boot.shower.db.pojo.AdminRole;
 import org.yuan.boot.shower.db.pojo.AdminRoleCondition;
+import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
 /**
@@ -26,6 +28,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class AdminRoleServiceImpl implements AdminRoleService {
     private AdminRoleDao adminRoleDao;
     private AdminRoleConverter adminRoleConverter;
+    private AdminUserRoleDao adminUserRoleDao;
 
     @Override
     public Result data(AdminRoleCondition condition) {
@@ -55,6 +58,17 @@ public class AdminRoleServiceImpl implements AdminRoleService {
     public Result update(AdminRoleVo adminRoleVo) {
         AdminRole adminRole = adminRoleConverter.convertForUpdate(adminRoleVo);
         adminRoleDao.updateById(adminRole);
+        return Results.ok();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Result delete(Long id) throws ResultRuntimeException {
+        if (adminUserRoleDao.existByRoleId(id)) {
+            throw new ResultRuntimeException(Results.operateError("存在管理员用户使用，不能删除"));
+        }
+        adminUserRoleDao.deleteByRoleId(id);
+        adminRoleDao.delete(id);
         return Results.ok();
     }
 

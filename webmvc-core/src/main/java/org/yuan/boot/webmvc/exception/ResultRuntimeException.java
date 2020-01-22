@@ -15,10 +15,18 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class ResultRuntimeException extends RuntimeException {
     private Result result;
 
-    public ResultRuntimeException() {
+    public ResultRuntimeException(int code, String message, Object data) {
+        this(Result.builder().code(code).message(message).data(data).build());
     }
+
+    public ResultRuntimeException(int code, String message) {
+        this(Result.builder().code(code).message(message).build());
+    }
+
 
     public ResultRuntimeException(Result result) {
         this.result = result;
     }
+
+
 }

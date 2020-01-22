@@ -18,6 +18,8 @@ public class Results {
     public final static String DATA_PARAMS_ERROR_MESSAGE = "参数错误";
     public final static Integer DATA_RESULT_ERROR_CODE = 3000;
     public final static String DATA_RESULT_ERROR_MESSAGE = "结果错误";
+    public final static Integer OPERATE_ERROR_CODE = 4000;
+    public final static String OPERATE_ERROR_MESSAGE = "操作失败";
 
     public static Result ok() {
         return Result.builder().code(OK_CODE).message(OK_MESSAGE).build();
@@ -85,5 +87,13 @@ public class Results {
 
     public static Result dataResultError(String message, Object data) {
         return Result.builder().code(DATA_RESULT_ERROR_CODE).message(message).data(data).build();
+    }
+
+    public static Result operateError() {
+        return Result.builder().code(OPERATE_ERROR_CODE).message(OPERATE_ERROR_MESSAGE).build();
+    }
+
+    public static Result operateError(String message) {
+        return Result.builder().code(OPERATE_ERROR_CODE).message(ObjectUtil.isNotEmpty(message) ? message : OPERATE_ERROR_MESSAGE).build();
     }
 }

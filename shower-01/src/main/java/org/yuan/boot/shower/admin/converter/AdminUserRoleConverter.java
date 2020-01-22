@@ -5,9 +5,7 @@ import org.mapstruct.Mappings;
 import org.yuan.boot.shower.admin.pojo.AdminUserVO;
 import org.yuan.boot.shower.db.pojo.AdminUserRole;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
+import java.util.*;
 
 /**
  * @program: shower-01
@@ -27,7 +25,7 @@ public interface AdminUserRoleConverter {
 
     default List<AdminUserRole> convertToUserRole(Long userId, List<Long> roleIds) {
         ArrayList<AdminUserRole> adminUserRoles = new ArrayList<>();
-        roleIds = new ArrayList<>(new HashSet<>(roleIds));
+        roleIds = new ArrayList<>(new LinkedHashSet<>(roleIds));
         for (Long roleId : roleIds) {
             adminUserRoles.add(convertToUserRole(userId, roleId));
         }
