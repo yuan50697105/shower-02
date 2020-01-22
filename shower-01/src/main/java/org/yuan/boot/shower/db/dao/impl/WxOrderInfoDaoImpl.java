@@ -5,6 +5,8 @@ import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.db.utils.PageResults;
 import org.yuan.boot.shower.commons.dao.impl.BaseDaoImpl;
 import org.yuan.boot.shower.db.dao.WxOrderInfoDao;
 import org.yuan.boot.shower.db.mapper.WxOrderInfoMapper;
@@ -23,13 +25,13 @@ import java.util.Optional;
 @AllArgsConstructor
 public class WxOrderInfoDaoImpl extends BaseDaoImpl<WxOrderInfo, WxOrderInfoMapper> implements WxOrderInfoDao {
     @Override
-    public PageInfo<WxOrderInfo> selectPage(WxOrderInfoCondition condition) {
+    public PageResult<WxOrderInfo> selectPage(WxOrderInfoCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
-        return PageInfo.of(baseMapper().selectByCondition(condition));
+        return PageResults.of(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
     @Override
-    public PageInfo<WxOrderInfo> selectPageOrderByCreateTimeDesc(WxOrderInfoCondition condition) {
+    public PageResult<WxOrderInfo> selectPageOrderByCreateTimeDesc(WxOrderInfoCondition condition) {
         return selectPage((WxOrderInfoCondition) condition.setOrder("create_time").setSort("desc"));
     }
 

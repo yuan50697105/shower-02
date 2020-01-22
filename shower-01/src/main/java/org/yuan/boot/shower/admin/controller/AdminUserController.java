@@ -10,6 +10,8 @@ import org.yuan.boot.shower.db.pojo.AdminUserCondition;
 import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import java.util.List;
+
 /**
  * @program: shower-01
  * @description:
@@ -22,48 +24,58 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class AdminUserController extends AbstractResultController {
     private AdminUserService adminUserService;
 
-    @GetMapping(value = "data", produces = APPLICATON_JSON_UTF8)
+    @GetMapping(value = "data", produces = APPLICATION_JSON_UTF8)
     public Result data(AdminUserCondition condition) {
         return adminUserService.data(condition);
     }
 
-    @GetMapping(value = "list", produces = APPLICATON_JSON_UTF8)
+    @GetMapping(value = "list", produces = APPLICATION_JSON_UTF8)
     public Result list(AdminUserCondition condition) {
         return adminUserService.list(condition);
     }
 
-    @GetMapping(value = "list/{name}", produces = APPLICATON_JSON_UTF8)
+    @GetMapping(value = "list/{name}", produces = APPLICATION_JSON_UTF8)
     public Result list(@PathVariable("name") String name) {
         return list(new AdminUserCondition().setName(name));
     }
 
-    @GetMapping(value = "get", produces = APPLICATON_JSON_UTF8)
+    @GetMapping(value = "get", produces = APPLICATION_JSON_UTF8)
     public Result get(Long id) {
         return adminUserService.get(id);
     }
 
-    @PostMapping(value = "save", produces = APPLICATON_JSON_UTF8, consumes = APPLICATON_JSON_UTF8)
+    @PostMapping(value = "save", produces = APPLICATION_JSON_UTF8, consumes = APPLICATION_JSON_UTF8)
     public Result save(@RequestBody @Validated(AdminUserVO.Save.class) AdminUserVO adminUserVO, BindingResult result) {
         validate(result);
         return adminUserService.save(adminUserVO);
     }
 
-    @PostMapping(value = "change/info", produces = APPLICATON_JSON_UTF8, consumes = APPLICATON_JSON_UTF8)
+    @PostMapping(value = "change/info", produces = APPLICATION_JSON_UTF8, consumes = APPLICATION_JSON_UTF8)
     public Result changeInfo(@RequestBody @Validated(AdminUserVO.Update.class) AdminUserVO adminUserVO, BindingResult result) {
         validate(result);
         return adminUserService.changeInfo(adminUserVO);
     }
 
-    @PostMapping(value = "change/pwd", produces = APPLICATON_JSON_UTF8, consumes = APPLICATON_JSON_UTF8)
+    @PostMapping(value = "change/pwd", produces = APPLICATION_JSON_UTF8, consumes = APPLICATION_JSON_UTF8)
     public Result changePwd(@RequestBody @Validated(AdminUserVO.ChangePwd.class) AdminUserVO adminUserVO, BindingResult result) {
         validate(result);
         return adminUserService.changePwd(adminUserVO);
     }
 
-    @PostMapping(value = "change/role", produces = APPLICATON_JSON_UTF8, consumes = APPLICATON_JSON_UTF8)
+    @PostMapping(value = "change/role", produces = APPLICATION_JSON_UTF8, consumes = APPLICATION_JSON_UTF8)
     public Result changeRole(@RequestBody @Validated(AdminUserVO.ChangeRole.class) AdminUserVO adminUserVO, BindingResult result) {
         validate(result);
         return adminUserService.changeRole(adminUserVO);
+    }
+
+    @GetMapping(value = "delete", params = "id", produces = APPLICATION_JSON_UTF8)
+    public Result delete(Long id) {
+        return adminUserService.delete(id);
+    }
+
+    @GetMapping(value = "delete", params = "ids", produces = APPLICATION_JSON_UTF8)
+    public Result delete(List<Long> ids) {
+        return adminUserService.delete(ids);
     }
 
 

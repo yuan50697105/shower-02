@@ -16,6 +16,8 @@ import org.yuan.boot.shower.db.pojo.AdminRoleCondition;
 import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import java.util.List;
+
 /**
  * @program: shower-01
  * @description:
@@ -69,6 +71,12 @@ public class AdminRoleServiceImpl implements AdminRoleService {
         }
         adminUserRoleDao.deleteByRoleId(id);
         adminRoleDao.delete(id);
+        return Results.ok();
+    }
+
+    @Override
+    public Result delete(List<Long> ids) {
+        adminRoleDao.delete(ids);
         return Results.ok();
     }
 

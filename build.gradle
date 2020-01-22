@@ -11,7 +11,7 @@ plugins {
 allprojects {
 
     group = 'org.yuan.boot'
-    version = '0.1.0-DEV'
+    version = '0.1.0'
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
 

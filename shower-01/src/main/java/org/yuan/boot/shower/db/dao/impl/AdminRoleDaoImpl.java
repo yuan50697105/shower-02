@@ -79,4 +79,12 @@ public class AdminRoleDaoImpl extends BaseDaoImpl<AdminRole, AdminRoleMapper> im
         baseMapper().deleteByPrimaryKey(id);
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(List<Long> ids) {
+        AdminRoleExample example = new AdminRoleExample();
+        example.or().andIdIn(ids);
+        baseMapper().deleteByExample(example);
+    }
+
 }

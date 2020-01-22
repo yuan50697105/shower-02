@@ -4,6 +4,8 @@ import org.yuan.boot.shower.admin.pojo.AdminUserVO;
 import org.yuan.boot.shower.db.pojo.AdminUserCondition;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import java.util.List;
+
 /**
  * @program: shower-01
  * @description:
@@ -24,4 +26,8 @@ public interface AdminUserService {
     Result changeInfo(AdminUserVO adminUserVO);
 
     Result changeRole(AdminUserVO adminUserVO);
+
+    Result delete(Long id);
+
+    Result delete(List<Long> ids);
 }

@@ -30,4 +30,6 @@ public interface AdminRoleDao extends BaseDao<AdminRole> {
     void updateById(AdminRole adminRole);
 
     void delete(Long id);
+
+    void delete(List<Long> ids);
 }

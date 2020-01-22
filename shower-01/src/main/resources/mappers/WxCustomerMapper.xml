@@ -275,4 +275,26 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from wx_customer
+        <where>
+            <if test="id != null">
+                and id = #{id,jdbcType=BIGINT}
+            </if>
+            <if test="name != null and name != ''">
+                and nick_name like concat('%',#{name,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="phone != null and phone != ''">
+                and phone like concat('%',#{phone,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+        <if test="order != null and order != ''">
+            order by ${order}
+            <if test="sort != null and sort != ''">
+                ${sort}
+            </if>
+        </if>
+    </select>
 </mapper>

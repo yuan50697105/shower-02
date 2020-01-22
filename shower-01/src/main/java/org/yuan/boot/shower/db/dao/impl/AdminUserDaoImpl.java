@@ -56,8 +56,22 @@ public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> im
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void updateById(AdminUser adminUser) {
         baseMapper().updateByPrimaryKeySelective(adminUser);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Long id) {
+        baseMapper().deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void delete(List<Long> ids) {
+        AdminUserExample example = new AdminUserExample();
+        example.or().andIdIn(ids);
+        baseMapper().deleteByExample(example);
     }
 
 

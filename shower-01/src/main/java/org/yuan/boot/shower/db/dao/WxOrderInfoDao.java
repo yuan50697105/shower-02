@@ -1,6 +1,7 @@
 package org.yuan.boot.shower.db.dao;
 
 import com.github.pagehelper.PageInfo;
+import org.yuan.boot.db.pojo.PageResult;
 import org.yuan.boot.shower.commons.dao.BaseDao;
 import org.yuan.boot.shower.db.pojo.WxOrderInfo;
 import org.yuan.boot.shower.db.pojo.WxOrderInfoCondition;
@@ -14,9 +15,9 @@ import java.util.Optional;
  * @create: 2020-01-20 18:14
  */
 public interface WxOrderInfoDao extends BaseDao<WxOrderInfo> {
-    PageInfo<WxOrderInfo> selectPage(WxOrderInfoCondition wxOrderInfoCondition);
+    PageResult<WxOrderInfo> selectPage(WxOrderInfoCondition wxOrderInfoCondition);
 
-    PageInfo<WxOrderInfo> selectPageOrderByCreateTimeDesc(WxOrderInfoCondition condition);
+    PageResult<WxOrderInfo> selectPageOrderByCreateTimeDesc(WxOrderInfoCondition condition);
 
     void save(WxOrderInfo wxOrderInfo);
 

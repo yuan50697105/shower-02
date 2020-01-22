@@ -15,6 +15,10 @@ import org.yuan.boot.db.pojo.AbstractBaseCondition;
 @Data
 @Accessors(chain = true)
 public class WxCustomerCondition extends AbstractBaseCondition {
+    private Long id;
+    private String name;
+    private String phone;
+
     public WxCustomerCondition() {
     }
 

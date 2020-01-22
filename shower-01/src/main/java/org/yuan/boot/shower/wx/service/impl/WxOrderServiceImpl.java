@@ -11,7 +11,6 @@ import lombok.SneakyThrows;
 import org.apache.commons.io.IOUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.yuan.boot.db.utils.PageResults;
 import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.WxOrderInfoDao;
 import org.yuan.boot.shower.db.pojo.WxOrderInfo;
@@ -52,7 +51,7 @@ public class WxOrderServiceImpl implements WxOrderService {
 
     @Override
     public Result getOrderList(WxOrderInfoCondition wxOrderInfoCondition) {
-        return Results.data(PageResults.of(wxOrderInfoDao.selectPageOrderByCreateTimeDesc(wxOrderInfoCondition)));
+        return Results.data(wxOrderInfoDao.selectPageOrderByCreateTimeDesc(wxOrderInfoCondition));
     }
 
     // TODO: 2020/1/20 支付需测试

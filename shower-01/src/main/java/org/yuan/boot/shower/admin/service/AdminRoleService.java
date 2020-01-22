@@ -5,6 +5,8 @@ import org.yuan.boot.shower.db.pojo.AdminRoleCondition;
 import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import java.util.List;
+
 /**
  * @program: shower-01
  * @description:
@@ -23,4 +25,6 @@ public interface AdminRoleService {
     Result update(AdminRoleVo adminRoleVo);
 
     Result delete(Long id) throws ResultRuntimeException;
+
+    Result delete(List<Long> ids);
 }

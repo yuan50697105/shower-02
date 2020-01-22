@@ -111,4 +111,17 @@ public class AdminUserServiceImpl implements AdminUserService {
         return Results.ok();
     }
 
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Result delete(Long id) {
+        adminUserDao.delete(id);
+        return Results.ok();
+    }
+
+    @Override
+    public Result delete(List<Long> ids) {
+        adminUserDao.delete(ids);
+        return Results.ok();
+    }
+
 }

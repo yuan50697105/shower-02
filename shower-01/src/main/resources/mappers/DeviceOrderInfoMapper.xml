@@ -340,4 +340,38 @@
         leave_time = #{leaveTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}
     </update>
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from device_order_info
+        <where>
+            <if test="id != null">
+                and id =#{id,jdbcType=VARCHAR}
+            </if>
+            <if test="deviceId != null">
+                and device_id = #{deviceId,jdbcType=BIGINT}
+            </if>
+            <if test="deviceCode != null and deviceCode != ''">
+                and device_code like concat('%',#{deviceCode,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="orderId != null">
+                and order_id = #{orderId,jdbcType=BIGINT}
+            </if>
+            <if test="orderNo != null and orderNo != ''">
+                and order_no like concat('%',#{orderNo,jdbcType=VARCHAR},'%')
+            </if>
+            <if test="customerId != null">
+                and customer_id = #{customerId,jdbcType=BIGINT}
+            </if>
+            <if test="customerName != null and customerName != ''">
+                and customer_name like concat('%',#{customerName,jdbcType=VARCHAR},'%')
+            </if>
+        </where>
+        <if test="order != null and order != ''">
+            order by ${order}
+            <if test="sort != null and sort != ''">
+                ${sort}
+            </if>
+        </if>
+    </select>
 </mapper>

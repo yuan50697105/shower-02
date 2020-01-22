@@ -19,4 +19,5 @@ import org.yuan.boot.webmvc.controller.AbstractResultController;
 @Log4j2
 public class DeviceInfoController extends AbstractResultController {
     private DeviceInfoService deviceInfoService;
+
 }

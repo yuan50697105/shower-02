@@ -4,6 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.shower.commons.mapper.BaseMapper;
 import org.yuan.boot.shower.db.pojo.DeviceOrderInfo;
+import org.yuan.boot.shower.db.pojo.DeviceOrderInfoCondition;
 import org.yuan.boot.shower.db.pojo.DeviceOrderInfoExample;
 
 import java.util.List;
@@ -31,4 +32,6 @@ public interface DeviceOrderInfoMapper extends BaseMapper<DeviceOrderInfo> {
     int updateByPrimaryKeySelective(DeviceOrderInfo record);
 
     int updateByPrimaryKey(DeviceOrderInfo record);
+
+    List<DeviceOrderInfo> selectByCondition(DeviceOrderInfoCondition condition);
 }

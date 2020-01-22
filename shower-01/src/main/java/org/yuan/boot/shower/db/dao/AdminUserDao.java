@@ -25,4 +25,8 @@ public interface AdminUserDao extends BaseDao<AdminUser> {
     AdminUser getByUsername(String username);
 
     void updateById(AdminUser adminUser);
+
+    void delete(Long id);
+
+    void delete(List<Long> ids);
 }
