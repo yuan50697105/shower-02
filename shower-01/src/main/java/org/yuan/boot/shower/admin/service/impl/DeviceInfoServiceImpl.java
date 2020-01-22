@@ -11,7 +11,10 @@ import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.DeviceInfoDao;
 import org.yuan.boot.shower.db.pojo.DeviceInfo;
 import org.yuan.boot.shower.db.pojo.DeviceInfoCondition;
+import org.yuan.boot.shower.db.pojo.DeviceInfoExample;
 import org.yuan.boot.webmvc.pojo.Result;
+
+import java.util.List;
 
 /**
  * @program: shower-01
@@ -46,7 +49,29 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     public Result save(DeviceInfoVO deviceInfoVO) {
         DeviceInfo deviceInfo = deviceInfoConverter.convertForSave(deviceInfoVO);
         deviceInfoDao.save(deviceInfo);
-        return null;
+        return Results.ok();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Result update(DeviceInfoVO deviceInfoVO) {
+        DeviceInfo deviceInfo = deviceInfoConverter.convertForUpdate(deviceInfoVO);
+        deviceInfoDao.updateById(deviceInfo);
+        return Results.ok();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Result delete(Long id) {
+        deviceInfoDao.delete(id);
+        return Results.ok();
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public Result delete(List<Long> ids) {
+        deviceInfoDao.delete(ids);
+        return Results.ok();
     }
 
 }

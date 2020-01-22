@@ -1,5 +1,7 @@
 package org.yuan.boot.shower.admin.controller;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +18,8 @@ import org.yuan.boot.webmvc.pojo.Result;
  */
 @RestController
 @RequestMapping("wx/order")
+@AllArgsConstructor
+@Log4j2
 public class WxOrderInfoController extends AbstractResultController {
     private WxOrderInfoService wxOrderInfoService;
 

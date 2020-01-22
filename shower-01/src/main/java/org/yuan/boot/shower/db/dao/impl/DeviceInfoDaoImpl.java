@@ -13,6 +13,7 @@ import org.yuan.boot.shower.db.dao.DeviceInfoDao;
 import org.yuan.boot.shower.db.mapper.DeviceInfoMapper;
 import org.yuan.boot.shower.db.pojo.DeviceInfo;
 import org.yuan.boot.shower.db.pojo.DeviceInfoCondition;
+import org.yuan.boot.shower.db.pojo.DeviceInfoExample;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,5 +48,24 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     @Transactional(rollbackFor = Exception.class)
     public void save(DeviceInfo deviceInfo) {
         baseMapper().insertSelective(deviceInfo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateById(DeviceInfo deviceInfo) {
+        baseMapper().updateByPrimaryKeySelective(deviceInfo);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void delete(Long id) {
+        baseMapper().deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public void delete(List<Long> ids) {
+        DeviceInfoExample example = new DeviceInfoExample();
+        example.or().andIdIn(ids);
+        baseMapper().deleteByExample(example);
     }
 }

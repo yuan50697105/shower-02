@@ -4,6 +4,8 @@ import org.yuan.boot.shower.admin.pojo.DeviceInfoVO;
 import org.yuan.boot.shower.db.pojo.DeviceInfoCondition;
 import org.yuan.boot.webmvc.pojo.Result;
 
+import java.util.List;
+
 /**
  * @program: shower-01
  * @description:
@@ -18,4 +20,10 @@ public interface DeviceInfoService {
     Result get(Long id);
 
     Result save(DeviceInfoVO deviceInfoVO);
+
+    Result update(DeviceInfoVO deviceInfoVO);
+
+    Result delete(Long id);
+
+    Result delete(List<Long> ids);
 }

@@ -3,15 +3,15 @@ package org.yuan.boot.shower.admin.controller;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import org.yuan.boot.shower.admin.pojo.DeviceInfoVO;
 import org.yuan.boot.shower.admin.service.DeviceInfoService;
 import org.yuan.boot.shower.db.pojo.DeviceInfoCondition;
 import org.yuan.boot.webmvc.controller.AbstractResultController;
 import org.yuan.boot.webmvc.pojo.Result;
+
+import java.util.List;
 
 /**
  * @program: shower-01
@@ -36,14 +36,31 @@ public class DeviceInfoController extends AbstractResultController {
         return deviceInfoService.list(condition);
     }
 
-    @GetMapping("get")
+    @GetMapping(value = "get", produces = APPLICATION_JSON_UTF8)
     public Result get(Long id) {
         return deviceInfoService.get(id);
     }
 
-    @PostMapping("save")
-    public Result save(DeviceInfoVO deviceInfoVO, BindingResult result) {
+    @PostMapping(value = "save", produces = APPLICATION_JSON_UTF8, consumes = APPLICATION_JSON_UTF8)
+    public Result save(@RequestBody @Validated(DeviceInfoVO.Save.class) DeviceInfoVO deviceInfoVO, BindingResult result) {
         validate(result);
         return deviceInfoService.save(deviceInfoVO);
+    }
+
+    @PostMapping(value = "update", produces = APPLICATION_JSON_UTF8, consumes = APPLICATION_JSON_UTF8)
+    public Result update(@RequestBody @Validated(DeviceInfoVO.Update.class) DeviceInfoVO deviceInfoVO, BindingResult result) {
+        validate(result);
+        return deviceInfoService.update(deviceInfoVO);
+    }
+
+
+    @GetMapping(value = "delete", params = "id", produces = APPLICATION_JSON_UTF8)
+    public Result delete(Long id) {
+        return deviceInfoService.delete(id);
+    }
+
+    @GetMapping(value = "delete", params = "ids", produces = APPLICATION_JSON_UTF8)
+    public Result delete(List<Long> ids) {
+        return deviceInfoService.delete(ids);
     }
 }

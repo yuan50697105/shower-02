@@ -1,6 +1,7 @@
 package org.yuan.boot.shower.admin.controller;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -21,6 +22,7 @@ import java.util.List;
 @RestController
 @RequestMapping("admin/role")
 @AllArgsConstructor
+@Log4j2
 public class AdminRoleController extends AbstractResultController {
     private AdminRoleService adminRoleService;
 

@@ -23,4 +23,10 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
     Optional<DeviceInfo> getById(Long id);
 
     void save(DeviceInfo deviceInfo);
+
+    void updateById(DeviceInfo deviceInfo);
+
+    void delete(Long id);
+
+    void delete(List<Long> ids);
 }
