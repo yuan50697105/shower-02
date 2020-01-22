@@ -23,7 +23,7 @@ import org.yuan.boot.shower.db.pojo.WxCustomerExample;
  */
 @Component
 @AllArgsConstructor
-@Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED, readOnly = true)
+@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class WxCustomerDaoImpl extends BaseDaoImpl<WxCustomer, WxCustomerMapper> implements WxCustomerDao {
     @Override
     @Transactional(rollbackFor = Exception.class)

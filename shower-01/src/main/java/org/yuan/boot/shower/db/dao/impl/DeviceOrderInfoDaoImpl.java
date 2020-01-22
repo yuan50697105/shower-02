@@ -4,6 +4,8 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
 import org.yuan.boot.db.utils.PageResults;
 import org.yuan.boot.shower.commons.dao.impl.BaseDaoImpl;
@@ -20,6 +22,7 @@ import org.yuan.boot.shower.db.pojo.DeviceOrderInfoCondition;
  */
 @Component
 @AllArgsConstructor
+@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class DeviceOrderInfoDaoImpl extends BaseDaoImpl<DeviceOrderInfo, DeviceOrderInfoMapper> implements DeviceOrderInfoDao {
     @Override
     public PageResult<DeviceOrderInfo> selectPage(DeviceOrderInfoCondition condition) {

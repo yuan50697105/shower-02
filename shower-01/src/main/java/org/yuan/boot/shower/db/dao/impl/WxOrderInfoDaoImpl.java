@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.db.pojo.PageResult;
 import org.yuan.boot.db.utils.PageResults;
@@ -23,6 +24,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
+@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class WxOrderInfoDaoImpl extends BaseDaoImpl<WxOrderInfo, WxOrderInfoMapper> implements WxOrderInfoDao {
     @Override
     public PageResult<WxOrderInfo> selectPage(WxOrderInfoCondition condition) {

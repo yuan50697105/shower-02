@@ -4,12 +4,17 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.db.pojo.PageResult;
+import org.yuan.boot.db.utils.PageResults;
 import org.yuan.boot.shower.commons.dao.impl.BaseDaoImpl;
 import org.yuan.boot.shower.db.dao.DeviceInfoDao;
 import org.yuan.boot.shower.db.mapper.DeviceInfoMapper;
 import org.yuan.boot.shower.db.pojo.DeviceInfo;
 import org.yuan.boot.shower.db.pojo.DeviceInfoCondition;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,15 +25,27 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
+@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper> implements DeviceInfoDao {
     @Override
-    public PageInfo<DeviceInfo> selectPageByCondition(DeviceInfoCondition condition) {
+    public PageResult<DeviceInfo> selectPageByCondition(DeviceInfoCondition condition) {
         PageHelper.startPage(condition.getPage(), condition.getSize());
-        return PageInfo.of(baseMapper().selectByCondition(condition));
+        return PageResults.of(PageInfo.of(baseMapper().selectByCondition(condition)));
+    }
+
+    @Override
+    public List<DeviceInfo> selectListByCondition(DeviceInfoCondition condition) {
+        return baseMapper().selectByCondition(condition);
     }
 
     @Override
     public Optional<DeviceInfo> getById(Long id) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void save(DeviceInfo deviceInfo) {
+        baseMapper().insertSelective(deviceInfo);
     }
 }

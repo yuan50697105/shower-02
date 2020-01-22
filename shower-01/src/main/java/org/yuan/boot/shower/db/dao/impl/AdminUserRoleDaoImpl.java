@@ -2,6 +2,7 @@ package org.yuan.boot.shower.db.dao.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.shower.commons.dao.impl.BaseDaoImpl;
 import org.yuan.boot.shower.db.dao.AdminUserRoleDao;
@@ -22,6 +23,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @AllArgsConstructor
+@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRoleMapper> implements AdminUserRoleDao {
     @Override
     public List<AdminUserRole> selectByUserId(Long id) {
