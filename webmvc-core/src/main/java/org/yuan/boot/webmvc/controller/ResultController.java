@@ -16,7 +16,7 @@ import java.util.StringJoiner;
  */
 @RestControllerAdvice
 @Log4j2
-public abstract class AbstractResultController {
+public abstract class ResultController {
 
     public final static String HTTP_METHOD_POST = "POST";
     public final static String HTTP_METHOD_GET = "GET";
