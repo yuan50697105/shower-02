@@ -1,13 +1,11 @@
 package org.yuan.boot.shower.db.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.shower.commons.mapper.BaseMapper;
 import org.yuan.boot.shower.db.pojo.WxCustomer;
-import org.yuan.boot.shower.db.pojo.WxCustomerCondition;
-import org.yuan.boot.shower.db.pojo.WxCustomerExample;
-
-import java.util.List;
+import org.yuan.boot.shower.db.pojo.WxCustomerCondition;import org.yuan.boot.shower.db.pojo.WxCustomerExample;
 
 @Mapper
 public interface WxCustomerMapper extends BaseMapper<WxCustomer> {
