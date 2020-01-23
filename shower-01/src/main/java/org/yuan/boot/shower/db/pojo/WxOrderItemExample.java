@@ -636,6 +636,66 @@ public class WxOrderItemExample {
             return (Criteria) this;
         }
 
+        public Criteria andDeviceTypeIsNull() {
+            addCriterion("device_type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeIsNotNull() {
+            addCriterion("device_type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeEqualTo(Integer value) {
+            addCriterion("device_type =", value, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeNotEqualTo(Integer value) {
+            addCriterion("device_type <>", value, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeGreaterThan(Integer value) {
+            addCriterion("device_type >", value, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("device_type >=", value, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeLessThan(Integer value) {
+            addCriterion("device_type <", value, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("device_type <=", value, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeIn(List<Integer> values) {
+            addCriterion("device_type in", values, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeNotIn(List<Integer> values) {
+            addCriterion("device_type not in", values, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeBetween(Integer value1, Integer value2) {
+            addCriterion("device_type between", value1, value2, "deviceType");
+            return (Criteria) this;
+        }
+
+        public Criteria andDeviceTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("device_type not between", value1, value2, "deviceType");
+            return (Criteria) this;
+        }
+
         public Criteria andDeviceIdIsNull() {
             addCriterion("device_id is null");
             return (Criteria) this;

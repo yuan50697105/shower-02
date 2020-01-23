@@ -8,7 +8,7 @@ import org.yuan.boot.shower.db.pojo.WxOrderItem;
 import org.yuan.boot.shower.db.pojo.WxOrderItemExample;
 
 @Mapper
-public interface WxOrderItemMapper extends BaseMapper<WxOrderItem> {
+public interface WxOrderItemMapper extends BaseMapper {
     long countByExample(WxOrderItemExample example);
 
     int deleteByExample(WxOrderItemExample example);

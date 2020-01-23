@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.WxOrderInfoDao;
+import org.yuan.boot.shower.db.dao.WxOrderItemDao;
 import org.yuan.boot.shower.db.pojo.WxOrderInfo;
 import org.yuan.boot.shower.wx.converter.WxOrderConverter;
 import org.yuan.boot.shower.wx.pojo.WxOrderVO;
@@ -26,6 +27,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class WxAppointmentOrderServiceImpl implements WxAppointmentOrderService {
     private WxOrderConverter wxOrderConverter;
     private WxOrderInfoDao wxOrderInfoDao;
+    private WxOrderItemDao wxOrderItemDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)

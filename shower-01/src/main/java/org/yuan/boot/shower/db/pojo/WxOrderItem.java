@@ -46,6 +46,11 @@ public class WxOrderItem extends BaseEntity implements Serializable {
     private String itemOrderNo;
 
     /**
+     * 设备类型
+     */
+    private Integer deviceType;
+
+    /**
      * 设备ID
      */
     private String deviceId;
