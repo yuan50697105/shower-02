@@ -18,14 +18,13 @@ import org.yuan.boot.shower.wx.service.WxCommonsOrderService;
 import org.yuan.boot.shower.wx.service.WxOrderService;
 import org.yuan.boot.shower.wx.service.WxPrepayOrderService;
 import org.yuan.boot.webmvc.exception.DataParamsErrorResultRuntimeException;
-import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import java.nio.charset.StandardCharsets;
 
-import static org.yuan.boot.shower.db.pojo.OrderInfoType.OrderType.*;
+import static org.yuan.boot.shower.wx.pojo.WxOrderConstants.OrderType.*;
 
 /**
  * @program: shower-01

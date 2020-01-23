@@ -1,4 +1,4 @@
-package org.yuan.boot.shower.db.pojo;
+package org.yuan.boot.shower.wx.pojo;
 
 /**
  * @program: shower-01
@@ -6,7 +6,7 @@ package org.yuan.boot.shower.db.pojo;
  * @author: yuane
  * @create: 2020-01-23 10:49
  */
-public class OrderInfoType {
+public class WxOrderConstants {
     public static class OrderType {
         /**
          * 普通订单
