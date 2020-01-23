@@ -60,7 +60,7 @@ create table if not exists device_order_info
 
 create table if not exists wx_customer
 (
-    id          bigint(15)  not null comment 'id'
+    id          bigint(15) auto_increment comment 'id'
         primary key,
     open_id     varchar(50) null comment '微信OPENID',
     union_id    varchar(50) null comment '微信UNIONID',
@@ -74,32 +74,39 @@ create table if not exists wx_customer
 
 create table if not exists wx_order_info
 (
-    id                 bigint(15)     not null comment 'id'
+    id                 bigint(15) auto_increment comment 'id'
         primary key,
-    create_time        datetime       null comment 'createTime',
-    order_type         int            null comment '订单类型 1 预支付押金，2 直接使用 ，3 预约订单',
     order_no           varchar(50)    null comment '订单号',
     customer_id        bigint(15)     null comment '客户ID',
-    customer_name      varchar(50)    null comment '客户姓名',
-    customer_open_id   varchar(50)    null comment '客户微信openId',
-    customer_union_id  varchar(50)    null comment '微信UNIONID',
-    device_id          bigint(15)     null comment '设备编号ID',
-    device_code        varchar(50)    null comment '设备编号',
-    pay_status         int            null comment '支付状态 （0未支付 ，11 预支付订单支付定金， 12 使用结束未完成支付，13 使用完成并完成支付，22使用结束未支付，23 完成支持，31 ，32 ，33',
-    predicate_pay_time datetime       null comment '预支付时间',
-    final_pay_time     datetime       null comment '使用结束支付时间',
-    predicate_decimal  decimal(13, 4) null comment '预支付金额',
-    remain_decimal     decimal(13, 4) null comment '预支付剩余金额',
-    start_time         datetime       null comment '使用开始时间',
-    end_time           datetime       null comment '使用结束时间',
-    spend_time         decimal(13, 4) null comment '使用时间',
-    min_decimal        decimal(13, 4) null comment '最低收费',
-    per_decimal        decimal(13, 4) null comment '单位收费价格',
-    ext_decimal        decimal(13, 4) null comment '超出收费金额（如果是直接使用订单，只有超出使用金额）',
-    total_decimal      decimal(13, 4) null comment '总金额',
-    leave_time         datetime       null comment '客户离开时间',
-    crate_time         datetime       null comment 'crateTime',
-    update_time        timestamp      null comment 'updateTime'
+    customer_open_id   varchar(50)    null comment '客户微信OPENID',
+    customer_union_id  varchar(50)    null comment '客户微信UNIONID',
+    customer_nick_name varchar(50)    null comment '客户昵称',
+    order_status       int            null comment '订单状态',
+    total_price        decimal(13, 4) null comment '总金额',
+    total_remain_price decimal(13, 4) null comment '退回总金额'
 )
     comment 'wx_order_info';
+
+create table if not exists wx_order_item
+(
+    id                 bigint(15) auto_increment comment 'id'
+        primary key,
+    order_id           bigint(15)     null comment '订单ID',
+    order_no           varchar(50)    null comment '订单号',
+    customer_id        bigint(15)     null comment '客户ID',
+    customer_open_id   varchar(50)    null comment '客户微信OPENID',
+    customer_union_id  varchar(50)    null comment '客户微信UNIONID',
+    customer_nick_name varchar(50)    null comment '客户昵称',
+    item_order_no      varchar(50)    null comment '子订单号',
+    device_id          varchar(50)    null comment '设备ID',
+    device_code        varchar(50)    null comment '设备编号',
+    pay_status         int            null comment '支付状态（0 未支付 1 已支付）',
+    pay_time           datetime       null comment '支付时间',
+    start_time         datetime       null comment '开始使用时间',
+    end_time           datetime       null comment '结束使用时间',
+    price              decimal(13, 4) null comment '单价',
+    total_price        decimal(13, 4) null comment '总价',
+    total_remain_price decimal(13, 4) null comment '退回总金额'
+)
+    comment 'wx_order_item';
 
