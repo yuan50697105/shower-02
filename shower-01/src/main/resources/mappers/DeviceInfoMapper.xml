@@ -8,6 +8,7 @@
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="address" jdbcType="VARCHAR" property="address" />
     <result column="point" jdbcType="VARCHAR" property="point" />
+    <result column="type" jdbcType="INTEGER" property="type" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -71,7 +72,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, code, address, point
+    id, code, address, point, `type`
   </sql>
   <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.DeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -107,20 +108,17 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.yuan.boot.shower.db.pojo.DeviceInfo">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="org.yuan.boot.shower.db.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into device_info (id, code, address, 
-      point)
-    values (#{id,jdbcType=BIGINT}, #{code,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
-      #{point,jdbcType=VARCHAR})
+    insert into device_info (code, address, point, 
+      `type`)
+    values (#{code,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{point,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="org.yuan.boot.shower.db.pojo.DeviceInfo">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="org.yuan.boot.shower.db.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into device_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="code != null">
         code,
       </if>
@@ -130,11 +128,11 @@
       <if test="point != null">
         point,
       </if>
+      <if test="type != null">
+        `type`,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
@@ -143,6 +141,9 @@
       </if>
       <if test="point != null">
         #{point,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -169,6 +170,9 @@
       <if test="record.point != null">
         point = #{record.point,jdbcType=VARCHAR},
       </if>
+      <if test="record.type != null">
+        `type` = #{record.type,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -180,7 +184,8 @@
     set id = #{record.id,jdbcType=BIGINT},
       code = #{record.code,jdbcType=VARCHAR},
       address = #{record.address,jdbcType=VARCHAR},
-      point = #{record.point,jdbcType=VARCHAR}
+      point = #{record.point,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -198,6 +203,9 @@
       <if test="point != null">
         point = #{point,jdbcType=VARCHAR},
       </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -206,7 +214,8 @@
     update device_info
     set code = #{code,jdbcType=VARCHAR},
       address = #{address,jdbcType=VARCHAR},
-      point = #{point,jdbcType=VARCHAR}
+      point = #{point,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
     <select id="selectByCondition" resultMap="BaseResultMap">

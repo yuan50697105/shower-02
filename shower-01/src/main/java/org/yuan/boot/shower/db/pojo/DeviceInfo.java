@@ -23,5 +23,10 @@ public class DeviceInfo extends BaseEntity implements Serializable {
      */
     private String point;
 
+    /**
+     * 设备类型
+     */
+    private Integer type;
+
     private static final long serialVersionUID = 1L;
 }
