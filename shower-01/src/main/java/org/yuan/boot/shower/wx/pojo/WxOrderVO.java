@@ -16,10 +16,14 @@ public class WxOrderVO {
     @NotEmpty
     private Integer type;
     @NotEmpty
-    private String openId;
+    private Long customerId;
     @NotEmpty
-    private String unionId;
-    @NotEmpty
-    private String deviceCode;
-    private BigDecimal decimal;
+    private Integer deviceId;
+    @NotEmpty(groups = {AddPrepay.class})
+    private BigDecimal prepayDecimal;
+
+    public interface AddPrepay {
+    }
+
+
 }

@@ -6,7 +6,22 @@ package org.yuan.boot.shower.db.pojo;
  * @author: yuane
  * @create: 2020-01-23 10:49
  */
-public class OrderInfoStatus {
+public class OrderInfoType {
+    public static class OrderType {
+        /**
+         * 普通订单
+         */
+        public static final Integer COMMONS = 1;
+        /**
+         * 预支付订单
+         */
+        public static final Integer PREPAY = 2;
+        /**
+         * 预约订单
+         */
+        public static final Integer APPOINTMENT = 3;
+    }
+
     /**
      * 支付状态
      */

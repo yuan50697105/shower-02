@@ -17,7 +17,10 @@ import org.yuan.boot.shower.db.pojo.WxOrderInfo;
 import org.yuan.boot.shower.db.pojo.WxOrderInfoCondition;
 import org.yuan.boot.shower.wx.converter.WxOrderConverter;
 import org.yuan.boot.shower.wx.pojo.WxOrderVO;
+import org.yuan.boot.shower.wx.service.WxAppointmentOrderService;
+import org.yuan.boot.shower.wx.service.WxCommonsOrderService;
 import org.yuan.boot.shower.wx.service.WxOrderService;
+import org.yuan.boot.shower.wx.service.WxPrepayOrderService;
 import org.yuan.boot.webmvc.exception.ResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
@@ -26,6 +29,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 import java.nio.charset.StandardCharsets;
 import java.util.Optional;
+
+import static org.yuan.boot.shower.db.pojo.OrderInfoType.OrderType.*;
 
 /**
  * @program: shower-01
@@ -40,13 +45,23 @@ public class WxOrderServiceImpl implements WxOrderService {
     private WxOrderConverter wxOrderConverter;
     private WxMaService wxMaService;
     private WxPayService wxPayService;
+    private WxPrepayOrderService wxPrepayOrderService;
+    private WxCommonsOrderService wxCommonsOrderService;
+    private WxAppointmentOrderService wxAppointmentOrderService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result addOrder(WxOrderVO wxOrderVO) {
-        WxOrderInfo wxOrderInfo = wxOrderConverter.convertToWxOrderInfo(wxOrderVO);
-        wxOrderInfoDao.save(wxOrderInfo);
-        return Results.ok();
+        switch (wxOrderVO.getType()) {
+            case PREPAY:
+                return wxPrepayOrderService.addOrder(wxOrderVO);
+            case COMMONS:
+                return wxCommonsOrderService.addOrder(wxOrderVO);
+            case APPOINTMENT:
+                return wxAppointmentOrderService.addOrder(wxOrderVO);
+            default:
+                throw new ResultRuntimeException()
+        }
     }
 
     @Override

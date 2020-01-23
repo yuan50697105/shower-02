@@ -18,6 +18,8 @@ public class DeviceInfoVO {
     private String deviceCode;
     @NotEmpty(groups = {Update.class, Save.class})
     private String point;
+    @NotEmpty(groups = {Save.class, Update.class})
+    private Integer type;
 
     public interface Save {
     }
