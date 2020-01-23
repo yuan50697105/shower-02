@@ -11,15 +11,15 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public abstract class AbstractBaseCondition extends AbstractBaseCoreCondition {
-    public AbstractBaseCondition() {
+public abstract class  BaseCondition extends CoreCondition {
+    public BaseCondition() {
     }
 
-    public AbstractBaseCondition(int page, int size) {
+    public BaseCondition(int page, int size) {
         super(page, size);
     }
 
-    public AbstractBaseCondition(int page, int size, String order, String sort) {
+    public BaseCondition(int page, int size, String order, String sort) {
         super(page, size, order, sort);
     }
 }

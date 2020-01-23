@@ -5,21 +5,21 @@ import lombok.experimental.Accessors;
 
 @Data
 @Accessors(chain = true)
-public abstract class AbstractBaseCoreCondition<T> {
+public abstract class CoreCondition {
     private int page = 1;
     private int size = 20;
     private String order;
     private String sort;
 
-    public AbstractBaseCoreCondition() {
+    public CoreCondition() {
     }
 
-    public AbstractBaseCoreCondition(int page, int size) {
+    public CoreCondition(int page, int size) {
         this.page = page;
         this.size = size;
     }
 
-    public AbstractBaseCoreCondition(int page, int size, String order, String sort) {
+    public CoreCondition(int page, int size, String order, String sort) {
         this.page = page;
         this.size = size;
         this.order = order;

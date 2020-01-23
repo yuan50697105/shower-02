@@ -5,17 +5,16 @@
     <!--@mbg.generated-->
     <!--@Table device_order_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="device_id" jdbcType="BIGINT" property="deviceId" />
     <result column="device_code" jdbcType="VARCHAR" property="deviceCode" />
     <result column="order_id" jdbcType="BIGINT" property="orderId" />
     <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
-    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
-    <result column="customer_open_id" jdbcType="VARCHAR" property="customerOpenId" />
-    <result column="customer_name" jdbcType="VARCHAR" property="customerName" />
-    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
-    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
-    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="leave_time" jdbcType="TIMESTAMP" property="leaveTime" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -79,8 +78,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, device_id, device_code, order_id, order_no, customer_id, customer_open_id, customer_name, 
-    order_time, start_time, end_time, leave_time
+    id, create_time, update_time, create_user, update_user, device_id, device_code, order_id, 
+    order_no, `status`, content
   </sql>
   <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.DeviceOrderInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -118,16 +117,14 @@
   </delete>
   <insert id="insert" parameterType="org.yuan.boot.shower.db.pojo.DeviceOrderInfo">
     <!--@mbg.generated-->
-    insert into device_order_info (id, device_id, device_code, 
-      order_id, order_no, customer_id, 
-      customer_open_id, customer_name, order_time, 
-      start_time, end_time, leave_time
-      )
-    values (#{id,jdbcType=BIGINT}, #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, 
-      #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, 
-      #{customerOpenId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{leaveTime,jdbcType=TIMESTAMP}
-      )
+    insert into device_order_info (id, create_time, update_time, 
+      create_user, update_user, device_id, 
+      device_code, order_id, order_no, 
+      `status`, content)
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
+      #{deviceCode,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="org.yuan.boot.shower.db.pojo.DeviceOrderInfo">
     <!--@mbg.generated-->
@@ -135,6 +132,18 @@
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
       </if>
       <if test="deviceId != null">
         device_id,
@@ -148,31 +157,28 @@
       <if test="orderNo != null">
         order_no,
       </if>
-      <if test="customerId != null">
-        customer_id,
+      <if test="status != null">
+        `status`,
       </if>
-      <if test="customerOpenId != null">
-        customer_open_id,
-      </if>
-      <if test="customerName != null">
-        customer_name,
-      </if>
-      <if test="orderTime != null">
-        order_time,
-      </if>
-      <if test="startTime != null">
-        start_time,
-      </if>
-      <if test="endTime != null">
-        end_time,
-      </if>
-      <if test="leaveTime != null">
-        leave_time,
+      <if test="content != null">
+        content,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
       </if>
       <if test="deviceId != null">
         #{deviceId,jdbcType=BIGINT},
@@ -186,26 +192,11 @@
       <if test="orderNo != null">
         #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="customerId != null">
-        #{customerId,jdbcType=BIGINT},
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
       </if>
-      <if test="customerOpenId != null">
-        #{customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerName != null">
-        #{customerName,jdbcType=VARCHAR},
-      </if>
-      <if test="orderTime != null">
-        #{orderTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="startTime != null">
-        #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null">
-        #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="leaveTime != null">
-        #{leaveTime,jdbcType=TIMESTAMP},
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -223,6 +214,18 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
       <if test="record.deviceId != null">
         device_id = #{record.deviceId,jdbcType=BIGINT},
       </if>
@@ -235,26 +238,11 @@
       <if test="record.orderNo != null">
         order_no = #{record.orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.customerId != null">
-        customer_id = #{record.customerId,jdbcType=BIGINT},
+      <if test="record.status != null">
+        `status` = #{record.status,jdbcType=INTEGER},
       </if>
-      <if test="record.customerOpenId != null">
-        customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.customerName != null">
-        customer_name = #{record.customerName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.orderTime != null">
-        order_time = #{record.orderTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.startTime != null">
-        start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.endTime != null">
-        end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.leaveTime != null">
-        leave_time = #{record.leaveTime,jdbcType=TIMESTAMP},
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -265,17 +253,16 @@
     <!--@mbg.generated-->
     update device_order_info
     set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
       device_id = #{record.deviceId,jdbcType=BIGINT},
       device_code = #{record.deviceCode,jdbcType=VARCHAR},
       order_id = #{record.orderId,jdbcType=BIGINT},
       order_no = #{record.orderNo,jdbcType=VARCHAR},
-      customer_id = #{record.customerId,jdbcType=BIGINT},
-      customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      customer_name = #{record.customerName,jdbcType=VARCHAR},
-      order_time = #{record.orderTime,jdbcType=TIMESTAMP},
-      start_time = #{record.startTime,jdbcType=TIMESTAMP},
-      end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      leave_time = #{record.leaveTime,jdbcType=TIMESTAMP}
+      `status` = #{record.status,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -284,6 +271,18 @@
     <!--@mbg.generated-->
     update device_order_info
     <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
       <if test="deviceId != null">
         device_id = #{deviceId,jdbcType=BIGINT},
       </if>
@@ -296,26 +295,11 @@
       <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=VARCHAR},
       </if>
-      <if test="customerId != null">
-        customer_id = #{customerId,jdbcType=BIGINT},
+      <if test="status != null">
+        `status` = #{status,jdbcType=INTEGER},
       </if>
-      <if test="customerOpenId != null">
-        customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerName != null">
-        customer_name = #{customerName,jdbcType=VARCHAR},
-      </if>
-      <if test="orderTime != null">
-        order_time = #{orderTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="startTime != null">
-        start_time = #{startTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="endTime != null">
-        end_time = #{endTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="leaveTime != null">
-        leave_time = #{leaveTime,jdbcType=TIMESTAMP},
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -323,51 +307,16 @@
   <update id="updateByPrimaryKey" parameterType="org.yuan.boot.shower.db.pojo.DeviceOrderInfo">
     <!--@mbg.generated-->
     update device_order_info
-    set device_id = #{deviceId,jdbcType=BIGINT},
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      device_id = #{deviceId,jdbcType=BIGINT},
       device_code = #{deviceCode,jdbcType=VARCHAR},
       order_id = #{orderId,jdbcType=BIGINT},
       order_no = #{orderNo,jdbcType=VARCHAR},
-      customer_id = #{customerId,jdbcType=BIGINT},
-      customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      customer_name = #{customerName,jdbcType=VARCHAR},
-      order_time = #{orderTime,jdbcType=TIMESTAMP},
-      start_time = #{startTime,jdbcType=TIMESTAMP},
-      end_time = #{endTime,jdbcType=TIMESTAMP},
-      leave_time = #{leaveTime,jdbcType=TIMESTAMP}
+      `status` = #{status,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-    <select id="selectByCondition" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from device_order_info
-        <where>
-            <if test="id != null">
-                and id =#{id,jdbcType=VARCHAR}
-            </if>
-            <if test="deviceId != null">
-                and device_id = #{deviceId,jdbcType=BIGINT}
-            </if>
-            <if test="deviceCode != null and deviceCode != ''">
-                and device_code like concat('%',#{deviceCode,jdbcType=VARCHAR},'%')
-            </if>
-            <if test="orderId != null">
-                and order_id = #{orderId,jdbcType=BIGINT}
-            </if>
-            <if test="orderNo != null and orderNo != ''">
-                and order_no like concat('%',#{orderNo,jdbcType=VARCHAR},'%')
-            </if>
-            <if test="customerId != null">
-                and customer_id = #{customerId,jdbcType=BIGINT}
-            </if>
-            <if test="customerName != null and customerName != ''">
-                and customer_name like concat('%',#{customerName,jdbcType=VARCHAR},'%')
-            </if>
-        </where>
-        <if test="order != null and order != ''">
-            order by ${order}
-            <if test="sort != null and sort != ''">
-                ${sort}
-            </if>
-        </if>
-    </select>
 </mapper>

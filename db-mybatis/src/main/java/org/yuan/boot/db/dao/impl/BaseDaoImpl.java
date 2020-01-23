@@ -7,7 +7,7 @@ import org.yuan.boot.db.mapper.BaseMapper;
 import java.io.Serializable;
 
 @SuppressWarnings("SpringJavaAutowiredMembersInspection")
-public abstract class BaseDaoImpl<T, ID extends Serializable, M extends BaseMapper<T>> implements BaseDao<T, ID> {
+public abstract class BaseDaoImpl<T, ID extends Serializable, M extends BaseMapper> implements BaseDao<T, ID> {
     @Autowired
     private M baseMapper;
 

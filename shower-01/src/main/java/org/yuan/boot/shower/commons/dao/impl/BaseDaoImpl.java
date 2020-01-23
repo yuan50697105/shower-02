@@ -9,6 +9,6 @@ import org.yuan.boot.shower.commons.mapper.BaseMapper;
  * @author: yuane
  * @create: 2020-01-20 16:27
  */
-public abstract class BaseDaoImpl<T, M extends BaseMapper<T>> extends org.yuan.boot.db.dao.impl.BaseDaoImpl<T, Long, M> implements BaseDao<T> {
+public abstract class BaseDaoImpl<T, M extends BaseMapper> extends org.yuan.boot.db.dao.impl.BaseDaoImpl<T, Long, M> implements BaseDao<T> {
 
 }
