@@ -31,6 +31,15 @@ public class WxOrderInfo {
      */
     private String customerOpenId;
     /**
+     * 设备ID
+     */
+    @NotEmpty
+    private Long deviceId;
+    /**
+     * 设备编号
+     */
+    private String deviceCode;
+    /**
      * 客户微信UNIONID
      */
     private String customerUnionId;
