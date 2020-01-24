@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.OrderInfoDao;
 import org.yuan.boot.shower.db.dao.OrderItemDao;
 import org.yuan.boot.shower.db.pojo.OrderInfoCondition;
@@ -68,7 +69,7 @@ public class WxOrderServiceImpl implements WxOrderService {
     @Override
     public Result data(OrderInfoCondition condition) {
         // TODO: 2020/1/23 查询订单信息
-        return null;
+        return Results.data(orderInfoDao.selectPage(condition));
     }
 
 

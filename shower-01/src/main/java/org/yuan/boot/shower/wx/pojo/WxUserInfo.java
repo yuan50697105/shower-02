@@ -11,6 +11,11 @@ import lombok.Data;
 @Data
 public class WxUserInfo {
     private String sessionKey;
-    private String encryptedData;
-    private String
+    private String enData;
+    private String iv;
+
+    public interface ValidateForUserInfo {
+
+    }
+
 }

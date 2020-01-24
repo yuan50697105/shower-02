@@ -1,6 +1,6 @@
 package org.yuan.boot.shower.wx.service;
 
-import lombok.SneakyThrows;
+import org.yuan.boot.shower.wx.pojo.WxUserInfo;
 import org.yuan.boot.webmvc.pojo.Result;
 
 /**
@@ -12,5 +12,9 @@ import org.yuan.boot.webmvc.pojo.Result;
 public interface WxCustomerService {
     Result login(String jsCode);
 
-    Result getUserInfo(String jsCode);
+    Result saveUserInfo(WxUserInfo wxUserInfo);
+
+    Result getUserInfo(String sessionKey, String enData, String iv);
+
+    Result getUserInfoById(Long id);
 }

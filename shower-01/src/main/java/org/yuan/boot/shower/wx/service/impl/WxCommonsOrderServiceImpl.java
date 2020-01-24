@@ -5,6 +5,8 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.shower.commons.utils.Results;
+import org.yuan.boot.shower.db.dao.OrderInfoDao;
 import org.yuan.boot.shower.wx.converter.WxOrderInfoConverter;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
 import org.yuan.boot.shower.wx.service.WxCommonsOrderService;
@@ -22,11 +24,13 @@ import org.yuan.boot.webmvc.pojo.Result;
 @Log4j2
 public class WxCommonsOrderServiceImpl implements WxCommonsOrderService {
     private WxOrderInfoConverter wxOrderInfoConverter;
+    private OrderInfoDao orderInfoDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result addOrder(WxOrderInfo wxOrderInfo) {
         // TODO: 2020/1/23  添加普通订单
-        return null;
+        orderInfoDao.save(wxOrderInfoConverter.convertForCommonsOrder(wxOrderInfo));
+        return Results.ok();
     }
 }
