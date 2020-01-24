@@ -18,7 +18,7 @@ import org.yuan.boot.shower.wx.service.WxPrepayOrderService;
 import org.yuan.boot.webmvc.exception.DataParamsErrorResultRuntimeException;
 import org.yuan.boot.webmvc.pojo.Result;
 
-import static org.yuan.boot.shower.core.constant.OrderInfoConstants.OrderType.*;
+import static org.yuan.boot.shower.constant.core.OrderInfoConstants.OrderType.*;
 
 /**
  * @program: shower-01
