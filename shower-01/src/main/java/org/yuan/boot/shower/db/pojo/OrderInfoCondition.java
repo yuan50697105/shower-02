@@ -18,6 +18,9 @@ public class OrderInfoCondition extends BaseCondition {
     private Long id;
     private String orderNo;
     private String nickName;
+    private Long customerId;
+    private String customerOpenId;
+    private String customerUnionId;
 
     public OrderInfoCondition() {
     }

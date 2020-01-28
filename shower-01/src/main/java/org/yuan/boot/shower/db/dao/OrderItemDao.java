@@ -10,4 +10,5 @@ import org.yuan.boot.shower.db.pojo.OrderItem;
  * @create: 2020-01-23 13:42
  */
 public interface OrderItemDao extends BaseDao<OrderItem> {
+    void save(OrderItem orderItem);
 }

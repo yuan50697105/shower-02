@@ -7,9 +7,13 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.OrderInfoDao;
+import org.yuan.boot.shower.db.dao.OrderItemDao;
+import org.yuan.boot.shower.db.pojo.OrderInfo;
+import org.yuan.boot.shower.db.pojo.OrderItem;
 import org.yuan.boot.shower.wx.converter.WxOrderInfoConverter;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
 import org.yuan.boot.shower.wx.service.WxCommonsOrderService;
+import org.yuan.boot.shower.wx.service.WxOrderNoService;
 import org.yuan.boot.webmvc.pojo.Result;
 
 /**
@@ -25,12 +29,18 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class WxCommonsOrderServiceImpl implements WxCommonsOrderService {
     private WxOrderInfoConverter wxOrderInfoConverter;
     private OrderInfoDao orderInfoDao;
+    private OrderItemDao orderItemDao;
+    private WxOrderNoService wxOrderNoService;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result addOrder(WxOrderInfo wxOrderInfo) {
         // TODO: 2020/1/23  添加普通订单
-        orderInfoDao.save(wxOrderInfoConverter.convertForCommonsOrder(wxOrderInfo));
+        OrderInfo orderInfo = wxOrderInfoConverter.convertForAddCommonsOrder(wxOrderInfo);
+        orderInfo.setOrderNo(wxOrderNoService.getOrderNo());
+        orderInfoDao.save(orderInfo);
+        OrderItem orderItem = wxOrderInfoConverter.convertForAddCommonsOrderItem(orderInfo, wxOrderInfo);
+        orderItemDao.save(orderItem);
         return Results.ok();
     }
 }
