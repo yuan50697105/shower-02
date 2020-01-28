@@ -91,6 +91,16 @@ public class OrderItem extends BaseEntity implements Serializable {
     private Date endTime;
 
     /**
+     * 使用量
+     */
+    private BigDecimal useAmount;
+
+    /**
+     * 使用量单位
+     */
+    private Integer useUnit;
+
+    /**
      * totalPrice
      */
     private BigDecimal totalPrice;

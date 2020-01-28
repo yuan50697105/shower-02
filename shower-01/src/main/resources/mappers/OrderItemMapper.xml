@@ -25,6 +25,8 @@
     <result column="price_unit" jdbcType="INTEGER" property="priceUnit" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="use_amount" jdbcType="DECIMAL" property="useAmount" />
+    <result column="use_unit" jdbcType="INTEGER" property="useUnit" />
     <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
     <result column="remain_price" jdbcType="DECIMAL" property="remainPrice" />
   </resultMap>
@@ -93,7 +95,7 @@
     id, create_time, update_time, create_user, update_user, `type`, order_id, order_no, 
     customer_id, customer_open_id, customer_union_id, customer_nick_name, item_type, 
     item_order_no, device_type, device_id, device_code, price, price_unit, start_time, 
-    end_time, total_price, remain_price
+    end_time, use_amount, use_unit, total_price, remain_price
   </sql>
   <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.OrderItemExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -138,7 +140,8 @@
       item_type, item_order_no, device_type, 
       device_id, device_code, price, 
       price_unit, start_time, end_time, 
-      total_price, remain_price)
+      use_amount, use_unit, total_price, 
+      remain_price)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
       #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, 
@@ -146,7 +149,8 @@
       #{itemType,jdbcType=INTEGER}, #{itemOrderNo,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
       #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, 
       #{priceUnit,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
-      #{totalPrice,jdbcType=DECIMAL}, #{remainPrice,jdbcType=DECIMAL})
+      #{useAmount,jdbcType=DECIMAL}, #{useUnit,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
+      #{remainPrice,jdbcType=DECIMAL})
   </insert>
   <insert id="insertSelective" parameterType="org.yuan.boot.shower.db.pojo.OrderItem">
     <!--@mbg.generated-->
@@ -214,6 +218,12 @@
       </if>
       <if test="endTime != null">
         end_time,
+      </if>
+      <if test="useAmount != null">
+        use_amount,
+      </if>
+      <if test="useUnit != null">
+        use_unit,
       </if>
       <if test="totalPrice != null">
         total_price,
@@ -285,6 +295,12 @@
       </if>
       <if test="endTime != null">
         #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="useAmount != null">
+        #{useAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="useUnit != null">
+        #{useUnit,jdbcType=INTEGER},
       </if>
       <if test="totalPrice != null">
         #{totalPrice,jdbcType=DECIMAL},
@@ -368,6 +384,12 @@
       <if test="record.endTime != null">
         end_time = #{record.endTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="record.useAmount != null">
+        use_amount = #{record.useAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="record.useUnit != null">
+        use_unit = #{record.useUnit,jdbcType=INTEGER},
+      </if>
       <if test="record.totalPrice != null">
         total_price = #{record.totalPrice,jdbcType=DECIMAL},
       </if>
@@ -403,6 +425,8 @@
       price_unit = #{record.priceUnit,jdbcType=INTEGER},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
+      use_amount = #{record.useAmount,jdbcType=DECIMAL},
+      use_unit = #{record.useUnit,jdbcType=INTEGER},
       total_price = #{record.totalPrice,jdbcType=DECIMAL},
       remain_price = #{record.remainPrice,jdbcType=DECIMAL}
     <if test="_parameter != null">
@@ -473,6 +497,12 @@
       <if test="endTime != null">
         end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
+      <if test="useAmount != null">
+        use_amount = #{useAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="useUnit != null">
+        use_unit = #{useUnit,jdbcType=INTEGER},
+      </if>
       <if test="totalPrice != null">
         total_price = #{totalPrice,jdbcType=DECIMAL},
       </if>
@@ -505,6 +535,8 @@
       price_unit = #{priceUnit,jdbcType=INTEGER},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
+      use_amount = #{useAmount,jdbcType=DECIMAL},
+      use_unit = #{useUnit,jdbcType=INTEGER},
       total_price = #{totalPrice,jdbcType=DECIMAL},
       remain_price = #{remainPrice,jdbcType=DECIMAL}
     where id = #{id,jdbcType=BIGINT}

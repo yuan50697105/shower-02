@@ -1446,6 +1446,126 @@ public class OrderItemExample {
             return (Criteria) this;
         }
 
+        public Criteria andUseAmountIsNull() {
+            addCriterion("use_amount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountIsNotNull() {
+            addCriterion("use_amount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountEqualTo(BigDecimal value) {
+            addCriterion("use_amount =", value, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountNotEqualTo(BigDecimal value) {
+            addCriterion("use_amount <>", value, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountGreaterThan(BigDecimal value) {
+            addCriterion("use_amount >", value, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("use_amount >=", value, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountLessThan(BigDecimal value) {
+            addCriterion("use_amount <", value, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("use_amount <=", value, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountIn(List<BigDecimal> values) {
+            addCriterion("use_amount in", values, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountNotIn(List<BigDecimal> values) {
+            addCriterion("use_amount not in", values, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("use_amount between", value1, value2, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseAmountNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("use_amount not between", value1, value2, "useAmount");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitIsNull() {
+            addCriterion("use_unit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitIsNotNull() {
+            addCriterion("use_unit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitEqualTo(Integer value) {
+            addCriterion("use_unit =", value, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitNotEqualTo(Integer value) {
+            addCriterion("use_unit <>", value, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitGreaterThan(Integer value) {
+            addCriterion("use_unit >", value, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitGreaterThanOrEqualTo(Integer value) {
+            addCriterion("use_unit >=", value, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitLessThan(Integer value) {
+            addCriterion("use_unit <", value, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitLessThanOrEqualTo(Integer value) {
+            addCriterion("use_unit <=", value, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitIn(List<Integer> values) {
+            addCriterion("use_unit in", values, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitNotIn(List<Integer> values) {
+            addCriterion("use_unit not in", values, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitBetween(Integer value1, Integer value2) {
+            addCriterion("use_unit between", value1, value2, "useUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseUnitNotBetween(Integer value1, Integer value2) {
+            addCriterion("use_unit not between", value1, value2, "useUnit");
+            return (Criteria) this;
+        }
+
         public Criteria andTotalPriceIsNull() {
             addCriterion("total_price is null");
             return (Criteria) this;
