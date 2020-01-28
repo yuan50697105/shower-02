@@ -26,7 +26,7 @@ import org.yuan.boot.webmvc.pojo.Result;
 public class WxDeviceServiceImpl implements WxDeviceService {
     private OrderInfoDao orderInfoDao;
     private DeviceOrderInfoDao deviceOrderInfoDao;
-    private DeviceInfoDao deviceInfoDao
+    private DeviceInfoDao deviceInfoDao;
 
     @Override
     public Result data(DeviceInfoCondition condition) {
