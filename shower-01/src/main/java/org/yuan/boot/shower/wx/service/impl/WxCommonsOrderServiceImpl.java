@@ -36,10 +36,10 @@ public class WxCommonsOrderServiceImpl implements WxCommonsOrderService {
     @Transactional(rollbackFor = Exception.class)
     public Result addOrder(WxOrderInfo wxOrderInfo) {
         // TODO: 2020/1/23  添加普通订单
-        OrderInfo orderInfo = wxOrderInfoConverter.convertForAddCommonsOrder(wxOrderInfo);
+        OrderInfo orderInfo = wxOrderInfoConverter.convertForAddOrder(wxOrderInfo);
         orderInfo.setOrderNo(wxOrderNoService.getOrderNo());
         orderInfoDao.save(orderInfo);
-        OrderItem orderItem = wxOrderInfoConverter.convertForAddCommonsOrderItem(orderInfo, wxOrderInfo);
+        OrderItem orderItem = wxOrderInfoConverter.convertForAddOrderItem(orderInfo, wxOrderInfo);
         orderItemDao.save(orderItem);
         return Results.ok();
     }

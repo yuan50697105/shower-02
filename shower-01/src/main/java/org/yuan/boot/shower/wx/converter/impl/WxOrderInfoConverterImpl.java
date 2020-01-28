@@ -26,7 +26,7 @@ public class WxOrderInfoConverterImpl implements WxOrderInfoConverter {
     private DeviceInfoDao deviceInfoDao;
 
     @Override
-    public OrderInfo convertForAddCommonsOrder(WxOrderInfo wxOrderInfo) {
+    public OrderInfo convertForAddOrder(WxOrderInfo wxOrderInfo) {
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setType(wxOrderInfo.getType());
         orderInfo.setOrderNo(wxOrderNoService.getOrderNo());
@@ -42,7 +42,7 @@ public class WxOrderInfoConverterImpl implements WxOrderInfoConverter {
     }
 
     @Override
-    public OrderItem convertForAddCommonsOrderItem(OrderInfo orderInfo, WxOrderInfo wxOrderInfo) {
+    public OrderItem convertForAddOrderItem(OrderInfo orderInfo, WxOrderInfo wxOrderInfo) {
         OrderItem orderItem = new OrderItem();
         orderItem.setType(orderInfo.getType());
         orderItem.setOrderId(orderInfo.getId());

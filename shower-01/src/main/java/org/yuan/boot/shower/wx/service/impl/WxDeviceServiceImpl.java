@@ -5,8 +5,13 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.shower.commons.utils.Results;
+import org.yuan.boot.shower.db.dao.DeviceInfoDao;
+import org.yuan.boot.shower.db.dao.DeviceOrderInfoDao;
 import org.yuan.boot.shower.db.dao.OrderInfoDao;
+import org.yuan.boot.shower.db.pojo.DeviceInfoCondition;
 import org.yuan.boot.shower.wx.service.WxDeviceService;
+import org.yuan.boot.webmvc.pojo.Result;
 
 /**
  * @program: shower-01
@@ -16,8 +21,21 @@ import org.yuan.boot.shower.wx.service.WxDeviceService;
  */
 @Service
 @AllArgsConstructor
-@Transactional(propagation = Propagation.NOT_SUPPORTED,readOnly = true)
+@Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 @Log4j2
 public class WxDeviceServiceImpl implements WxDeviceService {
     private OrderInfoDao orderInfoDao;
+    private DeviceOrderInfoDao deviceOrderInfoDao;
+    private DeviceInfoDao deviceInfoDao
+
+    @Override
+    public Result data(DeviceInfoCondition condition) {
+        return Results.data(deviceInfoDao.selectPage(condition));
+    }
+
+    @Override
+    public Result get(Long id) {
+        return Results.data(deviceInfoDao.getById(id));
+    }
+
 }

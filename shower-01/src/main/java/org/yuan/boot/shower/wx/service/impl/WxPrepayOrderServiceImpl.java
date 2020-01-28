@@ -5,12 +5,20 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.OrderInfoDao;
 import org.yuan.boot.shower.db.dao.OrderItemDao;
+import org.yuan.boot.shower.db.pojo.OrderInfo;
+import org.yuan.boot.shower.db.pojo.OrderItem;
 import org.yuan.boot.shower.wx.converter.WxOrderInfoConverter;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
+import org.yuan.boot.shower.wx.pojo.WxOrderInfoQueryResult;
 import org.yuan.boot.shower.wx.service.WxPrepayOrderService;
 import org.yuan.boot.webmvc.pojo.Result;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 /**
  * @program: shower-01
@@ -31,6 +39,14 @@ public class WxPrepayOrderServiceImpl implements WxPrepayOrderService {
     @Transactional(rollbackFor = Exception.class)
     public Result addOrder(WxOrderInfo wxOrderInfo) {
         // TODO: 2020/1/23 预支付订单添加
-        return null;
+        OrderInfo orderInfo = wxOrderInfoConverter.convertForAddOrder(wxOrderInfo);
+        orderInfoDao.save(orderInfo);
+        OrderItem orderItem = wxOrderInfoConverter.convertForAddOrderItem(orderInfo, wxOrderInfo);
+        orderItemDao.save(orderItem);
+        WxOrderInfoQueryResult wxOrderInfoQueryResult = new WxOrderInfoQueryResult();
+        wxOrderInfoQueryResult.setOrderInfo(orderInfo);
+        wxOrderInfoQueryResult.setOrderItems(Collections.singletonList(orderItem));
+        return Results.data(wxOrderInfoQueryResult);
     }
+
 }

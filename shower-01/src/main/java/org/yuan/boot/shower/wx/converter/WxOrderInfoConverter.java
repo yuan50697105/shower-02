@@ -12,7 +12,7 @@ import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
  */
 public interface WxOrderInfoConverter {
 
-    OrderInfo convertForAddCommonsOrder(WxOrderInfo wxOrderInfo);
+    OrderInfo convertForAddOrder(WxOrderInfo wxOrderInfo);
 
-    OrderItem convertForAddCommonsOrderItem(OrderInfo orderInfo, WxOrderInfo wxOrderInfo);
+    OrderItem convertForAddOrderItem(OrderInfo orderInfo, WxOrderInfo wxOrderInfo);
 }

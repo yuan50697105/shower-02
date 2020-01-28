@@ -12,6 +12,8 @@ import org.yuan.boot.shower.db.mapper.OrderInfoMapper;
 import org.yuan.boot.shower.db.pojo.OrderInfo;
 import org.yuan.boot.shower.db.pojo.OrderInfoCondition;
 
+import java.util.Optional;
+
 /**
  * @program: shower-01
  * @description:
@@ -32,5 +34,10 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     @Transactional(rollbackFor = Exception.class)
     public void save(OrderInfo orderInfo) {
         baseMapper().insertSelective(orderInfo);
+    }
+
+    @Override
+    public Optional<OrderInfo> selectById(Long orderId) {
+        return Optional.ofNullable(baseMapper().selectByPrimaryKey(orderId));
     }
 }

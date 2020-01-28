@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.OrderInfoDao;
 import org.yuan.boot.shower.db.dao.OrderItemDao;
+import org.yuan.boot.shower.db.pojo.OrderInfo;
 import org.yuan.boot.shower.db.pojo.OrderInfoCondition;
 import org.yuan.boot.shower.wx.converter.WxOrderInfoConverter;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
@@ -26,10 +27,11 @@ import org.yuan.boot.webmvc.pojo.Result;
 
 import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
-
 import java.nio.charset.StandardCharsets;
+import java.util.Optional;
 
-import static org.yuan.boot.shower.constant.core.OrderInfoConstants.OrderType.*;
+import static org.yuan.boot.shower.constant.core.OrderInfoConstants.OrderType.COMMONS;
+import static org.yuan.boot.shower.constant.core.OrderInfoConstants.OrderType.PREPAY;
 
 /**
  * @program: shower-01
@@ -62,8 +64,8 @@ public class WxOrderServiceImpl implements WxOrderService {
             case PREPAY:
                 return wxPrepayOrderService.addOrder(wxOrderInfo);
 //                预约订单
-            case APPOINTMENT:
-                return wxAppointmentOrderService.addOrder(wxOrderInfo);
+//            case APPOINTMENT:
+//                return wxAppointmentOrderService.addOrder(wxOrderInfo);
             default:
                 throw new DataParamsErrorResultRuntimeException("订单类型错误");
         }
@@ -85,8 +87,7 @@ public class WxOrderServiceImpl implements WxOrderService {
     @Override
     public Result prepay(Long orderId) {
         // TODO: 2020/1/28 预支付
-        WxPayUnifiedOrderRequest wxPayUnifiedOrderRequest = WxPayUnifiedOrderRequest.newBuilder().build();
-        wxPayService.unifiedOrder(wxPayUnifiedOrderRequest);
+
         return Results.ok();
     }
 
