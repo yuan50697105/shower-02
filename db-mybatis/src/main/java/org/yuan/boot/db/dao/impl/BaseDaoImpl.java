@@ -26,4 +26,8 @@ public abstract class BaseDaoImpl<T, ID extends Serializable, M extends BaseMapp
         return PageResult.of(PageInfo.of(function.apply(condition)));
     }
 
+    protected PageResult<T> pageResult(PageInfo<T> pageInfo) {
+        return PageResult.of(pageInfo);
+    }
+
 }
