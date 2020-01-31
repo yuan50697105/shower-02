@@ -2,29 +2,29 @@ package org.yuan.boot.shower.db.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 import org.yuan.boot.shower.commons.pojo.BaseCondition;
 
 /**
  * @program: shower-01
  * @description:
  * @author: yuane
- * @create: 2020-01-23 12:58
+ * @create: 2020-01-31 09:04
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class AdminUserCondition extends BaseCondition {
+public class GoodsInfoCondition extends BaseCondition {
     private Long id;
-    private String name;
+    private String code;
+    private Integer type;
 
-    public AdminUserCondition() {
+    public GoodsInfoCondition() {
     }
 
-    public AdminUserCondition(int page, int size) {
+    public GoodsInfoCondition(int page, int size) {
         super(page, size);
     }
 
-    public AdminUserCondition(int page, int size, String order, String sort) {
+    public GoodsInfoCondition(int page, int size, String order, String sort) {
         super(page, size, order, sort);
     }
 }

@@ -10,32 +10,32 @@ import org.yuan.boot.shower.commons.pojo.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 public class DeviceOrderInfo extends BaseEntity implements Serializable {
     /**
-     * deviceId
+     * 设备ID
      */
     private Long deviceId;
 
     /**
-     * deviceCode
+     * 设备编号
      */
     private String deviceCode;
 
     /**
-     * orderId
+     * 订单ID
      */
     private Long orderId;
 
     /**
-     * orderNo
+     * 订单号
      */
     private String orderNo;
 
     /**
-     * status
+     * 设备订单状态
      */
     private Integer status;
 
     /**
-     * content
+     * 详情
      */
     private String content;
 

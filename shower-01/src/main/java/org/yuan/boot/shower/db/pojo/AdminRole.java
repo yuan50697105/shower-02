@@ -10,12 +10,12 @@ import org.yuan.boot.shower.commons.pojo.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 public class AdminRole extends BaseEntity implements Serializable {
     /**
-     * name
+     * 角色名
      */
     private String name;
 
     /**
-     * enabled
+     * 启用状态（1 启用，0 停用）
      */
     private Integer enabled;
 

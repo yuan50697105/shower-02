@@ -2,7 +2,6 @@ package org.yuan.boot.shower.commons.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.experimental.Accessors;
 
 import java.util.Date;
 
@@ -14,7 +13,6 @@ import java.util.Date;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Accessors(chain = true)
 public class BaseCondition extends org.yuan.boot.db.pojo.BaseCondition {
     private Long id;
     private String createUser;

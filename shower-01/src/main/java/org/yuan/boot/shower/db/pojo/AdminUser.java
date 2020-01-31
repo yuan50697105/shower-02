@@ -10,22 +10,22 @@ import org.yuan.boot.shower.commons.pojo.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 public class AdminUser extends BaseEntity implements Serializable {
     /**
-     * username
+     * 用户名
      */
     private String username;
 
     /**
-     * password
+     * 密码
      */
     private String password;
 
     /**
-     * name
+     * 姓名
      */
     private String name;
 
     /**
-     * enabled
+     * 启用状态
      */
     private Integer enabled;
 

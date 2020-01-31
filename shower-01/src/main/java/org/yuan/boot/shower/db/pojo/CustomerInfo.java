@@ -10,27 +10,27 @@ import org.yuan.boot.shower.commons.pojo.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 public class CustomerInfo extends BaseEntity implements Serializable {
     /**
-     * nickName
+     * 用户昵称
      */
     private String nickName;
 
     /**
-     * openId
+     * 用户OPENID
      */
     private String openId;
 
     /**
-     * unionId
+     * 用户UNIONID
      */
     private String unionId;
 
     /**
-     * gender
+     * 性别
      */
     private Integer gender;
 
     /**
-     * phone
+     * 电话
      */
     private String phone;
 

@@ -13,7 +13,6 @@ import org.yuan.boot.shower.commons.pojo.BaseCondition;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Accessors(chain = true)
 public class AdminRoleCondition extends BaseCondition {
     private Long id;
     private String name;

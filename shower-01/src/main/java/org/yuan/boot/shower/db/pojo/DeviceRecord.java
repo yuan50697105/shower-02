@@ -10,22 +10,22 @@ import org.yuan.boot.shower.commons.pojo.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 public class DeviceRecord extends BaseEntity implements Serializable {
     /**
-     * deviceId
+     * 设备ID
      */
     private Long deviceId;
 
     /**
-     * deviceCode
+     * 设备编号
      */
     private String deviceCode;
 
     /**
-     * type
+     * 操作类型
      */
     private Integer type;
 
     /**
-     * content
+     * 详情
      */
     private String content;
 

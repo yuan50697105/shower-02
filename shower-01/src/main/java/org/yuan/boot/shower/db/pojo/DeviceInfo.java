@@ -10,29 +10,34 @@ import org.yuan.boot.shower.commons.pojo.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 public class DeviceInfo extends BaseEntity implements Serializable {
     /**
-     * code
+     * 设备编号
      */
     private String code;
 
     /**
-     * type
+     * 设备类型 1 室外 2 室内
      */
     private Integer type;
 
     /**
-     * address
+     * 地址
      */
     private String address;
 
     /**
-     * point
+     * GPS
      */
     private String point;
 
     /**
-     * enabled
+     * 启用装填（1 启用 0 停用）
      */
     private Integer enabled;
+
+    /**
+     * 地区码
+     */
+    private String rangeCode;
 
     private static final long serialVersionUID = 1L;
 }

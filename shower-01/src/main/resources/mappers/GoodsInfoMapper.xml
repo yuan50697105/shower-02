@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.yuan.boot.shower.db.mapper.OrderInfoMapper">
-  <resultMap id="BaseResultMap" type="org.yuan.boot.shower.db.pojo.OrderInfo">
+<mapper namespace="org.yuan.boot.shower.db.mapper.GoodsInfoMapper">
+  <resultMap id="BaseResultMap" type="org.yuan.boot.shower.db.pojo.GoodsInfo">
     <!--@mbg.generated-->
-    <!--@Table order_info-->
+    <!--@Table goods_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
-    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
-    <result column="customer_open_id" jdbcType="VARCHAR" property="customerOpenId" />
-    <result column="customer_union_id" jdbcType="VARCHAR" property="customerUnionId" />
-    <result column="customer_nick_name" jdbcType="VARCHAR" property="customerNickName" />
-    <result column="order_status" jdbcType="INTEGER" property="orderStatus" />
-    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
+    <result column="time_price" jdbcType="DECIMAL" property="timePrice" />
+    <result column="time_interval" jdbcType="DECIMAL" property="timeInterval" />
+    <result column="time_unit" jdbcType="INTEGER" property="timeUnit" />
+    <result column="water_price" jdbcType="DECIMAL" property="waterPrice" />
+    <result column="water_space" jdbcType="DECIMAL" property="waterSpace" />
+    <result column="water_unit" jdbcType="INTEGER" property="waterUnit" />
+    <result column="range_code" jdbcType="VARCHAR" property="rangeCode" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -80,17 +81,17 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, `type`, order_no, customer_id, 
-    customer_open_id, customer_union_id, customer_nick_name, order_status, total_price
+    id, create_time, update_time, create_user, update_user, code, `type`, time_price, 
+    time_interval, time_unit, water_price, water_space, water_unit, range_code
   </sql>
-  <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.OrderInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.GoodsInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from order_info
+    from goods_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -102,37 +103,37 @@
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from order_info
+    from goods_info
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
-    delete from order_info
+    delete from goods_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="org.yuan.boot.shower.db.pojo.OrderInfoExample">
+  <delete id="deleteByExample" parameterType="org.yuan.boot.shower.db.pojo.GoodsInfoExample">
     <!--@mbg.generated-->
-    delete from order_info
+    delete from goods_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="org.yuan.boot.shower.db.pojo.OrderInfo">
+  <insert id="insert" parameterType="org.yuan.boot.shower.db.pojo.GoodsInfo">
     <!--@mbg.generated-->
-    insert into order_info (id, create_time, update_time, 
-      create_user, update_user, `type`, 
-      order_no, customer_id, customer_open_id, 
-      customer_union_id, customer_nick_name, order_status, 
-      total_price)
+    insert into goods_info (id, create_time, update_time, 
+      create_user, update_user, code, 
+      `type`, time_price, time_interval, 
+      time_unit, water_price, water_space, 
+      water_unit, range_code)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{orderNo,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerOpenId,jdbcType=VARCHAR}, 
-      #{customerUnionId,jdbcType=VARCHAR}, #{customerNickName,jdbcType=VARCHAR}, #{orderStatus,jdbcType=INTEGER}, 
-      #{totalPrice,jdbcType=DECIMAL})
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{timePrice,jdbcType=DECIMAL}, #{timeInterval,jdbcType=DECIMAL}, 
+      #{timeUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL}, #{waterSpace,jdbcType=DECIMAL}, 
+      #{waterUnit,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="org.yuan.boot.shower.db.pojo.OrderInfo">
+  <insert id="insertSelective" parameterType="org.yuan.boot.shower.db.pojo.GoodsInfo">
     <!--@mbg.generated-->
-    insert into order_info
+    insert into goods_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -149,29 +150,32 @@
       <if test="updateUser != null">
         update_user,
       </if>
+      <if test="code != null">
+        code,
+      </if>
       <if test="type != null">
         `type`,
       </if>
-      <if test="orderNo != null">
-        order_no,
+      <if test="timePrice != null">
+        time_price,
       </if>
-      <if test="customerId != null">
-        customer_id,
+      <if test="timeInterval != null">
+        time_interval,
       </if>
-      <if test="customerOpenId != null">
-        customer_open_id,
+      <if test="timeUnit != null">
+        time_unit,
       </if>
-      <if test="customerUnionId != null">
-        customer_union_id,
+      <if test="waterPrice != null">
+        water_price,
       </if>
-      <if test="customerNickName != null">
-        customer_nick_name,
+      <if test="waterSpace != null">
+        water_space,
       </if>
-      <if test="orderStatus != null">
-        order_status,
+      <if test="waterUnit != null">
+        water_unit,
       </if>
-      <if test="totalPrice != null">
-        total_price,
+      <if test="rangeCode != null">
+        range_code,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -190,42 +194,45 @@
       <if test="updateUser != null">
         #{updateUser,jdbcType=VARCHAR},
       </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="orderNo != null">
-        #{orderNo,jdbcType=VARCHAR},
+      <if test="timePrice != null">
+        #{timePrice,jdbcType=DECIMAL},
       </if>
-      <if test="customerId != null">
-        #{customerId,jdbcType=BIGINT},
+      <if test="timeInterval != null">
+        #{timeInterval,jdbcType=DECIMAL},
       </if>
-      <if test="customerOpenId != null">
-        #{customerOpenId,jdbcType=VARCHAR},
+      <if test="timeUnit != null">
+        #{timeUnit,jdbcType=INTEGER},
       </if>
-      <if test="customerUnionId != null">
-        #{customerUnionId,jdbcType=VARCHAR},
+      <if test="waterPrice != null">
+        #{waterPrice,jdbcType=DECIMAL},
       </if>
-      <if test="customerNickName != null">
-        #{customerNickName,jdbcType=VARCHAR},
+      <if test="waterSpace != null">
+        #{waterSpace,jdbcType=DECIMAL},
       </if>
-      <if test="orderStatus != null">
-        #{orderStatus,jdbcType=INTEGER},
+      <if test="waterUnit != null">
+        #{waterUnit,jdbcType=INTEGER},
       </if>
-      <if test="totalPrice != null">
-        #{totalPrice,jdbcType=DECIMAL},
+      <if test="rangeCode != null">
+        #{rangeCode,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="org.yuan.boot.shower.db.pojo.OrderInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="org.yuan.boot.shower.db.pojo.GoodsInfoExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
-    select count(*) from order_info
+    select count(*) from goods_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--@mbg.generated-->
-    update order_info
+    update goods_info
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -242,29 +249,32 @@
       <if test="record.updateUser != null">
         update_user = #{record.updateUser,jdbcType=VARCHAR},
       </if>
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
+      </if>
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.orderNo != null">
-        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      <if test="record.timePrice != null">
+        time_price = #{record.timePrice,jdbcType=DECIMAL},
       </if>
-      <if test="record.customerId != null">
-        customer_id = #{record.customerId,jdbcType=BIGINT},
+      <if test="record.timeInterval != null">
+        time_interval = #{record.timeInterval,jdbcType=DECIMAL},
       </if>
-      <if test="record.customerOpenId != null">
-        customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
+      <if test="record.timeUnit != null">
+        time_unit = #{record.timeUnit,jdbcType=INTEGER},
       </if>
-      <if test="record.customerUnionId != null">
-        customer_union_id = #{record.customerUnionId,jdbcType=VARCHAR},
+      <if test="record.waterPrice != null">
+        water_price = #{record.waterPrice,jdbcType=DECIMAL},
       </if>
-      <if test="record.customerNickName != null">
-        customer_nick_name = #{record.customerNickName,jdbcType=VARCHAR},
+      <if test="record.waterSpace != null">
+        water_space = #{record.waterSpace,jdbcType=DECIMAL},
       </if>
-      <if test="record.orderStatus != null">
-        order_status = #{record.orderStatus,jdbcType=INTEGER},
+      <if test="record.waterUnit != null">
+        water_unit = #{record.waterUnit,jdbcType=INTEGER},
       </if>
-      <if test="record.totalPrice != null">
-        total_price = #{record.totalPrice,jdbcType=DECIMAL},
+      <if test="record.rangeCode != null">
+        range_code = #{record.rangeCode,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -273,27 +283,28 @@
   </update>
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
-    update order_info
+    update goods_info
     set id = #{record.id,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
-      order_no = #{record.orderNo,jdbcType=VARCHAR},
-      customer_id = #{record.customerId,jdbcType=BIGINT},
-      customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      customer_union_id = #{record.customerUnionId,jdbcType=VARCHAR},
-      customer_nick_name = #{record.customerNickName,jdbcType=VARCHAR},
-      order_status = #{record.orderStatus,jdbcType=INTEGER},
-      total_price = #{record.totalPrice,jdbcType=DECIMAL}
+      time_price = #{record.timePrice,jdbcType=DECIMAL},
+      time_interval = #{record.timeInterval,jdbcType=DECIMAL},
+      time_unit = #{record.timeUnit,jdbcType=INTEGER},
+      water_price = #{record.waterPrice,jdbcType=DECIMAL},
+      water_space = #{record.waterSpace,jdbcType=DECIMAL},
+      water_unit = #{record.waterUnit,jdbcType=INTEGER},
+      range_code = #{record.rangeCode,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="org.yuan.boot.shower.db.pojo.OrderInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="org.yuan.boot.shower.db.pojo.GoodsInfo">
     <!--@mbg.generated-->
-    update order_info
+    update goods_info
     <set>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -307,70 +318,52 @@
       <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
       </if>
-      <if test="orderNo != null">
-        order_no = #{orderNo,jdbcType=VARCHAR},
+      <if test="timePrice != null">
+        time_price = #{timePrice,jdbcType=DECIMAL},
       </if>
-      <if test="customerId != null">
-        customer_id = #{customerId,jdbcType=BIGINT},
+      <if test="timeInterval != null">
+        time_interval = #{timeInterval,jdbcType=DECIMAL},
       </if>
-      <if test="customerOpenId != null">
-        customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
+      <if test="timeUnit != null">
+        time_unit = #{timeUnit,jdbcType=INTEGER},
       </if>
-      <if test="customerUnionId != null">
-        customer_union_id = #{customerUnionId,jdbcType=VARCHAR},
+      <if test="waterPrice != null">
+        water_price = #{waterPrice,jdbcType=DECIMAL},
       </if>
-      <if test="customerNickName != null">
-        customer_nick_name = #{customerNickName,jdbcType=VARCHAR},
+      <if test="waterSpace != null">
+        water_space = #{waterSpace,jdbcType=DECIMAL},
       </if>
-      <if test="orderStatus != null">
-        order_status = #{orderStatus,jdbcType=INTEGER},
+      <if test="waterUnit != null">
+        water_unit = #{waterUnit,jdbcType=INTEGER},
       </if>
-      <if test="totalPrice != null">
-        total_price = #{totalPrice,jdbcType=DECIMAL},
+      <if test="rangeCode != null">
+        range_code = #{rangeCode,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="org.yuan.boot.shower.db.pojo.OrderInfo">
+  <update id="updateByPrimaryKey" parameterType="org.yuan.boot.shower.db.pojo.GoodsInfo">
     <!--@mbg.generated-->
-    update order_info
+    update goods_info
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
-      order_no = #{orderNo,jdbcType=VARCHAR},
-      customer_id = #{customerId,jdbcType=BIGINT},
-      customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      customer_union_id = #{customerUnionId,jdbcType=VARCHAR},
-      customer_nick_name = #{customerNickName,jdbcType=VARCHAR},
-      order_status = #{orderStatus,jdbcType=INTEGER},
-      total_price = #{totalPrice,jdbcType=DECIMAL}
+      time_price = #{timePrice,jdbcType=DECIMAL},
+      time_interval = #{timeInterval,jdbcType=DECIMAL},
+      time_unit = #{timeUnit,jdbcType=INTEGER},
+      water_price = #{waterPrice,jdbcType=DECIMAL},
+      water_space = #{waterSpace,jdbcType=DECIMAL},
+      water_unit = #{waterUnit,jdbcType=INTEGER},
+      range_code = #{rangeCode,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-    <select id="selectByCondition" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from order_info
-        <where>
-            <if test="id != null">
-                and id = #{id,jdbcType=BIGINT}
-            </if>
-            <if test="nickName != null and nickName != ''">
-                and customer_nick_name like concat('%',#{nickName,jdbcType=VARCHAR},'%')
-            </if>
-            <if test="order != null and order != ''">
-                and order_no like concat('%',#{orderNo,jdbcType=VARCHAR},'%')
-            </if>
-        </where>
-        <if test="order != null and order != ''">
-            order by ${order}
-            <if test="sort != null and sort != ''">
-                ${sort}
-            </if>
-        </if>
-    </select>
 </mapper>

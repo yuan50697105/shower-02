@@ -71,9 +71,34 @@ public class OrderItem extends BaseEntity implements Serializable {
     private String deviceCode;
 
     /**
+     * rangeCode
+     */
+    private String rangeCode;
+
+    /**
+     * goodsInfoId
+     */
+    private Long goodsInfoId;
+
+    /**
+     * goodsInfoCode
+     */
+    private String goodsInfoCode;
+
+    /**
      * price
      */
-    private BigDecimal price;
+    private BigDecimal timePrice;
+
+    /**
+     * timeInterval
+     */
+    private BigDecimal timeInterval;
+
+    /**
+     * timeTotalPrice
+     */
+    private BigDecimal timeTotalPrice;
 
     /**
      * priceUnit
@@ -93,12 +118,27 @@ public class OrderItem extends BaseEntity implements Serializable {
     /**
      * 使用量
      */
-    private BigDecimal useAmount;
+    private BigDecimal timeUseAmount;
 
     /**
      * 使用量单位
      */
-    private Integer useUnit;
+    private Integer timeUseUnit;
+
+    /**
+     * waterPrice
+     */
+    private BigDecimal waterPrice;
+
+    /**
+     * waterSpace
+     */
+    private BigDecimal waterSpace;
+
+    /**
+     * waterTotalPrice
+     */
+    private BigDecimal waterTotalPrice;
 
     /**
      * totalPrice

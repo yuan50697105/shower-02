@@ -52,10 +52,6 @@ public class OrderInfoConstants {
          */
         public static final int COMMONS = 1;
         /**
-         * 预支付订单
-         */
-        public static final int PREPAY = 2;
-        /**
          * 预约订单
          */
         public static final int APPOINTMENT = 3;
