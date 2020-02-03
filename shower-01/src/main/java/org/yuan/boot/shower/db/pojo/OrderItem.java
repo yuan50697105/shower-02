@@ -11,99 +11,101 @@ import org.yuan.boot.shower.commons.pojo.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 public class OrderItem extends BaseEntity implements Serializable {
     /**
-     * type
+     * 订单类型
      */
     private Integer type;
 
     /**
-     * orderId
+     * 订单ID
      */
     private Long orderId;
 
     /**
-     * orderNo
+     * 订单编号
      */
     private String orderNo;
 
     /**
-     * customerId
+     * 客户ID
      */
     private Long customerId;
 
     /**
-     * customerOpenId
+     * 微信OPENID
      */
     private String customerOpenId;
 
     /**
-     * customerUnionId
+     * 微型UNIONID
      */
     private String customerUnionId;
 
     /**
-     * customerNickName
+     * 昵称
      */
     private String customerNickName;
 
     /**
-     * itemType
+     * 订单项目类型
      */
+    @Deprecated
     private Integer itemType;
 
     /**
-     * itemOrderNo
+     * 子订单号
      */
+    @Deprecated
     private String itemOrderNo;
 
     /**
-     * deviceType
+     * 设备类型
      */
     private Integer deviceType;
 
     /**
-     * deviceId
+     * 设备ID
      */
     private Long deviceId;
 
     /**
-     * deviceCode
+     * 设备编号
      */
     private String deviceCode;
 
     /**
-     * rangeCode
+     * 读取码
      */
     private String rangeCode;
 
     /**
-     * goodsInfoId
+     * 价目ID
      */
     private Long goodsInfoId;
 
     /**
-     * goodsInfoCode
+     * 价目编号
      */
     private String goodsInfoCode;
 
     /**
-     * price
+     * 时间定价
      */
     private BigDecimal timePrice;
 
     /**
-     * timeInterval
+     * 时间计费间隔
      */
     private BigDecimal timeInterval;
 
     /**
-     * timeTotalPrice
+     * 时间用时总价
      */
     private BigDecimal timeTotalPrice;
 
     /**
-     * priceUnit
+     * 时间定价单位
      */
-    private Integer priceUnit;
+    private Integer timePriceUnit;
 
     /**
      * startTime
@@ -116,37 +118,37 @@ public class OrderItem extends BaseEntity implements Serializable {
     private Date endTime;
 
     /**
-     * 使用量
+     * 时间使用量
      */
     private BigDecimal timeUseAmount;
 
     /**
-     * 使用量单位
-     */
-    private Integer timeUseUnit;
-
-    /**
-     * waterPrice
+     * 水定价
      */
     private BigDecimal waterPrice;
 
     /**
-     * waterSpace
+     * 水费计费间隔
      */
     private BigDecimal waterSpace;
 
     /**
-     * waterTotalPrice
+     * 水费单位
+     */
+    private Integer waterUnit;
+
+    /**
+     * 总水费
      */
     private BigDecimal waterTotalPrice;
 
     /**
-     * totalPrice
+     * 总价
      */
     private BigDecimal totalPrice;
 
     /**
-     * remainPrice
+     * 充值剩余金额
      */
     private BigDecimal remainPrice;
 

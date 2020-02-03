@@ -27,13 +27,13 @@
     <result column="time_price" jdbcType="DECIMAL" property="timePrice" />
     <result column="time_interval" jdbcType="DECIMAL" property="timeInterval" />
     <result column="time_total_price" jdbcType="DECIMAL" property="timeTotalPrice" />
-    <result column="price_unit" jdbcType="INTEGER" property="priceUnit" />
+    <result column="time_price_unit" jdbcType="INTEGER" property="timePriceUnit" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="time_use_amount" jdbcType="DECIMAL" property="timeUseAmount" />
-    <result column="time_use_unit" jdbcType="INTEGER" property="timeUseUnit" />
     <result column="water_price" jdbcType="DECIMAL" property="waterPrice" />
     <result column="water_space" jdbcType="DECIMAL" property="waterSpace" />
+    <result column="water_unit" jdbcType="INTEGER" property="waterUnit" />
     <result column="water_total_price" jdbcType="DECIMAL" property="waterTotalPrice" />
     <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
     <result column="remain_price" jdbcType="DECIMAL" property="remainPrice" />
@@ -103,8 +103,9 @@
     id, create_time, update_time, create_user, update_user, `type`, order_id, order_no, 
     customer_id, customer_open_id, customer_union_id, customer_nick_name, item_type, 
     item_order_no, device_type, device_id, device_code, range_code, goods_info_id, goods_info_code, 
-    time_price, time_interval, time_total_price, price_unit, start_time, end_time, time_use_amount, 
-    time_use_unit, water_price, water_space, water_total_price, total_price, remain_price
+    time_price, time_interval, time_total_price, time_price_unit, start_time, end_time, 
+    time_use_amount, water_price, water_space, water_unit, water_total_price, total_price, 
+    remain_price
   </sql>
   <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.OrderItemExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -149,9 +150,9 @@
       item_type, item_order_no, device_type, 
       device_id, device_code, range_code, 
       goods_info_id, goods_info_code, time_price, 
-      time_interval, time_total_price, price_unit, 
+      time_interval, time_total_price, time_price_unit, 
       start_time, end_time, time_use_amount, 
-      time_use_unit, water_price, water_space, 
+      water_price, water_space, water_unit, 
       water_total_price, total_price, remain_price
       )
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
@@ -161,9 +162,9 @@
       #{itemType,jdbcType=INTEGER}, #{itemOrderNo,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
       #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, #{rangeCode,jdbcType=VARCHAR}, 
       #{goodsInfoId,jdbcType=BIGINT}, #{goodsInfoCode,jdbcType=VARCHAR}, #{timePrice,jdbcType=DECIMAL}, 
-      #{timeInterval,jdbcType=DECIMAL}, #{timeTotalPrice,jdbcType=DECIMAL}, #{priceUnit,jdbcType=INTEGER}, 
+      #{timeInterval,jdbcType=DECIMAL}, #{timeTotalPrice,jdbcType=DECIMAL}, #{timePriceUnit,jdbcType=INTEGER}, 
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{timeUseAmount,jdbcType=DECIMAL}, 
-      #{timeUseUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL}, #{waterSpace,jdbcType=DECIMAL}, 
+      #{waterPrice,jdbcType=DECIMAL}, #{waterSpace,jdbcType=DECIMAL}, #{waterUnit,jdbcType=INTEGER}, 
       #{waterTotalPrice,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, #{remainPrice,jdbcType=DECIMAL}
       )
   </insert>
@@ -240,8 +241,8 @@
       <if test="timeTotalPrice != null">
         time_total_price,
       </if>
-      <if test="priceUnit != null">
-        price_unit,
+      <if test="timePriceUnit != null">
+        time_price_unit,
       </if>
       <if test="startTime != null">
         start_time,
@@ -252,14 +253,14 @@
       <if test="timeUseAmount != null">
         time_use_amount,
       </if>
-      <if test="timeUseUnit != null">
-        time_use_unit,
-      </if>
       <if test="waterPrice != null">
         water_price,
       </if>
       <if test="waterSpace != null">
         water_space,
+      </if>
+      <if test="waterUnit != null">
+        water_unit,
       </if>
       <if test="waterTotalPrice != null">
         water_total_price,
@@ -341,8 +342,8 @@
       <if test="timeTotalPrice != null">
         #{timeTotalPrice,jdbcType=DECIMAL},
       </if>
-      <if test="priceUnit != null">
-        #{priceUnit,jdbcType=INTEGER},
+      <if test="timePriceUnit != null">
+        #{timePriceUnit,jdbcType=INTEGER},
       </if>
       <if test="startTime != null">
         #{startTime,jdbcType=TIMESTAMP},
@@ -353,14 +354,14 @@
       <if test="timeUseAmount != null">
         #{timeUseAmount,jdbcType=DECIMAL},
       </if>
-      <if test="timeUseUnit != null">
-        #{timeUseUnit,jdbcType=INTEGER},
-      </if>
       <if test="waterPrice != null">
         #{waterPrice,jdbcType=DECIMAL},
       </if>
       <if test="waterSpace != null">
         #{waterSpace,jdbcType=DECIMAL},
+      </if>
+      <if test="waterUnit != null">
+        #{waterUnit,jdbcType=INTEGER},
       </if>
       <if test="waterTotalPrice != null">
         #{waterTotalPrice,jdbcType=DECIMAL},
@@ -453,8 +454,8 @@
       <if test="record.timeTotalPrice != null">
         time_total_price = #{record.timeTotalPrice,jdbcType=DECIMAL},
       </if>
-      <if test="record.priceUnit != null">
-        price_unit = #{record.priceUnit,jdbcType=INTEGER},
+      <if test="record.timePriceUnit != null">
+        time_price_unit = #{record.timePriceUnit,jdbcType=INTEGER},
       </if>
       <if test="record.startTime != null">
         start_time = #{record.startTime,jdbcType=TIMESTAMP},
@@ -465,14 +466,14 @@
       <if test="record.timeUseAmount != null">
         time_use_amount = #{record.timeUseAmount,jdbcType=DECIMAL},
       </if>
-      <if test="record.timeUseUnit != null">
-        time_use_unit = #{record.timeUseUnit,jdbcType=INTEGER},
-      </if>
       <if test="record.waterPrice != null">
         water_price = #{record.waterPrice,jdbcType=DECIMAL},
       </if>
       <if test="record.waterSpace != null">
         water_space = #{record.waterSpace,jdbcType=DECIMAL},
+      </if>
+      <if test="record.waterUnit != null">
+        water_unit = #{record.waterUnit,jdbcType=INTEGER},
       </if>
       <if test="record.waterTotalPrice != null">
         water_total_price = #{record.waterTotalPrice,jdbcType=DECIMAL},
@@ -514,13 +515,13 @@
       time_price = #{record.timePrice,jdbcType=DECIMAL},
       time_interval = #{record.timeInterval,jdbcType=DECIMAL},
       time_total_price = #{record.timeTotalPrice,jdbcType=DECIMAL},
-      price_unit = #{record.priceUnit,jdbcType=INTEGER},
+      time_price_unit = #{record.timePriceUnit,jdbcType=INTEGER},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
       time_use_amount = #{record.timeUseAmount,jdbcType=DECIMAL},
-      time_use_unit = #{record.timeUseUnit,jdbcType=INTEGER},
       water_price = #{record.waterPrice,jdbcType=DECIMAL},
       water_space = #{record.waterSpace,jdbcType=DECIMAL},
+      water_unit = #{record.waterUnit,jdbcType=INTEGER},
       water_total_price = #{record.waterTotalPrice,jdbcType=DECIMAL},
       total_price = #{record.totalPrice,jdbcType=DECIMAL},
       remain_price = #{record.remainPrice,jdbcType=DECIMAL}
@@ -598,8 +599,8 @@
       <if test="timeTotalPrice != null">
         time_total_price = #{timeTotalPrice,jdbcType=DECIMAL},
       </if>
-      <if test="priceUnit != null">
-        price_unit = #{priceUnit,jdbcType=INTEGER},
+      <if test="timePriceUnit != null">
+        time_price_unit = #{timePriceUnit,jdbcType=INTEGER},
       </if>
       <if test="startTime != null">
         start_time = #{startTime,jdbcType=TIMESTAMP},
@@ -610,14 +611,14 @@
       <if test="timeUseAmount != null">
         time_use_amount = #{timeUseAmount,jdbcType=DECIMAL},
       </if>
-      <if test="timeUseUnit != null">
-        time_use_unit = #{timeUseUnit,jdbcType=INTEGER},
-      </if>
       <if test="waterPrice != null">
         water_price = #{waterPrice,jdbcType=DECIMAL},
       </if>
       <if test="waterSpace != null">
         water_space = #{waterSpace,jdbcType=DECIMAL},
+      </if>
+      <if test="waterUnit != null">
+        water_unit = #{waterUnit,jdbcType=INTEGER},
       </if>
       <if test="waterTotalPrice != null">
         water_total_price = #{waterTotalPrice,jdbcType=DECIMAL},
@@ -656,13 +657,13 @@
       time_price = #{timePrice,jdbcType=DECIMAL},
       time_interval = #{timeInterval,jdbcType=DECIMAL},
       time_total_price = #{timeTotalPrice,jdbcType=DECIMAL},
-      price_unit = #{priceUnit,jdbcType=INTEGER},
+      time_price_unit = #{timePriceUnit,jdbcType=INTEGER},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
       time_use_amount = #{timeUseAmount,jdbcType=DECIMAL},
-      time_use_unit = #{timeUseUnit,jdbcType=INTEGER},
       water_price = #{waterPrice,jdbcType=DECIMAL},
       water_space = #{waterSpace,jdbcType=DECIMAL},
+      water_unit = #{waterUnit,jdbcType=INTEGER},
       water_total_price = #{waterTotalPrice,jdbcType=DECIMAL},
       total_price = #{totalPrice,jdbcType=DECIMAL},
       remain_price = #{remainPrice,jdbcType=DECIMAL}

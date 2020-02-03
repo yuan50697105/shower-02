@@ -10,4 +10,5 @@ import org.yuan.boot.shower.db.pojo.GoodsInfo;
  * @create: 2020-01-31 09:05
  */
 public interface GoodsInfoDao extends BaseDao<GoodsInfo> {
+    GoodsInfo getByBaseGoodsInfoByRangeCode(String rangeCode);
 }

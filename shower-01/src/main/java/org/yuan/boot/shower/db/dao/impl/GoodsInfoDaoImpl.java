@@ -19,4 +19,9 @@ import org.yuan.boot.shower.db.pojo.GoodsInfo;
 @AllArgsConstructor
 @Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class GoodsInfoDaoImpl extends BaseDaoImpl<GoodsInfo, GoodsInfoMapper> implements GoodsInfoDao {
+    @Override
+    public GoodsInfo getByBaseGoodsInfoByRangeCode(String rangeCode) {
+
+        return null;
+    }
 }

@@ -17,7 +17,7 @@ public interface WxOrderInfoConvertService {
 
     OrderInfo addOrder(WxOrderInfo wxOrderInfo);
 
-    OrderItem addBaseOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo);
+    OrderItem addOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo);
 
     List<OrderItem> addBaseOrderItems(WxOrderInfo wxOrderInfo, OrderInfo orderInfo);
 }

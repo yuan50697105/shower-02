@@ -15,7 +15,6 @@ import org.yuan.boot.shower.wx.service.WxGoodsService;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -48,7 +47,7 @@ public class WxOrderInfoConvertServiceImpl implements WxOrderInfoConvertService 
     }
 
     @Override
-    public OrderItem addBaseOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo) {
+    public OrderItem addOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo) {
         OrderItem orderItem = new OrderItem();
         orderItem.setType(orderInfo.getType());
         orderItem.setOrderId(orderInfo.getId());
@@ -56,41 +55,30 @@ public class WxOrderInfoConvertServiceImpl implements WxOrderInfoConvertService 
         orderItem.setCustomerId(orderInfo.getCustomerId());
         orderItem.setCustomerOpenId(orderInfo.getCustomerOpenId());
         orderItem.setCustomerUnionId(orderInfo.getCustomerUnionId());
-        orderItem.setCustomerNickName(orderInfo.getCustomerNickName());
+        orderItem.setCustomerNickName(wxCustomerService.getCustomerNameByUnionId(wxOrderInfo.getCustomerUnionId()));
         orderItem.setItemType(0);
-        orderItem.setItemOrderNo(orderCodeService.generateOrderNo());
-        Optional<DeviceInfo> optional = wxDeviceService.getById(wxOrderInfo.getDeviceId());
-        optional.ifPresent(deviceInfo -> {
+        orderItem.setItemOrderNo("");
+        Optional<DeviceInfo> deviceInfoOptional = wxDeviceService.getById(wxOrderInfo.getDeviceId());
+        deviceInfoOptional.ifPresent(deviceInfo -> {
             orderItem.setDeviceType(deviceInfo.getType());
             orderItem.setDeviceId(deviceInfo.getId());
             orderItem.setDeviceCode(deviceInfo.getCode());
             orderItem.setRangeCode(deviceInfo.getRangeCode());
         });
         Optional<GoodsInfo> goodsInfoOptional = wxGoodsService.getByBaseGoodsInfoByRangeCode(orderItem.getRangeCode());
-                orderItem.setGoodsInfoId(0L);
-        orderItem.setGoodsInfoCode("");
-        orderItem.setTimePrice(new BigDecimal("0"));
-        orderItem.setTimeInterval(new BigDecimal("0"));
-        orderItem.setTimeTotalPrice(new BigDecimal("0"));
-        orderItem.setPriceUnit(0);
-        orderItem.setStartTime(new Date());
-        orderItem.setEndTime(new Date());
-        orderItem.setTimeUseAmount(new BigDecimal("0"));
-        orderItem.setTimeUseUnit(0);
-        orderItem.setWaterPrice(new BigDecimal("0"));
-        orderItem.setWaterSpace(new BigDecimal("0"));
-        orderItem.setWaterTotalPrice(new BigDecimal("0"));
-        orderItem.setTotalPrice(new BigDecimal("0"));
-        orderItem.setRemainPrice(new BigDecimal("0"));
-        orderItem.setId(0L);
-        orderItem.setCreateTime(new Date());
-        orderItem.setUpdateTime(new Date());
-        orderItem.setCreateUser("");
-        orderItem.setUpdateUser("");
-
-
+        goodsInfoOptional.ifPresent(goodsInfo -> {
+            orderItem.setGoodsInfoId(goodsInfo.getId());
+            orderItem.setGoodsInfoCode(goodsInfo.getCode());
+            orderItem.setTimePrice(goodsInfo.getTimePrice());
+            orderItem.setTimeInterval(goodsInfo.getTimeInterval());
+            orderItem.setTimePriceUnit(goodsInfo.getTimeUnit());
+            orderItem.setWaterPrice(goodsInfo.getWaterPrice());
+            orderItem.setWaterSpace(goodsInfo.getWaterSpace());
+            orderItem.setWaterUnit(goodsInfo.getWaterUnit());
+        });
         return orderItem;
     }
+
 
     @Override
     public List<OrderItem> addBaseOrderItems(WxOrderInfo wxOrderInfo, OrderInfo orderInfo) {

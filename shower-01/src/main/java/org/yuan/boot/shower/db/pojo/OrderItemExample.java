@@ -1586,63 +1586,63 @@ public class OrderItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitIsNull() {
-            addCriterion("price_unit is null");
+        public Criteria andTimePriceUnitIsNull() {
+            addCriterion("time_price_unit is null");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitIsNotNull() {
-            addCriterion("price_unit is not null");
+        public Criteria andTimePriceUnitIsNotNull() {
+            addCriterion("time_price_unit is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitEqualTo(Integer value) {
-            addCriterion("price_unit =", value, "priceUnit");
+        public Criteria andTimePriceUnitEqualTo(Integer value) {
+            addCriterion("time_price_unit =", value, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitNotEqualTo(Integer value) {
-            addCriterion("price_unit <>", value, "priceUnit");
+        public Criteria andTimePriceUnitNotEqualTo(Integer value) {
+            addCriterion("time_price_unit <>", value, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitGreaterThan(Integer value) {
-            addCriterion("price_unit >", value, "priceUnit");
+        public Criteria andTimePriceUnitGreaterThan(Integer value) {
+            addCriterion("time_price_unit >", value, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitGreaterThanOrEqualTo(Integer value) {
-            addCriterion("price_unit >=", value, "priceUnit");
+        public Criteria andTimePriceUnitGreaterThanOrEqualTo(Integer value) {
+            addCriterion("time_price_unit >=", value, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitLessThan(Integer value) {
-            addCriterion("price_unit <", value, "priceUnit");
+        public Criteria andTimePriceUnitLessThan(Integer value) {
+            addCriterion("time_price_unit <", value, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitLessThanOrEqualTo(Integer value) {
-            addCriterion("price_unit <=", value, "priceUnit");
+        public Criteria andTimePriceUnitLessThanOrEqualTo(Integer value) {
+            addCriterion("time_price_unit <=", value, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitIn(List<Integer> values) {
-            addCriterion("price_unit in", values, "priceUnit");
+        public Criteria andTimePriceUnitIn(List<Integer> values) {
+            addCriterion("time_price_unit in", values, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitNotIn(List<Integer> values) {
-            addCriterion("price_unit not in", values, "priceUnit");
+        public Criteria andTimePriceUnitNotIn(List<Integer> values) {
+            addCriterion("time_price_unit not in", values, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitBetween(Integer value1, Integer value2) {
-            addCriterion("price_unit between", value1, value2, "priceUnit");
+        public Criteria andTimePriceUnitBetween(Integer value1, Integer value2) {
+            addCriterion("time_price_unit between", value1, value2, "timePriceUnit");
             return (Criteria) this;
         }
 
-        public Criteria andPriceUnitNotBetween(Integer value1, Integer value2) {
-            addCriterion("price_unit not between", value1, value2, "priceUnit");
+        public Criteria andTimePriceUnitNotBetween(Integer value1, Integer value2) {
+            addCriterion("time_price_unit not between", value1, value2, "timePriceUnit");
             return (Criteria) this;
         }
 
@@ -1826,66 +1826,6 @@ public class OrderItemExample {
             return (Criteria) this;
         }
 
-        public Criteria andTimeUseUnitIsNull() {
-            addCriterion("time_use_unit is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitIsNotNull() {
-            addCriterion("time_use_unit is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitEqualTo(Integer value) {
-            addCriterion("time_use_unit =", value, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitNotEqualTo(Integer value) {
-            addCriterion("time_use_unit <>", value, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitGreaterThan(Integer value) {
-            addCriterion("time_use_unit >", value, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitGreaterThanOrEqualTo(Integer value) {
-            addCriterion("time_use_unit >=", value, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitLessThan(Integer value) {
-            addCriterion("time_use_unit <", value, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitLessThanOrEqualTo(Integer value) {
-            addCriterion("time_use_unit <=", value, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitIn(List<Integer> values) {
-            addCriterion("time_use_unit in", values, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitNotIn(List<Integer> values) {
-            addCriterion("time_use_unit not in", values, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitBetween(Integer value1, Integer value2) {
-            addCriterion("time_use_unit between", value1, value2, "timeUseUnit");
-            return (Criteria) this;
-        }
-
-        public Criteria andTimeUseUnitNotBetween(Integer value1, Integer value2) {
-            addCriterion("time_use_unit not between", value1, value2, "timeUseUnit");
-            return (Criteria) this;
-        }
-
         public Criteria andWaterPriceIsNull() {
             addCriterion("water_price is null");
             return (Criteria) this;
@@ -2003,6 +1943,66 @@ public class OrderItemExample {
 
         public Criteria andWaterSpaceNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("water_space not between", value1, value2, "waterSpace");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitIsNull() {
+            addCriterion("water_unit is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitIsNotNull() {
+            addCriterion("water_unit is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitEqualTo(Integer value) {
+            addCriterion("water_unit =", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitNotEqualTo(Integer value) {
+            addCriterion("water_unit <>", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitGreaterThan(Integer value) {
+            addCriterion("water_unit >", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitGreaterThanOrEqualTo(Integer value) {
+            addCriterion("water_unit >=", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitLessThan(Integer value) {
+            addCriterion("water_unit <", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitLessThanOrEqualTo(Integer value) {
+            addCriterion("water_unit <=", value, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitIn(List<Integer> values) {
+            addCriterion("water_unit in", values, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitNotIn(List<Integer> values) {
+            addCriterion("water_unit not in", values, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitBetween(Integer value1, Integer value2) {
+            addCriterion("water_unit between", value1, value2, "waterUnit");
+            return (Criteria) this;
+        }
+
+        public Criteria andWaterUnitNotBetween(Integer value1, Integer value2) {
+            addCriterion("water_unit not between", value1, value2, "waterUnit");
             return (Criteria) this;
         }
 
