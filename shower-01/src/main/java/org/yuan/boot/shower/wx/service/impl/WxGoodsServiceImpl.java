@@ -2,7 +2,11 @@ package org.yuan.boot.shower.wx.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.yuan.boot.shower.db.dao.GoodsInfoDao;
+import org.yuan.boot.shower.db.pojo.GoodsInfo;
 import org.yuan.boot.shower.wx.service.WxGoodsService;
+
+import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -13,4 +17,11 @@ import org.yuan.boot.shower.wx.service.WxGoodsService;
 @Service
 @AllArgsConstructor
 public class WxGoodsServiceImpl implements WxGoodsService {
+    private GoodsInfoDao goodsInfoDao;
+
+    @Override
+    public Optional<GoodsInfo> getByBaseGoodsInfoByRangeCode(String rangeCode) {
+
+        return Optional.empty();
+    }
 }

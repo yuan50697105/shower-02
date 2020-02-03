@@ -2,7 +2,6 @@ package org.yuan.boot.shower.wx.converter.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.yuan.boot.shower.wx.converter.WxOrderConverter;
 
 /**
  * @program: shower-01
@@ -12,5 +11,5 @@ import org.yuan.boot.shower.wx.converter.WxOrderConverter;
  */
 @Component
 @AllArgsConstructor
-public class WxOrderConverterImpl implements WxOrderConverter {
+public class WxOrderConverterImpl {
 }

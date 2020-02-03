@@ -7,4 +7,5 @@ package org.yuan.boot.shower.wx.service;
  * @create: 2020-01-31 09:39
  */
 public interface WxCustomerService {
+    String getCustomerNameByUnionId(String customerUnionId);
 }
