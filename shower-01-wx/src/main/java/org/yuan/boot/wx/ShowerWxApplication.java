@@ -12,6 +12,7 @@ import org.yuan.boot.redis.ShowerRedisApplication;
  * @description:
  * @author: yuane
  * @create: 2020-01-18 17:05
+ *
  */
 @SpringBootApplication(scanBasePackageClasses = {ShowerCoreApplication.class, ShowerDbApplication.class, ShowerRedisApplication.class, ShowerMqApplication.class})
 public class ShowerWxApplication {
