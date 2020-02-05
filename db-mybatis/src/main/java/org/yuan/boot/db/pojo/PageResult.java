@@ -23,5 +23,9 @@ public final class PageResult<T> extends AbstractCorePageResult<T> {
         super(page, size, data, totalNumberOfRows, totalPages);
     }
 
+    public static <T> PageResult<T> of(PageInfo<T> pageInfo) {
+        return new PageResult<>(pageInfo);
+    }
+
 
 }

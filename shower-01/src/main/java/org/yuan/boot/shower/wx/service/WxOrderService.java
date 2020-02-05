@@ -1,23 +1,15 @@
 package org.yuan.boot.shower.wx.service;
 
-import org.yuan.boot.shower.db.pojo.WxOrderInfoCondition;
-import org.yuan.boot.shower.wx.pojo.WxOrderVO;
+import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
 import org.yuan.boot.webmvc.pojo.Result;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @program: shower-01
  * @description:
  * @author: yuane
- * @create: 2020-01-20 18:44
+ * @create: 2020-01-31 09:49
  */
 public interface WxOrderService {
-    Result addOrder(WxOrderVO wxOrderVO);
+    Result addOrder(WxOrderInfo wxOrderInfo);
 
-    Result getOrderList(WxOrderInfoCondition wxOrderInfoCondition);
-
-    Result pay(Long orderId);
-
-    Result doNotify(HttpServletRequest request);
 }

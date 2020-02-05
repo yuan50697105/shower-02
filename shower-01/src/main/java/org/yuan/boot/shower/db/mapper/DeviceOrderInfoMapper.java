@@ -1,16 +1,14 @@
 package org.yuan.boot.shower.db.mapper;
 
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.yuan.boot.shower.commons.mapper.BaseMapper;
 import org.yuan.boot.shower.db.pojo.DeviceOrderInfo;
-import org.yuan.boot.shower.db.pojo.DeviceOrderInfoCondition;
 import org.yuan.boot.shower.db.pojo.DeviceOrderInfoExample;
 
-import java.util.List;
-
 @Mapper
-public interface DeviceOrderInfoMapper extends BaseMapper<DeviceOrderInfo> {
+public interface DeviceOrderInfoMapper extends BaseMapper {
     long countByExample(DeviceOrderInfoExample example);
 
     int deleteByExample(DeviceOrderInfoExample example);
@@ -32,6 +30,4 @@ public interface DeviceOrderInfoMapper extends BaseMapper<DeviceOrderInfo> {
     int updateByPrimaryKeySelective(DeviceOrderInfo record);
 
     int updateByPrimaryKey(DeviceOrderInfo record);
-
-    List<DeviceOrderInfo> selectByCondition(DeviceOrderInfoCondition condition);
 }

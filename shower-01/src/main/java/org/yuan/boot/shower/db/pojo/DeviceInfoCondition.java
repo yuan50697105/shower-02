@@ -3,20 +3,20 @@ package org.yuan.boot.shower.db.pojo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import org.yuan.boot.db.pojo.AbstractBaseCondition;
+import org.yuan.boot.shower.commons.pojo.BaseCondition;
 
 /**
  * @program: shower-01
  * @description:
  * @author: yuane
- * @create: 2020-01-20 21:40
+ * @create: 2020-01-23 13:44
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Accessors(chain = true)
-public class DeviceInfoCondition extends AbstractBaseCondition {
+public class DeviceInfoCondition extends BaseCondition {
+    private Long id;
+    private String code;
     private Integer enabled;
-    private String point;
 
     public DeviceInfoCondition() {
     }
