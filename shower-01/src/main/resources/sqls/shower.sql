@@ -1,105 +1,150 @@
-create schema if not exists shower collate utf8mb4_0900_ai_ci;
+create schema if not exists shower02 collate utf8mb4_0900_ai_ci;
 
 create table if not exists admin_role
 (
-    id   bigint(15)  not null comment 'id'
+    id          bigint(15) auto_increment comment 'id'
         primary key,
-    name varchar(50) null comment '名称'
+    create_time datetime    null comment 'createTime',
+    update_time timestamp   null comment 'updateTime',
+    create_user varchar(50) null comment 'createUser',
+    update_user varchar(50) null comment 'updateUser',
+    name        varchar(50) null comment 'name',
+    enabled     int         null comment 'enabled'
 )
     comment 'admin_role';
 
 create table if not exists admin_user
 (
-    id          bigint(15)  not null comment 'id'
+    id          bigint(15) auto_increment comment 'id'
         primary key,
-    username    varchar(50) null comment '账户',
-    password    varchar(50) null comment '密码',
-    real_name   varchar(50) null comment '昵称',
-    create_user varchar(50) null comment '创建人',
-    create_time datetime    null comment '创建时间',
-    update_time timestamp   null comment '更新时间'
+    create_time datetime     null comment 'createTime',
+    update_time timestamp    null comment 'updateTime',
+    create_user varchar(50)  null comment 'createUser',
+    update_user varchar(50)  null comment 'updateUser',
+    username    varchar(50)  null comment 'username',
+    password    varchar(255) null comment 'password',
+    name        varchar(50)  null comment 'name',
+    enabled     int          null comment 'enabled',
+    constraint username
+        unique (username)
 )
     comment 'admin_user';
 
-create table if not exists admin_user_role
+create table if not exists customer_info
 (
-    id      bigint(15) not null comment 'id'
+    id          bigint(15) auto_increment comment 'id'
         primary key,
-    user_id bigint(15) null comment '用户ID',
-    role_id bigint(15) null comment '角色ID'
+    create_time datetime    null comment 'createTime',
+    update_time timestamp   null comment 'updateTime',
+    create_user varchar(50) null comment 'createUser',
+    update_user varchar(50) null comment 'updateUser',
+    nick_name   varchar(50) null comment 'nickName',
+    open_id     varchar(50) null comment 'openId',
+    union_id    varchar(50) null comment 'unionId',
+    gender      int         null comment 'gender',
+    phone       varchar(50) null comment 'phone'
 )
-    comment 'admin_user_role';
+    comment 'customer_info';
 
 create table if not exists device_info
 (
-    id      bigint(15)  not null comment 'id'
+    id          bigint(15) auto_increment comment 'id'
         primary key,
-    code    varchar(50) null comment '编号',
-    address varchar(50) null comment '地址',
-    point   varchar(50) null comment '坐标值'
+    create_time datetime    null comment 'createTime',
+    update_time timestamp   null comment 'updateTime',
+    create_user varchar(50) null comment 'createUser',
+    update_user varchar(50) null comment 'updateUser',
+    code        varchar(50) null comment 'code',
+    type        int         null comment 'type',
+    address     varchar(50) null comment 'address',
+    point       varchar(50) null comment 'point',
+    enabled     int         null comment 'enabled',
+    constraint code
+        unique (code)
 )
     comment 'device_info';
 
 create table if not exists device_order_info
 (
-    id               bigint(15)  not null comment 'id'
+    id          bigint(15) auto_increment comment 'id'
         primary key,
-    device_id        bigint(15)  null comment '设备ID',
-    device_code      varchar(50) null comment '设备编号',
-    order_id         bigint(15)  null comment '订单ID',
-    order_no         varchar(50) null comment '订单号',
-    customer_id      bigint(15)  null comment '客户ID',
-    customer_open_id varchar(50) null comment '客户微信OpenId',
-    customer_name    varchar(50) null comment '客户姓名',
-    order_time       datetime    null comment '下单时间',
-    start_time       datetime    null comment '开始使用时间',
-    end_time         datetime    null comment '结束使用时间',
-    leave_time       datetime    null comment '离开时间'
+    create_time datetime    null comment 'createTime',
+    update_time timestamp   null comment 'updateTime',
+    create_user varchar(50) null comment 'createUser',
+    update_user varchar(50) null comment 'updateUser',
+    device_id   bigint(15)  null comment 'deviceId',
+    device_code varchar(50) null comment 'deviceCode',
+    order_id    bigint(15)  null comment 'orderId',
+    order_no    varchar(50) null comment 'orderNo',
+    status      int         null comment 'status',
+    content     varchar(50) null comment 'content'
 )
     comment 'device_order_info';
 
-create table if not exists wx_customer
+create table if not exists device_record
 (
-    id          bigint(15)  not null comment 'id'
+    id          bigint(15) auto_increment comment 'id'
         primary key,
-    open_id     varchar(50) null comment '微信OPENID',
-    union_id    varchar(50) null comment '微信UNIONID',
-    nick_name   varchar(50) null comment '昵称',
-    phone       varchar(50) null comment '电话',
-    gender      int         null comment '性别',
-    create_time datetime    null comment '创建时间',
-    update_time timestamp   null comment '修改时间'
+    create_time datetime    null comment 'createTime',
+    update_time timestamp   null comment 'updateTime',
+    create_user varchar(50) null comment 'createUser',
+    update_user varchar(50) null comment 'updateUser',
+    device_id   bigint(15)  null comment 'deviceId',
+    device_code varchar(50) null comment 'deviceCode',
+    type        int         null comment 'type',
+    content     varchar(50) null comment 'content'
 )
-    comment 'wx_customer';
+    comment 'device_record';
 
-create table if not exists wx_order_info
+create table if not exists order_info
 (
-    id                 bigint(15)     not null comment 'id'
+    id                 bigint(15) auto_increment comment 'id'
         primary key,
     create_time        datetime       null comment 'createTime',
-    order_type         int            null comment '订单类型 1 预支付押金，2 直接使用 ，3 预约订单',
-    order_no           varchar(50)    null comment '订单号',
-    customer_id        bigint(15)     null comment '客户ID',
-    customer_name      varchar(50)    null comment '客户姓名',
-    customer_open_id   varchar(50)    null comment '客户微信openId',
-    customer_union_id  varchar(50)    null comment '微信UNIONID',
-    device_id          bigint(15)     null comment '设备编号ID',
-    device_code        varchar(50)    null comment '设备编号',
-    pay_status         int            null comment '支付状态 （0未支付 ，11 预支付订单支付定金， 12 使用结束未完成支付，13 使用完成并完成支付，22使用结束未支付，23 完成支持，31 ，32 ，33',
-    predicate_pay_time datetime       null comment '预支付时间',
-    final_pay_time     datetime       null comment '使用结束支付时间',
-    predicate_decimal  decimal(13, 4) null comment '预支付金额',
-    remain_decimal     decimal(13, 4) null comment '预支付剩余金额',
-    start_time         datetime       null comment '使用开始时间',
-    end_time           datetime       null comment '使用结束时间',
-    spend_time         decimal(13, 4) null comment '使用时间',
-    min_decimal        decimal(13, 4) null comment '最低收费',
-    per_decimal        decimal(13, 4) null comment '单位收费价格',
-    ext_decimal        decimal(13, 4) null comment '超出收费金额（如果是直接使用订单，只有超出使用金额）',
-    total_decimal      decimal(13, 4) null comment '总金额',
-    leave_time         datetime       null comment '客户离开时间',
-    crate_time         datetime       null comment 'crateTime',
-    update_time        timestamp      null comment 'updateTime'
+    update_time        timestamp      null comment 'updateTime',
+    create_user        varchar(50)    null comment 'createUser',
+    update_user        varchar(50)    null comment 'updateUser',
+    type               int            null comment 'type',
+    order_no           varchar(50)    null comment 'orderNo',
+    customer_id        bigint(15)     null comment 'customerId',
+    customer_open_id   varchar(50)    null comment 'customerOpenId',
+    customer_union_id  varchar(50)    null comment 'customerUnionId',
+    customer_nick_name varchar(50)    null comment 'customerNickName',
+    order_status       int            null comment 'orderStatus',
+    total_price        decimal(13, 4) null comment 'totalPrice',
+    constraint order_no
+        unique (order_no)
 )
-    comment 'wx_order_info';
+    comment 'order_info';
+
+create table if not exists order_item
+(
+    id                 bigint(15) auto_increment comment 'id'
+        primary key,
+    create_time        datetime       null comment 'createTime',
+    update_time        timestamp      null comment 'updateTime',
+    create_user        varchar(50)    null comment 'createUser',
+    update_user        varchar(50)    null comment 'updateUser',
+    type               int            null comment 'type',
+    order_id           bigint(15)     null comment 'orderId',
+    order_no           varchar(50)    null comment 'orderNo',
+    customer_id        bigint(15)     null comment 'customerId',
+    customer_open_id   varchar(50)    null comment 'customerOpenId',
+    customer_union_id  varchar(50)    null comment 'customerUnionId',
+    customer_nick_name varchar(50)    null comment 'customerNickName',
+    item_type          int            null comment 'itemType',
+    item_order_no      varchar(50)    null comment 'itemOrderNo',
+    device_type        int            null comment 'deviceType',
+    device_id          bigint(15)     null comment 'deviceId',
+    device_code        varchar(50)    null comment 'deviceCode',
+    price              decimal(13, 4) null comment 'price',
+    price_unit         int            null comment 'priceUnit',
+    start_time         datetime       null comment 'startTime',
+    end_time           datetime       null comment 'endTime',
+    use_amount         decimal(13, 4) null comment '使用量',
+    use_unit           int            null comment '使用量单位',
+    total_price        decimal(13, 4) null comment 'totalPrice',
+    remain_price       decimal(13, 4) null comment 'remainPrice'
+)
+    comment 'order_item';
 
