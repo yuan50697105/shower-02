@@ -5,12 +5,14 @@
     <!--@mbg.generated-->
     <!--@Table admin_user-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="username" jdbcType="VARCHAR" property="username" />
-    <result column="password" jdbcType="VARCHAR" property="password" />
-    <result column="real_name" jdbcType="VARCHAR" property="realName" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
+    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -74,7 +76,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, username, `password`, real_name, create_user, create_time, update_time
+    id, create_time, update_time, create_user, update_user, username, `password`, `name`, 
+    enabled
   </sql>
   <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.AdminUserExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -112,12 +115,14 @@
   </delete>
   <insert id="insert" parameterType="org.yuan.boot.shower.db.pojo.AdminUser">
     <!--@mbg.generated-->
-    insert into admin_user (id, username, `password`, 
-      real_name, create_user, create_time, 
-      update_time)
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{realName,jdbcType=VARCHAR}, #{createUser,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+    insert into admin_user (id, create_time, update_time, 
+      create_user, update_user, username, 
+      `password`, `name`, enabled
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.yuan.boot.shower.db.pojo.AdminUser">
     <!--@mbg.generated-->
@@ -126,28 +131,46 @@
       <if test="id != null">
         id,
       </if>
-      <if test="username != null">
-        username,
-      </if>
-      <if test="password != null">
-        `password`,
-      </if>
-      <if test="realName != null">
-        real_name,
-      </if>
-      <if test="createUser != null">
-        create_user,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
       <if test="updateTime != null">
         update_time,
       </if>
+      <if test="createUser != null">
+        create_user,
+      </if>
+      <if test="updateUser != null">
+        update_user,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="password != null">
+        `password`,
+      </if>
+      <if test="name != null">
+        `name`,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        #{updateUser,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -155,17 +178,11 @@
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
       </if>
-      <if test="realName != null">
-        #{realName,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="enabled != null">
+        #{enabled,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -183,23 +200,29 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createUser != null">
+        create_user = #{record.createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.updateUser != null">
+        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         `password` = #{record.password,jdbcType=VARCHAR},
       </if>
-      <if test="record.realName != null">
-        real_name = #{record.realName,jdbcType=VARCHAR},
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.createUser != null">
-        create_user = #{record.createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.enabled != null">
+        enabled = #{record.enabled,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null">
@@ -210,12 +233,14 @@
     <!--@mbg.generated-->
     update admin_user
     set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      create_user = #{record.createUser,jdbcType=VARCHAR},
+      update_user = #{record.updateUser,jdbcType=VARCHAR},
       username = #{record.username,jdbcType=VARCHAR},
       `password` = #{record.password,jdbcType=VARCHAR},
-      real_name = #{record.realName,jdbcType=VARCHAR},
-      create_user = #{record.createUser,jdbcType=VARCHAR},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP}
+      `name` = #{record.name,jdbcType=VARCHAR},
+      enabled = #{record.enabled,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -224,23 +249,29 @@
     <!--@mbg.generated-->
     update admin_user
     <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUser != null">
+        create_user = #{createUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null">
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         `password` = #{password,jdbcType=VARCHAR},
       </if>
-      <if test="realName != null">
-        real_name = #{realName,jdbcType=VARCHAR},
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=VARCHAR},
-      </if>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -248,12 +279,14 @@
   <update id="updateByPrimaryKey" parameterType="org.yuan.boot.shower.db.pojo.AdminUser">
     <!--@mbg.generated-->
     update admin_user
-    set username = #{username,jdbcType=VARCHAR},
-      `password` = #{password,jdbcType=VARCHAR},
-      real_name = #{realName,jdbcType=VARCHAR},
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
-      create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
     <select id="selectByCondtion" resultMap="BaseResultMap">
@@ -270,6 +303,25 @@
                 or
                 real_name like concat('%',#{name,jdbcType=VARCHAR},'%')
                 )
+            </if>
+        </where>
+        <if test="order != null and order != ''">
+            order by ${order}
+            <if test="sort != null and sort != ''">
+                ${sort}
+            </if>
+        </if>
+    </select>
+    <select id="selectByCondition" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from admin_user
+        <where>
+            <if test="id != null">
+                and id=#{id,jdbcType=BIGINT}
+            </if>
+            <if test="name != null and name != ''">
+                and lower(name) like lower(concat('%',#{name,jdbcType=VARCHAR},'%'))
             </if>
         </where>
         <if test="order != null and order != ''">

@@ -30,39 +30,14 @@ public class DeviceOrderInfo extends BaseEntity implements Serializable {
     private String orderNo;
 
     /**
-     * 客户ID
+     * 设备订单状态
      */
-    private Long customerId;
+    private Integer status;
 
     /**
-     * 客户微信OpenId
+     * 详情
      */
-    private String customerOpenId;
-
-    /**
-     * 客户姓名
-     */
-    private String customerName;
-
-    /**
-     * 下单时间
-     */
-    private Date orderTime;
-
-    /**
-     * 开始使用时间
-     */
-    private Date startTime;
-
-    /**
-     * 结束使用时间
-     */
-    private Date endTime;
-
-    /**
-     * 离开时间
-     */
-    private Date leaveTime;
+    private String content;
 
     private static final long serialVersionUID = 1L;
 }

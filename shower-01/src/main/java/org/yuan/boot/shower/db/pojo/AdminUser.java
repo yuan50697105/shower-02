@@ -10,7 +10,7 @@ import org.yuan.boot.shower.commons.pojo.BaseEntity;
 @EqualsAndHashCode(callSuper = true)
 public class AdminUser extends BaseEntity implements Serializable {
     /**
-     * 账户
+     * 用户名
      */
     private String username;
 
@@ -20,24 +20,14 @@ public class AdminUser extends BaseEntity implements Serializable {
     private String password;
 
     /**
-     * 昵称
+     * 姓名
      */
-    private String realName;
+    private String name;
 
     /**
-     * 创建人
+     * 启用状态
      */
-    private String createUser;
-
-    /**
-     * 创建时间
-     */
-    private Date createTime;
-
-    /**
-     * 更新时间
-     */
-    private Date updateTime;
+    private Integer enabled;
 
     private static final long serialVersionUID = 1L;
 }

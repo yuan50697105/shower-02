@@ -8,7 +8,7 @@ import org.yuan.boot.shower.db.pojo.AdminUser;
 import org.yuan.boot.shower.db.pojo.AdminUserCondition;import org.yuan.boot.shower.db.pojo.AdminUserExample;
 
 @Mapper
-public interface AdminUserMapper extends BaseMapper<AdminUser> {
+public interface AdminUserMapper extends BaseMapper {
     long countByExample(AdminUserExample example);
 
     int deleteByExample(AdminUserExample example);
@@ -31,5 +31,5 @@ public interface AdminUserMapper extends BaseMapper<AdminUser> {
 
     int updateByPrimaryKey(AdminUser record);
 
-    List<AdminUser> selectByCondtion(AdminUserCondition condition);
+    List<AdminUser> selectByCondition(AdminUserCondition condition);
 }
