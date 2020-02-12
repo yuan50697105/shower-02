@@ -8,7 +8,7 @@ import org.yuan.boot.shower.db.dao.OrderInfoDao;
 import org.yuan.boot.shower.db.dao.OrderItemDao;
 import org.yuan.boot.shower.db.pojo.OrderInfo;
 import org.yuan.boot.shower.db.pojo.OrderItem;
-import org.yuan.boot.shower.wx.converter.WxOrderInfoCreateService;
+import org.yuan.boot.shower.wx.service.WxOrderInfoCreateService;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
 import org.yuan.boot.shower.wx.service.OrderCodeService;
 import org.yuan.boot.shower.wx.service.WxCustomerService;
@@ -16,6 +16,7 @@ import org.yuan.boot.shower.wx.service.WxOrderService;
 import org.yuan.boot.webmvc.pojo.Result;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -36,9 +37,14 @@ public class WxOrderServiceImpl implements WxOrderService {
     @Transactional(rollbackFor = Exception.class)
     public Result addOrder(WxOrderInfo wxOrderInfo) {
         OrderInfo orderInfo = wxOrderInfoCreateService.createOrder(wxOrderInfo);
-        List<OrderItem> orderItems = wxOrderInfoCreateService.creteBaseOrderItem(wxOrderInfo, orderInfo);
+        List<OrderItem> orderItems = wxOrderInfoCreateService.createRentalOrderItem(wxOrderInfo, orderInfo);
         orderInfoDao.save(orderInfo);
         orderItemDao.batchSave(orderItems);
         return Results.ok();
+    }
+
+    @Override
+    public Optional<OrderInfo> getById(Long orderId) {
+        return orderInfoDao.selectById(orderId);
     }
 }

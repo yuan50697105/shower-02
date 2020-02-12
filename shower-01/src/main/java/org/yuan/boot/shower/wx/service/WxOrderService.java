@@ -1,7 +1,10 @@
 package org.yuan.boot.shower.wx.service;
 
+import org.yuan.boot.shower.db.pojo.OrderInfo;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
 import org.yuan.boot.webmvc.pojo.Result;
+
+import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -12,4 +15,5 @@ import org.yuan.boot.webmvc.pojo.Result;
 public interface WxOrderService {
     Result addOrder(WxOrderInfo wxOrderInfo);
 
+    Optional<OrderInfo> getById(Long orderId);
 }

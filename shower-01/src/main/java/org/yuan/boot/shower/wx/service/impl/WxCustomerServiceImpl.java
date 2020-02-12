@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.yuan.boot.shower.commons.utils.Results;
 import org.yuan.boot.shower.db.dao.CustomerInfoDao;
 import org.yuan.boot.shower.db.pojo.CustomerInfo;
-import org.yuan.boot.shower.wx.converter.WxCustomerConverter;
+import org.yuan.boot.shower.wx.service.WxCustomerConverter;
 import org.yuan.boot.shower.wx.service.WxCustomerService;
 import org.yuan.boot.webmvc.pojo.Result;
 

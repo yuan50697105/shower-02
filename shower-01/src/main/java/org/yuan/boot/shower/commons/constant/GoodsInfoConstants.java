@@ -16,4 +16,10 @@ public class GoodsInfoConstants {
         public static final int SHENG = 1;
     }
 
+    public static class GoodsInfoType {
+        public static final int RENTAL = 1;
+        public static final int CONTINUE = 2;
+    }
+
+
 }

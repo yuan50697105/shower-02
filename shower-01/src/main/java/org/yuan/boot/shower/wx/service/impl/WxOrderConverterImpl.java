@@ -1,4 +1,4 @@
-package org.yuan.boot.shower.wx.converter.impl;
+package org.yuan.boot.shower.wx.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

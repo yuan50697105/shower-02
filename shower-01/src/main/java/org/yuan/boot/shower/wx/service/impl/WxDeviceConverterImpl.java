@@ -1,7 +1,7 @@
-package org.yuan.boot.shower.wx.converter.impl;
+package org.yuan.boot.shower.wx.service.impl;
 
 import org.springframework.stereotype.Component;
-import org.yuan.boot.shower.wx.converter.WxDeviceConverter;
+import org.yuan.boot.shower.wx.service.WxDeviceConverter;
 
 /**
  * @program: shower-01

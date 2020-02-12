@@ -1,4 +1,4 @@
-package org.yuan.boot.shower.wx.converter;
+package org.yuan.boot.shower.wx.service;
 
 import org.yuan.boot.shower.db.pojo.*;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
@@ -18,5 +18,5 @@ public interface WxOrderInfoCreateService {
 
     OrderItem createOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo, CustomerInfo customerInfo, DeviceInfo deviceInfo, GoodsInfo goodsInfo);
 
-    List<OrderItem> creteBaseOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo);
+    List<OrderItem> createRentalOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo);
 }

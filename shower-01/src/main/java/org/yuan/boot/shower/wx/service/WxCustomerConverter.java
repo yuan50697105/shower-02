@@ -1,4 +1,4 @@
-package org.yuan.boot.shower.wx.converter;
+package org.yuan.boot.shower.wx.service;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValuePropertyMappingStrategy;

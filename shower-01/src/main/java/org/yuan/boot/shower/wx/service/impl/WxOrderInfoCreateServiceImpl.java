@@ -1,4 +1,4 @@
-package org.yuan.boot.shower.wx.converter.impl;
+package org.yuan.boot.shower.wx.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -7,12 +7,8 @@ import org.yuan.boot.shower.commons.exception.CustomerInfoNotExistResultRuntimeE
 import org.yuan.boot.shower.commons.exception.DeviceInfoResultRuntimeException;
 import org.yuan.boot.shower.commons.exception.GoodsInfoNotExistResultRuntimeException;
 import org.yuan.boot.shower.db.pojo.*;
-import org.yuan.boot.shower.wx.converter.WxOrderInfoCreateService;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
-import org.yuan.boot.shower.wx.service.OrderCodeService;
-import org.yuan.boot.shower.wx.service.WxCustomerService;
-import org.yuan.boot.shower.wx.service.WxDeviceService;
-import org.yuan.boot.shower.wx.service.WxGoodsService;
+import org.yuan.boot.shower.wx.service.*;
 import org.yuan.boot.webmvc.exception.DataParamsErrorResultRuntimeException;
 
 import java.math.BigDecimal;
@@ -31,6 +27,7 @@ public class WxOrderInfoCreateServiceImpl implements WxOrderInfoCreateService {
     private WxCustomerService wxCustomerService;
     private WxDeviceService wxDeviceService;
     private WxGoodsService wxGoodsService;
+    private WxOrderService wxOrderService;
 
     @Override
     public OrderInfo createOrder(WxOrderInfo wxOrderInfo) {
@@ -54,15 +51,29 @@ public class WxOrderInfoCreateServiceImpl implements WxOrderInfoCreateService {
      * @return
      */
     @Override
-    public List<OrderItem> creteBaseOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo) {
+    public List<OrderItem> createRentalOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo) {
         ArrayList<OrderItem> orderItems = new ArrayList<>(1);
         Long deviceId = wxOrderInfo.getDeviceId();
         String customerUnionId = wxOrderInfo.getCustomerUnionId();
         String rangeCode = wxOrderInfo.getRangeCode();
-        Optional<GoodsInfo> goodsInfo = wxGoodsService.getByBaseGoodsInfoByRangeCode(rangeCode);
+        Optional<GoodsInfo> goodsInfo = wxGoodsService.getRentalGoodsInfoByRangeCode(rangeCode);
         Optional<DeviceInfo> deviceInfo = wxDeviceService.getById(deviceId);
         Optional<CustomerInfo> customerInfo = wxCustomerService.getByUnionId(customerUnionId);
-        orderItems.add(createOrderItem(wxOrderInfo, orderInfo, customerInfo.orElseThrow(CustomerInfoNotExistResultRuntimeException::new), deviceInfo.orElseThrow(DeviceInfoResultRuntimeException::new), goodsInfo.orElseThrow(GoodsInfoNotExistResultRuntimeException::new)));
+        orderItems.add(createOrderItem(wxOrderInfo, orderInfo, customerInfo.orElseThrow(DataParamsErrorResultRuntimeException::new), deviceInfo.orElseThrow(DataParamsErrorResultRuntimeException::new), goodsInfo.orElseThrow(DataParamsErrorResultRuntimeException::new)));
+        return orderItems;
+    }
+
+    public List<OrderItem> createContinueOrderItem(WxOrderInfo wxOrderInfo) {
+        ArrayList<OrderItem> orderItems = new ArrayList<>();
+        Long deviceId = wxOrderInfo.getDeviceId();
+        String customerUnionId = wxOrderInfo.getCustomerUnionId();
+        String rangeCode = wxOrderInfo.getRangeCode();
+        Long orderId = wxOrderInfo.getOrderId();
+        Optional<DeviceInfo> deviceInfo = wxDeviceService.getById(deviceId);
+        Optional<CustomerInfo> customerInfo = wxCustomerService.getByUnionId(customerUnionId);
+        Optional<GoodsInfo> goodsInfo = wxGoodsService.getContinueGoodsInfoByRangeCode(rangeCode);
+        Optional<OrderInfo> orderInfo = wxOrderService.getById(orderId);
+        orderItems.add(createOrderItem(wxOrderInfo, orderInfo.orElseThrow(DataParamsErrorResultRuntimeException::new),customerInfo.orElseThrow(DataParamsErrorResultRuntimeException::new),deviceInfo.orElseThrow(DataParamsErrorResultRuntimeException::new),goodsInfo.orElseThrow(DataParamsErrorResultRuntimeException::new)))
         return orderItems;
     }
 
