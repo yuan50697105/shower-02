@@ -44,6 +44,11 @@ public class WxOrderServiceImpl implements WxOrderService {
     }
 
     @Override
+    public Result endOrder(WxOrderInfo wxOrderInfo) {
+        return null;
+    }
+
+    @Override
     public Optional<OrderInfo> getById(Long orderId) {
         return orderInfoDao.selectById(orderId);
     }

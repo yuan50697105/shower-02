@@ -2,6 +2,8 @@ package org.yuan.boot.shower.wx.pojo;
 
 import lombok.Data;
 
+import java.math.BigDecimal;
+
 /**
  * @program: shower-01
  * @description:
@@ -11,9 +13,11 @@ import lombok.Data;
 @Data
 public class WxOrderInfo {
     private Long orderId;
+    private String orderNo;
     private Long deviceId;
     private Long customerId;
     private String customerOpenId;
     private String customerUnionId;
     private String rangeCode;
+    private BigDecimal waterCost;
 }

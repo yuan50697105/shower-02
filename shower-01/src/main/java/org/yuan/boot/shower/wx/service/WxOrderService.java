@@ -15,5 +15,6 @@ import java.util.Optional;
 public interface WxOrderService {
     Result addOrder(WxOrderInfo wxOrderInfo);
 
+    Result endOrder(WxOrderInfo wxOrderInfo);
     Optional<OrderInfo> getById(Long orderId);
 }

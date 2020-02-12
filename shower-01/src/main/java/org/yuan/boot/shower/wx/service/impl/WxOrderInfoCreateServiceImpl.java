@@ -3,16 +3,19 @@ package org.yuan.boot.shower.wx.service.impl;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.yuan.boot.shower.commons.constant.GoodsInfoConstants;
-import org.yuan.boot.shower.commons.exception.CustomerInfoNotExistResultRuntimeException;
-import org.yuan.boot.shower.commons.exception.DeviceInfoResultRuntimeException;
-import org.yuan.boot.shower.commons.exception.GoodsInfoNotExistResultRuntimeException;
-import org.yuan.boot.shower.db.pojo.*;
+import org.yuan.boot.shower.db.pojo.DeviceInfo;
+import org.yuan.boot.shower.db.pojo.GoodsInfo;
+import org.yuan.boot.shower.db.pojo.OrderInfo;
+import org.yuan.boot.shower.db.pojo.OrderItem;
 import org.yuan.boot.shower.wx.pojo.WxOrderInfo;
 import org.yuan.boot.shower.wx.service.*;
 import org.yuan.boot.webmvc.exception.DataParamsErrorResultRuntimeException;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 
 /**
  * @program: shower-01
@@ -54,34 +57,53 @@ public class WxOrderInfoCreateServiceImpl implements WxOrderInfoCreateService {
     public List<OrderItem> createRentalOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo) {
         ArrayList<OrderItem> orderItems = new ArrayList<>(1);
         Long deviceId = wxOrderInfo.getDeviceId();
-        String customerUnionId = wxOrderInfo.getCustomerUnionId();
         String rangeCode = wxOrderInfo.getRangeCode();
-        Optional<GoodsInfo> goodsInfo = wxGoodsService.getRentalGoodsInfoByRangeCode(rangeCode);
-        Optional<DeviceInfo> deviceInfo = wxDeviceService.getById(deviceId);
-        Optional<CustomerInfo> customerInfo = wxCustomerService.getByUnionId(customerUnionId);
-        orderItems.add(createOrderItem(wxOrderInfo, orderInfo, customerInfo.orElseThrow(DataParamsErrorResultRuntimeException::new), deviceInfo.orElseThrow(DataParamsErrorResultRuntimeException::new), goodsInfo.orElseThrow(DataParamsErrorResultRuntimeException::new)));
-        return orderItems;
-    }
-
-    public List<OrderItem> createContinueOrderItem(WxOrderInfo wxOrderInfo) {
-        ArrayList<OrderItem> orderItems = new ArrayList<>();
-        Long deviceId = wxOrderInfo.getDeviceId();
-        String customerUnionId = wxOrderInfo.getCustomerUnionId();
-        String rangeCode = wxOrderInfo.getRangeCode();
-        Long orderId = wxOrderInfo.getOrderId();
-        Optional<DeviceInfo> deviceInfo = wxDeviceService.getById(deviceId);
-        Optional<CustomerInfo> customerInfo = wxCustomerService.getByUnionId(customerUnionId);
-        Optional<GoodsInfo> goodsInfo = wxGoodsService.getContinueGoodsInfoByRangeCode(rangeCode);
-        Optional<OrderInfo> orderInfo = wxOrderService.getById(orderId);
-        orderItems.add(createOrderItem(wxOrderInfo, orderInfo.orElseThrow(DataParamsErrorResultRuntimeException::new),customerInfo.orElseThrow(DataParamsErrorResultRuntimeException::new),deviceInfo.orElseThrow(DataParamsErrorResultRuntimeException::new),goodsInfo.orElseThrow(DataParamsErrorResultRuntimeException::new)))
+        GoodsInfo goodsInfo = wxGoodsService.getRentalGoodsInfoByRangeCode(rangeCode).orElseThrow(DataParamsErrorResultRuntimeException::new);
+        DeviceInfo deviceInfo = wxDeviceService.getById(deviceId).orElseThrow(DataParamsErrorResultRuntimeException::new);
+        OrderItem orderItem = new OrderItem();
+        orderItem.setType(0);
+        orderItem.setOrderId(0L);
+        orderItem.setOrderNo(orderInfo.getOrderNo());
+        orderItem.setCustomerId(orderInfo.getCustomerId());
+        orderItem.setCustomerOpenId(orderInfo.getCustomerOpenId());
+        orderItem.setCustomerUnionId(orderInfo.getCustomerUnionId());
+        orderItem.setCustomerNickName(orderInfo.getCustomerNickName());
+        orderItem.setItemType(0);
+        orderItem.setItemOrderNo("");
+        orderItem.setDeviceType(deviceInfo.getType());
+        orderItem.setDeviceId(deviceInfo.getId());
+        orderItem.setDeviceCode(deviceInfo.getCode());
+        orderItem.setGoodsInfoId(goodsInfo.getId());
+        orderItem.setGoodsInfoCode(goodsInfo.getCode());
+        orderItem.setTimePrice(goodsInfo.getTimePrice());
+        orderItem.setTimeInterval(goodsInfo.getTimeInterval());
+        orderItem.setTimeTotalPrice(goodsInfo.getTimePrice());
+        orderItem.setTimePriceUnit(goodsInfo.getTimeUnit());
+        orderItem.setStartTime(new Date());
+        orderItem.setEndTime(getEndTime(orderItem.getStartTime(), goodsInfo.getTimeInterval(), goodsInfo.getTimeUnit()));
+        orderItem.setTimeUseAmount(new BigDecimal("0"));
+        orderItem.setWaterPrice(goodsInfo.getWaterPrice());
+        orderItem.setWaterSpace(goodsInfo.getWaterSpace());
+        orderItem.setWaterUnit(goodsInfo.getWaterUnit());
+        orderItem.setWaterTotalPrice(goodsInfo.getWaterPrice());
+        orderItem.setTotalPrice(goodsInfo.getTimePrice().add(goodsInfo.getWaterPrice()));
+        orderItem.setRemainPrice(new BigDecimal("0"));
+        orderItems.add(orderItem);
         return orderItems;
     }
 
     @Override
-    public OrderItem createOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo, CustomerInfo customerInfo, DeviceInfo deviceInfo, GoodsInfo goodsInfo) {
+    public List<OrderItem> createContinueOrderItem(WxOrderInfo wxOrderInfo) {
+        ArrayList<OrderItem> orderItems = new ArrayList<>();
+        Long deviceId = wxOrderInfo.getDeviceId();
+        String rangeCode = wxOrderInfo.getRangeCode();
+        Long orderId = wxOrderInfo.getOrderId();
+        DeviceInfo deviceInfo = wxDeviceService.getById(deviceId).orElseThrow(DataParamsErrorResultRuntimeException::new);
+        GoodsInfo goodsInfo = wxGoodsService.getContinueGoodsInfoByRangeCode(rangeCode).orElseThrow(DataParamsErrorResultRuntimeException::new);
+        OrderInfo orderInfo = wxOrderService.getById(orderId).orElseThrow(DataParamsErrorResultRuntimeException::new);
         OrderItem orderItem = new OrderItem();
         orderItem.setType(0);
-        orderItem.setOrderId(0L);
+        orderItem.setOrderId(orderInfo.getId());
         orderItem.setOrderNo(orderInfo.getOrderNo());
         orderItem.setCustomerId(orderInfo.getCustomerId());
         orderItem.setCustomerOpenId(orderInfo.getCustomerOpenId());
@@ -100,15 +122,20 @@ public class WxOrderInfoCreateServiceImpl implements WxOrderInfoCreateService {
         orderItem.setTimeTotalPrice(goodsInfo.getTimePrice());
         orderItem.setTimePriceUnit(goodsInfo.getTimeUnit());
         orderItem.setStartTime(new Date());
-        orderItem.setEndTime(getEndTime(orderItem.getStartTime(), goodsInfo.getTimeInterval(), goodsInfo.getTimeUnit()));
-        orderItem.setTimeUseAmount(new BigDecimal("0"));
+        Date endTime = getEndTime(orderItem.getStartTime(), goodsInfo.getTimeInterval(), goodsInfo.getTimeUnit());
+        orderItem.setEndTime(endTime);
+        orderItem.setTimeUseAmount(getTimeUse(orderItem.getStartTime(), endTime));
         orderItem.setWaterPrice(goodsInfo.getWaterPrice());
-        orderItem.setWaterSpace(goodsInfo.getWaterSpace());
+        orderItem.setWaterSpace(wxOrderInfo.getWaterCost());
         orderItem.setWaterUnit(goodsInfo.getWaterUnit());
-        orderItem.setWaterTotalPrice(goodsInfo.getWaterPrice());
+        orderItem.setWaterTotalPrice(getWaterCost(wxOrderInfo.getWaterCost(), goodsInfo.getWaterPrice(), goodsInfo.getWaterSpace(), goodsInfo.getWaterUnit()));
         orderItem.setTotalPrice(goodsInfo.getTimePrice().add(goodsInfo.getWaterPrice()));
         orderItem.setRemainPrice(new BigDecimal("0"));
-        return orderItem;
+        return orderItems;
+    }
+
+    private BigDecimal getTimeUse(Date startTime, Date endTime) {
+        return new BigDecimal((endTime.getTime() - startTime.getTime()) / 1000 / 60);
     }
 
 
@@ -134,6 +161,10 @@ public class WxOrderInfoCreateServiceImpl implements WxOrderInfoCreateService {
                 throw new DataParamsErrorResultRuntimeException();
         }
         return calendar.getTime();
+    }
+
+    private BigDecimal getWaterCost(BigDecimal space, BigDecimal price, BigDecimal internal, Integer unit) {
+        return space.divide(internal, 3).multiply(price);
     }
 
 }

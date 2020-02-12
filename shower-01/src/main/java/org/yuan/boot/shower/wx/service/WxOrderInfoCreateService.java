@@ -16,7 +16,8 @@ public interface WxOrderInfoCreateService {
 
     OrderInfo createOrder(WxOrderInfo wxOrderInfo);
 
-    OrderItem createOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo, CustomerInfo customerInfo, DeviceInfo deviceInfo, GoodsInfo goodsInfo);
 
     List<OrderItem> createRentalOrderItem(WxOrderInfo wxOrderInfo, OrderInfo orderInfo);
+
+    List<OrderItem> createContinueOrderItem(WxOrderInfo wxOrderInfo);
 }
