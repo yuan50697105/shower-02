@@ -21,7 +21,6 @@ import org.yuan.boot.shower.db.pojo.GoodsInfo;
 public class GoodsInfoDaoImpl extends BaseDaoImpl<GoodsInfo, GoodsInfoMapper> implements GoodsInfoDao {
     @Override
     public GoodsInfo getByBaseGoodsInfoByRangeCode(String rangeCode) {
-
-        return null;
+        return baseMapper().selectOneByTypeAndRangeCode(1, rangeCode);
     }
 }

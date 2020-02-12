@@ -15,7 +15,6 @@ import org.yuan.boot.shower.wx.service.WxCustomerService;
 import org.yuan.boot.shower.wx.service.WxOrderService;
 import org.yuan.boot.webmvc.pojo.Result;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**

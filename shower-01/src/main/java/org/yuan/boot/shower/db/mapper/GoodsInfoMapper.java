@@ -30,4 +30,8 @@ public interface GoodsInfoMapper extends BaseMapper {
     int updateByPrimaryKeySelective(GoodsInfo record);
 
     int updateByPrimaryKey(GoodsInfo record);
+
+    GoodsInfo selectOneByTypeAndRangeCode(@Param("type")Integer type,@Param("rangeCode")String rangeCode);
+
+
 }
