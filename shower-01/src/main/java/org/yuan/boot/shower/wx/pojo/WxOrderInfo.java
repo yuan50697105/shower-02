@@ -15,4 +15,5 @@ public class WxOrderInfo {
     private Long customerId;
     private String customerOpenId;
     private String customerUnionId;
+    private String rangeCode;
 }
