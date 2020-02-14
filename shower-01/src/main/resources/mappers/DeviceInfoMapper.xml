@@ -15,6 +15,12 @@
     <result column="point" jdbcType="VARCHAR" property="point" />
     <result column="enabled" jdbcType="INTEGER" property="enabled" />
     <result column="range_code" jdbcType="VARCHAR" property="rangeCode" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="longitude" jdbcType="DOUBLE" property="longitude" />
+    <result column="accuracy" jdbcType="DOUBLE" property="accuracy" />
+    <result column="altitude" jdbcType="DOUBLE" property="altitude" />
+    <result column="vertical_accuracy" jdbcType="DOUBLE" property="verticalAccuracy" />
+    <result column="horizontal_accuracy" jdbcType="DOUBLE" property="horizontalAccuracy" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -79,7 +85,8 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, create_time, update_time, create_user, update_user, code, `type`, address, point, 
-    enabled, range_code
+    enabled, range_code, latitude, longitude, accuracy, altitude, vertical_accuracy, 
+    horizontal_accuracy
   </sql>
   <select id="selectByExample" parameterType="org.yuan.boot.shower.db.pojo.DeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -120,11 +127,15 @@
     insert into device_info (id, create_time, update_time, 
       create_user, update_user, code, 
       `type`, address, point, 
-      enabled, range_code)
+      enabled, range_code, latitude, 
+      longitude, accuracy, altitude, 
+      vertical_accuracy, horizontal_accuracy)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{type,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{point,jdbcType=VARCHAR}, 
-      #{enabled,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR})
+      #{enabled,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR}, #{latitude,jdbcType=DOUBLE}, 
+      #{longitude,jdbcType=DOUBLE}, #{accuracy,jdbcType=DOUBLE}, #{altitude,jdbcType=DOUBLE}, 
+      #{verticalAccuracy,jdbcType=DOUBLE}, #{horizontalAccuracy,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="org.yuan.boot.shower.db.pojo.DeviceInfo">
     <!--@mbg.generated-->
@@ -163,6 +174,24 @@
       <if test="rangeCode != null">
         range_code,
       </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="accuracy != null">
+        accuracy,
+      </if>
+      <if test="altitude != null">
+        altitude,
+      </if>
+      <if test="verticalAccuracy != null">
+        vertical_accuracy,
+      </if>
+      <if test="horizontalAccuracy != null">
+        horizontal_accuracy,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -197,6 +226,24 @@
       </if>
       <if test="rangeCode != null">
         #{rangeCode,jdbcType=VARCHAR},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="accuracy != null">
+        #{accuracy,jdbcType=DOUBLE},
+      </if>
+      <if test="altitude != null">
+        #{altitude,jdbcType=DOUBLE},
+      </if>
+      <if test="verticalAccuracy != null">
+        #{verticalAccuracy,jdbcType=DOUBLE},
+      </if>
+      <if test="horizontalAccuracy != null">
+        #{horizontalAccuracy,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -244,6 +291,24 @@
       <if test="record.rangeCode != null">
         range_code = #{record.rangeCode,jdbcType=VARCHAR},
       </if>
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.accuracy != null">
+        accuracy = #{record.accuracy,jdbcType=DOUBLE},
+      </if>
+      <if test="record.altitude != null">
+        altitude = #{record.altitude,jdbcType=DOUBLE},
+      </if>
+      <if test="record.verticalAccuracy != null">
+        vertical_accuracy = #{record.verticalAccuracy,jdbcType=DOUBLE},
+      </if>
+      <if test="record.horizontalAccuracy != null">
+        horizontal_accuracy = #{record.horizontalAccuracy,jdbcType=DOUBLE},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -262,7 +327,13 @@
       address = #{record.address,jdbcType=VARCHAR},
       point = #{record.point,jdbcType=VARCHAR},
       enabled = #{record.enabled,jdbcType=INTEGER},
-      range_code = #{record.rangeCode,jdbcType=VARCHAR}
+      range_code = #{record.rangeCode,jdbcType=VARCHAR},
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      longitude = #{record.longitude,jdbcType=DOUBLE},
+      accuracy = #{record.accuracy,jdbcType=DOUBLE},
+      altitude = #{record.altitude,jdbcType=DOUBLE},
+      vertical_accuracy = #{record.verticalAccuracy,jdbcType=DOUBLE},
+      horizontal_accuracy = #{record.horizontalAccuracy,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -301,6 +372,24 @@
       <if test="rangeCode != null">
         range_code = #{rangeCode,jdbcType=VARCHAR},
       </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="accuracy != null">
+        accuracy = #{accuracy,jdbcType=DOUBLE},
+      </if>
+      <if test="altitude != null">
+        altitude = #{altitude,jdbcType=DOUBLE},
+      </if>
+      <if test="verticalAccuracy != null">
+        vertical_accuracy = #{verticalAccuracy,jdbcType=DOUBLE},
+      </if>
+      <if test="horizontalAccuracy != null">
+        horizontal_accuracy = #{horizontalAccuracy,jdbcType=DOUBLE},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -316,7 +405,13 @@
       address = #{address,jdbcType=VARCHAR},
       point = #{point,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=INTEGER},
-      range_code = #{rangeCode,jdbcType=VARCHAR}
+      range_code = #{rangeCode,jdbcType=VARCHAR},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      accuracy = #{accuracy,jdbcType=DOUBLE},
+      altitude = #{altitude,jdbcType=DOUBLE},
+      vertical_accuracy = #{verticalAccuracy,jdbcType=DOUBLE},
+      horizontal_accuracy = #{horizontalAccuracy,jdbcType=DOUBLE}
     where id = #{id,jdbcType=BIGINT}
   </update>
     <select id="selectByCondition" resultMap="BaseResultMap">

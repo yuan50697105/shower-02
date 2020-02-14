@@ -7,5 +7,10 @@ package org.yuan.boot.shower.wx.service;
  * @create: 2020-02-03 12:00
  */
 public interface OrderCodeService {
+    /**
+     * 生成订单号
+     *
+     * @return
+     */
     String generateOrderNo();
 }

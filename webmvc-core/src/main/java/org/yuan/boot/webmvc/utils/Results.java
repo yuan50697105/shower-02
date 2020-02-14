@@ -3,7 +3,7 @@ package org.yuan.boot.webmvc.utils;
 import cn.hutool.core.util.ObjectUtil;
 import org.yuan.boot.webmvc.pojo.Result;
 
-import static org.yuan.boot.webmvc.utils.Results.Resulconstants.*;
+import static org.yuan.boot.webmvc.utils.Results.ResultConstants.*;
 
 /**
  * @program: shower-01
@@ -88,7 +88,9 @@ public class Results {
         return Result.builder().code(OPERATE_ERROR_CODE).message(ObjectUtil.isNotEmpty(message) ? message : OPERATE_ERROR_MESSAGE).build();
     }
 
-    public static class Resulconstants {
+
+
+    public static class ResultConstants {
         public final static Integer OK_CODE = 200;
         public static final String OK_MESSAGE = "操作成功";
         public final static Integer SYSTEM_ERROR_CODE = 1000;
@@ -99,5 +101,7 @@ public class Results {
         public final static String DATA_RESULT_ERROR_MESSAGE = "结果错误";
         public final static Integer OPERATE_ERROR_CODE = 4000;
         public final static String OPERATE_ERROR_MESSAGE = "操作失败";
+
+
     }
 }

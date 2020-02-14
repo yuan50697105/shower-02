@@ -2,7 +2,7 @@ package org.yuan.boot.shower.commons.utils;
 
 import org.yuan.boot.webmvc.pojo.Result;
 
-import static org.yuan.boot.shower.commons.utils.Results.Resulconstants.*;
+import static org.yuan.boot.shower.commons.utils.Results.ResultConstants.*;
 
 /**
  * @program: learning-demo-02
@@ -35,7 +35,19 @@ public class Results extends org.yuan.boot.webmvc.utils.Results {
         return Result.builder().code(WX_ERROR).message(message).data(data).build();
     }
 
-    public static class Resulconstants extends org.yuan.boot.webmvc.utils.Results.Resulconstants {
+    public static Result customerInfoNotExistError() {
+        return error(ResultConstants.CUSTOMER_INFO_NOT_EXIST_ERROR_CODE, ResultConstants.CUSTOMER_INFO_NOT_EXIST_ERROR_MESSAGE);
+    }
+
+    public static Result deviceInfoNotExistError() {
+        return error(ResultConstants.DEVICE_INFO_NOT_EXIST_ERROR_CODE, ResultConstants.DEVICE_INFO_NOT_EXIST_ERROR_MESSAGE);
+    }
+
+    public static Result goodsInfoNotExistError() {
+        return error(ResultConstants.GOODS_INFO_NOT_EXIST_ERROR_CODE, ResultConstants.GOODS_INFO_NOT_EXIST_ERROR_MESSAGE);
+    }
+
+    public static class ResultConstants extends org.yuan.boot.webmvc.utils.Results.ResultConstants {
         public final static Integer EXIST_ENTITY_ERROR = 20001;
         /**
          * 用户操作错误编码
@@ -43,14 +55,26 @@ public class Results extends org.yuan.boot.webmvc.utils.Results {
         public final static Integer USER_ERROR = 300000;
         public final static Integer CHANGE_PASSWORD_USER_NOT_HAD = 300001;
         public final static Integer CHANGE_PASSWORD_USER_OLD_PWD_ERROR = 300002;
+        public static final Integer CUSTOMER_INFO_NOT_EXIST_ERROR_CODE = 300003;
+        public static final String CUSTOMER_INFO_NOT_EXIST_ERROR_MESSAGE = "用户不存在";
         /**
          * 设备错误
          */
         public final static Integer DEVICE_ERROR = 400000;
+        public static final Integer DEVICE_INFO_NOT_EXIST_ERROR_CODE = 400001;
+        public static final String DEVICE_INFO_NOT_EXIST_ERROR_MESSAGE = "设备不存在";
+
         /**
          * 微信错误
          */
         public final static Integer WX_ERROR = 500000;
+
+        /**
+         * 商品定价错误
+         */
+        public static final Integer GOODS_INFO_ERROR_CODE = 600000;
+        public static final Integer GOODS_INFO_NOT_EXIST_ERROR_CODE = 600001;
+        public static final String GOODS_INFO_NOT_EXIST_ERROR_MESSAGE = "定价不存在";
     }
 
 }

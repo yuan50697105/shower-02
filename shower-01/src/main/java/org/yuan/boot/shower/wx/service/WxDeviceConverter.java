@@ -1,4 +1,4 @@
-package org.yuan.boot.shower.wx.converter;
+package org.yuan.boot.shower.wx.service;
 
 /**
  * @program: shower-01

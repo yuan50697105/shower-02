@@ -10,6 +10,8 @@ import org.yuan.boot.shower.db.dao.OrderItemDao;
 import org.yuan.boot.shower.db.mapper.OrderItemMapper;
 import org.yuan.boot.shower.db.pojo.OrderItem;
 
+import java.util.List;
+
 /**
  * @program: shower-01
  * @description:
@@ -22,7 +24,14 @@ import org.yuan.boot.shower.db.pojo.OrderItem;
 @Log4j2
 public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem, OrderItemMapper> implements OrderItemDao {
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void save(OrderItem orderItem) {
         baseMapper().insertSelective(orderItem);
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void batchSave(List<OrderItem> orderItems) {
+        orderItems.forEach(baseMapper()::insertSelective);
     }
 }

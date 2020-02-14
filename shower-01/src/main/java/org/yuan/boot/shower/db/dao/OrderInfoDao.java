@@ -20,4 +20,5 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
     void save(OrderInfo orderInfo);
 
     Optional<OrderInfo> selectById(Long orderId);
+
 }

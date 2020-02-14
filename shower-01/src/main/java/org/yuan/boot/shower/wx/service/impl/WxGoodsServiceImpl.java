@@ -20,8 +20,13 @@ public class WxGoodsServiceImpl implements WxGoodsService {
     private GoodsInfoDao goodsInfoDao;
 
     @Override
-    public Optional<GoodsInfo> getByBaseGoodsInfoByRangeCode(String rangeCode) {
-        return Optional.ofNullable(goodsInfoDao.getByBaseGoodsInfoByRangeCode(rangeCode));
+    public Optional<GoodsInfo> getRentalGoodsInfoByRangeCode(String rangeCode) {
+        return Optional.ofNullable(goodsInfoDao.getRentalGoodsInfoByRangeCode(rangeCode));
+    }
+
+    @Override
+    public Optional<GoodsInfo> getContinueGoodsInfoByRangeCode(String rangeCode) {
+        return Optional.ofNullable(goodsInfoDao.getContinueGoodsInfoByRangeCode(rangeCode));
     }
 
 }
