@@ -45,6 +45,8 @@ public class WxOrderServiceImpl implements WxOrderService {
 
     @Override
     public Result endOrder(WxOrderInfo wxOrderInfo) {
+        String orderNo = wxOrderInfo.getOrderNo();
+        Long orderId = wxOrderInfo.getOrderId();
         return null;
     }
 
