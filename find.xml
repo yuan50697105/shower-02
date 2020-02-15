@@ -1,7 +1,7 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="Directory '...\app-db-module\app-db-sqlhelper-mybatis\src\main\java\org\yuan\boot\my\admin\app\db\sqlhelper\mybatis\base\dao [app-db-sqlhelper-mybatis]'" />
-    <option name="defaultScopeName" value="Directory '...\app-db-module\app-db-sqlhelper-mybatis\src\main\java\org\yuan\boot\my\admin\app\db\sqlhelper\mybatis\base\dao [app-db-sqlhelper-mybatis]'" />
-    <option name="SEARCH_SCOPE" value="Directory '...\app-db-module\app-db-sqlhelper-mybatis\src\main\java\org\yuan\boot\my\admin\app\db\sqlhelper\mybatis\base\dao [app-db-sqlhelper-mybatis]'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
+    <option name="SEARCH_SCOPE" value="All Places" />
   </component>
 </application>
