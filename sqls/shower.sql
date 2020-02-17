@@ -1,6 +1,6 @@
 create database if not exists shower DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_general_ci;
 
-create schema if not exists shower02 collate utf8mb4_bin;
+create schema if not exists shower collate utf8mb4_bin;
 
 use shower;
 
