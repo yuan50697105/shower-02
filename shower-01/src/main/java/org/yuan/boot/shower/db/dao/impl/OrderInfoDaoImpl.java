@@ -40,4 +40,5 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     public Optional<OrderInfo> selectById(Long orderId) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(orderId));
     }
+
 }

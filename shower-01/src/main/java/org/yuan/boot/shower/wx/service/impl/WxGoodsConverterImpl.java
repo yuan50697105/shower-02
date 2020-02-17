@@ -1,8 +1,8 @@
-package org.yuan.boot.shower.wx.converter.impl;
+package org.yuan.boot.shower.wx.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.yuan.boot.shower.wx.converter.WxGoodsConverter;
+import org.yuan.boot.shower.wx.service.WxGoodsConverter;
 
 /**
  * @program: shower-01

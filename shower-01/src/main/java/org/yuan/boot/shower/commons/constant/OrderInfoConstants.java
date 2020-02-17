@@ -1,4 +1,4 @@
-package org.yuan.boot.shower.constant.core;
+package org.yuan.boot.shower.commons.constant;
 
 /**
  * @program: shower-01

@@ -39,5 +39,35 @@ public class DeviceInfo extends BaseEntity implements Serializable {
      */
     private String rangeCode;
 
+    /**
+     * 纬度 范围为 -90~90 负数表示南纬
+     */
+    private Double latitude;
+
+    /**
+     * 经度，范围为 -180~180，负数表示西经
+     */
+    private Double longitude;
+
+    /**
+     * 位置的精确度
+     */
+    private Double accuracy;
+
+    /**
+     * 高度，单位 m
+     */
+    private Double altitude;
+
+    /**
+     * 垂直精度，单位 m（Android 无法获取，返回 0）
+     */
+    private Double verticalAccuracy;
+
+    /**
+     * 水平精度，单位 m
+     */
+    private Double horizontalAccuracy;
+
     private static final long serialVersionUID = 1L;
 }
