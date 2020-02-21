@@ -1,0 +1,22 @@
+<application>
+  <component name="LSPState">
+    <option name="timeouts">
+      <map>
+        <entry key="CODEACTION" value="2000" />
+        <entry key="CODELENS" value="2000" />
+        <entry key="COMPLETION" value="10000" />
+        <entry key="DEFINITION" value="2000" />
+        <entry key="DOC_HIGHLIGHT" value="1000" />
+        <entry key="EXECUTE_COMMAND" value="2000" />
+        <entry key="FORMATTING" value="2000" />
+        <entry key="HOVER" value="2000" />
+        <entry key="INIT" value="10000" />
+        <entry key="REFERENCES" value="2000" />
+        <entry key="SIGNATURE" value="1000" />
+        <entry key="SHUTDOWN" value="5000" />
+        <entry key="SYMBOLS" value="2000" />
+        <entry key="WILLSAVE" value="2000" />
+      </map>
+    </option>
+  </component>
+</application>
