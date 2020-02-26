@@ -1,9 +1,10 @@
 <application>
   <component name="FindSettings">
     <option name="caseSensitive" value="true" />
-    <option name="customScope" value="File '...\app-wx-module\app-wx-mybatis\src\main\java\org\yuan\boot\wx\service\impl\WxCustomerServiceImpl.java [app-wx-mybatis]'" />
-    <option name="defaultScopeName" value="File '...\app-wx-module\app-wx-mybatis\src\main\java\org\yuan\boot\wx\service\impl\WxCustomerServiceImpl.java [app-wx-mybatis]'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
-    <option name="SEARCH_SCOPE" value="File '...\app-wx-module\app-wx-mybatis\src\main\java\org\yuan\boot\wx\service\impl\WxCustomerServiceImpl.java [app-wx-mybatis]'" />
+    <option name="SEARCH_SCOPE" value="All Places" />
+    <option name="FILE_MASK" value="*.java" />
   </component>
 </application>
