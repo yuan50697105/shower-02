@@ -1,10 +1,10 @@
 <application>
   <component name="FindSettings">
     <option name="caseSensitive" value="true" />
-    <option name="customScope" value="All Places" />
-    <option name="defaultScopeName" value="All Places" />
+    <option name="customScope" value="File '...\app-db-module\app-db-mybatis\src\main\java\org\yuan\boot\app\db\module\mybatis\base\commons\configuration\intercepter\AuditInterceptor.java [app-db-mybatis]'" />
+    <option name="defaultScopeName" value="File '...\app-db-module\app-db-mybatis\src\main\java\org\yuan\boot\app\db\module\mybatis\base\commons\configuration\intercepter\AuditInterceptor.java [app-db-mybatis]'" />
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
-    <option name="SEARCH_SCOPE" value="All Places" />
+    <option name="SEARCH_SCOPE" value="File '...\app-db-module\app-db-mybatis\src\main\java\org\yuan\boot\app\db\module\mybatis\base\commons\configuration\intercepter\AuditInterceptor.java [app-db-mybatis]'" />
     <option name="FILE_MASK" value="pom.xml" />
     <mask>*.css</mask>
     <mask>*.html</mask>
