@@ -1,10 +1,10 @@
 <application>
   <component name="FindSettings">
     <option name="caseSensitive" value="true" />
-    <option name="customScope" value="Directory '...\app-module\app-mybatis [app-mybatis]'" />
-    <option name="defaultScopeName" value="Directory '...\app-module\app-mybatis [app-mybatis]'" />
+    <option name="customScope" value="Project 'my-admin-01'" />
+    <option name="defaultScopeName" value="Project 'my-admin-01'" />
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
-    <option name="SEARCH_SCOPE" value="Directory '...\app-module\app-mybatis [app-mybatis]'" />
+    <option name="SEARCH_SCOPE" value="Project 'my-admin-01'" />
     <mask>*.css</mask>
     <mask>*.html</mask>
     <mask>*.xml</mask>
