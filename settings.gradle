@@ -6,3 +6,7 @@ include 'utils-retrofit'
 include 'utils-wx'
 include 'webmvc-core'
 include 'shower'
+include 'shower-admin'
+include 'shower-wx'
+include 'shower-device'
+
