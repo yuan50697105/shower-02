@@ -1,0 +1,1 @@
+package com.idea.shower.shower.mq.pojo;
