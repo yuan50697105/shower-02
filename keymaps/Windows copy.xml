@@ -6,6 +6,9 @@
   <action id="FixDocComment">
     <keyboard-shortcut first-keystroke="ctrl semicolon" />
   </action>
+  <action id="Jdbc.OpenConsole.New.Generate">
+    <keyboard-shortcut first-keystroke="alt 0" />
+  </action>
   <action id="Scala.ShowImplicits">
     <keyboard-shortcut first-keystroke="shift ctrl alt equals" />
     <keyboard-shortcut first-keystroke="shift ctrl alt add" />
