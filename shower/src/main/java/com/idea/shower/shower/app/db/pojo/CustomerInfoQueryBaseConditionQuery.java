@@ -2,7 +2,7 @@ package com.idea.shower.shower.app.db.pojo;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.idea.shower.shower.app.commons.pojo.BaseQueryBase;
+import com.idea.shower.shower.app.commons.pojo.BaseConditionQuery;
 
 /**
  * @program: shower-01
@@ -12,19 +12,19 @@ import com.idea.shower.shower.app.commons.pojo.BaseQueryBase;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class CustomerInfoQueryBase extends BaseQueryBase {
+public class CustomerInfoQueryBaseConditionQuery extends BaseConditionQuery {
     private Long id;
     private String nickName;
     private String phone;
 
-    public CustomerInfoQueryBase() {
+    public CustomerInfoQueryBaseConditionQuery() {
     }
 
-    public CustomerInfoQueryBase(int page, int size) {
+    public CustomerInfoQueryBaseConditionQuery(int page, int size) {
         super(page, size);
     }
 
-    public CustomerInfoQueryBase(int page, int size, String order, String sort) {
+    public CustomerInfoQueryBaseConditionQuery(int page, int size, String order, String sort) {
         super(page, size, order, sort);
     }
 }

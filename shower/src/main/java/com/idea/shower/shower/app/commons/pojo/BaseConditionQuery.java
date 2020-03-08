@@ -1,5 +1,6 @@
 package com.idea.shower.shower.app.commons.pojo;
 
+import com.idea.shower.db.core.pojo.BaseCoreQuery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,20 +14,20 @@ import java.util.Date;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class BaseQueryBase extends com.idea.shower.db.mybaits.pojo.BaseQueryBase {
+public class BaseConditionQuery extends BaseCoreQuery {
     private Long id;
     private String createUser;
     private Date creatDateStart;
     private Date createDateEnd;
 
-    public BaseQueryBase() {
+    public BaseConditionQuery() {
     }
 
-    public BaseQueryBase(int page, int size) {
+    public BaseConditionQuery(int page, int size) {
         super(page, size);
     }
 
-    public BaseQueryBase(int page, int size, String order, String sort) {
+    public BaseConditionQuery(int page, int size, String order, String sort) {
         super(page, size, order, sort);
     }
 }

@@ -10,7 +10,7 @@ import com.idea.shower.shower.app.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.shower.app.db.dao.OrderInfoDao;
 import com.idea.shower.shower.app.db.mapper.OrderInfoMapper;
 import com.idea.shower.shower.app.db.pojo.OrderInfo;
-import com.idea.shower.shower.app.db.pojo.OrderInfoQueryBase;
+import com.idea.shower.shower.app.db.pojo.OrderInfoQueryBaseConditionQuery;
 
 import java.util.Optional;
 
@@ -26,7 +26,7 @@ import java.util.Optional;
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> implements OrderInfoDao {
     @Override
-    public PageResult<OrderInfo> selectPage(OrderInfoQueryBase condition) {
+    public PageResult<OrderInfo> selectPage(OrderInfoQueryBaseConditionQuery condition) {
         return pageResult(condition,baseMapper()::selectByCondition);
     }
 

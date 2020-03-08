@@ -10,7 +10,7 @@ import com.idea.shower.shower.app.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.shower.app.db.dao.AdminUserDao;
 import com.idea.shower.shower.app.db.mapper.AdminUserMapper;
 import com.idea.shower.shower.app.db.pojo.AdminUser;
-import com.idea.shower.shower.app.db.pojo.AdminUserQueryBase;
+import com.idea.shower.shower.app.db.pojo.AdminUserQueryBaseConditionQuery;
 
 /**
  * @program: shower-01
@@ -24,7 +24,7 @@ import com.idea.shower.shower.app.db.pojo.AdminUserQueryBase;
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> implements AdminUserDao {
     @Override
-    public PageResult<AdminUser> selectPage(AdminUserQueryBase condition) {
+    public PageResult<AdminUser> selectPage(AdminUserQueryBaseConditionQuery condition) {
         return pageResult(condition, baseMapper()::selectByCondition);
     }
 

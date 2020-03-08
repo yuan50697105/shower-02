@@ -3,7 +3,7 @@ package com.idea.shower.shower.app.db.dao;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import com.idea.shower.shower.app.commons.dao.BaseDao;
 import com.idea.shower.shower.app.db.pojo.DeviceInfo;
-import com.idea.shower.shower.app.db.pojo.DeviceInfoQueryBase;
+import com.idea.shower.shower.app.db.pojo.DeviceInfoQueryBaseConditionQuery;
 
 import java.util.Optional;
 
@@ -16,5 +16,5 @@ import java.util.Optional;
 public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
     Optional<DeviceInfo> getById(Long deviceId);
 
-    PageResult<DeviceInfo> selectPage(DeviceInfoQueryBase condition);
+    PageResult<DeviceInfo> selectPage(DeviceInfoQueryBaseConditionQuery condition);
 }
