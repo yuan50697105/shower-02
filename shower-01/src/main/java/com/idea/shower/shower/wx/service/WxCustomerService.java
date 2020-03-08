@@ -1,8 +1,7 @@
 package com.idea.shower.shower.wx.service;
 
-import lombok.SneakyThrows;
 import com.idea.shower.shower.db.pojo.CustomerInfo;
-import com.idea.shower.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.pojo.Result;
 
 import java.util.Optional;
 

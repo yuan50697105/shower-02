@@ -2,7 +2,7 @@ package com.idea.shower.shower.commons.exception.handler;
 
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.idea.shower.webmvc.exception.handler.GlobalExceptionHandler;
+import com.idea.shower.web.webmvc.exception.handler.GlobalExceptionHandler;
 
 /**
  * @program: learning-demo-02

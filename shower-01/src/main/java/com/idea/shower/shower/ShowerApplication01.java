@@ -8,8 +8,8 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import com.idea.shower.DbMybatisBaseApplication;
-import com.idea.shower.webmvc.WebMvcCoreApplication;
+import com.idea.shower.db.mybaits.DbMybatisBaseApplication;
+import com.idea.shower.web.webmvc.WebMvcCoreApplication;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**

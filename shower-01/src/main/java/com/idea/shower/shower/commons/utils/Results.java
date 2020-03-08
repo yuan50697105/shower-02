@@ -1,6 +1,6 @@
 package com.idea.shower.shower.commons.utils;
 
-import com.idea.shower.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.pojo.Result;
 
 import static com.idea.shower.shower.commons.utils.Results.ResultConstants.*;
 
@@ -10,7 +10,7 @@ import static com.idea.shower.shower.commons.utils.Results.ResultConstants.*;
  * @author: yuane
  * @create: 2020-01-13 00:06
  */
-public class Results extends com.idea.shower.webmvc.utils.Results {
+public class Results extends com.idea.shower.web.webmvc.utils.Results {
     public static Result existError(String message) {
         return Result.builder().code(EXIST_ENTITY_ERROR).message(message).build();
     }
@@ -47,7 +47,7 @@ public class Results extends com.idea.shower.webmvc.utils.Results {
         return error(ResultConstants.GOODS_INFO_NOT_EXIST_ERROR_CODE, ResultConstants.GOODS_INFO_NOT_EXIST_ERROR_MESSAGE);
     }
 
-    public static class ResultConstants extends com.idea.shower.webmvc.utils.Results.ResultConstants {
+    public static class ResultConstants extends com.idea.shower.web.webmvc.utils.Results.ResultConstants {
         public final static Integer EXIST_ENTITY_ERROR = 20001;
         /**
          * 用户操作错误编码

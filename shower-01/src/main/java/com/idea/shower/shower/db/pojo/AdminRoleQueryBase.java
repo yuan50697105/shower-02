@@ -1,0 +1,29 @@
+package com.idea.shower.shower.db.pojo;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import com.idea.shower.shower.commons.pojo.BaseQueryBase;
+
+/**
+ * @program: shower-01
+ * @description:
+ * @author: yuane
+ * @create: 2020-01-23 13:22
+ */
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class AdminRoleQueryBase extends BaseQueryBase {
+    private Long id;
+    private String name;
+
+    public AdminRoleQueryBase() {
+    }
+
+    public AdminRoleQueryBase(int page, int size) {
+        super(page, size);
+    }
+
+    public AdminRoleQueryBase(int page, int size, String order, String sort) {
+        super(page, size, order, sort);
+    }
+}

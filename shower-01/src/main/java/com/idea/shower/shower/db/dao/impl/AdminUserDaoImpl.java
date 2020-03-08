@@ -5,12 +5,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import com.idea.shower.db.pojo.PageResult;
+import com.idea.shower.db.mybaits.pojo.PageResult;
 import com.idea.shower.shower.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.shower.db.dao.AdminUserDao;
 import com.idea.shower.shower.db.mapper.AdminUserMapper;
 import com.idea.shower.shower.db.pojo.AdminUser;
-import com.idea.shower.shower.db.pojo.AdminUserCondition;
+import com.idea.shower.shower.db.pojo.AdminUserQueryBase;
 
 /**
  * @program: shower-01
@@ -24,7 +24,7 @@ import com.idea.shower.shower.db.pojo.AdminUserCondition;
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> implements AdminUserDao {
     @Override
-    public PageResult<AdminUser> selectPage(AdminUserCondition condition) {
+    public PageResult<AdminUser> selectPage(AdminUserQueryBase condition) {
         return pageResult(condition, baseMapper()::selectByCondition);
     }
 

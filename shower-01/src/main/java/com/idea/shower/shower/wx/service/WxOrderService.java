@@ -2,7 +2,7 @@ package com.idea.shower.shower.wx.service;
 
 import com.idea.shower.shower.db.pojo.OrderInfo;
 import com.idea.shower.shower.wx.pojo.WxOrderInfo;
-import com.idea.shower.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.pojo.Result;
 
 import java.util.Optional;
 

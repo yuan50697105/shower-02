@@ -5,12 +5,12 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import com.idea.shower.db.pojo.PageResult;
+import com.idea.shower.db.mybaits.pojo.PageResult;
 import com.idea.shower.shower.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.shower.db.dao.OrderInfoDao;
 import com.idea.shower.shower.db.mapper.OrderInfoMapper;
 import com.idea.shower.shower.db.pojo.OrderInfo;
-import com.idea.shower.shower.db.pojo.OrderInfoCondition;
+import com.idea.shower.shower.db.pojo.OrderInfoQueryBase;
 
 import java.util.Optional;
 
@@ -26,7 +26,7 @@ import java.util.Optional;
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> implements OrderInfoDao {
     @Override
-    public PageResult<OrderInfo> selectPage(OrderInfoCondition condition) {
+    public PageResult<OrderInfo> selectPage(OrderInfoQueryBase condition) {
         return pageResult(condition,baseMapper()::selectByCondition);
     }
 

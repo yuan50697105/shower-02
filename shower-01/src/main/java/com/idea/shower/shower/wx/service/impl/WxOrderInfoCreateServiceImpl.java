@@ -9,7 +9,7 @@ import com.idea.shower.shower.db.pojo.OrderInfo;
 import com.idea.shower.shower.db.pojo.OrderItem;
 import com.idea.shower.shower.wx.pojo.WxOrderInfo;
 import com.idea.shower.shower.wx.service.*;
-import com.idea.shower.webmvc.exception.DataParamsErrorResultRuntimeException;
+import com.idea.shower.web.webmvc.exception.DataParamsErrorResultRuntimeException;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

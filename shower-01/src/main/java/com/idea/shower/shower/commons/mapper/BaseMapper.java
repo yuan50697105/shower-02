@@ -6,5 +6,5 @@ package com.idea.shower.shower.commons.mapper;
  * @author: yuane
  * @create: 2020-01-20 16:26
  */
-public interface BaseMapper extends com.idea.shower.db.mapper.BaseMapper {
+public interface BaseMapper extends com.idea.shower.db.mybaits.mapper.BaseMapper {
 }

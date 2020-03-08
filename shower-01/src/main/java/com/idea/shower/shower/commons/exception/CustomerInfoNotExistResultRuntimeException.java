@@ -1,7 +1,7 @@
 package com.idea.shower.shower.commons.exception;
 
 import com.idea.shower.shower.commons.utils.Results;
-import com.idea.shower.webmvc.exception.ResultRuntimeException;
+import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 
 /**
  * @program: shower-01

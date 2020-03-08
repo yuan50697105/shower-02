@@ -13,7 +13,7 @@ import com.idea.shower.shower.wx.pojo.WxOrderInfo;
 import com.idea.shower.shower.wx.service.OrderCodeService;
 import com.idea.shower.shower.wx.service.WxCustomerService;
 import com.idea.shower.shower.wx.service.WxOrderService;
-import com.idea.shower.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.pojo.Result;
 
 import java.util.List;
 import java.util.Optional;

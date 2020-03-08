@@ -14,7 +14,7 @@ import com.idea.shower.shower.db.dao.CustomerInfoDao;
 import com.idea.shower.shower.db.pojo.CustomerInfo;
 import com.idea.shower.shower.wx.service.WxCustomerConverter;
 import com.idea.shower.shower.wx.service.WxCustomerService;
-import com.idea.shower.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.pojo.Result;
 
 import java.util.Optional;
 

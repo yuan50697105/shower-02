@@ -1,6 +1,6 @@
 package com.idea.shower.shower.commons.controller;
 
-import com.idea.shower.webmvc.controller.ResultController;
+import com.idea.shower.web.webmvc.controller.ResultController;
 
 /**
  * @program: shower-01

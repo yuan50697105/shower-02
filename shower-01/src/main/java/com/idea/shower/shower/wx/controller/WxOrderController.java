@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.idea.shower.shower.commons.controller.BaseController;
 import com.idea.shower.shower.wx.pojo.WxOrderInfo;
 import com.idea.shower.shower.wx.service.WxOrderService;
-import com.idea.shower.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.pojo.Result;
 
 /**
  * @program: shower-01

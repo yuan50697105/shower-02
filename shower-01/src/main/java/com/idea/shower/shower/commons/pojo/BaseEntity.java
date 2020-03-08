@@ -16,7 +16,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class BaseEntity extends com.idea.shower.db.pojo.BaseEntity {
+public class BaseEntity extends com.idea.shower.db.mybaits.pojo.BaseEntity {
     @Id
     private Long id;
     @CreateTime

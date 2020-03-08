@@ -1,9 +1,9 @@
 package com.idea.shower.shower.db.dao;
 
-import com.idea.shower.db.pojo.PageResult;
+import com.idea.shower.db.mybaits.pojo.PageResult;
 import com.idea.shower.shower.commons.dao.BaseDao;
 import com.idea.shower.shower.db.pojo.OrderInfo;
-import com.idea.shower.shower.db.pojo.OrderInfoCondition;
+import com.idea.shower.shower.db.pojo.OrderInfoQueryBase;
 
 import java.util.Optional;
 
@@ -14,7 +14,7 @@ import java.util.Optional;
  * @create: 2020-01-23 13:34
  */
 public interface OrderInfoDao extends BaseDao<OrderInfo> {
-    PageResult<OrderInfo> selectPage(OrderInfoCondition condition);
+    PageResult<OrderInfo> selectPage(OrderInfoQueryBase condition);
 
     void save(OrderInfo orderInfo);
 

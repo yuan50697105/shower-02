@@ -4,12 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import com.idea.shower.db.pojo.PageResult;
+import com.idea.shower.db.mybaits.pojo.PageResult;
 import com.idea.shower.shower.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.shower.db.dao.DeviceInfoDao;
 import com.idea.shower.shower.db.mapper.DeviceInfoMapper;
 import com.idea.shower.shower.db.pojo.DeviceInfo;
-import com.idea.shower.shower.db.pojo.DeviceInfoCondition;
+import com.idea.shower.shower.db.pojo.DeviceInfoQueryBase;
 
 import java.util.Optional;
 
@@ -29,7 +29,7 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     }
 
     @Override
-    public PageResult<DeviceInfo> selectPage(DeviceInfoCondition condition) {
+    public PageResult<DeviceInfo> selectPage(DeviceInfoQueryBase condition) {
         return pageResult(condition, baseMapper()::selectByCondition);
     }
 

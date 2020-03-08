@@ -3,8 +3,8 @@ package com.idea.shower.shower.commons.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import com.idea.shower.shower.commons.utils.Results;
-import com.idea.shower.webmvc.exception.ResultRuntimeException;
-import com.idea.shower.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
+import com.idea.shower.web.webmvc.pojo.Result;
 
 /**
  * @program: learning-demo-02

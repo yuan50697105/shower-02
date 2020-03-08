@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.idea.shower.shower.commons.mapper.BaseMapper;
 import com.idea.shower.shower.db.pojo.DeviceInfo;
-import com.idea.shower.shower.db.pojo.DeviceInfoCondition;import com.idea.shower.shower.db.pojo.DeviceInfoExample;
+import com.idea.shower.shower.db.pojo.DeviceInfoQueryBase;import com.idea.shower.shower.db.pojo.DeviceInfoExample;
 
 @Mapper
 public interface DeviceInfoMapper extends BaseMapper {
@@ -31,5 +31,5 @@ public interface DeviceInfoMapper extends BaseMapper {
 
     int updateByPrimaryKey(DeviceInfo record);
 
-    List<DeviceInfo> selectByCondition(DeviceInfoCondition condition);
+    List<DeviceInfo> selectByCondition(DeviceInfoQueryBase condition);
 }
