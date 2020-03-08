@@ -1,10 +1,10 @@
 <application>
   <component name="FindSettings">
     <option name="caseSensitive" value="true" />
-    <option name="customScope" value="Project 'my-admin-01'" />
-    <option name="defaultScopeName" value="Project 'my-admin-01'" />
+    <option name="customScope" value="File '...\webmvc-core\src\main\java\com\idea\shower\web\webmvc\controller\ResultController.java [shower-01.webmvc-core.main]'" />
+    <option name="defaultScopeName" value="File '...\webmvc-core\src\main\java\com\idea\shower\web\webmvc\controller\ResultController.java [shower-01.webmvc-core.main]'" />
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
-    <option name="SEARCH_SCOPE" value="Project 'my-admin-01'" />
+    <option name="SEARCH_SCOPE" value="File '...\webmvc-core\src\main\java\com\idea\shower\web\webmvc\controller\ResultController.java [shower-01.webmvc-core.main]'" />
     <mask>*.css</mask>
     <mask>*.html</mask>
     <mask>*.xml</mask>
