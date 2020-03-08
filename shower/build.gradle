@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+}
+
+
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
+    compile group: 'org.minbox.framework', name: 'api-boot-starter-security-oauth-jwt'
+    compile group: 'org.minbox.framework', name: 'api-boot-starter-http-converter'
+    compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
+    compile group: 'org.minbox.framework', name: 'api-boot-starter-quartz'
+    compile group: 'com.github.liaochong', name: 'myexcel', version: '3.4.2'
+    compile project(':webmvc-core')
+    compile project(':db-mybatis')
+    compile project(':utils-wx')
+    compile project(':utils-retrofit')
+}

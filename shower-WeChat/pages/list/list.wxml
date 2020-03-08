@@ -1,0 +1,12 @@
+<!--list.wxml-->
+<view class="order"><text>订单号：{{orderNo}}</text></view>
+<view class="order"><text>订单状态：{{status}}</text></view>
+<view class="order"><text>开始时间：{{createDate}}</text></view>
+<view class="page">
+  <view class="btn" hidden="{{creatHidden}}" bindtap="jumPagesCreat">
+    <text class="btn-yuan">开始</text>
+  </view>
+  <view class="btn" hidden="{{overHidden}}" bindtap="jumPagesOver">
+    <text class="btn-yuan">结束</text>
+  </view>
+</view>
