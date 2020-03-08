@@ -1,6 +1,6 @@
 package com.idea.shower.shower.app.wx.service;
 
-import com.idea.shower.shower.app.db.pojo.DeviceInfo;
+import com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfo;
 
 import java.util.Optional;
 

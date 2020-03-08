@@ -1,6 +1,6 @@
 package com.idea.shower.shower.app.wx.service;
 
-import com.idea.shower.shower.app.db.pojo.*;
+import com.idea.shower.shower.app.commons.db.module.pojo.*;
 import com.idea.shower.shower.app.wx.pojo.WxOrderInfo;
 
 import java.util.List;

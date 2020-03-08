@@ -1,6 +1,6 @@
 package com.idea.shower.shower.app.wx.service;
 
-import com.idea.shower.shower.app.db.pojo.CustomerInfo;
+import com.idea.shower.shower.app.commons.db.module.pojo.CustomerInfo;
 import com.idea.shower.web.webmvc.pojo.Result;
 
 import java.util.Optional;

@@ -2,7 +2,7 @@ package com.idea.shower.shower.app.wx.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.idea.shower.shower.app.commons.controller.BaseController;
+import com.idea.shower.shower.app.commons.web.controller.BaseController;
 import com.idea.shower.shower.app.wx.service.WxGoodsService;
 
 /**

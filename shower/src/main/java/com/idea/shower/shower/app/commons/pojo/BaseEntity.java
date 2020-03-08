@@ -3,7 +3,7 @@ package com.idea.shower.shower.app.commons.pojo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
-import com.idea.shower.shower.app.commons.interceptor.annotation.*;
+import com.idea.shower.shower.app.commons.db.commons.interceptor.annotation.*;
 
 import java.util.Date;
 

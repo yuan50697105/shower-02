@@ -2,11 +2,11 @@ package com.idea.shower.shower.app.wx.service.impl;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import com.idea.shower.shower.app.commons.constant.GoodsInfoConstants;
-import com.idea.shower.shower.app.db.pojo.DeviceInfo;
-import com.idea.shower.shower.app.db.pojo.GoodsInfo;
-import com.idea.shower.shower.app.db.pojo.OrderInfo;
-import com.idea.shower.shower.app.db.pojo.OrderItem;
+import com.idea.shower.shower.app.commons.db.module.constants.GoodsInfoConstants;
+import com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfo;
+import com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfo;
+import com.idea.shower.shower.app.commons.db.module.pojo.OrderInfo;
+import com.idea.shower.shower.app.commons.db.module.pojo.OrderItem;
 import com.idea.shower.shower.app.wx.pojo.WxOrderInfo;
 import com.idea.shower.shower.app.wx.service.*;
 import com.idea.shower.web.webmvc.exception.DataParamsErrorResultRuntimeException;
