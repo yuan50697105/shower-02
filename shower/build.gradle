@@ -15,5 +15,4 @@ dependencies {
     compile project(':webmvc-core')
     compile project(':db-mybatis')
     compile project(':utils-wx')
-    compile project(':utils-retrofit')
 }

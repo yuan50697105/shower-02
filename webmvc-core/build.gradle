@@ -5,7 +5,3 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
     compile project(':db-core')
 }
-
-bootJar {
-    enabled = false
-}

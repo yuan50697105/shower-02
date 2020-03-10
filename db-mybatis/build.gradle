@@ -1,4 +1,4 @@
-group 'org.yuan.bootd.db'
+group 'org.yuan.bootd.com.idea.shower.shower.app.db'
 
 dependencies {
     compile project(':db-core')

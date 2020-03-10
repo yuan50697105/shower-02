@@ -7,7 +7,3 @@ dependencies {
     compile group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: '2.7.2'
     compile group: 'com.squareup.retrofit2', name: 'converter-scalars', version: '2.7.2'
 }
-
-bootJar {
-    enabled = false
-}

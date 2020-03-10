@@ -1,0 +1,5 @@
+dependencies {
+    compile project(':webmvc-core')
+    compile project(':shower-db')
+    compile project(':utils-wx')
+}

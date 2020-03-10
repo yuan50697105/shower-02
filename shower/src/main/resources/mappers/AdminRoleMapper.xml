@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.shower.app.commons.db.module.mapper.AdminRoleMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.shower.app.commons.db.module.pojo.AdminRole">
+<mapper namespace="com.idea.shower.app.commons.AdminRoleMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.app.commons.AdminRole">
     <!--@mbg.generated-->
     <!--@Table admin_role-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -76,7 +76,7 @@
     <!--@mbg.generated-->
     id, create_time, update_time, create_user, update_user, `name`, enabled
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.AdminRoleExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.app.commons.AdminRoleExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -103,14 +103,14 @@
     delete from admin_role
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.AdminRoleExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.app.commons.AdminRoleExample">
     <!--@mbg.generated-->
     delete from admin_role
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.AdminRole">
+  <insert id="insert" parameterType="com.idea.shower.app.commons.AdminRole">
     <!--@mbg.generated-->
     insert into admin_role (id, create_time, update_time, 
       create_user, update_user, `name`, 
@@ -119,7 +119,7 @@
       #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{enabled,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.AdminRole">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.commons.AdminRole">
     <!--@mbg.generated-->
     insert into admin_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -169,7 +169,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.AdminRoleExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.app.commons.AdminRoleExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from admin_role
     <if test="_parameter != null">
@@ -220,7 +220,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.AdminRole">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.commons.AdminRole">
     <!--@mbg.generated-->
     update admin_role
     <set>
@@ -245,7 +245,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.AdminRole">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.commons.AdminRole">
     <!--@mbg.generated-->
     update admin_role
     set create_time = #{createTime,jdbcType=TIMESTAMP},

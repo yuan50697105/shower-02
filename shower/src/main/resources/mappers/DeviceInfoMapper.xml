@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.shower.app.commons.db.module.mapper.DeviceInfoMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfo">
+<mapper namespace="com.idea.shower.app.commons.DeviceInfoMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.app.commons.DeviceInfo">
     <!--@mbg.generated-->
     <!--@Table device_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -88,7 +88,7 @@
     enabled, range_code, latitude, longitude, accuracy, altitude, vertical_accuracy, 
     horizontal_accuracy
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.app.commons.DeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -115,14 +115,14 @@
     delete from device_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfoExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.app.commons.DeviceInfoExample">
     <!--@mbg.generated-->
     delete from device_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfo">
+  <insert id="insert" parameterType="com.idea.shower.app.commons.DeviceInfo">
     <!--@mbg.generated-->
     insert into device_info (id, create_time, update_time, 
       create_user, update_user, code, 
@@ -137,7 +137,7 @@
       #{longitude,jdbcType=DOUBLE}, #{accuracy,jdbcType=DOUBLE}, #{altitude,jdbcType=DOUBLE}, 
       #{verticalAccuracy,jdbcType=DOUBLE}, #{horizontalAccuracy,jdbcType=DOUBLE})
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfo">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.commons.DeviceInfo">
     <!--@mbg.generated-->
     insert into device_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -247,7 +247,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.app.commons.DeviceInfoExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from device_info
     <if test="_parameter != null">
@@ -338,7 +338,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.commons.DeviceInfo">
     <!--@mbg.generated-->
     update device_info
     <set>
@@ -393,7 +393,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.DeviceInfo">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.commons.DeviceInfo">
     <!--@mbg.generated-->
     update device_info
     set create_time = #{createTime,jdbcType=TIMESTAMP},

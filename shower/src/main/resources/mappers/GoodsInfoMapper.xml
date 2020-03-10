@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.shower.app.commons.db.module.mapper.GoodsInfoMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfo">
+<mapper namespace="com.idea.shower.app.commons.GoodsInfoMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.app.commons.GoodsInfo">
     <!--@mbg.generated-->
     <!--@Table goods_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -84,7 +84,7 @@
     id, create_time, update_time, create_user, update_user, code, `type`, time_price, 
     time_interval, time_unit, water_price, water_space, water_unit, range_code
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.app.commons.GoodsInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -111,14 +111,14 @@
     delete from goods_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfoExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.app.commons.GoodsInfoExample">
     <!--@mbg.generated-->
     delete from goods_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfo">
+  <insert id="insert" parameterType="com.idea.shower.app.commons.GoodsInfo">
     <!--@mbg.generated-->
     insert into goods_info (id, create_time, update_time, 
       create_user, update_user, code, 
@@ -131,7 +131,7 @@
       #{timeUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL}, #{waterSpace,jdbcType=DECIMAL}, 
       #{waterUnit,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfo">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.commons.GoodsInfo">
     <!--@mbg.generated-->
     insert into goods_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -223,7 +223,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.app.commons.GoodsInfoExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from goods_info
     <if test="_parameter != null">
@@ -302,7 +302,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.commons.GoodsInfo">
     <!--@mbg.generated-->
     update goods_info
     <set>
@@ -348,7 +348,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.shower.app.commons.db.module.pojo.GoodsInfo">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.commons.GoodsInfo">
     <!--@mbg.generated-->
     update goods_info
     set create_time = #{createTime,jdbcType=TIMESTAMP},

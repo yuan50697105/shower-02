@@ -1,12 +1,8 @@
-group = 'org.yuan.boot.utils.wx'
+group = 'org.yuan.boot.utils.com.idea.shower.shower.app.wx'
 dependencies {
-    compile group: 'com.github.binarywang', name: 'wx-java-mp-spring-boot-starter', version: '3.7.0'
-    compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.7.0'
-    compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.7.0'
-    compile group: 'com.github.binarywang', name: 'wx-java-open-spring-boot-starter', version: '3.7.0'
+    compile group: 'com.github.binarywang', name: 'com.idea.shower.shower.app.wx-java-mp-spring-boot-starter', version: '3.7.1.B'
+    compile group: 'com.github.binarywang', name: 'com.idea.shower.shower.app.wx-java-miniapp-spring-boot-starter', version: '3.7.1.B'
+    compile group: 'com.github.binarywang', name: 'com.idea.shower.shower.app.wx-java-pay-spring-boot-starter', version: '3.7.1.B'
+    compile group: 'com.github.binarywang', name: 'com.idea.shower.shower.app.wx-java-open-spring-boot-starter', version: '3.7.1.B'
 
-}
-
-bootJar {
-    enabled = false
 }
