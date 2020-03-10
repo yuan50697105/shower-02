@@ -1,7 +1,6 @@
 rootProject.name = 'shower-01'
 include 'db-core'
 include 'db-mybatis'
-include 'utils-retrofit'
 include 'utils-wx'
 include 'webmvc-core'
 include 'shower'

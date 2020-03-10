@@ -1,9 +1,0 @@
-group 'org.yuan.boot.utils.restrofit'
-
-dependencies {
-    compile group: 'io.reactivex.rxjava2', name: 'rxjava', version: '2.2.18'
-    compile group: 'com.squareup.retrofit2', name: 'retrofit', version: '2.7.2'
-    compile group: 'com.squareup.retrofit2', name: 'converter-jackson', version: '2.7.2'
-    compile group: 'com.squareup.retrofit2', name: 'adapter-rxjava2', version: '2.7.2'
-    compile group: 'com.squareup.retrofit2', name: 'converter-scalars', version: '2.7.2'
-}
