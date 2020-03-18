@@ -4,8 +4,7 @@ import com.idea.shower.amqp.constants.QueueConstants;
 import com.idea.shower.amqp.pojo.WxOrderDeviceProducerDTO;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.context.annotation.Conditional;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,10 +15,15 @@ import org.springframework.stereotype.Component;
  */
 @RabbitListener(queues = QueueConstants.ADD_ORDER_QUEUE)
 @Component
-
+@ConditionalOnExpression("${shower.module}=='device'")
 public class DeviceOrderConsumer {
     @RabbitHandler
     public void onAddOrder(WxOrderDeviceProducerDTO wxOrderDeviceProducerDTO) {
+
+    }
+
+    @RabbitHandler
+    public void onStopOrder(WxOrderDeviceProducerDTO wxOrderDeviceProducerDTO) {
 
     }
 
