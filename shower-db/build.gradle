@@ -1,4 +1,4 @@
 dependencies {
-    compile project(':db-mybatis')
+    compile project(':shower-db-mybatis')
 }
 

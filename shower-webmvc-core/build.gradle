@@ -3,5 +3,5 @@ group 'org.yuan.boot.webmvc'
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
-    compile project(':db-core')
+    compile project(':shower-db-core')
 }

@@ -4,8 +4,8 @@ plugins {
 
 
 dependencies {
-    compile project(':webmvc-core')
-    compile project(':db-mybatis')
+    compile project(':shower-webmvc-core')
+    compile project(':shower-db-mybatis')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
