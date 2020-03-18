@@ -1,7 +1,7 @@
 package com.idea.shower.app.wx.controller;
 
 import com.idea.shower.app.wx.service.WxDeviceService;
-import com.idea.shower.app.commons.web.controller.BaseController;
+import com.idea.shower.web.webmvc.controller.ResultController;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,6 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("com/idea/shower/shower/app/wx/device")
 @AllArgsConstructor
-public class WxDeviceController extends BaseController {
+public class WxDeviceController extends ResultController {
     private WxDeviceService wxDeviceService;
 }

@@ -1,8 +1,8 @@
 package com.idea.shower.app.wx.controller;
 
 import com.idea.shower.app.wx.pojo.WxOrderInfo;
-import com.idea.shower.app.commons.web.controller.BaseController;
 import com.idea.shower.app.wx.service.WxOrderService;
+import com.idea.shower.web.webmvc.controller.ResultController;
 import com.idea.shower.web.webmvc.pojo.Result;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("com/idea/shower/shower/app/wx/order")
 @AllArgsConstructor
-public class WxOrderController extends BaseController {
+public class WxOrderController extends ResultController {
     private WxOrderService wxOrderService;
 
     @PostMapping(value = "add", produces = APPLICATION_JSON_UTF8, consumes = APPLICATION_JSON_UTF8)
