@@ -17,7 +17,7 @@ public abstract class BaseCorePageResult<T> {
     private long page;
     private long size;
     private Iterable<T> data;
-    private long totalNumberOfRows;
+    private long totalRows;
     private long totalPages;
 
 }
