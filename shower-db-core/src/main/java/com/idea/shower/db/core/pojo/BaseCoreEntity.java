@@ -23,20 +23,13 @@ public abstract class BaseCoreEntity {
         return BeanUtil.fillBeanWithMap(map, this, copyOptions);
     }
 
-    public BaseCoreEntity copyFromIgnoreNull(BaseCoreEntity t) {
-        return copyFromByOptions(t, CopyOptions.create().ignoreNullValue());
+    public BaseCoreEntity copyFrom(BaseCoreEntity t, String... ignoreProperties) {
+        return copyFromByOptions(t, CopyOptions.create().ignoreNullValue().setIgnoreProperties(ignoreProperties));
     }
 
-    public BaseCoreEntity copyFromIgnoreNull(Map<?, ?> map) {
-        return copyFromByOptions(map, CopyOptions.create().ignoreNullValue());
+    public BaseCoreEntity copyFrom(Map<?, ?> map, String... ignoreProperties) {
+        return copyFromByOptions(map, CopyOptions.create().ignoreNullValue().setIgnoreProperties(ignoreProperties));
     }
 
-    public BaseCoreEntity copyFrom(BaseCoreEntity t) {
-        return copyFromByOptions(t, CopyOptions.create());
-    }
-
-    public BaseCoreEntity copyFrom(Map<?, ?> map) {
-        return copyFromByOptions(map, CopyOptions.create());
-    }
 
 }
