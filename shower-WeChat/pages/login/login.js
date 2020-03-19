@@ -9,29 +9,26 @@ Page({
      },
      formSubmit: function (e) {
       var code=wx.getStorageSync('code'); 
-       wx.switchTab({
-         url: '/pages/list/list'
-       })
-      // util.request(api.loginUrl, {
-      //   code: code
-      // }).then(function (res) {
-      //   console.log(res)
-      //   if ("ok" == res.code) {
-      //     console.log(res.data);
-      //     var data = res.data;
-      //       wx.setStorageSync('openId', data.openid);
-      //       wx.switchTab({
-      //         url: '/pages/list/list'
-      //       })
-      //      }else{
-      //        wx.showToast({
-      //          title: res.message,
-      //          icon: "none",
-      //          duration: 1000,
-      //          mask: true
-      //        })
-      //      }  
-      // })
+      util.request(api.loginUrl, {
+        code: code
+      }).then(function (res) {
+        console.log(res)
+        if ("ok" == res.code) {
+          console.log(res.data);
+          var data = res.data;
+            wx.setStorageSync('openId', data.openid);
+            wx.switchTab({
+              url: '/pages/list/list'
+            })
+           }else{
+             wx.showToast({
+               title: res.message,
+               icon: "none",
+               duration: 1000,
+               mask: true
+             })
+           }  
+      })
      }
      
 })

@@ -1,0 +1,40 @@
+<view class="page-wrapper ">
+  <view class="calendar-bar-wrapper js_calendar_wrapper">
+    <view class="device-tabs calendar-bar">
+      <view class="tabs-item js_pre_day" ontap="preDay" >山科</view>
+      <view ontap="showCalendar" class="tabs-item js_show_calendar" style="-webkit-flex: 2; flex: 2;">筛选框</view>
+      <view class="tabs-item js_next_day" ontap="nextDay">预留</view>
+    </view>
+  </view>
+  <view class="device-list js_device_list ">
+
+    <block wx:for="{{listData}}" wx:key="k">
+      <view class="device-list-item  ">
+        <view class="device-time">{{item.dateStr}}</view>
+        <view class="tobooking"> 使用 </view>
+        <view class="detail">
+          <view class="detail1">
+            <view class="start">
+              <text class="icon-circle s-icon1"></text>{{item.startstationname}}</view>
+            <view class="end">
+              <text class="icon-circle s-icon2"></text>{{item.arrivalstationname}}</view>
+          </view>
+          <view class="tags">
+            <view>
+              <text class="price">￥{{item.price / 100}}</text>
+            </view>
+            <view>
+              <text class="countleft">{{item.cansellcountamount}}张</text>
+            </view>
+            <view>
+              <text class="b-tags js_tags"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+
+    </block>
+
+  </view>
+
+</view>
