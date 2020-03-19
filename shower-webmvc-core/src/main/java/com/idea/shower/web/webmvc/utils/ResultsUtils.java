@@ -3,7 +3,7 @@ package com.idea.shower.web.webmvc.utils;
 import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.web.webmvc.pojo.Result;
 
-import static com.idea.shower.web.webmvc.utils.Results.ResultConstants.*;
+import static com.idea.shower.web.webmvc.utils.ResultsUtils.ResultConstants.*;
 
 /**
  * @program: shower-01
@@ -11,7 +11,7 @@ import static com.idea.shower.web.webmvc.utils.Results.ResultConstants.*;
  * @author: yuane
  * @create: 2020-01-19 20:43
  */
-public class Results {
+public class ResultsUtils {
     public static Result ok() {
         return Result.builder().code(OK_CODE).message(OK_MESSAGE).build();
     }

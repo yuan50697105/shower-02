@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.idea.shower.web.webmvc.exception.ResultException;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
-import com.idea.shower.web.webmvc.utils.Results;
+import com.idea.shower.web.webmvc.utils.ResultsUtils;
 
 /**
  * @program: learning-demo-02
@@ -32,12 +32,12 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     public Result illegalArgumentExceptionHandler(IllegalArgumentException e) {
         log.error(e.getMessage(), e.getCause());
-        return Results.dataParamsError();
+        return ResultsUtils.dataParamsError();
     }
 
     @ExceptionHandler(Exception.class)
     public Result exceptionHandler(Exception e) {
         log.error(e.getLocalizedMessage(), e.getCause());
-        return Results.systemError();
+        return ResultsUtils.systemError();
     }
 }

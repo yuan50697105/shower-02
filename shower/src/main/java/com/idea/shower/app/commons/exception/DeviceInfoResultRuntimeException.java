@@ -1,6 +1,6 @@
 package com.idea.shower.app.commons.exception;
 
-import com.idea.shower.app.commons.utils.Results;
+import com.idea.shower.app.commons.utils.ResultsUtils;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 
 /**
@@ -11,6 +11,6 @@ import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
  */
 public class DeviceInfoResultRuntimeException extends ResultRuntimeException {
     public DeviceInfoResultRuntimeException() {
-        super(Results.deviceInfoNotExistError());
+        super(ResultsUtils.deviceInfoNotExistError());
     }
 }

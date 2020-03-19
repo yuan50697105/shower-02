@@ -4,7 +4,7 @@ import cn.hutool.core.util.ObjectUtil;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import com.idea.shower.web.webmvc.pojo.Result;
-import com.idea.shower.web.webmvc.utils.Results;
+import com.idea.shower.web.webmvc.utils.ResultsUtils;
 
 /**
  * @program: learning-demo-02
@@ -16,7 +16,7 @@ import com.idea.shower.web.webmvc.utils.Results;
 @Data
 public class NoValidateResultRuntimeException extends ResultRuntimeException {
     public NoValidateResultRuntimeException() {
-        super(Results.dataParamsError());
+        super(ResultsUtils.dataParamsError());
     }
 
     public NoValidateResultRuntimeException(Result result) {
@@ -24,6 +24,6 @@ public class NoValidateResultRuntimeException extends ResultRuntimeException {
     }
 
     public NoValidateResultRuntimeException(String message) {
-        super(Results.dataParamsError(ObjectUtil.isNotEmpty(message) ? message : Results.ResultConstants.DATA_PARAMS_ERROR_MESSAGE));
+        super(ResultsUtils.dataParamsError(ObjectUtil.isNotEmpty(message) ? message : ResultsUtils.ResultConstants.DATA_PARAMS_ERROR_MESSAGE));
     }
 }

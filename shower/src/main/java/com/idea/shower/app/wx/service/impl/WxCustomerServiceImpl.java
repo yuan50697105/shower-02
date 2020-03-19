@@ -11,7 +11,7 @@ import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import com.idea.shower.app.commons.utils.Results;
+import com.idea.shower.app.commons.utils.ResultsUtils;
 import com.idea.shower.app.commons.db.module.dao.CustomerInfoDao;
 import com.idea.shower.app.commons.db.module.pojo.CustomerInfo;
 import com.idea.shower.web.webmvc.pojo.Result;
@@ -55,7 +55,7 @@ public class WxCustomerServiceImpl implements WxCustomerService {
             customerInfo.setUnionId(sessionResult.getOpenid());
             customerInfoDao.save(customerInfo);
         }
-        return Results.data(sessionResult);
+        return ResultsUtils.data(sessionResult);
     }
 
 
@@ -80,7 +80,7 @@ public class WxCustomerServiceImpl implements WxCustomerService {
             customerInfo.setPhone(phoneNoInfo.getPhoneNumber());
             customerInfoDao.updateById(customerInfo);
         }
-        return Results.ok();
+        return ResultsUtils.ok();
     }
 
     @Override
