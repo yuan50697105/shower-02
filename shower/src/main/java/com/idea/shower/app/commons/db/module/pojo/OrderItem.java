@@ -5,11 +5,11 @@ import java.math.BigDecimal;
 import java.util.Date;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.idea.shower.app.commons.pojo.BaseEntity;
+import com.idea.shower.app.commons.pojo.BaseDbEntity;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class OrderItem extends BaseEntity implements Serializable {
+public class OrderItem extends BaseDbEntity implements Serializable {
     /**
      * 订单类型
      */

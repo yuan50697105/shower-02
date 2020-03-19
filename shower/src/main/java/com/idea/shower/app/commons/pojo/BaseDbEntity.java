@@ -1,6 +1,6 @@
 package com.idea.shower.app.commons.pojo;
 
-import com.idea.shower.db.mybaits.pojo.BaseDbEntity;
+import com.idea.shower.db.mybaits.pojo.BaseDbDbEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -17,7 +17,7 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Accessors(chain = true)
-public class BaseEntity extends BaseDbEntity {
+public class BaseDbEntity extends BaseDbDbEntity {
     @Id
     private Long id;
     @CreateTime

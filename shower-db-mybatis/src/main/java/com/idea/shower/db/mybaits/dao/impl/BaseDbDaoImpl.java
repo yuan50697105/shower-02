@@ -5,7 +5,7 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.idea.shower.db.mybaits.dao.BaseDbDao;
 import com.idea.shower.db.mybaits.mapper.BaseDbMapper;
-import com.idea.shower.db.core.pojo.BaseCoreQuery;
+import com.idea.shower.db.core.pojo.BaseDbCoreQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 
 import java.io.Serializable;
@@ -21,7 +21,7 @@ public abstract class BaseDbDaoImpl<T, ID extends Serializable, M extends BaseDb
         return baseMapper;
     }
 
-    protected <E extends BaseCoreQuery> PageResult<T> pageResult(E condition, Function<E, List<T>> function) {
+    protected <E extends BaseDbCoreQuery> PageResult<T> pageResult(E condition, Function<E, List<T>> function) {
         PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
         return PageResult.of(PageInfo.of(function.apply(condition)));
     }

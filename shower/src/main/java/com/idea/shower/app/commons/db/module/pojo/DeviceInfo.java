@@ -4,11 +4,11 @@ import java.io.Serializable;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.idea.shower.app.commons.pojo.BaseEntity;
+import com.idea.shower.app.commons.pojo.BaseDbEntity;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class DeviceInfo extends BaseEntity implements Serializable {
+public class DeviceInfo extends BaseDbEntity implements Serializable {
     /**
      * 设备编号
      */

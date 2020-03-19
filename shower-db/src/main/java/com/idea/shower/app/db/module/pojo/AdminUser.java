@@ -1,6 +1,6 @@
 package com.idea.shower.app.db.module.pojo;
 
-import com.idea.shower.db.mybaits.pojo.BaseDbEntity;
+import com.idea.shower.db.mybaits.pojo.BaseDbDbEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class AdminUser extends BaseDbEntity implements Serializable {
+public class AdminUser extends BaseDbDbEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     /**
      * 用户名
