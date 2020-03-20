@@ -1,54 +1,53 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-public class OrderInfo extends BaseDbEntity implements Serializable {
+@Getter
+@Setter
+@ToString
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrderInfo extends BaseDbEntity {
     /**
-     * type
-     */
-    private Integer type;
-
-    /**
-     * orderNo
+     * 订单编号
      */
     private String orderNo;
 
     /**
-     * customerId
+     * 订单类型
+     */
+    private String type;
+
+    /**
+     * 客户ID
      */
     private Long customerId;
 
     /**
-     * customerOpenId
+     * 客户OPENID
      */
     private String customerOpenId;
 
     /**
-     * customerUnionId
+     * 客户UNIONID
      */
     private String customerUnionId;
 
     /**
-     * customerNickName
-     */
-    private String customerNickName;
-
-    /**
-     * orderStatus
-     */
-    private Integer orderStatus;
-
-    /**
-     * totalPrice
+     * 总价
      */
     private BigDecimal totalPrice;
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 订单状态
+     */
+    private Integer status;
+
+    public static OrderInfoBuilder builder() {
+        return new OrderInfoBuilder();
+    }
 }

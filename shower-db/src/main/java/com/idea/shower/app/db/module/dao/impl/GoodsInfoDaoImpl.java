@@ -1,32 +1,31 @@
 package com.idea.shower.app.db.module.dao.impl;
 
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.constants.GoodsInfoConstants;
+import com.idea.shower.app.db.module.constants.goods.GoodsType;
 import com.idea.shower.app.db.module.dao.GoodsInfoDao;
 import com.idea.shower.app.db.module.mapper.GoodsInfoMapper;
 import com.idea.shower.app.db.module.pojo.GoodsInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 /**
- * @program: shower-01
+ * @program: my-shower-01
  * @description:
  * @author: yuane
- * @create: 2020-01-31 09:05
+ * @create: 2020-02-14 20:18
  */
 @Component
 @AllArgsConstructor
-@Transactional(rollbackFor = Exception.class, propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class GoodsInfoDaoImpl extends BaseDaoImpl<GoodsInfo, GoodsInfoMapper> implements GoodsInfoDao {
     @Override
-    public GoodsInfo getRentalGoodsInfoByRangeCode(String rangeCode) {
-        return baseMapper().selectOneByTypeAndRangeCode(GoodsInfoConstants.GoodsInfoType.RENTAL, rangeCode);
+    public Optional<GoodsInfo> getFromTheirPricesByRangeCode(String rangeCode) {
+        return Optional.ofNullable(baseMapper().selectOneByTypeAndRangeCode(String.valueOf(GoodsType.FROM_THEIR_PRICES), rangeCode));
     }
 
     @Override
-    public GoodsInfo getContinueGoodsInfoByRangeCode(String rangeCode) {
-        return baseMapper().selectOneByTypeAndRangeCode(GoodsInfoConstants.GoodsInfoType.CONTINUE, rangeCode);
+    public Optional<GoodsInfo> getRenewalPriceByRangeCode(String rangeCode) {
+        return Optional.ofNullable(baseMapper().selectOneByTypeAndRangeCode(String.valueOf(GoodsType.RENEWAL_PRICE), rangeCode));
     }
 }

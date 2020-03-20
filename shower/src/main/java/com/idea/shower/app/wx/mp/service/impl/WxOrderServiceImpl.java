@@ -6,7 +6,7 @@ import com.idea.shower.app.wx.mp.service.WxOrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.idea.shower.app.commons.utils.ResultsUtils;
+import com.idea.shower.app.commons.utils.ResultUtils;
 import com.idea.shower.app.commons.db.module.dao.OrderInfoDao;
 import com.idea.shower.app.commons.db.module.dao.OrderItemDao;
 import com.idea.shower.app.commons.db.module.pojo.OrderInfo;
@@ -36,7 +36,7 @@ public class WxOrderServiceImpl implements WxOrderService {
         List<OrderItem> orderItems = createWxOrderInfoService.createRentalOrderItem(wxOrderInfo, orderInfo);
         orderInfoDao.save(orderInfo);
         orderItemDao.batchSave(orderItems);
-        return ResultsUtils.ok();
+        return ResultUtils.ok();
     }
 
     @Override

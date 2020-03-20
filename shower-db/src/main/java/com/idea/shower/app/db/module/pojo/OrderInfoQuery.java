@@ -3,21 +3,22 @@ package com.idea.shower.app.db.module.pojo;
 import com.idea.shower.app.db.commons.pojo.BaseDbQuery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 /**
- * @program: shower-01
+ * @program: learning-demo-java-01
  * @description:
  * @author: yuane
- * @create: 2020-01-23 13:33
+ * @create: 2020-02-14 15:51
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
+@NoArgsConstructor
+@SuperBuilder
 public class OrderInfoQuery extends BaseDbQuery {
-    private Long id;
     private String orderNo;
-    private String nickName;
+    private Integer type;
     private Long customerId;
-    private String customerOpenId;
-    private String customerUnionId;
-
+    private String unionId;
 }

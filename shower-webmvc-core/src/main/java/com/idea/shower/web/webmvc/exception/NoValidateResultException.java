@@ -3,7 +3,7 @@ package com.idea.shower.web.webmvc.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import com.idea.shower.web.webmvc.pojo.Result;
-import com.idea.shower.web.webmvc.utils.ResultsUtils;
+import com.idea.shower.web.webmvc.utils.ResultUtils;
 
 /**
  * @program: learning-demo-02
@@ -15,7 +15,7 @@ import com.idea.shower.web.webmvc.utils.ResultsUtils;
 @Data
 public class NoValidateResultException extends ResultException {
     public NoValidateResultException() {
-        super(ResultsUtils.dataParamsError());
+        super(ResultUtils.dataParamsError());
     }
 
     public NoValidateResultException(Result result) {
@@ -23,6 +23,6 @@ public class NoValidateResultException extends ResultException {
     }
 
     public NoValidateResultException(String message) {
-        super(ResultsUtils.dataParamsError(message));
+        super(ResultUtils.dataParamsError(message));
     }
 }

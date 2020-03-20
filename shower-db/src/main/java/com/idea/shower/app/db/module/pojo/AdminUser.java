@@ -1,29 +1,35 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-import java.io.Serializable;
+import lombok.*;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class AdminUser extends BaseDbEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class AdminUser extends BaseDbEntity {
     /**
-     * 用户名
+     * username
      */
     private String username;
+
     /**
-     * 密码
+     * password
      */
     private String password;
+
     /**
-     * 姓名
+     * name
      */
     private String name;
+
     /**
-     * 启用状态
+     * enabled
      */
     private Integer enabled;
+
+    public static AdminUserBuilder builder() {
+        return new AdminUserBuilder();
+    }
 }

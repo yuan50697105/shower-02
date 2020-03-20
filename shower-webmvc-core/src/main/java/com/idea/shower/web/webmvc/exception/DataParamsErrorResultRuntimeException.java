@@ -3,7 +3,7 @@ package com.idea.shower.web.webmvc.exception;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import com.idea.shower.web.webmvc.pojo.Result;
-import com.idea.shower.web.webmvc.utils.ResultsUtils;
+import com.idea.shower.web.webmvc.utils.ResultUtils;
 
 /**
  * @program: shower-01
@@ -15,11 +15,11 @@ import com.idea.shower.web.webmvc.utils.ResultsUtils;
 @Data
 public class DataParamsErrorResultRuntimeException extends ResultRuntimeException {
     public DataParamsErrorResultRuntimeException() {
-        super(ResultsUtils.dataParamsError());
+        super(ResultUtils.dataParamsError());
     }
 
     public DataParamsErrorResultRuntimeException(String message) {
-        super(ResultsUtils.dataParamsError(message));
+        super(ResultUtils.dataParamsError(message));
     }
 
     public DataParamsErrorResultRuntimeException(int code, String message, Object data) {

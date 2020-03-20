@@ -31,4 +31,12 @@ public interface OrderItemMapper extends BaseMapper {
     int updateByPrimaryKeySelective(OrderItem record);
 
     int updateByPrimaryKey(OrderItem record);
+
+    OrderItem selectOneByOrderIdAndGoodsType(@Param("orderId") Long orderId, @Param("goodsType") Integer goodsType);
+
+    List<OrderItem> selectByOrderId(@Param("orderId") Long orderId);
+
+    List<OrderItem> selectByOrderNo(@Param("orderNo") String orderNo);
+
+
 }

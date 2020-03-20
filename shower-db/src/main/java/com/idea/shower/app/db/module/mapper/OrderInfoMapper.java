@@ -33,5 +33,7 @@ public interface OrderInfoMapper extends BaseMapper {
 
     int updateByPrimaryKey(OrderInfo record);
 
-    List<OrderInfo> selectByCondition(OrderInfoQuery condition);
+    int updateStatusByOrderNo(@Param("updatedStatus") Integer updatedStatus, @Param("orderNo") String orderNo);
+
+    List<OrderInfo> selectByCondition(@Param("condition") OrderInfoQuery condition);
 }

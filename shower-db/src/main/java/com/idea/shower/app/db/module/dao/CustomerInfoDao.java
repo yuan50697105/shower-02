@@ -1,26 +1,56 @@
 package com.idea.shower.app.db.module.dao;
 
+
 import com.idea.shower.app.db.commons.dao.BaseDao;
 import com.idea.shower.app.db.module.pojo.CustomerInfo;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
- * @program: shower-01
+ * @program: learning-demo-java-01
  * @description:
  * @author: yuane
- * @create: 2020-01-23 13:27
+ * @create: 2020-02-14 12:42
  */
 public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
-    Optional<CustomerInfo> getById(Long id);
+    /**
+     * 通过UnionId获取用户信息
+     *
+     * @param unionId unionId
+     * @return 用户信息
+     */
+    List<CustomerInfo> selectByUnionId(String unionId);
 
+    /**
+     * 通过UnionId获取用户信息
+     *
+     * @param unionId unionId
+     * @return 用户信息
+     */
     Optional<CustomerInfo> getByUnionId(String unionId);
 
-    boolean existByUnionIdAndOpenId(String unionid, String openid);
+    /**
+     * 通过UnionId统计数量
+     *
+     * @param unionId unionId
+     * @return 数量
+     */
+    long countByUnionId(String unionId);
 
-    long countByUnionIdAndOpenId(String unionid, String openid);
+    /**
+     * 保存
+     *
+     * @param customerInfo 用户信息
+     * @return 受影响行数
+     */
+    int save(CustomerInfo customerInfo);
 
-    void save(CustomerInfo customerInfo);
-
-    void updateById(CustomerInfo customerInfo);
+    /**
+     * 更新
+     *
+     * @param customerInfo 用户新
+     * @return 受影响行数
+     */
+    int update(CustomerInfo customerInfo);
 }

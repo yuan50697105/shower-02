@@ -1,4 +1,3 @@
 spring:
   profiles:
-    active: db,wx
-    include: db.wx
+    active: dbconfig,wx,mvc

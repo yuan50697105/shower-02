@@ -2,7 +2,7 @@ package com.idea.shower.app.commons.exception;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.idea.shower.app.commons.utils.ResultsUtils;
+import com.idea.shower.app.commons.utils.ResultUtils;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 
@@ -20,6 +20,6 @@ public class ExistResultRuntimeException extends ResultRuntimeException {
     }
 
     public ExistResultRuntimeException(String message) {
-        super(ResultsUtils.existError(message));
+        super(ResultUtils.existError(message));
     }
 }

@@ -1,6 +1,5 @@
 package com.idea.shower.app.db.module.mapper;
 
-
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AdminUser;
 import com.idea.shower.app.db.module.pojo.AdminUserExample;
@@ -34,5 +33,5 @@ public interface AdminUserMapper extends BaseMapper {
 
     int updateByPrimaryKey(AdminUser record);
 
-    List<AdminUser> selectByCondition(AdminUserQuery condition);
+    List<AdminUser> selectByCondition(@Param("condition") AdminUserQuery condition);
 }

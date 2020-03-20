@@ -1,6 +1,6 @@
 package com.idea.shower.app.commons.exception;
 
-import com.idea.shower.app.commons.utils.ResultsUtils;
+import com.idea.shower.app.commons.utils.ResultUtils;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 
 /**
@@ -11,6 +11,6 @@ import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
  */
 public class CustomerInfoNotExistResultRuntimeException extends ResultRuntimeException {
     public CustomerInfoNotExistResultRuntimeException() {
-        super(ResultsUtils.customerInfoNotExistError());
+        super(ResultUtils.customerInfoNotExistError());
     }
 }

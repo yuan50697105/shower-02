@@ -32,7 +32,7 @@ public interface GoodsInfoMapper extends BaseMapper {
 
     int updateByPrimaryKey(GoodsInfo record);
 
-    GoodsInfo selectOneByTypeAndRangeCode(@Param("type") Integer type, @Param("rangeCode") String rangeCode);
+    GoodsInfo selectOneByTypeAndRangeCode(@Param("type") String type, @Param("rangeCode") String rangeCode);
 
 
 }

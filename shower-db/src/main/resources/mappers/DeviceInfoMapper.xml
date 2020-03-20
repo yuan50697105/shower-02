@@ -5,22 +5,16 @@
     <!--@mbg.generated-->
     <!--@Table device_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="point" jdbcType="VARCHAR" property="point" />
-    <result column="enabled" jdbcType="INTEGER" property="enabled" />
     <result column="range_code" jdbcType="VARCHAR" property="rangeCode" />
-    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="enabled" jdbcType="INTEGER" property="enabled" />
     <result column="longitude" jdbcType="DOUBLE" property="longitude" />
-    <result column="accuracy" jdbcType="DOUBLE" property="accuracy" />
-    <result column="altitude" jdbcType="DOUBLE" property="altitude" />
-    <result column="vertical_accuracy" jdbcType="DOUBLE" property="verticalAccuracy" />
-    <result column="horizontal_accuracy" jdbcType="DOUBLE" property="horizontalAccuracy" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -84,9 +78,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, code, `type`, address, point, 
-    enabled, range_code, latitude, longitude, accuracy, altitude, vertical_accuracy, 
-    horizontal_accuracy
+    id, create_user, update_user, create_time, update_time, code, `type`, range_code, 
+    enabled, longitude, latitude
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -124,18 +117,14 @@
   </delete>
   <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo">
     <!--@mbg.generated-->
-    insert into device_info (id, create_time, update_time, 
-      create_user, update_user, code, 
-      `type`, address, point, 
-      enabled, range_code, latitude, 
-      longitude, accuracy, altitude, 
-      vertical_accuracy, horizontal_accuracy)
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{point,jdbcType=VARCHAR}, 
-      #{enabled,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR}, #{latitude,jdbcType=DOUBLE}, 
-      #{longitude,jdbcType=DOUBLE}, #{accuracy,jdbcType=DOUBLE}, #{altitude,jdbcType=DOUBLE}, 
-      #{verticalAccuracy,jdbcType=DOUBLE}, #{horizontalAccuracy,jdbcType=DOUBLE})
+    insert into device_info (id, create_user, update_user, 
+      create_time, update_time, code, 
+      `type`, range_code, enabled, 
+      longitude, latitude)
+    values (#{id,jdbcType=BIGINT}, #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{code,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, 
+      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo">
     <!--@mbg.generated-->
@@ -144,17 +133,17 @@
       <if test="id != null">
         id,
       </if>
-      <if test="createTime != null">
-        create_time,
-      </if>
-      <if test="updateTime != null">
-        update_time,
-      </if>
       <if test="createUser != null">
         create_user,
       </if>
       <if test="updateUser != null">
         update_user,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
       </if>
       <if test="code != null">
         code,
@@ -162,46 +151,22 @@
       <if test="type != null">
         `type`,
       </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="point != null">
-        point,
+      <if test="rangeCode != null">
+        range_code,
       </if>
       <if test="enabled != null">
         enabled,
       </if>
-      <if test="rangeCode != null">
-        range_code,
-      </if>
-      <if test="latitude != null">
-        latitude,
-      </if>
       <if test="longitude != null">
         longitude,
       </if>
-      <if test="accuracy != null">
-        accuracy,
-      </if>
-      <if test="altitude != null">
-        altitude,
-      </if>
-      <if test="verticalAccuracy != null">
-        vertical_accuracy,
-      </if>
-      <if test="horizontalAccuracy != null">
-        horizontal_accuracy,
+      <if test="latitude != null">
+        latitude,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
-      </if>
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="createUser != null">
         #{createUser,jdbcType=VARCHAR},
@@ -209,41 +174,29 @@
       <if test="updateUser != null">
         #{updateUser,jdbcType=VARCHAR},
       </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="point != null">
-        #{point,jdbcType=VARCHAR},
+      <if test="rangeCode != null">
+        #{rangeCode,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         #{enabled,jdbcType=INTEGER},
       </if>
-      <if test="rangeCode != null">
-        #{rangeCode,jdbcType=VARCHAR},
-      </if>
-      <if test="latitude != null">
-        #{latitude,jdbcType=DOUBLE},
-      </if>
       <if test="longitude != null">
         #{longitude,jdbcType=DOUBLE},
       </if>
-      <if test="accuracy != null">
-        #{accuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="altitude != null">
-        #{altitude,jdbcType=DOUBLE},
-      </if>
-      <if test="verticalAccuracy != null">
-        #{verticalAccuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="horizontalAccuracy != null">
-        #{horizontalAccuracy,jdbcType=DOUBLE},
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -261,17 +214,17 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="record.createUser != null">
         create_user = #{record.createUser,jdbcType=VARCHAR},
       </if>
       <if test="record.updateUser != null">
         update_user = #{record.updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updateTime != null">
+        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
@@ -279,35 +232,17 @@
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.point != null">
-        point = #{record.point,jdbcType=VARCHAR},
+      <if test="record.rangeCode != null">
+        range_code = #{record.rangeCode,jdbcType=VARCHAR},
       </if>
       <if test="record.enabled != null">
         enabled = #{record.enabled,jdbcType=INTEGER},
       </if>
-      <if test="record.rangeCode != null">
-        range_code = #{record.rangeCode,jdbcType=VARCHAR},
-      </if>
-      <if test="record.latitude != null">
-        latitude = #{record.latitude,jdbcType=DOUBLE},
-      </if>
       <if test="record.longitude != null">
         longitude = #{record.longitude,jdbcType=DOUBLE},
       </if>
-      <if test="record.accuracy != null">
-        accuracy = #{record.accuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="record.altitude != null">
-        altitude = #{record.altitude,jdbcType=DOUBLE},
-      </if>
-      <if test="record.verticalAccuracy != null">
-        vertical_accuracy = #{record.verticalAccuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="record.horizontalAccuracy != null">
-        horizontal_accuracy = #{record.horizontalAccuracy,jdbcType=DOUBLE},
+      <if test="record.latitude != null">
+        latitude = #{record.latitude,jdbcType=DOUBLE},
       </if>
     </set>
     <if test="_parameter != null">
@@ -318,22 +253,16 @@
     <!--@mbg.generated-->
     update device_info
     set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       code = #{record.code,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
-      address = #{record.address,jdbcType=VARCHAR},
-      point = #{record.point,jdbcType=VARCHAR},
-      enabled = #{record.enabled,jdbcType=INTEGER},
       range_code = #{record.rangeCode,jdbcType=VARCHAR},
-      latitude = #{record.latitude,jdbcType=DOUBLE},
+      enabled = #{record.enabled,jdbcType=INTEGER},
       longitude = #{record.longitude,jdbcType=DOUBLE},
-      accuracy = #{record.accuracy,jdbcType=DOUBLE},
-      altitude = #{record.altitude,jdbcType=DOUBLE},
-      vertical_accuracy = #{record.verticalAccuracy,jdbcType=DOUBLE},
-      horizontal_accuracy = #{record.horizontalAccuracy,jdbcType=DOUBLE}
+      latitude = #{record.latitude,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -342,17 +271,17 @@
     <!--@mbg.generated-->
     update device_info
     <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
-      </if>
       <if test="createUser != null">
         create_user = #{createUser,jdbcType=VARCHAR},
       </if>
       <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
       </if>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
@@ -360,35 +289,17 @@
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
       </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="point != null">
-        point = #{point,jdbcType=VARCHAR},
+      <if test="rangeCode != null">
+        range_code = #{rangeCode,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         enabled = #{enabled,jdbcType=INTEGER},
       </if>
-      <if test="rangeCode != null">
-        range_code = #{rangeCode,jdbcType=VARCHAR},
-      </if>
-      <if test="latitude != null">
-        latitude = #{latitude,jdbcType=DOUBLE},
-      </if>
       <if test="longitude != null">
         longitude = #{longitude,jdbcType=DOUBLE},
       </if>
-      <if test="accuracy != null">
-        accuracy = #{accuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="altitude != null">
-        altitude = #{altitude,jdbcType=DOUBLE},
-      </if>
-      <if test="verticalAccuracy != null">
-        vertical_accuracy = #{verticalAccuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="horizontalAccuracy != null">
-        horizontal_accuracy = #{horizontalAccuracy,jdbcType=DOUBLE},
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -396,41 +307,17 @@
   <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo">
     <!--@mbg.generated-->
     update device_info
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user = #{createUser,jdbcType=VARCHAR},
+    set create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
       code = #{code,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
-      address = #{address,jdbcType=VARCHAR},
-      point = #{point,jdbcType=VARCHAR},
-      enabled = #{enabled,jdbcType=INTEGER},
       range_code = #{rangeCode,jdbcType=VARCHAR},
-      latitude = #{latitude,jdbcType=DOUBLE},
+      enabled = #{enabled,jdbcType=INTEGER},
       longitude = #{longitude,jdbcType=DOUBLE},
-      accuracy = #{accuracy,jdbcType=DOUBLE},
-      altitude = #{altitude,jdbcType=DOUBLE},
-      vertical_accuracy = #{verticalAccuracy,jdbcType=DOUBLE},
-      horizontal_accuracy = #{horizontalAccuracy,jdbcType=DOUBLE}
+      latitude = #{latitude,jdbcType=DOUBLE}
     where id = #{id,jdbcType=BIGINT}
   </update>
-    <select id="selectByCondition" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from device_info
-        <where>
-            <if test="id != null">
-                and id = #{id,jdbcType=BIGINT}
-            </if>
-            <if test="code != null and code != ''">
-                and code like concat('%',#{code,jdbcType=VARCHAR},'%')
-            </if>
-        </where>
-        <if test="order != null and order != ''">
-            order by ${order}
-            <if test="sort != null and sort != ''">
-                ${sort}
-            </if>
-        </if>
-    </select>
+  <select id="selectByCondition" resultMap="BaseResultMap"></select>
 </mapper>
