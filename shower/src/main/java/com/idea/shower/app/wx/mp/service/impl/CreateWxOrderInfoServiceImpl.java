@@ -9,7 +9,6 @@ import com.idea.shower.app.commons.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.commons.db.module.pojo.GoodsInfo;
 import com.idea.shower.app.commons.db.module.pojo.OrderInfo;
 import com.idea.shower.app.commons.db.module.pojo.OrderItem;
-import com.idea.shower.app.wx.service.*;
 import com.idea.shower.web.webmvc.exception.DataParamsErrorResultRuntimeException;
 
 import java.math.BigDecimal;
