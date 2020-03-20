@@ -19,12 +19,12 @@ Page({
       //   if ("ok" == res.code) {
       //     console.log(res.data);
       //     var data = res.data;
-      //       com.idea.shower.shower.app.wx.setStorageSync('openId', data.openid);
-      //       com.idea.shower.shower.app.wx.switchTab({
+      //       wx.setStorageSync('openId', data.openid);
+      //       wx.switchTab({
       //         url: '/pages/list/list'
       //       })
       //      }else{
-      //        com.idea.shower.shower.app.wx.showToast({
+      //        wx.showToast({
       //          title: res.message,
       //          icon: "none",
       //          duration: 1000,

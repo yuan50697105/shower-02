@@ -29,7 +29,7 @@ Page({
           //      }
           // } else {
           //      // 在没有 open-type=getUserInfo 版本的兼容处理
-          //      com.idea.shower.shower.app.wx.getUserInfo({
+          //      wx.getUserInfo({
           //           success: res => {
           //                console.log(res)
           //                app.globalData.userInfo = res.userInfo
