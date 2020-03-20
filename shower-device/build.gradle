@@ -1,3 +1,4 @@
+group = 'com.idea.shower.app.device'
 dependencies {
 
 }

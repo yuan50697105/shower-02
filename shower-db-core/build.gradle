@@ -1,4 +1,4 @@
-group 'org.yuan.boot.com.idea.shower.shower.app.db'
+group 'com.idea.shower.shower.db'
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.13'

@@ -1,3 +1,4 @@
+group = 'com.idea.shower.app.db'
 dependencies {
     compile project(':shower-db-mybatis')
 }

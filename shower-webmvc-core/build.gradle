@@ -1,4 +1,4 @@
-group 'org.yuan.boot.webmvc'
+group 'com.idea.shower.web.webmvc'
 
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'

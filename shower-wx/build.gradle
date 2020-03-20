@@ -1,3 +1,4 @@
+group = 'com.idea.shower.app.wx'
 dependencies {
     compile group: 'com.github.binarywang', name: 'wx-java-mp-spring-boot-starter', version: '3.7.1.B'
     compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.7.1.B'

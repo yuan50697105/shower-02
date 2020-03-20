@@ -80,7 +80,7 @@ allprojects {
 
     bootJar {
         enabled = true
-        classifier = "${new Date().format("yyyyMMddHHmmss", TimeZone.getTimeZone("GMT+08:00"))}-exec"
+        classifier = "exec"
     }
 
     jar {
