@@ -9,7 +9,7 @@ import com.idea.shower.app.commons.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.commons.db.module.pojo.GoodsInfo;
 import com.idea.shower.app.commons.db.module.pojo.OrderInfo;
 import com.idea.shower.app.commons.db.module.pojo.OrderItem;
-import com.idea.shower.shower.app.wx.service.*;
+import com.idea.shower.app.wx.service.*;
 import com.idea.shower.web.webmvc.exception.DataParamsErrorResultRuntimeException;
 
 import java.math.BigDecimal;
@@ -26,7 +26,7 @@ import java.util.List;
  */
 @Component
 @AllArgsConstructor
-public class WxOrderInfoCreateServiceImpl implements WxOrderInfoCreateService {
+public class CreateWxOrderInfoServiceImpl implements CreateWxOrderInfoService {
     private OrderCodeService orderCodeService;
     private WxCustomerService wxCustomerService;
     private WxDeviceService wxDeviceService;

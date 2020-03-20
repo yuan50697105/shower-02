@@ -11,7 +11,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-02-03 11:55
  */
-public interface WxOrderInfoCreateService {
+public interface CreateWxOrderInfoService {
 
 
     OrderInfo createOrder(WxOrderInfo wxOrderInfo);

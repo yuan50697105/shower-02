@@ -1,9 +1,7 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
 import com.idea.shower.app.wx.mp.pojo.WxOrderInfo;
-import com.idea.shower.app.wx.mp.service.OrderCodeService;
-import com.idea.shower.app.wx.mp.service.WxCustomerService;
-import com.idea.shower.app.wx.mp.service.WxOrderInfoCreateService;
+import com.idea.shower.app.wx.mp.service.CreateWxOrderInfoService;
 import com.idea.shower.app.wx.mp.service.WxOrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,17 +25,15 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class WxOrderServiceImpl implements WxOrderService {
-    private WxOrderInfoCreateService wxOrderInfoCreateService;
-    private OrderCodeService orderCodeService;
-    private WxCustomerService wxCustomerService;
+    private CreateWxOrderInfoService createWxOrderInfoService;
     private OrderInfoDao orderInfoDao;
     private OrderItemDao orderItemDao;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result addOrder(WxOrderInfo wxOrderInfo) {
-        OrderInfo orderInfo = wxOrderInfoCreateService.createOrder(wxOrderInfo);
-        List<OrderItem> orderItems = wxOrderInfoCreateService.createRentalOrderItem(wxOrderInfo, orderInfo);
+        OrderInfo orderInfo = createWxOrderInfoService.createOrder(wxOrderInfo);
+        List<OrderItem> orderItems = createWxOrderInfoService.createRentalOrderItem(wxOrderInfo, orderInfo);
         orderInfoDao.save(orderInfo);
         orderItemDao.batchSave(orderItems);
         return ResultsUtils.ok();
