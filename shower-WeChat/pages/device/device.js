@@ -13,7 +13,25 @@ Page({
         "price":500,
         "cansellcountamount":30
       }
-    ]
+    ],
+    schoolMap: [{
+      code: 1,
+      text: '山科'
+    }, {
+      code: 2,
+      text: '青职'
+    }],
+    school: undefined,
+    schoolName: undefined,
+    statusMap: [{
+      code: 1,
+      text: '可以使用'
+    }, {
+      code: 2,
+      text: '不可使用'
+    }],
+    status: undefined,
+    statusName: undefined,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -69,5 +87,26 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  //选择学校
+  schoolSelectChange: function (e) {
+    let that = this;
+    let index = e.detail.value;
+    let data = this.data.schoolMap[index];
+    that.setData({
+      school: data.code,
+      schoolName: data.text
+    })
+  },
+  //选择机器使用状态
+  statusSelectChange: function (e) {
+    let that = this;
+    let index = e.detail.value;
+    let data = this.data.statusMap[index];
+    that.setData({
+      status: data.code,
+      statusName: data.text
+    })
   },
 })

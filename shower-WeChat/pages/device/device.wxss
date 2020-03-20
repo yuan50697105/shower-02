@@ -311,3 +311,13 @@
     -webkit-transform: rotate(225deg);
     transform: rotate(225deg);
 }
+
+.input{
+  height: 39px;
+  line-height: 39px;
+  font-size: 18px;
+}
+
+.phClass{
+  color: white;
+}
