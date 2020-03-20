@@ -1,7 +1,8 @@
 {
   "pages": [
+    "pages/device/device",
     "pages/list/list",
-    "pages/login/login",
+    "pages/auth/login/login",
     "pages/map/map",
     "pages/personal/personal",
     "pages/about/about"
@@ -18,7 +19,7 @@
     "borderStyle": "white",
     "list": [
       {
-        "pagePath": "pages/list/list",
+        "pagePath": "pages/device/device",
         "text": "首页",
         "iconPath": "static/image/tab/jiqi.png",
         "selectedIconPath": "static/image/tab/jiqi1.png"

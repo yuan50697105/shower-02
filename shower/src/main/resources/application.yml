@@ -6,9 +6,9 @@ server:
   port: 8001
 spring:
   datasource:
-    username: root
-    password: root
-    url: jdbc:mysql://localhost:3306/shower?serverTimezone=Asia/Shanghai
+    username: wcq
+    password: Wcq123456
+    url: jdbc:mysql://rm-2ze853397mhy2yl3nio.mysql.rds.aliyuncs.com:3306/shower?serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
   main:
