@@ -1,8 +1,8 @@
 package com.idea.shower.app.db.module.mapper;
 
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
-import com.idea.shower.app.db.module.pojo.GoodsInfo;
-import com.idea.shower.app.db.module.pojo.GoodsInfoExample;
+import com.idea.shower.app.db.module.pojo.PriceInfo;
+import com.idea.shower.app.db.module.pojo.PriceInfoExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -10,29 +10,29 @@ import java.util.List;
 
 @Mapper
 public interface GoodsInfoMapper extends BaseMapper {
-    long countByExample(GoodsInfoExample example);
+    long countByExample(PriceInfoExample example);
 
-    int deleteByExample(GoodsInfoExample example);
+    int deleteByExample(PriceInfoExample example);
 
     int deleteByPrimaryKey(Long id);
 
-    int insert(GoodsInfo record);
+    int insert(PriceInfo record);
 
-    int insertSelective(GoodsInfo record);
+    int insertSelective(PriceInfo record);
 
-    List<GoodsInfo> selectByExample(GoodsInfoExample example);
+    List<PriceInfo> selectByExample(PriceInfoExample example);
 
-    GoodsInfo selectByPrimaryKey(Long id);
+    PriceInfo selectByPrimaryKey(Long id);
 
-    int updateByExampleSelective(@Param("record") GoodsInfo record, @Param("example") GoodsInfoExample example);
+    int updateByExampleSelective(@Param("record") PriceInfo record, @Param("example") PriceInfoExample example);
 
-    int updateByExample(@Param("record") GoodsInfo record, @Param("example") GoodsInfoExample example);
+    int updateByExample(@Param("record") PriceInfo record, @Param("example") PriceInfoExample example);
 
-    int updateByPrimaryKeySelective(GoodsInfo record);
+    int updateByPrimaryKeySelective(PriceInfo record);
 
-    int updateByPrimaryKey(GoodsInfo record);
+    int updateByPrimaryKey(PriceInfo record);
 
-    GoodsInfo selectOneByTypeAndRangeCode(@Param("type") String type, @Param("rangeCode") String rangeCode);
+    PriceInfo selectOneByTypeAndRangeCode(@Param("type") String type, @Param("rangeCode") String rangeCode);
 
 
 }

@@ -12,7 +12,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class GoodsInfoQuery extends BaseDbQuery {
+public class PriceInfoQuery extends BaseDbQuery {
     private Long id;
     private String code;
     private Integer type;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.idea.shower.app.db.module.mapper.GoodsInfoMapper">
-    <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.GoodsInfo">
+    <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.PriceInfo">
         <!--@mbg.generated-->
         <!--@Table goods_info-->
         <id column="id" jdbcType="BIGINT" property="id"/>
@@ -87,7 +87,7 @@
         id, create_user, update_user, create_time, update_time, code, `type`, range_code,
         time_price, time_interval, time_unit, water_price, water_interval, water_unit, enabled
     </sql>
-    <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.GoodsInfoExample"
+    <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.PriceInfoExample"
             resultMap="BaseResultMap">
         <!--@mbg.generated-->
         select
@@ -115,14 +115,14 @@
         delete from goods_info
         where id = #{id,jdbcType=BIGINT}
     </delete>
-    <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.GoodsInfoExample">
+    <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.PriceInfoExample">
         <!--@mbg.generated-->
         delete from goods_info
         <if test="_parameter != null">
             <include refid="Example_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.GoodsInfo">
+    <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo">
         <!--@mbg.generated-->
         insert into goods_info (id, create_user, update_user,
         create_time, update_time, code,
@@ -137,7 +137,7 @@
         #{waterInterval,jdbcType=DOUBLE}, #{waterUnit,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER}
         )
     </insert>
-    <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.GoodsInfo">
+    <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo">
         <!--@mbg.generated-->
         insert into goods_info
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -235,7 +235,7 @@
             </if>
         </trim>
     </insert>
-    <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.GoodsInfoExample"
+    <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.PriceInfoExample"
             resultType="java.lang.Long">
         <!--@mbg.generated-->
         select count(*) from goods_info
@@ -319,7 +319,7 @@
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.GoodsInfo">
+    <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo">
         <!--@mbg.generated-->
         update goods_info
         <set>
@@ -368,7 +368,7 @@
         </set>
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.GoodsInfo">
+    <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo">
         <!--@mbg.generated-->
         update goods_info
         set create_user = #{createUser,jdbcType=VARCHAR},

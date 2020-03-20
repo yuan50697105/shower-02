@@ -2,7 +2,7 @@ package com.idea.shower.app.db.module.dao;
 
 
 import com.idea.shower.app.db.commons.dao.BaseDao;
-import com.idea.shower.app.db.module.pojo.GoodsInfo;
+import com.idea.shower.app.db.module.pojo.PriceInfo;
 
 import java.util.Optional;
 
@@ -12,8 +12,8 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 20:18
  */
-public interface GoodsInfoDao extends BaseDao<GoodsInfo> {
-    Optional<GoodsInfo> getFromTheirPricesByRangeCode(String rangeCode);
+public interface GoodsInfoDao extends BaseDao<PriceInfo> {
+    Optional<PriceInfo> getFromTheirPricesByRangeCode(String rangeCode);
 
-    Optional<GoodsInfo> getRenewalPriceByRangeCode(String rangeCode);
+    Optional<PriceInfo> getRenewalPriceByRangeCode(String rangeCode);
 }

@@ -90,8 +90,8 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 OrderItem item = orderItem.get();
                 Date continueEndTime = new Date();
                 if (GoodsUtils.isProduceContinueTimeUse(item.getEndTime(), continueEndTime) || GoodsUtils.isProduceContinueWaterUse(wxOrderInfo.getWaterUse(), item.getWaterUse())) {
-                    GoodsInfo goodsInfo = goodsInfoDao.getRenewalPriceByRangeCode(item.getRangeCode()).orElseThrow(() -> new ResultRuntimeException(ResultUtils.goodsInfoNotExistError()));
-                    OrderItem continueOrderItem = createContinueOrderItem(item, continueEndTime, wxOrderInfo, orderInfo, goodsInfo);
+                    PriceInfo priceInfo = goodsInfoDao.getRenewalPriceByRangeCode(item.getRangeCode()).orElseThrow(() -> new ResultRuntimeException(ResultUtils.goodsInfoNotExistError()));
+                    OrderItem continueOrderItem = createContinueOrderItem(item, continueEndTime, wxOrderInfo, orderInfo, priceInfo);
                     orderItemDao.save(continueOrderItem);
                 }
             }
@@ -229,9 +229,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         orderItem.setDeviceCode(wxOrderInfo.getDeviceCode());
         orderItem.setDeviceType(wxOrderInfo.getType());
         orderItem.setRangeCode(wxOrderInfo.getRangeCode());
-        Optional<GoodsInfo> goodsInfo = goodsInfoDao.getFromTheirPricesByRangeCode(wxOrderInfo.getRangeCode());
+        Optional<PriceInfo> goodsInfo = goodsInfoDao.getFromTheirPricesByRangeCode(wxOrderInfo.getRangeCode());
         if (goodsInfo.isPresent()) {
-            GoodsInfo value = goodsInfo.get();
+            PriceInfo value = goodsInfo.get();
             orderItem.setGoodsId(value.getId());
             orderItem.setGoodsType(Integer.valueOf(value.getType()));
             orderItem.setTimePrice(value.getTimePrice());
@@ -256,10 +256,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param continueEndTime 结束时间
      * @param wxOrderInfo     订单信息封装
      * @param orderInfo       订单信息
-     * @param goodsInfo       定价信息
+     * @param priceInfo       定价信息
      * @return 额外费用子项
      */
-    private OrderItem createContinueOrderItem(OrderItem rentalOrderItem, Date continueEndTime, WxOrderInfo wxOrderInfo, OrderInfo orderInfo, GoodsInfo goodsInfo) {
+    private OrderItem createContinueOrderItem(OrderItem rentalOrderItem, Date continueEndTime, WxOrderInfo wxOrderInfo, OrderInfo orderInfo, PriceInfo priceInfo) {
         OrderItem orderItem = new OrderItem();
         orderItem.setOrderId(orderInfo.getId());
         orderItem.setOrderNo(rentalOrderItem.getOrderNo());
@@ -267,16 +267,16 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         orderItem.setDeviceCode(rentalOrderItem.getDeviceCode());
         orderItem.setDeviceType(rentalOrderItem.getDeviceType());
         orderItem.setRangeCode(rentalOrderItem.getRangeCode());
-        orderItem.setGoodsId(goodsInfo.getId());
-        orderItem.setGoodsType(Integer.valueOf(goodsInfo.getType()));
-        orderItem.setTimePrice(goodsInfo.getTimePrice());
-        orderItem.setTimeInterval(goodsInfo.getTimeInterval());
-        orderItem.setTimeUnit(goodsInfo.getTimeUnit());
+        orderItem.setGoodsId(priceInfo.getId());
+        orderItem.setGoodsType(Integer.valueOf(priceInfo.getType()));
+        orderItem.setTimePrice(priceInfo.getTimePrice());
+        orderItem.setTimeInterval(priceInfo.getTimeInterval());
+        orderItem.setTimeUnit(priceInfo.getTimeUnit());
         orderItem.setStartTime(rentalOrderItem.getEndTime());
         orderItem.setEndTime(continueEndTime);
         orderItem.setTimeUse(GoodsUtils.getTimeUse(rentalOrderItem.getEndTime(), continueEndTime, orderItem.getTimeUnit()));
-        orderItem.setWaterInterval(goodsInfo.getWaterInterval());
-        orderItem.setWaterUnit(goodsInfo.getWaterUnit());
+        orderItem.setWaterInterval(priceInfo.getWaterInterval());
+        orderItem.setWaterUnit(priceInfo.getWaterUnit());
         orderItem.setWaterUse(GoodsUtils.getWaterUse(rentalOrderItem.getWaterUse(), wxOrderInfo.getWaterUse()));
         orderItem.setTotalPrice(GoodsUtils.getTotalPrice(orderItem.getWaterUse(), orderItem.getWaterInterval(), orderItem.getWaterPrice(), orderItem.getTimeUse(), orderItem.getTimeInterval(), orderItem.getTimePrice()));
         return orderItem;

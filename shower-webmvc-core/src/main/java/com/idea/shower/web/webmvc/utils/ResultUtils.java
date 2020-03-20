@@ -99,7 +99,7 @@ public class ResultUtils {
         return data(new ConditionPageResult(pageResult, condition));
     }
 
-    protected static class ResultConstants {
+    public static class ResultConstants {
         public final static Integer OK_CODE = 200;
         public final static String OK_MESSAGE = "操作成功";
         public final static Integer SYSTEM_ERROR = 500;

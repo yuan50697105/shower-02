@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GoodsInfo extends BaseDbEntity {
+public class PriceInfo extends BaseDbEntity {
     /**
      * 编号
      */
