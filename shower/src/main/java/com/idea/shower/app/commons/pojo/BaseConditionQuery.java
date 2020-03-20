@@ -19,15 +19,4 @@ public class BaseConditionQuery extends BaseDbCoreQuery {
     private String createUser;
     private Date creatDateStart;
     private Date createDateEnd;
-
-    public BaseConditionQuery() {
-    }
-
-    public BaseConditionQuery(int page, int size) {
-        super(page, size);
-    }
-
-    public BaseConditionQuery(int page, int size, String order, String sort) {
-        super(page, size, order, sort);
-    }
 }

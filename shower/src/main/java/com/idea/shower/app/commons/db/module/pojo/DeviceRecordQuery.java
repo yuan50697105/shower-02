@@ -12,19 +12,9 @@ import com.idea.shower.app.commons.pojo.BaseConditionQuery;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class DeviceRecordQueryBaseConditionQuery extends BaseConditionQuery {
+public class DeviceRecordQuery extends BaseConditionQuery {
     private Long deviceId;
     private String deviceCode;
     private Integer type;
 
-    public DeviceRecordQueryBaseConditionQuery() {
-    }
-
-    public DeviceRecordQueryBaseConditionQuery(int page, int size) {
-        super(page, size);
-    }
-
-    public DeviceRecordQueryBaseConditionQuery(int page, int size, String order, String sort) {
-        super(page, size, order, sort);
-    }
 }

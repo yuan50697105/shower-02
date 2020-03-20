@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.idea.shower.app.commons.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.commons.db.module.pojo.AdminUser;
-import com.idea.shower.app.commons.db.module.pojo.AdminUserQueryBaseConditionQuery;import com.idea.shower.app.commons.db.module.pojo.AdminUserExample;
+import com.idea.shower.app.commons.db.module.pojo.AdminUserQuery;import com.idea.shower.app.commons.db.module.pojo.AdminUserExample;
 
 @Mapper
 public interface AdminUserMapper extends BaseMapper {
@@ -31,5 +31,5 @@ public interface AdminUserMapper extends BaseMapper {
 
     int updateByPrimaryKey(AdminUser record);
 
-    List<AdminUser> selectByCondition(AdminUserQueryBaseConditionQuery condition);
+    List<AdminUser> selectByCondition(AdminUserQuery condition);
 }

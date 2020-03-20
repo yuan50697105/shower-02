@@ -12,19 +12,10 @@ import com.idea.shower.app.commons.pojo.BaseConditionQuery;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class CustomerInfoQueryBaseConditionQuery extends BaseConditionQuery {
+public class CustomerInfoQuery extends BaseConditionQuery {
     private Long id;
     private String nickName;
     private String phone;
 
-    public CustomerInfoQueryBaseConditionQuery() {
-    }
 
-    public CustomerInfoQueryBaseConditionQuery(int page, int size) {
-        super(page, size);
-    }
-
-    public CustomerInfoQueryBaseConditionQuery(int page, int size, String order, String sort) {
-        super(page, size, order, sort);
-    }
 }

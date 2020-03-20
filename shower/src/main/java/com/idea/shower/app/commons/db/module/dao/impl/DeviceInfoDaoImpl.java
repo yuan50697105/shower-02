@@ -9,7 +9,7 @@ import com.idea.shower.db.mybaits.pojo.PageResult;
 import com.idea.shower.app.commons.db.module.dao.DeviceInfoDao;
 import com.idea.shower.app.commons.db.module.mapper.DeviceInfoMapper;
 import com.idea.shower.app.commons.db.module.pojo.DeviceInfo;
-import com.idea.shower.app.commons.db.module.pojo.DeviceInfoQueryBaseConditionQuery;
+import com.idea.shower.app.commons.db.module.pojo.DeviceInfoQuery;
 
 import java.util.Optional;
 
@@ -29,7 +29,7 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     }
 
     @Override
-    public PageResult<DeviceInfo> selectPage(DeviceInfoQueryBaseConditionQuery condition) {
+    public PageResult<DeviceInfo> selectPage(DeviceInfoQuery condition) {
         return pageResult(condition, baseMapper()::selectByCondition);
     }
 

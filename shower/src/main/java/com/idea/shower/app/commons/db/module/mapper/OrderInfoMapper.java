@@ -5,7 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import com.idea.shower.app.commons.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.commons.db.module.pojo.OrderInfo;
-import com.idea.shower.app.commons.db.module.pojo.OrderInfoQueryBaseConditionQuery;import com.idea.shower.app.commons.db.module.pojo.OrderInfoExample;
+import com.idea.shower.app.commons.db.module.pojo.OrderInfoQuery;import com.idea.shower.app.commons.db.module.pojo.OrderInfoExample;
 
 @Mapper
 public interface OrderInfoMapper extends BaseMapper {
@@ -31,5 +31,5 @@ public interface OrderInfoMapper extends BaseMapper {
 
     int updateByPrimaryKey(OrderInfo record);
 
-    List<OrderInfo> selectByCondition(OrderInfoQueryBaseConditionQuery condition);
+    List<OrderInfo> selectByCondition(OrderInfoQuery condition);
 }
