@@ -5,8 +5,10 @@ var user = require('../../../utils/user.js');
 var app = getApp();
 Page({
   onLoad: function(options) {
-    // 页面初始化 options为页面跳转所带来的参数
-    // 页面渲染完成
+    this.data.userInfo = undefined
+    user.beforLogin().then((res) => {
+      this.data.code = res.code
+    })
 
   },
   onReady: function() {
@@ -23,31 +25,33 @@ Page({
     // 页面关闭
 
   },
-  wxLogin: function(e) {
-    if (e.detail.userInfo == undefined) {
+  wxLogin: function (e) {
+    if (e.detail.encryptedData == undefined) {
       app.globalData.hasLogin = false;
       util.showErrorToast('微信登录失败');
-      return;
+      wx.reLaunch({
+        url: '/pages/device/device'
+      });
+      return
     }
-
-    user.checkLogin().catch(() => {
-
-      user.loginByWeixin(e.detail.userInfo).then(res => {
+    this.data.encryptedPhone = e.detail
+    user.checkSession().then(() => {
+      user.loginByWeixin(this.data.code, this.data.userInfo, this.data.encryptedPhone).then(res => {
         app.globalData.hasLogin = true;
-
+        //推送订阅通知
+        // user.requestAllMsg();
         wx.navigateBack({
           delta: 1
         })
       }).catch((err) => {
         app.globalData.hasLogin = false;
         util.showErrorToast('微信登录失败');
+        wx.reLaunch({
+          url: '/pages/device/device'
+        });
       });
 
     });
+
   },
-  accountLogin: function() {
-    wx.navigateTo({
-      url: "/pages/auth/accountLogin/accountLogin"
-    });
-  }
 })

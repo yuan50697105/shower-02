@@ -71,6 +71,16 @@ function loginByWeixin(userInfo) {
   });
 }
 
+function beforLogin() {
+  return new Promise(function (resolve, reject) {
+    return login().then((res) => {
+      resolve(res);
+    }).catch((err) => {
+      reject(err);
+    })
+  });
+}
+
 /**
  * 判断用户是否登录
  */
@@ -91,4 +101,6 @@ function checkLogin() {
 module.exports = {
   loginByWeixin,
   checkLogin,
+  beforLogin,
+  checkSession
 };

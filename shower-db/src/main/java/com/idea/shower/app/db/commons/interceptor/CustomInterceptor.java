@@ -2,7 +2,6 @@ package com.idea.shower.app.db.commons.interceptor;
 
 import cn.hutool.core.lang.Snowflake;
 import com.idea.shower.app.db.commons.interceptor.annotation.*;
-import com.idea.shower.shower.app.db.commons.interceptor.annotation.*;
 import lombok.AllArgsConstructor;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.MappedStatement;
