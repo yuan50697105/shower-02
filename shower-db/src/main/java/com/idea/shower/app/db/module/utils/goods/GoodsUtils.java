@@ -1,7 +1,7 @@
 package com.idea.shower.app.db.module.utils.goods;
 
+import com.idea.shower.app.db.module.constants.goods.GoodsTimeUnit;
 import lombok.experimental.UtilityClass;
-import org.yuan.boot.my.shower.app.db.core.constants.goods.GoodsTimeUnit;
 
 import java.math.BigDecimal;
 import java.util.Calendar;
