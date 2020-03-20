@@ -4,7 +4,6 @@ import com.idea.shower.app.db.commons.pojo.BaseDbQuery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
 
 /**
  * @program: learning-demo-java-01
@@ -14,7 +13,7 @@ import lombok.experimental.SuperBuilder;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@SuperBuilder
+
 @NoArgsConstructor
 public class AdminUserQuery extends BaseDbQuery {
     private String username;
