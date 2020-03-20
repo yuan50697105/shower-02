@@ -3,10 +3,9 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.CustomerInfo;
 import com.idea.shower.app.db.module.pojo.CustomerInfoExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 @Mapper
 public interface CustomerInfoMapper extends BaseMapper {
@@ -33,6 +32,4 @@ public interface CustomerInfoMapper extends BaseMapper {
     int updateByPrimaryKey(CustomerInfo record);
 
     CustomerInfo selectOneByUnionId(@Param("unionId") String unionId);
-
-
 }

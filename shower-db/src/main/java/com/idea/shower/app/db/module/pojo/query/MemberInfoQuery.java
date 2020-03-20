@@ -1,4 +1,4 @@
-package com.idea.shower.app.db.module.pojo;
+package com.idea.shower.app.db.module.pojo.query;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbQuery;
 import lombok.Data;
@@ -8,12 +8,14 @@ import lombok.EqualsAndHashCode;
  * @program: shower-01
  * @description:
  * @author: yuane
- * @create: 2020-01-23 13:44
+ * @create: 2020-02-03 11:52
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class DeviceInfoQuery extends BaseDbQuery {
-    private Long id;
+public class MemberInfoQuery extends BaseDbQuery {
     private String code;
-    private Integer enabled;
+    private Long customerId;
+    private String customerOpenId;
+    private String customerUnionId;
+
 }

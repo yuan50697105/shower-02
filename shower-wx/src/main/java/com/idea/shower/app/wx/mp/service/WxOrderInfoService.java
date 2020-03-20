@@ -1,7 +1,7 @@
 package com.idea.shower.app.wx.mp.service;
 
 
-import com.idea.shower.app.db.module.pojo.OrderInfoQuery;
+import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.app.wx.mp.pojo.WxOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;

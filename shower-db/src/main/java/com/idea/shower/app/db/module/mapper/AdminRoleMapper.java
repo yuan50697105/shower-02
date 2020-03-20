@@ -1,15 +1,11 @@
 package com.idea.shower.app.db.module.mapper;
 
-
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AdminRole;
 import com.idea.shower.app.db.module.pojo.AdminRoleExample;
-import com.idea.shower.app.db.module.pojo.AdminRoleQuery;
-import org.apache.ibatis.annotations.Mapper;
+import java.util.Collection;import java.util.List;
+import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.Collection;
-import java.util.List;
 
 @Mapper
 public interface AdminRoleMapper extends BaseMapper {

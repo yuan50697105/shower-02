@@ -3,7 +3,7 @@ package com.idea.shower.app.db.module.dao;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import com.idea.shower.app.db.commons.dao.BaseDao;
 import com.idea.shower.app.db.module.pojo.DeviceInfo;
-import com.idea.shower.app.db.module.pojo.DeviceInfoQuery;
+import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
 
 import java.util.Optional;
 

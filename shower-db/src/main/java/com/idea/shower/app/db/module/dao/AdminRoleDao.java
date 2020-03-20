@@ -3,7 +3,7 @@ package com.idea.shower.app.db.module.dao;
 
 import com.idea.shower.app.db.commons.dao.BaseDao;
 import com.idea.shower.app.db.module.pojo.AdminRole;
-import com.idea.shower.app.db.module.pojo.AdminRoleQuery;
+import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 
 import java.util.List;

@@ -12,7 +12,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 20:18
  */
-public interface GoodsInfoDao extends BaseDao<PriceInfo> {
+public interface PriceInfoDao extends BaseDao<PriceInfo> {
     Optional<PriceInfo> getFromTheirPricesByRangeCode(String rangeCode);
 
     Optional<PriceInfo> getRenewalPriceByRangeCode(String rangeCode);

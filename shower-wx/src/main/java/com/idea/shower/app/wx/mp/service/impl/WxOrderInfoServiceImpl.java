@@ -10,6 +10,7 @@ import com.idea.shower.app.db.module.constants.order.OrderStatus;
 import com.idea.shower.app.db.module.constants.order.OrderType;
 import com.idea.shower.app.db.module.dao.*;
 import com.idea.shower.app.db.module.pojo.*;
+import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.app.db.module.utils.goods.GoodsUtils;
 import com.idea.shower.app.wx.mp.pojo.WxOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
@@ -43,7 +44,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private static final String PAY_FAIL = "FAIL";
     private CustomerInfoDao customerInfoDao;
     private OrderInfoDao orderInfoDao;
-    private GoodsInfoDao goodsInfoDao;
+    private PriceInfoDao priceInfoDao;
     private OrderItemDao orderItemDao;
     private WxPayService wxPayService;
     private DeviceOrderDao deviceOrderDao;
@@ -90,7 +91,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 OrderItem item = orderItem.get();
                 Date continueEndTime = new Date();
                 if (GoodsUtils.isProduceContinueTimeUse(item.getEndTime(), continueEndTime) || GoodsUtils.isProduceContinueWaterUse(wxOrderInfo.getWaterUse(), item.getWaterUse())) {
-                    PriceInfo priceInfo = goodsInfoDao.getRenewalPriceByRangeCode(item.getRangeCode()).orElseThrow(() -> new ResultRuntimeException(ResultUtils.goodsInfoNotExistError()));
+                    PriceInfo priceInfo = priceInfoDao.getRenewalPriceByRangeCode(item.getRangeCode()).orElseThrow(() -> new ResultRuntimeException(ResultUtils.goodsInfoNotExistError()));
                     OrderItem continueOrderItem = createContinueOrderItem(item, continueEndTime, wxOrderInfo, orderInfo, priceInfo);
                     orderItemDao.save(continueOrderItem);
                 }
@@ -229,7 +230,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         orderItem.setDeviceCode(wxOrderInfo.getDeviceCode());
         orderItem.setDeviceType(wxOrderInfo.getType());
         orderItem.setRangeCode(wxOrderInfo.getRangeCode());
-        Optional<PriceInfo> goodsInfo = goodsInfoDao.getFromTheirPricesByRangeCode(wxOrderInfo.getRangeCode());
+        Optional<PriceInfo> goodsInfo = priceInfoDao.getFromTheirPricesByRangeCode(wxOrderInfo.getRangeCode());
         if (goodsInfo.isPresent()) {
             PriceInfo value = goodsInfo.get();
             orderItem.setGoodsId(value.getId());

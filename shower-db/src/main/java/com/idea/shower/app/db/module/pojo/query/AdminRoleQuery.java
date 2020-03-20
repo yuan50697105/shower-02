@@ -1,4 +1,4 @@
-package com.idea.shower.app.db.module.pojo;
+package com.idea.shower.app.db.module.pojo.query;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbQuery;
 import lombok.Data;
@@ -16,8 +16,6 @@ import lombok.experimental.SuperBuilder;
 @Data
 @SuperBuilder
 @NoArgsConstructor
-public class AdminUserQuery extends BaseDbQuery {
-    private String username;
+public class AdminRoleQuery extends BaseDbQuery {
     private String name;
-    private Integer enabled;
 }

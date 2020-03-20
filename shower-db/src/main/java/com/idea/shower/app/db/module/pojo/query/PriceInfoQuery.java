@@ -1,4 +1,4 @@
-package com.idea.shower.app.db.module.pojo;
+package com.idea.shower.app.db.module.pojo.query;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbQuery;
 import lombok.Data;

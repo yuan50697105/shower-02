@@ -8,7 +8,7 @@ import com.idea.shower.app.db.module.constants.order.OrderStatus;
 import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import com.idea.shower.app.db.module.mapper.OrderInfoMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
-import com.idea.shower.app.db.module.pojo.OrderInfoQuery;
+import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -2,7 +2,7 @@ package com.idea.shower.app.db.module.dao.impl;
 
 import com.idea.shower.app.db.module.dao.DeviceInfoDao;
 import com.idea.shower.app.db.module.pojo.DeviceInfo;
-import com.idea.shower.app.db.module.pojo.DeviceInfoQuery;
+import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.mapper.DeviceInfoMapper;

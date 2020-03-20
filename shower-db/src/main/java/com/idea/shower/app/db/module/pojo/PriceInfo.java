@@ -3,6 +3,7 @@ package com.idea.shower.app.db.module.pojo;
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
 import lombok.*;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Data
@@ -10,7 +11,7 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PriceInfo extends BaseDbEntity {
+public class PriceInfo extends BaseDbEntity implements Serializable {
     /**
      * 编号
      */
@@ -60,4 +61,10 @@ public class PriceInfo extends BaseDbEntity {
      * 有效
      */
     private Integer enabled;
+
+    private static final long serialVersionUID = 1L;
+
+    public static PriceInfoBuilder builder() {
+        return new PriceInfoBuilder();
+    }
 }

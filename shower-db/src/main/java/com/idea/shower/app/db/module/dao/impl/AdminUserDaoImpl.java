@@ -8,7 +8,7 @@ import com.idea.shower.app.db.module.dao.AdminUserDao;
 import com.idea.shower.app.db.module.mapper.AdminUserMapper;
 import com.idea.shower.app.db.module.pojo.AdminUser;
 import com.idea.shower.app.db.module.pojo.AdminUserExample;
-import com.idea.shower.app.db.module.pojo.AdminUserQuery;
+import com.idea.shower.app.db.module.pojo.query.AdminUserQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

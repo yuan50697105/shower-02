@@ -7,7 +7,7 @@ import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.dao.AdminRoleDao;
 import com.idea.shower.app.db.module.mapper.AdminRoleMapper;
 import com.idea.shower.app.db.module.pojo.AdminRole;
-import com.idea.shower.app.db.module.pojo.AdminRoleQuery;
+import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;

@@ -6,7 +6,7 @@ import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.dao.AdminPermissionDao;
 import com.idea.shower.app.db.module.mapper.AdminPermissionMapper;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
-import com.idea.shower.app.db.module.pojo.AdminPermissionQuery;
+import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
