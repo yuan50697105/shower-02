@@ -1,6 +1,6 @@
 package com.idea.shower.app.db.module.pojo;
 
-import com.idea.shower.app.commons.pojo.BaseEntity;
+import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class OrderInfo extends BaseEntity implements Serializable {
+public class OrderInfo extends BaseDbEntity implements Serializable {
     /**
      * type
      */

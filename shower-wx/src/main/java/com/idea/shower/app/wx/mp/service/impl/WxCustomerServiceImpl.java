@@ -4,12 +4,12 @@ import cn.binarywang.wx.miniapp.api.WxMaService;
 import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
-import com.idea.shower.app.commons.db.module.dao.CustomerInfoDao;
-import com.idea.shower.app.commons.db.module.pojo.CustomerInfo;
-import com.idea.shower.app.commons.utils.Results;
+import com.idea.shower.app.db.module.dao.CustomerInfoDao;
+import com.idea.shower.app.db.module.pojo.CustomerInfo;
 import com.idea.shower.app.wx.mp.service.WxCustomerConverter;
 import com.idea.shower.app.wx.mp.service.WxCustomerService;
 import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.utils.ResultsUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
@@ -55,7 +55,7 @@ public class WxCustomerServiceImpl implements WxCustomerService {
             customerInfo.setUnionId(sessionResult.getOpenid());
             customerInfoDao.save(customerInfo);
         }
-        return Results.data(sessionResult);
+        return ResultsUtils.data(sessionResult);
     }
 
 
@@ -80,7 +80,7 @@ public class WxCustomerServiceImpl implements WxCustomerService {
             customerInfo.setPhone(phoneNoInfo.getPhoneNumber());
             customerInfoDao.updateById(customerInfo);
         }
-        return Results.ok();
+        return ResultsUtils.ok();
     }
 
     @Override

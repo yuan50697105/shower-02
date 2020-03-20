@@ -1,8 +1,8 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
+import com.idea.shower.app.db.module.dao.DeviceInfoDao;
+import com.idea.shower.app.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.wx.mp.service.WxDeviceService;
-import com.idea.shower.app.commons.db.module.dao.DeviceInfoDao;
-import com.idea.shower.app.commons.db.module.pojo.DeviceInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

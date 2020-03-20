@@ -6,6 +6,6 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public abstract class BaseDbDbEntity extends BaseDbCoreEntity {
+public abstract class BaseDbEntity extends BaseDbCoreEntity {
 
 }

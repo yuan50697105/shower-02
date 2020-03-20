@@ -1,6 +1,6 @@
 package com.idea.shower.app.db.module.pojo;
 
-import com.idea.shower.app.commons.pojo.BaseEntity;
+import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class DeviceInfo extends BaseEntity implements Serializable {
+public class DeviceInfo extends BaseDbEntity implements Serializable {
     /**
      * 设备编号
      */

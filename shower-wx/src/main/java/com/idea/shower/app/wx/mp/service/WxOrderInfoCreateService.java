@@ -1,5 +1,7 @@
 package com.idea.shower.app.wx.mp.service;
 
+import com.idea.shower.app.db.module.pojo.OrderInfo;
+import com.idea.shower.app.db.module.pojo.OrderItem;
 import com.idea.shower.app.wx.mp.pojo.WxOrderInfo;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.idea.shower.app.db.module.pojo;
 
-import com.idea.shower.db.mybaits.pojo.BaseDbQuery;
+import com.idea.shower.app.db.commons.pojo.BaseDbQuery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

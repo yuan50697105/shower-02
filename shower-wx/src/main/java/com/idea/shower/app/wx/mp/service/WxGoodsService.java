@@ -1,6 +1,7 @@
 package com.idea.shower.app.wx.mp.service;
 
-import com.idea.shower.app.commons.db.module.pojo.GoodsInfo;
+
+import com.idea.shower.app.db.module.pojo.GoodsInfo;
 
 import java.util.Optional;
 

@@ -1,16 +1,16 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
+import com.idea.shower.app.db.module.dao.OrderInfoDao;
+import com.idea.shower.app.db.module.dao.OrderItemDao;
+import com.idea.shower.app.db.module.pojo.OrderInfo;
+import com.idea.shower.app.db.module.pojo.OrderItem;
 import com.idea.shower.app.wx.mp.pojo.WxOrderInfo;
 import com.idea.shower.app.wx.mp.service.OrderCodeService;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoCreateService;
 import com.idea.shower.app.wx.mp.service.WxOrderService;
-import com.idea.shower.app.commons.db.module.dao.OrderInfoDao;
-import com.idea.shower.app.commons.db.module.dao.OrderItemDao;
-import com.idea.shower.app.commons.db.module.pojo.OrderInfo;
-import com.idea.shower.app.commons.db.module.pojo.OrderItem;
-import com.idea.shower.app.commons.utils.Results;
 import com.idea.shower.app.wx.mp.service.WxCustomerService;
 import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.web.webmvc.utils.ResultsUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +40,7 @@ public class WxOrderServiceImpl implements WxOrderService {
         List<OrderItem> orderItems = wxOrderInfoCreateService.createRentalOrderItem(wxOrderInfo, orderInfo);
         orderInfoDao.save(orderInfo);
         orderItemDao.batchSave(orderItems);
-        return Results.ok();
+        return ResultsUtils.ok();
     }
 
     @Override
