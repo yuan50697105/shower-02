@@ -17,14 +17,5 @@ public class GoodsInfoQuery extends BaseConditionQuery {
     private String code;
     private Integer type;
 
-    public GoodsInfoQuery() {
-    }
 
-    public GoodsInfoQuery(int page, int size) {
-        super(page, size);
-    }
-
-    public GoodsInfoQuery(int page, int size, String order, String sort) {
-        super(page, size, order, sort);
-    }
 }
