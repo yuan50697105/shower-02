@@ -1,9 +1,9 @@
-group 'org.yuan.bootd.db'
+group 'org.yuan.bootd.com.idea.shower.shower.app.db'
 
 dependencies {
     compile project(':db-core')
     compile group: 'com.alibaba', name: 'druid-spring-boot-starter', version: '1.1.21'
-    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.1'
+    compile group: 'org.mybatis.spring.boot', name: 'mybatis-spring-boot-starter', version: '2.1.2'
     compile group: 'com.github.pagehelper', name: 'pagehelper-spring-boot-starter', version: '1.2.13'
     compile group: 'mysql', name: 'mysql-connector-java'
     compile group: 'com.oracle.ojdbc', name: 'ojdbc8'

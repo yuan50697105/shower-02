@@ -1,0 +1,21 @@
+wx:
+  miniapp:
+    appid:
+    aes-key:
+    msg-data-format: JSON
+    secret:
+    token:
+  pay:
+    app-id:
+    key-path:
+    mch-id:
+    mch-key:
+    sub-app-id:
+    sub-mch-id:
+  mp:
+    aes-key:
+    app-id:
+    config-storage:
+      type: memory
+    secret:
+    token:

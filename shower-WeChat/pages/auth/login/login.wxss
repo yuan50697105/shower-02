@@ -7,7 +7,7 @@
   background: #fff;
 }
 
-.wx-login-btn {
+.com.idea.shower.shower.app.wx-login-btn {
   margin: 60rpx 0 40rpx 0;
   height: 96rpx;
   line-height: 96rpx;

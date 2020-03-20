@@ -90,7 +90,7 @@
         </block>
         <block wx:elif="{{item.tag == 'table'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse1" data="{{item}}"/>                 
                 </block>
             </view>
@@ -99,7 +99,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse1" data="{{item}}"/>                 
                 </block>
             </view>
@@ -107,7 +107,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse1" data="{{item}}"/>                 
             </block>
         </view>
@@ -174,7 +174,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse2" data="{{item}}"/>                 
                 </block>
             </view>
@@ -182,7 +182,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse2" data="{{item}}"/>                 
             </block>
         </view>
@@ -248,7 +248,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse3" data="{{item}}"/>                 
                 </block>
             </view>
@@ -256,7 +256,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse3" data="{{item}}"/>                 
             </block>
         </view>
@@ -321,7 +321,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse4" data="{{item}}"/>                 
                 </block>
             </view>
@@ -329,7 +329,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse4" data="{{item}}"/>                 
             </block>
         </view>
@@ -394,7 +394,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse5" data="{{item}}"/>                 
                 </block>
             </view>
@@ -402,7 +402,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse5" data="{{item}}"/>                 
             </block>
         </view>
@@ -467,7 +467,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse6" data="{{item}}"/>                 
                 </block>
             </view>
@@ -475,7 +475,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse6" data="{{item}}"/>                 
             </block>
         </view>
@@ -540,7 +540,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse7" data="{{item}}"/>                 
                 </block>
             </view>
@@ -548,7 +548,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse7" data="{{item}}"/>                 
             </block>
         </view>
@@ -612,7 +612,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse8" data="{{item}}"/>                 
                 </block>
             </view>
@@ -620,7 +620,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse8" data="{{item}}"/>                 
             </block>
         </view>
@@ -685,7 +685,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse9" data="{{item}}"/>                 
                 </block>
             </view>
@@ -693,7 +693,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse9" data="{{item}}"/>                 
             </block>
         </view>
@@ -758,7 +758,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse10" data="{{item}}"/>                 
                 </block>
             </view>
@@ -766,7 +766,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse10" data="{{item}}"/>                 
             </block>
         </view>
@@ -831,7 +831,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse11" data="{{item}}"/>                 
                 </block>
             </view>
@@ -839,7 +839,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse11" data="{{item}}"/>                 
             </block>
         </view>
@@ -904,7 +904,7 @@
         <!--其他块级标签-->
         <block wx:elif="{{item.tagType == 'block'}}">
             <view class="{{item.classStr}} wxParse-{{item.tag}}" style="{{item.styleStr}}">
-                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+                <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                     <template is="wxParse12" data="{{item}}"/>                 
                 </block>
             </view>
@@ -912,7 +912,7 @@
 
         <!--内联标签-->
         <view wx:else class="{{item.classStr}} wxParse-{{item.tag}} wxParse-{{item.tagType}}" style="{{item.styleStr}}">
-            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">       
+            <block  wx:for="{{item.nodes}}" wx:for-item="item" wx:key="">
                 <template is="wxParse12" data="{{item}}"/>                 
             </block>
         </view>
