@@ -26,9 +26,9 @@ public class DeviceInfo extends BaseDbEntity implements Serializable {
     private Integer type;
 
     /**
-     * 地区码
+     * 定价编号
      */
-    private String rangeCode;
+    private String priceCode;
 
     /**
      * 启用状态
@@ -44,6 +44,26 @@ public class DeviceInfo extends BaseDbEntity implements Serializable {
      * 纬度
      */
     private Double latitude;
+
+    /**
+     * 区域ID
+     */
+    private Long areaId;
+
+    /**
+     * 区域名称
+     */
+    private String areaName;
+
+    /**
+     * 楼宇ID
+     */
+    private Long buildingId;
+
+    /**
+     * 楼宇名称
+     */
+    private String buildingName;
 
     private static final long serialVersionUID = 1L;
 

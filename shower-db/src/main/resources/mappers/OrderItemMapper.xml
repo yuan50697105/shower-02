@@ -130,29 +130,34 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.OrderItem" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.OrderItem">
     <!--@mbg.generated-->
-    insert into order_item (create_time, update_time, create_user, 
-      update_user, order_id, order_no, 
-      device_id, device_code, device_type, 
-      range_code, goods_id, goods_type, 
-      time_price, time_interval, time_unit, 
-      start_time, end_time, time_use, 
-      water_price, water_interval, water_unit, 
-      water_use, total_price)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
-      #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
-      #{rangeCode,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, #{goodsType,jdbcType=INTEGER}, 
-      #{timePrice,jdbcType=DECIMAL}, #{timeInterval,jdbcType=DOUBLE}, #{timeUnit,jdbcType=INTEGER}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{timeUse,jdbcType=DOUBLE}, 
-      #{waterPrice,jdbcType=DECIMAL}, #{waterInterval,jdbcType=DOUBLE}, #{waterUnit,jdbcType=INTEGER}, 
-      #{waterUse,jdbcType=DOUBLE}, #{totalPrice,jdbcType=DECIMAL})
+    insert into order_item (id, create_time, update_time, 
+      create_user, update_user, order_id, 
+      order_no, device_id, device_code, 
+      device_type, range_code, goods_id, 
+      goods_type, time_price, time_interval, 
+      time_unit, start_time, end_time, 
+      time_use, water_price, water_interval, 
+      water_unit, water_use, total_price
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, 
+      #{orderNo,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, 
+      #{deviceType,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, 
+      #{goodsType,jdbcType=INTEGER}, #{timePrice,jdbcType=DECIMAL}, #{timeInterval,jdbcType=DOUBLE}, 
+      #{timeUnit,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{timeUse,jdbcType=DOUBLE}, #{waterPrice,jdbcType=DECIMAL}, #{waterInterval,jdbcType=DOUBLE}, 
+      #{waterUnit,jdbcType=INTEGER}, #{waterUse,jdbcType=DOUBLE}, #{totalPrice,jdbcType=DECIMAL}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.OrderItem" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.OrderItem">
     <!--@mbg.generated-->
     insert into order_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -224,6 +229,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>

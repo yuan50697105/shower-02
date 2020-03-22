@@ -46,4 +46,8 @@ public class MemberInfo extends BaseDbEntity implements Serializable {
     private String code;
 
     private static final long serialVersionUID = 1L;
+
+    public static MemberInfoBuilder builder() {
+        return new MemberInfoBuilder();
+    }
 }

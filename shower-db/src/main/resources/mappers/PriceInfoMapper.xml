@@ -119,23 +119,28 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo">
     <!--@mbg.generated-->
-    insert into price_info (create_time, update_time, create_user, 
-      update_user, code, `type`, 
-      range_code, time_price, time_interval, 
-      time_unit, water_price, water_interval, 
-      water_unit, enabled)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
-      #{rangeCode,jdbcType=VARCHAR}, #{timePrice,jdbcType=DECIMAL}, #{timeInterval,jdbcType=DOUBLE}, 
-      #{timeUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL}, #{waterInterval,jdbcType=DOUBLE}, 
-      #{waterUnit,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER})
+    insert into price_info (id, create_time, update_time, 
+      create_user, update_user, code, 
+      `type`, range_code, time_price, 
+      time_interval, time_unit, water_price, 
+      water_interval, water_unit, enabled
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{type,jdbcType=VARCHAR}, #{rangeCode,jdbcType=VARCHAR}, #{timePrice,jdbcType=DECIMAL}, 
+      #{timeInterval,jdbcType=DOUBLE}, #{timeUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL}, 
+      #{waterInterval,jdbcType=DOUBLE}, #{waterUnit,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo">
     <!--@mbg.generated-->
     insert into price_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -180,6 +185,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>

@@ -46,4 +46,8 @@ public class DeviceOrderInfo extends BaseDbEntity implements Serializable {
     private String content;
 
     private static final long serialVersionUID = 1L;
+
+    public static DeviceOrderInfoBuilder builder() {
+        return new DeviceOrderInfoBuilder();
+    }
 }

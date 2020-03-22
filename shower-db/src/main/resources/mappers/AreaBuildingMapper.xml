@@ -1,21 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.app.db.module.mapper.OrderInfoMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.OrderInfo">
+<mapper namespace="com.idea.shower.app.db.module.mapper.AreaBuildingMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.AreaBuilding">
     <!--@mbg.generated-->
-    <!--@Table order_info-->
+    <!--@Table area_building-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
-    <result column="customer_open_id" jdbcType="VARCHAR" property="customerOpenId" />
-    <result column="customer_union_id" jdbcType="VARCHAR" property="customerUnionId" />
-    <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
-    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -79,17 +75,16 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, order_no, `type`, customer_id, 
-    customer_open_id, customer_union_id, total_price, `status`
+    id, create_time, update_time, create_user, update_user, `name`, code, area_id
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.OrderInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AreaBuildingExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from order_info
+    from area_building
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -101,37 +96,33 @@
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from order_info
+    from area_building
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
-    delete from order_info
+    delete from area_building
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.OrderInfoExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.AreaBuildingExample">
     <!--@mbg.generated-->
-    delete from order_info
+    delete from area_building
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.OrderInfo">
+  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.AreaBuilding">
     <!--@mbg.generated-->
-    insert into order_info (id, create_time, update_time, 
-      create_user, update_user, order_no, 
-      `type`, customer_id, customer_open_id, 
-      customer_union_id, total_price, `status`
-      )
+    insert into area_building (id, create_time, update_time, 
+      create_user, update_user, `name`, 
+      code, area_id)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{customerOpenId,jdbcType=VARCHAR}, 
-      #{customerUnionId,jdbcType=VARCHAR}, #{totalPrice,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}
-      )
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{code,jdbcType=VARCHAR}, #{areaId,jdbcType=BIGINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.OrderInfo">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.AreaBuilding">
     <!--@mbg.generated-->
-    insert into order_info
+    insert into area_building
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -148,26 +139,14 @@
       <if test="updateUser != null">
         update_user,
       </if>
-      <if test="orderNo != null">
-        order_no,
+      <if test="name != null">
+        `name`,
       </if>
-      <if test="type != null">
-        `type`,
+      <if test="code != null">
+        code,
       </if>
-      <if test="customerId != null">
-        customer_id,
-      </if>
-      <if test="customerOpenId != null">
-        customer_open_id,
-      </if>
-      <if test="customerUnionId != null">
-        customer_union_id,
-      </if>
-      <if test="totalPrice != null">
-        total_price,
-      </if>
-      <if test="status != null">
-        `status`,
+      <if test="areaId != null">
+        area_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -186,39 +165,27 @@
       <if test="updateUser != null">
         #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="orderNo != null">
-        #{orderNo,jdbcType=VARCHAR},
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=VARCHAR},
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
       </if>
-      <if test="customerId != null">
-        #{customerId,jdbcType=BIGINT},
-      </if>
-      <if test="customerOpenId != null">
-        #{customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerUnionId != null">
-        #{customerUnionId,jdbcType=VARCHAR},
-      </if>
-      <if test="totalPrice != null">
-        #{totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="status != null">
-        #{status,jdbcType=INTEGER},
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.OrderInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.AreaBuildingExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
-    select count(*) from order_info
+    select count(*) from area_building
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--@mbg.generated-->
-    update order_info
+    update area_building
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -235,26 +202,14 @@
       <if test="record.updateUser != null">
         update_user = #{record.updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="record.orderNo != null">
-        order_no = #{record.orderNo,jdbcType=VARCHAR},
+      <if test="record.name != null">
+        `name` = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null">
-        `type` = #{record.type,jdbcType=VARCHAR},
+      <if test="record.code != null">
+        code = #{record.code,jdbcType=VARCHAR},
       </if>
-      <if test="record.customerId != null">
-        customer_id = #{record.customerId,jdbcType=BIGINT},
-      </if>
-      <if test="record.customerOpenId != null">
-        customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.customerUnionId != null">
-        customer_union_id = #{record.customerUnionId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.totalPrice != null">
-        total_price = #{record.totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.status != null">
-        `status` = #{record.status,jdbcType=INTEGER},
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=BIGINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -263,26 +218,22 @@
   </update>
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
-    update order_info
+    update area_building
     set id = #{record.id,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
-      order_no = #{record.orderNo,jdbcType=VARCHAR},
-      `type` = #{record.type,jdbcType=VARCHAR},
-      customer_id = #{record.customerId,jdbcType=BIGINT},
-      customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      customer_union_id = #{record.customerUnionId,jdbcType=VARCHAR},
-      total_price = #{record.totalPrice,jdbcType=DECIMAL},
-      `status` = #{record.status,jdbcType=INTEGER}
+      `name` = #{record.name,jdbcType=VARCHAR},
+      code = #{record.code,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.OrderInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.AreaBuilding">
     <!--@mbg.generated-->
-    update order_info
+    update area_building
     <set>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -296,70 +247,28 @@
       <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="orderNo != null">
-        order_no = #{orderNo,jdbcType=VARCHAR},
+      <if test="name != null">
+        `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=VARCHAR},
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
       </if>
-      <if test="customerId != null">
-        customer_id = #{customerId,jdbcType=BIGINT},
-      </if>
-      <if test="customerOpenId != null">
-        customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerUnionId != null">
-        customer_union_id = #{customerUnionId,jdbcType=VARCHAR},
-      </if>
-      <if test="totalPrice != null">
-        total_price = #{totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="status != null">
-        `status` = #{status,jdbcType=INTEGER},
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.OrderInfo">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.AreaBuilding">
     <!--@mbg.generated-->
-    update order_info
+    update area_building
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
-      order_no = #{orderNo,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=VARCHAR},
-      customer_id = #{customerId,jdbcType=BIGINT},
-      customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      customer_union_id = #{customerUnionId,jdbcType=VARCHAR},
-      total_price = #{totalPrice,jdbcType=DECIMAL},
-      `status` = #{status,jdbcType=INTEGER}
+      `name` = #{name,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-
-    <!--auto generated by MybatisCodeHelper on 2020-02-14-->
-    <update id="updateStatusByOrderNo">
-        update order_info
-        set `status`=#{updatedStatus,jdbcType=INTEGER}
-        where order_no = #{orderNo,jdbcType=VARCHAR}
-    </update>
-    <select id="selectByCondition" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from order_info
-        <where>
-            <if test="condition.customerId != null">
-                and customer_id = #{condition.customerId,jdbcType=BIGINT}
-            </if>
-            <if test="condition.unionId != null and condition.unionId != ''">
-                and customer_union_id=#{condition.unionId,jdbcType=VARCHAR}
-            </if>
-        </where>
-        <if test="condition.order != null and condition.order != ''">
-            order by ${condition.order}
-            <if test="condition.sort != null and condition.sort != ''">
-                ${condition.sort}
-            </if>
-        </if>
-    </select>
 </mapper>

@@ -14,30 +14,25 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeviceRecord extends BaseDbEntity implements Serializable {
+public class AreaBuilding extends BaseDbEntity implements Serializable {
     /**
-     * 设备ID
+     * 楼宇名称
      */
-    private Long deviceId;
+    private String name;
 
     /**
-     * 设备编号
+     * 楼宇编号
      */
-    private String deviceCode;
+    private String code;
 
     /**
-     * 操作类型
+     * 所属区域ID
      */
-    private Integer type;
-
-    /**
-     * 详情
-     */
-    private String content;
+    private Long areaId;
 
     private static final long serialVersionUID = 1L;
 
-    public static DeviceRecordBuilder builder() {
-        return new DeviceRecordBuilder();
+    public static AreaBuildingBuilder builder() {
+        return new AreaBuildingBuilder();
     }
 }

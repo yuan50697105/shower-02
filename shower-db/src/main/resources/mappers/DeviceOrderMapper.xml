@@ -122,25 +122,28 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrder" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrder">
     <!--@mbg.generated-->
-    insert into device_order (create_time, update_time, create_user, 
-      update_user, device_id, device_code, 
-      range_code, device_type, order_id, 
-      order_no, customer_id, union_id, 
-      open_id, `status`, start_time, 
-      end_time)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, 
-      #{rangeCode,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, 
-      #{orderNo,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{unionId,jdbcType=VARCHAR}, 
-      #{openId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP})
+    insert into device_order (id, create_time, update_time, 
+      create_user, update_user, device_id, 
+      device_code, range_code, device_type, 
+      order_id, order_no, customer_id, 
+      union_id, open_id, `status`, 
+      start_time, end_time)
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
+      #{deviceCode,jdbcType=VARCHAR}, #{rangeCode,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
+      #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, 
+      #{unionId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrder" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrder">
     <!--@mbg.generated-->
     insert into device_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -191,6 +194,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
