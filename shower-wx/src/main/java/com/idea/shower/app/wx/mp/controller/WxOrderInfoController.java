@@ -22,7 +22,7 @@ import java.nio.charset.StandardCharsets;
  * @create: 2020-02-14 15:19
  */
 @RestController
-@RequestMapping("wx/order/info")
+@RequestMapping("wx/order")
 public class WxOrderInfoController extends ResultController {
     private WxOrderInfoService wxOrderInfoService;
 

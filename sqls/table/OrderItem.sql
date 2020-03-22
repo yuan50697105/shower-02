@@ -1,7 +1,7 @@
 -- auto Generated on 2020-03-20
 -- DROP TABLE IF EXISTS order_item;
 CREATE TABLE order_item(
-	id BIGINT (15) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	id BIGINT (15) NOT NULL  COMMENT 'id',
 	create_time DATETIME COMMENT 'createTime',
 	update_time TIMESTAMP COMMENT 'updateTime',
 	create_user VARCHAR (50) COMMENT 'createUser',

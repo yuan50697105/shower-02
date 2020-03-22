@@ -36,4 +36,8 @@ public class DeviceRecord extends BaseDbEntity implements Serializable {
     private String content;
 
     private static final long serialVersionUID = 1L;
+
+    public static DeviceRecordBuilder builder() {
+        return new DeviceRecordBuilder();
+    }
 }

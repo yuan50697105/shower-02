@@ -109,17 +109,22 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission">
     <!--@mbg.generated-->
-    insert into admin_permission (create_time, update_time, create_user, 
-      update_user, `name`)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+    insert into admin_permission (id, create_time, update_time, 
+      create_user, update_user, `name`
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission">
     <!--@mbg.generated-->
     insert into admin_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -137,6 +142,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>

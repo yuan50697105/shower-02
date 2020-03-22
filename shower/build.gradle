@@ -2,20 +2,10 @@ plugins {
     id 'java'
 }
 
+group 'com.idea.shower.app'
 
 dependencies {
-    compile project(':shower-webmvc-core')
-    compile project(':shower-db-mybatis')
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-cache'
-    compile group: 'org.minbox.framework', name: 'api-boot-starter-security-oauth-jwt'
-    compile group: 'org.minbox.framework', name: 'api-boot-starter-http-converter'
-    compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
-    compile group: 'org.minbox.framework', name: 'api-boot-starter-quartz'
-    compile group: 'com.github.liaochong', name: 'myexcel', version: '3.5.1'
-    compile group: 'com.github.binarywang', name: 'wx-java-mp-spring-boot-starter', version: '3.7.1.B'
-    compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.7.1.B'
-    compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.7.1.B'
-    compile group: 'com.github.binarywang', name: 'wx-java-open-spring-boot-starter', version: '3.7.1.B'
+    compile project(':shower-admin')
+    compile project(':shower-wx')
+    compile project(':shower-device')
 }

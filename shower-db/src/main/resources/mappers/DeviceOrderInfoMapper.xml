@@ -115,21 +115,24 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrderInfo" useGeneratedKeys="true">
+  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrderInfo">
     <!--@mbg.generated-->
-    insert into device_order_info (create_time, update_time, create_user, 
-      update_user, device_id, device_code, 
-      order_id, order_no, `status`, 
-      content)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, 
-      #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
-      #{content,jdbcType=VARCHAR})
+    insert into device_order_info (id, create_time, update_time, 
+      create_user, update_user, device_id, 
+      device_code, order_id, order_no, 
+      `status`, content)
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
+      #{deviceCode,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrderInfo" useGeneratedKeys="true">
+  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrderInfo">
     <!--@mbg.generated-->
     insert into device_order_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -162,6 +165,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
