@@ -1,0 +1,7 @@
+spring:
+  datasource:
+    username: yuanenzhi
+    password: Yuan50697105
+    url: jdbc:mysql://rm-2ze853397mhy2yl3nio.mysql.rds.aliyuncs.com:3306/shower?serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource

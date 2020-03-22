@@ -1,0 +1,42 @@
+{
+  "pages": [
+    "pages/device/device",
+    "pages/list/list",
+    "pages/auth/login/login",
+    "pages/map/map",
+    "pages/personal/personal",
+    "pages/about/about"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#5495E6",
+    "navigationBarTitleText": "清沐屋",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#5465E6",
+    "backgroundColor": "#fffff",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/device/device",
+        "text": "首页",
+        "iconPath": "static/image/tab/jiqi.png",
+        "selectedIconPath": "static/image/tab/jiqi1.png"
+      },
+      {
+        "pagePath": "pages/map/map",
+        "text": "地图",
+        "iconPath": "static/image/tab/map1.png",
+        "selectedIconPath": "static/image/tab/map2.png"
+      },
+      {
+        "pagePath": "pages/personal/personal",
+        "text": "个人中心",
+        "iconPath": "static/image/tab/people.png",
+        "selectedIconPath": "static/image/tab/people1.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}

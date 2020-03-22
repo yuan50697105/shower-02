@@ -1,0 +1,6 @@
+<view class="container">
+  <view class="login-box">
+    <!-- <image class="logo" src="/static/images/zklogo.jpg" style="width: 100%;" ></image> -->
+    <button type="primary" open-type="getPhoneNumber" class="wx-login-btn" bindgetphonenumber="wxLogin">微信登录</button>
+  </view>
+</view>

@@ -1,0 +1,9 @@
+group 'com.idea.shower.redis'
+dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
+
+}
+
+bootJar {
+    enabled = false
+}

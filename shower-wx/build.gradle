@@ -1,0 +1,11 @@
+group = 'com.idea.shower.app.wx'
+dependencies {
+    compile group: 'com.github.binarywang', name: 'wx-java-mp-spring-boot-starter', version: '3.7.2.B'
+    compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.7.2.B'
+    compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.7.2.B'
+    compile group: 'com.github.binarywang', name: 'wx-java-open-spring-boot-starter', version: '3.7.2.B'
+    compile project(':shower-webmvc-core')
+    compile project(':shower-db')
+//    compile project(':shower-redis')
+//    compile project(':shower-amqp')
+}

@@ -1,0 +1,5 @@
+group = 'com.idea.shower.app.admin'
+dependencies {
+    compile project(':shower-webmvc-core')
+    compile project(':shower-db')
+}
