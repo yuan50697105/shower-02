@@ -2,6 +2,7 @@ plugins {
     id 'java'
 }
 
+group 'com.idea.shower.app'
 
 dependencies {
     compile project(':shower-admin')
