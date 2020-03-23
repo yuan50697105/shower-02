@@ -52,4 +52,11 @@ public class CustomerInfoDaoImpl extends BaseDaoImpl<CustomerInfo, CustomerInfoM
     public int update(CustomerInfo customerInfo) {
         return baseMapper().updateByPrimaryKeySelective(customerInfo);
     }
+
+    @Override
+    public long countByOpenId(String openid) {
+        CustomerInfoExample example = new CustomerInfoExample();
+        example.or().andOpenIdEqualTo(openid);
+        return baseMapper().countByExample(example);
+    }
 }
