@@ -3,10 +3,9 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AdminRole;
 import com.idea.shower.app.db.module.pojo.AdminRoleExample;
-import org.apache.ibatis.annotations.Mapper;
+import java.util.Collection;import java.util.List;
+import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 @Mapper
 public interface AdminRoleMapper extends BaseMapper {
@@ -31,4 +30,10 @@ public interface AdminRoleMapper extends BaseMapper {
     int updateByPrimaryKeySelective(AdminRole record);
 
     int updateByPrimaryKey(AdminRole record);
+
+    List<Long> selectIdByIdIn(@Param("idCollection") Collection<Long> idCollection);
+
+    List<AdminRole> selectByIdIn(@Param("idCollection") Collection<Long> idCollection);
+
+    List<AdminRole> selectByCondition(@Param("condition") AdminRoleQuery condition);
 }

@@ -1,21 +1,28 @@
 package com.idea.shower.app.db.module.pojo;
 
-import com.idea.shower.db.mybaits.pojo.BaseDbEntity;
+import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
+import java.io.Serializable;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.io.Serializable;
+import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class AdminRole extends BaseDbEntity implements Serializable {
-    private static final long serialVersionUID = 1L;
     /**
-     * 角色名
+     * name
      */
     private String name;
-    /**
-     * 启用状态（1 启用，0 停用）
-     */
-    private Integer enabled;
+
+    private static final long serialVersionUID = 1L;
+
+    public static AdminRoleBuilder builder() {
+        return new AdminRoleBuilder();
+    }
 }

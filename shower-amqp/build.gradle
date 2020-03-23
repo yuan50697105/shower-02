@@ -1,3 +1,8 @@
+group = 'com.idea.shower.app.amqp'
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp'
+}
+
+bootJar {
+    enabled = false
 }

@@ -11,16 +11,14 @@
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="type" jdbcType="INTEGER" property="type" />
-    <result column="address" jdbcType="VARCHAR" property="address" />
-    <result column="point" jdbcType="VARCHAR" property="point" />
+    <result column="price_code" jdbcType="VARCHAR" property="priceCode" />
     <result column="enabled" jdbcType="INTEGER" property="enabled" />
-    <result column="range_code" jdbcType="VARCHAR" property="rangeCode" />
-    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
     <result column="longitude" jdbcType="DOUBLE" property="longitude" />
-    <result column="accuracy" jdbcType="DOUBLE" property="accuracy" />
-    <result column="altitude" jdbcType="DOUBLE" property="altitude" />
-    <result column="vertical_accuracy" jdbcType="DOUBLE" property="verticalAccuracy" />
-    <result column="horizontal_accuracy" jdbcType="DOUBLE" property="horizontalAccuracy" />
+    <result column="latitude" jdbcType="DOUBLE" property="latitude" />
+    <result column="area_id" jdbcType="BIGINT" property="areaId" />
+    <result column="area_name" jdbcType="VARCHAR" property="areaName" />
+    <result column="building_id" jdbcType="BIGINT" property="buildingId" />
+    <result column="building_name" jdbcType="VARCHAR" property="buildingName" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -84,9 +82,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, code, `type`, address, point, 
-    enabled, range_code, latitude, longitude, accuracy, altitude, vertical_accuracy, 
-    horizontal_accuracy
+    id, create_time, update_time, create_user, update_user, code, `type`, price_code, 
+    enabled, longitude, latitude, area_id, area_name, building_id, building_name
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -126,16 +123,16 @@
     <!--@mbg.generated-->
     insert into device_info (id, create_time, update_time, 
       create_user, update_user, code, 
-      `type`, address, point, 
-      enabled, range_code, latitude, 
-      longitude, accuracy, altitude, 
-      vertical_accuracy, horizontal_accuracy)
+      `type`, price_code, enabled, 
+      longitude, latitude, area_id, 
+      area_name, building_id, building_name
+      )
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
       #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{address,jdbcType=VARCHAR}, #{point,jdbcType=VARCHAR}, 
-      #{enabled,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR}, #{latitude,jdbcType=DOUBLE}, 
-      #{longitude,jdbcType=DOUBLE}, #{accuracy,jdbcType=DOUBLE}, #{altitude,jdbcType=DOUBLE}, 
-      #{verticalAccuracy,jdbcType=DOUBLE}, #{horizontalAccuracy,jdbcType=DOUBLE})
+      #{type,jdbcType=INTEGER}, #{priceCode,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, 
+      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, #{areaId,jdbcType=BIGINT}, 
+      #{areaName,jdbcType=VARCHAR}, #{buildingId,jdbcType=BIGINT}, #{buildingName,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo">
     <!--@mbg.generated-->
@@ -162,35 +159,29 @@
       <if test="type != null">
         `type`,
       </if>
-      <if test="address != null">
-        address,
-      </if>
-      <if test="point != null">
-        point,
+      <if test="priceCode != null">
+        price_code,
       </if>
       <if test="enabled != null">
         enabled,
       </if>
-      <if test="rangeCode != null">
-        range_code,
+      <if test="longitude != null">
+        longitude,
       </if>
       <if test="latitude != null">
         latitude,
       </if>
-      <if test="longitude != null">
-        longitude,
+      <if test="areaId != null">
+        area_id,
       </if>
-      <if test="accuracy != null">
-        accuracy,
+      <if test="areaName != null">
+        area_name,
       </if>
-      <if test="altitude != null">
-        altitude,
+      <if test="buildingId != null">
+        building_id,
       </if>
-      <if test="verticalAccuracy != null">
-        vertical_accuracy,
-      </if>
-      <if test="horizontalAccuracy != null">
-        horizontal_accuracy,
+      <if test="buildingName != null">
+        building_name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -215,35 +206,29 @@
       <if test="type != null">
         #{type,jdbcType=INTEGER},
       </if>
-      <if test="address != null">
-        #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="point != null">
-        #{point,jdbcType=VARCHAR},
+      <if test="priceCode != null">
+        #{priceCode,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         #{enabled,jdbcType=INTEGER},
       </if>
-      <if test="rangeCode != null">
-        #{rangeCode,jdbcType=VARCHAR},
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
       </if>
       <if test="latitude != null">
         #{latitude,jdbcType=DOUBLE},
       </if>
-      <if test="longitude != null">
-        #{longitude,jdbcType=DOUBLE},
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
       </if>
-      <if test="accuracy != null">
-        #{accuracy,jdbcType=DOUBLE},
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
       </if>
-      <if test="altitude != null">
-        #{altitude,jdbcType=DOUBLE},
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=BIGINT},
       </if>
-      <if test="verticalAccuracy != null">
-        #{verticalAccuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="horizontalAccuracy != null">
-        #{horizontalAccuracy,jdbcType=DOUBLE},
+      <if test="buildingName != null">
+        #{buildingName,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -279,35 +264,29 @@
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.address != null">
-        address = #{record.address,jdbcType=VARCHAR},
-      </if>
-      <if test="record.point != null">
-        point = #{record.point,jdbcType=VARCHAR},
+      <if test="record.priceCode != null">
+        price_code = #{record.priceCode,jdbcType=VARCHAR},
       </if>
       <if test="record.enabled != null">
         enabled = #{record.enabled,jdbcType=INTEGER},
       </if>
-      <if test="record.rangeCode != null">
-        range_code = #{record.rangeCode,jdbcType=VARCHAR},
+      <if test="record.longitude != null">
+        longitude = #{record.longitude,jdbcType=DOUBLE},
       </if>
       <if test="record.latitude != null">
         latitude = #{record.latitude,jdbcType=DOUBLE},
       </if>
-      <if test="record.longitude != null">
-        longitude = #{record.longitude,jdbcType=DOUBLE},
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=BIGINT},
       </if>
-      <if test="record.accuracy != null">
-        accuracy = #{record.accuracy,jdbcType=DOUBLE},
+      <if test="record.areaName != null">
+        area_name = #{record.areaName,jdbcType=VARCHAR},
       </if>
-      <if test="record.altitude != null">
-        altitude = #{record.altitude,jdbcType=DOUBLE},
+      <if test="record.buildingId != null">
+        building_id = #{record.buildingId,jdbcType=BIGINT},
       </if>
-      <if test="record.verticalAccuracy != null">
-        vertical_accuracy = #{record.verticalAccuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="record.horizontalAccuracy != null">
-        horizontal_accuracy = #{record.horizontalAccuracy,jdbcType=DOUBLE},
+      <if test="record.buildingName != null">
+        building_name = #{record.buildingName,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -324,16 +303,14 @@
       update_user = #{record.updateUser,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
-      address = #{record.address,jdbcType=VARCHAR},
-      point = #{record.point,jdbcType=VARCHAR},
+      price_code = #{record.priceCode,jdbcType=VARCHAR},
       enabled = #{record.enabled,jdbcType=INTEGER},
-      range_code = #{record.rangeCode,jdbcType=VARCHAR},
-      latitude = #{record.latitude,jdbcType=DOUBLE},
       longitude = #{record.longitude,jdbcType=DOUBLE},
-      accuracy = #{record.accuracy,jdbcType=DOUBLE},
-      altitude = #{record.altitude,jdbcType=DOUBLE},
-      vertical_accuracy = #{record.verticalAccuracy,jdbcType=DOUBLE},
-      horizontal_accuracy = #{record.horizontalAccuracy,jdbcType=DOUBLE}
+      latitude = #{record.latitude,jdbcType=DOUBLE},
+      area_id = #{record.areaId,jdbcType=BIGINT},
+      area_name = #{record.areaName,jdbcType=VARCHAR},
+      building_id = #{record.buildingId,jdbcType=BIGINT},
+      building_name = #{record.buildingName,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -360,35 +337,29 @@
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
       </if>
-      <if test="address != null">
-        address = #{address,jdbcType=VARCHAR},
-      </if>
-      <if test="point != null">
-        point = #{point,jdbcType=VARCHAR},
+      <if test="priceCode != null">
+        price_code = #{priceCode,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         enabled = #{enabled,jdbcType=INTEGER},
       </if>
-      <if test="rangeCode != null">
-        range_code = #{rangeCode,jdbcType=VARCHAR},
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
       </if>
       <if test="latitude != null">
         latitude = #{latitude,jdbcType=DOUBLE},
       </if>
-      <if test="longitude != null">
-        longitude = #{longitude,jdbcType=DOUBLE},
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
       </if>
-      <if test="accuracy != null">
-        accuracy = #{accuracy,jdbcType=DOUBLE},
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
       </if>
-      <if test="altitude != null">
-        altitude = #{altitude,jdbcType=DOUBLE},
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=BIGINT},
       </if>
-      <if test="verticalAccuracy != null">
-        vertical_accuracy = #{verticalAccuracy,jdbcType=DOUBLE},
-      </if>
-      <if test="horizontalAccuracy != null">
-        horizontal_accuracy = #{horizontalAccuracy,jdbcType=DOUBLE},
+      <if test="buildingName != null">
+        building_name = #{buildingName,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -402,35 +373,15 @@
       update_user = #{updateUser,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
-      address = #{address,jdbcType=VARCHAR},
-      point = #{point,jdbcType=VARCHAR},
+      price_code = #{priceCode,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=INTEGER},
-      range_code = #{rangeCode,jdbcType=VARCHAR},
-      latitude = #{latitude,jdbcType=DOUBLE},
       longitude = #{longitude,jdbcType=DOUBLE},
-      accuracy = #{accuracy,jdbcType=DOUBLE},
-      altitude = #{altitude,jdbcType=DOUBLE},
-      vertical_accuracy = #{verticalAccuracy,jdbcType=DOUBLE},
-      horizontal_accuracy = #{horizontalAccuracy,jdbcType=DOUBLE}
+      latitude = #{latitude,jdbcType=DOUBLE},
+      area_id = #{areaId,jdbcType=BIGINT},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=BIGINT},
+      building_name = #{buildingName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-    <select id="selectByCondition" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List" />
-        from device_info
-        <where>
-            <if test="id != null">
-                and id = #{id,jdbcType=BIGINT}
-            </if>
-            <if test="code != null and code != ''">
-                and code like concat('%',#{code,jdbcType=VARCHAR},'%')
-            </if>
-        </where>
-        <if test="order != null and order != ''">
-            order by ${order}
-            <if test="sort != null and sort != ''">
-                ${sort}
-            </if>
-        </if>
-    </select>
+  <select id="selectByCondition" resultMap="BaseResultMap" />
 </mapper>

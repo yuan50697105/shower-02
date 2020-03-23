@@ -1,67 +1,30 @@
 package com.idea.shower.app.db.module.pojo;
 
-import com.idea.shower.app.commons.pojo.BaseEntity;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
+import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class OrderItem extends BaseEntity implements Serializable {
-    /**
-     * 订单类型
-     */
-    private Integer type;
-
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class OrderItem extends BaseDbEntity implements Serializable {
     /**
      * 订单ID
      */
     private Long orderId;
 
     /**
-     * 订单编号
+     * 订单号
      */
     private String orderNo;
-
-    /**
-     * 客户ID
-     */
-    private Long customerId;
-
-    /**
-     * 微信OPENID
-     */
-    private String customerOpenId;
-
-    /**
-     * 微型UNIONID
-     */
-    private String customerUnionId;
-
-    /**
-     * 昵称
-     */
-    private String customerNickName;
-
-    /**
-     * 订单项目类型
-     */
-    @Deprecated
-    private Integer itemType;
-
-    /**
-     * 子订单号
-     */
-    @Deprecated
-    private String itemOrderNo;
-
-    /**
-     * 设备类型
-     */
-    private Integer deviceType;
 
     /**
      * 设备ID
@@ -74,84 +37,83 @@ public class OrderItem extends BaseEntity implements Serializable {
     private String deviceCode;
 
     /**
-     * 读取码
+     * 设备类型
+     */
+    private Integer deviceType;
+
+    /**
+     * 地区码
      */
     private String rangeCode;
 
     /**
-     * 价目ID
+     * 定价ID
      */
-    private Long goodsInfoId;
+    private Long goodsId;
 
     /**
-     * 价目编号
+     * 定价类型
      */
-    private String goodsInfoCode;
+    private Integer goodsType;
 
     /**
-     * 时间定价
+     * 时间价格
      */
     private BigDecimal timePrice;
 
     /**
      * 时间计费间隔
      */
-    private BigDecimal timeInterval;
+    private Double timeInterval;
 
     /**
-     * 时间用时总价
+     * 时间计费单位
      */
-    private BigDecimal timeTotalPrice;
+    private Integer timeUnit;
 
     /**
-     * 时间定价单位
-     */
-    private Integer timePriceUnit;
-
-    /**
-     * startTime
+     * 开始时间
      */
     private Date startTime;
 
     /**
-     * endTime
+     * 结束时间
      */
     private Date endTime;
 
     /**
-     * 时间使用量
+     * 用时
      */
-    private BigDecimal timeUseAmount;
+    private Double timeUse;
 
     /**
-     * 水定价
+     * 水价
      */
     private BigDecimal waterPrice;
 
     /**
-     * 水费计费间隔
+     * 水计费间隔
      */
-    private BigDecimal waterSpace;
+    private Double waterInterval;
 
     /**
-     * 水费单位
+     * 水计费单位
      */
     private Integer waterUnit;
 
     /**
-     * 总水费
+     * 水用量
      */
-    private BigDecimal waterTotalPrice;
+    private Double waterUse;
 
     /**
      * 总价
      */
     private BigDecimal totalPrice;
 
-    /**
-     * 充值剩余金额
-     */
-    private BigDecimal remainPrice;
-
     private static final long serialVersionUID = 1L;
+
+    public static OrderItemBuilder builder() {
+        return new OrderItemBuilder();
+    }
 }

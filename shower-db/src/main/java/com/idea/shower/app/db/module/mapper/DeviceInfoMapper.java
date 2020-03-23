@@ -3,11 +3,9 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.db.module.pojo.DeviceInfoExample;
-import com.idea.shower.app.db.module.pojo.DeviceInfoQuery;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface DeviceInfoMapper extends BaseMapper {
@@ -33,5 +31,5 @@ public interface DeviceInfoMapper extends BaseMapper {
 
     int updateByPrimaryKey(DeviceInfo record);
 
-    List<DeviceInfo> selectByCondition(DeviceInfoQuery condition);
+    List<DeviceInfo> selectByCondition(DeviceInfoQuery query);
 }

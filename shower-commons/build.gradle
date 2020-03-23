@@ -1,0 +1,5 @@
+group = 'com.idea.shower.commons'
+
+bootJar {
+    enabled = false
+}

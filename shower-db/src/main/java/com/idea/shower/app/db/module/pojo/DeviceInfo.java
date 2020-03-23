@@ -1,73 +1,63 @@
 package com.idea.shower.app.db.module.pojo;
 
-import com.idea.shower.app.commons.pojo.BaseEntity;
+import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
+import java.io.Serializable;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.io.Serializable;
+import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class DeviceInfo extends BaseEntity implements Serializable {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class DeviceInfo extends BaseDbEntity implements Serializable {
+    private static final long serialVersionUID = 1L;
     /**
      * 设备编号
      */
     private String code;
-
     /**
-     * 设备类型 1 室外 2 室内
+     * 设备类型
      */
     private Integer type;
-
     /**
-     * 地址
+     * 定价编号
      */
-    private String address;
-
+    private String priceCode;
     /**
-     * GPS
-     */
-    private String point;
-
-    /**
-     * 启用装填（1 启用 0 停用）
+     * 启用状态
      */
     private Integer enabled;
-
     /**
-     * 地区码
-     */
-    private String rangeCode;
-
-    /**
-     * 纬度 范围为 -90~90 负数表示南纬
-     */
-    private Double latitude;
-
-    /**
-     * 经度，范围为 -180~180，负数表示西经
+     * 经度
      */
     private Double longitude;
-
     /**
-     * 位置的精确度
+     * 纬度
      */
-    private Double accuracy;
-
+    private Double latitude;
     /**
-     * 高度，单位 m
+     * 区域ID
      */
-    private Double altitude;
-
+    private Long areaId;
     /**
-     * 垂直精度，单位 m（Android 无法获取，返回 0）
+     * 区域名称
      */
-    private Double verticalAccuracy;
-
+    private String areaName;
     /**
-     * 水平精度，单位 m
+     * 楼宇ID
      */
-    private Double horizontalAccuracy;
+    private Long buildingId;
+    /**
+     * 楼宇名称
+     */
+    private String buildingName;
 
-    private static final long serialVersionUID = 1L;
+    public static DeviceInfoBuilder builder() {
+        return new DeviceInfoBuilder();
+    }
 }

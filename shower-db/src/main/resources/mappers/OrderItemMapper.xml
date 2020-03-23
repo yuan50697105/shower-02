@@ -9,34 +9,25 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-    <result column="type" jdbcType="INTEGER" property="type" />
     <result column="order_id" jdbcType="BIGINT" property="orderId" />
     <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
-    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
-    <result column="customer_open_id" jdbcType="VARCHAR" property="customerOpenId" />
-    <result column="customer_union_id" jdbcType="VARCHAR" property="customerUnionId" />
-    <result column="customer_nick_name" jdbcType="VARCHAR" property="customerNickName" />
-    <result column="item_type" jdbcType="INTEGER" property="itemType" />
-    <result column="item_order_no" jdbcType="VARCHAR" property="itemOrderNo" />
-    <result column="device_type" jdbcType="INTEGER" property="deviceType" />
     <result column="device_id" jdbcType="BIGINT" property="deviceId" />
     <result column="device_code" jdbcType="VARCHAR" property="deviceCode" />
+    <result column="device_type" jdbcType="INTEGER" property="deviceType" />
     <result column="range_code" jdbcType="VARCHAR" property="rangeCode" />
-    <result column="goods_info_id" jdbcType="BIGINT" property="goodsInfoId" />
-    <result column="goods_info_code" jdbcType="VARCHAR" property="goodsInfoCode" />
+    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
+    <result column="goods_type" jdbcType="INTEGER" property="goodsType" />
     <result column="time_price" jdbcType="DECIMAL" property="timePrice" />
-    <result column="time_interval" jdbcType="DECIMAL" property="timeInterval" />
-    <result column="time_total_price" jdbcType="DECIMAL" property="timeTotalPrice" />
-    <result column="time_price_unit" jdbcType="INTEGER" property="timePriceUnit" />
+    <result column="time_interval" jdbcType="DOUBLE" property="timeInterval" />
+    <result column="time_unit" jdbcType="INTEGER" property="timeUnit" />
     <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
-    <result column="time_use_amount" jdbcType="DECIMAL" property="timeUseAmount" />
+    <result column="time_use" jdbcType="DOUBLE" property="timeUse" />
     <result column="water_price" jdbcType="DECIMAL" property="waterPrice" />
-    <result column="water_space" jdbcType="DECIMAL" property="waterSpace" />
+    <result column="water_interval" jdbcType="DOUBLE" property="waterInterval" />
     <result column="water_unit" jdbcType="INTEGER" property="waterUnit" />
-    <result column="water_total_price" jdbcType="DECIMAL" property="waterTotalPrice" />
+    <result column="water_use" jdbcType="DOUBLE" property="waterUse" />
     <result column="total_price" jdbcType="DECIMAL" property="totalPrice" />
-    <result column="remain_price" jdbcType="DECIMAL" property="remainPrice" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -100,12 +91,10 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, `type`, order_id, order_no, 
-    customer_id, customer_open_id, customer_union_id, customer_nick_name, item_type, 
-    item_order_no, device_type, device_id, device_code, range_code, goods_info_id, goods_info_code, 
-    time_price, time_interval, time_total_price, time_price_unit, start_time, end_time, 
-    time_use_amount, water_price, water_space, water_unit, water_total_price, total_price, 
-    remain_price
+    id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, 
+    device_code, device_type, range_code, goods_id, goods_type, time_price, time_interval, 
+    time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, 
+    water_use, total_price
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.OrderItemExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -144,28 +133,22 @@
   <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.OrderItem">
     <!--@mbg.generated-->
     insert into order_item (id, create_time, update_time, 
-      create_user, update_user, `type`, 
-      order_id, order_no, customer_id, 
-      customer_open_id, customer_union_id, customer_nick_name, 
-      item_type, item_order_no, device_type, 
-      device_id, device_code, range_code, 
-      goods_info_id, goods_info_code, time_price, 
-      time_interval, time_total_price, time_price_unit, 
-      start_time, end_time, time_use_amount, 
-      water_price, water_space, water_unit, 
-      water_total_price, total_price, remain_price
+      create_user, update_user, order_id, 
+      order_no, device_id, device_code, 
+      device_type, range_code, goods_id, 
+      goods_type, time_price, time_interval, 
+      time_unit, start_time, end_time, 
+      time_use, water_price, water_interval, 
+      water_unit, water_use, total_price
       )
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, 
-      #{customerOpenId,jdbcType=VARCHAR}, #{customerUnionId,jdbcType=VARCHAR}, #{customerNickName,jdbcType=VARCHAR}, 
-      #{itemType,jdbcType=INTEGER}, #{itemOrderNo,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
-      #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, #{rangeCode,jdbcType=VARCHAR}, 
-      #{goodsInfoId,jdbcType=BIGINT}, #{goodsInfoCode,jdbcType=VARCHAR}, #{timePrice,jdbcType=DECIMAL}, 
-      #{timeInterval,jdbcType=DECIMAL}, #{timeTotalPrice,jdbcType=DECIMAL}, #{timePriceUnit,jdbcType=INTEGER}, 
-      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{timeUseAmount,jdbcType=DECIMAL}, 
-      #{waterPrice,jdbcType=DECIMAL}, #{waterSpace,jdbcType=DECIMAL}, #{waterUnit,jdbcType=INTEGER}, 
-      #{waterTotalPrice,jdbcType=DECIMAL}, #{totalPrice,jdbcType=DECIMAL}, #{remainPrice,jdbcType=DECIMAL}
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, 
+      #{orderNo,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, 
+      #{deviceType,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, 
+      #{goodsType,jdbcType=INTEGER}, #{timePrice,jdbcType=DECIMAL}, #{timeInterval,jdbcType=DOUBLE}, 
+      #{timeUnit,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
+      #{timeUse,jdbcType=DOUBLE}, #{waterPrice,jdbcType=DECIMAL}, #{waterInterval,jdbcType=DOUBLE}, 
+      #{waterUnit,jdbcType=INTEGER}, #{waterUse,jdbcType=DOUBLE}, #{totalPrice,jdbcType=DECIMAL}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.OrderItem">
@@ -187,35 +170,11 @@
       <if test="updateUser != null">
         update_user,
       </if>
-      <if test="type != null">
-        `type`,
-      </if>
       <if test="orderId != null">
         order_id,
       </if>
       <if test="orderNo != null">
         order_no,
-      </if>
-      <if test="customerId != null">
-        customer_id,
-      </if>
-      <if test="customerOpenId != null">
-        customer_open_id,
-      </if>
-      <if test="customerUnionId != null">
-        customer_union_id,
-      </if>
-      <if test="customerNickName != null">
-        customer_nick_name,
-      </if>
-      <if test="itemType != null">
-        item_type,
-      </if>
-      <if test="itemOrderNo != null">
-        item_order_no,
-      </if>
-      <if test="deviceType != null">
-        device_type,
       </if>
       <if test="deviceId != null">
         device_id,
@@ -223,14 +182,17 @@
       <if test="deviceCode != null">
         device_code,
       </if>
+      <if test="deviceType != null">
+        device_type,
+      </if>
       <if test="rangeCode != null">
         range_code,
       </if>
-      <if test="goodsInfoId != null">
-        goods_info_id,
+      <if test="goodsId != null">
+        goods_id,
       </if>
-      <if test="goodsInfoCode != null">
-        goods_info_code,
+      <if test="goodsType != null">
+        goods_type,
       </if>
       <if test="timePrice != null">
         time_price,
@@ -238,11 +200,8 @@
       <if test="timeInterval != null">
         time_interval,
       </if>
-      <if test="timeTotalPrice != null">
-        time_total_price,
-      </if>
-      <if test="timePriceUnit != null">
-        time_price_unit,
+      <if test="timeUnit != null">
+        time_unit,
       </if>
       <if test="startTime != null">
         start_time,
@@ -250,26 +209,23 @@
       <if test="endTime != null">
         end_time,
       </if>
-      <if test="timeUseAmount != null">
-        time_use_amount,
+      <if test="timeUse != null">
+        time_use,
       </if>
       <if test="waterPrice != null">
         water_price,
       </if>
-      <if test="waterSpace != null">
-        water_space,
+      <if test="waterInterval != null">
+        water_interval,
       </if>
       <if test="waterUnit != null">
         water_unit,
       </if>
-      <if test="waterTotalPrice != null">
-        water_total_price,
+      <if test="waterUse != null">
+        water_use,
       </if>
       <if test="totalPrice != null">
         total_price,
-      </if>
-      <if test="remainPrice != null">
-        remain_price,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -288,35 +244,11 @@
       <if test="updateUser != null">
         #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        #{type,jdbcType=INTEGER},
-      </if>
       <if test="orderId != null">
         #{orderId,jdbcType=BIGINT},
       </if>
       <if test="orderNo != null">
         #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="customerId != null">
-        #{customerId,jdbcType=BIGINT},
-      </if>
-      <if test="customerOpenId != null">
-        #{customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerUnionId != null">
-        #{customerUnionId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerNickName != null">
-        #{customerNickName,jdbcType=VARCHAR},
-      </if>
-      <if test="itemType != null">
-        #{itemType,jdbcType=INTEGER},
-      </if>
-      <if test="itemOrderNo != null">
-        #{itemOrderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceType != null">
-        #{deviceType,jdbcType=INTEGER},
       </if>
       <if test="deviceId != null">
         #{deviceId,jdbcType=BIGINT},
@@ -324,26 +256,26 @@
       <if test="deviceCode != null">
         #{deviceCode,jdbcType=VARCHAR},
       </if>
+      <if test="deviceType != null">
+        #{deviceType,jdbcType=INTEGER},
+      </if>
       <if test="rangeCode != null">
         #{rangeCode,jdbcType=VARCHAR},
       </if>
-      <if test="goodsInfoId != null">
-        #{goodsInfoId,jdbcType=BIGINT},
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=BIGINT},
       </if>
-      <if test="goodsInfoCode != null">
-        #{goodsInfoCode,jdbcType=VARCHAR},
+      <if test="goodsType != null">
+        #{goodsType,jdbcType=INTEGER},
       </if>
       <if test="timePrice != null">
         #{timePrice,jdbcType=DECIMAL},
       </if>
       <if test="timeInterval != null">
-        #{timeInterval,jdbcType=DECIMAL},
+        #{timeInterval,jdbcType=DOUBLE},
       </if>
-      <if test="timeTotalPrice != null">
-        #{timeTotalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="timePriceUnit != null">
-        #{timePriceUnit,jdbcType=INTEGER},
+      <if test="timeUnit != null">
+        #{timeUnit,jdbcType=INTEGER},
       </if>
       <if test="startTime != null">
         #{startTime,jdbcType=TIMESTAMP},
@@ -351,26 +283,23 @@
       <if test="endTime != null">
         #{endTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="timeUseAmount != null">
-        #{timeUseAmount,jdbcType=DECIMAL},
+      <if test="timeUse != null">
+        #{timeUse,jdbcType=DOUBLE},
       </if>
       <if test="waterPrice != null">
         #{waterPrice,jdbcType=DECIMAL},
       </if>
-      <if test="waterSpace != null">
-        #{waterSpace,jdbcType=DECIMAL},
+      <if test="waterInterval != null">
+        #{waterInterval,jdbcType=DOUBLE},
       </if>
       <if test="waterUnit != null">
         #{waterUnit,jdbcType=INTEGER},
       </if>
-      <if test="waterTotalPrice != null">
-        #{waterTotalPrice,jdbcType=DECIMAL},
+      <if test="waterUse != null">
+        #{waterUse,jdbcType=DOUBLE},
       </if>
       <if test="totalPrice != null">
         #{totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="remainPrice != null">
-        #{remainPrice,jdbcType=DECIMAL},
       </if>
     </trim>
   </insert>
@@ -400,35 +329,11 @@
       <if test="record.updateUser != null">
         update_user = #{record.updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="record.type != null">
-        `type` = #{record.type,jdbcType=INTEGER},
-      </if>
       <if test="record.orderId != null">
         order_id = #{record.orderId,jdbcType=BIGINT},
       </if>
       <if test="record.orderNo != null">
         order_no = #{record.orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.customerId != null">
-        customer_id = #{record.customerId,jdbcType=BIGINT},
-      </if>
-      <if test="record.customerOpenId != null">
-        customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.customerUnionId != null">
-        customer_union_id = #{record.customerUnionId,jdbcType=VARCHAR},
-      </if>
-      <if test="record.customerNickName != null">
-        customer_nick_name = #{record.customerNickName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.itemType != null">
-        item_type = #{record.itemType,jdbcType=INTEGER},
-      </if>
-      <if test="record.itemOrderNo != null">
-        item_order_no = #{record.itemOrderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deviceType != null">
-        device_type = #{record.deviceType,jdbcType=INTEGER},
       </if>
       <if test="record.deviceId != null">
         device_id = #{record.deviceId,jdbcType=BIGINT},
@@ -436,26 +341,26 @@
       <if test="record.deviceCode != null">
         device_code = #{record.deviceCode,jdbcType=VARCHAR},
       </if>
+      <if test="record.deviceType != null">
+        device_type = #{record.deviceType,jdbcType=INTEGER},
+      </if>
       <if test="record.rangeCode != null">
         range_code = #{record.rangeCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.goodsInfoId != null">
-        goods_info_id = #{record.goodsInfoId,jdbcType=BIGINT},
+      <if test="record.goodsId != null">
+        goods_id = #{record.goodsId,jdbcType=BIGINT},
       </if>
-      <if test="record.goodsInfoCode != null">
-        goods_info_code = #{record.goodsInfoCode,jdbcType=VARCHAR},
+      <if test="record.goodsType != null">
+        goods_type = #{record.goodsType,jdbcType=INTEGER},
       </if>
       <if test="record.timePrice != null">
         time_price = #{record.timePrice,jdbcType=DECIMAL},
       </if>
       <if test="record.timeInterval != null">
-        time_interval = #{record.timeInterval,jdbcType=DECIMAL},
+        time_interval = #{record.timeInterval,jdbcType=DOUBLE},
       </if>
-      <if test="record.timeTotalPrice != null">
-        time_total_price = #{record.timeTotalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.timePriceUnit != null">
-        time_price_unit = #{record.timePriceUnit,jdbcType=INTEGER},
+      <if test="record.timeUnit != null">
+        time_unit = #{record.timeUnit,jdbcType=INTEGER},
       </if>
       <if test="record.startTime != null">
         start_time = #{record.startTime,jdbcType=TIMESTAMP},
@@ -463,26 +368,23 @@
       <if test="record.endTime != null">
         end_time = #{record.endTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.timeUseAmount != null">
-        time_use_amount = #{record.timeUseAmount,jdbcType=DECIMAL},
+      <if test="record.timeUse != null">
+        time_use = #{record.timeUse,jdbcType=DOUBLE},
       </if>
       <if test="record.waterPrice != null">
         water_price = #{record.waterPrice,jdbcType=DECIMAL},
       </if>
-      <if test="record.waterSpace != null">
-        water_space = #{record.waterSpace,jdbcType=DECIMAL},
+      <if test="record.waterInterval != null">
+        water_interval = #{record.waterInterval,jdbcType=DOUBLE},
       </if>
       <if test="record.waterUnit != null">
         water_unit = #{record.waterUnit,jdbcType=INTEGER},
       </if>
-      <if test="record.waterTotalPrice != null">
-        water_total_price = #{record.waterTotalPrice,jdbcType=DECIMAL},
+      <if test="record.waterUse != null">
+        water_use = #{record.waterUse,jdbcType=DOUBLE},
       </if>
       <if test="record.totalPrice != null">
         total_price = #{record.totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="record.remainPrice != null">
-        remain_price = #{record.remainPrice,jdbcType=DECIMAL},
       </if>
     </set>
     <if test="_parameter != null">
@@ -497,34 +399,25 @@
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
-      `type` = #{record.type,jdbcType=INTEGER},
       order_id = #{record.orderId,jdbcType=BIGINT},
       order_no = #{record.orderNo,jdbcType=VARCHAR},
-      customer_id = #{record.customerId,jdbcType=BIGINT},
-      customer_open_id = #{record.customerOpenId,jdbcType=VARCHAR},
-      customer_union_id = #{record.customerUnionId,jdbcType=VARCHAR},
-      customer_nick_name = #{record.customerNickName,jdbcType=VARCHAR},
-      item_type = #{record.itemType,jdbcType=INTEGER},
-      item_order_no = #{record.itemOrderNo,jdbcType=VARCHAR},
-      device_type = #{record.deviceType,jdbcType=INTEGER},
       device_id = #{record.deviceId,jdbcType=BIGINT},
       device_code = #{record.deviceCode,jdbcType=VARCHAR},
+      device_type = #{record.deviceType,jdbcType=INTEGER},
       range_code = #{record.rangeCode,jdbcType=VARCHAR},
-      goods_info_id = #{record.goodsInfoId,jdbcType=BIGINT},
-      goods_info_code = #{record.goodsInfoCode,jdbcType=VARCHAR},
+      goods_id = #{record.goodsId,jdbcType=BIGINT},
+      goods_type = #{record.goodsType,jdbcType=INTEGER},
       time_price = #{record.timePrice,jdbcType=DECIMAL},
-      time_interval = #{record.timeInterval,jdbcType=DECIMAL},
-      time_total_price = #{record.timeTotalPrice,jdbcType=DECIMAL},
-      time_price_unit = #{record.timePriceUnit,jdbcType=INTEGER},
+      time_interval = #{record.timeInterval,jdbcType=DOUBLE},
+      time_unit = #{record.timeUnit,jdbcType=INTEGER},
       start_time = #{record.startTime,jdbcType=TIMESTAMP},
       end_time = #{record.endTime,jdbcType=TIMESTAMP},
-      time_use_amount = #{record.timeUseAmount,jdbcType=DECIMAL},
+      time_use = #{record.timeUse,jdbcType=DOUBLE},
       water_price = #{record.waterPrice,jdbcType=DECIMAL},
-      water_space = #{record.waterSpace,jdbcType=DECIMAL},
+      water_interval = #{record.waterInterval,jdbcType=DOUBLE},
       water_unit = #{record.waterUnit,jdbcType=INTEGER},
-      water_total_price = #{record.waterTotalPrice,jdbcType=DECIMAL},
-      total_price = #{record.totalPrice,jdbcType=DECIMAL},
-      remain_price = #{record.remainPrice,jdbcType=DECIMAL}
+      water_use = #{record.waterUse,jdbcType=DOUBLE},
+      total_price = #{record.totalPrice,jdbcType=DECIMAL}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -545,35 +438,11 @@
       <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="type != null">
-        `type` = #{type,jdbcType=INTEGER},
-      </if>
       <if test="orderId != null">
         order_id = #{orderId,jdbcType=BIGINT},
       </if>
       <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="customerId != null">
-        customer_id = #{customerId,jdbcType=BIGINT},
-      </if>
-      <if test="customerOpenId != null">
-        customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerUnionId != null">
-        customer_union_id = #{customerUnionId,jdbcType=VARCHAR},
-      </if>
-      <if test="customerNickName != null">
-        customer_nick_name = #{customerNickName,jdbcType=VARCHAR},
-      </if>
-      <if test="itemType != null">
-        item_type = #{itemType,jdbcType=INTEGER},
-      </if>
-      <if test="itemOrderNo != null">
-        item_order_no = #{itemOrderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="deviceType != null">
-        device_type = #{deviceType,jdbcType=INTEGER},
       </if>
       <if test="deviceId != null">
         device_id = #{deviceId,jdbcType=BIGINT},
@@ -581,26 +450,26 @@
       <if test="deviceCode != null">
         device_code = #{deviceCode,jdbcType=VARCHAR},
       </if>
+      <if test="deviceType != null">
+        device_type = #{deviceType,jdbcType=INTEGER},
+      </if>
       <if test="rangeCode != null">
         range_code = #{rangeCode,jdbcType=VARCHAR},
       </if>
-      <if test="goodsInfoId != null">
-        goods_info_id = #{goodsInfoId,jdbcType=BIGINT},
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=BIGINT},
       </if>
-      <if test="goodsInfoCode != null">
-        goods_info_code = #{goodsInfoCode,jdbcType=VARCHAR},
+      <if test="goodsType != null">
+        goods_type = #{goodsType,jdbcType=INTEGER},
       </if>
       <if test="timePrice != null">
         time_price = #{timePrice,jdbcType=DECIMAL},
       </if>
       <if test="timeInterval != null">
-        time_interval = #{timeInterval,jdbcType=DECIMAL},
+        time_interval = #{timeInterval,jdbcType=DOUBLE},
       </if>
-      <if test="timeTotalPrice != null">
-        time_total_price = #{timeTotalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="timePriceUnit != null">
-        time_price_unit = #{timePriceUnit,jdbcType=INTEGER},
+      <if test="timeUnit != null">
+        time_unit = #{timeUnit,jdbcType=INTEGER},
       </if>
       <if test="startTime != null">
         start_time = #{startTime,jdbcType=TIMESTAMP},
@@ -608,26 +477,23 @@
       <if test="endTime != null">
         end_time = #{endTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="timeUseAmount != null">
-        time_use_amount = #{timeUseAmount,jdbcType=DECIMAL},
+      <if test="timeUse != null">
+        time_use = #{timeUse,jdbcType=DOUBLE},
       </if>
       <if test="waterPrice != null">
         water_price = #{waterPrice,jdbcType=DECIMAL},
       </if>
-      <if test="waterSpace != null">
-        water_space = #{waterSpace,jdbcType=DECIMAL},
+      <if test="waterInterval != null">
+        water_interval = #{waterInterval,jdbcType=DOUBLE},
       </if>
       <if test="waterUnit != null">
         water_unit = #{waterUnit,jdbcType=INTEGER},
       </if>
-      <if test="waterTotalPrice != null">
-        water_total_price = #{waterTotalPrice,jdbcType=DECIMAL},
+      <if test="waterUse != null">
+        water_use = #{waterUse,jdbcType=DOUBLE},
       </if>
       <if test="totalPrice != null">
         total_price = #{totalPrice,jdbcType=DECIMAL},
-      </if>
-      <if test="remainPrice != null">
-        remain_price = #{remainPrice,jdbcType=DECIMAL},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -639,34 +505,49 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=INTEGER},
       order_id = #{orderId,jdbcType=BIGINT},
       order_no = #{orderNo,jdbcType=VARCHAR},
-      customer_id = #{customerId,jdbcType=BIGINT},
-      customer_open_id = #{customerOpenId,jdbcType=VARCHAR},
-      customer_union_id = #{customerUnionId,jdbcType=VARCHAR},
-      customer_nick_name = #{customerNickName,jdbcType=VARCHAR},
-      item_type = #{itemType,jdbcType=INTEGER},
-      item_order_no = #{itemOrderNo,jdbcType=VARCHAR},
-      device_type = #{deviceType,jdbcType=INTEGER},
       device_id = #{deviceId,jdbcType=BIGINT},
       device_code = #{deviceCode,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=INTEGER},
       range_code = #{rangeCode,jdbcType=VARCHAR},
-      goods_info_id = #{goodsInfoId,jdbcType=BIGINT},
-      goods_info_code = #{goodsInfoCode,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=BIGINT},
+      goods_type = #{goodsType,jdbcType=INTEGER},
       time_price = #{timePrice,jdbcType=DECIMAL},
-      time_interval = #{timeInterval,jdbcType=DECIMAL},
-      time_total_price = #{timeTotalPrice,jdbcType=DECIMAL},
-      time_price_unit = #{timePriceUnit,jdbcType=INTEGER},
+      time_interval = #{timeInterval,jdbcType=DOUBLE},
+      time_unit = #{timeUnit,jdbcType=INTEGER},
       start_time = #{startTime,jdbcType=TIMESTAMP},
       end_time = #{endTime,jdbcType=TIMESTAMP},
-      time_use_amount = #{timeUseAmount,jdbcType=DECIMAL},
+      time_use = #{timeUse,jdbcType=DOUBLE},
       water_price = #{waterPrice,jdbcType=DECIMAL},
-      water_space = #{waterSpace,jdbcType=DECIMAL},
+      water_interval = #{waterInterval,jdbcType=DOUBLE},
       water_unit = #{waterUnit,jdbcType=INTEGER},
-      water_total_price = #{waterTotalPrice,jdbcType=DECIMAL},
-      total_price = #{totalPrice,jdbcType=DECIMAL},
-      remain_price = #{remainPrice,jdbcType=DECIMAL}
+      water_use = #{waterUse,jdbcType=DOUBLE},
+      total_price = #{totalPrice,jdbcType=DECIMAL}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-14-->
+    <select id="selectOneByOrderIdAndGoodsType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from order_item
+        where order_id=#{orderId,jdbcType=BIGINT} and goods_type=#{goodsType,jdbcType=INTEGER}
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-14-->
+    <select id="selectByOrderId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from order_item
+        where order_id=#{orderId,jdbcType=BIGINT}
+    </select>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-14-->
+    <select id="selectByOrderNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from order_item
+        where order_no=#{orderNo,jdbcType=VARCHAR}
+    </select>
 </mapper>

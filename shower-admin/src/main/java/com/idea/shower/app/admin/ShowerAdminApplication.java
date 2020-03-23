@@ -1,0 +1,11 @@
+package com.idea.shower.app.admin;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ShowerAdminApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ShowerAdminApplication.class, args);
+    }
+}

@@ -1,0 +1,11 @@
+plugins {
+    id 'java'
+}
+
+group 'com.idea.shower.app.db.es'
+
+dependencies {
+    compile project(':shower-db-core')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-elasticsearch'
+
+}

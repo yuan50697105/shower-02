@@ -1,14 +1,20 @@
 package com.idea.shower.app.db.module.pojo;
 
-import com.idea.shower.app.commons.pojo.BaseEntity;
+import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
+import java.io.Serializable;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-
-import java.io.Serializable;
+import lombok.NoArgsConstructor;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class MemberInfo extends BaseEntity implements Serializable {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class MemberInfo extends BaseDbEntity implements Serializable {
     /**
      * 客户ID
      */
@@ -40,4 +46,8 @@ public class MemberInfo extends BaseEntity implements Serializable {
     private String code;
 
     private static final long serialVersionUID = 1L;
+
+    public static MemberInfoBuilder builder() {
+        return new MemberInfoBuilder();
+    }
 }

@@ -9,11 +9,11 @@
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="open_id" jdbcType="VARCHAR" property="openId" />
     <result column="union_id" jdbcType="VARCHAR" property="unionId" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
     <result column="gender" jdbcType="INTEGER" property="gender" />
-    <result column="phone" jdbcType="VARCHAR" property="phone" />
+    <result column="phone_num" jdbcType="VARCHAR" property="phoneNum" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -77,8 +77,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, nick_name, open_id, union_id, 
-    gender, phone
+    id, create_time, update_time, create_user, update_user, open_id, union_id, nick_name, 
+    gender, phone_num
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.CustomerInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -117,13 +117,13 @@
   <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.CustomerInfo">
     <!--@mbg.generated-->
     insert into customer_info (id, create_time, update_time, 
-      create_user, update_user, nick_name, 
-      open_id, union_id, gender, 
-      phone)
+      create_user, update_user, open_id, 
+      union_id, nick_name, gender, 
+      phone_num)
     values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
-      #{openId,jdbcType=VARCHAR}, #{unionId,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
-      #{phone,jdbcType=VARCHAR})
+      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
+      #{unionId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
+      #{phoneNum,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.CustomerInfo">
     <!--@mbg.generated-->
@@ -144,20 +144,20 @@
       <if test="updateUser != null">
         update_user,
       </if>
-      <if test="nickName != null">
-        nick_name,
-      </if>
       <if test="openId != null">
         open_id,
       </if>
       <if test="unionId != null">
         union_id,
       </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
       <if test="gender != null">
         gender,
       </if>
-      <if test="phone != null">
-        phone,
+      <if test="phoneNum != null">
+        phone_num,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -176,20 +176,20 @@
       <if test="updateUser != null">
         #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="nickName != null">
-        #{nickName,jdbcType=VARCHAR},
-      </if>
       <if test="openId != null">
         #{openId,jdbcType=VARCHAR},
       </if>
       <if test="unionId != null">
         #{unionId,jdbcType=VARCHAR},
       </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
       <if test="gender != null">
         #{gender,jdbcType=INTEGER},
       </if>
-      <if test="phone != null">
-        #{phone,jdbcType=VARCHAR},
+      <if test="phoneNum != null">
+        #{phoneNum,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -219,20 +219,20 @@
       <if test="record.updateUser != null">
         update_user = #{record.updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="record.nickName != null">
-        nick_name = #{record.nickName,jdbcType=VARCHAR},
-      </if>
       <if test="record.openId != null">
         open_id = #{record.openId,jdbcType=VARCHAR},
       </if>
       <if test="record.unionId != null">
         union_id = #{record.unionId,jdbcType=VARCHAR},
       </if>
+      <if test="record.nickName != null">
+        nick_name = #{record.nickName,jdbcType=VARCHAR},
+      </if>
       <if test="record.gender != null">
         gender = #{record.gender,jdbcType=INTEGER},
       </if>
-      <if test="record.phone != null">
-        phone = #{record.phone,jdbcType=VARCHAR},
+      <if test="record.phoneNum != null">
+        phone_num = #{record.phoneNum,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -247,11 +247,11 @@
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
-      nick_name = #{record.nickName,jdbcType=VARCHAR},
       open_id = #{record.openId,jdbcType=VARCHAR},
       union_id = #{record.unionId,jdbcType=VARCHAR},
+      nick_name = #{record.nickName,jdbcType=VARCHAR},
       gender = #{record.gender,jdbcType=INTEGER},
-      phone = #{record.phone,jdbcType=VARCHAR}
+      phone_num = #{record.phoneNum,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -272,20 +272,20 @@
       <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="nickName != null">
-        nick_name = #{nickName,jdbcType=VARCHAR},
-      </if>
       <if test="openId != null">
         open_id = #{openId,jdbcType=VARCHAR},
       </if>
       <if test="unionId != null">
         union_id = #{unionId,jdbcType=VARCHAR},
       </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
       <if test="gender != null">
         gender = #{gender,jdbcType=INTEGER},
       </if>
-      <if test="phone != null">
-        phone = #{phone,jdbcType=VARCHAR},
+      <if test="phoneNum != null">
+        phone_num = #{phoneNum,jdbcType=VARCHAR},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -297,11 +297,19 @@
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
-      nick_name = #{nickName,jdbcType=VARCHAR},
       open_id = #{openId,jdbcType=VARCHAR},
       union_id = #{unionId,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
       gender = #{gender,jdbcType=INTEGER},
-      phone = #{phone,jdbcType=VARCHAR}
+      phone_num = #{phoneNum,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-14-->
+    <select id="selectOneByUnionId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from customer_info
+        where union_id=#{unionId,jdbcType=VARCHAR}
+    </select>
 </mapper>
