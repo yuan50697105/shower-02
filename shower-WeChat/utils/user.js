@@ -50,8 +50,7 @@ function loginByWeixin(userInfo) {
     return login().then((res) => {
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, {
-        code: res.code,
-        userInfo: userInfo
+        code: res.code
       }, 'POST').then(res => {
         if (res.errno === 0) {
           //存储用户信息

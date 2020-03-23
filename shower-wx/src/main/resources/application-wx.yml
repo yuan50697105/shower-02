@@ -15,10 +15,10 @@ wx:
     sub-mch-id:
   mp:
     aes-key:
-    app-id:
+    app-id: wx4f688d98fef66fac
     config-storage:
       type: memory
-    secret:
+    secret: 20b9a70f82f040c953d8c65bd5a3a551
     token:
 spring:
   profiles:

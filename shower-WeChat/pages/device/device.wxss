@@ -49,7 +49,7 @@
  height: 100rpx;
  line-height: 100rpx;
  margin: 30rpx 0;
- color: #00b358;
+ color: #24998d;
  text-align: center;
  font-size: 40rpx;
  font-family: Arial;
@@ -57,7 +57,7 @@
 }
 
 .device-list .device-list-item .tobooking {
- background-color: #00B358;
+ background-color: #24998d;
  position: absolute;
  right: 0;
  width: 120rpx;
@@ -115,7 +115,7 @@
 
 .device-list .device-list-item .s-icon1 {
   margin: 0 10rpx;
-  border-color: #00B358;
+  border-color: #24998d;
 }
 
 .device-list .device-list-item .s-icon2 {
@@ -135,13 +135,13 @@
 
 
 .calendar-bar-wrapper {
-  height: 72rpx;
+  height: 100rpx;
 }
 
  .calendar-bar {
-  height: 72rpx;
-  line-height: 72rpx;
-  background-color: #08c563;
+  height: 100rpx;
+  line-height: 100rpx;
+  background-color: #24998d ;
   color: #fff;
   top: 0;
   left: 0;
@@ -150,19 +150,14 @@
 
  .calendar-bar .tabs-item {
   font-size: 26rpx;
-  border-right: 1px solid #02ad56;
+  border-right: 1px solid #24998d;
 }
 
  .calendar-bar .tabs-item.disabled {
-  color: #01994c;
+  color: #24998d;
 }
 
 .device-tabs {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: -moz-box;
-    display: -moz-flex;
-    display: -ms-flexbox;
     display: flex;
     width: 100%;
     line-height: 80rpx;
@@ -196,7 +191,7 @@
 
  .device-tabs.list-filter .tabs-item.active {
   color: #fff;
-  background-color: #00b358;
+  background-color: #24998d;
 }
 
  .device-tabs.list-filter .tabs-item .line{
@@ -207,7 +202,7 @@
 }
 
  .device-tabs.list-filter .tabs-item .line:last-child{
-  color: #00b358
+  color: #24998d
 }
 
  .device-tabs.list-filter .tabs-item.active .line:last-child{
@@ -247,7 +242,7 @@
 
 .calendar-wrapper-box .icon-back::before,
 .calendar-wrapper-box .icon-next::before {
-  border-color: #00b25a;
+  border-color: #24998d;
   width: 24rpx;
   height: 24rpx;
 }
@@ -272,7 +267,7 @@
   right: 130rpx;
   height: 45px;
   line-height: 90rpx;
-  color: #00b358;
+  color: #24998d;
   text-align: center;
 }
 
@@ -281,7 +276,7 @@
     top: 0;
     height: 90rpx;
     line-height: 90rpx;
-    color: #00b358;
+    color: #24998d;
     text-align: center;
     left: 90rpx;
     right: 90rpx;
@@ -310,4 +305,70 @@
 .icon-next::before {
     -webkit-transform: rotate(225deg);
     transform: rotate(225deg);
+}
+
+.input{
+  height: 100rpx;
+  line-height: 100rpx;
+  font-size: 15px;
+}
+
+.phClass{
+  color: white;
+}
+
+.weui-search-bar {
+  position: relative;
+  padding: 5px 5px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  box-sizing: border-box;
+  background-color: #EFEFF4;
+  border-top: 1rpx solid #D7D6DC;
+  border-bottom: 1rpx solid #D7D6DC;
+  height: 94rpx;
+  margin-top: 3rpx;
+}
+
+.weui-search-bar_cancel-btn {
+  margin-left: 7px;
+  line-height: 36px;
+  color: #24998d;
+  white-space: nowrap;
+}
+
+.weui-search-bar_form {
+  position: relative;
+  -webkit-box-flex: 1;
+  -webkit-flex: auto;
+          flex: auto;
+  border-radius: 5px;
+  background: #FFFFFF;
+  border: 1rpx solid #E6E6EA;
+}
+
+.weui-search-bar_box {
+  position: relative;
+  padding-left: 30px;
+  padding-right: 30px;
+  width: 100%;
+  box-sizing: border-box;
+  z-index: 1;
+}
+
+.weui-icon-search_in-box {
+  position: absolute;
+  left: 10px;
+  top: 6px;
+}
+
+.weui-search-bar_input {
+  height: 36px;
+  line-height: 36px;
+  font-size: 14px;
+}
+
+.js_pre_day{
+  width: 20%;
 }

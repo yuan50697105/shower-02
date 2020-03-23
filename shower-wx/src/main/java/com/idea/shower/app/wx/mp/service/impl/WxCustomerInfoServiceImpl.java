@@ -7,6 +7,7 @@ import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.idea.shower.app.db.module.dao.CustomerInfoDao;
 import com.idea.shower.app.db.module.pojo.CustomerInfo;
+import com.idea.shower.app.wx.mp.pojo.WxLoginInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUserInfo;
 import com.idea.shower.app.wx.mp.service.WxCustomerInfoService;
 import com.idea.shower.web.webmvc.pojo.Result;
@@ -32,8 +33,8 @@ public class WxCustomerInfoServiceImpl implements WxCustomerInfoService {
 
     @SneakyThrows
     @Override
-    public Result login(String jsCode) {
-        WxMaJscode2SessionResult sessionResult = wxMaService.jsCode2SessionInfo(jsCode);
+    public Result login(WxLoginInfo wxLoginInfo) {
+        WxMaJscode2SessionResult sessionResult = wxMaService.jsCode2SessionInfo(wxLoginInfo.getCode());
         if (!isExistCustomerInfo(sessionResult)) {
             saveCustomerInfo(sessionResult);
         }
