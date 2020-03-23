@@ -1,6 +1,7 @@
 package com.idea.shower.app.wx.mp.service;
 
 
+import com.idea.shower.app.wx.mp.pojo.WxLoginInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUserInfo;
 import com.idea.shower.web.webmvc.pojo.Result;
 
@@ -11,7 +12,7 @@ import com.idea.shower.web.webmvc.pojo.Result;
  * @create: 2020-02-14 12:47
  */
 public interface WxCustomerInfoService {
-    Result login(String jsCode);
+    Result login(WxLoginInfo wxLoginInfo);
 
     Result saveUserInfo(WxUserInfo wxUserInfo);
 }
