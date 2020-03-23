@@ -53,4 +53,20 @@ public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
      * @return 受影响行数
      */
     int update(CustomerInfo customerInfo);
+
+    /**
+     * 通过id获取用户信息
+     *
+     * @param id id
+     * @return 用户信息
+     */
+    Optional<CustomerInfo> getById(String id);
+
+    /**
+     * 通过openId获取用户信息
+     *
+     * @param openId openId
+     * @return 用户信息
+     */
+    Optional<CustomerInfo> getByOpenId(String openId);
 }

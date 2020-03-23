@@ -44,13 +44,15 @@ function login() {
 /**
  * 调用微信登录
  */
-function loginByWeixin(userInfo) {
+function loginByWeixin(code, userInfo, encryptedPhone) {
 
   return new Promise(function(resolve, reject) {
     return login().then((res) => {
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, {
-        code: res.code
+        code: res.code,
+        userInfo: userInfo,
+        encryptedPhone: encryptedPhone
       }, 'POST').then(res => {
         if (res.errno === 0) {
           //存储用户信息
