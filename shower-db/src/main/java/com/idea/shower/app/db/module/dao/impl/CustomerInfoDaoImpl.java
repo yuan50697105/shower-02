@@ -62,4 +62,10 @@ public class CustomerInfoDaoImpl extends BaseDaoImpl<CustomerInfo, CustomerInfoM
     public Optional<CustomerInfo> getByOpenId(String openId) {
         return Optional.ofNullable(baseMapper().selectOneByOpenId(openId));
     }
+    @Override
+    public long countByOpenId(String openid) {
+        CustomerInfoExample example = new CustomerInfoExample();
+        example.or().andOpenIdEqualTo(openid);
+        return baseMapper().countByExample(example);
+    }
 }

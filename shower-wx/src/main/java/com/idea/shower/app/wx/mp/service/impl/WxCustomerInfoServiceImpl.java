@@ -79,7 +79,7 @@ public class WxCustomerInfoServiceImpl implements WxCustomerInfoService {
      * @return
      */
     private boolean isExistCustomerInfo(WxMaJscode2SessionResult sessionResult) {
-        long count = customerInfoDao.countByUnionId(sessionResult.getUnionid());
+        long count = customerInfoDao.countByOpenId(sessionResult.getOpenid());
         return count > 0;
     }
 
