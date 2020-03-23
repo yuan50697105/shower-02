@@ -7,3 +7,6 @@ server:
 spring:
   profiles:
     active: dbconfig,wx,mvc
+logging:
+  level:
+    web: debug

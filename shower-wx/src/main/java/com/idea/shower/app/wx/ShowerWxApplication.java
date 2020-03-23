@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author: yuane
  * @create: 2020-03-10 20:53
  */
-@SpringBootApplication(scanBasePackageClasses = {ShowerDbApplication.class, WebMvcCoreApplication.class})
+@SpringBootApplication(scanBasePackageClasses = {ShowerWxApplication.class, ShowerDbApplication.class, WebMvcCoreApplication.class})
 public class ShowerWxApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShowerWxApplication.class, args);
