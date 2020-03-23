@@ -1,11 +1,13 @@
 
 wx:
+#  小程序
   miniapp:
-    appid:
+    appid: wx4f688d98fef66fac
     aes-key:
     msg-data-format: JSON
-    secret:
+    secret: 20b9a70f82f040c953d8c65bd5a3a551
     token:
+#  商户平台
   pay:
     app-id:
     key-path:
@@ -13,12 +15,13 @@ wx:
     mch-key:
     sub-app-id:
     sub-mch-id:
+#  公众号
   mp:
     aes-key:
-    app-id: wx4f688d98fef66fac
+    app-id:
     config-storage:
       type: memory
-    secret: 20b9a70f82f040c953d8c65bd5a3a551
+    secret:
     token:
 spring:
   profiles:

@@ -1,5 +1,6 @@
 package com.idea.shower.app.wx.mp.pojo;
 
+import com.idea.shower.app.wx.mp.util.EncryptedPhone;
 import lombok.Data;
 
 /**
@@ -13,4 +14,6 @@ import lombok.Data;
 public class WxLoginInfo {
 
     private String code;
+    private UserInfo userInfo;
+    private EncryptedPhone encryptedPhone;
 }

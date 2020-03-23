@@ -26,6 +26,7 @@ Page({
 
   },
   wxLogin: function (e) {
+    console.log(e)
     if (e.detail.encryptedData == undefined) {
       app.globalData.hasLogin = false;
       util.showErrorToast('微信登录失败');

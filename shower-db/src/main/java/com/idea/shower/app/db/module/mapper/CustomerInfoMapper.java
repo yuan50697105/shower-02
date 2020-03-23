@@ -32,4 +32,8 @@ public interface CustomerInfoMapper extends BaseMapper {
     int updateByPrimaryKey(CustomerInfo record);
 
     CustomerInfo selectOneByUnionId(@Param("unionId") String unionId);
+
+    CustomerInfo selectOneById(@Param("id") String id);
+    
+    CustomerInfo selectOneByOpenId(@Param("openId") String openId);
 }
