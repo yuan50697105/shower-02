@@ -51,7 +51,6 @@ function loginByWeixin(code, userInfo, encryptedPhone) {
       //登录远程服务器
       util.request(api.AuthLoginByWeixin, {
         code: res.code,
-        userInfo: userInfo,
         encryptedPhone: encryptedPhone
       }, 'POST').then(res => {
         if (res.errno === 0) {

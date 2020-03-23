@@ -100,10 +100,6 @@ public class WxCustomerInfoServiceImpl implements WxCustomerInfoService {
             e.printStackTrace();
         }
         customerInfo.setPhoneNum(phone);
-        UserInfo userInfo = wxLoginInfo.getUserInfo();
-        if(userInfo!=null){
-            customerInfo.setNickName(userInfo.getNickName());
-        }
         customerInfoDao.save(customerInfo);
         return customerInfo;
     }
