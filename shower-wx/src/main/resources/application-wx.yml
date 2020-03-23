@@ -1,10 +1,10 @@
 
 wx:
   miniapp:
-    appid:
+    appid: wx4f688d98fef66fac
     aes-key:
     msg-data-format: JSON
-    secret:
+    secret: 20b9a70f82f040c953d8c65bd5a3a551
     token:
   pay:
     app-id:
