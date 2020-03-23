@@ -5,3 +5,5 @@ spring:
     url: jdbc:mysql://rm-2ze853397mhy2yl3nio.mysql.rds.aliyuncs.com:3306/shower?serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
+mybatis:
+  mapper-locations: classpath*:mappers/*.xml

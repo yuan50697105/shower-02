@@ -23,6 +23,3 @@ wx:
       type: memory
     secret:
     token:
-spring:
-  profiles:
-    active: dbconfig
