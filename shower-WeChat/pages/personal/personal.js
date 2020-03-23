@@ -31,7 +31,7 @@ Page({
        if (app.globalData.hasLogin) {
          let userInfo = wx.getStorageSync('userInfo');
          this.setData({
-           userInfo: e.detail.userInfo,
+           userInfo: userInfo,
            hasLogin: true
          })
        } else {
