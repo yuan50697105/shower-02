@@ -383,5 +383,13 @@
       building_name = #{buildingName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByCondition" resultMap="BaseResultMap" />
+  <select id="selectByCondition" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List"/>
+    from device_info
+    <where>
+      <if test="code != null and code != ''">
+        and code like concat('%',#{code,jdbcType=VARCHAR},'%')
+      </if>
+    </where>
+  </select>
 </mapper>
