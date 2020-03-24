@@ -27,7 +27,7 @@ Page({
     statusName: '全部',
     code: undefined,
     page: 1,
-    limit: 1,
+    limit: 6,
     totalPages: 1
   },
   /**
@@ -96,10 +96,14 @@ Page({
     let data = this.data.schoolList[index];
     that.setData({
       school: data.id,
-      schoolName: data.name
+      schoolName: data.name,
+      //先清空列表及分页信息
+      dataList: [],
+      page: 1,
+      totalPages: 1
     })
     //调用查询设备列表方法
-    this.deviceList();
+    that.deviceList();
   },
   //选择机器使用状态
   statusSelectChange: function (e) {
@@ -108,10 +112,14 @@ Page({
     let data = this.data.statusMap[index];
     that.setData({
       status: data.code,
-      statusName: data.text
+      statusName: data.text,
+      //先清空列表及分页信息
+      dataList: [],
+      page: 1,
+      totalPages: 1
     })
     //调用查询设备列表方法
-    this.deviceList();
+    that.deviceList();
   },
   //获取区域信息
   areasList: function () {
@@ -154,8 +162,14 @@ Page({
 
   //输入框搜索
   searchByCode:function(e){
+    //先清空列表及分页信息
+    that.setData({
+      dataList: [],
+      totalPages: 1,
+      page: 1
+    });
     //调用查询设备列表方法
-    this.deviceList();
+    that.deviceList();
   },
 
   //监听下滑

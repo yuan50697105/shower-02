@@ -3,7 +3,7 @@
     <view class="device-tabs calendar-bar">
       <view class="tabs-item js_pre_day">
         <picker id="school" mode="selector" range="{{schoolList}}" value="{{school}}" range-key="name" bindchange="schoolSelectChange">
-          <input id="school" class="input" name="school" type="text" placeholder="选择学校" bindblur="bindblurSchool" value="{{schoolName}}" disabled="true" placeholder-class="phClass"/>
+          <input id="school" class="input" name="school" type="text" placeholder="全部学校" bindblur="bindblurSchool" value="{{schoolName}}" disabled="true" placeholder-class="phClass"/>
         </picker>
       </view>
       <view ontap="showCalendar" class="tabs-item js_show_calendar" style="-webkit-flex: 3; flex: 3;">
