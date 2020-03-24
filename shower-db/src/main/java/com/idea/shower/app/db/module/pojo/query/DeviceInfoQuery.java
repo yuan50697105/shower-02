@@ -16,4 +16,5 @@ public class DeviceInfoQuery extends BaseDbQuery {
     private Long id;
     private String code;
     private Integer enabled;
+    private Long areaId;
 }

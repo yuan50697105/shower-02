@@ -367,6 +367,7 @@
   height: 36px;
   line-height: 36px;
   font-size: 14px;
+  color: black;
 }
 
 .js_pre_day{

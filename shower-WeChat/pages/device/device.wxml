@@ -2,7 +2,7 @@
   <view class="calendar-bar-wrapper js_calendar_wrapper">
     <view class="device-tabs calendar-bar">
       <view class="tabs-item js_pre_day">
-        <picker id="school" mode="selector" range="{{schoolMap}}" value="{{school}}" range-key="text" bindchange="schoolSelectChange">
+        <picker id="school" mode="selector" range="{{schoolList}}" value="{{school}}" range-key="name" bindchange="schoolSelectChange">
           <input id="school" class="input" name="school" type="text" placeholder="选择学校" bindblur="bindblurSchool" value="{{schoolName}}" disabled="true" placeholder-class="phClass"/>
         </picker>
       </view>
@@ -12,11 +12,11 @@
           <!-- 搜索框 -->
               <view class="weui-search-bar_box">
                   <icon class="weui-icon-search_in-box" type="search" size="14"></icon>
-                  <input type="text" class="weui-search-bar_input" placeholder="请输入"/>
+                  <input type="text" value="{{code}}" bindinput="inputChange" bindfocus="inputFocus" bindconfirm="onKeywordConfirm" class="weui-search-bar_input" placeholder="请输入编号"/>
               </view>
           </view>
           <!-- 搜索按钮,调用搜索查询方法 -->
-          <view class="weui-search-bar_cancel-btn" bindtap='方法名a'>搜索</view>
+          <view class="weui-search-bar_cancel-btn" bindtap='searchByCode'>搜索</view>
         </view>
       </view>
       <view class="tabs-item js_next_day">
@@ -28,23 +28,24 @@
   </view>
   <view class="device-list js_device_list ">
 
-    <block wx:for="{{listData}}" wx:key="k">
+    <block wx:for="{{dataList}}" wx:key="k">
       <view class="device-list-item  ">
-        <view class="device-time">{{item.dateStr}}</view>
+        <view class="device-time">{{item.code}}</view>
         <view class="tobooking"> 使用 </view>
         <view class="detail">
           <view class="detail1">
             <view class="start">
-              <text class="icon-circle s-icon1"></text>{{item.startstationname}}</view>
+              <text class="icon-circle s-icon1"></text>{{item.buildingName}}</view>
             <view class="end">
-              <text class="icon-circle s-icon2"></text>{{item.arrivalstationname}}</view>
+              <text class="icon-circle s-icon2"></text>{{item.areaName}}</view>
           </view>
           <view class="tags">
             <view>
-              <text class="price">￥{{item.price / 100}}</text>
+              <text class="price">￥{{item.priceCode}}/min</text>
             </view>
             <view>
-              <text class="countleft">{{item.cansellcountamount}}</text>
+              <text wx:if="{{item.enabled==0}}" class="countleft">可以使用</text>
+              <text wx:if="{{item.enabled==1}}" class="countleft" style="color:red;" >不可使用</text>
             </view>
             <view>
               <text class="b-tags js_tags"></text>

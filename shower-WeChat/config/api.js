@@ -3,7 +3,7 @@ var WxApiRoot = 'http://localhost:8002/wx/';
 module.exports = {
    //微信登录
   AuthLoginByWeixin: WxApiRoot + 'customer/login',
-  orderCreat: WxApiRoot + 'order/create',
-  orderOver: WxApiRoot + 'order/stop',
+  AreaList: WxApiRoot + 'area/areas',
+  DeviceInfoList: WxApiRoot + 'device/deviceInfoList',
   loginUrl: WxApiRoot + 'customer/get_openid'
 };

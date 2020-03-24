@@ -29,7 +29,7 @@ public class DeviceInfo extends BaseDbEntity implements Serializable {
      */
     private String priceCode;
     /**
-     * 启用状态
+     * 启用状态(0:未启用；1已启用)
      */
     private Integer enabled;
     /**

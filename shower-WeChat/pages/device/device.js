@@ -1,3 +1,7 @@
+var api = require('../../config/api.js');
+var util = require('../../utils/util.js');
+var user = require('../../utils/user.js');
+
 const app = getApp()
 Page({
 
@@ -5,39 +9,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-    listData: [
-      {
-        "dateStr":"1号",
-        "startstationname":"17号楼后面",
-        "arrivalstationname":"山科",
-        "price":500,
-        "cansellcountamount":30
-      }
-    ],
-    schoolMap: [{
-      code: 1,
-      text: '山科'
-    }, {
-      code: 2,
-      text: '青职'
-    }],
+    dataList: [],
+    schoolList: [],
     school: undefined,
     schoolName: undefined,
     statusMap: [{
-      code: 1,
+      code: 2,
+      text: '全部'
+    }, {
+      code: 0,
       text: '可以使用'
     }, {
-      code: 2,
+      code: 1,
       text: '不可使用'
     }],
-    status: undefined,
-    statusName: undefined,
+    status: 2,
+    statusName: '全部',
+    code: undefined
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    //获取区域信息
+    this.areasList();
+    //获取设备列表信息
+    this.deviceList();
   },
 
   /**
@@ -65,7 +62,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    
   },
 
   /**
@@ -93,11 +90,13 @@ Page({
   schoolSelectChange: function (e) {
     let that = this;
     let index = e.detail.value;
-    let data = this.data.schoolMap[index];
+    let data = this.data.schoolList[index];
     that.setData({
-      school: data.code,
-      schoolName: data.text
+      school: data.id,
+      schoolName: data.name
     })
+    //调用查询设备列表方法
+    this.deviceList();
   },
   //选择机器使用状态
   statusSelectChange: function (e) {
@@ -108,5 +107,47 @@ Page({
       status: data.code,
       statusName: data.text
     })
+    //调用查询设备列表方法
+    this.deviceList();
   },
+  //获取区域信息
+  areasList: function () {
+    let that = this;
+    util.request(api.AreaList).then(function (res) {
+      if (res.code === 200) {
+        that.setData({
+          schoolList: res.data
+        });
+      }
+    });
+  },
+  //获取设备信息
+  deviceList: function () {
+    let that = this;
+    util.request(api.DeviceInfoList,{
+      areaId:that.data.school,
+      enabled:that.data.status,
+      code: that.data.code
+    }, 'POST').then(function (res) {
+      if (res.code === 200) {
+        that.setData({
+          dataList: res.data
+        });
+      }
+    });
+  },
+
+  //输入框内容改变
+  inputChange: function(e){
+    let that = this;
+    that.setData({
+      code: e.detail.value
+    });
+  },
+
+  //输入框搜索
+  searchByCode:function(e){
+    //调用查询设备列表方法
+    this.deviceList();
+  }
 })
