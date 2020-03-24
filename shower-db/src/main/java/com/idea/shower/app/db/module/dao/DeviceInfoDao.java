@@ -24,5 +24,5 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
     *@author finch
     *@date: 2020/3/24
     */
-    List<DeviceInfo> selectAll(DeviceInfoQuery deviceInfoQuery);
+    PageResult<DeviceInfo> selectAll(DeviceInfoQuery deviceInfoQuery);
 }

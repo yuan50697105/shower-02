@@ -25,7 +25,10 @@ Page({
     }],
     status: 2,
     statusName: '全部',
-    code: undefined
+    code: undefined,
+    page: 1,
+    limit: 1,
+    totalPages: 1
   },
   /**
    * 生命周期函数--监听页面加载
@@ -116,7 +119,7 @@ Page({
     util.request(api.AreaList).then(function (res) {
       if (res.code === 200) {
         that.setData({
-          schoolList: res.data
+          schoolList: that.data.schoolList.concat(res.data)
         });
       }
     });
@@ -127,11 +130,15 @@ Page({
     util.request(api.DeviceInfoList,{
       areaId:that.data.school,
       enabled:that.data.status,
-      code: that.data.code
+      code: that.data.code,
+      page: that.data.page,
+      limit: that.data.limit
     }, 'POST').then(function (res) {
+      console.log(res)
       if (res.code === 200) {
         that.setData({
-          dataList: res.data
+          dataList: that.data.dataList.concat(res.data.data),
+          totalPages: res.data.totalPages
         });
       }
     });
@@ -149,5 +156,22 @@ Page({
   searchByCode:function(e){
     //调用查询设备列表方法
     this.deviceList();
-  }
+  },
+
+  //监听下滑
+  onReachBottom() {
+    if (this.data.totalPages > this.data.page) {
+      this.setData({
+        page: this.data.page + 1
+      });
+      this.deviceList();
+    } else {
+      wx.showToast({
+        title: '没有更多房间了',
+        icon: 'none',
+        duration: 2000
+      });
+      return false;
+    }
+  },
 })

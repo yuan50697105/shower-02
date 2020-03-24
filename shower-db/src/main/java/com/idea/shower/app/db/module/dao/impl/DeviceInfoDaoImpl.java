@@ -1,5 +1,7 @@
 package com.idea.shower.app.db.module.dao.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.idea.shower.app.db.module.dao.DeviceInfoDao;
 import com.idea.shower.app.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.db.module.pojo.DeviceInfoExample;
@@ -37,7 +39,7 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     }
 
     @Override
-    public List<DeviceInfo> selectAll(DeviceInfoQuery deviceInfoQuery) {
+    public PageResult<DeviceInfo> selectAll(DeviceInfoQuery deviceInfoQuery) {
         DeviceInfoExample example = new DeviceInfoExample();
         DeviceInfoExample.Criteria criteria =example.or();
         if(!StringUtils.isEmpty(deviceInfoQuery.getAreaId())){
@@ -51,7 +53,8 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
         if(!StringUtils.isEmpty(deviceInfoQuery.getEnabled()) && deviceInfoQuery.getEnabled().intValue() != allStatus){
             criteria.andEnabledEqualTo(deviceInfoQuery.getEnabled());
         }
-        return baseMapper().selectByExample(example);
+        PageHelper.startPage(deviceInfoQuery.getPage(), deviceInfoQuery.getLimit());
+        return pageResult(PageInfo.of(baseMapper().selectByExample(example)));
     }
 
 }
