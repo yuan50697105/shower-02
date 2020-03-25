@@ -22,11 +22,6 @@ public abstract class BaseDbDaoImpl<T, ID extends Serializable, M extends BaseDb
         return baseMapper;
     }
 
-    protected <E extends BaseDbQuery> PageResult<T> pageResult(E condition, Function<E, List<T>> function) {
-        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
-        return pageResult(PageInfo.of(function.apply(condition)));
-    }
-
     protected PageResult<T> pageResult(PageInfo<T> pageInfo) {
         return PageResult.of(pageInfo);
     }

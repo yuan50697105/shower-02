@@ -2,20 +2,19 @@ package com.idea.shower.app.db.module.dao.impl;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.dao.DeviceInfoDao;
+import com.idea.shower.app.db.module.mapper.DeviceInfoMapper;
 import com.idea.shower.app.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.db.module.pojo.DeviceInfoExample;
 import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
-import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.mapper.DeviceInfoMapper;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
-import java.util.List;
 import java.util.Optional;
 
 /**
@@ -35,7 +34,8 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
 
     @Override
     public PageResult<DeviceInfo> selectPage(DeviceInfoQuery condition) {
-        return pageResult(condition, baseMapper()::selectByCondition);
+        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
+        return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
     @Override
