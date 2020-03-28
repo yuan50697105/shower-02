@@ -2,7 +2,7 @@ package com.idea.shower.app.wx.mp.controller;
 
 import cn.hutool.core.io.IoUtil;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.WxOrderInfo;
+import com.idea.shower.app.wx.mp.pojo.WxOrderInfoRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
@@ -28,7 +28,7 @@ public class WxOrderInfoController extends ResultController {
 
     @PostMapping("data")
     public Result data(@RequestBody OrderInfoQuery condition) {
-        return wxOrderInfoService.data(condition);
+        return wxOrderInfoService.selectPage(condition);
     }
 
     @GetMapping("item")
@@ -38,13 +38,13 @@ public class WxOrderInfoController extends ResultController {
 
 
     @PostMapping("add")
-    public Result addOrder(@RequestBody WxOrderInfo wxOrderInfo) {
-        return wxOrderInfoService.addOrder(wxOrderInfo);
+    public Result addOrder(@RequestBody WxOrderInfoRequest wxOrderInfoRequest) {
+        return wxOrderInfoService.addOrder(wxOrderInfoRequest);
     }
 
     @PostMapping("end")
-    public Result endOrder(@RequestBody WxOrderInfo wxOrderInfo) {
-        return wxOrderInfoService.endOrder(wxOrderInfo);
+    public Result endOrder(@RequestBody WxOrderInfoRequest wxOrderInfoRequest) {
+        return wxOrderInfoService.endOrder(wxOrderInfoRequest);
     }
 
     @PostMapping("pay")

@@ -9,14 +9,17 @@ import lombok.Data;
  * @create: 2020-02-14 13:28
  */
 @Data
-public class WxOrderInfo {
-    private String unionId;
+public class WxOrderInfoRequest {
+    /**
+     * 用户ID
+     */
     private String openId;
-    private Long orderId;
-    private String orderNo;
-    private String rangeCode;
-    private Long deviceId;
+    /**
+     * 设备编号
+     */
     private String deviceCode;
+    /**
+     * 订单类型
+     */
     private Integer type;
-    private Double waterUse;
 }

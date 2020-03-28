@@ -10,42 +10,32 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * customer_info
+ * 区域楼宇信息
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerInfo extends BaseDbEntity implements Serializable {
+public class AreaTower extends BaseDbEntity implements Serializable {
     /**
-     * openId
+     * 楼宇名称
      */
-    private String openId;
+    private String name;
 
     /**
-     * unionId
+     * 楼宇编号
      */
-    private String unionId;
+    private String code;
 
     /**
-     * nickName
+     * 所属区域ID
      */
-    private String nickName;
-
-    /**
-     * gender
-     */
-    private Integer gender;
-
-    /**
-     * phoneNum
-     */
-    private String phoneNum;
+    private Long areaId;
 
     private static final long serialVersionUID = 1L;
 
-    public static CustomerInfoBuilder builder() {
-        return new CustomerInfoBuilder();
+    public static AreaTowerBuilder builder() {
+        return new AreaTowerBuilder();
     }
 }

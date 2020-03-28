@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * order_info
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -24,7 +27,7 @@ public class OrderInfo extends BaseDbEntity implements Serializable {
     /**
      * 订单类型
      */
-    private String type;
+    private Integer type;
 
     /**
      * 客户ID

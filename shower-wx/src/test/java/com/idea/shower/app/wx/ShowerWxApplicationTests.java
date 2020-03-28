@@ -1,8 +1,11 @@
 package com.idea.shower.app.wx;
 
+import com.idea.shower.app.db.module.constants.order.OrderType;
 import com.idea.shower.app.db.module.mapper.CustomerInfoMapper;
 import com.idea.shower.app.db.module.pojo.CustomerInfo;
 import com.idea.shower.app.db.module.pojo.CustomerInfoExample;
+import com.idea.shower.app.wx.mp.pojo.WxOrderInfoRequest;
+import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -29,5 +32,35 @@ public class ShowerWxApplicationTests {
         CustomerInfoMapper customerInfoMapper = context.getBean(CustomerInfoMapper.class);
         int insert = customerInfoMapper.insert(new CustomerInfo());
         System.out.println("insert = " + insert);
+    }
+
+    @Test
+    @Transactional(rollbackFor = Exception.class)
+    @Rollback(value = false)
+    void tAddOrder() {
+        String openId = "adasd";
+        String rangeCode = "asdasd";
+        String deviceCode = "A001";
+//        CustomerInfoDao customerInfoDao = context.getBean(CustomerInfoDao.class);
+//        CustomerInfo customerInfo = new CustomerInfo();
+//        customerInfo.setOpenId(openId);
+//        customerInfoDao.save(customerInfo);
+
+//        PriceInfoDao priceInfoDao = context.getBean(PriceInfoDao.class);
+//        PriceInfo priceInfo = new PriceInfo();
+//        priceInfo.setCode(UUID.randomUUID().toString());
+//        priceInfo.setRangeCode(rangeCode);
+//        priceInfo.setTimePrice(new BigDecimal("100"));
+//        priceInfo.setWaterPrice(new BigDecimal("100"));
+//        priceInfoDao.save(priceInfo);
+
+        WxOrderInfoService orderInfoService = context.getBean(WxOrderInfoService.class);
+        WxOrderInfoRequest wxOrderInfoRequest = new WxOrderInfoRequest();
+        wxOrderInfoRequest.setDeviceCode(deviceCode);
+//        wxOrderInfo.setDeviceId(1111L);
+        wxOrderInfoRequest.setOpenId(openId);
+        wxOrderInfoRequest.setRangeCode(rangeCode);
+        wxOrderInfoRequest.setType(OrderType.RESERVATION);
+        orderInfoService.addOrder(wxOrderInfoRequest);
     }
 }

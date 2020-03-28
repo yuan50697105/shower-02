@@ -34,7 +34,7 @@ public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem, OrderItemMapper> im
 
     @Override
     public Optional<OrderItem> getRentalItemByOrderId(Long orderId) {
-        return Optional.ofNullable(baseMapper().selectOneByOrderIdAndGoodsType(orderId, GoodsType.FROM_THEIR_PRICES));
+        return Optional.ofNullable(baseMapper().selectOneByOrderIdAndGoodsType(orderId, GoodsType.STARTING_PRICE));
     }
 
     @Override

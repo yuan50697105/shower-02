@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * 管理员用户角色关联
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder

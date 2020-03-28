@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * price_info
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -24,12 +27,12 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
     /**
      * 类型
      */
-    private String type;
+    private Integer type;
 
     /**
      * 地区码
      */
-    private String rangeCode;
+    private String priceCode;
 
     /**
      * 时间定价

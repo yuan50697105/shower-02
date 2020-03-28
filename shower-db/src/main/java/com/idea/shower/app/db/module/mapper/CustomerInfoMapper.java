@@ -34,6 +34,6 @@ public interface CustomerInfoMapper extends BaseMapper {
     CustomerInfo selectOneByUnionId(@Param("unionId") String unionId);
 
     CustomerInfo selectOneById(@Param("id") String id);
-    
+
     CustomerInfo selectOneByOpenId(@Param("openId") String openId);
 }

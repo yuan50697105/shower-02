@@ -10,7 +10,7 @@ public class GoodsType {
     /**
      * 起租价
      */
-    public static final int FROM_THEIR_PRICES = 1;
+    public static final int STARTING_PRICE = 1;
     /**
      * 续租价
      */

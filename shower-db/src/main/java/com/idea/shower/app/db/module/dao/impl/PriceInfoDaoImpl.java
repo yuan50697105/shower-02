@@ -7,6 +7,7 @@ import com.idea.shower.app.db.module.mapper.PriceInfoMapper;
 import com.idea.shower.app.db.module.pojo.PriceInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -20,8 +21,14 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PriceInfoDaoImpl extends BaseDaoImpl<PriceInfo, PriceInfoMapper> implements PriceInfoDao {
     @Override
-    public Optional<PriceInfo> getFromTheirPricesByRangeCode(String rangeCode) {
-        return Optional.ofNullable(baseMapper().selectOneByTypeAndRangeCode(String.valueOf(GoodsType.FROM_THEIR_PRICES), rangeCode));
+    @Transactional(rollbackFor = Exception.class)
+    public void save(PriceInfo priceInfo) {
+        baseMapper().insert(priceInfo);
+    }
+
+    @Override
+    public Optional<PriceInfo> getStartingPricesByRangeCode(String rangeCode) {
+        return Optional.ofNullable(baseMapper().selectOneByTypeAndRangeCode(String.valueOf(GoodsType.STARTING_PRICE), rangeCode));
     }
 
     @Override

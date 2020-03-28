@@ -2,7 +2,7 @@ package com.idea.shower.app.wx.mp.service;
 
 
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.WxOrderInfo;
+import com.idea.shower.app.wx.mp.pojo.WxOrderInfoRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.web.webmvc.pojo.Result;
@@ -17,18 +17,18 @@ public interface WxOrderInfoService {
     /**
      * 添加订单
      *
-     * @param wxOrderInfo 订单信息封装
+     * @param wxOrderInfoRequest 订单信息封装
      * @return 处理结果
      */
-    Result addOrder(WxOrderInfo wxOrderInfo);
+    Result addOrder(WxOrderInfoRequest wxOrderInfoRequest);
 
     /**
      * 结束订单
      *
-     * @param wxOrderInfo 订单信息封装
+     * @param wxOrderInfoRequest 订单信息封装
      * @return 处理结果
      */
-    Result endOrder(WxOrderInfo wxOrderInfo);
+    Result endOrder(WxOrderInfoRequest wxOrderInfoRequest);
 
     /**
      * 微信统一下单
@@ -52,7 +52,7 @@ public interface WxOrderInfoService {
      * @param condition 条件
      * @return 订单信息
      */
-    Result data(OrderInfoQuery condition);
+    Result selectPage(OrderInfoQuery condition);
 
     /**
      * 订单详情
