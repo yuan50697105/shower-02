@@ -167,7 +167,8 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param wxOrderInfo 订单信息封装
      * @return 订单信息
      */
-    private OrderInfo addCommonsOrder(WxOrderInfo wxOrderInfo) {
+    @Transactional(rollbackFor = Exception.class)
+    public OrderInfo addCommonsOrder(WxOrderInfo wxOrderInfo) {
         OrderInfo orderInfo = createOrderInfo(wxOrderInfo);
         orderInfoDao.save(orderInfo);
         OrderItem orderItem = createRentalOrderItem(wxOrderInfo, orderInfo);
@@ -183,9 +184,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param wxOrderInfo 订单信息封装
      * @return 订单信息
      */
-    private OrderInfo createOrderInfo(WxOrderInfo wxOrderInfo) {
+    public OrderInfo createOrderInfo(WxOrderInfo wxOrderInfo) {
         OrderInfo orderInfo = new OrderInfo();
-        Optional<CustomerInfo> customerInfo = customerInfoDao.getByUnionId(wxOrderInfo.getUnionId());
+        Optional<CustomerInfo> customerInfo = customerInfoDao.getByOpenId(wxOrderInfo.getOpenId());
         orderInfo.setOrderNo(IdUtil.getSnowflake(1, 2).nextIdStr());
         orderInfo.setType(String.valueOf(OrderType.COMMONS));
         if (customerInfo.isPresent()) {
