@@ -13,7 +13,6 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.function.Function;
 
-@SuppressWarnings("SpringJavaAutowiredMembersInspection")
 public abstract class BaseDbDaoImpl<T, ID extends Serializable, M extends BaseDbMapper> implements BaseDbDao<T, ID> {
     @Autowired
     private M baseMapper;
