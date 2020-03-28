@@ -9,7 +9,7 @@ import lombok.Data;
  * @create: 2020-02-14 13:28
  */
 @Data
-public class WxOrderInfoRequest {
+public class WxAddOrderRequest {
     /**
      * 用户ID
      */

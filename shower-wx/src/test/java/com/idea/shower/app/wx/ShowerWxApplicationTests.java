@@ -1,10 +1,10 @@
 package com.idea.shower.app.wx;
 
-import com.idea.shower.app.db.module.constants.order.OrderType;
+import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.mapper.CustomerInfoMapper;
 import com.idea.shower.app.db.module.pojo.CustomerInfo;
 import com.idea.shower.app.db.module.pojo.CustomerInfoExample;
-import com.idea.shower.app.wx.mp.pojo.WxOrderInfoRequest;
+import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,12 +55,11 @@ public class ShowerWxApplicationTests {
 //        priceInfoDao.save(priceInfo);
 
         WxOrderInfoService orderInfoService = context.getBean(WxOrderInfoService.class);
-        WxOrderInfoRequest wxOrderInfoRequest = new WxOrderInfoRequest();
-        wxOrderInfoRequest.setDeviceCode(deviceCode);
+        WxAddOrderRequest wxAddOrderRequest = new WxAddOrderRequest();
+        wxAddOrderRequest.setDeviceCode(deviceCode);
 //        wxOrderInfo.setDeviceId(1111L);
-        wxOrderInfoRequest.setOpenId(openId);
-        wxOrderInfoRequest.setRangeCode(rangeCode);
-        wxOrderInfoRequest.setType(OrderType.RESERVATION);
-        orderInfoService.addOrder(wxOrderInfoRequest);
+        wxAddOrderRequest.setOpenId(openId);
+        wxAddOrderRequest.setType(OrderInfoConstants.OrderType.RESERVATION);
+        orderInfoService.addOrder(wxAddOrderRequest);
     }
 }

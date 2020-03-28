@@ -3,9 +3,11 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
 import com.idea.shower.app.db.module.pojo.OrderInfoExample;
-import java.util.List;
-import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;import org.apache.ibatis.annotations.Mapper;
+import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface OrderInfoMapper extends BaseMapper {
@@ -34,4 +36,11 @@ public interface OrderInfoMapper extends BaseMapper {
     int updateStatusByOrderNo(@Param("updatedStatus") Integer updatedStatus, @Param("orderNo") String orderNo);
 
     List<OrderInfo> selectByCondition(@Param("condition") OrderInfoQuery condition);
+
+    OrderInfo selectOneByOrderNo(@Param("orderNo") String orderNo);
+
+
+    OrderInfo selectOneByIdOrOrderNo(@Param("id") Long id, @Param("orderNo") String orderNo);
+
+
 }

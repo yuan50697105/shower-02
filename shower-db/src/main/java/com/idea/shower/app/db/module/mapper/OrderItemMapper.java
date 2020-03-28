@@ -36,4 +36,8 @@ public interface OrderItemMapper extends BaseMapper {
     List<OrderItem> selectByOrderId(@Param("orderId") Long orderId);
 
     List<OrderItem> selectByOrderNo(@Param("orderNo") String orderNo);
+
+    OrderItem selectOneByOrderIdAndPriceType(@Param("orderId")Long orderId,@Param("priceType")Integer priceType);
+
+
 }

@@ -2,7 +2,8 @@ package com.idea.shower.app.wx.mp.service;
 
 
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.WxOrderInfoRequest;
+import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
+import com.idea.shower.app.wx.mp.pojo.WxEndOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.web.webmvc.pojo.Result;
@@ -17,18 +18,18 @@ public interface WxOrderInfoService {
     /**
      * 添加订单
      *
-     * @param wxOrderInfoRequest 订单信息封装
+     * @param wxAddOrderRequest 订单信息封装
      * @return 处理结果
      */
-    Result addOrder(WxOrderInfoRequest wxOrderInfoRequest);
+    Result addOrder(WxAddOrderRequest wxAddOrderRequest);
 
     /**
      * 结束订单
      *
-     * @param wxOrderInfoRequest 订单信息封装
+     * @param wxAddOrderRequest 订单信息封装
      * @return 处理结果
      */
-    Result endOrder(WxOrderInfoRequest wxOrderInfoRequest);
+    Result endOrder(WxEndOrderRequest wxAddOrderRequest);
 
     /**
      * 微信统一下单

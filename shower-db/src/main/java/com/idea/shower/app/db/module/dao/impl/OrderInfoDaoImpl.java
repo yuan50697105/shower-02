@@ -4,7 +4,7 @@ package com.idea.shower.app.db.module.dao.impl;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.constants.order.OrderStatus;
+import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import com.idea.shower.app.db.module.mapper.OrderInfoMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
@@ -39,12 +39,17 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateStatusPaidByOrderNo(String outTradeNo) {
-        baseMapper().updateStatusByOrderNo(OrderStatus.PAID, outTradeNo);
+        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.PAID, outTradeNo);
     }
 
     @Override
     public PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition) {
         PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
         return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
+    }
+
+    @Override
+    public Optional<OrderInfo> getByIdOrOrderNo(String orderNo) {
+        return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
     }
 }

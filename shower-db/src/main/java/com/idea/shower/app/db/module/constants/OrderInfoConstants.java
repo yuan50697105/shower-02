@@ -12,21 +12,26 @@ public class OrderInfoConstants {
      */
     public static class OrderStatus {
         /**
-         * 下单状态
+         * 下单
          */
-        public static final int ORDER_ADD = 0;
+        public static final int ADD_ORDER = 1;
         /**
          * 使用中
          */
-        public static final int ORDER_USING = 1;
+        public static final int USING = 2;
+        /**
+         * 解释使用
+         */
+        public static final int END_USE = 3;
         /**
          * 已支付
          */
-        public static final int ORDER_PAY = 2;
+        public static final int PAID = 4;
         /**
          * 订单完成
          */
-        public static final int ORDER_COMPLETE = 3;
+        public static final int ORDER_COMPLETED = 5;
+
     }
 
     /**
@@ -48,13 +53,13 @@ public class OrderInfoConstants {
      */
     public static class OrderType {
         /**
-         * 普通订单
+         * 普通订单（现场使用)
          */
         public static final int COMMONS = 1;
         /**
          * 预约订单
          */
-        public static final int APPOINTMENT = 3;
+        public static final int RESERVATION = 2;
     }
 
 }

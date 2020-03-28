@@ -1,7 +1,7 @@
 package com.idea.shower.app.db.module.dao.impl;
 
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.constants.goods.GoodsType;
+import com.idea.shower.app.db.module.constants.PriceInfoConstants;
 import com.idea.shower.app.db.module.dao.PriceInfoDao;
 import com.idea.shower.app.db.module.mapper.PriceInfoMapper;
 import com.idea.shower.app.db.module.pojo.PriceInfo;
@@ -27,12 +27,12 @@ public class PriceInfoDaoImpl extends BaseDaoImpl<PriceInfo, PriceInfoMapper> im
     }
 
     @Override
-    public Optional<PriceInfo> getStartingPricesByRangeCode(String rangeCode) {
-        return Optional.ofNullable(baseMapper().selectOneByTypeAndRangeCode(String.valueOf(GoodsType.STARTING_PRICE), rangeCode));
+    public Optional<PriceInfo> getStartingPricesPriceCode(String priceCode) {
+        return Optional.ofNullable(baseMapper().selectOneByPriceCodeAndType(priceCode, PriceInfoConstants.PriceType.STARTING_PRICE));
     }
 
     @Override
-    public Optional<PriceInfo> getRenewalPriceByRangeCode(String rangeCode) {
-        return Optional.ofNullable(baseMapper().selectOneByTypeAndRangeCode(String.valueOf(GoodsType.RENEWAL_PRICE), rangeCode));
+    public Optional<PriceInfo> getRenewalPriceByPriceCode(String priceCode) {
+        return Optional.ofNullable(baseMapper().selectOneByPriceCodeAndType(priceCode, PriceInfoConstants.PriceType.RENEWAL_PRICE));
     }
 }

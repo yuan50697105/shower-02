@@ -21,4 +21,6 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
     void updateStatusPaidByOrderNo(String outTradeNo);
 
     PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition);
+
+    Optional<OrderInfo> getByIdOrOrderNo(String orderNo);
 }

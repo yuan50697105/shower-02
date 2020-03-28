@@ -1,11 +1,12 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
 import cn.hutool.core.lang.Snowflake;
-import com.idea.shower.app.db.module.constants.order.OrderStatus;
+import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.dao.*;
 import com.idea.shower.app.db.module.pojo.*;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.WxOrderInfoRequest;
+import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
+import com.idea.shower.app.wx.mp.pojo.WxEndOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
@@ -46,19 +47,19 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     /**
      * 添加订单
      *
-     * @param wxOrderInfoRequest 订单信息封装
+     * @param wxAddOrderRequest 订单信息封装
      * @return 订单信息
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public Result addOrder(WxOrderInfoRequest wxOrderInfoRequest) {
-        String deviceCode = wxOrderInfoRequest.getDeviceCode();
-        String openId = wxOrderInfoRequest.getOpenId();
-        Integer type = wxOrderInfoRequest.getType();
+    public Result addOrder(WxAddOrderRequest wxAddOrderRequest) {
+        String deviceCode = wxAddOrderRequest.getDeviceCode();
+        String openId = wxAddOrderRequest.getOpenId();
+        Integer type = wxAddOrderRequest.getType();
         DeviceInfo deviceInfo = deviceInfoDao.getByCode(deviceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
         CustomerInfo customerInfo = customerInfoDao.getByOpenId(openId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxUserNotFoundError()));
         String priceCode = deviceInfo.getPriceCode();
-        PriceInfo priceInfo = priceInfoDao.getStartingPricesByRangeCode(priceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxPriceNotFoundError()));
+        PriceInfo priceInfo = priceInfoDao.getStartingPricesPriceCode(priceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxPriceNotFoundError()));
         OrderInfo orderInfo = createOrder(customerInfo, type);
         orderInfoDao.save(orderInfo);
         List<OrderItem> orderItems = createOrderItem(orderInfo, deviceInfo, priceInfo);
@@ -67,8 +68,24 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     }
 
     @Override
-    public Result endOrder(WxOrderInfoRequest wxOrderInfoRequest) {
+    public Result endOrder(WxEndOrderRequest wxAddOrderRequest) {
+        String orderNo = wxAddOrderRequest.getOrderNo();
+        String openId = wxAddOrderRequest.getOpenId();
+        OrderInfo orderInfo = orderInfoDao.getByIdOrOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        calculationFee(orderInfo);
         return null;
+    }
+
+    /**
+     * 计算费用
+     *
+     * @param orderInfo 订单信息
+     */
+    private void calculationFee(OrderInfo orderInfo) {
+//        结束时间
+        Date endTime = new Date();
+        Long id = orderInfo.getId();
+        OrderItem orderItem = orderItemDao.getStartingItemByOrderId(orderInfo.getId());
     }
 
     @Override
@@ -106,7 +123,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         orderInfo.setCustomerOpenId(customerInfo.getOpenId());
         orderInfo.setCustomerUnionId(customerInfo.getUnionId());
         orderInfo.setTotalPrice(new BigDecimal("0"));
-        orderInfo.setStatus(OrderStatus.ADD_ORDER);
+        orderInfo.setStatus(OrderInfoConstants.OrderStatus.ADD_ORDER);
         return orderInfo;
     }
 
