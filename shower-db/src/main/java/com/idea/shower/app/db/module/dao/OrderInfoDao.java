@@ -22,5 +22,5 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
 
     PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition);
 
-    Optional<OrderInfo> getByIdOrOrderNo(String orderNo);
+    Optional<OrderInfo> getByOrderNo(String orderNo);
 }

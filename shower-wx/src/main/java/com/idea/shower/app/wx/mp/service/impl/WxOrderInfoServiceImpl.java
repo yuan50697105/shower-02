@@ -74,9 +74,11 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         deviceOrderDao.save(deviceOrder);
         switch (type) {
             case OrderInfoConstants.OrderType.COMMONS:
+                // TODO: 2020/4/1 处理普通订单，额外流程
 //                创建普通订单
                 break;
             case OrderInfoConstants.OrderType.RESERVATION:
+                // TODO: 2020/4/1 处理预约订单，额外流程
 //                创建预约订单
 //                OrderRedisEntity orderRedisEntity = createOrderRedisEntity(orderInfo, deviceInfo);
 //                orderRediskDao.addOrderKeepTime(orderRedisEntity);
@@ -92,7 +94,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         // TODO: 2020/4/1 处理结束订单，微信发起
         String orderNo = wxAddOrderRequest.getOrderNo();
         String openId = wxAddOrderRequest.getOpenId();
-        OrderInfo orderInfo = orderInfoDao.getByIdOrOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         // TODO: 2020/4/1 需要获取水用量
         calculationFee(orderInfo);
         return null;

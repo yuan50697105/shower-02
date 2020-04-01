@@ -49,7 +49,7 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     }
 
     @Override
-    public Optional<OrderInfo> getByIdOrOrderNo(String orderNo) {
+    public Optional<OrderInfo> getByOrderNo(String orderNo) {
         return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
     }
 }
