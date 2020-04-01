@@ -1,7 +1,7 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="Project 'shower-01'" />
-    <option name="defaultScopeName" value="Project 'shower-01'" />
-    <option name="SEARCH_SCOPE" value="Project 'shower-01'" />
+    <option name="customScope" value="File '...\shower-wx\src\main\java\com\idea\shower\app\wx\mp\service\impl\WxOrderInfoServiceImpl.java [shower-01.shower-wx.main]'" />
+    <option name="defaultScopeName" value="File '...\shower-wx\src\main\java\com\idea\shower\app\wx\mp\service\impl\WxOrderInfoServiceImpl.java [shower-01.shower-wx.main]'" />
+    <option name="SEARCH_SCOPE" value="File '...\shower-wx\src\main\java\com\idea\shower\app\wx\mp\service\impl\WxOrderInfoServiceImpl.java [shower-01.shower-wx.main]'" />
   </component>
 </application>
