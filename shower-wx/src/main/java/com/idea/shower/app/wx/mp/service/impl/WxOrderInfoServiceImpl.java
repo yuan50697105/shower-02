@@ -221,15 +221,17 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         DeviceOrder deviceOrder = new DeviceOrder();
         deviceOrder.setDeviceId(deviceInfo.getId());
         deviceOrder.setDeviceCode(deviceInfo.getCode());
-        deviceOrder.setRangeCode("");
+        deviceOrder.setRangeCode(deviceInfo.getPriceCode());
         deviceOrder.setDeviceType(deviceInfo.getType());
         deviceOrder.setOrderId(orderInfo.getId());
         deviceOrder.setOrderNo(orderInfo.getOrderNo());
+        deviceOrder.setOrderType(orderInfo.getType());
         deviceOrder.setCustomerId(orderInfo.getCustomerId());
         deviceOrder.setUnionId(orderInfo.getCustomerUnionId());
         deviceOrder.setOpenId(orderInfo.getCustomerOpenId());
-        deviceOrder.setStatus(OrderInfoConstants.OrderStatus.ADD_ORDER);
+        deviceOrder.setStatus(orderInfo.getStatus());
         deviceOrder.setStartTime(orderInfo.getCreateTime());
+        deviceOrder.setEndTime(null);
         return deviceOrder;
     }
 

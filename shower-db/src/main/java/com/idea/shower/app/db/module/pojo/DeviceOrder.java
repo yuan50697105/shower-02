@@ -49,6 +49,11 @@ public class DeviceOrder extends BaseDbEntity implements Serializable {
     private String orderNo;
 
     /**
+     * 订单类型
+     */
+    private Integer orderType;
+
+    /**
      * 客户ID
      */
     private Long customerId;
