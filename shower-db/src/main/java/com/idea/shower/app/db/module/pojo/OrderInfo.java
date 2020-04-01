@@ -45,6 +45,16 @@ public class OrderInfo extends BaseDbEntity implements Serializable {
     private String customerUnionId;
 
     /**
+     * 设备号
+     */
+    private String deviceCode;
+
+    /**
+     * 设备ID
+     */
+    private Long deviceId;
+
+    /**
      * 总价
      */
     private BigDecimal totalPrice;

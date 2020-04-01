@@ -3,10 +3,9 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.PriceInfo;
 import com.idea.shower.app.db.module.pojo.PriceInfoExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
 
 @Mapper
 public interface PriceInfoMapper extends BaseMapper {
@@ -33,6 +32,4 @@ public interface PriceInfoMapper extends BaseMapper {
     int updateByPrimaryKey(PriceInfo record);
 
     PriceInfo selectOneByPriceCodeAndType(@Param("priceCode") String priceCode, @Param("type") Integer type);
-
-
 }

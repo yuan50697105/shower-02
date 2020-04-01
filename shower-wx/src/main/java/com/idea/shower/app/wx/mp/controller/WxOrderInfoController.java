@@ -3,6 +3,7 @@ package com.idea.shower.app.wx.mp.controller;
 import cn.hutool.core.io.IoUtil;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
+import com.idea.shower.app.wx.mp.pojo.WxEndOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
@@ -43,8 +44,8 @@ public class WxOrderInfoController extends ResultController {
     }
 
     @PostMapping("end")
-    public Result endOrder(@RequestBody WxAddOrderRequest wxAddOrderRequest) {
-        return wxOrderInfoService.endOrder(wxAddOrderRequest);
+    public Result endOrder(@RequestBody WxEndOrderRequest wxEndOrderRequest) {
+        return wxOrderInfoService.endOrder(wxEndOrderRequest);
     }
 
     @PostMapping("pay")

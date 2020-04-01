@@ -1,13 +1,11 @@
 package com.idea.shower.redis;
 
-import com.idea.shower.redis.module.dao.OrderLockDao;
-import com.idea.shower.redis.module.pojo.OrderLock;
+import com.idea.shower.redis.module.dao.OrderRediskDao;
+import com.idea.shower.redis.module.pojo.OrderRedisEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
-
-import java.util.UUID;
 
 /**
  * @program: shower-01
@@ -24,13 +22,13 @@ public class RedisApplicaitonTests {
 //    @Transactional(rollbackFor = Exception.class)
 //    @Rollback(value = false)
     void tRedis() {
-        OrderLockDao lockDao = context.getBean(OrderLockDao.class);
+        OrderRediskDao lockDao = context.getBean(OrderRediskDao.class);
         for (int i = 0; i < 100; i++) {
-            OrderLock aaa = new OrderLock((long) i, "aaa");
+            OrderRedisEntity aaa = new OrderRedisEntity((long) i, "aaa");
             lockDao.insert(aaa);
 
         }
-        Iterable<OrderLock> lockDaoAll = lockDao.findAll();
+        Iterable<OrderRedisEntity> lockDaoAll = lockDao.findAll();
         System.out.println("lockDaoAll = " + lockDaoAll);
     }
 }

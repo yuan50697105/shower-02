@@ -1,12 +1,14 @@
 package com.idea.shower.redis.commons.dao.impl;
 
 import cn.hutool.core.util.ClassUtil;
+import cn.hutool.json.JSONUtil;
 import com.idea.shower.redis.commons.dao.BaseRedisDao;
-import com.idea.shower.redis.commons.pojo.BaseRedisEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisKeyValueTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @program: shower-01
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class BaseRedisDaoImpl<T, KEY> implements BaseRedisDao<T, KEY> {
     @Autowired
     private RedisKeyValueTemplate redisKeyValueTemplate;
+    @Autowired
+    private StringRedisTemplate stringRedisTemplate;
 
     private Class<T> type;
 
@@ -25,24 +29,10 @@ public class BaseRedisDaoImpl<T, KEY> implements BaseRedisDao<T, KEY> {
         type = (Class<T>) ClassUtil.getTypeArgument(this.getClass(), 0);
     }
 
-    @Override
-    public void insert(BaseRedisEntity<KEY, T> entity) {
-        redisKeyValueTemplate.insert(entity.getKey(), entity.getData());
-    }
 
     @Override
     public void insert(T t) {
         redisKeyValueTemplate.insert(t);
-    }
-
-    @Override
-    public void update(BaseRedisEntity<KEY, T> entity) {
-        redisKeyValueTemplate.update(entity.getKey(), entity.getData());
-    }
-
-    @Override
-    public BaseRedisEntity<KEY, T> findById(KEY key) {
-        return new BaseRedisEntity<>(key, redisKeyValueTemplate.findById(key, type).orElse(null));
     }
 
     @Override
@@ -55,4 +45,13 @@ public class BaseRedisDaoImpl<T, KEY> implements BaseRedisDao<T, KEY> {
         return redisKeyValueTemplate.findAll(type);
     }
 
+    @Override
+    public void setValue(String key, Object value, Integer time, TimeUnit unit) {
+        stringRedisTemplate.opsForValue().set(key, JSONUtil.toJsonStr(value), time, unit);
+    }
+
+    @Override
+    public T getValue(String key) {
+        return JSONUtil.toBean(stringRedisTemplate.opsForValue().get(key), type);
+    }
 }

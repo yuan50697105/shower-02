@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * @program: shower-01
  * @description:
@@ -16,9 +18,14 @@ import org.springframework.data.annotation.Id;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderLock {
+public class OrderRedisEntity {
     @Id
     private Long orderId;
-    private String orderCode;
-
+    private String orderNo;
+    private Long deviceId;
+    private String deviceCode;
+    private Long customerId;
+    private String openId;
+    private Integer time;
+    private TimeUnit unit;
 }

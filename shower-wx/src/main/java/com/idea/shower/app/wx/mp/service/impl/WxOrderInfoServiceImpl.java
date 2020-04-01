@@ -5,11 +5,10 @@ import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.dao.*;
 import com.idea.shower.app.db.module.pojo.*;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
-import com.idea.shower.app.wx.mp.pojo.WxEndOrderRequest;
-import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
-import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
+import com.idea.shower.app.wx.mp.pojo.*;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
+import com.idea.shower.redis.module.dao.OrderRediskDao;
+import com.idea.shower.redis.module.pojo.OrderRedisEntity;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
@@ -22,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 /**
@@ -33,16 +33,18 @@ import java.util.List;
 @Service
 @AllArgsConstructor
 public class WxOrderInfoServiceImpl implements WxOrderInfoService {
-    private static final String NOTIFY_URL = "";
-    private static final String PAY_BODY = "消费";
-    private static final String PAY_SUCCESS = "SUCCESS";
-    private static final String PAY_FAIL = "FAIL";
+    /**
+     * 默认预约等待时间
+     */
+    public static final int DEFAULT_TIME = 10;
+    private Snowflake snowflake;
     private DeviceInfoDao deviceInfoDao;
     private CustomerInfoDao customerInfoDao;
     private PriceInfoDao priceInfoDao;
     private OrderInfoDao orderInfoDao;
     private OrderItemDao orderItemDao;
-    private Snowflake snowflake;
+    private OrderRediskDao orderRediskDao;
+    private DeviceOrderDao deviceOrderDao;
 
     /**
      * 添加订单
@@ -56,23 +58,52 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String deviceCode = wxAddOrderRequest.getDeviceCode();
         String openId = wxAddOrderRequest.getOpenId();
         Integer type = wxAddOrderRequest.getType();
+//        设备信息
         DeviceInfo deviceInfo = deviceInfoDao.getByCode(deviceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
+//        用户信息
         CustomerInfo customerInfo = customerInfoDao.getByOpenId(openId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxUserNotFoundError()));
+//        计费编号
         String priceCode = deviceInfo.getPriceCode();
+//        起租价计费信息
         PriceInfo priceInfo = priceInfoDao.getStartingPricesPriceCode(priceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxPriceNotFoundError()));
-        OrderInfo orderInfo = createOrder(customerInfo, type);
+        OrderInfo orderInfo = createOrder(customerInfo, deviceInfo, type);
         orderInfoDao.save(orderInfo);
         List<OrderItem> orderItems = createOrderItem(orderInfo, deviceInfo, priceInfo);
         orderItemDao.batchSave(orderItems);
+        DeviceOrder deviceOrder = createDeviceOrder(deviceInfo, orderInfo);
+        deviceOrderDao.save(deviceOrder);
+        switch (type) {
+            case OrderInfoConstants.OrderType.COMMONS:
+//                创建普通订单
+                break;
+            case OrderInfoConstants.OrderType.RESERVATION:
+//                创建预约订单
+//                OrderRedisEntity orderRedisEntity = createOrderRedisEntity(orderInfo, deviceInfo);
+//                orderRediskDao.addOrderKeepTime(orderRedisEntity);
+                break;
+            default:
+                throw new ResultRuntimeException(ResultUtils.dataParamsError("错误订单类型"));
+        }
         return ResultUtils.data(orderInfo);
     }
 
     @Override
     public Result endOrder(WxEndOrderRequest wxAddOrderRequest) {
+        // TODO: 2020/4/1 处理结束订单，微信发起
         String orderNo = wxAddOrderRequest.getOrderNo();
         String openId = wxAddOrderRequest.getOpenId();
         OrderInfo orderInfo = orderInfoDao.getByIdOrOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        // TODO: 2020/4/1 需要获取水用量
         calculationFee(orderInfo);
+        return null;
+    }
+
+    @Override
+    public Result useOrder(WxUseOrderRequest request) {
+        // TODO: 2020/4/1 使用订单，两种公用
+        String orderNo = request.getOrderNo();
+        String deviceCode = request.getDeviceCode();
+        String openId = request.getOpenId();
         return null;
     }
 
@@ -112,16 +143,19 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * 创建订单子方法
      *
      * @param customerInfo 用户信息
+     * @param deviceInfo   设备信息
      * @param orderType    订单类型
      * @return 订单信息
      */
-    private OrderInfo createOrder(CustomerInfo customerInfo, Integer orderType) {
+    private OrderInfo createOrder(CustomerInfo customerInfo, DeviceInfo deviceInfo, Integer orderType) {
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setOrderNo(snowflake.nextIdStr());
         orderInfo.setType(orderType);
         orderInfo.setCustomerId(customerInfo.getId());
         orderInfo.setCustomerOpenId(customerInfo.getOpenId());
         orderInfo.setCustomerUnionId(customerInfo.getUnionId());
+        orderInfo.setDeviceCode(deviceInfo.getCode());
+        orderInfo.setDeviceId(deviceInfo.getId());
         orderInfo.setTotalPrice(new BigDecimal("0"));
         orderInfo.setStatus(OrderInfoConstants.OrderStatus.ADD_ORDER);
         return orderInfo;
@@ -174,5 +208,48 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         calendar.setTime(startTime);
         calendar.set(Calendar.MINUTE, timeInterval.intValue());
         return calendar.getTime();
+    }
+
+    /**
+     * 创建设备订单
+     *
+     * @param deviceInfo 设备信息
+     * @param orderInfo  订单信息
+     * @return 设备订单实体
+     */
+    private DeviceOrder createDeviceOrder(DeviceInfo deviceInfo, OrderInfo orderInfo) {
+        DeviceOrder deviceOrder = new DeviceOrder();
+        deviceOrder.setDeviceId(deviceInfo.getId());
+        deviceOrder.setDeviceCode(deviceInfo.getCode());
+        deviceOrder.setRangeCode("");
+        deviceOrder.setDeviceType(deviceInfo.getType());
+        deviceOrder.setOrderId(orderInfo.getId());
+        deviceOrder.setOrderNo(orderInfo.getOrderNo());
+        deviceOrder.setCustomerId(orderInfo.getCustomerId());
+        deviceOrder.setUnionId(orderInfo.getCustomerUnionId());
+        deviceOrder.setOpenId(orderInfo.getCustomerOpenId());
+        deviceOrder.setStatus(OrderInfoConstants.OrderStatus.ADD_ORDER);
+        deviceOrder.setStartTime(orderInfo.getCreateTime());
+        return deviceOrder;
+    }
+
+    /**
+     * 创建订单计时
+     *
+     * @param orderInfo  订单信息
+     * @param deviceInfo 设备信息
+     * @return 计时实体
+     */
+    private OrderRedisEntity createOrderRedisEntity(OrderInfo orderInfo, DeviceInfo deviceInfo) {
+        OrderRedisEntity entity = new OrderRedisEntity();
+        entity.setOrderId(orderInfo.getId());
+        entity.setOrderNo(orderInfo.getOrderNo());
+        entity.setDeviceId(deviceInfo.getId());
+        entity.setDeviceCode(deviceInfo.getCode());
+        entity.setCustomerId(orderInfo.getCustomerId());
+        entity.setOpenId(orderInfo.getCustomerOpenId());
+        entity.setTime(DEFAULT_TIME);
+        entity.setUnit(TimeUnit.MINUTES);
+        return entity;
     }
 }
