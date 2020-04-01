@@ -38,8 +38,8 @@ public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem, OrderItemMapper> im
     }
 
     @Override
-    public List<OrderItem> selectListByOrderId(Long orderId) {
-        return baseMapper().selectByOrderId(orderId);
+    public List<OrderItem> selectListByOrderNo(String orderId) {
+        return baseMapper().selectByOrderNo(orderId);
     }
 
     @Override

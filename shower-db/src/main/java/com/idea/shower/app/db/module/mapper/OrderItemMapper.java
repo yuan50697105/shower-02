@@ -33,7 +33,7 @@ public interface OrderItemMapper extends BaseMapper {
 
     OrderItem selectOneByOrderIdAndGoodsType(@Param("orderId") Long orderId, @Param("goodsType") Integer goodsType);
 
-    List<OrderItem> selectByOrderId(@Param("orderId") Long orderId);
+    List<OrderItem> selectByOrderId(@Param("orderId") String orderId);
 
     List<OrderItem> selectByOrderNo(@Param("orderNo") String orderNo);
 

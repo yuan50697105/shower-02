@@ -65,5 +65,5 @@ public interface WxOrderInfoService {
      * @param orderId 订单ID
      * @return 订单详情
      */
-    Result getOrderItem(Long orderId);
+    Result getOrderItemByOrderNo(String orderId);
 }

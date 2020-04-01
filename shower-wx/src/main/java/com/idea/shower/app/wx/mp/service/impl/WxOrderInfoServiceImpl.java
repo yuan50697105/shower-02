@@ -100,6 +100,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         return null;
     }
 
+    /**
+     * 使用设备
+     *
+     * @param request 使用设备请求实体
+     * @return 处理通知
+     */
     @Override
     public Result useOrder(WxUseOrderRequest request) {
         // TODO: 2020/4/1 使用订单，两种公用
@@ -121,24 +127,49 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         OrderItem orderItem = orderItemDao.getStartingItemByOrderId(orderInfo.getId());
     }
 
+    /**
+     * 支付订单
+     *
+     * @param wxPayOrderInfo 支付信息封装
+     * @return 处理结果
+     */
     @Override
     public Result payOrder(WxPayOrderInfo wxPayOrderInfo) {
         return null;
     }
 
+    /**
+     * 支付会掉
+     *
+     * @param xml 回调信息
+     * @return 处理结果
+     */
     @Override
     public WxReturnInfo notify(String xml) {
         return null;
     }
 
+    /**
+     * 分页查询
+     *
+     * @param condition 条件
+     * @return
+     */
     @Override
     public Result selectPage(OrderInfoQuery condition) {
         return null;
     }
 
+    /**
+     * 获取订单详情
+     *
+     * @param orderNo 订单ID
+     * @return
+     */
     @Override
-    public Result getOrderItem(Long orderId) {
-        return null;
+    public Result getOrderItemByOrderNo(String orderNo) {
+        List<OrderItem> orderItems = orderItemDao.selectListByOrderNo(orderNo);
+        return ResultUtils.data(orderItems);
     }
 
     /**
@@ -188,11 +219,11 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         Date startTime = new Date();
         orderItem.setStartTime(startTime);
         orderItem.setEndTime(calculationEndTime(startTime, priceInfo));
-        orderItem.setTimeUse(0.0D);
+        orderItem.setTimeUse(priceInfo.getTimeInterval());
         orderItem.setWaterPrice(priceInfo.getWaterPrice());
-        orderItem.setWaterInterval(0.0D);
-        orderItem.setWaterUse(0.0D);
-        orderItem.setTotalPrice(new BigDecimal("0"));
+        orderItem.setWaterInterval(priceInfo.getWaterInterval());
+        orderItem.setWaterUse(priceInfo.getWaterInterval());
+        orderItem.setTotalPrice(priceInfo.getWaterPrice().add(priceInfo.getTimePrice()));
         orderItems.add(orderItem);
         return orderItems;
     }

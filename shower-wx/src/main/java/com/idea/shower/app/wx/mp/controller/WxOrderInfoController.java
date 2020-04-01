@@ -33,8 +33,8 @@ public class WxOrderInfoController extends ResultController {
     }
 
     @GetMapping("item")
-    public Result orderItem(Long orderId) {
-        return wxOrderInfoService.getOrderItem(orderId);
+    public Result orderItem(String orderId) {
+        return wxOrderInfoService.getOrderItemByOrderNo(orderId);
     }
 
 
