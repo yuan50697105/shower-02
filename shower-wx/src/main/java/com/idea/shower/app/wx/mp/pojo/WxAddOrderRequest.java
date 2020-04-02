@@ -20,6 +20,7 @@ public class WxAddOrderRequest {
     private String deviceCode;
     /**
      * 订单类型
+     * @see com.idea.shower.app.db.module.constants.OrderInfoConstants.OrderType
      */
     private Integer type;
 }

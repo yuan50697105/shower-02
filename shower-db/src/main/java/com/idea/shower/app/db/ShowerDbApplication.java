@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author: yuane
  * @create: 2020-03-10 20:45
  */
-@SpringBootApplication(scanBasePackageClasses = DbMybatisApplication.class)
+@SpringBootApplication(scanBasePackageClasses = {DbMybatisApplication.class, ShowerDbApplication.class})
 public class ShowerDbApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShowerDbApplication.class, args);

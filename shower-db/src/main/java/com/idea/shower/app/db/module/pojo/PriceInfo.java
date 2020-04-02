@@ -26,6 +26,7 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 类型
+     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceType
      */
     private Integer type;
 
@@ -46,6 +47,7 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 时间单位
+     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceTimeUnit
      */
     private Integer timeUnit;
 
@@ -61,11 +63,13 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 水计费单位
+     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceWaterUnit
      */
     private Integer waterUnit;
 
     /**
      * 有效
+     * @see com.idea.shower.app.db.module.constants.commons.EnableConstants
      */
     private Integer enabled;
 
