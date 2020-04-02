@@ -9,6 +9,7 @@ import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.web.webmvc.controller.ResultController;
 import com.idea.shower.web.webmvc.pojo.Result;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +25,7 @@ import java.nio.charset.StandardCharsets;
  */
 @RestController
 @RequestMapping("wx/order")
+@AllArgsConstructor
 public class WxOrderInfoController extends ResultController {
     private WxOrderInfoService wxOrderInfoService;
 

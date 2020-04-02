@@ -188,4 +188,29 @@ Page({
       return false;
     }
   },
+
+  //页面下单
+  useDevice:function(e){
+    if (!app.globalData.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
+    let userInfo = wx.getStorageSync('userInfo');
+    var deviceCode = e.target.dataset.code;
+    var enabled = e.target.dataset.enabled
+    
+    util.request(api.AddOrder, {
+      openId: userInfo.openId,
+      deviceCode: deviceCode,
+      type: 2
+    }, 'POST').then(function (res) {
+      console.log(res)
+      if (res.code === 200) {
+        
+      }else{
+        util.showErrorToast(res.message)
+      }
+    });
+  }
 })

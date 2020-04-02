@@ -5,5 +5,6 @@ module.exports = {
   AuthLoginByWeixin: WxApiRoot + 'customer/login',
   AreaList: WxApiRoot + 'area/areas',
   DeviceInfoList: WxApiRoot + 'device/deviceInfoList',
-  loginUrl: WxApiRoot + 'customer/get_openid'
+  AddOrder: WxApiRoot + 'order/add',
+  OrderList: WxApiRoot + 'order/data',
 };

@@ -31,7 +31,7 @@
     <block wx:for="{{dataList}}" wx:key="k">
       <view class="device-list-item  ">
         <view class="device-time">{{item.code}}</view>
-        <view class="tobooking"> 使用 </view>
+        <view class="tobooking" data-code="{{item.code}}" data-enabled="{{item.enabled}}" bindtap="useDevice"> 使用 </view>
         <view class="detail">
           <view class="detail1">
             <view class="start">

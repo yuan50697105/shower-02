@@ -87,4 +87,72 @@ Page({
       url: '/pages/about/about'
     });
   },
+
+  AllOrder:function(){
+    if (this.data.hasLogin) {
+      try {
+        wx.setStorageSync('tab', 0);
+      } catch (e) {
+
+      }
+      wx.navigateTo({
+        url: "/pages/order/order"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
+  },
+
+  WaitPayOrder: function () {
+    if (this.data.hasLogin) {
+      try {
+        wx.setStorageSync('tab', 1);
+      } catch (e) {
+
+      }
+      wx.navigateTo({
+        url: "/pages/order/order"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
+  },
+
+  WaitUseOrder: function () {
+    if (this.data.hasLogin) {
+      try {
+        wx.setStorageSync('tab', 2);
+      } catch (e) {
+
+      }
+      wx.navigateTo({
+        url: "/pages/order/order"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
+  },
+
+  OverOrder: function () {
+    if (this.data.hasLogin) {
+      try {
+        wx.setStorageSync('tab', 3);
+      } catch (e) {
+
+      }
+      wx.navigateTo({
+        url: "/pages/order/order"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
+  }
 })

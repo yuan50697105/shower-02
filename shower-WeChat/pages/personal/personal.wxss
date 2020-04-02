@@ -20,7 +20,7 @@
 }
 .content{
      background-color: #f4f4f4;
-     height: 500px;
+     height: 1130rpx;
 }
 .order{
      width: 94%;
