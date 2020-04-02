@@ -35,6 +35,7 @@ public class DeviceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 启用状态(0:未启用；1已启用)
+     * @see com.idea.shower.app.db.module.constants.commons.EnableConstants
      */
     private Integer enabled;
 
