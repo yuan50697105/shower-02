@@ -1,7 +1,7 @@
 group = 'com.idea.shower.app.device'
 dependencies {
     compile group: 'com.aliyun.alink.linksdk', name: 'iot-linkkit-java', version: '1.2.0.1'
-    compile group: 'com.aliyun', name: 'aliyun-java-sdk-core', version: '4.5.0'
+    compile group: 'com.aliyun', name: 'aliyun-java-sdk-core', version: '4.5.1'
     compile group: 'com.aliyun', name: 'aliyun-java-sdk-iot', version: '7.7.0'
     compile group: 'com.aliyun.openservices', name: 'iot-client-message', version: '1.1.5'
     compile project(':shower-webmvc-core')

@@ -18,17 +18,4 @@ public class RedisApplicaitonTests {
     @Autowired
     private ApplicationContext context;
 
-    @Test
-//    @Transactional(rollbackFor = Exception.class)
-//    @Rollback(value = false)
-    void tRedis() {
-        OrderRediskDao lockDao = context.getBean(OrderRediskDao.class);
-        for (int i = 0; i < 100; i++) {
-            OrderRedisEntity aaa = new OrderRedisEntity((long) i, "aaa");
-            lockDao.insert(aaa);
-
-        }
-        Iterable<OrderRedisEntity> lockDaoAll = lockDao.findAll();
-        System.out.println("lockDaoAll = " + lockDaoAll);
-    }
 }
