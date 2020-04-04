@@ -1,9 +1,9 @@
-package com.idea.shower.amqp.module.order.sender.impl;
+package com.idea.shower.amqp.module.sender.impl;
 
 import com.idea.shower.amqp.commons.sender.impl.BaseSenderImpl;
 import com.idea.shower.amqp.configuration.QueueConstants;
-import com.idea.shower.amqp.module.order.pojo.OrderInfo;
-import com.idea.shower.amqp.module.order.sender.OrderInfoSender;
+import com.idea.shower.amqp.module.pojo.OrderInfo;
+import com.idea.shower.amqp.module.sender.OrderInfoSender;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,6 +20,12 @@ public class OrderInfoSenderImpl extends BaseSenderImpl<OrderInfo> implements Or
     @Override
     public Object getWaterUse(OrderInfo orderInfo) {
         return sendAndRec(QueueConstants.WATER_USE_QUEUE, orderInfo);
+    }
+
+    @Override
+    public Object sendInfoToDevice(OrderInfo orderInfo) {
+        Long orderId = orderInfo.getOrderId();
+        return null;
     }
 
 }

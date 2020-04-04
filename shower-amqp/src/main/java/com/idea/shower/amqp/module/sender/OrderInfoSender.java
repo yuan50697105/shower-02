@@ -1,7 +1,7 @@
-package com.idea.shower.amqp.module.order.sender;
+package com.idea.shower.amqp.module.sender;
 
 import com.idea.shower.amqp.commons.sender.BaseSender;
-import com.idea.shower.amqp.module.order.pojo.OrderInfo;
+import com.idea.shower.amqp.module.pojo.OrderInfo;
 
 /**
  * @program: shower-01
@@ -11,4 +11,6 @@ import com.idea.shower.amqp.module.order.pojo.OrderInfo;
  */
 public interface OrderInfoSender extends BaseSender<OrderInfo> {
     Object getWaterUse(OrderInfo orderInfo);
+
+    Object sendInfoToDevice(OrderInfo orderInfo);
 }

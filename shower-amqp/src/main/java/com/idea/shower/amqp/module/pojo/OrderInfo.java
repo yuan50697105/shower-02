@@ -1,4 +1,4 @@
-package com.idea.shower.amqp.module.order.pojo;
+package com.idea.shower.amqp.module.pojo;
 
 import lombok.Data;
 
@@ -11,4 +11,6 @@ import lombok.Data;
 @Data
 public class OrderInfo {
     private Long orderId;
+    private Long deviceId;
+    private String deviceStatus;
 }
