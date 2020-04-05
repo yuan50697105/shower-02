@@ -1,0 +1,8 @@
+<application>
+  <component name="LanguageInjectionConfiguration">
+    <injection language="MySQL" injector-id="java">
+      <display-name>JpaPagingItemReader.setQueryString (org.springframework.batch.item.database)</display-name>
+      <place><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("setQueryString").withParameters("java.lang.String").definedInClass("org.springframework.batch.item.database.JpaPagingItemReader"))]]></place>
+    </injection>
+  </component>
+</application>
