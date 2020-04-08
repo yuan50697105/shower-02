@@ -1,6 +1,6 @@
-var api = require("../../config/api.js");
-var util = require('../../utils/util.js');
-var user = require('../../utils/user.js');
+var api = require("../../../config/api.js");
+var util = require('../../../utils/util.js');
+var user = require('../../../utils/user.js');
 
 Page({
   data: {
@@ -23,12 +23,14 @@ Page({
 
   },
   getOrderList() {
+    let userInfo = wx.getStorageSync('userInfo');
     let that = this;
     util.request(api.OrderList, {
+      openId: userInfo.openId,
       showType: that.data.showType,
       page: that.data.page,
       limit: that.data.limit
-    }).then(function(res) {
+    },"POST").then(function(res) {
       if (res.errno === 200) {
         console.log(res.data);
         that.setData({

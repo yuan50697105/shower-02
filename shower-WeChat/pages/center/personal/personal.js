@@ -96,7 +96,7 @@ Page({
 
       }
       wx.navigateTo({
-        url: "/pages/order/order"
+        url: "/pages/center/order/order"
       });
     } else {
       wx.navigateTo({
@@ -113,7 +113,7 @@ Page({
 
       }
       wx.navigateTo({
-        url: "/pages/order/order"
+        url: "/pages/center/order/order"
       });
     } else {
       wx.navigateTo({
@@ -130,7 +130,7 @@ Page({
 
       }
       wx.navigateTo({
-        url: "/pages/order/order"
+        url: "/pages/center/order/order"
       });
     } else {
       wx.navigateTo({
@@ -147,7 +147,19 @@ Page({
 
       }
       wx.navigateTo({
-        url: "/pages/order/order"
+        url: "/pages/center/order/order"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
+  },
+
+  opinion:function(){
+    if (this.data.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/center/opinion/opinion"
       });
     } else {
       wx.navigateTo({

@@ -32,7 +32,9 @@
                <view>余额</view>
                <view class='remark'>￥0</view>
           </view>
-          <view class='right'><text class='opr'>查看</text>></view>
+          <view class='right'><text class='opr'>查看</text>
+            <image src='/static/image/icon/right.png' style='width:22px;height:12px;'></image>
+          </view>
      </view>
      <view class='line'></view>
      <view class='item'>
@@ -40,7 +42,9 @@
           <view class='itemName'>
                <view>邀请好友</view>
           </view>
-          <view class='right' bindtap='grabTicket'><text class='opr'>一起来</text>></view>
+          <view class='right' bindtap='grabTicket'><text class='opr'>一起来</text>
+            <image src='/static/image/icon/right.png' style='width:22px;height:12px;'></image>
+          </view>
      </view>
      <view class='hr'></view>
      <view class='item'>
@@ -48,15 +52,20 @@
           <view class='itemName'>
                <view>客服</view>
           </view>
-          <view class='right'><button class="contact" open-type='contact'><text class='opr'>在线服务</text>></button></view>
+          <view class='right'>
+          <button class="contact" open-type='contact'><text class='opr'>在线服务</text>
+          <image src='/static/image/icon/right.png' style='width:22px;height:12px;'></image>
+          </button></view>
      </view>
      <view class='hr'></view>
-     <view class='item'>
+     <view class='item' bindtap='opinion'>
           <view class='icon'><image src='/static/image/icon/fankui.png' style='width:22px;height:21px;'></image></view>
           <view class='itemName'>
                <view>反馈</view>
           </view>
-          <view class='right'>></view>
+          <view class='right'>
+           <image src='/static/image/icon/right.png' style='width:22px;height:12px;'></image>
+          </view>
      </view>
      <view class='hr'></view>
      <view class='item' bindtap='aboutUs'>
@@ -64,7 +73,9 @@
           <view class='itemName'>
                <view>关于我们</view>
           </view>
-          <view class='right'>></view>
+          <view class='right'>
+            <image src='/static/image/icon/right.png' style='width:22px;height:12px;'></image>
+          </view>
      </view>
 </view>
 
