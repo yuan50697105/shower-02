@@ -31,6 +31,10 @@ public class OrderInfoConstants {
          * 订单完成
          */
         public static final int ORDER_COMPLETED = 5;
+        /**
+         * 订单超时（预约订单使用）
+         */
+        public static final int ORDER_OUT_TIME = 6;
 
     }
 

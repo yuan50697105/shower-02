@@ -1,6 +1,8 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
 import cn.hutool.core.lang.Snowflake;
+import com.idea.shower.amqp.module.pojo.AmqpDeviceInfo;
+import com.idea.shower.amqp.module.sender.DeviceInfoSender;
 import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.dao.*;
 import com.idea.shower.app.db.module.pojo.*;
@@ -45,6 +47,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private OrderItemDao orderItemDao;
     private OrderRediskDao orderRediskDao;
     private DeviceOrderDao deviceOrderDao;
+    private DeviceInfoSender deviceInfoSender;
 
     /**
      * 添加订单
@@ -76,12 +79,13 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             case OrderInfoConstants.OrderType.COMMONS:
                 // TODO: 2020/4/1 处理普通订单，额外流程
 //                创建普通订单
+                openRoom(orderInfo);
                 break;
             case OrderInfoConstants.OrderType.RESERVATION:
                 // TODO: 2020/4/1 处理预约订单，额外流程
 //                创建预约订单
-//                OrderRedisEntity orderRedisEntity = createOrderRedisEntity(orderInfo, deviceInfo);
-//                orderRediskDao.addOrderKeepTime(orderRedisEntity);
+                OrderRedisEntity orderRedisEntity = createOrderRedisEntity(orderInfo, deviceInfo);
+                orderRediskDao.setOrderInTime(orderRedisEntity);
                 break;
             default:
                 throw new ResultRuntimeException(ResultUtils.dataParamsError("错误订单类型"));
@@ -112,7 +116,32 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = request.getOrderNo();
         String deviceCode = request.getDeviceCode();
         String openId = request.getOpenId();
+        OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        if (!orderInfo.getCustomerOpenId().equals(openId)) {
+//            验证通过
+            throw new ResultRuntimeException(ResultUtils.wxOrderUserInfoError());
+        }
+        switch (orderInfo.getType()) {
+            case OrderInfoConstants.OrderType.COMMONS:
+                openRoom(orderInfo);
+                break;
+            case OrderInfoConstants.OrderType.RESERVATION:
+                boolean result = checkOrderInTime(orderInfo);
+                break;
+            default:
+                throw new ResultRuntimeException(ResultUtils.dataParamsError());
+        }
         return null;
+    }
+
+    /**
+     * 检查订单是否超时
+     *
+     * @param orderInfo 订单信息
+     * @return 超时true 未超时 false
+     */
+    private boolean checkOrderInTime(OrderInfo orderInfo) {
+        return orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME);
     }
 
     /**
@@ -286,5 +315,21 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         entity.setTime(DEFAULT_TIME);
         entity.setUnit(TimeUnit.MINUTES);
         return entity;
+    }
+
+    /**
+     * 推动开启房间信息
+     *
+     * @param orderInfo 订单信息
+     */
+    private void openRoom(OrderInfo orderInfo) {
+        AmqpDeviceInfo amqpDeviceInfo = new AmqpDeviceInfo();
+        amqpDeviceInfo.setDeviceCode(orderInfo.getDeviceCode());
+        amqpDeviceInfo.setDeviceId(orderInfo.getDeviceId());
+        amqpDeviceInfo.setOrderNo(orderInfo.getOrderNo());
+        amqpDeviceInfo.setOrderId(orderInfo.getId());
+        amqpDeviceInfo.setOpenId(orderInfo.getCustomerOpenId());
+        deviceInfoSender.sendAndRec(amqpDeviceInfo);
+
     }
 }
