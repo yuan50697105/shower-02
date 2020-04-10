@@ -3,7 +3,7 @@
 /.gradle/
 /build/
 
-# Ignore Gradle GUI config
+# Ignore Gradle GUI queue
 gradle-app.setting
 
 # Avoid ignoring Gradle wrapper jar file (.jar files are usually ignored)
@@ -69,8 +69,7 @@ cmake-build-*/
 out/
 
 # mpeltonen/sbt-idea plugin
-.idea_modules/
-/**/test
+.idea_modules
 # JIRA plugin
 atlassian-ide-plugin.xml
 

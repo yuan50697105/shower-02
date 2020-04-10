@@ -32,4 +32,6 @@ public interface DeviceInfoMapper extends BaseMapper {
     int updateByPrimaryKey(DeviceInfo record);
 
     List<DeviceInfo> selectByCondition(DeviceInfoQuery query);
+
+    DeviceInfo selectOneByCode(@Param("code") String code);
 }

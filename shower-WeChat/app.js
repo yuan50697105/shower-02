@@ -18,13 +18,15 @@ App({
       })
     })
   },
-  onShow: function(options) {
+  // onShow : 生命周期回调——监听小程序启动或切前台。
+  onShow: function (options) {
     user.checkLogin().then(res => {
       this.globalData.hasLogin = true;
     }).catch(() => {
       this.globalData.hasLogin = false;
     });
   },
+  // globalData, 用户自定义函数, 开发者可以添加任意的函数或数据变量到 Object 参数中，用 this 可以访问
   globalData: {
     hasLogin: false
   }

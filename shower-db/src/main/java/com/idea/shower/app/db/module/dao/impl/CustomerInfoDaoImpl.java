@@ -35,6 +35,11 @@ public class CustomerInfoDaoImpl extends BaseDaoImpl<CustomerInfo, CustomerInfoM
     }
 
     @Override
+    public Optional<CustomerInfo> getById(String id) {
+        return Optional.ofNullable(baseMapper().selectOneById(id));
+    }
+
+    @Override
     public long countByUnionId(String unionId) {
         CustomerInfoExample example = new CustomerInfoExample();
         example.or().andUnionIdEqualTo(unionId);
@@ -51,5 +56,16 @@ public class CustomerInfoDaoImpl extends BaseDaoImpl<CustomerInfo, CustomerInfoM
     @Transactional(rollbackFor = Exception.class)
     public int update(CustomerInfo customerInfo) {
         return baseMapper().updateByPrimaryKeySelective(customerInfo);
+    }
+
+    @Override
+    public Optional<CustomerInfo> getByOpenId(String openId) {
+        return Optional.ofNullable(baseMapper().selectOneByOpenId(openId));
+    }
+    @Override
+    public long countByOpenId(String openid) {
+        CustomerInfoExample example = new CustomerInfoExample();
+        example.or().andOpenIdEqualTo(openid);
+        return baseMapper().countByExample(example);
     }
 }

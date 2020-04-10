@@ -1,7 +1,7 @@
 package com.idea.shower.app.db.module.dao.impl;
 
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.constants.goods.GoodsType;
+import com.idea.shower.app.db.module.constants.PriceInfoConstants;
 import com.idea.shower.app.db.module.dao.OrderItemDao;
 import com.idea.shower.app.db.module.mapper.OrderItemMapper;
 import com.idea.shower.app.db.module.pojo.OrderItem;
@@ -34,11 +34,16 @@ public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem, OrderItemMapper> im
 
     @Override
     public Optional<OrderItem> getRentalItemByOrderId(Long orderId) {
-        return Optional.ofNullable(baseMapper().selectOneByOrderIdAndGoodsType(orderId, GoodsType.FROM_THEIR_PRICES));
+        return Optional.ofNullable(baseMapper().selectOneByOrderIdAndGoodsType(orderId, PriceInfoConstants.PriceType.STARTING_PRICE));
     }
 
     @Override
-    public List<OrderItem> selectListByOrderId(Long orderId) {
-        return baseMapper().selectByOrderId(orderId);
+    public List<OrderItem> selectListByOrderNo(String orderNo) {
+        return baseMapper().selectByOrderNo(orderNo);
+    }
+
+    @Override
+    public OrderItem getStartingItemByOrderId(Long id) {
+        return baseMapper().selectOneByOrderIdAndPriceType(id, PriceInfoConstants.PriceType.STARTING_PRICE);
     }
 }

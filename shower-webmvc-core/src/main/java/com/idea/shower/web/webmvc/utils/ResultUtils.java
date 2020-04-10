@@ -11,6 +11,7 @@ import com.idea.shower.web.webmvc.pojo.Result;
  * @create: 2020-01-19 20:43
  */
 public class ResultUtils {
+
     public static Result result(Integer code, String message, Object data) {
         return Result.builder().code(code).message(message).data(data).build();
     }
@@ -76,15 +77,15 @@ public class ResultUtils {
     }
 
     public static Result userNotExistError() {
-        return wxError(ResultConstants.WX_USER_NOT_EXIST_MSG);
+        return wxError(ResultConstants.USER_NOT_FOUND_ERROR_MSG);
     }
 
     public static Result wxOrderNotExistError() {
-        return wxError(ResultConstants.WX_ORDER_NOT_EXIST_MSG);
+        return wxError(ResultConstants.ORDER_ORDER_NOT_EXIST_MSG);
     }
 
     public static Result goodsInfoNotExistError() {
-        return goodsInfoError(ResultConstants.GOODS_INFO_NOT_EXIST_ERROR_MSG);
+        return goodsInfoError(ResultConstants.PRICE_INFO_NOT_EXIST_ERROR_MSG);
     }
 
     public static Result wxError(String message) {
@@ -99,21 +100,40 @@ public class ResultUtils {
         return data(new ConditionPageResult(pageResult, condition));
     }
 
+    public static Result wxDeviceNotFoundError() {
+        return wxError(ResultConstants.DEVICE_NOT_FOUND_ERROR_MSG);
+    }
+
+    public static Result wxUserNotFoundError() {
+        return wxError(ResultConstants.USER_NOT_FOUND_ERROR_MSG);
+    }
+
+    public static Result wxPriceNotFoundError() {
+        return wxError(ResultConstants.PRICE_INFO_NOT_EXIST_ERROR_MSG);
+    }
+
+    public static Result wxOrderUserInfoError() {
+        return wxError(ResultConstants.WX_ORDER_USER_INFO_ERROR_MSG);
+    }
+
     public static class ResultConstants {
         public final static Integer OK_CODE = 200;
         public final static String OK_MESSAGE = "操作成功";
+
         public final static Integer SYSTEM_ERROR = 500;
         public final static String SYSTEM_ERROR_MESSAGE = "系统错误";
-        public final static Integer VALIDATE_ERROR = 501;
 
+        public final static Integer VALIDATE_ERROR = 501;
         public static final Integer DATA_PARAMS_ERROR_CODE = 502;
         public static final String DATA_PARAMS_ERROR_MESSAGE = "参数错误";
         public static final Integer OTHER_ERROR_CODE = 503;
         public static final Integer WX_ERROR_CODE = 600;
-        public static final String WX_USER_NOT_EXIST_MSG = "用户不存在";
-        public static final String WX_ORDER_NOT_EXIST_MSG = "订单不存在";
         public static final Integer GOODS_INFO_ERROR_CODE = 700;
-        public static final String GOODS_INFO_NOT_EXIST_ERROR_MSG = "价格信息不存在";
 
+        public static final String DEVICE_NOT_FOUND_ERROR_MSG = "设备不存在";
+        public static final String USER_NOT_FOUND_ERROR_MSG = "用户不存在";
+        public static final String ORDER_ORDER_NOT_EXIST_MSG = "订单不存在";
+        public static final String PRICE_INFO_NOT_EXIST_ERROR_MSG = "价格信息不存在";
+        public static final String WX_ORDER_USER_INFO_ERROR_MSG = "订单用户信息不一致";
     }
 }

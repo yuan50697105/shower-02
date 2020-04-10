@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * device_order
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -44,6 +47,11 @@ public class DeviceOrder extends BaseDbEntity implements Serializable {
      * 订单号
      */
     private String orderNo;
+
+    /**
+     * 订单类型
+     */
+    private Integer orderType;
 
     /**
      * 客户ID

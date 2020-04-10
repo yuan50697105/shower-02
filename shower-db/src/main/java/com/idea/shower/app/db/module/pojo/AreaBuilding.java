@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * 楼宇信息
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder

@@ -2,12 +2,14 @@ package com.idea.shower.app.wx.mp.controller;
 
 import cn.hutool.core.io.IoUtil;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.WxOrderInfo;
+import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
+import com.idea.shower.app.wx.mp.pojo.WxEndOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.web.webmvc.controller.ResultController;
 import com.idea.shower.web.webmvc.pojo.Result;
+import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,28 +25,29 @@ import java.nio.charset.StandardCharsets;
  */
 @RestController
 @RequestMapping("wx/order")
+@AllArgsConstructor
 public class WxOrderInfoController extends ResultController {
     private WxOrderInfoService wxOrderInfoService;
 
     @PostMapping("data")
     public Result data(@RequestBody OrderInfoQuery condition) {
-        return wxOrderInfoService.data(condition);
+        return wxOrderInfoService.selectPage(condition);
     }
 
     @GetMapping("item")
-    public Result orderItem(Long orderId) {
-        return wxOrderInfoService.getOrderItem(orderId);
+    public Result orderItem(String orderId) {
+        return wxOrderInfoService.getOrderItemByOrderNo(orderId);
     }
 
 
     @PostMapping("add")
-    public Result addOrder(@RequestBody WxOrderInfo wxOrderInfo) {
-        return wxOrderInfoService.addOrder(wxOrderInfo);
+    public Result addOrder(@RequestBody WxAddOrderRequest wxAddOrderRequest) {
+        return wxOrderInfoService.addOrder(wxAddOrderRequest);
     }
 
     @PostMapping("end")
-    public Result endOrder(@RequestBody WxOrderInfo wxOrderInfo) {
-        return wxOrderInfoService.endOrder(wxOrderInfo);
+    public Result endOrder(@RequestBody WxEndOrderRequest wxEndOrderRequest) {
+        return wxOrderInfoService.endOrder(wxEndOrderRequest);
     }
 
     @PostMapping("pay")

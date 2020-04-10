@@ -14,9 +14,9 @@
     <result column="device_id" jdbcType="BIGINT" property="deviceId" />
     <result column="device_code" jdbcType="VARCHAR" property="deviceCode" />
     <result column="device_type" jdbcType="INTEGER" property="deviceType" />
-    <result column="range_code" jdbcType="VARCHAR" property="rangeCode" />
-    <result column="goods_id" jdbcType="BIGINT" property="goodsId" />
-    <result column="goods_type" jdbcType="INTEGER" property="goodsType" />
+    <result column="price_code" jdbcType="VARCHAR" property="priceCode" />
+    <result column="price_id" jdbcType="BIGINT" property="priceId" />
+    <result column="price_type" jdbcType="INTEGER" property="priceType" />
     <result column="time_price" jdbcType="DECIMAL" property="timePrice" />
     <result column="time_interval" jdbcType="DOUBLE" property="timeInterval" />
     <result column="time_unit" jdbcType="INTEGER" property="timeUnit" />
@@ -92,7 +92,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, 
-    device_code, device_type, range_code, goods_id, goods_type, time_price, time_interval, 
+    device_code, device_type, price_code, price_id, price_type, time_price, time_interval, 
     time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, 
     water_use, total_price
   </sql>
@@ -130,34 +130,29 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.OrderItem">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.OrderItem" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into order_item (id, create_time, update_time, 
-      create_user, update_user, order_id, 
-      order_no, device_id, device_code, 
-      device_type, range_code, goods_id, 
-      goods_type, time_price, time_interval, 
-      time_unit, start_time, end_time, 
-      time_use, water_price, water_interval, 
-      water_unit, water_use, total_price
-      )
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, 
-      #{orderNo,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, 
-      #{deviceType,jdbcType=INTEGER}, #{rangeCode,jdbcType=VARCHAR}, #{goodsId,jdbcType=BIGINT}, 
-      #{goodsType,jdbcType=INTEGER}, #{timePrice,jdbcType=DECIMAL}, #{timeInterval,jdbcType=DOUBLE}, 
-      #{timeUnit,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, 
-      #{timeUse,jdbcType=DOUBLE}, #{waterPrice,jdbcType=DECIMAL}, #{waterInterval,jdbcType=DOUBLE}, 
-      #{waterUnit,jdbcType=INTEGER}, #{waterUse,jdbcType=DOUBLE}, #{totalPrice,jdbcType=DECIMAL}
-      )
+    insert into order_item (create_time, update_time, create_user, 
+      update_user, order_id, order_no, 
+      device_id, device_code, device_type, 
+      price_code, price_id, price_type, 
+      time_price, time_interval, time_unit, 
+      start_time, end_time, time_use, 
+      water_price, water_interval, water_unit, 
+      water_use, total_price)
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
+      #{priceCode,jdbcType=VARCHAR}, #{priceId,jdbcType=BIGINT}, #{priceType,jdbcType=INTEGER}, 
+      #{timePrice,jdbcType=DECIMAL}, #{timeInterval,jdbcType=DOUBLE}, #{timeUnit,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{timeUse,jdbcType=DOUBLE}, 
+      #{waterPrice,jdbcType=DECIMAL}, #{waterInterval,jdbcType=DOUBLE}, #{waterUnit,jdbcType=INTEGER}, 
+      #{waterUse,jdbcType=DOUBLE}, #{totalPrice,jdbcType=DECIMAL})
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.OrderItem">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.OrderItem" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into order_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -185,14 +180,14 @@
       <if test="deviceType != null">
         device_type,
       </if>
-      <if test="rangeCode != null">
-        range_code,
+      <if test="priceCode != null">
+        price_code,
       </if>
-      <if test="goodsId != null">
-        goods_id,
+      <if test="priceId != null">
+        price_id,
       </if>
-      <if test="goodsType != null">
-        goods_type,
+      <if test="priceType != null">
+        price_type,
       </if>
       <if test="timePrice != null">
         time_price,
@@ -229,9 +224,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -259,14 +251,14 @@
       <if test="deviceType != null">
         #{deviceType,jdbcType=INTEGER},
       </if>
-      <if test="rangeCode != null">
-        #{rangeCode,jdbcType=VARCHAR},
+      <if test="priceCode != null">
+        #{priceCode,jdbcType=VARCHAR},
       </if>
-      <if test="goodsId != null">
-        #{goodsId,jdbcType=BIGINT},
+      <if test="priceId != null">
+        #{priceId,jdbcType=BIGINT},
       </if>
-      <if test="goodsType != null">
-        #{goodsType,jdbcType=INTEGER},
+      <if test="priceType != null">
+        #{priceType,jdbcType=INTEGER},
       </if>
       <if test="timePrice != null">
         #{timePrice,jdbcType=DECIMAL},
@@ -344,14 +336,14 @@
       <if test="record.deviceType != null">
         device_type = #{record.deviceType,jdbcType=INTEGER},
       </if>
-      <if test="record.rangeCode != null">
-        range_code = #{record.rangeCode,jdbcType=VARCHAR},
+      <if test="record.priceCode != null">
+        price_code = #{record.priceCode,jdbcType=VARCHAR},
       </if>
-      <if test="record.goodsId != null">
-        goods_id = #{record.goodsId,jdbcType=BIGINT},
+      <if test="record.priceId != null">
+        price_id = #{record.priceId,jdbcType=BIGINT},
       </if>
-      <if test="record.goodsType != null">
-        goods_type = #{record.goodsType,jdbcType=INTEGER},
+      <if test="record.priceType != null">
+        price_type = #{record.priceType,jdbcType=INTEGER},
       </if>
       <if test="record.timePrice != null">
         time_price = #{record.timePrice,jdbcType=DECIMAL},
@@ -404,9 +396,9 @@
       device_id = #{record.deviceId,jdbcType=BIGINT},
       device_code = #{record.deviceCode,jdbcType=VARCHAR},
       device_type = #{record.deviceType,jdbcType=INTEGER},
-      range_code = #{record.rangeCode,jdbcType=VARCHAR},
-      goods_id = #{record.goodsId,jdbcType=BIGINT},
-      goods_type = #{record.goodsType,jdbcType=INTEGER},
+      price_code = #{record.priceCode,jdbcType=VARCHAR},
+      price_id = #{record.priceId,jdbcType=BIGINT},
+      price_type = #{record.priceType,jdbcType=INTEGER},
       time_price = #{record.timePrice,jdbcType=DECIMAL},
       time_interval = #{record.timeInterval,jdbcType=DOUBLE},
       time_unit = #{record.timeUnit,jdbcType=INTEGER},
@@ -453,14 +445,14 @@
       <if test="deviceType != null">
         device_type = #{deviceType,jdbcType=INTEGER},
       </if>
-      <if test="rangeCode != null">
-        range_code = #{rangeCode,jdbcType=VARCHAR},
+      <if test="priceCode != null">
+        price_code = #{priceCode,jdbcType=VARCHAR},
       </if>
-      <if test="goodsId != null">
-        goods_id = #{goodsId,jdbcType=BIGINT},
+      <if test="priceId != null">
+        price_id = #{priceId,jdbcType=BIGINT},
       </if>
-      <if test="goodsType != null">
-        goods_type = #{goodsType,jdbcType=INTEGER},
+      <if test="priceType != null">
+        price_type = #{priceType,jdbcType=INTEGER},
       </if>
       <if test="timePrice != null">
         time_price = #{timePrice,jdbcType=DECIMAL},
@@ -510,9 +502,9 @@
       device_id = #{deviceId,jdbcType=BIGINT},
       device_code = #{deviceCode,jdbcType=VARCHAR},
       device_type = #{deviceType,jdbcType=INTEGER},
-      range_code = #{rangeCode,jdbcType=VARCHAR},
-      goods_id = #{goodsId,jdbcType=BIGINT},
-      goods_type = #{goodsType,jdbcType=INTEGER},
+      price_code = #{priceCode,jdbcType=VARCHAR},
+      price_id = #{priceId,jdbcType=BIGINT},
+      price_type = #{priceType,jdbcType=INTEGER},
       time_price = #{timePrice,jdbcType=DECIMAL},
       time_interval = #{timeInterval,jdbcType=DOUBLE},
       time_unit = #{timeUnit,jdbcType=INTEGER},
@@ -549,5 +541,13 @@
         <include refid="Base_Column_List" />
         from order_item
         where order_no=#{orderNo,jdbcType=VARCHAR}
+    </select>
+
+<!--auto generated by MybatisCodeHelper on 2020-03-28-->
+  <select id="selectOneByOrderIdAndPriceType" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from order_item
+        where order_id=#{orderId,jdbcType=BIGINT} and price_type=#{priceType,jdbcType=INTEGER}
     </select>
 </mapper>

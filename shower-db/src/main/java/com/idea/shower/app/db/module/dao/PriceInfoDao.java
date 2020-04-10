@@ -13,7 +13,9 @@ import java.util.Optional;
  * @create: 2020-02-14 20:18
  */
 public interface PriceInfoDao extends BaseDao<PriceInfo> {
-    Optional<PriceInfo> getFromTheirPricesByRangeCode(String rangeCode);
+    void save(PriceInfo priceInfo);
 
-    Optional<PriceInfo> getRenewalPriceByRangeCode(String rangeCode);
+    Optional<PriceInfo> getStartingPricesPriceCode(String rangeCode);
+
+    Optional<PriceInfo> getRenewalPriceByPriceCode(String rangeCode);
 }

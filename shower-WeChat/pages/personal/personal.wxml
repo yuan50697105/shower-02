@@ -8,21 +8,21 @@
 </view>
 <view class='content'>
      <view class='order'>
-          <view class='desc'>
+          <view class='desc' bindtap='AllOrder'>
                <view><image src='/static/image/order/order1.png' style='width:22px;height:25px;'></image></view>
                <view>全部订单</view>
           </view>
-          <view class='desc'>
+          <view class='desc'bindtap='WaitPayOrder'>
                <view><image src='/static/image/order/orderWait.png' style='width:22px;height:25px;'></image></view>
-               <view>预约订单</view>
+               <view>待结算订单</view>
           </view>
-          <view class='desc'>
+          <view class='desc' bindtap='WaitUseOrder'>
                <view><image src='/static/image/order/orderOn.png' style='width:22px;height:25px;'></image></view>
-               <view>撤销订单</view>
+               <view>未使用订单</view>
           </view>
-          <view class='desc'>
+          <view class='desc' bindtap='OverOrder'>
                <view><image src='/static/image/order/orderSuccess.png' style='width:22px;height:25px;'></image></view>
-               <view>未结算订单</view>
+               <view>已结束订单</view>
           </view>
      </view>
      <view class='clear'></view>

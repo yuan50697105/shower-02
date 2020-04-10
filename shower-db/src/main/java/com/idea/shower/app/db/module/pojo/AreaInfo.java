@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * 区域信息
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -26,4 +29,8 @@ public class AreaInfo extends BaseDbEntity implements Serializable {
     private String code;
 
     private static final long serialVersionUID = 1L;
+
+    public static AreaInfoBuilder builder() {
+        return new AreaInfoBuilder();
+    }
 }

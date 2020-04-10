@@ -15,6 +15,7 @@
     <result column="device_type" jdbcType="INTEGER" property="deviceType" />
     <result column="order_id" jdbcType="BIGINT" property="orderId" />
     <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="order_type" jdbcType="INTEGER" property="orderType" />
     <result column="customer_id" jdbcType="BIGINT" property="customerId" />
     <result column="union_id" jdbcType="VARCHAR" property="unionId" />
     <result column="open_id" jdbcType="VARCHAR" property="openId" />
@@ -85,8 +86,8 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, create_time, update_time, create_user, update_user, device_id, device_code, range_code, 
-    device_type, order_id, order_no, customer_id, union_id, open_id, `status`, start_time, 
-    end_time
+    device_type, order_id, order_no, order_type, customer_id, union_id, open_id, `status`, 
+    start_time, end_time
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrderExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -122,28 +123,25 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrder">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrder" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into device_order (id, create_time, update_time, 
-      create_user, update_user, device_id, 
-      device_code, range_code, device_type, 
-      order_id, order_no, customer_id, 
+    insert into device_order (create_time, update_time, create_user, 
+      update_user, device_id, device_code, 
+      range_code, device_type, order_id, 
+      order_no, order_type, customer_id, 
       union_id, open_id, `status`, 
       start_time, end_time)
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
-      #{deviceCode,jdbcType=VARCHAR}, #{rangeCode,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, 
-      #{orderId,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, 
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{deviceCode,jdbcType=VARCHAR}, 
+      #{rangeCode,jdbcType=VARCHAR}, #{deviceType,jdbcType=INTEGER}, #{orderId,jdbcType=BIGINT}, 
+      #{orderNo,jdbcType=VARCHAR}, #{orderType,jdbcType=INTEGER}, #{customerId,jdbcType=BIGINT}, 
       #{unionId,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
       #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrder">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceOrder" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into device_order
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -174,6 +172,9 @@
       <if test="orderNo != null">
         order_no,
       </if>
+      <if test="orderType != null">
+        order_type,
+      </if>
       <if test="customerId != null">
         customer_id,
       </if>
@@ -194,9 +195,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -226,6 +224,9 @@
       </if>
       <if test="orderNo != null">
         #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null">
+        #{orderType,jdbcType=INTEGER},
       </if>
       <if test="customerId != null">
         #{customerId,jdbcType=BIGINT},
@@ -291,6 +292,9 @@
       <if test="record.orderNo != null">
         order_no = #{record.orderNo,jdbcType=VARCHAR},
       </if>
+      <if test="record.orderType != null">
+        order_type = #{record.orderType,jdbcType=INTEGER},
+      </if>
       <if test="record.customerId != null">
         customer_id = #{record.customerId,jdbcType=BIGINT},
       </if>
@@ -328,6 +332,7 @@
       device_type = #{record.deviceType,jdbcType=INTEGER},
       order_id = #{record.orderId,jdbcType=BIGINT},
       order_no = #{record.orderNo,jdbcType=VARCHAR},
+      order_type = #{record.orderType,jdbcType=INTEGER},
       customer_id = #{record.customerId,jdbcType=BIGINT},
       union_id = #{record.unionId,jdbcType=VARCHAR},
       open_id = #{record.openId,jdbcType=VARCHAR},
@@ -372,6 +377,9 @@
       <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=VARCHAR},
       </if>
+      <if test="orderType != null">
+        order_type = #{orderType,jdbcType=INTEGER},
+      </if>
       <if test="customerId != null">
         customer_id = #{customerId,jdbcType=BIGINT},
       </if>
@@ -406,6 +414,7 @@
       device_type = #{deviceType,jdbcType=INTEGER},
       order_id = #{orderId,jdbcType=BIGINT},
       order_no = #{orderNo,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=INTEGER},
       customer_id = #{customerId,jdbcType=BIGINT},
       union_id = #{unionId,jdbcType=VARCHAR},
       open_id = #{openId,jdbcType=VARCHAR},
