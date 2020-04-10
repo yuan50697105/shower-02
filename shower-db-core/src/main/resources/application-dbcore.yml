@@ -1,0 +1,7 @@
+spring:
+  jackson:
+    time-zone: GMT+8
+    locale: zh_CN
+  mvc:
+    locale: zh_CN
+    date-format:

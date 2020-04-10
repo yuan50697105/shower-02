@@ -12,6 +12,13 @@ import java.math.BigDecimal;
  */
 @Data
 public class WxPayOrderInfo {
+
+    /**
+     * 订单号
+     */
     private String orderNo;
+    /**
+     * 总价
+     */
     private BigDecimal totalPrice;
 }

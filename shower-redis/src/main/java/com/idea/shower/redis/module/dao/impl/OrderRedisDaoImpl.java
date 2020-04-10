@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderRedisDaoImpl extends BaseRedisDaoImpl<OrderRedisEntity, String> implements OrderRediskDao {
     @Override
-    public void addOrderKeepTime(OrderRedisEntity entity) {
+    public void setOrderInTime(OrderRedisEntity entity) {
         setValue(String.valueOf(entity.getOrderId()), entity.getOrderNo(), entity.getTime(), entity.getUnit());
     }
 }

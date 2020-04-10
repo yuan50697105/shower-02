@@ -1,10 +1,15 @@
 package com.idea.shower.app.db.module.mapper;
+import java.math.BigDecimal;
 
+import com.google.common.collect.Ordering;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
 import com.idea.shower.app.db.module.pojo.OrderInfoExample;
+
 import java.util.List;
-import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;import org.apache.ibatis.annotations.Mapper;
+
+import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
@@ -38,4 +43,10 @@ public interface OrderInfoMapper extends BaseMapper {
     OrderInfo selectOneByOrderNo(@Param("orderNo") String orderNo);
 
     OrderInfo selectOneByIdOrOrderNo(@Param("id") Long id, @Param("orderNo") String orderNo);
+
+    List<OrderInfo> selectByConditionWeXin(@Param("query") OrderInfoQuery query);
+
+    int updateTotalPriceByOrderNo(@Param("updatedTotalPrice")BigDecimal updatedTotalPrice,@Param("orderNo")String orderNo);
+
+
 }
