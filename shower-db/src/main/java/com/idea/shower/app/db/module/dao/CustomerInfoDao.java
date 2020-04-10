@@ -31,14 +31,6 @@ public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
     Optional<CustomerInfo> getByUnionId(String unionId);
 
     /**
-     * 通过UnionId统计数量
-     *
-     * @param unionId unionId
-     * @return 数量
-     */
-    long countByUnionId(String unionId);
-
-    /**
      * 保存
      *
      * @param customerInfo 用户信息
@@ -53,4 +45,35 @@ public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
      * @return 受影响行数
      */
     int update(CustomerInfo customerInfo);
+
+    /**
+     * 通过id获取用户信息
+     *
+     * @param id id
+     * @return 用户信息
+     */
+    Optional<CustomerInfo> getById(String id);
+
+    /**
+     * 通过openId获取用户信息
+     *
+     * @param openId openId
+     * @return 用户信息
+     */
+    Optional<CustomerInfo> getByOpenId(String openId);
+    /**
+     * 通过openid统计数量
+     *
+     * @param openid openid
+     * @return 数量
+     */
+    long countByOpenId(String openid);
+
+    /**
+     * 通过UnionId统计数量
+     *
+     * @param unionId unionId
+     * @return 数量
+     */
+    long countByUnionId(String unionId);
 }

@@ -5,11 +5,12 @@
     "pages/auth/login/login",
     "pages/map/map",
     "pages/personal/personal",
-    "pages/about/about"
+    "pages/about/about",
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#5495E6",
+    "navigationBarBackgroundColor": "#3f9337",
     "navigationBarTitleText": "清沐屋",
     "navigationBarTextStyle": "white"
   },

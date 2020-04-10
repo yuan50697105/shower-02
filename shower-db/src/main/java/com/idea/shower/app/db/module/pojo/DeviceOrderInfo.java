@@ -9,6 +9,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * device_order_info
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder

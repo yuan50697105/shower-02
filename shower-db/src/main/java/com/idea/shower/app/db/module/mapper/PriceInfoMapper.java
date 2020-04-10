@@ -31,5 +31,5 @@ public interface PriceInfoMapper extends BaseMapper {
 
     int updateByPrimaryKey(PriceInfo record);
 
-    PriceInfo selectOneByTypeAndRangeCode(@Param("type") String type, @Param("rangeCode") String rangeCode);
+    PriceInfo selectOneByPriceCodeAndType(@Param("priceCode") String priceCode, @Param("type") Integer type);
 }

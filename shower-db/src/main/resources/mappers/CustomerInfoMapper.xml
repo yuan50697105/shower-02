@@ -312,4 +312,18 @@
         from customer_info
         where union_id=#{unionId,jdbcType=VARCHAR}
     </select>
+
+    <select id="selectOneById" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from customer_info
+        where id=#{id,jdbcType=VARCHAR}
+    </select>
+
+    <select id="selectOneByOpenId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from customer_info
+        where open_id=#{openId,jdbcType=VARCHAR}
+    </select>
 </mapper>

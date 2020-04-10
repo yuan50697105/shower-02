@@ -1,5 +1,6 @@
 group 'com.idea.shower.redis'
 dependencies {
+    compile project(':shower-db-core')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
 
 }

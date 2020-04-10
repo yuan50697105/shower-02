@@ -1,12 +1,13 @@
 package com.idea.shower.app.db.module.dao.impl;
 
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.constants.goods.GoodsType;
+import com.idea.shower.app.db.module.constants.PriceInfoConstants;
 import com.idea.shower.app.db.module.dao.PriceInfoDao;
 import com.idea.shower.app.db.module.mapper.PriceInfoMapper;
 import com.idea.shower.app.db.module.pojo.PriceInfo;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -20,12 +21,18 @@ import java.util.Optional;
 @AllArgsConstructor
 public class PriceInfoDaoImpl extends BaseDaoImpl<PriceInfo, PriceInfoMapper> implements PriceInfoDao {
     @Override
-    public Optional<PriceInfo> getFromTheirPricesByRangeCode(String rangeCode) {
-        return Optional.ofNullable(baseMapper().selectOneByTypeAndRangeCode(String.valueOf(GoodsType.FROM_THEIR_PRICES), rangeCode));
+    @Transactional(rollbackFor = Exception.class)
+    public void save(PriceInfo priceInfo) {
+        baseMapper().insert(priceInfo);
     }
 
     @Override
-    public Optional<PriceInfo> getRenewalPriceByRangeCode(String rangeCode) {
-        return Optional.ofNullable(baseMapper().selectOneByTypeAndRangeCode(String.valueOf(GoodsType.RENEWAL_PRICE), rangeCode));
+    public Optional<PriceInfo> getStartingPricesPriceCode(String priceCode) {
+        return Optional.ofNullable(baseMapper().selectOneByPriceCodeAndType(priceCode, PriceInfoConstants.PriceType.STARTING_PRICE));
+    }
+
+    @Override
+    public Optional<PriceInfo> getRenewalPriceByPriceCode(String priceCode) {
+        return Optional.ofNullable(baseMapper().selectOneByPriceCodeAndType(priceCode, PriceInfoConstants.PriceType.RENEWAL_PRICE));
     }
 }

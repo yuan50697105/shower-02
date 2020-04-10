@@ -10,8 +10,8 @@
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="code" jdbcType="VARCHAR" property="code" />
-    <result column="type" jdbcType="VARCHAR" property="type" />
-    <result column="range_code" jdbcType="VARCHAR" property="rangeCode" />
+    <result column="type" jdbcType="INTEGER" property="type" />
+    <result column="price_code" jdbcType="VARCHAR" property="priceCode" />
     <result column="time_price" jdbcType="DECIMAL" property="timePrice" />
     <result column="time_interval" jdbcType="DOUBLE" property="timeInterval" />
     <result column="time_unit" jdbcType="INTEGER" property="timeUnit" />
@@ -82,7 +82,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, code, `type`, range_code, 
+    id, create_time, update_time, create_user, update_user, code, `type`, price_code, 
     time_price, time_interval, time_unit, water_price, water_interval, water_unit, enabled
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.PriceInfoExample" resultMap="BaseResultMap">
@@ -119,28 +119,23 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into price_info (id, create_time, update_time, 
-      create_user, update_user, code, 
-      `type`, range_code, time_price, 
-      time_interval, time_unit, water_price, 
-      water_interval, water_unit, enabled
-      )
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{type,jdbcType=VARCHAR}, #{rangeCode,jdbcType=VARCHAR}, #{timePrice,jdbcType=DECIMAL}, 
-      #{timeInterval,jdbcType=DOUBLE}, #{timeUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL}, 
-      #{waterInterval,jdbcType=DOUBLE}, #{waterUnit,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER}
-      )
+    insert into price_info (create_time, update_time, create_user, 
+      update_user, code, `type`, 
+      price_code, time_price, time_interval, 
+      time_unit, water_price, water_interval, 
+      water_unit, enabled)
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{priceCode,jdbcType=VARCHAR}, #{timePrice,jdbcType=DECIMAL}, #{timeInterval,jdbcType=DOUBLE}, 
+      #{timeUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL}, #{waterInterval,jdbcType=DOUBLE}, 
+      #{waterUnit,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.PriceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into price_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -159,8 +154,8 @@
       <if test="type != null">
         `type`,
       </if>
-      <if test="rangeCode != null">
-        range_code,
+      <if test="priceCode != null">
+        price_code,
       </if>
       <if test="timePrice != null">
         time_price,
@@ -185,9 +180,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -204,10 +196,10 @@
         #{code,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        #{type,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER},
       </if>
-      <if test="rangeCode != null">
-        #{rangeCode,jdbcType=VARCHAR},
+      <if test="priceCode != null">
+        #{priceCode,jdbcType=VARCHAR},
       </if>
       <if test="timePrice != null">
         #{timePrice,jdbcType=DECIMAL},
@@ -262,10 +254,10 @@
         code = #{record.code,jdbcType=VARCHAR},
       </if>
       <if test="record.type != null">
-        `type` = #{record.type,jdbcType=VARCHAR},
+        `type` = #{record.type,jdbcType=INTEGER},
       </if>
-      <if test="record.rangeCode != null">
-        range_code = #{record.rangeCode,jdbcType=VARCHAR},
+      <if test="record.priceCode != null">
+        price_code = #{record.priceCode,jdbcType=VARCHAR},
       </if>
       <if test="record.timePrice != null">
         time_price = #{record.timePrice,jdbcType=DECIMAL},
@@ -302,8 +294,8 @@
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
-      `type` = #{record.type,jdbcType=VARCHAR},
-      range_code = #{record.rangeCode,jdbcType=VARCHAR},
+      `type` = #{record.type,jdbcType=INTEGER},
+      price_code = #{record.priceCode,jdbcType=VARCHAR},
       time_price = #{record.timePrice,jdbcType=DECIMAL},
       time_interval = #{record.timeInterval,jdbcType=DOUBLE},
       time_unit = #{record.timeUnit,jdbcType=INTEGER},
@@ -335,10 +327,10 @@
         code = #{code,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
-        `type` = #{type,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=INTEGER},
       </if>
-      <if test="rangeCode != null">
-        range_code = #{rangeCode,jdbcType=VARCHAR},
+      <if test="priceCode != null">
+        price_code = #{priceCode,jdbcType=VARCHAR},
       </if>
       <if test="timePrice != null">
         time_price = #{timePrice,jdbcType=DECIMAL},
@@ -372,8 +364,8 @@
       create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
-      `type` = #{type,jdbcType=VARCHAR},
-      range_code = #{rangeCode,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      price_code = #{priceCode,jdbcType=VARCHAR},
       time_price = #{timePrice,jdbcType=DECIMAL},
       time_interval = #{timeInterval,jdbcType=DOUBLE},
       time_unit = #{timeUnit,jdbcType=INTEGER},
@@ -384,11 +376,14 @@
     where id = #{id,jdbcType=BIGINT}
   </update>
 
-    <!--auto generated by MybatisCodeHelper on 2020-02-14-->
-    <select id="selectOneByTypeAndRangeCode" resultMap="BaseResultMap">
+    <!--auto generated by MybatisCodeHelper on 2020-03-28-->
+    <select id="selectOneByPriceCodeAndType" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
-        from goods_info
-        where `type`=#{type,jdbcType=VARCHAR} and range_code=#{rangeCode,jdbcType=VARCHAR}
+        from price_info
+        where price_code=#{priceCode,jdbcType=VARCHAR} and `type`=#{type,jdbcType=INTEGER}
     </select>
+
+    <!--auto generated by MybatisCodeHelper on 2020-02-14-->
+
 </mapper>

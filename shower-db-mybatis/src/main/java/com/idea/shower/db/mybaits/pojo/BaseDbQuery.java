@@ -1,6 +1,5 @@
 package com.idea.shower.db.mybaits.pojo;
 
-import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.IPage;
 import com.idea.shower.db.core.pojo.BaseDbCoreQuery;
 import lombok.Data;
@@ -19,14 +18,7 @@ public class BaseDbQuery extends BaseDbCoreQuery implements IPage {
 
     @Override
     public String getOrderBy() {
-        String orderBy = "";
-        if (StrUtil.isNotEmpty(getOrder())) {
-            orderBy += StrUtil.toUnderlineCase(getOrder());
-            if (StrUtil.isNotEmpty(getSort())) {
-                orderBy += " " + getSort();
-            }
-        }
-        return orderBy;
+        return null;
 
     }
 }

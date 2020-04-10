@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * order_item
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -42,19 +45,19 @@ public class OrderItem extends BaseDbEntity implements Serializable {
     private Integer deviceType;
 
     /**
-     * 地区码
+     * 价格码
      */
-    private String rangeCode;
+    private String priceCode;
 
     /**
      * 定价ID
      */
-    private Long goodsId;
+    private Long priceId;
 
     /**
      * 定价类型
      */
-    private Integer goodsType;
+    private Integer priceType;
 
     /**
      * 时间价格

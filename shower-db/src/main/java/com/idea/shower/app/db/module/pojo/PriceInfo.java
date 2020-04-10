@@ -10,6 +10,9 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
+/**
+ * price_info
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -23,13 +26,14 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 类型
+     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceType
      */
-    private String type;
+    private Integer type;
 
     /**
      * 地区码
      */
-    private String rangeCode;
+    private String priceCode;
 
     /**
      * 时间定价
@@ -43,6 +47,7 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 时间单位
+     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceTimeUnit
      */
     private Integer timeUnit;
 
@@ -58,11 +63,13 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 水计费单位
+     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceWaterUnit
      */
     private Integer waterUnit;
 
     /**
      * 有效
+     * @see com.idea.shower.app.db.module.constants.commons.EnableConstants
      */
     private Integer enabled;
 

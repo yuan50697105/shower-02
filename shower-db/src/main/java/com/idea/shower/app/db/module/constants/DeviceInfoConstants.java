@@ -7,6 +7,7 @@ package com.idea.shower.app.db.module.constants;
  * @create: 2020-01-23 18:31
  */
 public class DeviceInfoConstants {
+
     /**
      * 设备类型
      */
@@ -25,6 +26,9 @@ public class DeviceInfoConstants {
      * 设备运行状态
      */
     public static class DeviceRunningStatus {
+        public static final int RUNNING = 0;
+        public static final int STOP = 1;
+        public static final int ALL_STATUS = 2;
     }
 
 }

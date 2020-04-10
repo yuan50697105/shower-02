@@ -17,4 +17,13 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
     Optional<DeviceInfo> getById(Long deviceId);
 
     PageResult<DeviceInfo> selectPage(DeviceInfoQuery condition);
+
+    /**
+    *获取设备列表
+    *@author finch
+    *@date: 2020/3/24
+    */
+    PageResult<DeviceInfo> selectAll(DeviceInfoQuery deviceInfoQuery);
+
+    Optional<DeviceInfo> getByCode(String code);
 }

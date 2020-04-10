@@ -1,6 +1,7 @@
 group 'com.idea.shower.db'
 
 dependencies {
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-json'
     testCompile group: 'junit', name: 'junit', version: '4.13'
 }
 
