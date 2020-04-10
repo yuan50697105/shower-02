@@ -11,4 +11,6 @@ import com.idea.shower.amqp.module.pojo.AmqpDeviceInfo;
  */
 public interface DeviceInfoSender extends BaseSender<AmqpDeviceInfo> {
     Object sendAndRec(AmqpDeviceInfo amqpDeviceInfo);
+
+    Double sendAndGetWaterUse(AmqpDeviceInfo amqpDeviceInfo);
 }

@@ -19,4 +19,10 @@ public class DeviceInfoSenderImpl extends BaseSenderImpl<AmqpDeviceInfo> impleme
     public Object sendAndRec(AmqpDeviceInfo amqpDeviceInfo) {
         return sendAndRec(QueueConstants.EXCHANGE, QueueConstants.TOPIC_OPEN_ROOM, amqpDeviceInfo);
     }
+
+    @Override
+    public Double sendAndGetWaterUse(AmqpDeviceInfo amqpDeviceInfo) {
+
+        return (Double) sendAndRec(QueueConstants.EXCHANGE, QueueConstants.TOPIC_GET_WATER_USE, amqpDeviceInfo);
+    }
 }

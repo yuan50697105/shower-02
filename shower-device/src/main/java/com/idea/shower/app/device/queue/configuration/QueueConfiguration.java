@@ -23,12 +23,23 @@ public class QueueConfiguration {
     }
 
     @Bean(QueueConstants.QUEUE_OPEN_ROOM)
-    public Queue queue() {
+    public Queue queueOpenRoom() {
         return new Queue(QueueConstants.QUEUE_OPEN_ROOM);
     }
 
-    @Bean(QueueConstants.BINDING)
-    public Binding binding() {
-        return BindingBuilder.bind(queue()).to(exchange()).with(QueueConstants.TOPIC_OPEN_ROOM);
+    @Bean(QueueConstants.QUEUE_WATER_USE)
+    public Queue queueWaterUse() {
+        return new Queue(QueueConstants.TOPIC_GET_WATER_USE);
     }
+
+    @Bean(QueueConstants.BINDING_OPEN_ROOM)
+    public Binding bindingOpenRoom() {
+        return BindingBuilder.bind(queueOpenRoom()).to(exchange()).with(QueueConstants.TOPIC_OPEN_ROOM);
+    }
+
+    @Bean(QueueConstants.BINDING_WATER_USE)
+    public Binding bindingWaterUse() {
+        return BindingBuilder.bind(queueWaterUse()).to(exchange()).with(QueueConstants.TOPIC_GET_WATER_USE);
+    }
+
 }
