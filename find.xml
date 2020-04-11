@@ -1,7 +1,7 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="All Places" />
-    <option name="defaultScopeName" value="All Places" />
-    <option name="SEARCH_SCOPE" value="All Places" />
+    <option name="customScope" value="Module 'admin-demo-gradle.shower-application-01.main'" />
+    <option name="defaultScopeName" value="Module 'admin-demo-gradle.shower-application-01.main'" />
+    <option name="SEARCH_SCOPE" value="Module 'admin-demo-gradle.shower-application-01.main'" />
   </component>
 </application>
