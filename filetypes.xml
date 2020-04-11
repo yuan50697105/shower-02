@@ -9,6 +9,7 @@
       <mapping pattern="application-yml" type="PLAIN_TEXT" />
       <mapping pattern="application-db-core" type="PLAIN_TEXT" />
       <mapping pattern="aaa" type="PLAIN_TEXT" />
+      <mapping ext="factorys" type="PLAIN_TEXT" />
       <mapping ext="lombok" type="PLAIN_TEXT" />
       <mapping ext="lst" type="PLAIN_TEXT" />
     </extensionMap>
