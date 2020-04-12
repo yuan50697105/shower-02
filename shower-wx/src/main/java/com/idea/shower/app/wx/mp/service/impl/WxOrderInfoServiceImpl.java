@@ -4,9 +4,11 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.crypto.SecureUtil;
+import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
 import com.idea.shower.amqp.module.pojo.AmqpDeviceInfo;
 import com.idea.shower.amqp.module.sender.DeviceInfoSender;
@@ -24,7 +26,6 @@ import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
-import lombok.SneakyThrows;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -159,9 +160,8 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param wxPayOrderInfo 支付信息封装
      * @return 处理结果
      */
-    @SneakyThrows
     @Override
-    public Result payOrder(WxPayOrderInfo wxPayOrderInfo) {
+    public Result payOrder(WxPayOrderInfo wxPayOrderInfo) throws WxPayException {
         String orderNo = wxPayOrderInfo.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
@@ -185,8 +185,22 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @return 处理结果
      */
     @Override
-    public WxReturnInfo notify(String xml) {
-        return null;
+    public WxReturnInfo notify(String xml) throws WxPayException {
+        WxPayOrderNotifyResult wxPayOrderNotifyResult = wxPayService.parseOrderNotifyResult(xml);
+        String returnCode = wxPayOrderNotifyResult.getReturnCode();
+        if (!returnCode.equals(SUCCESS)) {
+            throw new ResultRuntimeException(ResultUtils.wxError(wxPayOrderNotifyResult.getReturnMsg()));
+        } else {
+            if (!wxPayOrderNotifyResult.getResultCode().equals(SUCCESS)) {
+                throw new ResultRuntimeException(ResultUtils.wxError(wxPayOrderNotifyResult.getReturnMsg()));
+            } else {
+                WxReturnInfo wxReturnInfo = new WxReturnInfo();
+                wxReturnInfo.setReturn_code(SUCCESS);
+                wxReturnInfo.setReturn_msg(SUCCESS);
+                return wxReturnInfo;
+            }
+
+        }
     }
 
     /**
@@ -477,7 +491,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param wxPayUnifiedOrderResult 统一下单结果
      * @return 支付实体
      */
-    private Map<String, Object> createPayEntity(WxPayUnifiedOrderResult wxPayUnifiedOrderResult) {
+    private TreeMap<String, Object> createPayEntity(WxPayUnifiedOrderResult wxPayUnifiedOrderResult) {
         TreeMap<String, Object> treeMap = new TreeMap<>();
         treeMap.put("appId", wxPayUnifiedOrderResult.getAppid());
         treeMap.put("timeStamp", System.currentTimeMillis() / 1000);
@@ -493,4 +507,6 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         treeMap.put("paySign", paySign);
         return treeMap;
     }
+
+
 }
