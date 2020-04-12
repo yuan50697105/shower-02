@@ -8,7 +8,6 @@ import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.alibaba.fastjson.JSONObject;
 import com.idea.shower.app.db.module.dao.CustomerInfoDao;
 import com.idea.shower.app.db.module.pojo.CustomerInfo;
-import com.idea.shower.app.wx.mp.pojo.UserInfo;
 import com.idea.shower.app.wx.mp.pojo.WxLoginInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUserInfo;
 import com.idea.shower.app.wx.mp.service.WxCustomerInfoService;

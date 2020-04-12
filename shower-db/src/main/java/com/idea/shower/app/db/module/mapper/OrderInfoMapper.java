@@ -1,16 +1,14 @@
 package com.idea.shower.app.db.module.mapper;
-import java.math.BigDecimal;
 
-import com.google.common.collect.Ordering;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
 import com.idea.shower.app.db.module.pojo.OrderInfoExample;
-
-import java.util.List;
-
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.math.BigDecimal;
+import java.util.List;
 
 @Mapper
 public interface OrderInfoMapper extends BaseMapper {

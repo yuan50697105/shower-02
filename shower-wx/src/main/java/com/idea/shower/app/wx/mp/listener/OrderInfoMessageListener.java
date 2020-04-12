@@ -2,10 +2,8 @@ package com.idea.shower.app.wx.mp.listener;
 
 import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
-import org.springframework.data.redis.core.RedisKeyExpiredEvent;
 import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.stereotype.Component;
@@ -17,7 +15,6 @@ import org.springframework.stereotype.Component;
  * @create: 2020-04-09 21:06
  */
 @Component
-
 public class OrderInfoMessageListener extends KeyExpirationEventMessageListener {
     @Autowired
     private OrderInfoDao orderInfoDao;
