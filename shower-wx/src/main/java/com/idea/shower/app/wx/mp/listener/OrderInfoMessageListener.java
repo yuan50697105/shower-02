@@ -1,4 +1,4 @@
-package com.idea.shower.app.wx.mp.listener.listener;
+package com.idea.shower.app.wx.mp.listener;
 
 import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import org.springframework.beans.factory.annotation.Autowired;
