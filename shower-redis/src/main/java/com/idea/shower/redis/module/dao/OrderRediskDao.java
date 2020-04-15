@@ -15,5 +15,5 @@ public interface OrderRediskDao extends BaseRedisDao<OrderRedisEntity, String> {
      *
      * @param entity 订单计时实体
      */
-    void addOrderKeepTime(OrderRedisEntity entity);
+    void setOrderInTime(OrderRedisEntity entity);
 }

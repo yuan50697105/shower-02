@@ -9,11 +9,13 @@ import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import com.idea.shower.app.db.module.mapper.OrderInfoMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
+import com.idea.shower.db.core.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 /**
@@ -48,8 +50,22 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
         return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
+
+    @Override
+    public WxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
+        PageHelper.startPage(query.getPage(), query.getLimit());
+        new PageInfo<>(baseMapper().selectByConditionWeXin(query));
+        return new WxPageResult<>();
+    }
+
     @Override
     public Optional<OrderInfo> getByOrderNo(String orderNo) {
         return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void updateTotalPriceByOrderNo(BigDecimal totalprice, String orderNo) {
+        baseMapper().updateTotalPriceByOrderNo(totalprice, orderNo);
     }
 }

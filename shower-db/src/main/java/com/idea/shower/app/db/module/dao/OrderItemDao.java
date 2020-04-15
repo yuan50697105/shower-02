@@ -20,7 +20,7 @@ public interface OrderItemDao extends BaseDao<OrderItem> {
 
     Optional<OrderItem> getRentalItemByOrderId(Long orderId);
 
-    List<OrderItem> selectListByOrderNo(String orderId);
+    List<OrderItem> selectListByOrderNo(String orderNo);
 
     OrderItem getStartingItemByOrderId(Long id);
 }
