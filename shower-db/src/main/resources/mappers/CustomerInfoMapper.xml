@@ -114,24 +114,21 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.CustomerInfo">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.CustomerInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into customer_info (id, create_time, update_time, 
-      create_user, update_user, open_id, 
-      union_id, nick_name, gender, 
-      phone_num)
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, 
-      #{unionId,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, 
-      #{phoneNum,jdbcType=VARCHAR})
+    insert into customer_info (create_time, update_time, create_user, 
+      update_user, open_id, union_id, 
+      nick_name, gender, phone_num
+      )
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{openId,jdbcType=VARCHAR}, #{unionId,jdbcType=VARCHAR}, 
+      #{nickName,jdbcType=VARCHAR}, #{gender,jdbcType=INTEGER}, #{phoneNum,jdbcType=VARCHAR}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.CustomerInfo">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.CustomerInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into customer_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -161,9 +158,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>

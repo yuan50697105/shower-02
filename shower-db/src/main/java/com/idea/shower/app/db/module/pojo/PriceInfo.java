@@ -1,10 +1,13 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import lombok.*;
-
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * price_info
@@ -14,7 +17,8 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PriceInfo extends BaseDbEntity implements Serializable {
+public class PriceInfo extends BaseDbEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * 编号
      */
@@ -22,7 +26,6 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 类型
-     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceType
      */
     private Integer type;
 
@@ -43,7 +46,6 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 时间单位
-     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceTimeUnit
      */
     private Integer timeUnit;
 
@@ -59,17 +61,13 @@ public class PriceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 水计费单位
-     * @see com.idea.shower.app.db.module.constants.PriceInfoConstants.PriceWaterUnit
      */
     private Integer waterUnit;
 
     /**
      * 有效
-     * @see com.idea.shower.app.db.module.constants.commons.EnableConstants
      */
     private Integer enabled;
-
-    private static final long serialVersionUID = 1L;
 
     public static PriceInfoBuilder builder() {
         return new PriceInfoBuilder();

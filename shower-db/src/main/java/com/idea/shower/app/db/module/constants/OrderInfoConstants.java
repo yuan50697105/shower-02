@@ -20,7 +20,7 @@ public class OrderInfoConstants {
          */
         public static final int USING = 2;
         /**
-         * 解释使用
+         * 结束使用（待付款）
          */
         public static final int END_USE = 3;
         /**

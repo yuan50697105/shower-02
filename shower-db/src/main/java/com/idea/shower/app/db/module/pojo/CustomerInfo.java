@@ -1,9 +1,12 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import lombok.*;
-
-import java.io.Serializable;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * customer_info
@@ -13,7 +16,8 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerInfo extends BaseDbEntity implements Serializable {
+public class CustomerInfo extends BaseDbEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * openId
      */
@@ -38,8 +42,6 @@ public class CustomerInfo extends BaseDbEntity implements Serializable {
      * phoneNum
      */
     private String phoneNum;
-
-    private static final long serialVersionUID = 1L;
 
     public static CustomerInfoBuilder builder() {
         return new CustomerInfoBuilder();

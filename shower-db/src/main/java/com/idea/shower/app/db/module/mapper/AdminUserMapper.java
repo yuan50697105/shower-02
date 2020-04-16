@@ -3,13 +3,9 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AdminUser;
 import com.idea.shower.app.db.module.pojo.AdminUserExample;
-import com.idea.shower.app.db.module.pojo.query.AdminUserQuery;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
+import com.idea.shower.app.db.module.pojo.query.AdminUserQuery;import org.apache.ibatis.annotations.Param;
 
-@Mapper
 public interface AdminUserMapper extends BaseMapper {
     long countByExample(AdminUserExample example);
 

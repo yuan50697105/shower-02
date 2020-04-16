@@ -1,16 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.app.db.module.mapper.AreaInfoMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.AreaInfo">
+<mapper namespace="com.idea.shower.app.db.module.mapper.FeedbackMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.Feedback">
     <!--@mbg.generated-->
-    <!--@Table area_info-->
+    <!--@Table feedback-->
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
     <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
-    <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="customer_id" jdbcType="BIGINT" property="customerId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+    <result column="image" jdbcType="VARCHAR" property="image" />
+    <result column="respond_status" jdbcType="INTEGER" property="respondStatus" />
+    <result column="respond_content" jdbcType="LONGVARCHAR" property="respondContent" />
+    <result column="respond_time" jdbcType="TIMESTAMP" property="respondTime" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -74,16 +79,17 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, `name`, code
+    id, create_time, update_time, create_user, update_user, customer_id, title, content, 
+    image, respond_status, respond_content, respond_time
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AreaInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.FeedbackExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from area_info
+    from feedback
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -95,33 +101,35 @@
     <!--@mbg.generated-->
     select 
     <include refid="Base_Column_List" />
-    from area_info
+    from feedback
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     <!--@mbg.generated-->
-    delete from area_info
+    delete from feedback
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.AreaInfoExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.FeedbackExample">
     <!--@mbg.generated-->
-    delete from area_info
+    delete from feedback
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AreaInfo" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.Feedback" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into area_info (create_time, update_time, create_user, 
-      update_user, `name`, code
-      )
+    insert into feedback (create_time, update_time, create_user, 
+      update_user, customer_id, title, 
+      content, image, respond_status, 
+      respond_content, respond_time)
     values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}
-      )
+      #{updateUser,jdbcType=VARCHAR}, #{customerId,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, 
+      #{content,jdbcType=LONGVARCHAR}, #{image,jdbcType=VARCHAR}, #{respondStatus,jdbcType=INTEGER}, 
+      #{respondContent,jdbcType=LONGVARCHAR}, #{respondTime,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AreaInfo" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.Feedback" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into area_info
+    insert into feedback
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="createTime != null">
         create_time,
@@ -135,11 +143,26 @@
       <if test="updateUser != null">
         update_user,
       </if>
-      <if test="name != null">
-        `name`,
+      <if test="customerId != null">
+        customer_id,
       </if>
-      <if test="code != null">
-        code,
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="respondStatus != null">
+        respond_status,
+      </if>
+      <if test="respondContent != null">
+        respond_content,
+      </if>
+      <if test="respondTime != null">
+        respond_time,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -155,24 +178,39 @@
       <if test="updateUser != null">
         #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        #{name,jdbcType=VARCHAR},
+      <if test="customerId != null">
+        #{customerId,jdbcType=BIGINT},
       </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="respondStatus != null">
+        #{respondStatus,jdbcType=INTEGER},
+      </if>
+      <if test="respondContent != null">
+        #{respondContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="respondTime != null">
+        #{respondTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.AreaInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.FeedbackExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
-    select count(*) from area_info
+    select count(*) from feedback
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
     <!--@mbg.generated-->
-    update area_info
+    update feedback
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
@@ -189,11 +227,26 @@
       <if test="record.updateUser != null">
         update_user = #{record.updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="record.name != null">
-        `name` = #{record.name,jdbcType=VARCHAR},
+      <if test="record.customerId != null">
+        customer_id = #{record.customerId,jdbcType=BIGINT},
       </if>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.image != null">
+        image = #{record.image,jdbcType=VARCHAR},
+      </if>
+      <if test="record.respondStatus != null">
+        respond_status = #{record.respondStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.respondContent != null">
+        respond_content = #{record.respondContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.respondTime != null">
+        respond_time = #{record.respondTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -202,21 +255,26 @@
   </update>
   <update id="updateByExample" parameterType="map">
     <!--@mbg.generated-->
-    update area_info
+    update feedback
     set id = #{record.id,jdbcType=BIGINT},
       create_time = #{record.createTime,jdbcType=TIMESTAMP},
       update_time = #{record.updateTime,jdbcType=TIMESTAMP},
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
-      `name` = #{record.name,jdbcType=VARCHAR},
-      code = #{record.code,jdbcType=VARCHAR}
+      customer_id = #{record.customerId,jdbcType=BIGINT},
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR},
+      image = #{record.image,jdbcType=VARCHAR},
+      respond_status = #{record.respondStatus,jdbcType=INTEGER},
+      respond_content = #{record.respondContent,jdbcType=LONGVARCHAR},
+      respond_time = #{record.respondTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.AreaInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.Feedback">
     <!--@mbg.generated-->
-    update area_info
+    update feedback
     <set>
       <if test="createTime != null">
         create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -230,24 +288,44 @@
       <if test="updateUser != null">
         update_user = #{updateUser,jdbcType=VARCHAR},
       </if>
-      <if test="name != null">
-        `name` = #{name,jdbcType=VARCHAR},
+      <if test="customerId != null">
+        customer_id = #{customerId,jdbcType=BIGINT},
       </if>
-      <if test="code != null">
-        code = #{code,jdbcType=VARCHAR},
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="respondStatus != null">
+        respond_status = #{respondStatus,jdbcType=INTEGER},
+      </if>
+      <if test="respondContent != null">
+        respond_content = #{respondContent,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="respondTime != null">
+        respond_time = #{respondTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.AreaInfo">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.Feedback">
     <!--@mbg.generated-->
-    update area_info
+    update feedback
     set create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = #{updateTime,jdbcType=TIMESTAMP},
       create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
-      `name` = #{name,jdbcType=VARCHAR},
-      code = #{code,jdbcType=VARCHAR}
+      customer_id = #{customerId,jdbcType=BIGINT},
+      title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR},
+      image = #{image,jdbcType=VARCHAR},
+      respond_status = #{respondStatus,jdbcType=INTEGER},
+      respond_content = #{respondContent,jdbcType=LONGVARCHAR},
+      respond_time = #{respondTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

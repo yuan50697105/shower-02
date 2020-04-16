@@ -3,12 +3,9 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AreaBuilding;
 import com.idea.shower.app.db.module.pojo.AreaBuildingExample;
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
-@Mapper
 public interface AreaBuildingMapper extends BaseMapper {
     long countByExample(AreaBuildingExample example);
 
