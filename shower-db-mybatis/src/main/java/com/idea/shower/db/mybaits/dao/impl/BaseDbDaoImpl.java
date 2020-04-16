@@ -22,6 +22,6 @@ public abstract class BaseDbDaoImpl<T, ID extends Serializable, M extends BaseDb
     }
 
     protected WxPageResult<T> wxPageResult(PageInfo<T> pageInfo) {
-        return new WxPageResult<>(pageInfo.getList(), pageInfo.getTotal());
+        return new WxPageResult<>(pageInfo.getList(), pageInfo.getTotal(), pageInfo.getPageNum());
     }
 }
