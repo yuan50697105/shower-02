@@ -1,6 +1,7 @@
 package com.idea.shower.app.wx.mp.service;
 
 
+import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.app.wx.mp.pojo.*;
 import com.idea.shower.web.webmvc.pojo.Result;
@@ -41,7 +42,7 @@ public interface WxOrderInfoService {
      * @param wxPayOrderInfo 支付信息封装
      * @return 处理结果
      */
-    Result payOrder(WxPayOrderInfo wxPayOrderInfo);
+    Result payOrder(WxPayOrderInfo wxPayOrderInfo) throws WxPayException;
 
     /**
      * 回调
@@ -49,7 +50,7 @@ public interface WxOrderInfoService {
      * @param xml 回调信息
      * @return 处理结果
      */
-    WxReturnInfo notify(String xml);
+    WxReturnInfo notify(String xml) throws WxPayException;
 
     /**
      * 订单信息

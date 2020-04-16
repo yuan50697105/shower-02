@@ -1,7 +1,5 @@
 package com.idea.shower.redis.commons.dao;
 
-import com.idea.shower.redis.commons.pojo.BaseRedisEntity;
-
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 

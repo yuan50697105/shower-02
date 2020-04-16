@@ -3,7 +3,12 @@ package com.idea.shower.app.wx.mp.service.impl;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Snowflake;
+import cn.hutool.crypto.SecureUtil;
+import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
+import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
+import com.github.binarywang.wxpay.constant.WxPayConstants;
+import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
 import com.idea.shower.amqp.module.pojo.AmqpDeviceInfo;
 import com.idea.shower.amqp.module.sender.DeviceInfoSender;
@@ -42,16 +47,17 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * 默认预约等待时间
      */
     public static final int DEFAULT_TIME = 10;
-    private Snowflake snowflake;
-    private DeviceInfoDao deviceInfoDao;
-    private CustomerInfoDao customerInfoDao;
-    private PriceInfoDao priceInfoDao;
-    private OrderInfoDao orderInfoDao;
-    private OrderItemDao orderItemDao;
-    private OrderRediskDao orderRediskDao;
-    private DeviceOrderDao deviceOrderDao;
-    private DeviceInfoSender deviceInfoSender;
-    private WxPayService wxPayService;
+    public static final String SUCCESS = "SUCCESS";
+    private final Snowflake snowflake;
+    private final DeviceInfoDao deviceInfoDao;
+    private final CustomerInfoDao customerInfoDao;
+    private final PriceInfoDao priceInfoDao;
+    private final OrderInfoDao orderInfoDao;
+    private final OrderItemDao orderItemDao;
+    private final OrderRediskDao orderRediskDao;
+    private final DeviceOrderDao deviceOrderDao;
+    private final DeviceInfoSender deviceInfoSender;
+    private final WxPayService wxPayService;
 
     /**
      * 添加订单
@@ -155,10 +161,21 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @return 处理结果
      */
     @Override
-    public Result payOrder(WxPayOrderInfo wxPayOrderInfo) {
-
-        WxPayUnifiedOrderRequest request = new WxPayUnifiedOrderRequest();
-        return null;
+    public Result payOrder(WxPayOrderInfo wxPayOrderInfo) throws WxPayException {
+        String orderNo = wxPayOrderInfo.getOrderNo();
+        OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
+        WxPayUnifiedOrderResult wxPayUnifiedOrderResult = wxPayService.unifiedOrder(request);
+        if (!wxPayUnifiedOrderResult.getReturnCode().equals(SUCCESS)) {
+            throw new ResultRuntimeException(ResultUtils.wxError(wxPayUnifiedOrderResult.getReturnMsg()));
+        } else {
+            if (!wxPayUnifiedOrderResult.getResultCode().equals(SUCCESS)) {
+                throw new ResultRuntimeException(ResultUtils.wxError(wxPayUnifiedOrderResult.getErrCode()));
+            } else {
+                Map<String, Object> payEntity = createPayEntity(wxPayUnifiedOrderResult);
+                return ResultUtils.data(payEntity);
+            }
+        }
     }
 
     /**
@@ -168,8 +185,22 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @return 处理结果
      */
     @Override
-    public WxReturnInfo notify(String xml) {
-        return null;
+    public WxReturnInfo notify(String xml) throws WxPayException {
+        WxPayOrderNotifyResult wxPayOrderNotifyResult = wxPayService.parseOrderNotifyResult(xml);
+        String returnCode = wxPayOrderNotifyResult.getReturnCode();
+        if (!returnCode.equals(SUCCESS)) {
+            throw new ResultRuntimeException(ResultUtils.wxError(wxPayOrderNotifyResult.getReturnMsg()));
+        } else {
+            if (!wxPayOrderNotifyResult.getResultCode().equals(SUCCESS)) {
+                throw new ResultRuntimeException(ResultUtils.wxError(wxPayOrderNotifyResult.getReturnMsg()));
+            } else {
+                WxReturnInfo wxReturnInfo = new WxReturnInfo();
+                wxReturnInfo.setReturn_code(SUCCESS);
+                wxReturnInfo.setReturn_msg(SUCCESS);
+                return wxReturnInfo;
+            }
+
+        }
     }
 
     /**
@@ -437,4 +468,45 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         bigDecimal.add(orderItems.stream().map(OrderItem::getTotalPrice).reduce(BigDecimal::add).orElse(new BigDecimal("0")));
         return bigDecimal;
     }
+
+    /**
+     * 创建统一下单实体
+     *
+     * @param orderInfo 订单信息
+     * @return 统一下单实体
+     */
+    private WxPayUnifiedOrderRequest createUnifiedPayRequest(OrderInfo orderInfo) {
+        WxPayUnifiedOrderRequest request = new WxPayUnifiedOrderRequest();
+        request.setBody("订单" + orderInfo.getOrderNo() + "消费" + orderInfo.getTotalPrice() + "元");
+        request.setOutTradeNo(orderInfo.getOrderNo());
+        request.setTotalFee(WxPayUnifiedOrderRequest.yuanToFen(orderInfo.getTotalPrice().toPlainString()));
+        request.setOpenid(orderInfo.getCustomerOpenId());
+        request.setTradeType(WxPayConstants.TradeType.JSAPI);
+        return request;
+    }
+
+    /**
+     * 创建预支付订单信息
+     *
+     * @param wxPayUnifiedOrderResult 统一下单结果
+     * @return 支付实体
+     */
+    private TreeMap<String, Object> createPayEntity(WxPayUnifiedOrderResult wxPayUnifiedOrderResult) {
+        TreeMap<String, Object> treeMap = new TreeMap<>();
+        treeMap.put("appId", wxPayUnifiedOrderResult.getAppid());
+        treeMap.put("timeStamp", System.currentTimeMillis() / 1000);
+        treeMap.put("nonceStr", wxPayUnifiedOrderResult.getNonceStr());
+        treeMap.put("package", "prepay_id=" + wxPayUnifiedOrderResult.getPrepayId());
+        treeMap.put("signType", "MD5");
+        StringJoiner stringBuilder = new StringJoiner("&");
+        for (Map.Entry<String, Object> entry : treeMap.entrySet()) {
+            String value = entry.getKey() + "=" + entry.getValue();
+            stringBuilder.add(value);
+        }
+        String paySign = SecureUtil.md5(stringBuilder.toString());
+        treeMap.put("paySign", paySign);
+        return treeMap;
+    }
+
+
 }

@@ -2,7 +2,6 @@ package com.idea.shower.app.wx.mp.service.impl;
 
 import com.idea.shower.app.db.module.dao.AreaBuildingDao;
 import com.idea.shower.app.db.module.dao.AreaInfoDao;
-import com.idea.shower.app.db.module.dao.DeviceInfoDao;
 import com.idea.shower.app.wx.mp.service.WxAreaInfoService;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;

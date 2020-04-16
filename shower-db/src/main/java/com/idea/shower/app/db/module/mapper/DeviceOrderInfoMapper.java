@@ -3,9 +3,10 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.DeviceOrderInfo;
 import com.idea.shower.app.db.module.pojo.DeviceOrderInfoExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 @Mapper
 public interface DeviceOrderInfoMapper extends BaseMapper {

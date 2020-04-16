@@ -1,13 +1,13 @@
 package com.idea.shower.web.webmvc.exception.handler;
 
-import lombok.extern.log4j.Log4j2;
-import org.springframework.web.bind.annotation.ControllerAdvice;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RestControllerAdvice;
 import com.idea.shower.web.webmvc.exception.ResultException;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
+import lombok.extern.log4j.Log4j2;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
  * @program: learning-demo-02

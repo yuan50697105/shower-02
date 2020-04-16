@@ -1,17 +1,13 @@
 package com.idea.shower.db.mybaits.dao.impl;
 
-import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.idea.shower.db.core.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.dao.BaseDbDao;
 import com.idea.shower.db.mybaits.mapper.BaseDbMapper;
-import com.idea.shower.db.mybaits.pojo.BaseDbQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
-import java.util.List;
-import java.util.function.Function;
 
 public abstract class BaseDbDaoImpl<T, ID extends Serializable, M extends BaseDbMapper> implements BaseDbDao<T, ID> {
     @Autowired
@@ -26,6 +22,6 @@ public abstract class BaseDbDaoImpl<T, ID extends Serializable, M extends BaseDb
     }
 
     protected WxPageResult<T> wxPageResult(PageInfo<T> pageInfo) {
-        return new WxPageResult<>(pageInfo.getList(), pageInfo.getTotal());
+        return new WxPageResult<>(pageInfo.getList(), pageInfo.getTotal(), pageInfo.getPageNum());
     }
 }

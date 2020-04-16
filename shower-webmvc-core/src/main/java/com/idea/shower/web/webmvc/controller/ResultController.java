@@ -1,10 +1,10 @@
 package com.idea.shower.web.webmvc.controller;
 
+import com.idea.shower.web.webmvc.exception.NoValidateResultRuntimeException;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.idea.shower.web.webmvc.exception.NoValidateResultRuntimeException;
 
 import java.util.StringJoiner;
 
