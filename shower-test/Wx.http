@@ -1,0 +1,6 @@
+GET http://localhost:8081/wx/order/data
+###
+POST http://localhost:8081/wx/order/add
+Accept: application/json
+
+

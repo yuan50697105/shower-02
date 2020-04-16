@@ -1005,6 +1005,126 @@ public class OrderInfoExample {
             addCriterion("`status` not between", value1, value2, "status");
             return (Criteria) this;
         }
+
+        public Criteria andUseStartTimeIsNull() {
+            addCriterion("use_start_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeIsNotNull() {
+            addCriterion("use_start_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeEqualTo(Date value) {
+            addCriterion("use_start_time =", value, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeNotEqualTo(Date value) {
+            addCriterion("use_start_time <>", value, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeGreaterThan(Date value) {
+            addCriterion("use_start_time >", value, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("use_start_time >=", value, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeLessThan(Date value) {
+            addCriterion("use_start_time <", value, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeLessThanOrEqualTo(Date value) {
+            addCriterion("use_start_time <=", value, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeIn(List<Date> values) {
+            addCriterion("use_start_time in", values, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeNotIn(List<Date> values) {
+            addCriterion("use_start_time not in", values, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeBetween(Date value1, Date value2) {
+            addCriterion("use_start_time between", value1, value2, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseStartTimeNotBetween(Date value1, Date value2) {
+            addCriterion("use_start_time not between", value1, value2, "useStartTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeIsNull() {
+            addCriterion("use_end_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeIsNotNull() {
+            addCriterion("use_end_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeEqualTo(Date value) {
+            addCriterion("use_end_time =", value, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeNotEqualTo(Date value) {
+            addCriterion("use_end_time <>", value, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeGreaterThan(Date value) {
+            addCriterion("use_end_time >", value, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("use_end_time >=", value, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeLessThan(Date value) {
+            addCriterion("use_end_time <", value, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeLessThanOrEqualTo(Date value) {
+            addCriterion("use_end_time <=", value, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeIn(List<Date> values) {
+            addCriterion("use_end_time in", values, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeNotIn(List<Date> values) {
+            addCriterion("use_end_time not in", values, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeBetween(Date value1, Date value2) {
+            addCriterion("use_end_time between", value1, value2, "useEndTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseEndTimeNotBetween(Date value1, Date value2) {
+            addCriterion("use_end_time not between", value1, value2, "useEndTime");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
