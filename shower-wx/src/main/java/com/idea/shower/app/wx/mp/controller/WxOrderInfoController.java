@@ -59,7 +59,7 @@ public class WxOrderInfoController extends ResultController {
             return wxOrderInfoService.payOrder(wxPayOrderInfo);
         } catch (WxPayException e) {
             e.printStackTrace();
-            throw new ResultRuntimeException(ResultUtils.wxError(e.getMessage()));
+            return ResultUtils.wxError(e.getMessage());
         }
     }
 
