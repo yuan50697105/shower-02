@@ -14,11 +14,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 public abstract class BaseSenderImpl<T> implements BaseSender<T> {
     @Autowired
     private RabbitTemplate rabbitTemplate;
-    private AsyncRabbitTemplate asyncRabbitTemplate;
-
-    public BaseSenderImpl() {
-        this.asyncRabbitTemplate = new AsyncRabbitTemplate(rabbitTemplate);
-    }
 
     @Override
     public void send(String routeKey, T t) {
