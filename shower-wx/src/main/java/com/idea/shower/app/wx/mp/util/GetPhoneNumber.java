@@ -1,6 +1,7 @@
 package com.idea.shower.app.wx.mp.util;
 
 import com.alibaba.fastjson.JSONObject;
+import com.qcloud.cos.utils.Base64;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;
 
 import javax.crypto.Cipher;
@@ -9,7 +10,6 @@ import javax.crypto.spec.SecretKeySpec;
 import java.security.AlgorithmParameters;
 import java.security.Security;
 import java.util.Arrays;
-import com.qcloud.cos.utils.Base64;
 
 /**
  * @author wcq

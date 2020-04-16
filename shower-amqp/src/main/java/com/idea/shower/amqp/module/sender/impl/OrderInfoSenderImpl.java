@@ -19,7 +19,7 @@ public class OrderInfoSenderImpl extends BaseSenderImpl<OrderInfo> implements Or
 
     @Override
     public Object getWaterUse(OrderInfo orderInfo) {
-        return sendAndRec(QueueConstants.WATER_USE_QUEUE, orderInfo);
+        return sendAndRec(QueueConstants.QUEUE_WATER_USE, orderInfo);
     }
 
     @Override

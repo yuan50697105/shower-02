@@ -1,8 +1,8 @@
 package com.idea.shower.web.webmvc.exception;
 
+import com.idea.shower.web.webmvc.pojo.Result;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import com.idea.shower.web.webmvc.pojo.Result;
 
 /**
  * @program: learning-demo-02
