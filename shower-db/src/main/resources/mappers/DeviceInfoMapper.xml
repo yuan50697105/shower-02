@@ -19,6 +19,7 @@
     <result column="area_name" jdbcType="VARCHAR" property="areaName" />
     <result column="building_id" jdbcType="BIGINT" property="buildingId" />
     <result column="building_name" jdbcType="VARCHAR" property="buildingName" />
+    <result column="picture" jdbcType="VARCHAR" property="picture" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -83,7 +84,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, create_time, update_time, create_user, update_user, code, `type`, price_code, 
-    enabled, longitude, latitude, area_id, area_name, building_id, building_name
+    enabled, longitude, latitude, area_id, area_name, building_id, building_name, picture
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -119,28 +120,25 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into device_info (id, create_time, update_time, 
-      create_user, update_user, code, 
-      `type`, price_code, enabled, 
-      longitude, latitude, area_id, 
-      area_name, building_id, building_name
+    insert into device_info (create_time, update_time, create_user, 
+      update_user, code, `type`, 
+      price_code, enabled, longitude, 
+      latitude, area_id, area_name, 
+      building_id, building_name, picture
       )
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{type,jdbcType=INTEGER}, #{priceCode,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, 
-      #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, #{areaId,jdbcType=BIGINT}, 
-      #{areaName,jdbcType=VARCHAR}, #{buildingId,jdbcType=BIGINT}, #{buildingName,jdbcType=VARCHAR}
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{priceCode,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, #{longitude,jdbcType=DOUBLE}, 
+      #{latitude,jdbcType=DOUBLE}, #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
+      #{buildingId,jdbcType=BIGINT}, #{buildingName,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into device_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -183,11 +181,11 @@
       <if test="buildingName != null">
         building_name,
       </if>
+      <if test="picture != null">
+        picture,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
@@ -229,6 +227,9 @@
       </if>
       <if test="buildingName != null">
         #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -288,6 +289,9 @@
       <if test="record.buildingName != null">
         building_name = #{record.buildingName,jdbcType=VARCHAR},
       </if>
+      <if test="record.picture != null">
+        picture = #{record.picture,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -310,7 +314,8 @@
       area_id = #{record.areaId,jdbcType=BIGINT},
       area_name = #{record.areaName,jdbcType=VARCHAR},
       building_id = #{record.buildingId,jdbcType=BIGINT},
-      building_name = #{record.buildingName,jdbcType=VARCHAR}
+      building_name = #{record.buildingName,jdbcType=VARCHAR},
+      picture = #{record.picture,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -361,6 +366,9 @@
       <if test="buildingName != null">
         building_name = #{buildingName,jdbcType=VARCHAR},
       </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -380,7 +388,8 @@
       area_id = #{areaId,jdbcType=BIGINT},
       area_name = #{areaName,jdbcType=VARCHAR},
       building_id = #{buildingId,jdbcType=BIGINT},
-      building_name = #{buildingName,jdbcType=VARCHAR}
+      building_name = #{buildingName,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByCondition" resultMap="BaseResultMap">

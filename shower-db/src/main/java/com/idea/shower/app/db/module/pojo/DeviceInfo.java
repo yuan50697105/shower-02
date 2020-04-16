@@ -1,9 +1,12 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import lombok.*;
-
-import java.io.Serializable;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 设备信息
@@ -13,7 +16,8 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeviceInfo extends BaseDbEntity implements Serializable {
+public class DeviceInfo extends BaseDbEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * 设备编号
      */
@@ -31,7 +35,6 @@ public class DeviceInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 启用状态(0:未启用；1已启用)
-     * @see com.idea.shower.app.db.module.constants.commons.EnableConstants
      */
     private Integer enabled;
 
@@ -65,7 +68,10 @@ public class DeviceInfo extends BaseDbEntity implements Serializable {
      */
     private String buildingName;
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 设备图片
+     */
+    private String picture;
 
     public static DeviceInfoBuilder builder() {
         return new DeviceInfoBuilder();

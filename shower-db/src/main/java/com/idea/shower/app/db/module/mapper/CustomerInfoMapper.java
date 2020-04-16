@@ -3,12 +3,9 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.CustomerInfo;
 import com.idea.shower.app.db.module.pojo.CustomerInfoExample;
-import org.apache.ibatis.annotations.Mapper;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
-@Mapper
 public interface CustomerInfoMapper extends BaseMapper {
     long countByExample(CustomerInfoExample example);
 
