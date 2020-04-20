@@ -3,7 +3,6 @@ package com.idea.shower.app.db.module.dao.impl;
 
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.constants.OrderInfoConstants;
-import com.idea.shower.app.db.module.constants.device.DeviceOrderStatus;
 import com.idea.shower.app.db.module.dao.DeviceOrderDao;
 import com.idea.shower.app.db.module.mapper.DeviceOrderMapper;
 import com.idea.shower.app.db.module.pojo.DeviceOrder;
