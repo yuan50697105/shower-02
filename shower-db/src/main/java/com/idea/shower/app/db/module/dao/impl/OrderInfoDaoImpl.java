@@ -54,8 +54,8 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     @Override
     public WxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
-        new PageInfo<>(baseMapper().selectByConditionWeXin(query));
-        return new WxPageResult<>();
+        PageInfo<OrderInfo> pageInfo = new PageInfo<>(baseMapper().selectByConditionWeXin(query));
+        return wxPageResult(pageInfo);
     }
 
     @Override
@@ -67,5 +67,10 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     @Transactional(rollbackFor = Exception.class)
     public void updateTotalPriceByOrderNo(BigDecimal totalprice, String orderNo) {
         baseMapper().updateTotalPriceByOrderNo(totalprice, orderNo);
+    }
+
+    @Override
+    public void updateStatusUsingByOrderId(Long orderId) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, orderId);
     }
 }

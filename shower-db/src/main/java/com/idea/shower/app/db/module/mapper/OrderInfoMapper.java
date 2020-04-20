@@ -44,7 +44,9 @@ public interface OrderInfoMapper extends BaseMapper {
 
     List<OrderInfo> selectByConditionWeXin(@Param("query") OrderInfoQuery query);
 
-    int updateTotalPriceByOrderNo(@Param("updatedTotalPrice")BigDecimal updatedTotalPrice,@Param("orderNo")String orderNo);
+    int updateTotalPriceByOrderNo(@Param("updatedTotalPrice") BigDecimal updatedTotalPrice, @Param("orderNo") String orderNo);
+
+    int updateStatusById(@Param("updatedStatus") Integer updatedStatus, @Param("id") Long id);
 
 
 }

@@ -1,10 +1,13 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import lombok.*;
-
-import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * order_info
@@ -14,7 +17,8 @@ import java.math.BigDecimal;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderInfo extends BaseDbEntity implements Serializable {
+public class OrderInfo extends BaseDbEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * 订单编号
      */
@@ -22,9 +26,6 @@ public class OrderInfo extends BaseDbEntity implements Serializable {
 
     /**
      * 订单类型
-     * 1:普通订单（现场使用)
-     * 2:预约订单
-     * @see com.idea.shower.app.db.module.constants.OrderInfoConstants.OrderType
      */
     private Integer type;
 
@@ -63,7 +64,15 @@ public class OrderInfo extends BaseDbEntity implements Serializable {
      */
     private Integer status;
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 使用开始时间
+     */
+    private Date useStartTime;
+
+    /**
+     * 使用结束时间
+     */
+    private Date useEndTime;
 
     public static OrderInfoBuilder builder() {
         return new OrderInfoBuilder();
