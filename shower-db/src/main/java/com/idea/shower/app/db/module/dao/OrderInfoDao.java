@@ -29,4 +29,6 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
     Optional<OrderInfo> getByOrderNo(String orderNo);
 
     void updateTotalPriceByOrderNo(BigDecimal totalprice, String orderNo);
+
+    void updateStatusUsingByOrderId(Long orderId);
 }

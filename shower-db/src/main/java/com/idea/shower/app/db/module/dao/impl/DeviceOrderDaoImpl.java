@@ -2,7 +2,7 @@ package com.idea.shower.app.db.module.dao.impl;
 
 
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.constants.device.DeviceOrderStatus;
+import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.dao.DeviceOrderDao;
 import com.idea.shower.app.db.module.mapper.DeviceOrderMapper;
 import com.idea.shower.app.db.module.pojo.DeviceOrder;
@@ -28,11 +28,16 @@ public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapp
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateStatusDeviceOrderPaid(String orderNo) {
-        baseMapper().updateStatusByOrderNo(DeviceOrderStatus.PAID, orderNo);
+        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.PAID, orderNo);
     }
 
     @Override
     public void updateStatusDeviceOrderEndUse(Long orderId) {
-        baseMapper().updateStatusByOrderId(DeviceOrderStatus.END_USE, orderId);
+        baseMapper().updateStatusByOrderId(OrderInfoConstants.OrderStatus.END_USE, orderId);
+    }
+
+    @Override
+    public void updateStatusUsingByOrderInfoId(Long orderId) {
+        baseMapper().updateStatusByOrderId(OrderInfoConstants.OrderStatus.USING, orderId);
     }
 }

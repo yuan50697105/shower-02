@@ -1,4 +1,4 @@
-package com.idea.shower.app.db.module.constants.commons;
+package com.idea.shower.app.db.module.constants;
 
 /**
  * @program: learning-demo-java-01
