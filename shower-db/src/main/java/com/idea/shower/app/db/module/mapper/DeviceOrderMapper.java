@@ -4,8 +4,10 @@ import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.DeviceOrder;
 import com.idea.shower.app.db.module.pojo.DeviceOrderExample;
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface DeviceOrderMapper extends BaseMapper {
     long countByExample(DeviceOrderExample example);
 

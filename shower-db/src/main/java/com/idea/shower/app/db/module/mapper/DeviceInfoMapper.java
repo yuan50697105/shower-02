@@ -4,8 +4,10 @@ import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.db.module.pojo.DeviceInfoExample;
 import java.util.List;
-import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;import org.apache.ibatis.annotations.Param;
-
+import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+@Mapper
 public interface DeviceInfoMapper extends BaseMapper {
     long countByExample(DeviceInfoExample example);
 

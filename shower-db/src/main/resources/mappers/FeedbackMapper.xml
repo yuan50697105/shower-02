@@ -328,4 +328,16 @@
       respond_time = #{respondTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+    <select id="selectByConditionWeXin" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from order_info
+        <where>
+            <if test="query.customerId != null">
+                and customer_id = #{query.customerId,jdbcType=BIGINT}
+            </if>
+        </where>
+        order by create_time desc
+    </select>
 </mapper>
