@@ -15,15 +15,11 @@ import java.util.Optional;
 public interface DeviceOrderDao extends BaseDao<DeviceOrder> {
     void save(DeviceOrder deviceOrder);
 
-    void updateStatusDeviceOrderPaid(String orderId);
-
-    void updateStatusDeviceOrderEndUse(Long orderId);
-
-    void updateStatusUsingByOrderInfoId(Long orderId);
-
     Optional<DeviceOrder> getByOrderNo(String orderNo);
+
+    Optional<DeviceOrder> getByOrderId(Long orderId);
 
     void updateStatusUsingById(Long id);
 
-    Optional<DeviceOrder> getByOrderId(Long orderId);
+    void updateStatusTimeOutByOrderId(Long orderId);
 }

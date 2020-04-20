@@ -28,22 +28,6 @@ public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapp
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void updateStatusDeviceOrderPaid(String orderNo) {
-        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.PAID, orderNo);
-    }
-
-    @Override
-    public void updateStatusDeviceOrderEndUse(Long orderId) {
-        baseMapper().updateStatusByOrderId(OrderInfoConstants.OrderStatus.END_USE, orderId);
-    }
-
-    @Override
-    public void updateStatusUsingByOrderInfoId(Long orderId) {
-        baseMapper().updateStatusByOrderId(OrderInfoConstants.OrderStatus.USING, orderId);
-    }
-
-    @Override
     public Optional<DeviceOrder> getByOrderNo(String orderNo) {
         return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
     }
@@ -51,6 +35,11 @@ public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapp
     @Override
     public void updateStatusUsingById(Long id) {
         baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
+    }
+
+    @Override
+    public void updateStatusTimeOutByOrderId(Long orderId) {
+        baseMapper().updateStatusByOrderId(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, orderId);
     }
 
     @Override
