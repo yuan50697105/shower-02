@@ -9,11 +9,11 @@ import java.util.concurrent.TimeUnit;
  * @author: yuane
  * @create: 2020-03-28 16:49
  */
-public interface BaseRedisDao<T,KEY> {
+public interface BaseRedisDao<T> {
 
     void insert(T t);
 
-    Optional<T> find(KEY key);
+    Optional<T> find(String key);
 
     Iterable<T> findAll();
 

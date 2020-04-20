@@ -10,6 +10,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 /**
  * @program: my-shower-01
  * @description:
@@ -39,5 +41,15 @@ public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapp
     @Override
     public void updateStatusUsingByOrderInfoId(Long orderId) {
         baseMapper().updateStatusByOrderId(OrderInfoConstants.OrderStatus.USING, orderId);
+    }
+
+    @Override
+    public Optional<DeviceOrder> getByOrderNo(String orderNo) {
+        return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
+    }
+
+    @Override
+    public void updateStatusUsingById(Long id) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
     }
 }

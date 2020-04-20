@@ -3,13 +3,9 @@ package com.idea.shower.app.wx.mp.controller;
 import cn.hutool.core.io.IoUtil;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
-import com.idea.shower.app.wx.mp.pojo.WxEndOrderRequest;
-import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
-import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
+import com.idea.shower.app.wx.mp.pojo.*;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.web.webmvc.controller.ResultController;
-import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
@@ -49,7 +45,7 @@ public class WxOrderInfoController extends ResultController {
     }
 
     @PostMapping("end")
-    public Result endOrder(@RequestBody WxEndOrderRequest wxEndOrderRequest) {
+    public Result endOrder(@RequestBody WxUseOrderRequest wxEndOrderRequest) {
         return wxOrderInfoService.endOrder(wxEndOrderRequest);
     }
 

@@ -27,14 +27,16 @@ public interface WxOrderInfoService {
      * @param wxAddOrderRequest 订单信息封装
      * @return 处理结果
      */
-    Result endOrder(WxEndOrderRequest wxAddOrderRequest);
+    Result endOrder(WxUseOrderRequest wxAddOrderRequest);
+
+    Result openRoom(WxUseOrderRequest orderNo);
 
     /**
      * 预约使用订单
      * @param request
      * @return
      */
-    Result useOrder(WxUseOrderRequest request);
+    Result startOrder(WxUseOrderRequest request);
 
     /**
      * 微信统一下单

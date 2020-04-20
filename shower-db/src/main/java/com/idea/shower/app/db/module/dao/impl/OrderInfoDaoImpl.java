@@ -70,7 +70,7 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     }
 
     @Override
-    public void updateStatusUsingByOrderId(Long orderId) {
+    public void updateStatusUsingById(Long orderId) {
         baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, orderId);
     }
 }

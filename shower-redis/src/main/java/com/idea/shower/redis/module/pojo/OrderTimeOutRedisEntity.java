@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class OrderRedisEntity {
+public class OrderTimeOutRedisEntity {
     @Id
     private Long orderId;
     private String orderNo;
