@@ -110,22 +110,19 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.idea.shower.app.db.module.pojo.AdminUserRole">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminUserRole" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into admin_user_role (id, create_time, update_time, 
-      create_user, update_user, user_id, 
-      role_id)
-    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
-      #{createUser,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, 
-      #{roleId,jdbcType=BIGINT})
+    insert into admin_user_role (create_time, update_time, create_user, 
+      update_user, user_id, role_id
+      )
+    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, #{roleId,jdbcType=BIGINT}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.idea.shower.app.db.module.pojo.AdminUserRole">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminUserRole" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into admin_user_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        id,
-      </if>
       <if test="createTime != null">
         create_time,
       </if>
@@ -146,9 +143,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="id != null">
-        #{id,jdbcType=BIGINT},
-      </if>
       <if test="createTime != null">
         #{createTime,jdbcType=TIMESTAMP},
       </if>
