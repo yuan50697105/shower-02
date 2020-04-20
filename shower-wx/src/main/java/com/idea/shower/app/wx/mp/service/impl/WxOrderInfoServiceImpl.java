@@ -90,12 +90,14 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 // TODO: 2020/4/1 处理普通订单，额外流程
 //                创建普通订单
 //                openRoom(orderInfo);
+                updateOrderStatusToUsing(orderInfo.getId());
                 break;
             case OrderInfoConstants.OrderType.RESERVATION:
                 // TODO: 2020/4/1 处理预约订单，额外流程
+                updateOrderStatusToUsing(orderInfo.getId());
 //                创建预约订单
-                OrderRedisEntity orderRedisEntity = createOrderRedisEntity(orderInfo, deviceInfo);
-                orderRediskDao.setOrderInTime(orderRedisEntity);
+//                OrderRedisEntity orderRedisEntity = createOrderRedisEntity(orderInfo, deviceInfo);
+//                orderRediskDao.setOrderInTime(orderRedisEntity);
                 break;
             default:
                 throw new ResultRuntimeException(ResultUtils.dataParamsError("错误订单类型"));
@@ -123,15 +125,27 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         switch (orderInfo.getType()) {
             case OrderInfoConstants.OrderType.COMMONS:
 //                openRoom(orderInfo);
+                updateOrderStatusToUsing(orderInfo.getId());
                 break;
             case OrderInfoConstants.OrderType.RESERVATION:
 //                todo 检查超时
 //                boolean result = checkOrderInTime(orderInfo);
+                updateOrderStatusToUsing(orderInfo.getId());
                 break;
             default:
                 throw new ResultRuntimeException(ResultUtils.dataParamsError());
         }
         return null;
+    }
+
+    /**
+     * 更新订单状态为使用中
+     *
+     * @param orderId 订单ID
+     */
+    private void updateOrderStatusToUsing(Long orderId) {
+        orderInfoDao.updateStatusUsingByOrderId(orderId);
+        deviceOrderDao.updateStatusUsingByOrderInfoId(orderId);
     }
 
     @Override

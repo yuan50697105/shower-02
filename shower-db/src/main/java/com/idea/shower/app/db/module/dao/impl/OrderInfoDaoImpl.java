@@ -68,4 +68,9 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     public void updateTotalPriceByOrderNo(BigDecimal totalprice, String orderNo) {
         baseMapper().updateTotalPriceByOrderNo(totalprice, orderNo);
     }
+
+    @Override
+    public void updateStatusUsingByOrderId(Long orderId) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, orderId);
+    }
 }
