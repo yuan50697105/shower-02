@@ -2,6 +2,8 @@ package com.idea.shower.redis;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 
 /**
@@ -15,5 +17,10 @@ import org.springframework.data.redis.repository.configuration.EnableRedisReposi
 public class RedisApplicaiton {
     public static void main(String[] args) {
         SpringApplication.run(RedisApplicaiton.class, args);
+    }
+
+    @Bean("redisMessageListenerContainer")
+    public RedisMessageListenerContainer redisMessageListenerContainer() {
+        return new RedisMessageListenerContainer();
     }
 }

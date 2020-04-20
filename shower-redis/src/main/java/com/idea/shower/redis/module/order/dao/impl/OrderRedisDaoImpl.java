@@ -1,9 +1,9 @@
-package com.idea.shower.redis.module.dao.impl;
+package com.idea.shower.redis.module.order.dao.impl;
 
 import cn.hutool.json.JSONUtil;
 import com.idea.shower.redis.commons.dao.impl.BaseRedisDaoImpl;
-import com.idea.shower.redis.module.dao.OrderRediskDao;
-import com.idea.shower.redis.module.pojo.OrderTimeOutRedisEntity;
+import com.idea.shower.redis.module.order.dao.OrderRediskDao;
+import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

@@ -1,7 +1,7 @@
-package com.idea.shower.redis.module.dao;
+package com.idea.shower.redis.module.order.dao;
 
 import com.idea.shower.redis.commons.dao.BaseRedisDao;
-import com.idea.shower.redis.module.pojo.OrderTimeOutRedisEntity;
+import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 
 /**
  * @program: shower-01

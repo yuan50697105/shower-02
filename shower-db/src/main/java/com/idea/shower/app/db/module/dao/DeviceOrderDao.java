@@ -24,4 +24,6 @@ public interface DeviceOrderDao extends BaseDao<DeviceOrder> {
     Optional<DeviceOrder> getByOrderNo(String orderNo);
 
     void updateStatusUsingById(Long id);
+
+    Optional<DeviceOrder> getByOrderId(Long orderId);
 }

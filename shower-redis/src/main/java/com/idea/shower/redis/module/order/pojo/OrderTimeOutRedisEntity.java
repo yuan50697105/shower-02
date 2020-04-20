@@ -1,4 +1,4 @@
-package com.idea.shower.redis.module.pojo;
+package com.idea.shower.redis.module.order.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -24,8 +24,8 @@ import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.db.core.pojo.WxPageResult;
-import com.idea.shower.redis.module.dao.OrderRediskDao;
-import com.idea.shower.redis.module.pojo.OrderTimeOutRedisEntity;
+import com.idea.shower.redis.module.order.dao.OrderRediskDao;
+import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
@@ -97,6 +97,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 openRoomCommons(orderInfo.getId());
                 break;
             case OrderInfoConstants.OrderType.RESERVATION:
+                // TODO: 2020/4/20 添加超时处理
                 addOrderTimeOutToRedis(orderInfo);
                 break;
             default:
@@ -510,5 +511,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     private void openRoomCommons(Long orderId) {
         log.warn("普通订单开启房间");
+        OrderInfo orderInfo = orderInfoDao.getById(orderId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        DeviceOrder deviceOrder = deviceOrderDao.getByOrderId(orderId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        orderInfoDao.updateStatusUsingById(orderInfo.getId());
+        deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
     }
 }

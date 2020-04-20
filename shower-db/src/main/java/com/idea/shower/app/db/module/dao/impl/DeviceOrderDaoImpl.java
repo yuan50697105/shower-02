@@ -52,4 +52,9 @@ public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapp
     public void updateStatusUsingById(Long id) {
         baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
     }
+
+    @Override
+    public Optional<DeviceOrder> getByOrderId(Long orderId) {
+        return Optional.ofNullable(baseMapper().selectOneByOrderId(orderId));
+    }
 }

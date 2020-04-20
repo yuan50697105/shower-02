@@ -26,6 +26,8 @@ public interface DeviceOrderMapper extends BaseMapper {
 
     DeviceOrder selectOneByOrderNo(@Param("orderNo") String orderNo);
 
+    DeviceOrder selectOneByOrderId(@Param("orderId") Long orderId);
+
     int updateByExampleSelective(@Param("record") DeviceOrder record, @Param("example") DeviceOrderExample example);
 
     int updateByExample(@Param("record") DeviceOrder record, @Param("example") DeviceOrderExample example);
