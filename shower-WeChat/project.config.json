@@ -40,7 +40,7 @@
 				{
 					"id": -1,
 					"name": "首页",
-					"pathName": "pages/index/index",
+					"pathName": "pages/device/device",
 					"query": ""
 				},
 				{

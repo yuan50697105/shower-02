@@ -5,7 +5,7 @@ var user = require('../../../utils/user.js');
 Page({
   data: {
     orderList: [],
-    showType: 0,
+    status: 0,
     page: 1,
     limit: 10,
     totalPages: 1
@@ -17,7 +17,7 @@ Page({
       var tab = wx.getStorageSync('tab');
 
       this.setData({
-        showType: tab
+        status: tab
       });
     } catch (e) {}
 
@@ -27,17 +27,15 @@ Page({
     let that = this;
     util.request(api.OrderList, {
       openId: userInfo.openId,
-      showType: that.data.showType,
+      status: that.data.status,
       page: that.data.page,
       limit: that.data.limit
     },"POST").then(function(res) {
-      if (res.errno === 200) {
-        console.log(res.data);
-        that.setData({
-          orderList: that.data.orderList.concat(res.data.list),
-          totalPages: res.data.pages
-        });
-      }
+      console.log(res.data);
+      that.setData({
+        orderList: that.data.orderList.concat(res.data.list),
+        totalPages: res.data.total
+      });
     });
   },
   onReachBottom() {
@@ -56,10 +54,10 @@ Page({
     }
   },
   switchTab: function(event) {
-    let showType = event.currentTarget.dataset.index;
+    let status = event.currentTarget.dataset.index;
     this.setData({
       orderList: [],
-      showType: showType,
+      status: status,
       page: 1,
       limit: 10,
       totalPages: 1

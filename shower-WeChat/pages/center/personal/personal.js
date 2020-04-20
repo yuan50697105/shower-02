@@ -108,7 +108,7 @@ Page({
   WaitPayOrder: function () {
     if (this.data.hasLogin) {
       try {
-        wx.setStorageSync('tab', 1);
+        wx.setStorageSync('tab', 2);
       } catch (e) {
 
       }
@@ -125,7 +125,7 @@ Page({
   WaitUseOrder: function () {
     if (this.data.hasLogin) {
       try {
-        wx.setStorageSync('tab', 2);
+        wx.setStorageSync('tab', 3);
       } catch (e) {
 
       }
@@ -142,7 +142,7 @@ Page({
   OverOrder: function () {
     if (this.data.hasLogin) {
       try {
-        wx.setStorageSync('tab', 3);
+        wx.setStorageSync('tab', 5);
       } catch (e) {
 
       }

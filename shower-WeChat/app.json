@@ -10,10 +10,12 @@
     "pages/center/opinion/opinion"
   ],
   "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#3f9337",
+    "navigationBarBackgroundColor": "#f4f4f4",
     "navigationBarTitleText": "清沐屋",
-    "navigationBarTextStyle": "white"
+    "enablePullDownRefresh": true,
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f4f4f4",
+    "backgroundTextStyle": "dark"
   },
   "tabBar": {
     "selectedColor": "#5465E6",
