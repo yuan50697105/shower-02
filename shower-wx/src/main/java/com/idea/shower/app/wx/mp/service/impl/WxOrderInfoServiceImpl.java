@@ -24,7 +24,7 @@ import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.db.core.pojo.WxPageResult;
-import com.idea.shower.redis.module.order.dao.OrderRediskDao;
+import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
@@ -53,14 +53,15 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * 默认预约等待时间
      */
     public static final int DEFAULT_TIME = 10;
-    public static final String SUCCESS = "SUCCESS";
+    public static final TimeUnit TIME_UNIT = TimeUnit.SECONDS;
+    public static final String PAY_RESULT_SUCCESS = "SUCCESS";
     private final Snowflake snowflake;
     private final DeviceInfoDao deviceInfoDao;
     private final CustomerInfoDao customerInfoDao;
     private final PriceInfoDao priceInfoDao;
     private final OrderInfoDao orderInfoDao;
     private final OrderItemDao orderItemDao;
-    private final OrderRediskDao orderRediskDao;
+    private final OrderRedisDao orderRedisDao;
     private final DeviceOrderDao deviceOrderDao;
     private final DeviceInfoSender deviceInfoSender;
     private final WxPayService wxPayService;
@@ -124,6 +125,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
 //            订单超时
             throw new ResultRuntimeException(ResultUtils.wxOrderOutTimeError());
         }
+        orderRedisDao.deleteOrderInfo(orderInfo.getId());
         Map<String, Object> data = BeanUtil.beanToMap(request);
         data.put("startTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("房间开启成功", data);
@@ -149,6 +151,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
 //            订单超时
             throw new ResultRuntimeException(ResultUtils.wxOrderOutTimeError());
         }
+        orderRedisDao.deleteOrderInfo(orderInfo.getId());
         orderInfoDao.updateStatusUsingById(orderInfo.getId());
         deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
         Map<String, Object> data = BeanUtil.beanToMap(request);
@@ -189,10 +192,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
         WxPayUnifiedOrderResult wxPayUnifiedOrderResult = wxPayService.unifiedOrder(request);
-        if (!wxPayUnifiedOrderResult.getReturnCode().equals(SUCCESS)) {
+        if (!wxPayUnifiedOrderResult.getReturnCode().equals(PAY_RESULT_SUCCESS)) {
             throw new ResultRuntimeException(ResultUtils.wxError(wxPayUnifiedOrderResult.getReturnMsg()));
         } else {
-            if (!wxPayUnifiedOrderResult.getResultCode().equals(SUCCESS)) {
+            if (!wxPayUnifiedOrderResult.getResultCode().equals(PAY_RESULT_SUCCESS)) {
                 throw new ResultRuntimeException(ResultUtils.wxError(wxPayUnifiedOrderResult.getErrCode()));
             } else {
                 Map<String, Object> payEntity = createPayEntity(wxPayUnifiedOrderResult);
@@ -211,15 +214,15 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     public WxReturnInfo notify(String xml) throws WxPayException {
         WxPayOrderNotifyResult wxPayOrderNotifyResult = wxPayService.parseOrderNotifyResult(xml);
         String returnCode = wxPayOrderNotifyResult.getReturnCode();
-        if (!returnCode.equals(SUCCESS)) {
+        if (!returnCode.equals(PAY_RESULT_SUCCESS)) {
             throw new ResultRuntimeException(ResultUtils.wxError(wxPayOrderNotifyResult.getReturnMsg()));
         } else {
-            if (!wxPayOrderNotifyResult.getResultCode().equals(SUCCESS)) {
+            if (!wxPayOrderNotifyResult.getResultCode().equals(PAY_RESULT_SUCCESS)) {
                 throw new ResultRuntimeException(ResultUtils.wxError(wxPayOrderNotifyResult.getReturnMsg()));
             } else {
                 WxReturnInfo wxReturnInfo = new WxReturnInfo();
-                wxReturnInfo.setReturn_code(SUCCESS);
-                wxReturnInfo.setReturn_msg(SUCCESS);
+                wxReturnInfo.setReturn_code(PAY_RESULT_SUCCESS);
+                wxReturnInfo.setReturn_msg(PAY_RESULT_SUCCESS);
                 return wxReturnInfo;
             }
 
@@ -500,8 +503,8 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         entity.setCustomerId(orderInfo.getCustomerId());
         entity.setOpenId(orderInfo.getCustomerOpenId());
         entity.setTime(DEFAULT_TIME);
-        entity.setUnit(TimeUnit.MINUTES);
-        orderRediskDao.setOrderTimeOut(entity);
+        entity.setUnit(TIME_UNIT);
+        orderRedisDao.setOrderTimeOut(entity);
     }
 
     /**
