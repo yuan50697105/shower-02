@@ -2,7 +2,7 @@ package com.idea.shower.redis.module.order.dao.impl;
 
 import cn.hutool.json.JSONUtil;
 import com.idea.shower.redis.commons.dao.impl.BaseRedisDaoImpl;
-import com.idea.shower.redis.module.order.dao.OrderRediskDao;
+import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -15,11 +15,16 @@ import org.springframework.stereotype.Component;
  */
 @AllArgsConstructor
 @Component
-public class OrderRedisDaoImpl extends BaseRedisDaoImpl<OrderTimeOutRedisEntity> implements OrderRediskDao {
+public class OrderRedisDaoImpl extends BaseRedisDaoImpl<OrderTimeOutRedisEntity> implements OrderRedisDao {
 
     @Override
     public void setOrderTimeOut(OrderTimeOutRedisEntity entity) {
-        setValue(ORDER_INFO + entity.getOrderId(), JSONUtil.toJsonStr(entity), entity.getTime(), entity.getUnit());
+        setValue(ORDER_INFO_REDIS_KEY + entity.getOrderId(), JSONUtil.toJsonStr(entity), entity.getTime(), entity.getUnit());
+    }
+
+    @Override
+    public void deleteOrderInfo(Long orderId) {
+        deleteValue(ORDER_INFO_REDIS_KEY + orderId);
     }
 
     @Override
