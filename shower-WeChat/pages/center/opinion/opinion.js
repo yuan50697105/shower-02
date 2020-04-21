@@ -30,12 +30,12 @@ Page({
     var molist = new Array();
     var jsonA;
     jsonA = {
-      "title": '11',
+      "title": '总睡觉啊',
       "content": '卷上：“各路州县接得文字，得知韩王被虏，诸将皆亡，未免具降书投降。”《古今小说·简帖僧巧骗皇甫妻》：“钱大尹看罢，即时教押下一箇所属去处，叫将山前行山定来。当时山定承了这件文字。”',
       "publisherPic": '22',
       "publisherName": '33',
-      "pubtime": '22',
-      "feedpic": 'https://www.zkaillzhyy.cn:8002/wx/storage/fetch/92gtzmeemclf2kp2jsnh.png',
+      "pubtime": '金额杀菌灯',
+      "feedpic": 'http://seopic.699pic.com/photo/50056/6212.jpg_wh1200.jpg',
       "feedUserId":'22',
       "id": '22',
     }
