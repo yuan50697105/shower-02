@@ -9,4 +9,5 @@ module.exports = {
   AddOrder: WxApiRoot + 'order/add',
   OrderList: WxApiRoot + 'order/data',
   EndOrder: WxApiRoot + 'order/end',
+  OrderDetail: WxApiRoot + 'order/item',
 };

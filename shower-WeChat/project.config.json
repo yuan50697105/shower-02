@@ -61,6 +61,13 @@
 					"id": -1,
 					"name": "pages/center/opinion/opinion",
 					"pathName": "pages/center/opinion/opinion",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/center/orderDetail/orderDetail",
+					"pathName": "pages/center/orderDetail/orderDetail",
 					"scene": null
 				}
 			]

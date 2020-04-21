@@ -7,6 +7,7 @@
     "pages/center/personal/personal",
     "pages/about/about",
     "pages/center/order/order",
+    "pages/center/orderDetail/orderDetail",
     "pages/center/opinion/opinion"
   ],
   "window": {
@@ -25,14 +26,14 @@
       {
         "pagePath": "pages/device/device",
         "text": "首页",
-        "iconPath": "static/image/tab/jiqi.png",
-        "selectedIconPath": "static/image/tab/jiqi1.png"
+        "iconPath": "static/image/tab/home.png",
+        "selectedIconPath": "static/image/tab/home1.png"
       },
       {
         "pagePath": "pages/map/map",
         "text": "地图",
-        "iconPath": "static/image/tab/map1.png",
-        "selectedIconPath": "static/image/tab/map2.png"
+        "iconPath": "static/image/tab/map.png",
+        "selectedIconPath": "static/image/tab/map1.png"
       },
       {
         "pagePath": "pages/center/personal/personal",

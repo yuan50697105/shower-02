@@ -42,7 +42,8 @@
           <text class="charged">￥5/min</text>
         </view>
         <view class="tab">
-          <view class="chargedCode" wx:if="{{item.status==1||item.status==2}}" data-orderNo="{{item.orderNo}}"  bindtap="endOrder">结束</view>
+          <view class="chargedCode" wx:if="{{item.status==1}}" data-orderNo="{{item.orderNo}}"  bindtap="endOrder">开始</view>
+          <view class="chargedCode" wx:if="{{item.status==1}}" data-orderNo="{{item.orderNo}}"  bindtap="endOrder">结束</view>
           <view class="chargedCode" wx:if="{{item.status==3}}" data-orderNo="{{item.orderNo}}"  bindtap="goKabaw">付款</view>
         </view>
         

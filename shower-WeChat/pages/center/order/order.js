@@ -93,12 +93,12 @@ Page({
   lookDetail(event) {
     var id = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/ucenter/orderDetail/orderDetail?id=' + id,
+      url: '/pages/center/orderDetail/orderDetail?id=' + id,
     });
   },
   goKabaw(){
     wx.navigateTo({
-      url: '/pages/ucenter/kabaw/kabaw',
+      url: '/pages/center/kabaw/kabaw',
     })
   }
 })
