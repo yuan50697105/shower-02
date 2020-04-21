@@ -207,7 +207,11 @@ Page({
     }, 'POST').then(function (res) {
       console.log(res)
       if (res.code === 200) {
-        
+        wx.showToast({
+          title: '下单成功',
+          icon: 'success',
+          duration: 2000
+        });
       }else{
         util.showErrorToast(res.message)
       }

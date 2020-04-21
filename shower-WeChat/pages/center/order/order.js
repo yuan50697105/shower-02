@@ -80,24 +80,20 @@ Page({
   onUnload: function() {
     // 页面关闭
   },
-  lookChargedCode(event) {
-    const code = event.currentTarget.dataset.code;
-    const brand = event.currentTarget.dataset.brand;
-    user.requestCheckSellSuccessIdsMsg().then((value) => {
-      console.log(value);
-    }).catch(err => {
-      console.log(err);
-    }).finally(() => {
-      wx.navigateTo({
-        url: "/pages/ucenter/code/code?code=" + code + "&brand=" + brand
-      });
+  endOrder(event) {
+    const orderNo = event.currentTarget.dataset.orderno;
+    console.log(orderNo)
+    util.request(api.EndOrder, {
+      orderNo: orderNo
+    }, "POST").then(function (res) {
+      console.log(res.data);
     });
     
   },
-  lookDetail(event){
+  lookDetail(event) {
     var id = event.currentTarget.dataset.id;
     wx.navigateTo({
-      url: '/pages/ucenter/orderDetail/orderDetail?id='+id,
+      url: '/pages/ucenter/orderDetail/orderDetail?id=' + id,
     });
   },
   goKabaw(){
