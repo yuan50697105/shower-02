@@ -2,13 +2,15 @@ package com.idea.shower.app.db.module.dao.impl;
 
 
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.constants.device.DeviceOrderStatus;
+import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.dao.DeviceOrderDao;
 import com.idea.shower.app.db.module.mapper.DeviceOrderMapper;
 import com.idea.shower.app.db.module.pojo.DeviceOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
 
 /**
  * @program: my-shower-01
@@ -26,13 +28,22 @@ public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapp
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void updateStatusDeviceOrderPaid(String orderNo) {
-        baseMapper().updateStatusByOrderNo(DeviceOrderStatus.PAID, orderNo);
+    public Optional<DeviceOrder> getByOrderNo(String orderNo) {
+        return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
     }
 
     @Override
-    public void updateStatusDeviceOrderEndUse(Long orderId) {
-        baseMapper().updateStatusByOrderId(DeviceOrderStatus.END_USE, orderId);
+    public void updateStatusUsingById(Long id) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
+    }
+
+    @Override
+    public void updateStatusTimeOutByOrderId(Long orderId) {
+        baseMapper().updateStatusByOrderId(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, orderId);
+    }
+
+    @Override
+    public Optional<DeviceOrder> getByOrderId(Long orderId) {
+        return Optional.ofNullable(baseMapper().selectOneByOrderId(orderId));
     }
 }

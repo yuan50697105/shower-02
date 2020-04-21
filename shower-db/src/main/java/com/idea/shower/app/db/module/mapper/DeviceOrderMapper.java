@@ -3,10 +3,11 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.DeviceOrder;
 import com.idea.shower.app.db.module.pojo.DeviceOrderExample;
-import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
+
 @Mapper
 public interface DeviceOrderMapper extends BaseMapper {
     long countByExample(DeviceOrderExample example);
@@ -23,6 +24,10 @@ public interface DeviceOrderMapper extends BaseMapper {
 
     DeviceOrder selectByPrimaryKey(Long id);
 
+    DeviceOrder selectOneByOrderNo(@Param("orderNo") String orderNo);
+
+    DeviceOrder selectOneByOrderId(@Param("orderId") Long orderId);
+
     int updateByExampleSelective(@Param("record") DeviceOrder record, @Param("example") DeviceOrderExample example);
 
     int updateByExample(@Param("record") DeviceOrder record, @Param("example") DeviceOrderExample example);
@@ -34,4 +39,8 @@ public interface DeviceOrderMapper extends BaseMapper {
     int updateStatusByOrderId(@Param("updatedStatus") Integer updatedStatus, @Param("orderId") Long orderId);
 
     int updateStatusByOrderNo(@Param("updatedStatus") Integer updatedStatus, @Param("orderNo") String orderNo);
+
+    int updateStatusById(@Param("updatedStatus") Integer updatedStatus, @Param("id") Long id);
+
+
 }
