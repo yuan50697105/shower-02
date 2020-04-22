@@ -23,3 +23,6 @@ wx:
       type: memory
     secret:
     token:
+spring:
+  resources:
+    static-locations:

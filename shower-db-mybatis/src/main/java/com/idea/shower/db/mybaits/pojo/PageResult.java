@@ -1,7 +1,7 @@
 package com.idea.shower.db.mybaits.pojo;
 
 import com.github.pagehelper.PageInfo;
-import com.idea.shower.db.core.pojo.BaseDbCorePageResult;
+import com.idea.shower.db.core.pojo.IPageResult;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -13,7 +13,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public final class PageResult<T> extends BaseDbCorePageResult<T> {
+public final class PageResult<T> extends IPageResult<T> {
     public PageResult(PageInfo<T> pageInfo) {
         super(pageInfo.getPageNum(), pageInfo.getSize(), pageInfo.getList(), pageInfo.getTotal(), pageInfo.getPages());
     }

@@ -11,10 +11,10 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ConditionPageResult<T, E> extends BaseDbCorePageResult<T> {
+public class ConditionPageResult<T, E> extends IPageResult<T> {
     private E query;
 
-    public ConditionPageResult(BaseDbCorePageResult<T> pageResult, E query) {
+    public ConditionPageResult(IPageResult<T> pageResult, E query) {
         super(pageResult.getPage(), pageResult.getSize(), pageResult.getData(), pageResult.getTotalRows(), pageResult.getTotalPages());
         this.query = query;
     }

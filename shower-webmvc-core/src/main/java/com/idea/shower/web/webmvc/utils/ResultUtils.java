@@ -1,6 +1,6 @@
 package com.idea.shower.web.webmvc.utils;
 
-import com.idea.shower.db.core.pojo.BaseDbCorePageResult;
+import com.idea.shower.db.core.pojo.IPageResult;
 import com.idea.shower.db.core.pojo.ConditionPageResult;
 import com.idea.shower.web.webmvc.pojo.Result;
 
@@ -96,7 +96,7 @@ public class ResultUtils {
         return error(ResultConstants.GOODS_INFO_ERROR_CODE, message);
     }
 
-    public static <T, E> Result data(BaseDbCorePageResult<T> pageResult, E condition) {
+    public static <T, E> Result data(IPageResult<T> pageResult, E condition) {
         return data(new ConditionPageResult(pageResult, condition));
     }
 

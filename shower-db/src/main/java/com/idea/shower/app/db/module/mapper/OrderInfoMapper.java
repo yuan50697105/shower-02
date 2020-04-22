@@ -4,6 +4,7 @@ import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
 import com.idea.shower.app.db.module.pojo.OrderInfoExample;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
+import com.idea.shower.app.db.module.pojo.vo.OrderInfoDeviceVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -45,6 +46,8 @@ public interface OrderInfoMapper extends BaseMapper {
     List<OrderInfo> selectByConditionWeXin(@Param("query") OrderInfoQuery query);
 
     int updateTotalPriceByOrderNo(@Param("updatedTotalPrice") BigDecimal updatedTotalPrice, @Param("orderNo") String orderNo);
+
+    List<OrderInfoDeviceVO> selectOrderInfoDeviceVOListByCondition(@Param("query") OrderInfoQuery query);
 
     int updateStatusById(@Param("updatedStatus") Integer updatedStatus, @Param("id") Long id);
 

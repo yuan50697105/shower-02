@@ -18,12 +18,13 @@ import com.idea.shower.app.db.module.constants.PriceInfoConstants;
 import com.idea.shower.app.db.module.dao.*;
 import com.idea.shower.app.db.module.pojo.*;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
+import com.idea.shower.app.db.module.pojo.vo.OrderInfoDeviceVO;
 import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
-import com.idea.shower.db.core.pojo.WxPageResult;
+import com.idea.shower.db.core.pojo.IWxPageResult;
 import com.idea.shower.redis.module.order.dao.OrderRediskDao;
 import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
@@ -234,7 +235,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     @Override
     public Result selectPage(OrderInfoQuery condition) {
-        WxPageResult<OrderInfo> pageResult = orderInfoDao.selectPageByConditionWeXin(condition);
+        IWxPageResult<OrderInfoDeviceVO> pageResult = orderInfoDao.selectOrderInfoDeviceVOPageByCondition(condition);
         return ResultUtils.data(pageResult);
     }
 
