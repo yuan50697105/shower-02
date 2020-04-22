@@ -1,5 +1,6 @@
 group = 'com.idea.shower.app.wx'
 dependencies {
+    compile project(':shower-commons')
     compile project(':shower-webmvc-core')
     compile project(':shower-db')
     compile group: 'com.qcloud', name: 'cos_api', version: '5.6.19'

@@ -10,7 +10,7 @@ import org.springframework.core.env.Environment;
  * @author: yuane
  * @create: 2020-04-22 21:30
  */
-public class FileUtils {
+public class ResourceFileUtils {
     public static String filePath(String fileName) {
         Environment environment = SpringUtil.getBean(Environment.class);
         String property = environment.getProperty("file.path");
