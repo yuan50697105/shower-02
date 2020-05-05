@@ -19,5 +19,6 @@ public class Test1 {
     @Test
     void t1() {
         wxDeviceService.openRoom2(3L);
+        wxDeviceService.closeRoom(3L);
     }
 }
