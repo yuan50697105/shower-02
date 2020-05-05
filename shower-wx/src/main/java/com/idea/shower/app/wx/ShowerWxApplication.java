@@ -2,10 +2,13 @@ package com.idea.shower.app.wx;
 
 import com.idea.shower.amqp.AmqpModule;
 import com.idea.shower.app.db.ShowerDbApplication;
+import com.idea.shower.app.wx.mp.service.WxDeviceService;
 import com.idea.shower.redis.RedisApplicaiton;
 import com.idea.shower.web.webmvc.WebMvcCoreApplication;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /**
  * @program: shower-01
@@ -18,4 +21,8 @@ public class ShowerWxApplication {
     public static void main(String[] args) {
         SpringApplication.run(ShowerWxApplication.class, args);
     }
+
+
+
+
 }

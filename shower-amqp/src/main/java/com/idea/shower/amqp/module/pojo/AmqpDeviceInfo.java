@@ -13,7 +13,6 @@ public class AmqpDeviceInfo {
     private String deviceCode;
     private Long deviceId;
     private DeviceStatus status;
-
     public enum DeviceStatus {
         OPEN(57, "开启"),
         STOP(56, "停止");

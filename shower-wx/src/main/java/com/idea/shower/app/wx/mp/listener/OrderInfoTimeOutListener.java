@@ -19,7 +19,7 @@ import java.nio.charset.StandardCharsets;
  * @author: yuane
  * @create: 2020-04-20 21:33
  */
-@Component
+//@Component
 @Slf4j
 public class OrderInfoTimeOutListener extends KeyExpirationEventMessageListener {
     @Autowired
