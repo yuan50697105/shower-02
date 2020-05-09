@@ -19,8 +19,4 @@ public class RedisApplicaiton {
         SpringApplication.run(RedisApplicaiton.class, args);
     }
 
-    @Bean("redisMessageListenerContainer")
-    public RedisMessageListenerContainer redisMessageListenerContainer() {
-        return new RedisMessageListenerContainer();
-    }
 }

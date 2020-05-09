@@ -11,8 +11,6 @@ import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
-import com.idea.shower.amqp.module.pojo.AmqpDeviceInfo;
-import com.idea.shower.amqp.module.sender.DeviceInfoSender;
 import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.constants.PriceInfoConstants;
 import com.idea.shower.app.db.module.dao.*;
@@ -63,7 +61,6 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final OrderItemDao orderItemDao;
     private final OrderRediskDao orderRediskDao;
     private final DeviceOrderDao deviceOrderDao;
-    private final DeviceInfoSender deviceInfoSender;
     private final WxPayService wxPayService;
 
     /**
@@ -430,9 +427,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @return 用户量
      */
     private Double getDeviceWaterUse(String deviceCode) {
-        AmqpDeviceInfo amqpDeviceInfo = new AmqpDeviceInfo();
-        amqpDeviceInfo.setDeviceCode(deviceCode);
-        return deviceInfoSender.sendAndGetWaterUse(amqpDeviceInfo);
+        return 0d;
     }
 
     /**

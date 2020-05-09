@@ -19,7 +19,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
     private DeviceInfoDao deviceInfoDao;
-    private WxDeviceService wxDeviceService;
     /**
     *@Author finch
     *@Description 获取设备列表
@@ -32,7 +31,6 @@ public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
 
     @Override
     public Result sendInfo(long l) {
-        wxDeviceService.openRoom2(l);
 
         return ResultUtils.ok();
     }

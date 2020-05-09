@@ -5,6 +5,8 @@ import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import com.idea.shower.redis.module.order.dao.OrderRediskDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
@@ -19,7 +21,7 @@ import java.nio.charset.StandardCharsets;
  * @author: yuane
  * @create: 2020-04-20 21:33
  */
-//@Component
+@Component
 @Slf4j
 public class OrderInfoTimeOutListener extends KeyExpirationEventMessageListener {
     @Autowired
