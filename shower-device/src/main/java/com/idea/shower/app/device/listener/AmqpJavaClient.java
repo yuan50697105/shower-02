@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 @Slf4j
-public class AmqpJavaClientDemo {
+public class AmqpJavaClient {
 
     private final JmsConnectionListener myJmsConnectionListener = new JmsConnectionListener() {
         /**
