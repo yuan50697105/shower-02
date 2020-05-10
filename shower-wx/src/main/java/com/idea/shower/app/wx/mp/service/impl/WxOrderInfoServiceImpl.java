@@ -21,8 +21,8 @@ import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
-import com.idea.shower.app.wx.mp.util.AliyunIotPublishUtils;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
+import com.idea.shower.app.wx.mp.util.AliyunIotPublishUtils;
 import com.idea.shower.db.core.pojo.IWxPageResult;
 import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
@@ -64,6 +64,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final DeviceOrderDao deviceOrderDao;
     private final WxPayService wxPayService;
     private final AliyunIotPublishUtils aliyunIotPublishUtils;
+
     /**
      * 添加订单
      *
@@ -136,6 +137,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         Date finalTime = new Date();
         String orderNo = request.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.END_USE)){
+            throw new ResultRuntimeException(ResultUtils.wxOrderHasCompelete());
+        }
         OrderItem startingItem = orderItemDao.getStartingItemByOrderId(orderInfo.getId());
         Date endTime = startingItem.getEndTime();
         Double waterUse = startingItem.getWaterUse();
@@ -145,6 +149,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         }
         BigDecimal totalprice = calculationOrderFee(orderInfo);
         orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
+
         HashMap<String, Object> map = new HashMap<>();
         BeanUtil.beanToMap(request);
         map.put("totalPrice", totalprice);
@@ -348,7 +353,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         orderItem.setDeviceId(orderInfo.getDeviceId());
         orderItem.setDeviceCode(orderInfo.getDeviceCode());
         orderItem.setDeviceType(orderInfo.getType());
-        orderItem.setPriceCode(priceInfo.getCode());
+        orderItem.setPriceCode(priceInfo.getPriceCode());
         orderItem.setPriceId(priceInfo.getId());
         orderItem.setPriceType(priceInfo.getType());
         orderItem.setTimePrice(priceInfo.getTimePrice());
@@ -373,8 +378,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     private BigDecimal calculationExtTotalFee(Double timeUse, Double timeInternal, BigDecimal timePrice, Double waterUse, Double waterInternal, BigDecimal waterPrice) {
         BigDecimal bigDecimal = new BigDecimal("0");
-        bigDecimal.add(new BigDecimal(timeUse / timeInternal).multiply(timePrice));
-        bigDecimal.add(new BigDecimal(waterUse / waterInternal).multiply(waterPrice));
+        BigDecimal time = new BigDecimal(timeUse / timeInternal).multiply(timePrice);
+        BigDecimal water = new BigDecimal(waterUse / waterInternal).multiply(waterPrice);
+        bigDecimal=bigDecimal.add(time).add(water);
         return bigDecimal;
     }
 
@@ -415,7 +421,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private BigDecimal calculationOrderFee(OrderInfo orderInfo) {
         BigDecimal bigDecimal = new BigDecimal("0");
         List<OrderItem> orderItems = orderItemDao.selectListByOrderNo(orderInfo.getOrderNo());
-        bigDecimal.add(orderItems.stream().map(OrderItem::getTotalPrice).reduce(BigDecimal::add).orElse(new BigDecimal("0")));
+        bigDecimal = orderItems.stream().map(OrderItem::getTotalPrice).reduce(BigDecimal::add).orElse(new BigDecimal("0"));
         return bigDecimal;
     }
 
@@ -493,7 +499,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private void updateOrderStatusToUsing(OrderInfo orderInfo, DeviceOrder deviceOrder) {
         Long deviceId = orderInfo.getDeviceId();
         DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
-        aliyunIotPublishUtils.open(deviceInfo.getProductKey(),deviceInfo.getDeviceName());
+        aliyunIotPublishUtils.open(deviceInfo.getProductKey(), deviceInfo.getDeviceName());
         orderInfoDao.updateStatusUsingById(orderInfo.getId());
         deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
         deviceInfoDao.updateStatusToUsing(orderInfo.getDeviceId());
