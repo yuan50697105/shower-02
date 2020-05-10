@@ -50,7 +50,7 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateStatusPaidByOrderNo(String outTradeNo) {
-        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.PAID, outTradeNo);
+        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_COMPLETED, outTradeNo);
     }
 
     @Override
@@ -97,5 +97,10 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     @Override
     public void updateStatusTimeOutById(Long id) {
         baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, id);
+    }
+
+    @Override
+    public void updateStatusEndUseById(Long id) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.END_USE,id);
     }
 }

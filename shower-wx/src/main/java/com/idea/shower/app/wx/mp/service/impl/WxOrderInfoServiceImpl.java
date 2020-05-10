@@ -48,6 +48,7 @@ import java.util.concurrent.TimeUnit;
 @Service
 @AllArgsConstructor
 @Slf4j
+@Transactional
 public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     /**
      * 默认预约等待时间
@@ -112,6 +113,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @return 处理结果
      */
     @Override
+    @Transactional
     public Result openRoom(WxUseOrderRequest request) {
         String orderNo = request.getOrderNo();
         String openId = request.getOpenId();
@@ -133,6 +135,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
 
 
     @Override
+    @Transactional
     public Result endOrder(WxUseOrderRequest request) {
         Date finalTime = new Date();
         String orderNo = request.getOrderNo();
@@ -149,7 +152,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         }
         BigDecimal totalprice = calculationOrderFee(orderInfo);
         orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
-
+        orderInfoDao.updateStatusEndUseById(orderInfo.getId());
         HashMap<String, Object> map = new HashMap<>();
         BeanUtil.beanToMap(request);
         map.put("totalPrice", totalprice);
@@ -168,17 +171,8 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = wxPayOrderInfo.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
-        WxPayUnifiedOrderResult wxPayUnifiedOrderResult = wxPayService.unifiedOrder(request);
-        if (!wxPayUnifiedOrderResult.getReturnCode().equals(SUCCESS)) {
-            throw new ResultRuntimeException(ResultUtils.wxError(wxPayUnifiedOrderResult.getReturnMsg()));
-        } else {
-            if (!wxPayUnifiedOrderResult.getResultCode().equals(SUCCESS)) {
-                throw new ResultRuntimeException(ResultUtils.wxError(wxPayUnifiedOrderResult.getErrCode()));
-            } else {
-                Map<String, Object> payEntity = createPayEntity(wxPayUnifiedOrderResult);
-                return ResultUtils.data(payEntity);
-            }
-        }
+        Object order = wxPayService.createOrder(request);
+        return ResultUtils.data(order);
     }
 
     /**
@@ -197,6 +191,13 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             if (!wxPayOrderNotifyResult.getResultCode().equals(SUCCESS)) {
                 throw new ResultRuntimeException(ResultUtils.wxError(wxPayOrderNotifyResult.getReturnMsg()));
             } else {
+                String outTradeNo = wxPayOrderNotifyResult.getOutTradeNo();
+                String transactionId = wxPayOrderNotifyResult.getTransactionId();
+                OrderInfo orderInfo = orderInfoDao.getByOrderNo(outTradeNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.END_USE);
+                if (integers.contains(orderInfo.getStatus())){
+                    orderInfoDao.updateStatusPaidByOrderNo(outTradeNo);
+                }
                 WxReturnInfo wxReturnInfo = new WxReturnInfo();
                 wxReturnInfo.setReturn_code(SUCCESS);
                 wxReturnInfo.setReturn_msg(SUCCESS);

@@ -36,4 +36,6 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
     void updateStatusUsingById(Long id);
 
     void updateStatusTimeOutById(Long id);
+
+    void updateStatusEndUseById(Long id);
 }
