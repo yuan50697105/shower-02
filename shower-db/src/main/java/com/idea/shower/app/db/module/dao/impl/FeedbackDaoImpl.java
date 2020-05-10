@@ -7,7 +7,8 @@ import com.idea.shower.app.db.module.dao.FeedbackDao;
 import com.idea.shower.app.db.module.mapper.FeedbackMapper;
 import com.idea.shower.app.db.module.pojo.Feedback;
 import com.idea.shower.app.db.module.pojo.query.FeedbackQuery;
-import com.idea.shower.db.core.pojo.WxPageResult;
+import com.idea.shower.db.core.pojo.IWxPageResult;
+import com.idea.shower.db.mybaits.pojo.WxPageResult;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -35,9 +36,9 @@ public class FeedbackDaoImpl extends BaseDaoImpl<Feedback, FeedbackMapper> imple
     }
 
     @Override
-    public WxPageResult<Feedback> selectPageByConditionWeXin(FeedbackQuery query) {
+    public IWxPageResult<Feedback> selectPageByConditionWeXin(FeedbackQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
-        new PageInfo<>(baseMapper().selectByConditionWeXin(query));
-        return new WxPageResult<>();
+        PageInfo<Feedback> pageInfo = new PageInfo<>(baseMapper().selectByConditionWeXin(query));
+        return new WxPageResult<>(pageInfo);
     }
 }

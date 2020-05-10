@@ -11,9 +11,7 @@ import lombok.NoArgsConstructor;
  * @param <T>
  */
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class WxPageResult<T> {
+public abstract class IWxPageResult<T> {
     /**
      * 数据列表
      */
@@ -26,5 +24,18 @@ public class WxPageResult<T> {
      * 当前页码
      */
     private long currentPage;
+    /**
+     * 总页数
+     */
+    private long totalPage;
 
+    public IWxPageResult() {
+    }
+
+    public IWxPageResult(Iterable<T> list, long total, long currentPage, long totalPage) {
+        this.list = list;
+        this.total = total;
+        this.currentPage = currentPage;
+        this.totalPage = totalPage;
+    }
 }

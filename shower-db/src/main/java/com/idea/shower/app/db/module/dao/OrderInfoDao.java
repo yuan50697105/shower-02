@@ -3,7 +3,8 @@ package com.idea.shower.app.db.module.dao;
 import com.idea.shower.app.db.commons.dao.BaseDao;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.db.core.pojo.WxPageResult;
+import com.idea.shower.app.db.module.pojo.vo.OrderInfoDeviceVO;
+import com.idea.shower.db.core.pojo.IWxPageResult;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 
 import java.math.BigDecimal;
@@ -24,11 +25,15 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
 
     PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition);
 
-    WxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query);
+    IWxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query);
 
     Optional<OrderInfo> getByOrderNo(String orderNo);
 
     void updateTotalPriceByOrderNo(BigDecimal totalprice, String orderNo);
 
-    void updateStatusUsingByOrderId(Long orderId);
+    IWxPageResult<OrderInfoDeviceVO> selectOrderInfoDeviceVOPageByCondition(OrderInfoQuery query);
+
+    void updateStatusUsingById(Long id);
+
+    void updateStatusTimeOutById(Long id);
 }

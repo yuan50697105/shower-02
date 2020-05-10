@@ -1,6 +1,6 @@
 package com.idea.shower.web.webmvc.utils;
 
-import com.idea.shower.db.core.pojo.BaseDbCorePageResult;
+import com.idea.shower.db.core.pojo.IPageResult;
 import com.idea.shower.db.core.pojo.ConditionPageResult;
 import com.idea.shower.web.webmvc.pojo.Result;
 
@@ -96,7 +96,7 @@ public class ResultUtils {
         return error(ResultConstants.GOODS_INFO_ERROR_CODE, message);
     }
 
-    public static <T, E> Result data(BaseDbCorePageResult<T> pageResult, E condition) {
+    public static <T, E> Result data(IPageResult<T> pageResult, E condition) {
         return data(new ConditionPageResult(pageResult, condition));
     }
 
@@ -114,6 +114,10 @@ public class ResultUtils {
 
     public static Result wxOrderUserInfoError() {
         return wxError(ResultConstants.WX_ORDER_USER_INFO_ERROR_MSG);
+    }
+
+    public static Result wxOrderOutTimeError() {
+        return wxError(ResultConstants.WX_ORDER_OUT_TIME_ERROR_MESSAGE);
     }
 
     public static class ResultConstants {
@@ -135,5 +139,6 @@ public class ResultUtils {
         public static final String ORDER_ORDER_NOT_EXIST_MSG = "订单不存在";
         public static final String PRICE_INFO_NOT_EXIST_ERROR_MSG = "价格信息不存在";
         public static final String WX_ORDER_USER_INFO_ERROR_MSG = "订单用户信息不一致";
+        public static final String WX_ORDER_OUT_TIME_ERROR_MESSAGE = "订单已超时，请重新下单";
     }
 }

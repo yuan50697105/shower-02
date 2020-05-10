@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public abstract class BaseDbCorePageResult<T> {
+public abstract class IPageResult<T> {
     private long page;
     private long size;
     private Iterable<T> data;

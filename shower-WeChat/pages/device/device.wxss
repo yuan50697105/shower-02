@@ -49,7 +49,7 @@
  height: 100rpx;
  line-height: 100rpx;
  margin: 30rpx 0;
- color: #24998d;
+ color: #64c5fd;
  text-align: center;
  font-size: 40rpx;
  font-family: Arial;
@@ -57,7 +57,7 @@
 }
 
 .device-list .device-list-item .tobooking {
- background-color: #24998d;
+ background-color: #64c5fd;
  position: absolute;
  right: 0;
  width: 120rpx;
@@ -115,7 +115,7 @@
 
 .device-list .device-list-item .s-icon1 {
   margin: 0 10rpx;
-  border-color: #24998d;
+  border-color: #64c5fd;
 }
 
 .device-list .device-list-item .s-icon2 {
@@ -141,7 +141,7 @@
  .calendar-bar {
   height: 100rpx;
   line-height: 100rpx;
-  background-color: #24998d ;
+  background-color: #64c5fd ;
   color: #fff;
   top: 0;
   left: 0;
@@ -150,11 +150,11 @@
 
  .calendar-bar .tabs-item {
   font-size: 26rpx;
-  border-right: 1px solid #24998d;
+  border-right: 1px solid #64c5fd;
 }
 
  .calendar-bar .tabs-item.disabled {
-  color: #24998d;
+  color: #64c5fd;
 }
 
 .device-tabs {
@@ -191,7 +191,7 @@
 
  .device-tabs.list-filter .tabs-item.active {
   color: #fff;
-  background-color: #24998d;
+  background-color: #64c5fd;
 }
 
  .device-tabs.list-filter .tabs-item .line{
@@ -202,7 +202,7 @@
 }
 
  .device-tabs.list-filter .tabs-item .line:last-child{
-  color: #24998d
+  color: #64c5fd
 }
 
  .device-tabs.list-filter .tabs-item.active .line:last-child{
@@ -242,7 +242,7 @@
 
 .calendar-wrapper-box .icon-back::before,
 .calendar-wrapper-box .icon-next::before {
-  border-color: #24998d;
+  border-color: #64c5fd;
   width: 24rpx;
   height: 24rpx;
 }
@@ -267,7 +267,7 @@
   right: 130rpx;
   height: 45px;
   line-height: 90rpx;
-  color: #24998d;
+  color: #64c5fd;
   text-align: center;
 }
 
@@ -276,7 +276,7 @@
     top: 0;
     height: 90rpx;
     line-height: 90rpx;
-    color: #24998d;
+    color: #64c5fd;
     text-align: center;
     left: 90rpx;
     right: 90rpx;
@@ -334,7 +334,7 @@
 .weui-search-bar_cancel-btn {
   margin-left: 7px;
   line-height: 36px;
-  color: #24998d;
+  color: #64c5fd;
   white-space: nowrap;
 }
 

@@ -1,6 +1,7 @@
 package com.idea.shower.app.db.module.dao.impl;
 
 
+import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
@@ -9,13 +10,18 @@ import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import com.idea.shower.app.db.module.mapper.OrderInfoMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.db.core.pojo.WxPageResult;
+import com.idea.shower.app.db.module.pojo.vo.OrderInfoDeviceVO;
+import com.idea.shower.commons.utils.ResourceFileUtils;
+import com.idea.shower.db.core.pojo.IWxPageResult;
 import com.idea.shower.db.mybaits.pojo.PageResult;
+import com.idea.shower.db.mybaits.pojo.WxPageResult;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,6 +33,9 @@ import java.util.Optional;
 @Component
 @AllArgsConstructor
 public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> implements OrderInfoDao {
+    @Autowired
+    private final OrderInfoMapper orderInfoMapper;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(OrderInfo orderInfo) {
@@ -52,10 +61,10 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
 
 
     @Override
-    public WxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
+    public IWxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
         PageInfo<OrderInfo> pageInfo = new PageInfo<>(baseMapper().selectByConditionWeXin(query));
-        return wxPageResult(pageInfo);
+        return new WxPageResult(pageInfo);
     }
 
     @Override
@@ -69,8 +78,24 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
         baseMapper().updateTotalPriceByOrderNo(totalprice, orderNo);
     }
 
+
     @Override
-    public void updateStatusUsingByOrderId(Long orderId) {
-        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, orderId);
+    public IWxPageResult<OrderInfoDeviceVO> selectOrderInfoDeviceVOPageByCondition(OrderInfoQuery query) {
+        PageHelper.startPage(query.getPage(), query.getLimit());
+        List<OrderInfoDeviceVO> orderInfoDeviceVOS = orderInfoMapper.selectOrderInfoDeviceVOListByCondition(query);
+        for (OrderInfoDeviceVO orderInfoDeviceVO : orderInfoDeviceVOS) {
+            orderInfoDeviceVO.setPicture(ResourceFileUtils.filePath(StrUtil.isNotBlank(orderInfoDeviceVO.getPicture()) ? orderInfoDeviceVO.getPicture() : ""));
+        }
+        return new WxPageResult<>(new PageInfo<>());
+    }
+
+    @Override
+    public void updateStatusUsingById(Long id) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
+    }
+
+    @Override
+    public void updateStatusTimeOutById(Long id) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, id);
     }
 }
