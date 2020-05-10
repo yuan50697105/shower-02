@@ -1,5 +1,7 @@
 package com.idea.shower.app.device.listener;
 
+import cn.hutool.json.JSONArray;
+import cn.hutool.json.JSONUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.qpid.jms.JmsConnection;
@@ -13,6 +15,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
+import java.lang.IllegalStateException;
 import java.net.URI;
 import java.util.Hashtable;
 import java.util.UUID;
@@ -97,6 +100,10 @@ public class AmqpJavaClient {
         }
     };
 
+    public static void main(String[] args) {
+        System.out.println("JSONUtil.toJsonStr(\"/a12mkmuZtyi/${deviceName}/user/contro\".split(\"/\")) = " + JSONUtil.toJsonStr("/a12mkmuZtyi/${deviceName}/user/contro".split("/")));
+    }
+
     /**
      * 在这里处理您收到消息后的具体业务逻辑。
      */
@@ -111,15 +118,51 @@ public class AmqpJavaClient {
                     + ", messageId = " + messageId
                     + ", content = " + content);
             String[] strings = topic.split("/");
-            String productKey = strings[0];
-            String deviceName = strings[1];
-            String user = strings[2];
-            String topic0 = strings[3];
-            switch (topic0){
+            String productKey = strings[1];
+            String deviceName = strings[2];
+            String user = strings[3];
+            String topic0 = strings[4];
+            JSONArray objects;
+            Object deviceId;
+            Object status;
+            Object lat;
+            Object longa;
+            Object waterTemp01;
+            Object waterTemp02;
+            Object waterAmount01;
+            Object waterAmount02;
+            Object lightingCount;
+            Object waterUse;
+            Object waterSpeed01;
+            Object waterSpeed02;
+            Object waterOpen;
+            Object totalServiceTime;
+            switch (topic0) {
                 case "heartbeat":
+                    objects = JSONUtil.parseArray(content);
+                    deviceId = objects.get(0);
+                    status = objects.get(1);
+                    lat = objects.get(2);
+                    longa = objects.get(3);
+                    waterTemp01 = objects.get(4);
+                    waterTemp02 = objects.get(5);
+                    waterAmount01 = objects.get(6);
+                    waterAmount02 = objects.get(7);
+                    lightingCount = objects.get(8);
+                    waterUse = objects.get(9);
                     break;
                 case "work":
+                    objects = JSONUtil.parseArray(content);
+                    deviceId = objects.get(0);
+                    status = objects.get(1);
+                    waterSpeed01 = objects.get(2);
+                    waterSpeed02 = objects.get(3);
+                    lightingCount = objects.get(4);
+                    waterOpen = objects.get(5);
+                    totalServiceTime = objects.get(6);
                     break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + topic0);
             }
         } catch (Exception e) {
             log.error("processMessage occurs error ", e);
