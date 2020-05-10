@@ -8,5 +8,4 @@ dependencies {
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
     compile project(':shower-webmvc-core')
     compile project(':shower-db')
-    compile project(':shower-amqp')
 }
