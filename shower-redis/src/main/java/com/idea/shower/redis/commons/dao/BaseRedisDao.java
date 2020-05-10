@@ -20,4 +20,6 @@ public interface BaseRedisDao<T> {
     void setValue(String key, Object value, Integer time, TimeUnit unit);
 
     T getValue(String key);
+
+    void del(String key);
 }

@@ -54,4 +54,9 @@ public class BaseRedisDaoImpl<T> implements BaseRedisDao<T> {
     public T getValue(String key) {
         return JSONUtil.toBean(stringRedisTemplate.opsForValue().get(key), type);
     }
+
+    @Override
+    public void del(String key){
+        stringRedisTemplate.delete(key);
+    }
 }

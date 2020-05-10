@@ -44,6 +44,11 @@ public class WxOrderInfoController extends ResultController {
         return wxOrderInfoService.addOrder(wxAddOrderRequest);
     }
 
+    @PostMapping("open")
+    public Result open(@RequestBody WxUseOrderRequest request){
+        return wxOrderInfoService.openRoom(request);
+    }
+
     @PostMapping("end")
     public Result endOrder(@RequestBody WxUseOrderRequest wxEndOrderRequest) {
         return wxOrderInfoService.endOrder(wxEndOrderRequest);

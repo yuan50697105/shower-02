@@ -4,7 +4,7 @@ server:
     context-path: /
 spring:
   profiles:
-    active: dbconfig,wx,mvc,redis,commons
+    active: dbconfig,wx,mvc,redis,commons,iot
 logging:
   level:
     web: debug

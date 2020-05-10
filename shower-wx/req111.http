@@ -1,4 +1,12 @@
-GET http://localhost:8002/wx/device/send/info
-
-
+POST http://localhost:8002/wx/order/add
+Accept: application/json
+{
+"openId":"oGhyX5FRP9H9LH3NxZP3n-_5OIvM",
+"deviceCode":"1234",
+"type":1
+}
 ###
+POST http://localhost:8002/wx/order/open
+Accept: application/json
+{
+}

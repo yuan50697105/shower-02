@@ -20,4 +20,6 @@ public interface OrderRediskDao extends BaseRedisDao<OrderTimeOutRedisEntity> {
     void setOrderTimeOut(OrderTimeOutRedisEntity entity);
 
     OrderTimeOutRedisEntity getOrderInfoByKey(Long orderId);
+
+    void deleteOrderInfo(Long id);
 }

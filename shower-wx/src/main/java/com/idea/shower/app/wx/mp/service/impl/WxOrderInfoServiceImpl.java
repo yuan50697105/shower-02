@@ -21,6 +21,7 @@ import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
+import com.idea.shower.app.wx.mp.service.AliyunIotPublishUtils;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.db.core.pojo.IWxPageResult;
 import com.idea.shower.redis.module.order.dao.OrderRediskDao;
@@ -62,7 +63,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final OrderRediskDao orderRediskDao;
     private final DeviceOrderDao deviceOrderDao;
     private final WxPayService wxPayService;
-
+    private AliyunIotPublishUtils aliyunIotPublishUtils;
     /**
      * 添加订单
      *
@@ -122,6 +123,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
 //            订单超时
             throw new ResultRuntimeException(ResultUtils.wxOrderOutTimeError());
         }
+        Long deviceId = orderInfo.getDeviceId();
+        DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
+        aliyunIotPublishUtils.open(deviceInfo.getProductKey(),deviceInfo.getDeviceName());
+        orderRediskDao.deleteOrderInfo(orderInfo.getId());
         Map<String, Object> data = BeanUtil.beanToMap(request);
         data.put("startTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("房间开启成功", data);
@@ -505,10 +510,14 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      *
      * @param orderId 订单ID
      */
-    private void openRoomCommons(Long orderId) {
+    @Transactional
+    void openRoomCommons(Long orderId) {
         log.warn("普通订单开启房间");
         OrderInfo orderInfo = orderInfoDao.getById(orderId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         DeviceOrder deviceOrder = deviceOrderDao.getByOrderId(orderId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        Long deviceId = orderInfo.getDeviceId();
+        DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
+        aliyunIotPublishUtils.open(deviceInfo.getProductKey(),deviceInfo.getDeviceName());
         orderInfoDao.updateStatusUsingById(orderInfo.getId());
         deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
     }

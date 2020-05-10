@@ -20,4 +20,5 @@ dependencies {
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile 'org.springframework.boot:spring-boot-starter-web'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }

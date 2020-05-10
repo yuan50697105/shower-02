@@ -44,6 +44,7 @@ public class OrderInfoTimeOutListener extends KeyExpirationEventMessageListener 
         if (expiredKey.startsWith(OrderRediskDao.ORDER_INFO)) {
             //如果是Order:开头的key，进行处理
             Long orderId = Long.valueOf(new String(message.getBody(), StandardCharsets.UTF_8).replace(OrderRediskDao.ORDER_INFO, ""));
+            log.info(orderId+"超时");
             orderInfoDao.updateStatusTimeOutById(orderId);
             deviceOrderDao.updateStatusTimeOutByOrderId(orderId);
         }

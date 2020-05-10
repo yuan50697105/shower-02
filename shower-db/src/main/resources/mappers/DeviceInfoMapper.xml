@@ -10,6 +10,8 @@
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="code" jdbcType="VARCHAR" property="code" />
+    <result column="product_key" jdbcType="VARCHAR" property="productKey" />
+    <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="price_code" jdbcType="VARCHAR" property="priceCode" />
     <result column="enabled" jdbcType="INTEGER" property="enabled" />
@@ -83,8 +85,9 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, code, `type`, price_code, 
-    enabled, longitude, latitude, area_id, area_name, building_id, building_name, picture
+    id, create_time, update_time, create_user, update_user, code, product_key, device_name, 
+    `type`, price_code, enabled, longitude, latitude, area_id, area_name, building_id, 
+    building_name, picture
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -123,17 +126,17 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into device_info (create_time, update_time, create_user, 
-      update_user, code, `type`, 
-      price_code, enabled, longitude, 
-      latitude, area_id, area_name, 
-      building_id, building_name, picture
-      )
+      update_user, code, product_key, 
+      device_name, `type`, price_code, 
+      enabled, longitude, latitude, 
+      area_id, area_name, building_id, 
+      building_name, picture)
     values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{priceCode,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, #{longitude,jdbcType=DOUBLE}, 
-      #{latitude,jdbcType=DOUBLE}, #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
-      #{buildingId,jdbcType=BIGINT}, #{buildingName,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}
-      )
+      #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{productKey,jdbcType=VARCHAR}, 
+      #{deviceName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{priceCode,jdbcType=VARCHAR}, 
+      #{enabled,jdbcType=INTEGER}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
+      #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, #{buildingId,jdbcType=BIGINT}, 
+      #{buildingName,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -153,6 +156,12 @@
       </if>
       <if test="code != null">
         code,
+      </if>
+      <if test="productKey != null">
+        product_key,
+      </if>
+      <if test="deviceName != null">
+        device_name,
       </if>
       <if test="type != null">
         `type`,
@@ -200,6 +209,12 @@
       </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="productKey != null">
+        #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         #{type,jdbcType=INTEGER},
@@ -262,6 +277,12 @@
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
       </if>
+      <if test="record.productKey != null">
+        product_key = #{record.productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceName != null">
+        device_name = #{record.deviceName,jdbcType=VARCHAR},
+      </if>
       <if test="record.type != null">
         `type` = #{record.type,jdbcType=INTEGER},
       </if>
@@ -306,6 +327,8 @@
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
+      product_key = #{record.productKey,jdbcType=VARCHAR},
+      device_name = #{record.deviceName,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
       price_code = #{record.priceCode,jdbcType=VARCHAR},
       enabled = #{record.enabled,jdbcType=INTEGER},
@@ -338,6 +361,12 @@
       </if>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="productKey != null">
+        product_key = #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null">
+        device_name = #{deviceName,jdbcType=VARCHAR},
       </if>
       <if test="type != null">
         `type` = #{type,jdbcType=INTEGER},
@@ -380,6 +409,8 @@
       create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
+      product_key = #{productKey,jdbcType=VARCHAR},
+      device_name = #{deviceName,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
       price_code = #{priceCode,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=INTEGER},
