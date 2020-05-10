@@ -6,6 +6,7 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.crypto.SecureUtil;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
+import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
@@ -171,7 +172,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = wxPayOrderInfo.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
-        Object order = wxPayService.createOrder(request);
+        WxPayMpOrderResult order = wxPayService.createOrder(request);
         return ResultUtils.data(order);
     }
 
@@ -439,6 +440,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         request.setTotalFee(WxPayUnifiedOrderRequest.yuanToFen(orderInfo.getTotalPrice().toPlainString()));
         request.setOpenid(orderInfo.getCustomerOpenId());
         request.setTradeType(WxPayConstants.TradeType.JSAPI);
+        request.setNotifyUrl("");
         return request;
     }
 
