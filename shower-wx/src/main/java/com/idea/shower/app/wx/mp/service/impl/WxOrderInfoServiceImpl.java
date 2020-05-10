@@ -63,7 +63,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final OrderRedisDao orderRedisDao;
     private final DeviceOrderDao deviceOrderDao;
     private final WxPayService wxPayService;
-    private AliyunIotPublishUtils aliyunIotPublishUtils;
+    private final AliyunIotPublishUtils aliyunIotPublishUtils;
     /**
      * 添加订单
      *
@@ -127,6 +127,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
         aliyunIotPublishUtils.open(deviceInfo.getProductKey(),deviceInfo.getDeviceName());
         orderRedisDao.deleteOrderInfo(orderInfo.getId());
+        updateOrderStatusToUsing(orderInfo, deviceOrder);
         Map<String, Object> data = BeanUtil.beanToMap(request);
         data.put("startTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("房间开启成功", data);
@@ -140,6 +141,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @return 处理通知
      */
     @Override
+    @Deprecated
     public Result startOrder(WxUseOrderRequest request) {
         String orderNo = request.getOrderNo();
         String openId = request.getOpenId();
@@ -152,8 +154,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
 //            订单超时
             throw new ResultRuntimeException(ResultUtils.wxOrderOutTimeError());
         }
-        orderInfoDao.updateStatusUsingById(orderInfo.getId());
-        deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
+        updateOrderStatusToUsing(orderInfo, deviceOrder);
         Map<String, Object> data = BeanUtil.beanToMap(request);
         data.put("startTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("订单开始计时", data);
@@ -518,6 +519,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         Long deviceId = orderInfo.getDeviceId();
         DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
         aliyunIotPublishUtils.open(deviceInfo.getProductKey(),deviceInfo.getDeviceName());
+        updateOrderStatusToUsing(orderInfo, deviceOrder);
+    }
+
+    private void updateOrderStatusToUsing(OrderInfo orderInfo, DeviceOrder deviceOrder) {
         orderInfoDao.updateStatusUsingById(orderInfo.getId());
         deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
     }
