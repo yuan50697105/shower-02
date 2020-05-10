@@ -22,4 +22,6 @@ public interface OrderRedisDao extends BaseRedisDao<OrderTimeOutRedisEntity> {
     void deleteOrderInfo(Long orderId);
 
     OrderTimeOutRedisEntity getOrderInfoByKey(Long orderId);
+
+    void deleteOrderInfo(Long id);
 }

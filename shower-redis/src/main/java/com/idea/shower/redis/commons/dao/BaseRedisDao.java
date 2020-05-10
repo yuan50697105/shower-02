@@ -11,9 +11,15 @@ import java.util.concurrent.TimeUnit;
  */
 public interface BaseRedisDao<T> {
 
+    void insert(T t);
+
+    Optional<T> find(String key);
+
+    Iterable<T> findAll();
+
     void setValue(String key, Object value, Integer time, TimeUnit unit);
 
     T getValue(String key);
 
-    void deleteValue(String key);
+    void del(String key);
 }

@@ -18,6 +18,8 @@ import java.util.concurrent.TimeUnit;
  */
 public class BaseRedisDaoImpl<T> implements BaseRedisDao<T> {
     @Autowired
+    private RedisKeyValueTemplate redisKeyValueTemplate;
+    @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
     private Class<T> type;
@@ -25,6 +27,22 @@ public class BaseRedisDaoImpl<T> implements BaseRedisDao<T> {
     @SuppressWarnings("unchecked")
     public BaseRedisDaoImpl() {
         type = (Class<T>) ClassUtil.getTypeArgument(this.getClass(), 0);
+    }
+
+
+    @Override
+    public void insert(T t) {
+        redisKeyValueTemplate.insert(t);
+    }
+
+    @Override
+    public Optional<T> find(String key) {
+        return redisKeyValueTemplate.findById(key, type);
+    }
+
+    @Override
+    public Iterable<T> findAll() {
+        return redisKeyValueTemplate.findAll(type);
     }
 
     @Override
@@ -37,9 +55,8 @@ public class BaseRedisDaoImpl<T> implements BaseRedisDao<T> {
         return JSONUtil.toBean(stringRedisTemplate.opsForValue().get(key), type);
     }
 
-
     @Override
-    public void deleteValue(String key) {
-        stringRedisTemplate.opsForValue().getOperations().delete(key);
+    public void del(String key){
+        stringRedisTemplate.delete(key);
     }
 }
