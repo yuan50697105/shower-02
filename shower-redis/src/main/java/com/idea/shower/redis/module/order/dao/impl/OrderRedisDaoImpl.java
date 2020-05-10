@@ -2,7 +2,7 @@ package com.idea.shower.redis.module.order.dao.impl;
 
 import cn.hutool.json.JSONUtil;
 import com.idea.shower.redis.commons.dao.impl.BaseRedisDaoImpl;
-import com.idea.shower.redis.module.order.dao.OrderRediskDao;
+import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -17,7 +17,7 @@ import org.springframework.stereotype.Component;
 @AllArgsConstructor
 @Component
 @Slf4j
-public class OrderRedisDaoImpl extends BaseRedisDaoImpl<OrderTimeOutRedisEntity> implements OrderRediskDao {
+public class OrderRedisDaoImpl extends BaseRedisDaoImpl<OrderTimeOutRedisEntity> implements OrderRedisDao {
 
     @Override
     public void setOrderTimeOut(OrderTimeOutRedisEntity entity) {

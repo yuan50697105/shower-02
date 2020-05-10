@@ -10,7 +10,7 @@ import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
  * @create: 2020-03-28 16:55
  */
 public interface OrderRedisDao extends BaseRedisDao<OrderTimeOutRedisEntity> {
-    String ORDER_INFO_REDIS_KEY = "OrderInfo:";
+    String ORDER_INFO = "OrderInfo:";
 
     /**
      * 添加订单计时
@@ -18,8 +18,6 @@ public interface OrderRedisDao extends BaseRedisDao<OrderTimeOutRedisEntity> {
      * @param entity 订单计时实体
      */
     void setOrderTimeOut(OrderTimeOutRedisEntity entity);
-
-    void deleteOrderInfo(Long orderId);
 
     OrderTimeOutRedisEntity getOrderInfoByKey(Long orderId);
 

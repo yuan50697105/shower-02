@@ -24,7 +24,7 @@ import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.AliyunIotPublishUtils;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.db.core.pojo.IWxPageResult;
-import com.idea.shower.redis.module.order.dao.OrderRediskDao;
+import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
@@ -60,7 +60,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final PriceInfoDao priceInfoDao;
     private final OrderInfoDao orderInfoDao;
     private final OrderItemDao orderItemDao;
-    private final OrderRediskDao orderRediskDao;
+    private final OrderRedisDao orderRedisDao;
     private final DeviceOrderDao deviceOrderDao;
     private final WxPayService wxPayService;
     private AliyunIotPublishUtils aliyunIotPublishUtils;
@@ -126,7 +126,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         Long deviceId = orderInfo.getDeviceId();
         DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
         aliyunIotPublishUtils.open(deviceInfo.getProductKey(),deviceInfo.getDeviceName());
-        orderRediskDao.deleteOrderInfo(orderInfo.getId());
+        orderRedisDao.deleteOrderInfo(orderInfo.getId());
         Map<String, Object> data = BeanUtil.beanToMap(request);
         data.put("startTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("房间开启成功", data);
@@ -502,7 +502,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         entity.setOpenId(orderInfo.getCustomerOpenId());
         entity.setTime(DEFAULT_TIME);
         entity.setUnit(TimeUnit.MINUTES);
-        orderRediskDao.setOrderTimeOut(entity);
+        orderRedisDao.setOrderTimeOut(entity);
     }
 
     /**
