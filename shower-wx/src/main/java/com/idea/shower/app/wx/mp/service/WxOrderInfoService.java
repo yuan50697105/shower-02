@@ -41,14 +41,6 @@ public interface WxOrderInfoService {
     Result openRoom(WxUseOrderRequest orderNo);
 
     /**
-     * 预约使用订单
-     *
-     * @param request 请求实体
-     * @return 处理结果
-     */
-    Result startOrder(WxUseOrderRequest request);
-
-    /**
      * 微信统一下单
      *
      * @param wxPayOrderInfo 支付信息封装

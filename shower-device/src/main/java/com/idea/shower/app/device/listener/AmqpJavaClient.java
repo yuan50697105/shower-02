@@ -110,10 +110,17 @@ public class AmqpJavaClient {
                     + ", topic = " + topic
                     + ", messageId = " + messageId
                     + ", content = " + content);
-            System.out.println("receive message"
-                    + ", topic = " + topic
-                    + ", messageId = " + messageId
-                    + ", content = " + content);
+            String[] strings = topic.split("/");
+            String productKey = strings[0];
+            String deviceName = strings[1];
+            String user = strings[2];
+            String topic0 = strings[3];
+            switch (topic0){
+                case "heartbeat":
+                    break;
+                case "work":
+                    break;
+            }
         } catch (Exception e) {
             log.error("processMessage occurs error ", e);
         }

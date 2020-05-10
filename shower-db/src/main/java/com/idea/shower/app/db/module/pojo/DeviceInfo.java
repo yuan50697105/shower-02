@@ -83,6 +83,11 @@ public class DeviceInfo extends BaseDbEntity implements Serializable {
      */
     private String picture;
 
+    /**
+     * 运行状态 0 可用 1 使用中
+     */
+    private Integer runStatus;
+
     private static final long serialVersionUID = 1L;
 
     public static DeviceInfoBuilder builder() {

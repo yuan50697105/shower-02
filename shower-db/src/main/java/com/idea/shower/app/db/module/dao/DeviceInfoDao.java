@@ -26,4 +26,12 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
     PageResult<DeviceInfo> selectAll(DeviceInfoQuery deviceInfoQuery);
 
     Optional<DeviceInfo> getByCode(String code);
+
+    /**
+     * 更新设备为使用中
+     * @param deviceId
+     */
+    void updateStatusToUsing(Long deviceId);
+
+    Optional<DeviceInfo> getByCodeAvailable(String deviceCode);
 }

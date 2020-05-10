@@ -1274,6 +1274,66 @@ public class DeviceInfoExample {
             addCriterion("picture not between", value1, value2, "picture");
             return (Criteria) this;
         }
+
+        public Criteria andRunStatusIsNull() {
+            addCriterion("run_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusIsNotNull() {
+            addCriterion("run_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusEqualTo(Integer value) {
+            addCriterion("run_status =", value, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusNotEqualTo(Integer value) {
+            addCriterion("run_status <>", value, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusGreaterThan(Integer value) {
+            addCriterion("run_status >", value, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusGreaterThanOrEqualTo(Integer value) {
+            addCriterion("run_status >=", value, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusLessThan(Integer value) {
+            addCriterion("run_status <", value, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusLessThanOrEqualTo(Integer value) {
+            addCriterion("run_status <=", value, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusIn(List<Integer> values) {
+            addCriterion("run_status in", values, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusNotIn(List<Integer> values) {
+            addCriterion("run_status not in", values, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusBetween(Integer value1, Integer value2) {
+            addCriterion("run_status between", value1, value2, "runStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andRunStatusNotBetween(Integer value1, Integer value2) {
+            addCriterion("run_status not between", value1, value2, "runStatus");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
