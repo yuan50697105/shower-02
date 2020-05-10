@@ -9,7 +9,6 @@ dependencies {
     compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.7.5.B'
     compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.7.5.B'
 //    compile group: 'com.github.binarywang', name: 'wx-java-open-spring-boot-starter', version: '3.7.2.B'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-amqp'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
     compile project(':shower-redis')
 //阿里云IOT
@@ -20,4 +19,5 @@ dependencies {
     compile group: 'org.apache.qpid', name: 'qpid-jms-client', version: '0.47.0'
     compile group: 'commons-codec', name: 'commons-codec', version: '1.10'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    compile 'org.springframework.boot:spring-boot-starter-web'
 }
