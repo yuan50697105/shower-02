@@ -1,8 +1,8 @@
 package com.idea.shower.commons.utils;
 
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.extra.spring.SpringUtil;
-import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
  * @program: shower-01
@@ -10,10 +10,13 @@ import org.springframework.core.env.Environment;
  * @author: yuane
  * @create: 2020-04-22 21:30
  */
+@Component
 public class ResourceFileUtils {
-    public static String filePath(String fileName) {
-        Environment environment = SpringUtil.getBean(Environment.class);
-        String property = environment.getProperty("file.path");
-        return StrUtil.isNotBlank(property) ? property : "" + "/" + fileName;
+    @Value("${file.path}")
+    private String path;
+
+    public String filePath(String fileName) {
+        String path1 = StrUtil.isNotBlank(path) ? path : "";
+        return path1 + "/" + fileName;
     }
 }

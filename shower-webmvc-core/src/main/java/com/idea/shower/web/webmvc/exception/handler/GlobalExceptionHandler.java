@@ -37,6 +37,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public Result exceptionHandler(Exception e) {
+        e.printStackTrace();
         log.error(e.getLocalizedMessage(), e.getCause());
         return ResultUtils.systemError();
     }

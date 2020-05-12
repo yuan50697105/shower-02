@@ -29,7 +29,7 @@ public class WxOrderInfoController extends ResultController {
     private WxOrderInfoService wxOrderInfoService;
 
     @PostMapping("data")
-    public Result data(@RequestBody OrderInfoQuery condition) {
+    public Result data(@RequestBody(required = false) OrderInfoQuery condition) {
         return wxOrderInfoService.selectPage(condition);
     }
 

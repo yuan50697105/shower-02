@@ -35,6 +35,7 @@ import java.util.Optional;
 public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> implements OrderInfoDao {
     @Autowired
     private final OrderInfoMapper orderInfoMapper;
+    private final ResourceFileUtils resourceFileUtils;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -59,7 +60,6 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
         return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
-
     @Override
     public IWxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
@@ -78,15 +78,14 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
         baseMapper().updateTotalPriceByOrderNo(totalprice, orderNo);
     }
 
-
     @Override
     public IWxPageResult<OrderInfoDeviceVO> selectOrderInfoDeviceVOPageByCondition(OrderInfoQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
         List<OrderInfoDeviceVO> orderInfoDeviceVOS = orderInfoMapper.selectOrderInfoDeviceVOListByCondition(query);
         for (OrderInfoDeviceVO orderInfoDeviceVO : orderInfoDeviceVOS) {
-            orderInfoDeviceVO.setPicture(ResourceFileUtils.filePath(StrUtil.isNotBlank(orderInfoDeviceVO.getPicture()) ? orderInfoDeviceVO.getPicture() : ""));
+            orderInfoDeviceVO.setPicture(resourceFileUtils.filePath(StrUtil.isNotBlank(orderInfoDeviceVO.getPicture()) ? orderInfoDeviceVO.getPicture() : ""));
         }
-        return new WxPageResult<>(new PageInfo<>());
+        return new WxPageResult<>(new PageInfo<>(orderInfoDeviceVOS));
     }
 
     @Override
@@ -101,6 +100,6 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
 
     @Override
     public void updateStatusEndUseById(Long id) {
-        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.END_USE,id);
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.END_USE, id);
     }
 }
