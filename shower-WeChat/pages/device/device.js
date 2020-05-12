@@ -103,7 +103,7 @@ Page({
       totalPages: 1
     })
     //调用查询设备列表方法
-    that.deviceList();
+    this.deviceList();
   },
   //选择机器使用状态
   statusSelectChange: function (e) {
@@ -144,10 +144,12 @@ Page({
     }, 'POST').then(function (res) {
       console.log(res)
       if (res.code === 200) {
-        that.setData({
-          dataList: that.data.dataList.concat(res.data.data),
-          totalPages: res.data.totalPages
-        });
+        if (res.data.data != undefined){
+          that.setData({
+            dataList: that.data.dataList.concat(res.data.data),
+            totalPages: res.data.totalPages
+          });
+        }
       }
     });
   },

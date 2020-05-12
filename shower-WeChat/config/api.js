@@ -8,6 +8,8 @@ module.exports = {
   DeviceInfoList: WxApiRoot + 'device/deviceInfoList',
   AddOrder: WxApiRoot + 'order/add',
   OrderList: WxApiRoot + 'order/data',
+  StartOrder: WxApiRoot + 'order/open',
   EndOrder: WxApiRoot + 'order/end',
   OrderDetail: WxApiRoot + 'order/item',
+  OrderPay: WxApiRoot + 'order/pay',
 };

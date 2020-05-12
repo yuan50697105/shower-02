@@ -23,6 +23,9 @@ Page({
   },
   onUnload: function() {
     // 页面关闭
+    wx.reLaunch({
+      url: "/pages/device/device"
+    });
 
   },
   wxLogin: function (e) {
