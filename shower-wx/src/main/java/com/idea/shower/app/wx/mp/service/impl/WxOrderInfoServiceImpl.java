@@ -32,6 +32,8 @@ import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -66,6 +68,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final DeviceOrderDao deviceOrderDao;
     private final WxPayService wxPayService;
     private final AliyunIotPublishUtils aliyunIotPublishUtils;
+    private final Environment environment;
 
     /**
      * 添加订单
@@ -134,14 +137,13 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         return ResultUtils.ok("房间开启成功", data);
     }
 
-
     @Override
     @Transactional
     public Result endOrder(WxUseOrderRequest request) {
         Date finalTime = new Date();
         String orderNo = request.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
-        if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.END_USE)){
+        if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.END_USE)) {
             throw new ResultRuntimeException(ResultUtils.wxOrderHasCompelete());
         }
         OrderItem startingItem = orderItemDao.getStartingItemByOrderId(orderInfo.getId());
@@ -196,7 +198,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 String transactionId = wxPayOrderNotifyResult.getTransactionId();
                 OrderInfo orderInfo = orderInfoDao.getByOrderNo(outTradeNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
                 List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.END_USE);
-                if (integers.contains(orderInfo.getStatus())){
+                if (integers.contains(orderInfo.getStatus())) {
                     orderInfoDao.updateStatusPaidByOrderNo(outTradeNo);
                 }
                 WxReturnInfo wxReturnInfo = new WxReturnInfo();
@@ -382,7 +384,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         BigDecimal bigDecimal = new BigDecimal("0");
         BigDecimal time = new BigDecimal(timeUse / timeInternal).multiply(timePrice);
         BigDecimal water = new BigDecimal(waterUse / waterInternal).multiply(waterPrice);
-        bigDecimal=bigDecimal.add(time).add(water);
+        bigDecimal = bigDecimal.add(time).add(water);
         return bigDecimal;
     }
 
@@ -440,7 +442,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         request.setTotalFee(WxPayUnifiedOrderRequest.yuanToFen(orderInfo.getTotalPrice().toPlainString()));
         request.setOpenid(orderInfo.getCustomerOpenId());
         request.setTradeType(WxPayConstants.TradeType.JSAPI);
-        request.setNotifyUrl("");
+        request.setNotifyUrl(environment.getProperty("wx.pay.url"));
         return request;
     }
 
