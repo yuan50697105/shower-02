@@ -38,4 +38,8 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
     void updateStatusTimeOutById(Long id);
 
     void updateStatusEndUseById(Long id);
+
+    Optional<OrderInfoDeviceVO> getByOrderNoDeviceVo(String orderNo);
+
+    void updateEndTimeByOrderId(Long id);
 }

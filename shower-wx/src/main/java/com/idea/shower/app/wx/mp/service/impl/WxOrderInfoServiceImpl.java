@@ -32,7 +32,6 @@ import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -154,6 +153,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             addExtOrderItemPriceInfo(orderInfo, endTime, finalTime, deviceWaterUse - waterUse);
         }
         BigDecimal totalprice = calculationOrderFee(orderInfo);
+        orderInfoDao.updateEndTimeByOrderId(orderInfo.getId());
         orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
         orderInfoDao.updateStatusEndUseById(orderInfo.getId());
         HashMap<String, Object> map = new HashMap<>();
@@ -230,8 +230,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     @Override
     public Result getOrderItemByOrderNo(String orderNo) {
+        Optional<OrderInfoDeviceVO> orderInfo = orderInfoDao.getByOrderNoDeviceVo(orderNo);
         List<OrderItem> orderItems = orderItemDao.selectListByOrderNo(orderNo);
-        return ResultUtils.data(orderItems);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("info", orderInfo);
+        map.put("items", orderItems);
+        return ResultUtils.data(map);
     }
 
     /**
