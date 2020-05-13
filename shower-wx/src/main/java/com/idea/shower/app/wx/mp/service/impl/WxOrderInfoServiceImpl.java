@@ -243,17 +243,23 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         return ResultUtils.data(map);
     }
 
+    /**
+     * @param orderNo 订单号
+     * @return
+     */
     @Override
     @Transactional
     public Result cancelOrderByOrderNo(String orderNo) {
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         if (orderInfo.getType().equals(OrderInfoConstants.OrderType.COMMONS)) {
-            if (checkOrderCancel(orderInfo)) {
-                orderInfoDao.updateStatusCancelByOrderNo(orderNo);
-            } else {
+            if (!checkOrderCancel(orderInfo)) {
                 throw new ResultRuntimeException(ResultUtils.wxError("当前订单不能取消"));
             }
+            orderInfoDao.updateStatusCancelByOrderNo(orderNo);
         } else {
+            if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.USING)) {
+                throw new ResultRuntimeException(ResultUtils.wxError("当前订单不能取消"));
+            }
             orderInfoDao.updateStatusCancelByOrderNo(orderNo);
         }
         return ResultUtils.ok();
