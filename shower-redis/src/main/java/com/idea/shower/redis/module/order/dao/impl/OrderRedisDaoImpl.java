@@ -22,17 +22,17 @@ public class OrderRedisDaoImpl extends BaseRedisDaoImpl<OrderTimeOutRedisEntity>
     @Override
     public void setOrderTimeOut(OrderTimeOutRedisEntity entity) {
         log.info("添加订单信息"+JSONUtil.toJsonStr(entity));
-        setValue(ORDER_INFO + entity.getOrderId(), JSONUtil.toJsonStr(entity), entity.getTime(), entity.getUnit());
+        setValue(ORDER_INFO_RESERVATION + entity.getOrderId(), JSONUtil.toJsonStr(entity), entity.getTime(), entity.getUnit());
     }
 
     @Override
     public OrderTimeOutRedisEntity getOrderInfoByKey(Long orderId) {
-        return getValue(ORDER_INFO + orderId);
+        return getValue(ORDER_INFO_RESERVATION + orderId);
     }
 
     @Override
     public void deleteOrderInfo(Long id) {
         log.info("删除订单信息"+id);
-        del(ORDER_INFO+id);
+        del(ORDER_INFO_RESERVATION +id);
     }
 }

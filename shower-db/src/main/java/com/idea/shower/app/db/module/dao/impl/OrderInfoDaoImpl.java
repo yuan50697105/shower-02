@@ -124,4 +124,9 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     public void updateUseStartTime(Date date, Long id) {
         baseMapper().updateUseStartTimeById(date, id);
     }
+
+    @Override
+    public void updateStatusCancelByOrderNo(String orderNo) {
+        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_CANCEL, orderNo);
+    }
 }

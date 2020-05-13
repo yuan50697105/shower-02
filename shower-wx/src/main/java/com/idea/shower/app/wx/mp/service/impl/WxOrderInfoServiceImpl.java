@@ -57,6 +57,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     public static final int DEFAULT_TIME = 10;
     public static final String SUCCESS = "SUCCESS";
+    private final static Integer CANCEL_TIME_OUT = 5;
     private final Snowflake snowflake;
     private final DeviceInfoDao deviceInfoDao;
     private final CustomerInfoDao customerInfoDao;
@@ -240,6 +241,34 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         map.put("info", orderInfo);
         map.put("items", orderItems);
         return ResultUtils.data(map);
+    }
+
+    @Override
+    @Transactional
+    public Result cancelOrderByOrderNo(String orderNo) {
+        OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        if (orderInfo.getType().equals(OrderInfoConstants.OrderType.COMMONS)) {
+            if (checkOrderCancel(orderInfo)) {
+                orderInfoDao.updateStatusCancelByOrderNo(orderNo);
+            } else {
+                throw new ResultRuntimeException(ResultUtils.wxError("当前订单不能取消"));
+            }
+        } else {
+            orderInfoDao.updateStatusCancelByOrderNo(orderNo);
+        }
+        return ResultUtils.ok();
+    }
+
+    /**
+     * 检查普通订单是否可取消
+     *
+     * @param orderInfo 订单信息
+     * @return 可以取消 true 不可取消 false
+     */
+    private boolean checkOrderCancel(OrderInfo orderInfo) {
+        Date date = new Date();
+        Date createTime = orderInfo.getCreateTime();
+        return DateUtil.between(createTime, date, DateUnit.MINUTE) <= CANCEL_TIME_OUT;
     }
 
     /**
@@ -521,7 +550,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     }
 
     private void updateOrderToEndUseing(OrderInfo orderInfo, BigDecimal totalprice) {
-        orderInfoDao.updateEndTimeByOrderId(new Date(),orderInfo.getId());
+        orderInfoDao.updateEndTimeByOrderId(new Date(), orderInfo.getId());
         orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
         orderInfoDao.updateStatusEndUseById(orderInfo.getId());
     }

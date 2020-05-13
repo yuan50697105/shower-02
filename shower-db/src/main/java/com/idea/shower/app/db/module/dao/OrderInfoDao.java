@@ -45,4 +45,6 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
     void updateEndTimeByOrderId(Date date, Long id);
 
     void updateUseStartTime(Date date, Long id);
+
+    void updateStatusCancelByOrderNo(String orderNo);
 }
