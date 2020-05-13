@@ -1,5 +1,8 @@
 package com.idea.shower.app.admin.admin.controller;
 
+import com.idea.shower.app.admin.admin.service.AdminPermissionService;
+import lombok.AllArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,5 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("admin/permission")
+@AllArgsConstructor
+@Validated
 public class AdminPermissionController {
+    private final AdminPermissionService adminPermissionService;
 }
