@@ -1,4 +1,5 @@
 package com.idea.shower.app.db.module.mapper;
+import java.util.Date;
 
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
@@ -50,6 +51,10 @@ public interface OrderInfoMapper extends BaseMapper {
     List<OrderInfoDeviceVO> selectOrderInfoDeviceVOListByCondition(@Param("query") OrderInfoQuery query);
 
     int updateStatusById(@Param("updatedStatus") Integer updatedStatus, @Param("id") Long id);
+
+    OrderInfoDeviceVO selectOrderInfoDeviceVOListByOrderNo(String orderNo);
+
+    int updateUseEndTimeById(@Param("updatedUseEndTime")Date updatedUseEndTime,@Param("id")Long id);
 
 
 }

@@ -21,6 +21,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -101,5 +102,15 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     @Override
     public void updateStatusEndUseById(Long id) {
         baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.END_USE, id);
+    }
+
+    @Override
+    public Optional<OrderInfoDeviceVO> getByOrderNoDeviceVo(String orderNo) {
+        return Optional.ofNullable(baseMapper().selectOrderInfoDeviceVOListByOrderNo(orderNo));
+    }
+
+    @Override
+    public void updateEndTimeByOrderId(Long id) {
+        baseMapper().updateUseEndTimeById(new Date(), id);
     }
 }
