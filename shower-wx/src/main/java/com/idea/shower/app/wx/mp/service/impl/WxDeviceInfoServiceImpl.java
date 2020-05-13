@@ -3,6 +3,7 @@ package com.idea.shower.app.wx.mp.service.impl;
 import com.idea.shower.app.db.module.dao.DeviceInfoDao;
 import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.app.wx.mp.service.WxDeviceInfoService;
+import com.idea.shower.app.wx.mp.service.WxDeviceService;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
@@ -18,7 +19,6 @@ import org.springframework.stereotype.Service;
 @AllArgsConstructor
 public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
     private DeviceInfoDao deviceInfoDao;
-
     /**
     *@Author finch
     *@Description 获取设备列表
@@ -27,5 +27,11 @@ public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
     @Override
     public Result deviceInfoList(DeviceInfoQuery deviceInfoQuery) {
         return ResultUtils.data(deviceInfoDao.selectAll(deviceInfoQuery));
+    }
+
+    @Override
+    public Result sendInfo(long l) {
+
+        return ResultUtils.ok();
     }
 }

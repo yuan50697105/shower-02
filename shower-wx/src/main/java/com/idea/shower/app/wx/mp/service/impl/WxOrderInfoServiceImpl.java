@@ -1,31 +1,38 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
+import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.crypto.SecureUtil;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
+import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
-import com.idea.shower.amqp.module.pojo.AmqpDeviceInfo;
-import com.idea.shower.amqp.module.sender.DeviceInfoSender;
 import com.idea.shower.app.db.module.constants.OrderInfoConstants;
 import com.idea.shower.app.db.module.constants.PriceInfoConstants;
 import com.idea.shower.app.db.module.dao.*;
 import com.idea.shower.app.db.module.pojo.*;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.*;
+import com.idea.shower.app.db.module.pojo.vo.OrderInfoDeviceVO;
+import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
+import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
+import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
+import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
-import com.idea.shower.db.core.pojo.WxPageResult;
-import com.idea.shower.redis.module.dao.OrderRediskDao;
-import com.idea.shower.redis.module.pojo.OrderRedisEntity;
+import com.idea.shower.app.wx.mp.util.AliyunIotPublishUtils;
+import com.idea.shower.db.core.pojo.IWxPageResult;
+import com.idea.shower.redis.module.order.dao.OrderRedisDao;
+import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -42,22 +49,26 @@ import java.util.concurrent.TimeUnit;
  */
 @Service
 @AllArgsConstructor
+@Slf4j
+@Transactional
 public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     /**
      * 默认预约等待时间
      */
     public static final int DEFAULT_TIME = 10;
     public static final String SUCCESS = "SUCCESS";
+    private final static Integer CANCEL_TIME_OUT = 5;
     private final Snowflake snowflake;
     private final DeviceInfoDao deviceInfoDao;
     private final CustomerInfoDao customerInfoDao;
     private final PriceInfoDao priceInfoDao;
     private final OrderInfoDao orderInfoDao;
     private final OrderItemDao orderItemDao;
-    private final OrderRediskDao orderRediskDao;
+    private final OrderRedisDao orderRedisDao;
     private final DeviceOrderDao deviceOrderDao;
-    private final DeviceInfoSender deviceInfoSender;
     private final WxPayService wxPayService;
+    private final AliyunIotPublishUtils aliyunIotPublishUtils;
+    private final Environment environment;
 
     /**
      * 添加订单
@@ -72,7 +83,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String openId = wxAddOrderRequest.getOpenId();
         Integer type = wxAddOrderRequest.getType();
 //        设备信息
-        DeviceInfo deviceInfo = deviceInfoDao.getByCode(deviceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
+        DeviceInfo deviceInfo = deviceInfoDao.getByCodeAvailable(deviceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
 //        用户信息
         CustomerInfo customerInfo = customerInfoDao.getByOpenId(openId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxUserNotFoundError()));
 //        计费编号
@@ -87,17 +98,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         deviceOrderDao.save(deviceOrder);
         switch (type) {
             case OrderInfoConstants.OrderType.COMMONS:
-                // TODO: 2020/4/1 处理普通订单，额外流程
-//                创建普通订单
-//                openRoom(orderInfo);
-                updateOrderStatusToUsing(orderInfo.getId());
+                // TODO: 2020/4/20 开启房间
+                openRoomCommons(orderInfo.getId());
                 break;
             case OrderInfoConstants.OrderType.RESERVATION:
-                // TODO: 2020/4/1 处理预约订单，额外流程
-                updateOrderStatusToUsing(orderInfo.getId());
-//                创建预约订单
-//                OrderRedisEntity orderRedisEntity = createOrderRedisEntity(orderInfo, deviceInfo);
-//                orderRediskDao.setOrderInTime(orderRedisEntity);
+                // TODO: 2020/4/20 添加超时处理
+                addOrderTimeOutToRedis(orderInfo);
                 break;
             default:
                 throw new ResultRuntimeException(ResultUtils.dataParamsError("错误订单类型"));
@@ -106,53 +112,46 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     }
 
     /**
-     * 使用设备
+     * 开启房间
      *
-     * @param request 使用设备请求实体
-     * @return 处理通知
+     * @return 处理结果
      */
     @Override
-    public Result useOrder(WxUseOrderRequest request) {
-        // TODO: 2020/4/1 使用订单，两种公用
+    @Transactional
+    public Result openRoom(WxUseOrderRequest request) {
         String orderNo = request.getOrderNo();
-        String deviceCode = request.getDeviceCode();
         String openId = request.getOpenId();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        DeviceOrder deviceOrder = deviceOrderDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         if (!orderInfo.getCustomerOpenId().equals(openId)) {
-//            验证通过
+//            验证用户信息
             throw new ResultRuntimeException(ResultUtils.wxOrderUserInfoError());
+        } else if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME)) {
+//            订单超时
+            throw new ResultRuntimeException(ResultUtils.wxOrderOutTimeError());
         }
-        switch (orderInfo.getType()) {
-            case OrderInfoConstants.OrderType.COMMONS:
-//                openRoom(orderInfo);
-                updateOrderStatusToUsing(orderInfo.getId());
-                break;
-            case OrderInfoConstants.OrderType.RESERVATION:
-//                todo 检查超时
-//                boolean result = checkOrderInTime(orderInfo);
-                updateOrderStatusToUsing(orderInfo.getId());
-                break;
-            default:
-                throw new ResultRuntimeException(ResultUtils.dataParamsError());
-        }
-        return null;
+        orderRedisDao.deleteOrderInfo(orderInfo.getId());
+        updateOrderStatusToUsing(orderInfo, deviceOrder);
+        Map<String, Object> data = BeanUtil.beanToMap(request);
+        data.put("startTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        return ResultUtils.ok("房间开启成功", data);
     }
 
-    /**
-     * 更新订单状态为使用中
-     *
-     * @param orderId 订单ID
-     */
-    private void updateOrderStatusToUsing(Long orderId) {
-        orderInfoDao.updateStatusUsingByOrderId(orderId);
-        deviceOrderDao.updateStatusUsingByOrderInfoId(orderId);
+    private void addStartTime(OrderInfo orderInfo) {
+        if (orderInfo != null) {
+            orderInfo.setUseStartTime(new Date());
+        }
     }
 
     @Override
-    public Result endOrder(WxEndOrderRequest wxAddOrderRequest) {
+    @Transactional
+    public Result endOrder(WxUseOrderRequest request) {
         Date finalTime = new Date();
-        String orderNo = wxAddOrderRequest.getOrderNo();
+        String orderNo = request.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.END_USE)) {
+            throw new ResultRuntimeException(ResultUtils.wxOrderHasCompelete());
+        }
         OrderItem startingItem = orderItemDao.getStartingItemByOrderId(orderInfo.getId());
         Date endTime = startingItem.getEndTime();
         Double waterUse = startingItem.getWaterUse();
@@ -161,11 +160,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             addExtOrderItemPriceInfo(orderInfo, endTime, finalTime, deviceWaterUse - waterUse);
         }
         BigDecimal totalprice = calculationOrderFee(orderInfo);
-        orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
+        updateOrderToEndUseing(orderInfo, totalprice);
         HashMap<String, Object> map = new HashMap<>();
-        map.put("orderNo", orderNo);
+        BeanUtil.beanToMap(request);
         map.put("totalPrice", totalprice);
-        return ResultUtils.data(map);
+        map.put("endTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        return ResultUtils.ok("订单结束成功", map);
     }
 
     /**
@@ -179,17 +179,8 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = wxPayOrderInfo.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
-        WxPayUnifiedOrderResult wxPayUnifiedOrderResult = wxPayService.unifiedOrder(request);
-        if (!wxPayUnifiedOrderResult.getReturnCode().equals(SUCCESS)) {
-            throw new ResultRuntimeException(ResultUtils.wxError(wxPayUnifiedOrderResult.getReturnMsg()));
-        } else {
-            if (!wxPayUnifiedOrderResult.getResultCode().equals(SUCCESS)) {
-                throw new ResultRuntimeException(ResultUtils.wxError(wxPayUnifiedOrderResult.getErrCode()));
-            } else {
-                Map<String, Object> payEntity = createPayEntity(wxPayUnifiedOrderResult);
-                return ResultUtils.data(payEntity);
-            }
-        }
+        WxPayMpOrderResult order = wxPayService.createOrder(request);
+        return ResultUtils.data(order);
     }
 
     /**
@@ -208,6 +199,13 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             if (!wxPayOrderNotifyResult.getResultCode().equals(SUCCESS)) {
                 throw new ResultRuntimeException(ResultUtils.wxError(wxPayOrderNotifyResult.getReturnMsg()));
             } else {
+                String outTradeNo = wxPayOrderNotifyResult.getOutTradeNo();
+                String transactionId = wxPayOrderNotifyResult.getTransactionId();
+                OrderInfo orderInfo = orderInfoDao.getByOrderNo(outTradeNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.END_USE);
+                if (integers.contains(orderInfo.getStatus())) {
+                    orderInfoDao.updateStatusPaidByOrderNo(outTradeNo);
+                }
                 WxReturnInfo wxReturnInfo = new WxReturnInfo();
                 wxReturnInfo.setReturn_code(SUCCESS);
                 wxReturnInfo.setReturn_msg(SUCCESS);
@@ -221,11 +219,11 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * 分页查询
      *
      * @param condition 条件
-     * @return
+     * @return 分页结果
      */
     @Override
     public Result selectPage(OrderInfoQuery condition) {
-        WxPageResult<OrderInfo> pageResult = orderInfoDao.selectPageByConditionWeXin(condition);
+        IWxPageResult<OrderInfoDeviceVO> pageResult = orderInfoDao.selectOrderInfoDeviceVOPageByCondition(condition);
         return ResultUtils.data(pageResult);
     }
 
@@ -233,12 +231,50 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * 获取订单详情
      *
      * @param orderNo 订单号
-     * @return
+     * @return 订单详情
      */
     @Override
     public Result getOrderItemByOrderNo(String orderNo) {
+        Optional<OrderInfoDeviceVO> orderInfo = orderInfoDao.getByOrderNoDeviceVo(orderNo);
         List<OrderItem> orderItems = orderItemDao.selectListByOrderNo(orderNo);
-        return ResultUtils.data(orderItems);
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("info", orderInfo);
+        map.put("items", orderItems);
+        return ResultUtils.data(map);
+    }
+
+    /**
+     * @param orderNo 订单号
+     * @return
+     */
+    @Override
+    @Transactional
+    public Result cancelOrderByOrderNo(String orderNo) {
+        OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        if (orderInfo.getType().equals(OrderInfoConstants.OrderType.COMMONS)) {
+            if (!checkOrderCancel(orderInfo)) {
+                throw new ResultRuntimeException(ResultUtils.wxError("当前订单不能取消"));
+            }
+            orderInfoDao.updateStatusCancelByOrderNo(orderNo);
+        } else {
+            if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.USING)) {
+                throw new ResultRuntimeException(ResultUtils.wxError("当前订单不能取消"));
+            }
+            orderInfoDao.updateStatusCancelByOrderNo(orderNo);
+        }
+        return ResultUtils.ok();
+    }
+
+    /**
+     * 检查普通订单是否可取消
+     *
+     * @param orderInfo 订单信息
+     * @return 可以取消 true 不可取消 false
+     */
+    private boolean checkOrderCancel(OrderInfo orderInfo) {
+        Date date = new Date();
+        Date createTime = orderInfo.getCreateTime();
+        return DateUtil.between(createTime, date, DateUnit.MINUTE) <= CANCEL_TIME_OUT;
     }
 
     /**
@@ -338,52 +374,6 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     }
 
     /**
-     * 创建订单计时
-     *
-     * @param orderInfo  订单信息
-     * @param deviceInfo 设备信息
-     * @return 计时实体
-     */
-    private OrderRedisEntity createOrderRedisEntity(OrderInfo orderInfo, DeviceInfo deviceInfo) {
-        OrderRedisEntity entity = new OrderRedisEntity();
-        entity.setOrderId(orderInfo.getId());
-        entity.setOrderNo(orderInfo.getOrderNo());
-        entity.setDeviceId(deviceInfo.getId());
-        entity.setDeviceCode(deviceInfo.getCode());
-        entity.setCustomerId(orderInfo.getCustomerId());
-        entity.setOpenId(orderInfo.getCustomerOpenId());
-        entity.setTime(DEFAULT_TIME);
-        entity.setUnit(TimeUnit.MINUTES);
-        return entity;
-    }
-
-    /**
-     * 推送开启房间信息
-     *
-     * @param orderInfo 订单信息
-     */
-    private void openRoom(OrderInfo orderInfo) {
-        AmqpDeviceInfo amqpDeviceInfo = new AmqpDeviceInfo();
-        amqpDeviceInfo.setDeviceCode(orderInfo.getDeviceCode());
-        amqpDeviceInfo.setDeviceId(orderInfo.getDeviceId());
-        amqpDeviceInfo.setOrderNo(orderInfo.getOrderNo());
-        amqpDeviceInfo.setOrderId(orderInfo.getId());
-        amqpDeviceInfo.setOpenId(orderInfo.getCustomerOpenId());
-        deviceInfoSender.sendAndRec(amqpDeviceInfo);
-
-    }
-
-    /**
-     * 检查订单是否超时
-     *
-     * @param orderInfo 订单信息
-     * @return 超时true 未超时 false
-     */
-    private boolean checkOrderInTime(OrderInfo orderInfo) {
-        return orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME);
-    }
-
-    /**
      * 检查是否有额外费用
      *
      * @param finalTime      最终时间
@@ -393,7 +383,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @return 有 true 无 false
      */
     private boolean checkHasExtPriceInfo(Date finalTime, Date endTime, Double waterUse, Double deviceWaterUse) {
-        return endTime.before(finalTime) || waterUse.doubleValue() > deviceWaterUse.doubleValue();
+        return endTime.before(finalTime) || waterUse > deviceWaterUse;
     }
 
     /**
@@ -410,7 +400,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         orderItem.setDeviceId(orderInfo.getDeviceId());
         orderItem.setDeviceCode(orderInfo.getDeviceCode());
         orderItem.setDeviceType(orderInfo.getType());
-        orderItem.setPriceCode(priceInfo.getCode());
+        orderItem.setPriceCode(priceInfo.getPriceCode());
         orderItem.setPriceId(priceInfo.getId());
         orderItem.setPriceType(priceInfo.getType());
         orderItem.setTimePrice(priceInfo.getTimePrice());
@@ -435,8 +425,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     private BigDecimal calculationExtTotalFee(Double timeUse, Double timeInternal, BigDecimal timePrice, Double waterUse, Double waterInternal, BigDecimal waterPrice) {
         BigDecimal bigDecimal = new BigDecimal("0");
-        bigDecimal.add(new BigDecimal(timeUse / timeInternal).multiply(timePrice));
-        bigDecimal.add(new BigDecimal(waterUse / waterInternal).multiply(waterPrice));
+        BigDecimal time = new BigDecimal(timeUse / timeInternal).multiply(timePrice);
+        BigDecimal water = new BigDecimal(waterUse / waterInternal).multiply(waterPrice);
+        bigDecimal = bigDecimal.add(time).add(water);
         return bigDecimal;
     }
 
@@ -466,9 +457,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @return 用户量
      */
     private Double getDeviceWaterUse(String deviceCode) {
-        AmqpDeviceInfo amqpDeviceInfo = new AmqpDeviceInfo();
-        amqpDeviceInfo.setDeviceCode(deviceCode);
-        return deviceInfoSender.sendAndGetWaterUse(amqpDeviceInfo);
+        return 0d;
     }
 
     /**
@@ -479,7 +468,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private BigDecimal calculationOrderFee(OrderInfo orderInfo) {
         BigDecimal bigDecimal = new BigDecimal("0");
         List<OrderItem> orderItems = orderItemDao.selectListByOrderNo(orderInfo.getOrderNo());
-        bigDecimal.add(orderItems.stream().map(OrderItem::getTotalPrice).reduce(BigDecimal::add).orElse(new BigDecimal("0")));
+        bigDecimal = orderItems.stream().map(OrderItem::getTotalPrice).reduce(BigDecimal::add).orElse(new BigDecimal("0"));
         return bigDecimal;
     }
 
@@ -496,6 +485,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         request.setTotalFee(WxPayUnifiedOrderRequest.yuanToFen(orderInfo.getTotalPrice().toPlainString()));
         request.setOpenid(orderInfo.getCustomerOpenId());
         request.setTradeType(WxPayConstants.TradeType.JSAPI);
+        request.setNotifyUrl(environment.getProperty("wx.pay.url"));
         return request;
     }
 
@@ -522,5 +512,52 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         return treeMap;
     }
 
+    /**
+     * 预约订单添加倒计时
+     *
+     * @param orderInfo 订单信息
+     */
+    private void addOrderTimeOutToRedis(OrderInfo orderInfo) {
+        log.warn("预约订单订单添加倒计时");
+        OrderTimeOutRedisEntity entity = new OrderTimeOutRedisEntity();
+        entity.setOrderId(orderInfo.getId());
+        entity.setOrderNo(orderInfo.getOrderNo());
+        entity.setDeviceId(orderInfo.getDeviceId());
+        entity.setDeviceCode(orderInfo.getDeviceCode());
+        entity.setCustomerId(orderInfo.getCustomerId());
+        entity.setOpenId(orderInfo.getCustomerOpenId());
+        entity.setTime(DEFAULT_TIME);
+        entity.setUnit(TimeUnit.MINUTES);
+        orderRedisDao.setOrderTimeOut(entity);
+    }
 
+    /**
+     * 普通订单开启房间
+     *
+     * @param orderId 订单ID
+     */
+    @Transactional
+    void openRoomCommons(Long orderId) {
+        log.warn("普通订单开启房间");
+        OrderInfo orderInfo = orderInfoDao.getById(orderId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        DeviceOrder deviceOrder = deviceOrderDao.getByOrderId(orderId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        updateOrderStatusToUsing(orderInfo, deviceOrder);
+    }
+
+    private void updateOrderStatusToUsing(OrderInfo orderInfo, DeviceOrder deviceOrder) {
+        Long deviceId = orderInfo.getDeviceId();
+        DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
+        aliyunIotPublishUtils.open(deviceInfo.getProductKey(), deviceInfo.getDeviceName());
+        orderInfoDao.updateStatusUsingById(orderInfo.getId());
+        orderInfoDao.updateUseStartTime(new Date(), orderInfo.getId());
+        deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
+        deviceInfoDao.updateStatusToUsing(orderInfo.getDeviceId());
+
+    }
+
+    private void updateOrderToEndUseing(OrderInfo orderInfo, BigDecimal totalprice) {
+        orderInfoDao.updateEndTimeByOrderId(new Date(), orderInfo.getId());
+        orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
+        orderInfoDao.updateStatusEndUseById(orderInfo.getId());
+    }
 }

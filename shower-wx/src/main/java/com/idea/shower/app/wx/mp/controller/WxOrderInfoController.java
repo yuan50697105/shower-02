@@ -3,13 +3,9 @@ package com.idea.shower.app.wx.mp.controller;
 import cn.hutool.core.io.IoUtil;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
-import com.idea.shower.app.wx.mp.pojo.WxEndOrderRequest;
-import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
-import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
+import com.idea.shower.app.wx.mp.pojo.*;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.web.webmvc.controller.ResultController;
-import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
@@ -30,16 +26,16 @@ import java.nio.charset.StandardCharsets;
 @RequestMapping("wx/order")
 @AllArgsConstructor
 public class WxOrderInfoController extends ResultController {
-    private WxOrderInfoService wxOrderInfoService;
+    private final WxOrderInfoService wxOrderInfoService;
 
     @PostMapping("data")
-    public Result data(@RequestBody OrderInfoQuery condition) {
+    public Result data(@RequestBody(required = false) OrderInfoQuery condition) {
         return wxOrderInfoService.selectPage(condition);
     }
 
     @GetMapping("item")
-    public Result orderItem(String orderId) {
-        return wxOrderInfoService.getOrderItemByOrderNo(orderId);
+    public Result orderItem(String orderNo) {
+        return wxOrderInfoService.getOrderItemByOrderNo(orderNo);
     }
 
 
@@ -48,8 +44,13 @@ public class WxOrderInfoController extends ResultController {
         return wxOrderInfoService.addOrder(wxAddOrderRequest);
     }
 
+    @PostMapping("open")
+    public Result open(@RequestBody WxUseOrderRequest request){
+        return wxOrderInfoService.openRoom(request);
+    }
+
     @PostMapping("end")
-    public Result endOrder(@RequestBody WxEndOrderRequest wxEndOrderRequest) {
+    public Result endOrder(@RequestBody WxUseOrderRequest wxEndOrderRequest) {
         return wxOrderInfoService.endOrder(wxEndOrderRequest);
     }
 
@@ -69,5 +70,10 @@ public class WxOrderInfoController extends ResultController {
         ServletInputStream inputStream = request.getInputStream();
         String xml = IoUtil.read(inputStream, StandardCharsets.UTF_8);
         return wxOrderInfoService.notify(xml);
+    }
+
+    @PostMapping("cancel")
+    public Result cancel(@RequestBody String orderNo) {
+        return wxOrderInfoService.cancelOrderByOrderNo(orderNo);
     }
 }

@@ -1,6 +1,7 @@
 group = 'com.idea.shower.app.db'
 dependencies {
     compile project(':shower-db-mybatis')
+    compile project(':shower-commons')
 }
 
 bootJar {

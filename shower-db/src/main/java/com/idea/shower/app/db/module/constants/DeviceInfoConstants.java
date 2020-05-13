@@ -26,8 +26,8 @@ public class DeviceInfoConstants {
      * 设备运行状态
      */
     public static class DeviceRunningStatus {
-        public static final int RUNNING = 0;
-        public static final int STOP = 1;
+        public static final int AVALI = 0;
+        public static final int RUNNING = 1;
         public static final int ALL_STATUS = 2;
     }
 

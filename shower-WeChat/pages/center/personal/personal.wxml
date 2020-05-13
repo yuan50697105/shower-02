@@ -9,7 +9,7 @@
 <view class='content'>
      <view class='order'>
           <view class='desc' bindtap='AllOrder'>
-               <view><image src='/static/image/order/order1.png' style='width:22px;height:25px;'></image></view>
+               <view><image src='/static/image/order/orderAll.png' style='width:22px;height:25px;'></image></view>
                <view>全部订单</view>
           </view>
           <view class='desc'bindtap='WaitPayOrder'>
@@ -27,7 +27,7 @@
      </view>
      <view class='clear'></view>
      <view class='item'>
-          <view class='icon'><image src='/static/image/icon/wdcf.jpg' style='width:22px;height:21px;'></image></view>
+          <view class='icon'><image src='/static/image/icon/balance.png' style='width:22px;height:21px;'></image></view>
           <view class='itemName'>
                <view>余额</view>
                <view class='remark'>￥0</view>
@@ -38,7 +38,7 @@
      </view>
      <view class='line'></view>
      <view class='item'>
-          <view class='icon'><image src='/static/image/icon/more.png' style='width:22px;height:21px;'></image></view>
+          <view class='icon'><image src='/static/image/icon/together.png' style='width:22px;height:21px;'></image></view>
           <view class='itemName'>
                <view>邀请好友</view>
           </view>
@@ -48,7 +48,7 @@
      </view>
      <view class='hr'></view>
      <view class='item'>
-          <view class='icon'><image src='/static/image/icon/kf.png' style='width:22px;height:21px;'></image></view>
+          <view class='icon'><image src='/static/image/icon/service.png' style='width:22px;height:21px;'></image></view>
           <view class='itemName'>
                <view>客服</view>
           </view>
@@ -59,7 +59,7 @@
      </view>
      <view class='hr'></view>
      <view class='item' bindtap='opinion'>
-          <view class='icon'><image src='/static/image/icon/fankui.png' style='width:22px;height:21px;'></image></view>
+          <view class='icon'><image src='/static/image/icon/feedback.png' style='width:22px;height:21px;'></image></view>
           <view class='itemName'>
                <view>反馈</view>
           </view>
@@ -69,7 +69,7 @@
      </view>
      <view class='hr'></view>
      <view class='item' bindtap='aboutUs'>
-          <view class='icon'><image src='/static/image/icon/own.png' style='width:22px;height:21px;'></image></view>
+          <view class='icon'><image src='/static/image/icon/aboutUs.png' style='width:22px;height:21px;'></image></view>
           <view class='itemName'>
                <view>关于我们</view>
           </view>

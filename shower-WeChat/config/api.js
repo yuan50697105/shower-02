@@ -1,6 +1,6 @@
 // 以下是业务服务器API地址
-// var WxApiRoot = 'http://123.56.78.153:8002/wx/';
-var WxApiRoot = 'http://127.0.0.1:8002/wx/';
+var WxApiRoot = 'http://123.56.78.153:8002/wx/';
+// var WxApiRoot = 'http://127.0.0.1:8002/wx/';
 module.exports = {
    //微信登录
   AuthLoginByWeixin: WxApiRoot + 'customer/login',
@@ -8,5 +8,8 @@ module.exports = {
   DeviceInfoList: WxApiRoot + 'device/deviceInfoList',
   AddOrder: WxApiRoot + 'order/add',
   OrderList: WxApiRoot + 'order/data',
+  StartOrder: WxApiRoot + 'order/open',
   EndOrder: WxApiRoot + 'order/end',
+  OrderDetail: WxApiRoot + 'order/item',
+  OrderPay: WxApiRoot + 'order/pay',
 };

@@ -1,0 +1,202 @@
+.container {
+  margin-bottom: 100rpx;
+}
+
+.goodsimgs {
+  width: 100%;
+  height: 450rpx;
+}
+
+.goodsimgs image {
+  width: 750rpx;
+  height: 450rpx;
+}
+
+.commodity_screen {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+  color: #fff;
+}
+
+.commodity_attr_box {
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  background: #fff;
+  padding-top: 20rpx;
+}
+
+/* .service-policy {
+  width: 750rpx;
+  height: 73rpx;
+  background: #f4f4f4;
+  padding: 0 31.25rpx;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.service-policy .item {
+  background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/servicePolicyRed-518d32d74b.png) 0 center no-repeat;
+  background-size: 10rpx;
+  padding-left: 15rpx;
+  display: flex;
+  align-items: center;
+  font-size: 25rpx;
+  color: #666;
+} */
+
+.goods-info {
+  width: 750rpx;
+  height: auto;
+  overflow: hidden;
+  background: #fff;
+}
+
+.goods-info .c {
+  display: block;
+  width: 718.75rpx;
+  height: auto;
+  margin-left: 31.25rpx;
+  padding: 20rpx 31.25rpx 38rpx 0;
+  border-bottom: 1px solid #f4f4f4;
+}
+
+.goods-info .c text {
+  display: block;
+  width: 687.5rpx;
+  text-align: left;
+}
+
+.goods_name {
+  /* border: 1px solid black; */
+  height: 86rpx;
+  line-height: 86rpx;
+  /* border-bottom: 1px solid #fafafa; */
+  padding-top: 20rpx;
+  background-color: white
+}
+
+.goods_name_left {
+  /* border: 1px solid #757575; */
+  float: left;
+  height: 86rpx;
+  font-weight: 550;
+  line-height: 86rpx;
+  margin-left: 35rpx;
+  font-size: 36rpx;
+  letter-spacing: 1rpx;
+}
+
+.goods_name_right {
+  float: right;
+  font-weight: 550;
+  margin-top: 28rpx;
+  width: 140rpx;
+  height: 80rpx;
+  line-height: 82rpx;
+  padding: 0;
+  margin: 0;
+  margin-right: 0rpx;
+  text-align: center;
+  font-size: 25rpx;
+  color: #f4f4f4;
+  border-top-left-radius: 50rpx;
+  border-bottom-left-radius: 50rpx;
+  border-top-right-radius: 0rpx;
+  border-bottom-right-radius: 0rpx;
+  letter-spacing: 3rpx;
+  /* background-image: linear-gradient(to right, #ff7701 100%); */
+  background-image: linear-gradient(to right, #9a9ba1 0%, #9a9ba1 100%);
+}
+
+.goods-info .desc {
+  height: auto;
+  margin-bottom: 20rpx;
+  font-size: 29rpx;
+  line-height: 45rpx;
+  color: #999;
+}
+
+.goods-info .price {
+  height: 70rpx;
+  align-content: center;
+}
+
+.goods-info .build {
+  float: left;
+  padding-left: 0rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+
+.goods-info .retailPrice {
+  padding-left: 5%;
+  font-size: 30rpx;
+  color: #a78845;
+}
+
+.goods-info .brand {
+  margin-top: 23rpx;
+  min-height: 40rpx;
+  text-align: left;
+}
+
+.goods-info .brand text {
+  display: inline-block;
+  width: auto;
+  padding: 2px 30rpx 2px 10.5rpx;
+  line-height: 35.5rpx;
+  border: 1px solid #f48f18;
+  font-size: 25rpx;
+  color: #f48f18;
+  border-radius: 4px;
+  background: url(http://nos.netease.com/mailpub/hxm/yanxuan-wap/p/20150730/style/img/icon-normal/detailTagArrow-18bee52dab.png) 95% center no-repeat;
+  background-size: 10.75rpx 18.75rpx;
+}
+
+
+.section-nav {
+  width: 750rpx;
+  height: 88rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.section-nav .t {
+  border-radius: 30rpx;
+  text-align: center;
+  background: #b4282d;
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 29rpx;
+  color: #fff;
+  margin-right: 10rpx;
+}
+.section-nav .code {
+  text-align: center;
+  width: 200rpx;
+  height: 70rpx;
+  line-height: 70rpx;
+  font-size: 35rpx;
+  color: #b4282d;
+  font-style: italic;
+  margin-right: 50%;
+}
+
+@import "../../lib/wxParse/wxParse.wxss";

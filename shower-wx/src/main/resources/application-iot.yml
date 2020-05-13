@@ -1,0 +1,11 @@
+aliyun:
+  access-key: LTAI4G1NSa1oinSKH6xwBcgm
+  access-secret: sMWMGOTnC0Pebux3tW3BSwUN4Cb6IY
+  region-id: cn-shanghai
+
+#  final String productKey = "a12mkmuZtyi";
+    #        final String deviceName = "test_1";
+    #        final String deviceSecret = "BQ4k3KQXt2ceNY032zxJ2hXjc6YBtvOX";
+    #        String regionId = "cn-shanghai";
+  #        String accessKey = "LTAI4G1NSa1oinSKH6xwBcgm";
+  #        String accessSecret = "sMWMGOTnC0Pebux3tW3BSwUN4Cb6IY";

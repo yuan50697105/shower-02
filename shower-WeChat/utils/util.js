@@ -85,9 +85,18 @@ function showErrorToast(msg) {
   })
 }
 
+function showSuccessToast(msg) {
+  wx.showToast({
+    title: msg,
+    icon: 'success',
+    duration: 2000
+  })
+}
+
 module.exports = {
   formatTime,
   request,
   redirect,
-  showErrorToast
+  showErrorToast,
+  showSuccessToast
 }

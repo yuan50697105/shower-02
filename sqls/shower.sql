@@ -1,6 +1,6 @@
-create schema if not exists shower collate utf8mb4_general_ci;
+create schema shower collate utf8mb4_general_ci;
 use shower;
-create table if not exists admin_permission
+create table admin_permission
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -12,7 +12,7 @@ create table if not exists admin_permission
 )
     comment '管理员权限' charset=utf8mb4;
 
-create table if not exists admin_role
+create table admin_role
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -24,7 +24,7 @@ create table if not exists admin_role
 )
     comment '管理员角色' charset=utf8mb4;
 
-create table if not exists admin_user
+create table admin_user
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -39,7 +39,7 @@ create table if not exists admin_user
 )
     comment '管理员用户' charset=utf8mb4;
 
-create table if not exists admin_user_role
+create table admin_user_role
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -52,7 +52,7 @@ create table if not exists admin_user_role
 )
     comment '管理员用户角色关联' charset=utf8mb4;
 
-create table if not exists area_building
+create table area_building
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -66,7 +66,7 @@ create table if not exists area_building
 )
     comment '楼宇信息' charset=utf8mb4;
 
-create table if not exists area_info
+create table area_info
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -79,7 +79,7 @@ create table if not exists area_info
 )
     comment '区域信息' charset=utf8mb4;
 
-create table if not exists area_tower
+create table area_tower
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -93,7 +93,7 @@ create table if not exists area_tower
 )
     comment '区域楼宇信息' charset=utf8mb4;
 
-create table if not exists customer_info
+create table customer_info
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -109,7 +109,7 @@ create table if not exists customer_info
 )
     comment 'customer_info' charset=utf8mb4;
 
-create table if not exists device_info
+create table device_info
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -118,6 +118,8 @@ create table if not exists device_info
     create_user varchar(50) null comment 'createUser',
     update_user varchar(50) null comment 'updateUser',
     code varchar(50) null comment '设备编号',
+    product_key varchar(50) null comment '产品编号',
+    device_name varchar(50) null comment '设备名称',
     type int null comment '设备类型',
     price_code varchar(50) null comment '定价编号',
     enabled int null comment '启用状态(0:未启用；1已启用)',
@@ -127,12 +129,11 @@ create table if not exists device_info
     area_name varchar(50) null comment '区域名称',
     building_id bigint(15) null comment '楼宇ID',
     building_name varchar(50) null comment '楼宇名称',
-    picture varchar(255) null comment '设备图片
-'
+    picture varchar(50) null comment '设备图片'
 )
-    comment '设备信息' charset=utf8mb4;
+    comment 'device_info' charset=utf8mb4;
 
-create table if not exists device_order
+create table device_order
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -156,7 +157,7 @@ create table if not exists device_order
 )
     comment 'device_order' charset=utf8mb4;
 
-create table if not exists device_order_info
+create table device_order_info
 (
     id bigint(15) not null comment 'id'
         primary key,
@@ -173,7 +174,7 @@ create table if not exists device_order_info
 )
     comment 'device_order_info' charset=utf8mb4;
 
-create table if not exists device_record
+create table device_record
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -188,7 +189,7 @@ create table if not exists device_record
 )
     comment 'device_record' charset=utf8mb4;
 
-create table if not exists feedback
+create table feedback
 (
     id bigint(15) unsigned auto_increment comment 'id'
         primary key,
@@ -206,7 +207,7 @@ create table if not exists feedback
 )
     comment '用户反馈';
 
-create table if not exists member_info
+create table member_info
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -223,7 +224,7 @@ create table if not exists member_info
 )
     comment 'member_info' charset=utf8mb4;
 
-create table if not exists order_info
+create table order_info
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -245,7 +246,7 @@ create table if not exists order_info
 )
     comment 'order_info' charset=utf8mb4;
 
-create table if not exists order_item
+create table order_item
 (
     id bigint(15) auto_increment comment 'id'
         primary key,
@@ -275,7 +276,7 @@ create table if not exists order_item
 )
     comment 'order_item' charset=utf8mb4;
 
-create table if not exists price_info
+create table price_info
 (
     id bigint(15) auto_increment comment 'id'
         primary key,

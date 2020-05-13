@@ -1,6 +1,6 @@
 .page-section-gap{
   box-sizing: border-box;
-  padding: 0 30rpx;
+  padding: 0 0rpx;
 }
 
 .page-body-button {

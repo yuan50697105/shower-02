@@ -1,0 +1,10 @@
+aliyun:
+  iot:
+    accessKey: LTAI4FkQ95YXibFPqXNYEfAS
+    accessSecret: CljbqsAeC3p6lROXLNoUeWBJkRO66D
+    regionId: cn-shanghai
+    productKey: a12mkmuZtyi
+
+spring:
+  profiles:
+    active: dbconfig,amqp,redis,mvc,commons

@@ -52,8 +52,8 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/order/order",
-					"pathName": "pages/order/order",
+					"name": "pages/center/order/order",
+					"pathName": "pages/center/order/order",
 					"query": "",
 					"scene": null
 				},
@@ -61,6 +61,20 @@
 					"id": -1,
 					"name": "pages/center/opinion/opinion",
 					"pathName": "pages/center/opinion/opinion",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/center/orderDetail/orderDetail",
+					"pathName": "pages/center/orderDetail/orderDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "map",
+					"pathName": "pages/map/map",
 					"scene": null
 				}
 			]

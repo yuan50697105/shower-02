@@ -1,18 +1,24 @@
 .amountBg{
-     height: 100px;
-     background-color: #3f9337;
+     height: 200px;
+     /* background-color: #64c5fd; */
+     background-image: url("http://123.56.78.153:8002/img/01.jpg");
      display: flex;
-     flex-direction: row;
-     align-items: center;
+     flex-direction: column;
+     align-items: left;
+     background-repeat:no-repeat;
+     background-size:100% 100%;
+     -moz-background-size:100% 100%;
 }
 .img{
      margin-left: 20px;
      width: 15%;
+     margin-top: 40rpx;
 }
 .account{
      width: 70%;
      color: #ffffff;
      margin-left: 10px;
+     margin-top: 20rpx;
 }
 .nav{
      width: 15px;
@@ -32,7 +38,7 @@
      text-align: center;
      align-items: center;
      position: absolute;
-     top: 90px;
+     top: 183px;
      margin-left: 3%;
 }
 .desc{
@@ -75,7 +81,7 @@
      text-align: right;
 }
 .opr{
-     color: #5495E6;
+     color: #64c5fd;
      font-size: 13px;
      font-weight: bold;
      margin-right: 10px;

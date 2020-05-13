@@ -72,7 +72,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    let that = this;
+    that.setData({
+      //先清空列表及分页信息
+      dataList: [],
+      page: 1,
+      totalPages: 1
+    })
+    //获取设备列表信息
+    this.deviceList();
   },
 
   /**
@@ -103,7 +111,7 @@ Page({
       totalPages: 1
     })
     //调用查询设备列表方法
-    that.deviceList();
+    this.deviceList();
   },
   //选择机器使用状态
   statusSelectChange: function (e) {
@@ -144,10 +152,12 @@ Page({
     }, 'POST').then(function (res) {
       console.log(res)
       if (res.code === 200) {
-        that.setData({
-          dataList: that.data.dataList.concat(res.data.data),
-          totalPages: res.data.totalPages
-        });
+        if (res.data.data != undefined){
+          that.setData({
+            dataList: that.data.dataList.concat(res.data.data),
+            totalPages: res.data.totalPages
+          });
+        }
       }
     });
   },
@@ -195,6 +205,7 @@ Page({
       wx.navigateTo({
         url: "/pages/auth/login/login"
       });
+      return;
     }
     let userInfo = wx.getStorageSync('userInfo');
     var deviceCode = e.target.dataset.code;
@@ -207,10 +218,17 @@ Page({
     }, 'POST').then(function (res) {
       console.log(res)
       if (res.code === 200) {
-        
+        util.showSuccessToast("下单成功")
       }else{
         util.showErrorToast(res.message)
       }
+    });
+  },
+  //跳转进入设备详情页
+  deviceDetail: function (event){
+    var id = event.currentTarget.dataset.id;
+    wx.navigateTo({
+      url: "/pages/deviceDetail/deviceDetail?id=" + id
     });
   }
 })

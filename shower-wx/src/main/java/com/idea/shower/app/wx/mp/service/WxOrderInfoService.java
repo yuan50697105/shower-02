@@ -3,7 +3,10 @@ package com.idea.shower.app.wx.mp.service;
 
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.wx.mp.pojo.*;
+import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
+import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
+import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
+import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.web.webmvc.pojo.Result;
 
 /**
@@ -27,14 +30,15 @@ public interface WxOrderInfoService {
      * @param wxAddOrderRequest 订单信息封装
      * @return 处理结果
      */
-    Result endOrder(WxEndOrderRequest wxAddOrderRequest);
+    Result endOrder(WxUseOrderRequest wxAddOrderRequest);
 
     /**
-     * 预约使用订单
-     * @param request
-     * @return
+     * 预约订单开启房间
+     *
+     * @param orderNo 订单号
+     * @return 处理结果
      */
-    Result useOrder(WxUseOrderRequest request);
+    Result openRoom(WxUseOrderRequest orderNo);
 
     /**
      * 微信统一下单
@@ -67,4 +71,11 @@ public interface WxOrderInfoService {
      * @return 订单详情
      */
     Result getOrderItemByOrderNo(String orderId);
+
+    /**
+     * 取消订单
+     * @param orderNo 订单号
+     * @return 处理结果
+     */
+    Result cancelOrderByOrderNo(String orderNo);
 }

@@ -31,14 +31,19 @@ Page({
       page: that.data.page,
       limit: that.data.limit
     },"POST").then(function(res) {
-      console.log(res.data);
-      that.setData({
-        orderList: that.data.orderList.concat(res.data.list),
-        totalPages: res.data.total
-      });
+      if (res.code === 200) {
+        if (res.data.list != undefined){
+          that.setData({
+            orderList: that.data.orderList.concat(res.data.list),
+            totalPages: res.data.total
+          });
+        }
+      }
     });
   },
+  //监听下滑
   onReachBottom() {
+    console.log(this.data.totalPages + "." + this.data.page)
     if (this.data.totalPages > this.data.page) {
       this.setData({
         page: this.data.page + 1
@@ -80,29 +85,79 @@ Page({
   onUnload: function() {
     // 页面关闭
   },
-  lookChargedCode(event) {
-    const code = event.currentTarget.dataset.code;
-    const brand = event.currentTarget.dataset.brand;
-    user.requestCheckSellSuccessIdsMsg().then((value) => {
-      console.log(value);
-    }).catch(err => {
-      console.log(err);
-    }).finally(() => {
-      wx.navigateTo({
-        url: "/pages/ucenter/code/code?code=" + code + "&brand=" + brand
-      });
+  //订单开始
+  startOrder(event) {
+    let that = this;
+    const orderNo = event.currentTarget.dataset.orderno;
+    const device = event.currentTarget.dataset.device;
+    let userInfo = wx.getStorageSync('userInfo');
+    util.request(api.StartOrder, {
+      orderNo: orderNo,
+      openId: userInfo.openId,
+      deviceCode: device
+    }, "POST").then(function (res) {
+      if (res.code === 200) {
+        that.getOrderList();
+        wx.showToast({
+          title: '开始成功',
+          icon: 'success',
+          duration: 2000
+        });
+      }
+    });
+
+  },
+   //订单结束
+  endOrder(event) {
+    let that = this;
+    const orderNo = event.currentTarget.dataset.orderno;
+    const device = event.currentTarget.dataset.device;
+    let userInfo = wx.getStorageSync('userInfo');
+    console.log(orderNo)
+    util.request(api.EndOrder, {
+      orderNo: orderNo,
+      openId: userInfo.openId,
+      deviceCode: device
+    }, "POST").then(function (res) {
+      if (res.code === 200) {
+        that.getOrderList();
+        wx.showToast({
+          title: '结束成功',
+          icon: 'success',
+          duration: 2000
+        });
+      }
     });
     
   },
-  lookDetail(event){
-    var id = event.currentTarget.dataset.id;
+  //订单详情
+  lookDetail(event) {
+    var no = event.currentTarget.dataset.no;
     wx.navigateTo({
-      url: '/pages/ucenter/orderDetail/orderDetail?id='+id,
+      url: '/pages/center/orderDetail/orderDetail?id=' + no,
     });
   },
-  goKabaw(){
-    wx.navigateTo({
-      url: '/pages/ucenter/kabaw/kabaw',
-    })
+  //付款
+  goPay(event){
+    let that = this;
+    const orderNo = event.currentTarget.dataset.orderno;
+    const price = event.currentTarget.dataset.price;
+    util.request(api.OrderPay, {
+      orderNo: orderNo,
+      totalPrice: price
+    }, "POST").then(function (res) {
+      if (res.code === 200) {
+        that.getOrderList();
+        wx.showToast({
+          title: '结束成功',
+          icon: 'success',
+          duration: 2000
+        });
+      }
+    });
+  },
+  //下拉监控
+  onPullDownRefresh: function () {
+    this.getOrderList();
   }
 })

@@ -1,6 +1,8 @@
 package com.idea.shower.app.db.module.dao.impl;
 
 
+import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
@@ -9,13 +11,19 @@ import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import com.idea.shower.app.db.module.mapper.OrderInfoMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
 import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.db.core.pojo.WxPageResult;
+import com.idea.shower.app.db.module.pojo.vo.OrderInfoDeviceVO;
+import com.idea.shower.commons.utils.ResourceFileUtils;
+import com.idea.shower.db.core.pojo.IWxPageResult;
 import com.idea.shower.db.mybaits.pojo.PageResult;
+import com.idea.shower.db.mybaits.pojo.WxPageResult;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,6 +35,10 @@ import java.util.Optional;
 @Component
 @AllArgsConstructor
 public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> implements OrderInfoDao {
+    @Autowired
+    private final OrderInfoMapper orderInfoMapper;
+    private final ResourceFileUtils resourceFileUtils;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void save(OrderInfo orderInfo) {
@@ -41,7 +53,7 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateStatusPaidByOrderNo(String outTradeNo) {
-        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.PAID, outTradeNo);
+        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_COMPLETED, outTradeNo);
     }
 
     @Override
@@ -50,12 +62,11 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
         return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
-
     @Override
-    public WxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
+    public IWxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
         PageInfo<OrderInfo> pageInfo = new PageInfo<>(baseMapper().selectByConditionWeXin(query));
-        return wxPageResult(pageInfo);
+        return new WxPageResult(pageInfo);
     }
 
     @Override
@@ -70,7 +81,52 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     }
 
     @Override
-    public void updateStatusUsingByOrderId(Long orderId) {
-        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, orderId);
+    public IWxPageResult<OrderInfoDeviceVO> selectOrderInfoDeviceVOPageByCondition(OrderInfoQuery query) {
+        PageHelper.startPage(query.getPage(), query.getLimit());
+        List<OrderInfoDeviceVO> orderInfoDeviceVOS = orderInfoMapper.selectOrderInfoDeviceVOListByCondition(query);
+        for (OrderInfoDeviceVO orderInfoDeviceVO : orderInfoDeviceVOS) {
+            orderInfoDeviceVO.setPicture(resourceFileUtils.filePath(StrUtil.isNotBlank(orderInfoDeviceVO.getPicture()) ? orderInfoDeviceVO.getPicture() : ""));
+        }
+        return new WxPageResult<>(new PageInfo<>(orderInfoDeviceVOS));
+    }
+
+    @Override
+    public void updateStatusUsingById(Long id) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
+    }
+
+    @Override
+    public void updateStatusTimeOutById(Long id) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, id);
+    }
+
+    @Override
+    public void updateStatusEndUseById(Long id) {
+        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.END_USE, id);
+    }
+
+    @Override
+    public Optional<OrderInfoDeviceVO> getByOrderNoDeviceVo(String orderNo) {
+        OrderInfoDeviceVO orderInfoDeviceVO = baseMapper().selectOrderInfoDeviceVOListByOrderNo(orderNo);
+        if (ObjectUtil.isNotEmpty(orderInfoDeviceVO)){
+            orderInfoDeviceVO.setPicture(resourceFileUtils.filePath(orderInfoDeviceVO.getPicture()));
+        }
+        return Optional.ofNullable(orderInfoDeviceVO);
+    }
+
+    @Override
+    public void updateEndTimeByOrderId(Date date, Long id) {
+        baseMapper().updateUseEndTimeById(date, id);
+    }
+
+
+    @Override
+    public void updateUseStartTime(Date date, Long id) {
+        baseMapper().updateUseStartTimeById(date, id);
+    }
+
+    @Override
+    public void updateStatusCancelByOrderNo(String orderNo) {
+        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_CANCEL, orderNo);
     }
 }

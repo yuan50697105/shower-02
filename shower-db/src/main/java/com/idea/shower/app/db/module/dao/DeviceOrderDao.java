@@ -4,6 +4,8 @@ package com.idea.shower.app.db.module.dao;
 import com.idea.shower.app.db.commons.dao.BaseDao;
 import com.idea.shower.app.db.module.pojo.DeviceOrder;
 
+import java.util.Optional;
+
 /**
  * @program: my-shower-01
  * @description:
@@ -13,9 +15,11 @@ import com.idea.shower.app.db.module.pojo.DeviceOrder;
 public interface DeviceOrderDao extends BaseDao<DeviceOrder> {
     void save(DeviceOrder deviceOrder);
 
-    void updateStatusDeviceOrderPaid(String orderId);
+    Optional<DeviceOrder> getByOrderNo(String orderNo);
 
-    void updateStatusDeviceOrderEndUse(Long orderId);
+    Optional<DeviceOrder> getByOrderId(Long orderId);
 
-    void updateStatusUsingByOrderInfoId(Long orderId);
+    void updateStatusUsingById(Long id);
+
+    void updateStatusTimeOutByOrderId(Long orderId);
 }

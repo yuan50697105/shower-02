@@ -16,7 +16,7 @@ import java.util.concurrent.TimeUnit;
  * @author: yuane
  * @create: 2020-03-28 16:49
  */
-public class BaseRedisDaoImpl<T, KEY> implements BaseRedisDao<T, KEY> {
+public class BaseRedisDaoImpl<T> implements BaseRedisDao<T> {
     @Autowired
     private RedisKeyValueTemplate redisKeyValueTemplate;
     @Autowired
@@ -36,7 +36,7 @@ public class BaseRedisDaoImpl<T, KEY> implements BaseRedisDao<T, KEY> {
     }
 
     @Override
-    public Optional<T> find(KEY key) {
+    public Optional<T> find(String key) {
         return redisKeyValueTemplate.findById(key, type);
     }
 
@@ -53,5 +53,10 @@ public class BaseRedisDaoImpl<T, KEY> implements BaseRedisDao<T, KEY> {
     @Override
     public T getValue(String key) {
         return JSONUtil.toBean(stringRedisTemplate.opsForValue().get(key), type);
+    }
+
+    @Override
+    public void del(String key){
+        stringRedisTemplate.delete(key);
     }
 }

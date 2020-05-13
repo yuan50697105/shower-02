@@ -1,0 +1,100 @@
+<view class="container">
+  <view class="order-info">
+    <view class="item-a">下单时间：{{orderInfo.createTime}}</view>
+    <view class="item-b">订单编号：{{orderInfo.orderNo}}</view>
+    <view class="item-c">
+      <view class="l">实付：
+        <text class="cost">￥{{orderInfo.totalPrice}}</text>
+      </view>
+      <view class="r">
+        <view class="btn active" bindtap="cancelOrder" >取消订单</view>
+        <view class="btn active" catchtap='showInputLayer'  wx:if="{{isUseCard}}" wx:if="{{handleOption.pay&&isUseCard}}">余额支付</view>
+        <view class="btn active" bindtap="payOrder" wx:if="{{handleOption.pay}}">微信支付</view>
+        <!-- <view class="btn active" bindtap="confirmOrder" wx:if="{{handleOption.confirm}}">确认收货</view>
+        <view class="btn active" bindtap="deleteOrder" wx:if="{{handleOption.delete}}">删除订单</view> -->
+        <!-- <view class="btn active" bindtap="refundOrder" wx:if="{{handleOption.refund}}">申请退款</view> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="order-goods">
+    <view class="h">
+      <view class="label">浴屋信息</view>
+      <view class="status">{{orderInfo.deviceCode}}</view>
+    </view>
+    <view class="goods">
+      <view class="item" >
+        <view class="img">
+          <image src="http://699pic.com/tupian-500431882.html"></image>
+        </view>
+        <view class="info">
+          <view class="t">
+            <text class="name">结束时间:</text>
+            <text class="number">{{orderInfo.endTime}}</text>
+          </view>
+          <view class="attr">{{orderInfo.specifications}}</view>
+          <view class="price">￥{{orderInfo.priceCode}}/min</view>
+          <view class="charged" >待消费</view>
+          <view class="charged" wx:if="{{orderInfo.charged==true}}" >已消费完成</view>
+        </view> 
+      </view>
+    </view>
+
+    <view class="order-bottom">
+      <view class="address" >
+        <!-- <view class="t">
+          <text class="name">{{orderInfo.consignee}}</text>
+          <text class="mobile">{{orderInfo.mobile}}</text>
+        </view> -->
+        <view class="b">{{orderInfo.address}}ddd</view>
+      </view>
+      <view class="total">
+        <view class="t">
+          <text class="label">订单合计：</text>
+          <text class="txt">￥{{orderInfo.goodsPrice}}</text>
+        </view>
+        <view class="t">
+          <text class="label">优惠：</text>
+          <text class="txt">￥-{{orderInfo.couponPrice}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 密码输入框 -->
+  <view wx:if='{{showPayPwdInput}}'>
+      <view class='bg_layer'></view>
+      <view class='input_main'>
+          <view class='input_title'>
+              <view class='input_back' catchtap='hidePayLayertwo'><text></text></view>
+              <text>输入支付密码</text>
+          </view>
+          <view class='input_tip'><text>使用会员卡余额支付需要验证身份，验证通过后才可进行支付。</text></view>
+          <view class='input_row' catchtap='getFocus'>
+              <view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+                  <text wx:if='{{pwdVal.length>i}}'></text>
+              </view>
+          </view>
+          <!-- <view class='forget_pwd' catchtap='hidePayLayer'>忘记密码</view> -->
+          <input class='input_control' password type='number' focus='{{payFocus}}' bindinput='inputPwd' maxlength='6'/>
+      </view>
+  </view>
+  <!-- 密码设置框 -->
+  <view wx:if='{{showSetPayPwdInput}}'>
+      <view class='bg_layer'></view>
+      <view class='input_main'>
+          <view class='input_title'>
+              <view class='input_back' catchtap='hideSetPayLayertwo'><text></text></view>
+              <text>输入支付密码</text>
+          </view>
+          <view class='input_tip'><text>您尚未设置支付密码,请设置。</text></view>
+          <view class='input_row' catchtap='getSetFocus'>
+              <view class='pwd_item' wx:for='{{6}}' wx:key='item' wx:for-index='i'>
+                  <text wx:if='{{passwordVal.length>i}}'></text>
+              </view>
+          </view>
+          <!-- <view class='forget_pwd' catchtap='hideSetPayLayer'>忘记密码</view> -->
+          <input class='input_control' password type='number' focus='{{paySetFocus}}' bindinput='inputSetPwd' maxlength='6'/>
+      </view>
+  </view>
+</view>

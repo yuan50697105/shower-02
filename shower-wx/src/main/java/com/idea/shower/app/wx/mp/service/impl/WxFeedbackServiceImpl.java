@@ -5,7 +5,7 @@ import com.idea.shower.app.db.module.pojo.Feedback;
 import com.idea.shower.app.db.module.pojo.query.FeedbackQuery;
 import com.idea.shower.app.wx.mp.pojo.WxFeedbackDTO;
 import com.idea.shower.app.wx.mp.service.WxFeedbackService;
-import com.idea.shower.db.core.pojo.WxPageResult;
+import com.idea.shower.db.core.pojo.IWxPageResult;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
@@ -51,7 +51,7 @@ public class WxFeedbackServiceImpl implements WxFeedbackService {
      */
     @Override
     public Result selectPage(FeedbackQuery condition) {
-        WxPageResult<Feedback> pageResult = feedbackDao.selectPageByConditionWeXin(condition);
+        IWxPageResult<Feedback> pageResult = feedbackDao.selectPageByConditionWeXin(condition);
         return ResultUtils.data(pageResult);
     }
 }

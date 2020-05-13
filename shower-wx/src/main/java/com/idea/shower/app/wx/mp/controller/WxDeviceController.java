@@ -5,10 +5,7 @@ import com.idea.shower.app.wx.mp.service.WxDeviceInfoService;
 import com.idea.shower.web.webmvc.controller.ResultController;
 import com.idea.shower.web.webmvc.pojo.Result;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @program: shower-01
@@ -30,5 +27,10 @@ public class WxDeviceController extends ResultController {
     @PostMapping ("deviceInfoList")
     public Result deviceInfoList(@RequestBody DeviceInfoQuery deviceInfoQuery) {
         return wxDeviceService.deviceInfoList(deviceInfoQuery);
+    }
+
+    @GetMapping("send/info")
+    public Result sendInfo() {
+        return wxDeviceService.sendInfo(3L);
     }
 }

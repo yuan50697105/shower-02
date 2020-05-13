@@ -24,22 +24,27 @@
     <view  class="order"  wx:for="{{orderList}}" wx:key="id">
       <view class="h" >
         <view class="l">订单编号：{{item.orderNo}}</view>
-        <view class="r">{{item.status}}</view>
+        <view class="r" wx:if="{{item.status==1}}">已下单</view>
+        <view class="r" wx:if="{{item.status==2}}">使用中</view>
+        <view class="r" wx:if="{{item.status==3}}">待付款</view>
+        <view class="r" wx:if="{{item.status==4}}">已支付</view>
+        <view class="r" wx:if="{{item.status==5}}">订单完成</view>
+        <view class="r" wx:if="{{item.status==6}}">订单超时</view>
       </view>
       <view class="goods">
         <view class="img">
-          <image src="{{item.picUrl}}"></image>
+          <image src="{{item.picture}}"></image>
         </view>
-        <view class="info"  bindtap="lookDetail" data-id="{{item.id}}">
+        <view class="info"  bindtap="lookDetail" data-no="{{item.orderNo}}">
           <text class="name">{{item.deviceCode}}</text>
-          <text class="number">2020-04-02 02:09:36</text>
-          <text class="charged">2020-04-02 02:09:56</text>
+          <text class="number">{{item.createTime}}</text>
+          <text class="charged">{{item.endTime}}</text>
           <text class="charged">￥5/min</text>
         </view>
         <view class="tab">
-        <!-- wx:if="{{item.orderStatusText==='已付款'}}" -->
-          <view class="chargedCode" data-orderNo="{{item.orderNo}}"  bindtap="lookChargedCode">结束</view>
-          <view class="chargedCode" data-orderNo="{{item.orderNo}}"  bindtap="goKabaw">付款</view>
+          <view class="chargedCode" wx:if="{{item.status==1}}" data-orderNo="{{item.orderNo}}" data-device="{{item.deviceCode}}"  bindtap="startOrder">开始</view>
+          <view class="chargedCode" wx:if="{{item.status==2}}" data-orderNo="{{item.orderNo}}" data-device="{{item.deviceCode}}"  bindtap="endOrder">结束</view>
+          <view class="chargedCode" wx:if="{{item.status==3}}" data-orderNo="{{item.orderNo}}" data-price="{{item.totalPrice}}" bindtap="goPay">付款</view>
         </view>
         
       </view>

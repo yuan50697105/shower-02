@@ -64,4 +64,15 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
         return Optional.ofNullable(baseMapper().selectOneByCode(code));
     }
 
+    @Override
+    public void updateStatusToUsing(Long deviceId) {
+        baseMapper().updateRunStatusById(DeviceInfoConstants.DeviceRunningStatus.RUNNING,deviceId);
+    }
+
+    @Override
+    public Optional<DeviceInfo> getByCodeAvailable(String deviceCode) {
+        return Optional.ofNullable(baseMapper().getOneByCodeAndRunStatus(deviceCode,DeviceInfoConstants.DeviceRunningStatus.AVALI));
+    }
+
+
 }

@@ -11,4 +11,6 @@ import com.idea.shower.web.webmvc.pojo.Result;
  */
 public interface WxDeviceInfoService {
     Result deviceInfoList(DeviceInfoQuery deviceInfoQuery);
+
+    Result sendInfo(long l);
 }
