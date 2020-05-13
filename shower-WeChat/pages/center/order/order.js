@@ -134,7 +134,7 @@ Page({
   lookDetail(event) {
     var no = event.currentTarget.dataset.no;
     wx.navigateTo({
-      url: '/pages/center/orderDetail/orderDetail?id=' + no,
+      url: '/pages/center/orderDetail/orderDetail?orderNo=' + no,
     });
   },
   //付款
