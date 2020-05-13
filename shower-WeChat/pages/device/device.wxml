@@ -29,7 +29,7 @@
   <view class="device-list js_device_list ">
 
     <block wx:for="{{dataList}}" wx:key="k">
-      <view class="device-list-item  ">
+      <view class="device-list-item  " bindtap="deviceDetail" data-id="{{item.id}}">
         <view class="device-time">{{item.code}}</view>
         <view class="tobooking" data-code="{{item.code}}" data-enabled="{{item.enabled}}" bindtap="useDevice"> 使用 </view>
         <view class="detail">

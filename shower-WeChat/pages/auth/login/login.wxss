@@ -58,3 +58,7 @@
   letter-spacing: 3rpx;
   background-image: linear-gradient(to right, #9a9ba1 0%, #9a9ba1 100%);
 }
+
+image{
+  height: 100px;
+}

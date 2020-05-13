@@ -46,16 +46,15 @@ Page({
     util.request(api.OrderDetail, {
       orderId: that.data.orderId
     }).then(function (res) {
-      if (res.errno === 0) {
-        console.log(res.data);
+      console.log(res.data[0])
         that.setData({
-          orderInfo: res.data.orderInfo,
-          orderGoods: res.data.orderGoods,
-          handleOption: res.data.orderInfo.handleOption,
-          expressInfo: res.data.expressInfo,
-          isUseCard: res.data.isUseCard
+          orderInfo: res.data[0]
+          
+          // orderGoods: res.data.orderGoods,
+          // handleOption: res.data.orderInfo.handleOption,
+          // expressInfo: res.data.expressInfo,
+          // isUseCard: res.data.isUseCard
         });
-      }
 
       wx.hideLoading();
     });
