@@ -136,6 +136,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         return ResultUtils.ok("房间开启成功", data);
     }
 
+    private void addStartTime(OrderInfo orderInfo) {
+        if (orderInfo != null) {
+            orderInfo.setUseStartTime(new Date());
+        }
+    }
+
     @Override
     @Transactional
     public Result endOrder(WxUseOrderRequest request) {
@@ -153,9 +159,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             addExtOrderItemPriceInfo(orderInfo, endTime, finalTime, deviceWaterUse - waterUse);
         }
         BigDecimal totalprice = calculationOrderFee(orderInfo);
-        orderInfoDao.updateEndTimeByOrderId(orderInfo.getId());
-        orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
-        orderInfoDao.updateStatusEndUseById(orderInfo.getId());
+        updateOrderToEndUseing(orderInfo, totalprice);
         HashMap<String, Object> map = new HashMap<>();
         BeanUtil.beanToMap(request);
         map.put("totalPrice", totalprice);
@@ -510,7 +514,15 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
         aliyunIotPublishUtils.open(deviceInfo.getProductKey(), deviceInfo.getDeviceName());
         orderInfoDao.updateStatusUsingById(orderInfo.getId());
+        orderInfoDao.updateUseStartTime(new Date(), orderInfo.getId());
         deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
         deviceInfoDao.updateStatusToUsing(orderInfo.getDeviceId());
+
+    }
+
+    private void updateOrderToEndUseing(OrderInfo orderInfo, BigDecimal totalprice) {
+        orderInfoDao.updateEndTimeByOrderId(new Date(),orderInfo.getId());
+        orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
+        orderInfoDao.updateStatusEndUseById(orderInfo.getId());
     }
 }

@@ -2,4 +2,5 @@ group = 'com.idea.shower.app.admin'
 dependencies {
     compile project(':shower-webmvc-core')
     compile project(':shower-db')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-security'
 }

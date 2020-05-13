@@ -1,6 +1,7 @@
 package com.idea.shower.app.db.module.dao.impl;
 
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -106,11 +107,21 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
 
     @Override
     public Optional<OrderInfoDeviceVO> getByOrderNoDeviceVo(String orderNo) {
-        return Optional.ofNullable(baseMapper().selectOrderInfoDeviceVOListByOrderNo(orderNo));
+        OrderInfoDeviceVO orderInfoDeviceVO = baseMapper().selectOrderInfoDeviceVOListByOrderNo(orderNo);
+        if (ObjectUtil.isNotEmpty(orderInfoDeviceVO)){
+            orderInfoDeviceVO.setPicture(resourceFileUtils.filePath(orderInfoDeviceVO.getPicture()));
+        }
+        return Optional.ofNullable(orderInfoDeviceVO);
     }
 
     @Override
-    public void updateEndTimeByOrderId(Long id) {
-        baseMapper().updateUseEndTimeById(new Date(), id);
+    public void updateEndTimeByOrderId(Date date, Long id) {
+        baseMapper().updateUseEndTimeById(date, id);
+    }
+
+
+    @Override
+    public void updateUseStartTime(Date date, Long id) {
+        baseMapper().updateUseStartTimeById(date, id);
     }
 }

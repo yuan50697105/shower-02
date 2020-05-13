@@ -123,43 +123,45 @@ public class AmqpJavaClient {
             String user = strings[3];
             String topic0 = strings[4];
             JSONArray objects;
-            Object deviceId;
-            Object status;
-            Object lat;
-            Object longa;
-            Object waterTemp01;
-            Object waterTemp02;
-            Object waterAmount01;
-            Object waterAmount02;
-            Object lightingCount;
-            Object waterUse;
-            Object waterSpeed01;
-            Object waterSpeed02;
-            Object waterOpen;
-            Object totalServiceTime;
+            Long deviceId;
+            Long status;
+            Double lat;
+            Double longa;
+            Double waterTemp01;
+            Double waterTemp02;
+            Double waterAmount01;
+            Double waterAmount02;
+            Integer lightingCount;
+            Double waterUse;
+            Double waterSpeed01;
+            Double waterSpeed02;
+            Integer waterOpen;
+            Integer totalServiceTime;
             switch (topic0) {
+//                心跳维持
                 case "heartbeat":
                     objects = JSONUtil.parseArray(content);
-                    deviceId = objects.get(0);
-                    status = objects.get(1);
-                    lat = objects.get(2);
-                    longa = objects.get(3);
-                    waterTemp01 = objects.get(4);
-                    waterTemp02 = objects.get(5);
-                    waterAmount01 = objects.get(6);
-                    waterAmount02 = objects.get(7);
-                    lightingCount = objects.get(8);
-                    waterUse = objects.get(9);
+                    deviceId = (Long) objects.get(0);
+                    status = (Long) objects.get(1);
+                    lat = (Double) objects.get(2);
+                    longa = (Double) objects.get(3);
+                    waterTemp01 = (Double) objects.get(4);
+//                    waterTemp02 = (Double) objects.get(5);
+                    waterAmount01 = (Double) objects.get(6);
+//                    waterAmount02 = (Double) objects.get(7);
+                    lightingCount = (Integer) objects.get(8);
+                    waterUse = (Double) objects.get(9);
                     break;
+//                    工作状态
                 case "work":
                     objects = JSONUtil.parseArray(content);
-                    deviceId = objects.get(0);
-                    status = objects.get(1);
-                    waterSpeed01 = objects.get(2);
-                    waterSpeed02 = objects.get(3);
-                    lightingCount = objects.get(4);
-                    waterOpen = objects.get(5);
-                    totalServiceTime = objects.get(6);
+                    deviceId = (Long) objects.get(0);
+                    status = (Long) objects.get(1);
+                    waterSpeed01 = (Double) objects.get(2);
+//                    waterSpeed02 = (Double) objects.get(3);
+                    lightingCount = (Integer) objects.get(4);
+                    waterOpen = (Integer) objects.get(5);
+                    totalServiceTime = (Integer) objects.get(6);
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + topic0);
