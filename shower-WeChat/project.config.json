@@ -68,6 +68,13 @@
 					"id": -1,
 					"name": "pages/center/orderDetail/orderDetail",
 					"pathName": "pages/center/orderDetail/orderDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "map",
+					"pathName": "pages/map/map",
 					"scene": null
 				}
 			]

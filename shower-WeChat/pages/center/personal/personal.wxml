@@ -9,7 +9,7 @@
 <view class='content'>
      <view class='order'>
           <view class='desc' bindtap='AllOrder'>
-               <view><image src='/static/image/order/orderALL.png' style='width:22px;height:25px;'></image></view>
+               <view><image src='/static/image/order/orderAll.png' style='width:22px;height:25px;'></image></view>
                <view>全部订单</view>
           </view>
           <view class='desc'bindtap='WaitPayOrder'>

@@ -1,6 +1,7 @@
 <view class="container">
   <view class="login-box">
-    <!-- <image class="logo" src="/static/images/zklogo.jpg" style="width: 100%;" ></image> -->
+    <image class="logo" src="/static/logo/logo.png" style="width: 100%;" ></image>
     <button type="primary" open-type="getPhoneNumber" class="wx-login-btn" bindgetphonenumber="wxLogin">微信登录</button>
+    <button class="wx-login-btn" style="background:#b4282d;" bindtap="cancel">取消登录</button>
   </view>
 </view>

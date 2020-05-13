@@ -33,18 +33,18 @@
       </view>
       <view class="goods">
         <view class="img">
-          <image src="{{item.picUrl}}"></image>
+          <image src="{{item.picture}}"></image>
         </view>
-        <view class="info"  bindtap="lookDetail" data-id="{{item.id}}">
+        <view class="info"  bindtap="lookDetail" data-no="{{item.orderNo}}">
           <text class="name">{{item.deviceCode}}</text>
           <text class="number">{{item.createTime}}</text>
           <text class="charged">{{item.endTime}}</text>
           <text class="charged">￥5/min</text>
         </view>
         <view class="tab">
-          <view class="chargedCode" wx:if="{{item.status==1}}" data-orderNo="{{item.orderNo}}"  bindtap="endOrder">开始</view>
-          <view class="chargedCode" wx:if="{{item.status==2}}" data-orderNo="{{item.orderNo}}"  bindtap="endOrder">结束</view>
-          <view class="chargedCode" wx:if="{{item.status==3}}" data-orderNo="{{item.orderNo}}"  bindtap="goKabaw">付款</view>
+          <view class="chargedCode" wx:if="{{item.status==1}}" data-orderNo="{{item.orderNo}}" data-device="{{item.deviceCode}}"  bindtap="startOrder">开始</view>
+          <view class="chargedCode" wx:if="{{item.status==2}}" data-orderNo="{{item.orderNo}}" data-device="{{item.deviceCode}}"  bindtap="endOrder">结束</view>
+          <view class="chargedCode" wx:if="{{item.status==3}}" data-orderNo="{{item.orderNo}}" data-price="{{item.totalPrice}}" bindtap="goPay">付款</view>
         </view>
         
       </view>
