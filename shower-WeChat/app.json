@@ -8,7 +8,8 @@
     "pages/about/about",
     "pages/center/order/order",
     "pages/center/orderDetail/orderDetail",
-    "pages/center/opinion/opinion"
+    "pages/center/opinion/opinion",
+    "pages/deviceDetail/deviceDetail"
   ],
   "window": {
     "navigationBarBackgroundColor": "#f4f4f4",

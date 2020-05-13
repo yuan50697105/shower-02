@@ -10,8 +10,8 @@
         <view class="btn active" bindtap="cancelOrder" >取消订单</view>
         <view class="btn active" catchtap='showInputLayer'  wx:if="{{isUseCard}}" wx:if="{{handleOption.pay&&isUseCard}}">余额支付</view>
         <view class="btn active" bindtap="payOrder" wx:if="{{handleOption.pay}}">微信支付</view>
-        <view class="btn active" bindtap="confirmOrder" wx:if="{{handleOption.confirm}}">确认收货</view>
-        <view class="btn active" bindtap="deleteOrder" wx:if="{{handleOption.delete}}">删除订单</view>
+        <!-- <view class="btn active" bindtap="confirmOrder" wx:if="{{handleOption.confirm}}">确认收货</view>
+        <view class="btn active" bindtap="deleteOrder" wx:if="{{handleOption.delete}}">删除订单</view> -->
         <!-- <view class="btn active" bindtap="refundOrder" wx:if="{{handleOption.refund}}">申请退款</view> -->
       </view>
     </view>

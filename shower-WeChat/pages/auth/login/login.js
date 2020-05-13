@@ -23,11 +23,12 @@ Page({
   },
   onUnload: function() {
     // 页面关闭
-    wx.reLaunch({
-      url: "/pages/device/device"
-    });
+    // wx.reLaunch({
+    //   url: "/pages/device/device"
+    // });
 
   },
+  //登录
   wxLogin: function (e) {
     if (e.detail.encryptedData == undefined) {
       app.globalData.hasLogin = false;
@@ -57,4 +58,10 @@ Page({
     });
 
   },
+  //取消登录
+  cancel:function(){
+    wx.reLaunch({
+      url: '/pages/device/device'
+    });
+  }
 })
