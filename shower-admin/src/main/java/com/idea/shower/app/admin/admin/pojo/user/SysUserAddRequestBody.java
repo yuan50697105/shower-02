@@ -1,4 +1,4 @@
-package com.idea.shower.app.admin.permission.pojo.user;
+package com.idea.shower.app.admin.admin.pojo.user;
 
 import lombok.Data;
 

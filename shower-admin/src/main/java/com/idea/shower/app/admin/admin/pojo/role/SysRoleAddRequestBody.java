@@ -1,4 +1,4 @@
-package com.idea.shower.app.admin.permission.pojo.permission;
+package com.idea.shower.app.admin.admin.pojo.role;
 
 import lombok.Data;
 
@@ -9,5 +9,5 @@ import lombok.Data;
  * @create: 2020-05-13 13:29
  */
 @Data
-public class SysPermissionUpdateRequestBody {
+public class SysRoleAddRequestBody {
 }

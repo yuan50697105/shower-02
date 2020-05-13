@@ -1,4 +1,4 @@
-package com.idea.shower.app.admin.permission.controller;
+package com.idea.shower.app.admin.admin.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
