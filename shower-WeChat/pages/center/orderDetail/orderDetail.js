@@ -6,6 +6,7 @@ Page({
   data: {
     orderNo: 0,
     orderInfo: {},
+    items:[],
     orderGoods: [],
     expressInfo: {},
     flag: false,
@@ -33,6 +34,7 @@ Page({
     wx.hideNavigationBarLoading() //完成停止加载
     wx.stopPullDownRefresh() //停止下拉刷新
   },
+  //获取订单详情
   getOrderDetail: function () {
     wx.showLoading({
       title: '加载中',
@@ -50,7 +52,8 @@ Page({
       if (res.code === 200) {
         
         that.setData({
-          orderInfo: res.data.info
+          orderInfo: res.data.info,
+          items: res.data.items
         });
       } else {
         util.showErrorToast(res.message)
@@ -61,14 +64,11 @@ Page({
   // “去付款”按钮点击效果
   payOrder: function () {
     let that = this;
-    util.request(api.OrderPrepay, {
+    util.request(api.OrderPay, {
       orderNo: that.data.orderNo,
     }, 'POST').then(function (res) {
       console.log(res)
-      if (res.errno === 0) {
-        user.delStorageDirectShareId()
-        user.delStorageShareType()
-        user.delStorageMemberPageType()
+      if (res.errno === 200) {
         const payParam = res.data;
         console.log("支付过程开始");
         wx.requestPayment({
@@ -79,7 +79,9 @@ Page({
           'paySign': payParam.paySign,
           'success': function (res) {
             console.log("支付过程成功");
-            util.redirect('/pages/ucenter/order/order');
+            wx.redirectTo({
+              url: '/pages/payResult/payResult?status=1'
+            });
           },
           'fail': function (res) {
             console.log("支付过程失败");

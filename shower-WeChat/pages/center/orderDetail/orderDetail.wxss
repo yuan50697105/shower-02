@@ -197,7 +197,7 @@ page {
 }
 
 .order-bottom .address {
-  height: 128rpx;
+  height: 70rpx;
   padding-top: 25rpx;
   border-bottom: 1px solid #f4f4f4;
 }

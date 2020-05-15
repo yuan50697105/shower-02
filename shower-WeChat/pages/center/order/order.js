@@ -31,6 +31,7 @@ Page({
       page: that.data.page,
       limit: that.data.limit
     },"POST").then(function(res) {
+      console.log(res.data)
       if (res.code === 200) {
         if (res.data.list != undefined){
           that.setData({

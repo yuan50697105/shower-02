@@ -25,13 +25,17 @@
         </view>
         <view class="info">
           <view class="t">
-            <text class="name">结束时间:</text>
-            <text class="number">{{orderInfo.endTime}}</text>
+            <text class="name">开始时间:</text>
+            <text class="number">{{orderInfo.useStartTime}}</text>
           </view>
-          <view class="attr">{{orderInfo.specifications}}</view>
-          <view class="price">￥{{orderInfo.priceCode}}/min</view>
-          <view class="charged" >待消费</view>
-          <view class="charged" wx:if="{{orderInfo.charged==true}}" >已消费完成</view>
+          <view class="attr">{{orderInfo.areaName}} {{orderInfo.buildingName}}</view>
+          <view class="price">￥{{items[0].priceCode}}/min</view>
+          <view class="charged" wx:if="{{orderInfo.status==1}}">已下单</view>
+          <view class="charged" wx:if="{{orderInfo.status==2}}">使用中</view>
+          <view class="charged" wx:if="{{orderInfo.status==3}}">待付款</view>
+          <view class="charged" wx:if="{{orderInfo.status==4}}">已支付</view>
+          <view class="charged" wx:if="{{orderInfo.status==5}}">订单完成</view>
+          <view class="charged" wx:if="{{orderInfo.status==6}}">订单超时</view>
         </view> 
       </view>
     </view>
@@ -42,16 +46,16 @@
           <text class="name">{{orderInfo.consignee}}</text>
           <text class="mobile">{{orderInfo.mobile}}</text>
         </view> -->
-        <view class="b">{{orderInfo.address}}ddd</view>
+        <view class="b">结束时间：{{orderInfo.useEndTime}}</view>
       </view>
       <view class="total">
         <view class="t">
           <text class="label">订单合计：</text>
-          <text class="txt">￥{{orderInfo.goodsPrice}}</text>
+          <text class="txt">￥{{orderInfo.totalPrice}}</text>
         </view>
         <view class="t">
           <text class="label">优惠：</text>
-          <text class="txt">￥-{{orderInfo.couponPrice}}</text>
+          <text class="txt">￥-0</text>
         </view>
       </view>
     </view>

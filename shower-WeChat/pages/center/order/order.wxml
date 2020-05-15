@@ -37,8 +37,8 @@
         </view>
         <view class="info"  bindtap="lookDetail" data-no="{{item.orderNo}}">
           <text class="name">{{item.deviceCode}}</text>
-          <text class="number">{{item.createTime}}</text>
-          <text class="charged">{{item.endTime}}</text>
+          <text class="number">下单:{{item.createTime}}</text>
+          <text class="charged">结束:{{item.useEndTime}}</text>
           <text class="charged">￥5/min</text>
         </view>
         <view class="tab">

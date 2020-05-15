@@ -520,6 +520,8 @@
         <result column="update_time" property="updateTime"/>
         <result column="create_user" property="createUser"/>
         <result column="update_user" property="updateUser"/>
+        <result column="area_name" property="areaName"/>
+        <result column="building_name" property="buildingName"/>
     </resultMap>
     <select id="selectOrderInfoDeviceVOListByOrderNo" resultMap="OrderInfoDeviceVO">
         select o.id,
@@ -538,7 +540,9 @@
         o.status,
         o.use_start_time,
         o.use_end_time,
-        d.picture
+        d.picture,
+        d.area_name,
+        d.building_name
         from order_info o
         left join device_info d on o.device_id = d.id
         where o.order_no=#{orderNo}

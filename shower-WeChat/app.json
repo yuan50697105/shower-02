@@ -9,7 +9,8 @@
     "pages/center/order/order",
     "pages/center/orderDetail/orderDetail",
     "pages/center/opinion/opinion",
-    "pages/deviceDetail/deviceDetail"
+    "pages/deviceDetail/deviceDetail",
+    "pages/payResult/payResult"
   ],
   "plugins": {
     "routePlan": {
