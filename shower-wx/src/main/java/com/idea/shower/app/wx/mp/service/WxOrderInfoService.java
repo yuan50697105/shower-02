@@ -71,4 +71,11 @@ public interface WxOrderInfoService {
      * @return 订单详情
      */
     Result getOrderItemByOrderNo(String orderId);
+
+    /**
+     * 取消订单
+     * @param orderNo 订单号
+     * @return 处理结果
+     */
+    Result cancelOrderByOrderNo(String orderNo);
 }

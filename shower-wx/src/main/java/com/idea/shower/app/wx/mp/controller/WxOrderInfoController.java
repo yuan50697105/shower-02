@@ -26,7 +26,7 @@ import java.nio.charset.StandardCharsets;
 @RequestMapping("wx/order")
 @AllArgsConstructor
 public class WxOrderInfoController extends ResultController {
-    private WxOrderInfoService wxOrderInfoService;
+    private final WxOrderInfoService wxOrderInfoService;
 
     @PostMapping("data")
     public Result data(@RequestBody(required = false) OrderInfoQuery condition) {
@@ -70,5 +70,10 @@ public class WxOrderInfoController extends ResultController {
         ServletInputStream inputStream = request.getInputStream();
         String xml = IoUtil.read(inputStream, StandardCharsets.UTF_8);
         return wxOrderInfoService.notify(xml);
+    }
+
+    @PostMapping("cancel")
+    public Result cancel(@RequestBody String orderNo) {
+        return wxOrderInfoService.cancelOrderByOrderNo(orderNo);
     }
 }

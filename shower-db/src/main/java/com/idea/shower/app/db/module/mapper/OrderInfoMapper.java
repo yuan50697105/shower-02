@@ -1,5 +1,4 @@
 package com.idea.shower.app.db.module.mapper;
-import java.util.Date;
 
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.OrderInfo;
@@ -10,6 +9,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -48,13 +48,15 @@ public interface OrderInfoMapper extends BaseMapper {
 
     int updateTotalPriceByOrderNo(@Param("updatedTotalPrice") BigDecimal updatedTotalPrice, @Param("orderNo") String orderNo);
 
+    OrderInfoDeviceVO selectOrderInfoDeviceVOListByOrderNo(String orderNo);
+
     List<OrderInfoDeviceVO> selectOrderInfoDeviceVOListByCondition(@Param("query") OrderInfoQuery query);
 
     int updateStatusById(@Param("updatedStatus") Integer updatedStatus, @Param("id") Long id);
 
-    OrderInfoDeviceVO selectOrderInfoDeviceVOListByOrderNo(String orderNo);
+    int updateUseEndTimeById(@Param("updatedUseEndTime") Date updatedUseEndTime, @Param("id") Long id);
 
-    int updateUseEndTimeById(@Param("updatedUseEndTime")Date updatedUseEndTime,@Param("id")Long id);
+    int updateUseStartTimeById(@Param("updatedUseStartTime") Date updatedUseStartTime, @Param("id") Long id);
 
 
 }

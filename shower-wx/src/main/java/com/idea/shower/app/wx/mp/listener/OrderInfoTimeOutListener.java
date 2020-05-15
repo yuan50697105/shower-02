@@ -5,8 +5,6 @@ import com.idea.shower.app.db.module.dao.OrderInfoDao;
 import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.core.annotation.Order;
 import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.data.redis.listener.KeyExpirationEventMessageListener;
@@ -41,12 +39,20 @@ public class OrderInfoTimeOutListener extends KeyExpirationEventMessageListener 
     @Override
     public void onMessage(Message message, byte[] pattern) {
         String expiredKey = message.toString();
-        if (expiredKey.startsWith(OrderRedisDao.ORDER_INFO)) {
-            //如果是Order:开头的key，进行处理
-            Long orderId = Long.valueOf(new String(message.getBody(), StandardCharsets.UTF_8).replace(OrderRedisDao.ORDER_INFO, ""));
-            log.info(orderId+"超时");
-            orderInfoDao.updateStatusTimeOutById(orderId);
-            deviceOrderDao.updateStatusTimeOutByOrderId(orderId);
+        if (expiredKey.startsWith(OrderRedisDao.ORDER_INFO_RESERVATION)) {
+            udpateReservationOrderCancel(message);
         }
+    }
+
+    private void updateOrderNotCacel(Message message) {
+        Long orderId = Long.valueOf(new String(message.getBody(), StandardCharsets.UTF_8).replace(OrderRedisDao.ORDER_INFO_COMMONS, ""));
+    }
+
+    private void udpateReservationOrderCancel(Message message) {
+        //如果是Order:开头的key，进行处理
+        Long orderId = Long.valueOf(new String(message.getBody(), StandardCharsets.UTF_8).replace(OrderRedisDao.ORDER_INFO_RESERVATION, ""));
+        log.info(orderId + "超时");
+        orderInfoDao.updateStatusTimeOutById(orderId);
+        deviceOrderDao.updateStatusTimeOutByOrderId(orderId);
     }
 }

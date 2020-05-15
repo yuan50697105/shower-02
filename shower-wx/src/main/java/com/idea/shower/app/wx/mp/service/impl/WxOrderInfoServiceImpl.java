@@ -57,6 +57,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     public static final int DEFAULT_TIME = 10;
     public static final String SUCCESS = "SUCCESS";
+    private final static Integer CANCEL_TIME_OUT = 5;
     private final Snowflake snowflake;
     private final DeviceInfoDao deviceInfoDao;
     private final CustomerInfoDao customerInfoDao;
@@ -136,6 +137,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         return ResultUtils.ok("房间开启成功", data);
     }
 
+    private void addStartTime(OrderInfo orderInfo) {
+        if (orderInfo != null) {
+            orderInfo.setUseStartTime(new Date());
+        }
+    }
+
     @Override
     @Transactional
     public Result endOrder(WxUseOrderRequest request) {
@@ -153,9 +160,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             addExtOrderItemPriceInfo(orderInfo, endTime, finalTime, deviceWaterUse - waterUse);
         }
         BigDecimal totalprice = calculationOrderFee(orderInfo);
-        orderInfoDao.updateEndTimeByOrderId(orderInfo.getId());
-        orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
-        orderInfoDao.updateStatusEndUseById(orderInfo.getId());
+        updateOrderToEndUseing(orderInfo, totalprice);
         HashMap<String, Object> map = new HashMap<>();
         BeanUtil.beanToMap(request);
         map.put("totalPrice", totalprice);
@@ -236,6 +241,40 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         map.put("info", orderInfo);
         map.put("items", orderItems);
         return ResultUtils.data(map);
+    }
+
+    /**
+     * @param orderNo 订单号
+     * @return
+     */
+    @Override
+    @Transactional
+    public Result cancelOrderByOrderNo(String orderNo) {
+        OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        if (orderInfo.getType().equals(OrderInfoConstants.OrderType.COMMONS)) {
+            if (!checkOrderCancel(orderInfo)) {
+                throw new ResultRuntimeException(ResultUtils.wxError("当前订单不能取消"));
+            }
+            orderInfoDao.updateStatusCancelByOrderNo(orderNo);
+        } else {
+            if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.USING)) {
+                throw new ResultRuntimeException(ResultUtils.wxError("当前订单不能取消"));
+            }
+            orderInfoDao.updateStatusCancelByOrderNo(orderNo);
+        }
+        return ResultUtils.ok();
+    }
+
+    /**
+     * 检查普通订单是否可取消
+     *
+     * @param orderInfo 订单信息
+     * @return 可以取消 true 不可取消 false
+     */
+    private boolean checkOrderCancel(OrderInfo orderInfo) {
+        Date date = new Date();
+        Date createTime = orderInfo.getCreateTime();
+        return DateUtil.between(createTime, date, DateUnit.MINUTE) <= CANCEL_TIME_OUT;
     }
 
     /**
@@ -510,7 +549,15 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         DeviceInfo deviceInfo = deviceInfoDao.getById(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
         aliyunIotPublishUtils.open(deviceInfo.getProductKey(), deviceInfo.getDeviceName());
         orderInfoDao.updateStatusUsingById(orderInfo.getId());
+        orderInfoDao.updateUseStartTime(new Date(), orderInfo.getId());
         deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
         deviceInfoDao.updateStatusToUsing(orderInfo.getDeviceId());
+
+    }
+
+    private void updateOrderToEndUseing(OrderInfo orderInfo, BigDecimal totalprice) {
+        orderInfoDao.updateEndTimeByOrderId(new Date(), orderInfo.getId());
+        orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
+        orderInfoDao.updateStatusEndUseById(orderInfo.getId());
     }
 }

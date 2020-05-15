@@ -1,37 +1,4 @@
-GET http://localhost:8002/wx/order/item?orderNo=1259461536582340608
+GET http://localhost:8002/wx/order/item?orderNo=1245533809588441088
 Accept: application/json
 
 ###
-POST http://localhost:8002/wx/order/data
-Content-Type: application/json
-
-{
-"page": 1,
-  "limit": 2
-}
-###
-POST http://localhost:8002/wx/order/end
-Content-Type: application/json
-
-{
-"orderNo":"1259454243799175168",
-  "openId":"oGhyX5FRP9H9LH3NxZP3n-_5OIvM",
-  "deviceCode":"1234"
-}
-
-###
-POST http://localhost:8002/wx/order/add
-Content-Type: application/json
-
-{
-"openId":"oGhyX5FRP9H9LH3NxZP3n-_5OIvM",
-"deviceCode":"1234",
-"type":1
-}
-###
-POST http://localhost:8002/wx/order/open
-Content-Type: application/json
-
-{
-}
-

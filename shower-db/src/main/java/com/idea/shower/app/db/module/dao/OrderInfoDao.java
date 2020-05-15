@@ -8,6 +8,7 @@ import com.idea.shower.db.core.pojo.IWxPageResult;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.Optional;
 
 /**
@@ -41,5 +42,9 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
 
     Optional<OrderInfoDeviceVO> getByOrderNoDeviceVo(String orderNo);
 
-    void updateEndTimeByOrderId(Long id);
+    void updateEndTimeByOrderId(Date date, Long id);
+
+    void updateUseStartTime(Date date, Long id);
+
+    void updateStatusCancelByOrderNo(String orderNo);
 }

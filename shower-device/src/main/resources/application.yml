@@ -7,4 +7,4 @@ aliyun:
 
 spring:
   profiles:
-    active: dbconfig,amqp,redis,mvc
+    active: dbconfig,amqp,redis,mvc,commons
