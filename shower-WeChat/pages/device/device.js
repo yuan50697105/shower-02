@@ -185,6 +185,7 @@ Page({
 
   //监听下滑
   onReachBottom() {
+    console.log(this.data.totalPages + "/" + this.data.page)
     if (this.data.totalPages > this.data.page) {
       this.setData({
         page: this.data.page + 1

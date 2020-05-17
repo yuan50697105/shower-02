@@ -16,7 +16,7 @@
   </view>
   <view class="section-nav">
     <view class="code">A001</view>
-    <view class="t" bindtap="useDevice">开始使用</view>
+    <view class="t" bindtap="useDevice">开始下单</view>
   </view>
 </view>
 
