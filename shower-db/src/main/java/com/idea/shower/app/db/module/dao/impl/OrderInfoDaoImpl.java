@@ -129,4 +129,9 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     public void updateStatusCancelByOrderNo(String orderNo) {
         baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_CANCEL, orderNo);
     }
+
+    @Override
+    public void updateTransactionIdByOrderNo(String transactionId, String outTradeNo) {
+        baseMapper().updateTransactionIdByOrderNo(transactionId, outTradeNo);
+    }
 }

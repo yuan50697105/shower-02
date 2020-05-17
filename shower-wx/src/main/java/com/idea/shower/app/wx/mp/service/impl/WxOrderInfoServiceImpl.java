@@ -202,8 +202,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 String outTradeNo = wxPayOrderNotifyResult.getOutTradeNo();
                 String transactionId = wxPayOrderNotifyResult.getTransactionId();
                 OrderInfo orderInfo = orderInfoDao.getByOrderNo(outTradeNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
-                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.END_USE);
-                if (integers.contains(orderInfo.getStatus())) {
+                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.PAID);
+                if (!integers.contains(orderInfo.getStatus())) {
+                    orderInfoDao.updateTransactionIdByOrderNo(transactionId, outTradeNo);
                     orderInfoDao.updateStatusPaidByOrderNo(outTradeNo);
                 }
                 WxReturnInfo wxReturnInfo = new WxReturnInfo();
