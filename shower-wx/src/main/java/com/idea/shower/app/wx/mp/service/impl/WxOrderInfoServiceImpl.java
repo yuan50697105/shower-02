@@ -180,7 +180,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
         WxPayUnifiedOrderResult order = wxPayService.unifiedOrder(request);
-        return ResultUtils.data(order);
+        Map<String, Object> map = BeanUtil.beanToMap(order);
+        map.put("timeStamp", System.currentTimeMillis() / 1000);
+        map.remove("xmlDoc");
+        map.remove("xmlString");
+
+        return ResultUtils.data(map);
     }
 
     /**
