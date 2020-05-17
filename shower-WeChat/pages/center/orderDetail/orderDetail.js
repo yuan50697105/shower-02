@@ -68,15 +68,15 @@ Page({
       orderNo: that.data.orderNo,
     }, 'POST').then(function (res) {
       console.log(res)
-      if (res.errno === 200) {
+      if (res.code === 200) {
         const payParam = res.data;
         console.log("支付过程开始");
         wx.requestPayment({
           'timeStamp': payParam.timeStamp,
           'nonceStr': payParam.nonceStr,
-          'package': payParam.packageValue,
-          'signType': payParam.signType,
-          'paySign': payParam.paySign,
+          'package': payParam.package,
+          'signType': "MD5",
+          'paySign': payParam.sign,
           'success': function (res) {
             console.log("支付过程成功");
             wx.redirectTo({
