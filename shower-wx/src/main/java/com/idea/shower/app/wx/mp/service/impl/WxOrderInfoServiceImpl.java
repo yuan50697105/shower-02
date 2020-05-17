@@ -179,8 +179,16 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = wxPayOrderInfo.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
-        WxPayMpOrderResult order = wxPayService.createOrder(request);
+        Object order = wxPayService.createOrder(request);
         return ResultUtils.data(order);
+//        WxPayUnifiedOrderResult order = wxPayService.unifiedOrder(request);
+
+//        Map<String, Object> map = BeanUtil.beanToMap(order);
+//        map.put("timeStamp", System.currentTimeMillis() / 1000 + "");
+//        map.put("package", "prepay_id=" + order.getPrepayId());
+//        map.remove("xmlDoc");
+//        map.remove("xmlString");
+//        return ResultUtils.data(map);
     }
 
     /**
@@ -202,8 +210,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 String outTradeNo = wxPayOrderNotifyResult.getOutTradeNo();
                 String transactionId = wxPayOrderNotifyResult.getTransactionId();
                 OrderInfo orderInfo = orderInfoDao.getByOrderNo(outTradeNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
-                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.END_USE);
-                if (integers.contains(orderInfo.getStatus())) {
+                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.PAID);
+                if (!integers.contains(orderInfo.getStatus())) {
+                    orderInfoDao.updateTransactionIdByOrderNo(transactionId, outTradeNo);
                     orderInfoDao.updateStatusPaidByOrderNo(outTradeNo);
                 }
                 WxReturnInfo wxReturnInfo = new WxReturnInfo();
@@ -485,6 +494,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         request.setTotalFee(WxPayUnifiedOrderRequest.yuanToFen(orderInfo.getTotalPrice().toPlainString()));
         request.setOpenid(orderInfo.getCustomerOpenId());
         request.setTradeType(WxPayConstants.TradeType.JSAPI);
+        request.setSpbillCreateIp("192.168.0.1");
         request.setNotifyUrl(environment.getProperty("wx.pay.url"));
         return request;
     }

@@ -5,22 +5,14 @@ wx:
     appid: wx4f688d98fef66fac
     aes-key:
     msg-data-format: JSON
-    secret: 20b9a70f82f040c953d8c65bd5a3a551
+    secret: 644430f1be8a368731e3f9ba947d28c7
     token:
 #  商户平台
   pay:
-    app-id:
+    app-id: wx4f688d98fef66fac
     key-path:
-    mch-id:
-    mch-key:
+    mch-id: 1556739721
+    mch-key: zhihuizhixiang2020zhihuizhixiang
     sub-app-id:
     sub-mch-id:
     url: http://123.56.78.153:8002/notify
-#  公众号
-  mp:
-    aes-key:
-    app-id:
-    config-storage:
-      type: memory
-    secret:
-    token:
