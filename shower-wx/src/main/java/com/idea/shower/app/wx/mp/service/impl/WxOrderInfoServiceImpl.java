@@ -179,7 +179,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = wxPayOrderInfo.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
-        WxPayMpOrderResult order = wxPayService.createOrder(request);
+        WxPayUnifiedOrderResult order = wxPayService.unifiedOrder(request);
         return ResultUtils.data(order);
     }
 
@@ -485,6 +485,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         request.setTotalFee(WxPayUnifiedOrderRequest.yuanToFen(orderInfo.getTotalPrice().toPlainString()));
         request.setOpenid(orderInfo.getCustomerOpenId());
         request.setTradeType(WxPayConstants.TradeType.JSAPI);
+        request.setSpbillCreateIp("192.168.0.1");
         request.setNotifyUrl(environment.getProperty("wx.pay.url"));
         return request;
     }
