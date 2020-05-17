@@ -181,10 +181,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
         WxPayUnifiedOrderResult order = wxPayService.unifiedOrder(request);
         Map<String, Object> map = BeanUtil.beanToMap(order);
-        map.put("timeStamp", System.currentTimeMillis() / 1000);
+        map.put("timeStamp", System.currentTimeMillis() / 1000 + "");
+        map.put("package", "prepay_id=" + order.getPrepayId());
         map.remove("xmlDoc");
         map.remove("xmlString");
-
         return ResultUtils.data(map);
     }
 
