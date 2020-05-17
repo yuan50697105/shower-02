@@ -179,13 +179,16 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = wxPayOrderInfo.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
-        WxPayUnifiedOrderResult order = wxPayService.unifiedOrder(request);
-        Map<String, Object> map = BeanUtil.beanToMap(order);
-        map.put("timeStamp", System.currentTimeMillis() / 1000 + "");
-        map.put("package", "prepay_id=" + order.getPrepayId());
-        map.remove("xmlDoc");
-        map.remove("xmlString");
-        return ResultUtils.data(map);
+        Object order = wxPayService.createOrder(request);
+        return ResultUtils.data(order);
+//        WxPayUnifiedOrderResult order = wxPayService.unifiedOrder(request);
+
+//        Map<String, Object> map = BeanUtil.beanToMap(order);
+//        map.put("timeStamp", System.currentTimeMillis() / 1000 + "");
+//        map.put("package", "prepay_id=" + order.getPrepayId());
+//        map.remove("xmlDoc");
+//        map.remove("xmlString");
+//        return ResultUtils.data(map);
     }
 
     /**
