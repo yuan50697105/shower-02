@@ -6,7 +6,6 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.crypto.SecureUtil;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
-import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
@@ -210,10 +209,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 String outTradeNo = wxPayOrderNotifyResult.getOutTradeNo();
                 String transactionId = wxPayOrderNotifyResult.getTransactionId();
                 OrderInfo orderInfo = orderInfoDao.getByOrderNo(outTradeNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
-                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.PAID);
+                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.ORDER_COMPLETED);
                 if (!integers.contains(orderInfo.getStatus())) {
                     orderInfoDao.updateTransactionIdByOrderNo(transactionId, outTradeNo);
-                    orderInfoDao.updateStatusPaidByOrderNo(outTradeNo);
+                    orderInfoDao.updateStatusCompleteByOrderNo(outTradeNo);
                 }
                 WxReturnInfo wxReturnInfo = new WxReturnInfo();
                 wxReturnInfo.setReturn_code(SUCCESS);

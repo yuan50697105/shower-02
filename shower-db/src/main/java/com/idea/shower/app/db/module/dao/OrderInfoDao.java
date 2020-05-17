@@ -22,7 +22,7 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
 
     Optional<OrderInfo> getById(Long orderId);
 
-    void updateStatusPaidByOrderNo(String outTradeNo);
+    void updateStatusCompleteByOrderNo(String outTradeNo);
 
     PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition);
 

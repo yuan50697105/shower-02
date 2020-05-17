@@ -64,7 +64,7 @@ public class WxOrderInfoController extends ResultController {
         }
     }
 
-    @PostMapping("notify")
+    @RequestMapping("notify")
     @SneakyThrows
     public WxReturnInfo notify(HttpServletRequest request) {
         ServletInputStream inputStream = request.getInputStream();

@@ -15,4 +15,4 @@ wx:
     mch-key: zhihuizhixiang2020zhihuizhixiang
     sub-app-id:
     sub-mch-id:
-    url: http://123.56.78.153:8002/notify
+    url: http://123.56.78.153:8002/wx/order/notify

@@ -1,18 +1,6 @@
-POST http://localhost:8002/wx/customer/login
+POST http://localhost:8002/wx/order/notify
 Content-Type: application/json
 
-{
-"code": "oioiokbhfj"
-}
+{}
 
 ###
-POST http://localhost:8002/wx/order/pay
-Content-Type: application/json
-
-{
-  "orderNo": "1245533809588441088",
-  "totalPrice": 0.01
-}
-
-###
-
