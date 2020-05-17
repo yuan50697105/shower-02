@@ -16,11 +16,3 @@ wx:
     sub-app-id:
     sub-mch-id:
     url: http://123.56.78.153:8002/notify
-#  公众号
-  mp:
-    aes-key:
-    app-id:
-    config-storage:
-      type: memory
-    secret:
-    token:
