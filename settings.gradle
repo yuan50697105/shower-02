@@ -11,4 +11,5 @@ include 'shower-admin'
 include 'shower-wx'
 include 'shower-device'
 include 'shower-admin'
+include 'shower-vue-api'
 
