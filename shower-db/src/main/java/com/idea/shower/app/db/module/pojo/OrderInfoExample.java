@@ -1125,6 +1125,76 @@ public class OrderInfoExample {
             addCriterion("use_end_time not between", value1, value2, "useEndTime");
             return (Criteria) this;
         }
+
+        public Criteria andTransactionIdIsNull() {
+            addCriterion("transaction_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdIsNotNull() {
+            addCriterion("transaction_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdEqualTo(String value) {
+            addCriterion("transaction_id =", value, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdNotEqualTo(String value) {
+            addCriterion("transaction_id <>", value, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdGreaterThan(String value) {
+            addCriterion("transaction_id >", value, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdGreaterThanOrEqualTo(String value) {
+            addCriterion("transaction_id >=", value, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdLessThan(String value) {
+            addCriterion("transaction_id <", value, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdLessThanOrEqualTo(String value) {
+            addCriterion("transaction_id <=", value, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdLike(String value) {
+            addCriterion("transaction_id like", value, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdNotLike(String value) {
+            addCriterion("transaction_id not like", value, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdIn(List<String> values) {
+            addCriterion("transaction_id in", values, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdNotIn(List<String> values) {
+            addCriterion("transaction_id not in", values, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdBetween(String value1, String value2) {
+            addCriterion("transaction_id between", value1, value2, "transactionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andTransactionIdNotBetween(String value1, String value2) {
+            addCriterion("transaction_id not between", value1, value2, "transactionId");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
