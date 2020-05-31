@@ -1,7 +1,6 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-
 import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -11,11 +10,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
-    * @title: Feedback 用户反馈
-    * @projectName shower-01
-    * @author wcq
-    * @date 2020/4/1610:15
-    */
+ * 用户反馈
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
@@ -57,7 +53,5 @@ public class Feedback extends BaseDbEntity implements Serializable {
      */
     private Date respondTime;
 
-    public static FeedbackBuilder builder() {
-        return new FeedbackBuilder();
-    }
+    private static final long serialVersionUID = 1L;
 }

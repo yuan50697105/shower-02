@@ -10,23 +10,33 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * device_info_volume
- */
+    * 系统配置表
+    */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeviceInfoVolume extends BaseDbEntity implements Serializable {
+public class ShowerSystem extends BaseDbEntity implements Serializable {
     /**
-     * 设备ID
-     */
-    private Long deviceId;
+    * 系统配置名
+    */
+    private String keyName;
 
     /**
-     * 热水容量
-     */
-    private Double volume;
+    * 系统配置值
+    */
+    private String keyValue;
+
+    /**
+    * 创建时间
+    */
+    private Date addTime;
+
+    /**
+    * 逻辑删除
+    */
+    private Boolean deleted;
 
     private static final long serialVersionUID = 1L;
 }

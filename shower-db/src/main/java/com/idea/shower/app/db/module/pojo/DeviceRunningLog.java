@@ -10,58 +10,58 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * 管理员用户
+ * device_running_log
  */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminUser extends BaseDbEntity implements Serializable {
+public class DeviceRunningLog extends BaseDbEntity implements Serializable {
     /**
-     * username
+     * deviceId
      */
-    private String username;
+    private Long deviceId;
 
     /**
-     * password
+     * deviceCode
      */
-    private String password;
+    private String deviceCode;
 
     /**
-     * name
+     * status
      */
-    private String name;
+    private Integer status;
 
     /**
-     * enabled
+     * personStatus
      */
-    private Integer enabled;
+    private Integer personStatus;
 
     /**
-     * 最近一次登录IP地址
+     * personSpeed
      */
-    private String lastLoginIp;
+    private Double personSpeed;
 
     /**
-     * 最近一次登录时间
+     * temperature01
      */
-    private Date lastLoginTime;
+    private Double temperature01;
 
     /**
-     * 头像图片
+     * temperature02
      */
-    private String avatar;
+    private Double temperature02;
 
     /**
-     * 逻辑删除
+     * volume01
      */
-    private Boolean deleted;
+    private Double volume01;
 
     /**
-     * 角色列表
+     * volume02
      */
-    private String roleIds;
+    private Double volume02;
 
     private static final long serialVersionUID = 1L;
 }

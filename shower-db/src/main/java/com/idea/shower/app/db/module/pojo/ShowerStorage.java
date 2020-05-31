@@ -10,32 +10,47 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 /**
- * 管理员角色
- */
+    * 文件存储表
+    */
 @Data
-@EqualsAndHashCode(callSuper = true)
+@EqualsAndHashCode(callSuper=true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminRole extends BaseDbEntity implements Serializable {
+public class ShowerStorage extends BaseDbEntity implements Serializable {
     /**
-     * 角色名称
-     */
+    * 文件的唯一索引
+    */
+    private String key;
+
+    /**
+    * 文件名
+    */
     private String name;
 
     /**
-     * 角色描述
-     */
-    private String desc;
+    * 文件类型
+    */
+    private String type;
 
     /**
-     * 是否启用
-     */
-    private Boolean enabled;
+    * 文件大小
+    */
+    private Integer size;
 
     /**
-     * 逻辑删除
-     */
+    * 文件访问链接
+    */
+    private String url;
+
+    /**
+    * 创建时间
+    */
+    private Date addTime;
+
+    /**
+    * 逻辑删除
+    */
     private Boolean deleted;
 
     private static final long serialVersionUID = 1L;
