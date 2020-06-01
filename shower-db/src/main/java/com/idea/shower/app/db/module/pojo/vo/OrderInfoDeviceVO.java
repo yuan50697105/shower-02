@@ -74,4 +74,14 @@ public class OrderInfoDeviceVO extends BaseDbEntity {
      * 设备图片
      */
     private String picture;
+
+    /**
+     * 区域名称
+     */
+    private String areaName;
+
+    /**
+     * 楼宇名称
+     */
+    private String buildingName;
 }

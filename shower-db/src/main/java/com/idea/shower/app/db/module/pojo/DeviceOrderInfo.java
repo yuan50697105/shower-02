@@ -1,6 +1,7 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
+import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,8 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeviceOrderInfo extends BaseDbEntity {
-    private static final long serialVersionUID = 1L;
+public class DeviceOrderInfo extends BaseDbEntity implements Serializable {
     /**
      * 设备ID
      */
@@ -48,7 +48,5 @@ public class DeviceOrderInfo extends BaseDbEntity {
      */
     private String content;
 
-    public static DeviceOrderInfoBuilder builder() {
-        return new DeviceOrderInfoBuilder();
-    }
+    private static final long serialVersionUID = 1L;
 }

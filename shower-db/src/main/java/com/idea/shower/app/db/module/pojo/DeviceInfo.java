@@ -89,8 +89,4 @@ public class DeviceInfo extends BaseDbEntity implements Serializable {
     private Integer runStatus;
 
     private static final long serialVersionUID = 1L;
-
-    public static DeviceInfoBuilder builder() {
-        return new DeviceInfoBuilder();
-    }
 }

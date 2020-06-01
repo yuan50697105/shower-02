@@ -1,6 +1,7 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 import lombok.AllArgsConstructor;
@@ -17,8 +18,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderInfo extends BaseDbEntity {
-    private static final long serialVersionUID = 1L;
+public class OrderInfo extends BaseDbEntity implements Serializable {
     /**
      * 订单编号
      */
@@ -74,7 +74,10 @@ public class OrderInfo extends BaseDbEntity {
      */
     private Date useEndTime;
 
-    public static OrderInfoBuilder builder() {
-        return new OrderInfoBuilder();
-    }
+    /**
+     * 微信交易号
+     */
+    private String transactionId;
+
+    private static final long serialVersionUID = 1L;
 }

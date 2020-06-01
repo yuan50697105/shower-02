@@ -172,6 +172,7 @@ Page({
 
   //输入框搜索
   searchByCode:function(e){
+    let that = this;
     //先清空列表及分页信息
     that.setData({
       dataList: [],
