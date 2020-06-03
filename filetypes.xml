@@ -4,12 +4,12 @@
       <mapping ext="stfl" type="FTL" />
       <mapping ext="main.kts" type="Kotlin" />
       <mapping ext="gradle.kts" type="Kotlin" />
-      <mapping pattern="application-hikari,yml" type="PLAIN_TEXT" />
-      <mapping pattern="aaaa" type="PLAIN_TEXT" />
-      <mapping pattern="aa" type="PLAIN_TEXT" />
-      <mapping pattern="application-yml" type="PLAIN_TEXT" />
-      <mapping pattern="application-db-core" type="PLAIN_TEXT" />
       <mapping pattern="aaa" type="PLAIN_TEXT" />
+      <mapping pattern="aa" type="PLAIN_TEXT" />
+      <mapping pattern="application-db-core" type="PLAIN_TEXT" />
+      <mapping pattern="application-yml" type="PLAIN_TEXT" />
+      <mapping pattern="aaaa" type="PLAIN_TEXT" />
+      <mapping pattern="application-hikari,yml" type="PLAIN_TEXT" />
       <mapping ext="factorys" type="PLAIN_TEXT" />
       <mapping ext="factories" type="PLAIN_TEXT" />
       <mapping ext="lombok" type="PLAIN_TEXT" />
