@@ -19,7 +19,4 @@ public class AdminRolePermission extends BaseDbEntity {
      */
     private Long permissionId;
 
-    public static AdminRolePermissionBuilder builder() {
-        return new AdminRolePermissionBuilder();
-    }
 }

@@ -27,9 +27,7 @@ public interface AdminUserRoleDao extends BaseDao<AdminUserRole> {
 
     int batchInsertSelective(List<AdminUserRole> adminUserRoles);
 
-    void deleteByRoleIds(List<Long> id);
 
     List<AdminUserRole> listByUserId(Long id);
 
-    void deleteByUserIds(List<Long> id);
 }
