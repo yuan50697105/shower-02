@@ -22,7 +22,7 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
 
     Optional<OrderInfo> getById(Long orderId);
 
-    void updateStatusPaidByOrderNo(String outTradeNo);
+    void updateStatusCompleteByOrderNo(String outTradeNo);
 
     PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition);
 
@@ -47,4 +47,6 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
     void updateUseStartTime(Date date, Long id);
 
     void updateStatusCancelByOrderNo(String orderNo);
+
+    void updateTransactionIdByOrderNo(String transactionId, String outTradeNo);
 }

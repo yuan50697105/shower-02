@@ -6,6 +6,7 @@ import com.idea.shower.app.db.module.pojo.AdminRole;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,4 +34,14 @@ public interface AdminRoleDao extends BaseDao<AdminRole> {
     int updateSelective(AdminRole adminRole);
 
     int deleteById(Long id);
+
+    void deleteByIds(List<Long> id);
+
+    PageResult<AdminRole> selectPageByQuery(AdminRoleQuery query, int page, int size);
+
+    List<AdminRole> selectListByQuery(AdminRoleQuery query);
+
+    boolean checkExistByName(String name);
+
+    List<AdminRole> listByIds(List<Long> roleIds);
 }

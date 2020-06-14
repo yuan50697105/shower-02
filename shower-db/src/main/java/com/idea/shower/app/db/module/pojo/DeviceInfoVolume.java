@@ -29,8 +29,4 @@ public class DeviceInfoVolume extends BaseDbEntity implements Serializable {
     private Double volume;
 
     private static final long serialVersionUID = 1L;
-
-    public static DeviceInfoVolumeBuilder builder() {
-        return new DeviceInfoVolumeBuilder();
-    }
 }

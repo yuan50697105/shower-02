@@ -6,7 +6,6 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.crypto.SecureUtil;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
-import com.github.binarywang.wxpay.bean.order.WxPayMpOrderResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
@@ -155,15 +154,15 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         OrderItem startingItem = orderItemDao.getStartingItemByOrderId(orderInfo.getId());
         Date endTime = startingItem.getEndTime();
         Double waterUse = startingItem.getWaterUse();
-        Double deviceWaterUse = getDeviceWaterUse(orderInfo.getDeviceCode());
+        Double deviceWaterUse = getDeviceWaterUse();
         if (checkHasExtPriceInfo(finalTime, endTime, waterUse, deviceWaterUse)) {
             addExtOrderItemPriceInfo(orderInfo, endTime, finalTime, deviceWaterUse - waterUse);
         }
-        BigDecimal totalprice = calculationOrderFee(orderInfo);
-        updateOrderToEndUseing(orderInfo, totalprice);
+        BigDecimal totalPrice = calculationOrderFee(orderInfo);
+        updateOrderToEndUsing(orderInfo, totalPrice);
         HashMap<String, Object> map = new HashMap<>();
         BeanUtil.beanToMap(request);
-        map.put("totalPrice", totalprice);
+        map.put("totalPrice", totalPrice);
         map.put("endTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("订单结束成功", map);
     }
@@ -179,8 +178,16 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = wxPayOrderInfo.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNo(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
         WxPayUnifiedOrderRequest request = createUnifiedPayRequest(orderInfo);
-        WxPayMpOrderResult order = wxPayService.createOrder(request);
+        Object order = wxPayService.createOrder(request);
         return ResultUtils.data(order);
+//        WxPayUnifiedOrderResult order = wxPayService.unifiedOrder(request);
+
+//        Map<String, Object> map = BeanUtil.beanToMap(order);
+//        map.put("timeStamp", System.currentTimeMillis() / 1000 + "");
+//        map.put("package", "prepay_id=" + order.getPrepayId());
+//        map.remove("xmlDoc");
+//        map.remove("xmlString");
+//        return ResultUtils.data(map);
     }
 
     /**
@@ -202,9 +209,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 String outTradeNo = wxPayOrderNotifyResult.getOutTradeNo();
                 String transactionId = wxPayOrderNotifyResult.getTransactionId();
                 OrderInfo orderInfo = orderInfoDao.getByOrderNo(outTradeNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
-                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.END_USE);
-                if (integers.contains(orderInfo.getStatus())) {
-                    orderInfoDao.updateStatusPaidByOrderNo(outTradeNo);
+                List<Integer> integers = Collections.singletonList(OrderInfoConstants.OrderStatus.ORDER_COMPLETED);
+                if (!integers.contains(orderInfo.getStatus())) {
+                    orderInfoDao.updateTransactionIdByOrderNo(transactionId, outTradeNo);
+                    orderInfoDao.updateStatusCompleteByOrderNo(outTradeNo);
                 }
                 WxReturnInfo wxReturnInfo = new WxReturnInfo();
                 wxReturnInfo.setReturn_code(SUCCESS);
@@ -453,10 +461,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     /**
      * 获取设备的用水量
      *
-     * @param deviceCode 设备号
      * @return 用户量
      */
-    private Double getDeviceWaterUse(String deviceCode) {
+    @SuppressWarnings("SameReturnValue")
+    private Double getDeviceWaterUse() {
         return 0d;
     }
 
@@ -466,7 +474,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param orderInfo 订单信息
      */
     private BigDecimal calculationOrderFee(OrderInfo orderInfo) {
-        BigDecimal bigDecimal = new BigDecimal("0");
+        @SuppressWarnings("UnusedAssignment") BigDecimal bigDecimal = new BigDecimal("0");
         List<OrderItem> orderItems = orderItemDao.selectListByOrderNo(orderInfo.getOrderNo());
         bigDecimal = orderItems.stream().map(OrderItem::getTotalPrice).reduce(BigDecimal::add).orElse(new BigDecimal("0"));
         return bigDecimal;
@@ -485,6 +493,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         request.setTotalFee(WxPayUnifiedOrderRequest.yuanToFen(orderInfo.getTotalPrice().toPlainString()));
         request.setOpenid(orderInfo.getCustomerOpenId());
         request.setTradeType(WxPayConstants.TradeType.JSAPI);
+        request.setSpbillCreateIp("192.168.0.1");
         request.setNotifyUrl(environment.getProperty("wx.pay.url"));
         return request;
     }
@@ -555,9 +564,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
 
     }
 
-    private void updateOrderToEndUseing(OrderInfo orderInfo, BigDecimal totalprice) {
+    private void updateOrderToEndUsing(OrderInfo orderInfo, BigDecimal totalPrice) {
         orderInfoDao.updateEndTimeByOrderId(new Date(), orderInfo.getId());
-        orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
+        orderInfoDao.updateTotalPriceByOrderNo(totalPrice, orderInfo.getOrderNo());
         orderInfoDao.updateStatusEndUseById(orderInfo.getId());
     }
 }

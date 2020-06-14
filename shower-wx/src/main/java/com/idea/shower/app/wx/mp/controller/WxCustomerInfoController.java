@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 @Validated
 public class WxCustomerInfoController extends ResultController {
-    private WxCustomerInfoService wxCustomerInfoService;
+    private final WxCustomerInfoService wxCustomerInfoService;
 
     @PostMapping("login")
     public Result login(@RequestBody WxLoginInfo wxLoginInfo) {

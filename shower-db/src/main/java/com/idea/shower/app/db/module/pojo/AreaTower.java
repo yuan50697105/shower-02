@@ -1,6 +1,7 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
+import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,8 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AreaTower extends BaseDbEntity {
-    private static final long serialVersionUID = 1L;
+public class AreaTower extends BaseDbEntity implements Serializable {
     /**
      * 楼宇名称
      */
@@ -33,7 +33,5 @@ public class AreaTower extends BaseDbEntity {
      */
     private Long areaId;
 
-    public static AreaTowerBuilder builder() {
-        return new AreaTowerBuilder();
-    }
+    private static final long serialVersionUID = 1L;
 }

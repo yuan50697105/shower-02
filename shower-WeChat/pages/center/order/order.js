@@ -31,6 +31,7 @@ Page({
       page: that.data.page,
       limit: that.data.limit
     },"POST").then(function(res) {
+      console.log(res.data)
       if (res.code === 200) {
         if (res.data.list != undefined){
           that.setData({
@@ -134,7 +135,7 @@ Page({
   lookDetail(event) {
     var no = event.currentTarget.dataset.no;
     wx.navigateTo({
-      url: '/pages/center/orderDetail/orderDetail?id=' + no,
+      url: '/pages/center/orderDetail/orderDetail?orderNo=' + no,
     });
   },
   //付款
