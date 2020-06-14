@@ -1,4 +1,4 @@
-package com.idea.shower.app.admin;
+package com.idea.shower.admin;
 
 import com.idea.shower.app.db.ShowerDbApplication;
 import com.idea.shower.web.webmvc.WebMvcCoreApplication;

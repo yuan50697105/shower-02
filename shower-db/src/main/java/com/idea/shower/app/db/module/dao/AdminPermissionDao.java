@@ -31,4 +31,14 @@ public interface AdminPermissionDao extends BaseDao<AdminPermission> {
     int deleteById(Long id);
 
     int updateSelective(AdminPermission adminPermission);
+
+    AdminPermission getById(Long id);
+
+    void deleteByIds(List<Long> ids);
+
+    PageResult<AdminPermission> selectPageByQuery(AdminPermissionQuery query, int page, int size);
+
+    List<AdminPermission> selectListByQuery(AdminPermissionQuery query);
+
+    List<AdminPermission> listByIds(List<Long> collect);
 }

@@ -3,8 +3,11 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AdminUser;
 import com.idea.shower.app.db.module.pojo.AdminUserExample;
+
 import java.util.List;
-import com.idea.shower.app.db.module.pojo.query.AdminUserQuery;import org.apache.ibatis.annotations.Mapper;
+
+import com.idea.shower.app.db.module.pojo.query.AdminUserQuery;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
@@ -32,4 +35,9 @@ public interface AdminUserMapper extends BaseMapper {
     int updateByPrimaryKey(AdminUser record);
 
     List<AdminUser> selectByCondition(@Param("condition") AdminUserQuery condition);
+
+    AdminUser selectOneByUsername(@Param("username") String username);
+
+
+
 }

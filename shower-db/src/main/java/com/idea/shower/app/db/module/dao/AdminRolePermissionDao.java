@@ -20,4 +20,10 @@ public interface AdminRolePermissionDao extends BaseDao<AdminRolePermission> {
     int deleteByRoleId(Long roleId);
 
     int deleteByPermissionId(Long id);
+
+    void deleteByPermissionIds(List<Long> ids);
+
+    void deleteByRoleIds(List<Long> id);
+
+    List<AdminRolePermission> listByRoleId(Long id);
 }
