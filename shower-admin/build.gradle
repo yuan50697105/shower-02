@@ -6,7 +6,5 @@ dependencies {
     compile group: 'io.jsonwebtoken', name: 'jjwt',version: '0.9.1'
     compile 'commons-codec:commons-codec'
     compile group: 'ai.ylyue', name: 'yue-library-base', version: 'Finchley.SR4.1'
-    compile group: 'org.springframework.security.oauth', name: 'spring-security-oauth2'
-    compile group: 'org.springframework.security', name: 'spring-security-jwt'
 
 }
