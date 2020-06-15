@@ -58,10 +58,6 @@ public class AdminUser extends BaseDbEntity implements Serializable {
      */
     private Boolean deleted;
 
-    /**
-     * 角色列表
-     */
-    private String roleIds;
 
     private static final long serialVersionUID = 1L;
 }
