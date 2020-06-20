@@ -63,6 +63,32 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
     }
 
     @Override
+    public AdminPermission getById(Long id) {
+        return baseMapper().selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void deleteByIds(List<Long> ids) {
+
+    }
+
+    @Override
+    public PageResult<AdminPermission> selectPageByQuery(AdminPermissionQuery query, int page, int size) {
+        PageHelper.startPage(page, size);
+        return new PageResult<>(new PageInfo<>(baseMapper().selectByCondition(query)));
+    }
+
+    @Override
+    public List<AdminPermission> selectListByQuery(AdminPermissionQuery query) {
+        return baseMapper().selectByCondition(query);
+    }
+
+    @Override
+    public List<AdminPermission> listByIds(List<Long> ids) {
+        return baseMapper().selectByIdIn(ids);
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteById(Long id) {
         return baseMapper().deleteByPrimaryKey(id);

@@ -80,8 +80,4 @@ public class OrderInfo extends BaseDbEntity implements Serializable {
     private String transactionId;
 
     private static final long serialVersionUID = 1L;
-
-    public static OrderInfoBuilder builder() {
-        return new OrderInfoBuilder();
-    }
 }

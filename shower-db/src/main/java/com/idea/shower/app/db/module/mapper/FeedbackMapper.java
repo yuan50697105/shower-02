@@ -4,17 +4,9 @@ import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.Feedback;
 import com.idea.shower.app.db.module.pojo.FeedbackExample;
 import java.util.List;
-
-import com.idea.shower.app.db.module.pojo.query.FeedbackQuery;
-import org.apache.ibatis.annotations.Mapper;
+import com.idea.shower.app.db.module.pojo.query.FeedbackQuery;import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-/**
- * @author wcq
- * @title: FeedbackMapper
- * @projectName shower-01
- * @date 2020/4/1610:15
- */
 @Mapper
 public interface FeedbackMapper extends BaseMapper {
     long countByExample(FeedbackExample example);

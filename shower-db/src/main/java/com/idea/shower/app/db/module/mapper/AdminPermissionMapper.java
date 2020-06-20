@@ -4,8 +4,7 @@ import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
 import com.idea.shower.app.db.module.pojo.AdminPermissionExample;
 import java.util.Collection;import java.util.List;
-import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
-import org.apache.ibatis.annotations.Mapper;
+import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 @Mapper

@@ -73,4 +73,32 @@ public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> im
         return baseMapper().deleteByExample(example);
     }
 
+    @Override
+    public AdminUser selectByUsername(String username) {
+        return baseMapper().selectOneByUsername(username);
+    }
+
+    @Override
+    public Optional<AdminUser> selectByUsernameOpt(String username) {
+        return Optional.ofNullable(selectByUsername(username));
+    }
+
+    @Override
+    public PageResult<AdminUser> selectPageByQuery(AdminUserQuery query, int page, int size) {
+        PageHelper.startPage(page, size);
+        return new PageResult<>(new PageInfo<>(baseMapper().selectByCondition(query)));
+    }
+
+    @Override
+    public List<AdminUser> selectListByQuery(AdminUserQuery query) {
+        return baseMapper().selectByCondition(query);
+    }
+
+    @Override
+    public boolean existByUsername(String username) {
+        AdminUserExample example = new AdminUserExample();
+        example.or().andUsernameEqualTo(username);
+        return baseMapper().countByExample(example) > 0;
+    }
+
 }

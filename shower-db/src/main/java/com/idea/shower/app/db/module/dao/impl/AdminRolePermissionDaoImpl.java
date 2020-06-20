@@ -5,6 +5,7 @@ import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.dao.AdminRolePermissionDao;
 import com.idea.shower.app.db.module.mapper.AdminRolePermissionMapper;
 import com.idea.shower.app.db.module.pojo.AdminRolePermission;
+import com.idea.shower.app.db.module.pojo.AdminRolePermissionExample;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,5 +42,28 @@ public class AdminRolePermissionDaoImpl extends BaseDaoImpl<AdminRolePermission,
     @Transactional(rollbackFor = Exception.class)
     public int deleteByPermissionId(Long permissionId) {
         return baseMapper().deleteByPermissionId(permissionId);
+    }
+
+    @Override
+    @Transactional
+    public void deleteByPermissionIds(List<Long> ids) {
+        AdminRolePermissionExample example = new AdminRolePermissionExample();
+        example.or().andPermissionIdIn(ids);
+        baseMapper().deleteByExample(example);
+    }
+
+    @Override
+    @Transactional
+    public void deleteByRoleIds(List<Long> id) {
+        AdminRolePermissionExample example = new AdminRolePermissionExample();
+        example.or().andRoleIdIn(id);
+        baseMapper().deleteByExample(example);
+    }
+
+    @Override
+    public List<AdminRolePermission> listByRoleId(Long id) {
+        AdminRolePermissionExample example = new AdminRolePermissionExample();
+        example.or().andRoleIdEqualTo(id);
+        return baseMapper().selectByExample(example);
     }
 }

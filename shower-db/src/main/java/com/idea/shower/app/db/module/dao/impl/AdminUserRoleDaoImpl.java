@@ -5,6 +5,7 @@ import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.dao.AdminUserRoleDao;
 import com.idea.shower.app.db.module.mapper.AdminUserRoleMapper;
 import com.idea.shower.app.db.module.pojo.AdminUserRole;
+import com.idea.shower.app.db.module.pojo.AdminUserRoleExample;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,8 +29,8 @@ public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRo
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int deleteByUserIds(List<Long> userIds) {
-        return baseMapper().deleteByUserIdIn(userIds);
+    public void deleteByUserIds(List<Long> userIds) {
+         baseMapper().deleteByUserIdIn(userIds);
     }
 
     @Override
@@ -40,8 +41,8 @@ public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRo
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int deleteByRoleIds(List<Long> roleIds) {
-        return baseMapper().deleteByRoleIdIn(roleIds);
+    public void deleteByRoleIds(List<Long> roleIds) {
+         baseMapper().deleteByRoleIdIn(roleIds);
     }
 
     @Override
@@ -49,6 +50,14 @@ public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRo
     public int batchInsertSelective(List<AdminUserRole> adminUserRoles) {
         return adminUserRoles.stream().map(baseMapper()::insertSelective).reduce(Integer::sum).orElse(0);
     }
+
+    @Override
+    public List<AdminUserRole> listByUserId(Long id) {
+        AdminUserRoleExample example = new AdminUserRoleExample();
+        example.or().andUserIdEqualTo(id);
+        return baseMapper().selectByExample(example);
+    }
+
 
     @Override
     public List<Long> selectRoleIdByUserId(Long userId) {
