@@ -1,4 +1,4 @@
-package com.idea.shower.admin.security;
+package com.idea.shower.security;
 
 /**
  * @program: boot-01

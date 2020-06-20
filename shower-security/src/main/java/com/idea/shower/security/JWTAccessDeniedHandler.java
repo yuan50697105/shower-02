@@ -1,9 +1,10 @@
-package com.idea.shower.admin.security;
+package com.idea.shower.security;
 
 import ai.yue.library.base.view.ResultInfo;
 import cn.hutool.json.JSONUtil;
 import org.springframework.http.MediaType;
-import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,11 +15,11 @@ import java.io.IOException;
  * @program: boot-01
  * @description:
  * @author: yuane
- * @create: 2020-05-31 16:12
+ * @create: 2020-05-31 16:19
  */
-public class JWTAuthenticationEntryPoint implements org.springframework.security.web.AuthenticationEntryPoint {
+public class JWTAccessDeniedHandler implements AccessDeniedHandler {
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException e) throws IOException, ServletException {
+    public void handle(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e) throws IOException, ServletException {
         response.setCharacterEncoding("utf-8");
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.getWriter().write(JSONUtil.toJsonPrettyStr(ResultInfo.unauthorized()));

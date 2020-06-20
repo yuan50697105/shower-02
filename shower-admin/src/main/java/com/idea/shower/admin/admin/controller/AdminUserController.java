@@ -19,7 +19,7 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin/user")
-@PreAuthorize("hasAnyAuthority('管理员')")
+@PreAuthorize("hasAnyAuthority('超级管理员')")
 @AllArgsConstructor
 @Validated
 public class AdminUserController {
