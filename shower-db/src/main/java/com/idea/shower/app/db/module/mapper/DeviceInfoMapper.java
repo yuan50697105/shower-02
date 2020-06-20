@@ -31,14 +31,11 @@ public interface DeviceInfoMapper extends BaseMapper {
 
     int updateByPrimaryKey(DeviceInfo record);
 
-    int updateRunStatusById(@Param("updatedRunStatus")Integer updatedRunStatus,@Param("id")Long id);
+    int updateRunStatusById(@Param("updatedRunStatus") Integer updatedRunStatus, @Param("id") Long id);
 
     List<DeviceInfo> selectByCondition(DeviceInfoQuery query);
 
     DeviceInfo selectOneByCode(@Param("code") String code);
 
-    DeviceInfo getOneByCodeAndRunStatus(@Param("code")String code,@Param("runStatus")Integer runStatus);
-
-
-
+    DeviceInfo getOneByCodeAndRunStatus(@Param("code") String code, @Param("runStatus") Integer runStatus);
 }

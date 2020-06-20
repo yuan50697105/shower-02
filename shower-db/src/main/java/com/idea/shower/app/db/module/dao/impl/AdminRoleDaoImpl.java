@@ -7,6 +7,7 @@ import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.dao.AdminRoleDao;
 import com.idea.shower.app.db.module.mapper.AdminRoleMapper;
 import com.idea.shower.app.db.module.pojo.AdminRole;
+import com.idea.shower.app.db.module.pojo.AdminRoleExample;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
@@ -73,4 +74,37 @@ public class AdminRoleDaoImpl extends BaseDaoImpl<AdminRole, AdminRoleMapper> im
     public int deleteById(Long id) {
         return baseMapper().deleteByPrimaryKey(id);
     }
+
+    @Override
+    @Transactional
+    public void deleteByIds(List<Long> id) {
+        AdminRoleExample example = new AdminRoleExample();
+        example.or().andIdIn(id);
+        baseMapper().deleteByExample(example);
+    }
+
+    @Override
+    public PageResult<AdminRole> selectPageByQuery(AdminRoleQuery query, int page, int size) {
+        PageHelper.startPage(page, size);
+        return new PageResult<>(new PageInfo<>(baseMapper().selectByCondition(query)));
+    }
+
+    @Override
+    public List<AdminRole> selectListByQuery(AdminRoleQuery query) {
+        return baseMapper().selectByCondition(query);
+    }
+
+    @Override
+    public boolean checkExistByName(String name) {
+        AdminRoleExample example = new AdminRoleExample();
+        example.or().andNameEqualTo(name);
+        long count = baseMapper().countByExample(example);
+        return count > 0;
+    }
+
+    @Override
+    public List<AdminRole> listByIds(List<Long> roleIds) {
+        return selectByIds(roleIds);
+    }
+
 }

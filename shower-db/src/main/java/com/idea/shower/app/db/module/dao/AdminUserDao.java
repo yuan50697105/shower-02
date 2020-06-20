@@ -31,4 +31,15 @@ public interface AdminUserDao extends BaseDao<AdminUser> {
     Optional<AdminUser> selectById(Long id);
 
     int deleteByIds(List<Long> ids);
+
+    AdminUser selectByUsername(String username);
+
+    Optional<AdminUser> selectByUsernameOpt(String username);
+
+    PageResult<AdminUser> selectPageByQuery(AdminUserQuery query, int page, int size);
+
+    List<AdminUser> selectListByQuery(AdminUserQuery query);
+
+    boolean existByUsername(String username);
+
 }

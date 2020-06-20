@@ -3,5 +3,6 @@ group 'com.idea.shower.web.webmvc'
 dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-websocket'
+    compile 'org.springframework.boot:spring-boot-starter-validation'
     compile project(':shower-db-core')
 }

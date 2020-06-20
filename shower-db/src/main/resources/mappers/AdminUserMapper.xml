@@ -13,6 +13,10 @@
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="enabled" jdbcType="INTEGER" property="enabled" />
+    <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
+    <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="deleted" jdbcType="BOOLEAN" property="deleted" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -77,7 +81,7 @@
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
     id, create_time, update_time, create_user, update_user, username, `password`, `name`, 
-    enabled
+    enabled, last_login_ip, last_login_time, avatar, deleted
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminUserExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -117,10 +121,14 @@
     <!--@mbg.generated-->
     insert into admin_user (create_time, update_time, create_user, 
       update_user, username, `password`, 
-      `name`, enabled)
+      `name`, enabled, last_login_ip, 
+      last_login_time, avatar, deleted
+      )
     values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
       #{updateUser,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER})
+      #{name,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, #{lastLoginIp,jdbcType=VARCHAR}, 
+      #{lastLoginTime,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}, #{deleted,jdbcType=BOOLEAN}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminUser" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -150,6 +158,18 @@
       <if test="enabled != null">
         enabled,
       </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="deleted != null">
+        deleted,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="createTime != null">
@@ -175,6 +195,18 @@
       </if>
       <if test="enabled != null">
         #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        #{deleted,jdbcType=BOOLEAN},
       </if>
     </trim>
   </insert>
@@ -216,6 +248,18 @@
       <if test="record.enabled != null">
         enabled = #{record.enabled,jdbcType=INTEGER},
       </if>
+      <if test="record.lastLoginIp != null">
+        last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.lastLoginTime != null">
+        last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.avatar != null">
+        avatar = #{record.avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deleted != null">
+        deleted = #{record.deleted,jdbcType=BOOLEAN},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -232,7 +276,11 @@
       username = #{record.username,jdbcType=VARCHAR},
       `password` = #{record.password,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
-      enabled = #{record.enabled,jdbcType=INTEGER}
+      enabled = #{record.enabled,jdbcType=INTEGER},
+      last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+      last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
+      avatar = #{record.avatar,jdbcType=VARCHAR},
+      deleted = #{record.deleted,jdbcType=BOOLEAN}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -265,6 +313,18 @@
       <if test="enabled != null">
         enabled = #{enabled,jdbcType=INTEGER},
       </if>
+      <if test="lastLoginIp != null">
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="lastLoginTime != null">
+        last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="deleted != null">
+        deleted = #{deleted,jdbcType=BOOLEAN},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -278,7 +338,11 @@
       username = #{username,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
-      enabled = #{enabled,jdbcType=INTEGER}
+      enabled = #{enabled,jdbcType=INTEGER},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      deleted = #{deleted,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=BIGINT}
   </update>
     <select id="selectByCondition" resultMap="BaseResultMap">
@@ -330,4 +394,10 @@
             </if>
         </if>
     </select>
+<!--auto generated by MybatisCodeHelper on 2020-06-14-->
+  <select id="selectOneByUsername" resultMap="BaseResultMap">
+    select <include refid="Base_Column_List" />
+    from admin_user
+    where username=#{username,jdbcType=VARCHAR}
+  </select>
 </mapper>

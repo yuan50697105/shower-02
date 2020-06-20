@@ -154,15 +154,15 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         OrderItem startingItem = orderItemDao.getStartingItemByOrderId(orderInfo.getId());
         Date endTime = startingItem.getEndTime();
         Double waterUse = startingItem.getWaterUse();
-        Double deviceWaterUse = getDeviceWaterUse(orderInfo.getDeviceCode());
+        Double deviceWaterUse = getDeviceWaterUse();
         if (checkHasExtPriceInfo(finalTime, endTime, waterUse, deviceWaterUse)) {
             addExtOrderItemPriceInfo(orderInfo, endTime, finalTime, deviceWaterUse - waterUse);
         }
-        BigDecimal totalprice = calculationOrderFee(orderInfo);
-        updateOrderToEndUseing(orderInfo, totalprice);
+        BigDecimal totalPrice = calculationOrderFee(orderInfo);
+        updateOrderToEndUsing(orderInfo, totalPrice);
         HashMap<String, Object> map = new HashMap<>();
         BeanUtil.beanToMap(request);
-        map.put("totalPrice", totalprice);
+        map.put("totalPrice", totalPrice);
         map.put("endTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("订单结束成功", map);
     }
@@ -209,7 +209,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
                 String outTradeNo = wxPayOrderNotifyResult.getOutTradeNo();
                 String transactionId = wxPayOrderNotifyResult.getTransactionId();
                 OrderInfo orderInfo = orderInfoDao.getByOrderNo(outTradeNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
-                List<Integer> integers = Arrays.asList(OrderInfoConstants.OrderStatus.ORDER_COMPLETED);
+                List<Integer> integers = Collections.singletonList(OrderInfoConstants.OrderStatus.ORDER_COMPLETED);
                 if (!integers.contains(orderInfo.getStatus())) {
                     orderInfoDao.updateTransactionIdByOrderNo(transactionId, outTradeNo);
                     orderInfoDao.updateStatusCompleteByOrderNo(outTradeNo);
@@ -461,10 +461,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     /**
      * 获取设备的用水量
      *
-     * @param deviceCode 设备号
      * @return 用户量
      */
-    private Double getDeviceWaterUse(String deviceCode) {
+    @SuppressWarnings("SameReturnValue")
+    private Double getDeviceWaterUse() {
         return 0d;
     }
 
@@ -474,7 +474,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param orderInfo 订单信息
      */
     private BigDecimal calculationOrderFee(OrderInfo orderInfo) {
-        BigDecimal bigDecimal = new BigDecimal("0");
+        @SuppressWarnings("UnusedAssignment") BigDecimal bigDecimal = new BigDecimal("0");
         List<OrderItem> orderItems = orderItemDao.selectListByOrderNo(orderInfo.getOrderNo());
         bigDecimal = orderItems.stream().map(OrderItem::getTotalPrice).reduce(BigDecimal::add).orElse(new BigDecimal("0"));
         return bigDecimal;
@@ -564,9 +564,9 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
 
     }
 
-    private void updateOrderToEndUseing(OrderInfo orderInfo, BigDecimal totalprice) {
+    private void updateOrderToEndUsing(OrderInfo orderInfo, BigDecimal totalPrice) {
         orderInfoDao.updateEndTimeByOrderId(new Date(), orderInfo.getId());
-        orderInfoDao.updateTotalPriceByOrderNo(totalprice, orderInfo.getOrderNo());
+        orderInfoDao.updateTotalPriceByOrderNo(totalPrice, orderInfo.getOrderNo());
         orderInfoDao.updateStatusEndUseById(orderInfo.getId());
     }
 }

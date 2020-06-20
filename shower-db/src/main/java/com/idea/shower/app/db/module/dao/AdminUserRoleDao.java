@@ -15,15 +15,19 @@ import java.util.List;
 public interface AdminUserRoleDao extends BaseDao<AdminUserRole> {
     int deleteByUserId(Long userId);
 
-    int deleteByUserIds(List<Long> userIds);
+    void deleteByUserIds(List<Long> userIds);
 
     int deleteByRoleId(Long roleId);
 
-    int deleteByRoleIds(List<Long> roleIds);
+    void deleteByRoleIds(List<Long> roleIds);
 
     List<Long> selectRoleIdByUserId(Long userId);
 
     List<Long> selectUserIdByRoleId(Long roleId);
 
     int batchInsertSelective(List<AdminUserRole> adminUserRoles);
+
+
+    List<AdminUserRole> listByUserId(Long id);
+
 }

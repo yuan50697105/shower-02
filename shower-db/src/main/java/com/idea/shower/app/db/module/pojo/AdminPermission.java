@@ -1,6 +1,7 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
+import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,14 +17,11 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminPermission extends BaseDbEntity {
-    private static final long serialVersionUID = 1L;
+public class AdminPermission extends BaseDbEntity implements Serializable {
     /**
      * name
      */
     private String name;
 
-    public static AdminPermissionBuilder builder() {
-        return new AdminPermissionBuilder();
-    }
+    private static final long serialVersionUID = 1L;
 }

@@ -53,7 +53,5 @@ public interface OrderInfoMapper extends BaseMapper {
 
     int updateUseStartTimeById(@Param("updatedUseStartTime") Date updatedUseStartTime, @Param("id") Long id);
 
-    int updateTransactionIdByOrderNo(@Param("updatedTransactionId")String updatedTransactionId,@Param("orderNo")String orderNo);
-
-
+    int updateTransactionIdByOrderNo(@Param("updatedTransactionId") String updatedTransactionId, @Param("orderNo") String orderNo);
 }

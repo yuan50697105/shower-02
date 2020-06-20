@@ -331,7 +331,7 @@
 
     <select id="selectByConditionWeXin" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from order_info
         <where>
             <if test="query.customerId != null">
