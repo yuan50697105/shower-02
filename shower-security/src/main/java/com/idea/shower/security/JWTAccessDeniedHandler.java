@@ -1,4 +1,4 @@
-package com.yuan.shower.security;
+package com.idea.shower.security;
 
 import ai.yue.library.base.view.ResultInfo;
 import cn.hutool.json.JSONUtil;

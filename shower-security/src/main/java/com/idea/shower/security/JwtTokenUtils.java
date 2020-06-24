@@ -1,4 +1,4 @@
-package com.yuan.shower.security;
+package com.idea.shower.security;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;

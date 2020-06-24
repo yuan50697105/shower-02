@@ -1,6 +1,8 @@
-group = 'com.idea.shower.app.admin'
 dependencies {
     compile project(':shower-webmvc-core')
     compile project(':shower-db')
     compile project(':shower-security')
+    compile group: 'ai.ylyue', name: 'yue-library-base', version: 'Finchley.SR4.1'
+    testImplementation('org.springframework.security:spring-security-test')
+
 }

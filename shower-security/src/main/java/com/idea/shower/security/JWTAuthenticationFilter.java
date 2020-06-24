@@ -1,4 +1,4 @@
-package com.yuan.shower.security;
+package com.idea.shower.security;
 
 /**
  * @program: boot-01

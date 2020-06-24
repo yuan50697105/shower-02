@@ -1,23 +1,25 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 管理员用户
  */
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
+@ToString
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminUser extends BaseDbEntity implements Serializable {
+public class AdminUser extends BaseDbEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * username
      */
@@ -57,11 +59,4 @@ public class AdminUser extends BaseDbEntity implements Serializable {
      * 逻辑删除
      */
     private Boolean deleted;
-
-    /**
-     * 角色列表
-     */
-    private String roleIds;
-
-    private static final long serialVersionUID = 1L;
 }

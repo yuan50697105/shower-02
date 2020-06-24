@@ -1,4 +1,3 @@
-group = 'com.idea.shower.app.wx'
 dependencies {
     compile project(':shower-commons')
     compile project(':shower-webmvc-core')
