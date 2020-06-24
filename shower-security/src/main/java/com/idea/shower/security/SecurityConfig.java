@@ -1,4 +1,4 @@
-package com.yuan.shower.security;
+package com.idea.shower.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
