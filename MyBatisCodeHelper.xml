@@ -2,6 +2,8 @@
   <component name="MyBatisCodeHelper">
     <option name="profile">
       <Profile>
+        <option name="generateMethodInService" value="true" />
+        <option name="generateMethodInServiceInterface" value="true" />
         <option name="userMacSet">
           <set>
             <option value="D4-3A-65-07-AE-11" />
