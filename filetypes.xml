@@ -15,6 +15,7 @@
       <mapping ext="lombok" type="PLAIN_TEXT" />
       <mapping ext="factory" type="PLAIN_TEXT" />
       <mapping ext="lst" type="PLAIN_TEXT" />
+      <mapping ext="tpl" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>
