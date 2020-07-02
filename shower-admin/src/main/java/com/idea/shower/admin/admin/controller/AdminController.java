@@ -2,11 +2,9 @@ package com.idea.shower.admin.admin.controller;
 
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
-import com.idea.shower.admin.admin.command.annotation.RouteUrl;
 import com.idea.shower.admin.admin.service.AdminService;
 import com.idea.shower.security.JwtTokenUtils;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
@@ -25,14 +23,12 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("admin")
-@RouteUrl
 @Validated
+@AllArgsConstructor
 public class AdminController {
-    @Autowired
-    private AdminService adminService;
+    private final AdminService adminService;
 
     @GetMapping("getUserInfo")
-    @RouteUrl(value = "getUserInfo")
     @PreAuthorize("isAuthenticated()")
     public Result<?> getUserInfo(String token) {
         String username = JwtTokenUtils.getUsername(token);
@@ -40,13 +36,12 @@ public class AdminController {
         HashMap<String, Object> map = new HashMap<>();
         map.put("roles", hashSet);
         map.put("name", username);
-        map.put("avtor","");
+        map.put("avtor", "");
         return ResultInfo.success(map);
     }
 
     @GetMapping("logout")
-    @RouteUrl(value = "logout")
-    public Result<?> logout(){
+    public Result<?> logout() {
         SecurityContextHolder.clearContext();
         return ResultInfo.success();
 

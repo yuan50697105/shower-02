@@ -1,10 +1,10 @@
 package com.idea.shower.admin.admin.command;
 
-import com.idea.shower.admin.admin.command.annotation.RouteUrl;
 import com.idea.shower.app.db.module.dao.AdminRouteDao;
 import com.idea.shower.app.db.module.pojo.AdminRoute;
 import com.idea.shower.app.db.module.pojo.AdminRouteExample;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.aop.support.AopUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -177,10 +177,6 @@ public class ContextInitRouteListCommand implements ApplicationRunner {
         }
         List<AdminRoute> routes = adminRouteDao.selectByExample(new AdminRouteExample());
         List<String> routeUrls = routes.stream().map(AdminRoute::getUrl).collect(Collectors.toList());
-        List<AdminRoute> sysRouteList = sysRoutes.stream().filter(sysRoute -> !routeUrls.contains(sysRoute.getUrl())).collect(Collectors.toList());
-        for (AdminRoute adminRoute : sysRouteList) {
-            adminRouteDao.insert(adminRoute);
-        }
         log.info("加载路由完毕");
     }
 
@@ -188,30 +184,107 @@ public class ContextInitRouteListCommand implements ApplicationRunner {
     @Transactional
     public void run(ApplicationArguments args) throws Exception {
         Map<String, Object> beans = context.getBeansWithAnnotation(Controller.class);
-        List<AdminRoute> adminRoutes = new ArrayList<>();
+        ArrayList<String> routes = new ArrayList<>();
+        beans.putAll(context.getBeansWithAnnotation(RestController.class));
+        List<String> adminRoutes = new ArrayList<>();
         for (Map.Entry<String, Object> entry : beans.entrySet()) {
             Object value = entry.getValue();
-            String baseUrl = "";
-            if (value.getClass().isAnnotationPresent(RouteUrl.class)) {
-                baseUrl = value.getClass().getAnnotation(RouteUrl.class).value();
+            if (AopUtils.isAopProxy(value)) {
+                Class<?> targetClass = AopUtils.getTargetClass(value);
+                List<String> routeList = createControllerRoute(targetClass);
+                adminRoutes.addAll(routeList);
+            } else {
+                List<String> routeList = createControllerRoute(value.getClass());
+                adminRoutes.addAll(routeList);
             }
-            for (Method method : value.getClass().getMethods()) {
-                if (method.isAnnotationPresent(RouteUrl.class)) {
-                    String url = method.getAnnotation(RouteUrl.class).value();
-                    url = baseUrl + "/" + url;
-                    AdminRoute adminRoute = new AdminRoute();
-                    adminRoute.setUrl(url);
-                    adminRoutes.add(adminRoute);
+        }
+        List<AdminRoute> routeList = adminRouteDao.selectByExample(new AdminRouteExample());
+        List<String> routeUrlList = routeList.stream().map(AdminRoute::getUrl).collect(Collectors.toList());
+        adminRoutes = adminRoutes.stream().distinct().collect(Collectors.toList());
+        if (routeUrlList.size() > 0) {
+            for (String adminRoute : adminRoutes) {
+                if (!routeUrlList.contains(adminRoute)) {
+                    AdminRoute route = new AdminRoute();
+                    route.setUrl(adminRoute);
+                    adminRouteDao.insert(route);
                 }
             }
+        } else {
+            for (String adminRoute : adminRoutes) {
+                AdminRoute route = new AdminRoute();
+                route.setUrl(adminRoute);
+                adminRouteDao.insert(route);
+            }
         }
-        List<AdminRoute> adminRouteList = adminRouteDao.selectByExample(new AdminRouteExample());
-        List<String> routeList = adminRouteList.stream().map(AdminRoute::getUrl).collect(Collectors.toList());
-        if (routeList.size() > 0) {
-            adminRoutes = adminRoutes.stream().filter(adminRoute -> routeList.contains(adminRoute.getUrl())).collect(Collectors.toList());
+
+    }
+
+    private List<String> createControllerRoute(Class<?> targetClass) {
+        ArrayList<String> adminRoutes = new ArrayList<>();
+        String[] urls = null;
+        if (targetClass.isAnnotationPresent(RequestMapping.class)) {
+            urls = targetClass.getAnnotation(RequestMapping.class).value();
+        } else if (targetClass.isAnnotationPresent(GetMapping.class)) {
+            urls = targetClass.getAnnotation(GetMapping.class).value();
+        } else if (targetClass.isAnnotationPresent(PostMapping.class)) {
+            urls = targetClass.getAnnotation(PostMapping.class).value();
+        } else if (targetClass.isAnnotationPresent(DeleteMapping.class)) {
+            urls = targetClass.getAnnotation(DeleteMapping.class).value();
+        } else if (targetClass.isAnnotationPresent(PutMapping.class)) {
+            urls = targetClass.getAnnotation(PutMapping.class).value();
+        } else if (targetClass.isAnnotationPresent(PatchMapping.class)) {
+            urls = targetClass.getAnnotation(PatchMapping.class).value();
         }
-        for (AdminRoute adminRoute : adminRoutes) {
-            adminRouteDao.insert(adminRoute);
+        if (urls != null && urls.length > 0) {
+            for (String url : urls) {
+                createControllerMethodUrl(targetClass, adminRoutes, url);
+            }
+        } else {
+            createControllerMethodUrl(targetClass, adminRoutes, "");
+        }
+        return adminRoutes;
+    }
+
+    private void createControllerMethodUrl(Class<?> targetClass, ArrayList<String> adminRoutes, String url) {
+        for (Method method : targetClass.getMethods()) {
+            String[] methodUrls = null;
+            if (AopUtils.isAopProxy(method)) {
+                Class<?> methodTargetClass = AopUtils.getTargetClass(method);
+                if (methodTargetClass.isAnnotationPresent(RequestMapping.class)) {
+                    methodUrls = methodTargetClass.getAnnotation(RequestMapping.class).value();
+                } else if (methodTargetClass.isAnnotationPresent(GetMapping.class)) {
+                    methodUrls = methodTargetClass.getAnnotation(GetMapping.class).value();
+                } else if (methodTargetClass.isAnnotationPresent(PostMapping.class)) {
+                    methodUrls = methodTargetClass.getAnnotation(PostMapping.class).value();
+                } else if (methodTargetClass.isAnnotationPresent(DeleteMapping.class)) {
+                    methodUrls = methodTargetClass.getAnnotation(DeleteMapping.class).value();
+                } else if (methodTargetClass.isAnnotationPresent(PutMapping.class)) {
+                    methodUrls = methodTargetClass.getAnnotation(PutMapping.class).value();
+                } else if (targetClass.isAnnotationPresent(PatchMapping.class)) {
+                    methodUrls = methodTargetClass.getAnnotation(PatchMapping.class).value();
+                }
+            } else {
+                if (method.isAnnotationPresent(RequestMapping.class)) {
+                    methodUrls = method.getAnnotation(RequestMapping.class).value();
+                } else if (method.isAnnotationPresent(GetMapping.class)) {
+                    methodUrls = method.getAnnotation(GetMapping.class).value();
+                } else if (method.isAnnotationPresent(PostMapping.class)) {
+                    methodUrls = method.getAnnotation(PostMapping.class).value();
+                } else if (method.isAnnotationPresent(DeleteMapping.class)) {
+                    methodUrls = method.getAnnotation(DeleteMapping.class).value();
+                } else if (method.isAnnotationPresent(PutMapping.class)) {
+                    methodUrls = method.getAnnotation(PutMapping.class).value();
+                } else if (targetClass.isAnnotationPresent(PatchMapping.class)) {
+                    methodUrls = method.getAnnotation(PatchMapping.class).value();
+                }
+            }
+            if (methodUrls != null) {
+                for (String methodUrl : methodUrls) {
+                    adminRoutes.add(url + "/" + methodUrl);
+                }
+            } else {
+                adminRoutes.add(url);
+            }
         }
     }
 }
