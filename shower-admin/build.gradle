@@ -3,6 +3,7 @@ dependencies {
     compile project(':shower-db')
     compile project(':shower-security')
     compile group: 'ai.ylyue', name: 'yue-library-base', version: 'Finchley.SR4.1'
+    compile('org.springframework.boot:spring-boot-starter-aop')
     testImplementation('org.springframework.security:spring-security-test')
 
 }

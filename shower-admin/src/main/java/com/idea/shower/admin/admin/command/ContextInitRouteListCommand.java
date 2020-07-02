@@ -1,11 +1,13 @@
 package com.idea.shower.admin.admin.command;
 
+import com.idea.shower.admin.admin.command.annotation.RouteUrl;
 import com.idea.shower.app.db.module.dao.AdminRouteDao;
 import com.idea.shower.app.db.module.pojo.AdminRoute;
 import com.idea.shower.app.db.module.pojo.AdminRouteExample;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
@@ -26,15 +28,14 @@ import java.util.stream.Collectors;
  */
 @Component
 @Slf4j
-public class ContextInitRouteListCommand implements CommandLineRunner {
+public class ContextInitRouteListCommand implements ApplicationRunner {
     @Autowired
     private ApplicationContext context;
     @Autowired
     private AdminRouteDao adminRouteDao;
 
-    @Override
-    @Transactional
-    public void run(String... args) throws Exception {
+
+    private void saveRoute() {
         log.info("自动加载路由");
         ArrayList<AdminRoute> sysRoutes = new ArrayList<>();
         Map<String, Object> beans = context.getBeansWithAnnotation(Controller.class);
@@ -181,5 +182,36 @@ public class ContextInitRouteListCommand implements CommandLineRunner {
             adminRouteDao.insert(adminRoute);
         }
         log.info("加载路由完毕");
+    }
+
+    @Override
+    @Transactional
+    public void run(ApplicationArguments args) throws Exception {
+        Map<String, Object> beans = context.getBeansWithAnnotation(Controller.class);
+        List<AdminRoute> adminRoutes = new ArrayList<>();
+        for (Map.Entry<String, Object> entry : beans.entrySet()) {
+            Object value = entry.getValue();
+            String baseUrl = "";
+            if (value.getClass().isAnnotationPresent(RouteUrl.class)) {
+                baseUrl = value.getClass().getAnnotation(RouteUrl.class).value();
+            }
+            for (Method method : value.getClass().getMethods()) {
+                if (method.isAnnotationPresent(RouteUrl.class)) {
+                    String url = method.getAnnotation(RouteUrl.class).value();
+                    url = baseUrl + "/" + url;
+                    AdminRoute adminRoute = new AdminRoute();
+                    adminRoute.setUrl(url);
+                    adminRoutes.add(adminRoute);
+                }
+            }
+        }
+        List<AdminRoute> adminRouteList = adminRouteDao.selectByExample(new AdminRouteExample());
+        List<String> routeList = adminRouteList.stream().map(AdminRoute::getUrl).collect(Collectors.toList());
+        if (routeList.size() > 0) {
+            adminRoutes = adminRoutes.stream().filter(adminRoute -> routeList.contains(adminRoute.getUrl())).collect(Collectors.toList());
+        }
+        for (AdminRoute adminRoute : adminRoutes) {
+            adminRouteDao.insert(adminRoute);
+        }
     }
 }
