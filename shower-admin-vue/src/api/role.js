@@ -1,22 +1,25 @@
 import request from '@/utils/request'
+import router from '../router/index'
+import { routeList } from '../router/index'
 
 export function getRoutes() {
-  return request({
-    url: '/vue-element-admin/routes',
-    method: 'get'
-  })
+  // return request({
+  //   url: '/vue-element-admin/routes',
+  //   method: 'get'
+  // })
+  return routeList
 }
 
 export function getRoles() {
   return request({
-    url: '/vue-element-admin/roles',
+    url: '/admin/role/list',
     method: 'get'
   })
 }
 
 export function addRole(data) {
   return request({
-    url: '/vue-element-admin/role',
+    url: '/admin/role/add',
     method: 'post',
     data
   })

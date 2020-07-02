@@ -16,4 +16,14 @@ import java.util.List;
 @Data
 public class AdminRoleVO extends AdminRole {
     private List<Long> permissionIds;
+
+    /**
+     * key :
+     * description :
+     * routes : []
+     */
+
+    private String description;
+    private List<?> routes;
+
 }

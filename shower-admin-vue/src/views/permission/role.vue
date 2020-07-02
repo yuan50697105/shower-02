@@ -5,7 +5,7 @@
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
       <el-table-column align="center" label="Role Key" width="220">
         <template slot-scope="scope">
-          {{ scope.row.key }}
+          {{ scope.row.id }}
         </template>
       </el-table-column>
       <el-table-column align="center" label="Role Name" width="220">
@@ -65,7 +65,7 @@ import { deepClone } from '@/utils'
 import { getRoutes, getRoles, addRole, deleteRole, updateRole } from '@/api/role'
 
 const defaultRole = {
-  key: '',
+  id: '',
   name: '',
   description: '',
   routes: []
@@ -99,12 +99,14 @@ export default {
   methods: {
     async getRoutes() {
       const res = await getRoutes()
-      this.serviceRoutes = res.data
-      this.routes = this.generateRoutes(res.data)
+      console.log(res)
+      this.serviceRoutes = res
+      this.routes = this.generateRoutes(res)
     },
     async getRoles() {
       const res = await getRoles()
-      this.rolesList = res.data
+      console.log(res)
+      this.rolesList = res.data.list
     },
 
     // Reshape the routes structure so that it looks the same as the sidebar
@@ -113,7 +115,9 @@ export default {
 
       for (let route of routes) {
         // skip some route
-        if (route.hidden) { continue }
+        if (route.hidden) {
+          continue
+        }
 
         const onlyOneShowingChild = this.onlyOneShowingChild(route.children, route)
 
@@ -182,7 +186,9 @@ export default {
             message: 'Delete succed!'
           })
         })
-        .catch(err => { console.error(err) })
+        .catch(err => {
+          console.error(err)
+        })
     },
     generateTree(routes, basePath = '/', checkedKeys) {
       const res = []
@@ -206,28 +212,28 @@ export default {
 
       const checkedKeys = this.$refs.tree.getCheckedKeys()
       this.role.routes = this.generateTree(deepClone(this.serviceRoutes), '/', checkedKeys)
-
       if (isEdit) {
-        await updateRole(this.role.key, this.role)
+        await updateRole(this.role.id, this.role)
         for (let index = 0; index < this.rolesList.length; index++) {
-          if (this.rolesList[index].key === this.role.key) {
+          if (this.rolesList[index].key === this.role.id) {
             this.rolesList.splice(index, 1, Object.assign({}, this.role))
             break
           }
         }
       } else {
         const { data } = await addRole(this.role)
-        this.role.key = data.key
+        console.log(data)
+        this.role.id = data.id
         this.rolesList.push(this.role)
       }
 
-      const { description, key, name } = this.role
+      const { description, id, name } = this.role
       this.dialogVisible = false
       this.$notify({
         title: 'Success',
         dangerouslyUseHTMLString: true,
         message: `
-            <div>Role Key: ${key}</div>
+            <div>Role Key: ${id}</div>
             <div>Role Name: ${name}</div>
             <div>Description: ${description}</div>
           `,
@@ -248,7 +254,7 @@ export default {
 
       // Show parent if there are no child route to display
       if (showingChildren.length === 0) {
-        onlyOneChild = { ... parent, path: '', noShowingChildren: true }
+        onlyOneChild = { ...parent, path: '', noShowingChildren: true }
         return onlyOneChild
       }
 
@@ -259,12 +265,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-container {
-  .roles-table {
-    margin-top: 30px;
+  .app-container {
+    .roles-table {
+      margin-top: 30px;
+    }
+
+    .permission-tree {
+      margin-bottom: 30px;
+    }
   }
-  .permission-tree {
-    margin-bottom: 30px;
-  }
-}
 </style>

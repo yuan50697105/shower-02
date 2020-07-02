@@ -136,9 +136,9 @@ export const asyncRoutes = [
     alwaysShow: true, // will always show the root menu
     name: 'Permission',
     meta: {
-      title: 'Permission',
+      title: '权限设置',
       icon: 'lock',
-      roles: ['管理员', 'editor'] // you can set roles in root nav
+      roles: ['超级管理员', 'editor'] // you can set roles in root nav
     },
     children: [
       {
@@ -147,7 +147,7 @@ export const asyncRoutes = [
         name: 'PagePermission',
         meta: {
           title: 'Page Permission',
-          roles: ['管理员'] // or you can only set roles in sub nav
+          roles: ['超级管理员'] // or you can only set roles in sub nav
         }
       },
       {
@@ -164,8 +164,8 @@ export const asyncRoutes = [
         component: () => import('@/views/permission/role'),
         name: 'RolePermission',
         meta: {
-          title: 'Role Permission',
-          roles: ['管理员']
+          title: '用户角色设置',
+          roles: ['超级管理员']
         }
       }
     ]
@@ -390,7 +390,7 @@ export const asyncRoutes = [
 const createRouter = () => new Router({
   // mode: 'history', // require service support
   scrollBehavior: () => ({ y: 0 }),
-  routes: constantRoutes
+  routes: [...constantRoutes, ...asyncRoutes]
 })
 
 const router = createRouter()
@@ -402,3 +402,7 @@ export function resetRouter() {
 }
 
 export default router
+const routeList = [...constantRoutes, ...asyncRoutes]
+export {
+  routeList
+}

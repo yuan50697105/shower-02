@@ -51,8 +51,8 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
     public Result<?> add(AdminRoleVO vo) {
         checkRoleExist(vo);
         AdminRole adminRole = createRole(vo);
-        createRolePermission(vo, adminRole);
-        return ResultInfo.success();
+//        createRolePermission(vo, adminRole);
+        return ResultInfo.success(adminRole);
     }
 
     @Override
