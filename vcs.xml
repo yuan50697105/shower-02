@@ -10,9 +10,17 @@
           <option name="url" value="https://218.201.98.189:8443/svn/zkgj/jkglypt" />
           <option name="userName" value="" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="git@gitee.com:yuan50697105/my-project-parent.gi" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="xgit@gitee.com:yuan50697105/my-project-parent.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
-    <option name="cloneParentDir" value="D:\IdeaProjects\my-project-parent\my-boot-parent\my-boot-application-parent" />
+    <option name="cloneParentDir" value="D:\IdeaProjects" />
   </component>
   <component name="Vcs.Log.App.Settings">
     <option name="COLUMN_ORDER">
