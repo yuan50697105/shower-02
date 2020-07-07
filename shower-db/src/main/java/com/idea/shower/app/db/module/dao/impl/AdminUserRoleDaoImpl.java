@@ -58,6 +58,11 @@ public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRo
         return baseMapper().selectByExample(example);
     }
 
+    @Override
+    public List<String> selectRoleNameByUsername(String username) {
+        return baseMapper().selectRoleNameByUsername(username);
+    }
+
 
     @Override
     public List<Long> selectRoleIdByUserId(Long userId) {

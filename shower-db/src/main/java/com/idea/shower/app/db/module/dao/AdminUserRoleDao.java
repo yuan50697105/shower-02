@@ -29,4 +29,5 @@ public interface AdminUserRoleDao extends BaseDao<AdminUserRole> {
 
     List<AdminUserRole> listByUserId(Long id);
 
+    List<String> selectRoleNameByUsername(String username);
 }

@@ -3,7 +3,10 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AdminUserRole;
 import com.idea.shower.app.db.module.pojo.AdminUserRoleExample;
-import java.util.Collection;import java.util.List;
+
+import java.util.Collection;
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -42,4 +45,6 @@ public interface AdminUserRoleMapper extends BaseMapper {
     List<Long> selectRoleIdByUserId(@Param("userId") Long userId);
 
     List<Long> selectUserIdByRoleId(@Param("roleId") Long roleId);
+
+    List<String> selectRoleNameByUsername(@Param("username") String username);
 }

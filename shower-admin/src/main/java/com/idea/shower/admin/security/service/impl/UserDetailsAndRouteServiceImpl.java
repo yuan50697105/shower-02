@@ -9,12 +9,15 @@ import com.idea.shower.app.db.module.dao.AdminUserDao;
 import com.idea.shower.app.db.module.dao.AdminUserRoleDao;
 import com.idea.shower.app.db.module.pojo.AdminRole;
 import com.idea.shower.app.db.module.pojo.AdminUser;
+import com.idea.shower.db.mybaits.dao.AdminUserRouteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -31,6 +34,8 @@ public class UserDetailsAndRouteServiceImpl implements UserDetailsAndRouteServic
     private AdminRoleDao adminRoleDao;
     @Autowired
     private AdminUserRoleDao adminUserRoleDao;
+    @Autowired
+    private AdminUserRouteDao adminUserRouteDao;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -42,5 +47,17 @@ public class UserDetailsAndRouteServiceImpl implements UserDetailsAndRouteServic
         List<AdminRole> adminRoles = adminRoleDao.selectByIds(roleIds);
         List<String> roleList = adminRoles.stream().map(AdminRole::getName).distinct().collect(Collectors.toList());
         return new JwtUser(new User(adminUser.getId(), adminUser.getUsername(), adminUser.getPassword(), roleList));
+    }
+
+    @Override
+    public Set<String> getRoleList(String username) {
+        List<String> roleList = adminUserRoleDao.selectRoleNameByUsername(username);
+        return new LinkedHashSet<>(roleList);
+    }
+
+    @Override
+    public Set<String> getRouteList(String username) {
+        List<String> routeList = adminUserRouteDao.selectRouteNameByUsername(username);
+        return new LinkedHashSet<>(routeList);
     }
 }
