@@ -12,7 +12,7 @@ import java.util.Set;
  * @author: yuane
  * @create: 2020-05-31 10:27
  */
-public interface AdminService extends UserDetailsService {
+public interface AdminService {
     Result<?> doLogin(LoginUser user);
 
     Set<String> getRoleList(String username);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.idea.shower.db.mybaits.mapper.AdminUserRouteMapper">
-<select id="selectRouteNameByUsername" resultType="java.lang.String">
+<select id="selectRouteByUsername" resultType="java.lang.String">
 select * from admin_route r inner join admin_role_route arr on r.id = arr.route_id inner join admin_user_role aur on aur.role_id=arr.role_id inner join admin_user au on au.id=aur.user_id where au.username=#{username,jdbcType=VARCHAR}
 </select></mapper>

@@ -20,6 +20,6 @@ public class AdminUserRouteDaoImpl implements AdminUserRouteDao {
 
     @Override
     public List<String> selectRouteNameByUsername(String username) {
-        return adminUserRouteMapper.selectRouteNameByUsername(username);
+        return adminUserRouteMapper.selectRouteByUsername(username);
     }
 }

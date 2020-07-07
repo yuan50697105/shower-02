@@ -50,14 +50,4 @@ public class AdminServiceImpl implements AdminService {
         return adminRoleService.listByIds(roleIds).stream().map(AdminRole::getName).collect(Collectors.toSet());
     }
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<AdminUser> optional = adminUserService.selectByUsernameOpt(username);
-        AdminUser adminUser = optional.orElseThrow(() -> new UsernameNotFoundException(username + "用户不存在"));
-        List<AdminUserRole> adminUserRoles = adminUserRoleService.listByUserId(adminUser.getId());
-        List<Long> roleIds = adminUserRoles.stream().map(AdminUserRole::getRoleId).collect(Collectors.toList());
-        List<AdminRole> adminRoles = adminRoleService.listByIds(roleIds);
-        List<String> roleNames = adminRoles.stream().map(AdminRole::getName).collect(Collectors.toList());
-        return new JwtUser(new User(adminUser.getId(), adminUser.getUsername(), adminUser.getPassword(), roleNames));
-    }
 }
