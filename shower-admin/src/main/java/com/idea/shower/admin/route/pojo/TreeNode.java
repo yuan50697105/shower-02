@@ -20,7 +20,8 @@ public class TreeNode {
      * meta : {"title":"Table","icon":"table"}
      * children : []
      */
-
+    private Long id;
+    private Long parentId;
     private String path;
     private String component;
     private String redirect;

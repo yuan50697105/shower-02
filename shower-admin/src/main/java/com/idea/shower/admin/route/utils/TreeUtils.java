@@ -7,10 +7,7 @@ import com.alibaba.fastjson.JSON;
 import com.idea.shower.admin.route.pojo.TreeNode;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -42,10 +39,35 @@ public class TreeUtils {
         return result;
     }
 
+    /**
+     * list转treeList
+     *
+     * @param list
+     * @return
+     */
+    public static List<TreeNode> list2tree(List<TreeNode> list) {
+        List<TreeNode> result = new ArrayList<>();
+
+        Map<Long, TreeNode> hash = list.stream().collect(Collectors.toMap(TreeNode::getId, test -> test));
+        for (TreeNode test : list) {
+            TreeNode p = hash.get(test.getParentId());
+            if (p == null) {
+                result.add(test);
+            } else {
+                if (p.getChildren() == null) {
+                    p.setChildren(new ArrayList<>());
+                }
+                p.getChildren().add(test);
+            }
+        }
+        return result;
+    }
+
     public static List<String> tree2Role(List<TreeNode> nodes) {
         nodes = tree2list(nodes);
         return nodes.stream().filter(Objects::nonNull).map(TreeNode::getMeta).filter(Objects::nonNull).map(TreeNode.MetaBean::getRoles).filter(Objects::nonNull).flatMap(Collection::stream).filter(Objects::nonNull).distinct().collect(Collectors.toList());
     }
+
 
     public static void main(String[] args) {
         String json = "[" +
