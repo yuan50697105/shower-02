@@ -3,7 +3,7 @@ package com.idea.shower.admin.admin.controller;
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.admin.service.AdminService;
-import com.idea.shower.security.JwtTokenUtils;
+import com.idea.shower.admin.security.JwtTokenUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;

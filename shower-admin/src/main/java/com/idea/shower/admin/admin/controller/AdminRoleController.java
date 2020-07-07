@@ -19,7 +19,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin/role")
-@PreAuthorize("hasAnyAuthority('超级管理员')")
 @AllArgsConstructor
 @Validated
 public class AdminRoleController {

@@ -1,4 +1,4 @@
-package com.idea.shower.admin.admin.command;
+package com.idea.shower.admin.route.command;
 
 import com.idea.shower.app.db.module.dao.AdminRouteDao;
 import com.idea.shower.app.db.module.pojo.AdminRoute;
