@@ -1,7 +1,8 @@
-package com.idea.shower.admin.security;
+package com.idea.shower.admin.security.utils;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
+import com.idea.shower.admin.security.pojo.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

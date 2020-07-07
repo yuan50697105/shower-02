@@ -1,4 +1,4 @@
-package com.idea.shower.admin.security;
+package com.idea.shower.admin.security.filter;
 
 /**
  * @program: boot-01
@@ -10,6 +10,9 @@ package com.idea.shower.admin.security;
 import ai.yue.library.base.view.ResultInfo;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.idea.shower.admin.security.utils.JwtTokenUtils;
+import com.idea.shower.admin.security.pojo.JwtUser;
+import com.idea.shower.admin.security.pojo.LoginUser;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

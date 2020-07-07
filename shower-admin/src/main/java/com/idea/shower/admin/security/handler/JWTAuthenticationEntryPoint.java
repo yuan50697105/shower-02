@@ -1,4 +1,4 @@
-package com.idea.shower.admin.security;
+package com.idea.shower.admin.security.handler;
 
 import ai.yue.library.base.view.ResultInfo;
 import cn.hutool.json.JSONUtil;

@@ -1,4 +1,4 @@
-package com.idea.shower.admin.security;
+package com.idea.shower.admin.security.filter;
 
 /**
  * @program: boot-01
@@ -7,6 +7,7 @@ package com.idea.shower.admin.security;
  * @create: 2020-05-31 16:11
  */
 
+import com.idea.shower.admin.security.utils.JwtTokenUtils;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

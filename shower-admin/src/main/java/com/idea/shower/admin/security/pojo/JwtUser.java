@@ -1,4 +1,4 @@
-package com.idea.shower.admin.security;
+package com.idea.shower.admin.security.pojo;
 
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
