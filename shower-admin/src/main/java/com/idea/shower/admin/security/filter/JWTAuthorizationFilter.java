@@ -7,7 +7,9 @@ package com.idea.shower.admin.security.filter;
  * @create: 2020-05-31 16:11
  */
 
+import com.idea.shower.admin.security.service.UserDetailsAndRouteService;
 import com.idea.shower.admin.security.utils.JwtTokenUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -28,11 +30,14 @@ import java.util.stream.Collectors;
  * 登录成功之后走此类进行鉴权操作
  */
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
+    @Autowired
+    private UserDetailsAndRouteService userDetailsAndRouteService;
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
     }
 
+    @SuppressWarnings("ConstantConditions")
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
@@ -51,11 +56,11 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 
     // 这里从token中获取用户信息并新建一个token
     private UsernamePasswordAuthenticationToken getAuthentication(String tokenHeader) {
-        String token = tokenHeader.replace(JwtTokenUtils.TOKEN_PREFIX, "");
+        @SuppressWarnings("ConstantConditions") String token = tokenHeader.replace(JwtTokenUtils.TOKEN_PREFIX, "");
         String username = JwtTokenUtils.getUsername(token);
-        List<String> roles = JwtTokenUtils.getUserRole(token);
         if (!JwtTokenUtils.isExpiration(token)) {
             if (username != null) {
+                Set<String> roles = userDetailsAndRouteService.getRouteList(username);
                 Set<SimpleGrantedAuthority> authorities = roles.stream().distinct().map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
                 return new UsernamePasswordAuthenticationToken(username, null, authorities);
             }

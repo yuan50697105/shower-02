@@ -22,7 +22,7 @@ import java.util.Set;
  * @create: 2020-05-31 10:26
  */
 @RestController
-@RequestMapping("security")
+@RequestMapping("admin")
 @Validated
 @AllArgsConstructor
 public class SecurityController {
