@@ -31,10 +31,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Qualifier("userDetailsAndRouteServiceImpl")
     @Autowired
     private UserDetailsAndRouteService userDetailsAndRouteService;
-    @Autowired
-    private JWTAuthorizationFilter authorizationFilter;
-    @Autowired
-    private JWTAuthenticationFilter authenticationFilter;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {

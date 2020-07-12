@@ -3,43 +3,43 @@
     <el-button type="primary" @click="handleAddRole">New Role</el-button>
 
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
-      <el-table-column align="center" label="Role Key" width="220">
+      <el-table-column align="center" label="ID" width="220">
         <template slot-scope="scope">
           {{ scope.row.id }}
         </template>
       </el-table-column>
-      <el-table-column align="center" label="Role Name" width="220">
+      <el-table-column align="center" label="角色名称" width="220">
         <template slot-scope="scope">
           {{ scope.row.name }}
         </template>
       </el-table-column>
-      <el-table-column align="header-center" label="Description">
+      <el-table-column align="header-center" label="角色描述">
         <template slot-scope="scope">
           {{ scope.row.description }}
         </template>
       </el-table-column>
-      <el-table-column align="center" label="Operations">
+      <el-table-column align="center" label="操作">
         <template slot-scope="scope">
-          <el-button type="primary" size="small" @click="handleEdit(scope)">Edit</el-button>
-          <el-button type="danger" size="small" @click="handleDelete(scope)">Delete</el-button>
+          <el-button type="primary" size="small" @click="handleEdit(scope)">编辑</el-button>
+          <el-button type="danger" size="small" @click="handleDelete(scope)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
 
     <el-dialog :visible.sync="dialogVisible" :title="dialogType==='edit'?'Edit Role':'New Role'">
       <el-form :model="role" label-width="80px" label-position="left">
-        <el-form-item label="Name">
-          <el-input v-model="role.name" placeholder="Role Name" />
+        <el-form-item label="角色名称">
+          <el-input v-model="role.name" placeholder="角色名称" />
         </el-form-item>
-        <el-form-item label="Desc">
+        <el-form-item label="角色描述">
           <el-input
             v-model="role.description"
             :autosize="{ minRows: 2, maxRows: 4}"
             type="textarea"
-            placeholder="Role Description"
+            placeholder="角色描述"
           />
         </el-form-item>
-        <el-form-item label="Menus">
+        <el-form-item label="菜单">
           <el-tree
             ref="tree"
             :check-strictly="checkStrictly"
@@ -106,7 +106,7 @@ export default {
     async getRoles() {
       const res = await getRoles()
       console.log(res)
-      this.rolesList = res.data.list
+      this.rolesList = res.data.data
     },
 
     // Reshape the routes structure so that it looks the same as the sidebar
@@ -179,7 +179,7 @@ export default {
         type: 'warning'
       })
         .then(async() => {
-          await deleteRole(row.key)
+          await deleteRole(row.id)
           this.rolesList.splice($index, 1)
           this.$message({
             type: 'success',

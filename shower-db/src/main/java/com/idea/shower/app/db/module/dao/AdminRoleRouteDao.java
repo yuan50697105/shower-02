@@ -28,4 +28,7 @@ public interface AdminRoleRouteDao {
 
     int updateByPrimaryKey(AdminRoleRoute record);
 
+    int deleteByRoleIds(List<Long> ids);
+
+    int deleteByRoleId(Long id);
 }

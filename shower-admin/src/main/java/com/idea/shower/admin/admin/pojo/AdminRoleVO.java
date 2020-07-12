@@ -28,6 +28,7 @@ public class AdminRoleVO extends AdminRole {
 
     private String description;
     private List<TreeNode> routes;
+    //    private String routes;
     @JsonIgnore
     private List<String> role;
 

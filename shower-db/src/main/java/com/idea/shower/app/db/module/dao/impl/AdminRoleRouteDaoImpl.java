@@ -4,6 +4,8 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import com.idea.shower.app.db.module.mapper.AdminRoleRouteMapper;
 import com.idea.shower.app.db.module.pojo.AdminRoleRouteExample;
+
+import java.util.Collections;
 import java.util.List;
 import com.idea.shower.app.db.module.pojo.AdminRoleRoute;
 import com.idea.shower.app.db.module.dao.AdminRoleRouteDao;
@@ -66,6 +68,18 @@ public class AdminRoleRouteDaoImpl implements AdminRoleRouteDao {
     @Override
     public int updateByPrimaryKey(AdminRoleRoute record) {
         return adminRoleRouteMapper.updateByPrimaryKey(record);
+    }
+
+    @Override
+    public int deleteByRoleIds(List<Long> ids) {
+        AdminRoleRouteExample example = new AdminRoleRouteExample();
+        example.or().andRoleIdIn(ids);
+        return adminRoleRouteMapper.deleteByExample(example);
+    }
+
+    @Override
+    public int deleteByRoleId(Long id) {
+        return deleteByRoleIds(Collections.singletonList(id));
     }
 
 }

@@ -38,7 +38,6 @@ import java.util.stream.Collectors;
  * attemptAuthentication：接收并解析用户凭证。
  * successfulAuthentication：用户成功登录后，这个方法会被调用，我们在这个方法里生成token并返回。
  */
-@Component
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
     private final AuthenticationManager authenticationManager;

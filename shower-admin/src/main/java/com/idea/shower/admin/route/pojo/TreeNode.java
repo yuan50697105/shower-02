@@ -23,59 +23,12 @@ public class TreeNode {
     private Long id;
     private Long parentId;
     private String path;
-    private String component;
+//    private String component;
     private String redirect;
     private String name;
     private MetaBean meta;
     private List<TreeNode> children;
 
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getComponent() {
-        return component;
-    }
-
-    public void setComponent(String component) {
-        this.component = component;
-    }
-
-    public String getRedirect() {
-        return redirect;
-    }
-
-    public void setRedirect(String redirect) {
-        this.redirect = redirect;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public MetaBean getMeta() {
-        return meta;
-    }
-
-    public void setMeta(MetaBean meta) {
-        this.meta = meta;
-    }
-
-    public List<TreeNode> getChildren() {
-        return children;
-    }
-
-    public void setChildren(List<TreeNode> children) {
-        this.children = children;
-    }
 
     @Data
     public static class MetaBean {
@@ -88,28 +41,5 @@ public class TreeNode {
         private String icon;
         private List<String> roles;
 
-        public String getTitle() {
-            return title;
-        }
-
-        public void setTitle(String title) {
-            this.title = title;
-        }
-
-        public String getIcon() {
-            return icon;
-        }
-
-        public void setIcon(String icon) {
-            this.icon = icon;
-        }
-
-        public List<String> getRoles() {
-            return roles;
-        }
-
-        public void setRoles(List<String> roles) {
-            this.roles = roles;
-        }
     }
 }

@@ -5,10 +5,10 @@ import com.idea.shower.admin.admin.pojo.AdminRoleVO;
 import com.idea.shower.admin.admin.service.AdminRoleBackService;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,14 +30,24 @@ public class AdminRoleController {
         return adminRoleBackService.add(vo);
     }
 
-    @PostMapping("modify")
-    public Result<?> modify(@RequestBody AdminRoleVO vo) {
-        return adminRoleBackService.modify(vo);
+    @PostMapping("update")
+    public Result<?> update(@RequestBody AdminRoleVO vo) {
+        return adminRoleBackService.update(vo);
+    }
+
+    @PutMapping({"update", ""})
+    public Result<?> updateRs(@RequestBody AdminRoleVO vo) {
+        return adminRoleBackService.update(vo);
     }
 
     @GetMapping("delete")
     public Result<?> delete(List<Long> ids) {
         return adminRoleBackService.delete(ids);
+    }
+
+    @DeleteMapping({"delete/{id}", "{id}"})
+    public Result<?> delete(@PathVariable Long id) {
+        return adminRoleBackService.delete(Collections.singletonList(id));
     }
 
     @GetMapping("get")

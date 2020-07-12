@@ -12,7 +12,7 @@ export function getRoutes() {
 
 export function getRoles() {
   return request({
-    url: '/admin/role/list',
+    url: '/admin/role/data',
     method: 'get'
   })
 }
@@ -27,7 +27,7 @@ export function addRole(data) {
 
 export function updateRole(id, data) {
   return request({
-    url: `/vue-element-admin/role/${id}`,
+    url: `/admin/role/update`,
     method: 'put',
     data
   })
@@ -35,7 +35,7 @@ export function updateRole(id, data) {
 
 export function deleteRole(id) {
   return request({
-    url: `/vue-element-admin/role/${id}`,
+    url: `/admin/role/${id}`,
     method: 'delete'
   })
 }

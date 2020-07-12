@@ -7,10 +7,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.admin.admin.pojo.AdminRoleVO;
 import com.idea.shower.admin.admin.service.AdminRoleBackService;
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import com.idea.shower.app.db.module.dao.AdminPermissionDao;
-import com.idea.shower.app.db.module.dao.AdminRoleDao;
-import com.idea.shower.app.db.module.dao.AdminRolePermissionDao;
-import com.idea.shower.app.db.module.dao.AdminUserRoleDao;
+import com.idea.shower.app.db.module.dao.*;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
 import com.idea.shower.app.db.module.pojo.AdminRole;
 import com.idea.shower.app.db.module.pojo.AdminRolePermission;
@@ -24,7 +21,6 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -45,6 +41,7 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
     private final AdminUserRoleDao adminUserRoleService;
     private final AdminPermissionDao adminPermissionService;
     private final AdminRolePermissionDao adminRolePermissionService;
+    private final AdminRoleRouteDao adminRoleRouteDao;
 
     @Override
     @CachePut
@@ -57,14 +54,14 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
 
     @Override
     @CachePut
-    public Result<?> modify(AdminRoleVO vo) {
+    public Result<?> update(AdminRoleVO vo) {
         Long id = vo.getId();
         AdminRole adminRole = adminRoleService.getById(vo.getId());
         checkRoleNull(adminRole);
         adminRole.copyFrom(vo);
         adminRoleService.updateSelective(adminRole);
-        adminRolePermissionService.deleteByRoleId(id);
-        createRolePermission(vo, adminRole);
+        adminRoleRouteDao.deleteByRoleId(id);
+        createRoleRoute(vo, adminRole);
         return ResultInfo.success();
     }
 
@@ -72,7 +69,7 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
     @CacheEvict
     public Result<?> delete(List<Long> id) {
         adminRoleService.deleteByIds(id);
-        adminRolePermissionService.deleteByRoleIds(id);
+        adminRoleRouteDao.deleteByRoleIds(id);
         adminUserRoleService.deleteByRoleIds(id);
         return ResultInfo.success();
     }
@@ -109,17 +106,19 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
         }
     }
 
-    private void createRolePermission(AdminRoleVO vo, AdminRole adminRole) {
-        List<Long> permissionIds = vo.getPermissionIds();
-        permissionIds = adminPermissionService.listByIds(permissionIds).stream().map(BaseDbEntity::getId).collect(Collectors.toList());
-        ArrayList<AdminRolePermission> adminRolePermissions = new ArrayList<>(permissionIds.size());
-        for (Long permissionId : permissionIds) {
-            AdminRolePermission adminRolePermission = new AdminRolePermission();
-            adminRolePermission.setPermissionId(permissionId);
-            adminRolePermission.setRoleId(adminRole.getId());
-            adminRolePermissions.add(adminRolePermission);
-        }
-        adminRolePermissionService.batchInsertSelective(adminRolePermissions);
+    private void createRoleRoute(AdminRoleVO vo, AdminRole adminRole) {
+        List<String> role = vo.getRole();
+        System.out.println("role = " + role);
+//        List<?> permissionIds = vo.getRoutes();
+//        permissionIds = adminPermissionService.listByIds(permissionIds).stream().map(BaseDbEntity::getId).collect(Collectors.toList());
+//        ArrayList<AdminRolePermission> adminRolePermissions = new ArrayList<>(permissionIds.size());
+//        for (Long permissionId : permissionIds) {
+//            AdminRolePermission adminRolePermission = new AdminRolePermission();
+//            adminRolePermission.setPermissionId(permissionId);
+//            adminRolePermission.setRoleId(adminRole.getId());
+//            adminRolePermissions.add(adminRolePermission);
+//        }
+//        adminRolePermissionService.batchInsertSelective(adminRolePermissions);
     }
 
 
