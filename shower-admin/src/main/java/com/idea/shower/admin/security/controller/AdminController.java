@@ -25,7 +25,7 @@ import java.util.Set;
 @RequestMapping("admin")
 @Validated
 @AllArgsConstructor
-public class SecurityController {
+public class AdminController {
     private final UserDetailsAndRouteService service;
 
     @GetMapping("getUserInfo")
