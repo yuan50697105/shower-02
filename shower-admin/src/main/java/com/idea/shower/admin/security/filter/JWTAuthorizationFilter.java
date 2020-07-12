@@ -7,6 +7,7 @@ package com.idea.shower.admin.security.filter;
  * @create: 2020-05-31 16:11
  */
 
+import cn.hutool.extra.spring.SpringUtil;
 import com.idea.shower.admin.security.service.UserDetailsAndRouteService;
 import com.idea.shower.admin.security.utils.JwtTokenUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +16,13 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import org.springframework.stereotype.Component;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,12 +30,13 @@ import java.util.stream.Collectors;
  * 验证成功当然就是进行鉴权了
  * 登录成功之后走此类进行鉴权操作
  */
+@Component
 public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
-    @Autowired
-    private UserDetailsAndRouteService userDetailsAndRouteService;
+    private final AuthenticationManager authenticationManager;
 
     public JWTAuthorizationFilter(AuthenticationManager authenticationManager) {
         super(authenticationManager);
+        this.authenticationManager = authenticationManager;
     }
 
     @SuppressWarnings("ConstantConditions")
@@ -60,7 +62,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         String username = JwtTokenUtils.getUsername(token);
         if (!JwtTokenUtils.isExpiration(token)) {
             if (username != null) {
-                Set<String> roles = userDetailsAndRouteService.getRouteList(username);
+                Set<String> roles = SpringUtil.getBean(UserDetailsAndRouteService.class).getRouteList(username);
                 Set<SimpleGrantedAuthority> authorities = roles.stream().distinct().map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
                 return new UsernamePasswordAuthenticationToken(username, null, authorities);
             }

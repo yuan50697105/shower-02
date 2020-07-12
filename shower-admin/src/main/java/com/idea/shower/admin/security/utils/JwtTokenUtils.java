@@ -27,7 +27,7 @@ public class JwtTokenUtils {
 
     public static final long EXPIRITION = 1000 * 24 * 60 * 60 * 7;
 
-    public static final String APPSECRET_KEY = "congge_secret";
+    public static final String APPSECRET_KEY = "123456789";
     public static final String ID_CLAIMS = "userId";
     private static final String ROLE_CLAIMS = "role";
 
