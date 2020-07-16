@@ -16,11 +16,11 @@
       <mapping pattern=".merge_file_a08500" type="PLAIN_TEXT" />
       <mapping pattern="application-yml" type="PLAIN_TEXT" />
       <mapping pattern="aaaa" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a27660" type="PLAIN_TEXT" />
       <mapping pattern="a" type="PLAIN_TEXT" />
       <mapping pattern="application-hikari,yml" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a26684" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a23356" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a27660" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a13976" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a15808" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a12192" type="PLAIN_TEXT" />
