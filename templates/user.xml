@@ -1,0 +1,7 @@
+<templateSet group="user">
+  <template name="di" value="@org.springframework.beans.factory.annotation.Autowired&#10;    private" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_DECLARATION" value="true" />
+    </context>
+  </template>
+</templateSet>
