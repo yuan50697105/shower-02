@@ -6,6 +6,7 @@ import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.dao.AdminPermissionDao;
 import com.idea.shower.app.db.module.mapper.AdminPermissionMapper;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
+import com.idea.shower.app.db.module.pojo.AdminPermissionExample;
 import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @program: learning-demo-java-01
@@ -51,6 +53,11 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
     }
 
     @Override
+    public int insert(AdminPermission adminPermission) {
+        return baseMapper().insert(adminPermission);
+    }
+
+    @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertSelective(AdminPermission adminPermission) {
         return baseMapper().insertSelective(adminPermission);
@@ -84,13 +91,23 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
     }
 
     @Override
-    public List<AdminPermission> listByIds(List<Long> ids) {
-        return baseMapper().selectByIdIn(ids);
+    public int deleteByRoleIds(List<Long> roleIds) {
+        AdminPermissionExample example = new AdminPermissionExample();
+        example.or().andRoleIdIn(roleIds);
+        return baseMapper().deleteByExample(example);
     }
 
     @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int deleteById(Long id) {
-        return baseMapper().deleteByPrimaryKey(id);
+    public List<AdminPermission> selectListByRoleId(Long id) {
+        AdminPermissionExample example = new AdminPermissionExample();
+        example.or().andRoleIdEqualTo(id);
+        return baseMapper().selectByExample(example);
     }
+
+    @Override
+    public List<String> selectNameListByRoleId(Long id) {
+        List<AdminPermission> adminPermissions = selectListByRoleId(id);
+        return adminPermissions.stream().map(AdminPermission::getName).distinct().collect(Collectors.toList());
+    }
+
 }

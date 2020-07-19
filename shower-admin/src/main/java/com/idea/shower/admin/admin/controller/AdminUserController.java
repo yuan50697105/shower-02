@@ -5,7 +5,6 @@ import com.idea.shower.admin.admin.pojo.AdminUserVO;
 import com.idea.shower.admin.admin.service.AdminUserBackService;
 import com.idea.shower.app.db.module.pojo.query.AdminUserQuery;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 

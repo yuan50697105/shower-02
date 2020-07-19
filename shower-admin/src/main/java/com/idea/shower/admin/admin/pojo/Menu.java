@@ -7,5 +7,5 @@ package com.idea.shower.admin.admin.pojo;
  * @create: 2020-06-28 13:24
  */
 public class Menu {
-    
+
 }

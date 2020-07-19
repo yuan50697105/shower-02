@@ -1,7 +1,6 @@
 package com.idea.shower.app.db.module.pojo;
 
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
-import java.io.Serializable;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,7 +16,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminRole extends BaseDbEntity implements Serializable {
+public class AdminRole extends BaseDbEntity {
+    private static final long serialVersionUID = 1L;
     /**
      * 角色名称
      */
@@ -26,7 +26,7 @@ public class AdminRole extends BaseDbEntity implements Serializable {
     /**
      * 角色描述
      */
-    private String desc;
+    private String description;
 
     /**
      * 是否启用
@@ -37,6 +37,4 @@ public class AdminRole extends BaseDbEntity implements Serializable {
      * 逻辑删除
      */
     private Boolean deleted;
-
-    private static final long serialVersionUID = 1L;
 }

@@ -4,17 +4,15 @@ import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
 import java.util.Date;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 /**
  * admin_route
  */
-@Getter
-@Setter
-@ToString
+@Data
+@EqualsAndHashCode(callSuper = true)
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -38,4 +36,9 @@ public class AdminRoute extends BaseDbEntity {
      * weight
      */
     private Integer weight;
+
+    /**
+     * 角色ID
+     */
+    private Long roleId;
 }

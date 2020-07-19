@@ -17,6 +17,13 @@ export function getRoles() {
   })
 }
 
+export function getRoleById(id) {
+  return request({
+    url: '/admin/role/id/${id}',
+    method: 'get'
+  })
+}
+
 export function addRole(data) {
   return request({
     url: '/admin/role/add',

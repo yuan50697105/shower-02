@@ -46,7 +46,7 @@
             :data="routesData"
             :props="defaultProps"
             show-checkbox
-            node-key="path"
+            node-key="name"
             class="permission-tree"
           />
         </el-form-item>
@@ -62,13 +62,14 @@
 <script>
 import path from 'path'
 import { deepClone } from '@/utils'
-import { getRoutes, getRoles, addRole, deleteRole, updateRole } from '@/api/role'
+import { addRole, deleteRole, getRoleById, getRoles, getRoutes, updateRole } from '@/api/role'
 
 const defaultRole = {
   id: '',
   name: '',
   description: '',
-  routes: []
+  routes: [],
+  resources: []
 }
 
 export default {
@@ -99,7 +100,6 @@ export default {
   methods: {
     async getRoutes() {
       const res = await getRoutes()
-      console.log(res)
       this.serviceRoutes = res
       this.routes = this.generateRoutes(res)
     },
@@ -164,10 +164,10 @@ export default {
       this.dialogType = 'edit'
       this.dialogVisible = true
       this.checkStrictly = true
-      this.role = deepClone(scope.row)
+      this.role = getRoleById(scope.id)
       this.$nextTick(() => {
-        const routes = this.generateRoutes(this.role.routes)
-        this.$refs.tree.setCheckedNodes(this.generateArr(routes))
+        // const routes = this.generateRoutes(this.serviceRoutes)
+        this.$refs.tree.setCheckedKeys(this.role.resources)
         // set checked state of a node not affects its father and child nodes
         this.checkStrictly = false
       })
@@ -209,9 +209,10 @@ export default {
     },
     async confirmRole() {
       const isEdit = this.dialogType === 'edit'
-
       const checkedKeys = this.$refs.tree.getCheckedKeys()
       this.role.routes = this.generateTree(deepClone(this.serviceRoutes), '/', checkedKeys)
+      console.log('route')
+      console.log(this.role)
       if (isEdit) {
         await updateRole(this.role.id, this.role)
         for (let index = 0; index < this.rolesList.length; index++) {

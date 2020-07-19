@@ -13,6 +13,7 @@
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="parent_id" jdbcType="BIGINT" property="parentId" />
     <result column="weight" jdbcType="INTEGER" property="weight" />
+    <result column="role_id" jdbcType="BIGINT" property="roleId" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -76,7 +77,8 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, url, `name`, parent_id, weight
+    id, create_time, update_time, create_user, update_user, url, `name`, parent_id, weight, 
+    role_id
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminRouteExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -116,10 +118,12 @@
     <!--@mbg.generated-->
     insert into admin_route (create_time, update_time, create_user, 
       update_user, url, `name`, 
-      parent_id, weight)
+      parent_id, weight, role_id
+      )
     values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
       #{updateUser,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{parentId,jdbcType=BIGINT}, #{weight,jdbcType=INTEGER})
+      #{parentId,jdbcType=BIGINT}, #{weight,jdbcType=INTEGER}, #{roleId,jdbcType=BIGINT}
+      )
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminRoute" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -149,6 +153,9 @@
       <if test="weight != null">
         weight,
       </if>
+      <if test="roleId != null">
+        role_id,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="createTime != null">
@@ -174,6 +181,9 @@
       </if>
       <if test="weight != null">
         #{weight,jdbcType=INTEGER},
+      </if>
+      <if test="roleId != null">
+        #{roleId,jdbcType=BIGINT},
       </if>
     </trim>
   </insert>
@@ -215,6 +225,9 @@
       <if test="record.weight != null">
         weight = #{record.weight,jdbcType=INTEGER},
       </if>
+      <if test="record.roleId != null">
+        role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -231,7 +244,8 @@
       url = #{record.url,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
       parent_id = #{record.parentId,jdbcType=BIGINT},
-      weight = #{record.weight,jdbcType=INTEGER}
+      weight = #{record.weight,jdbcType=INTEGER},
+      role_id = #{record.roleId,jdbcType=BIGINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -264,6 +278,9 @@
       <if test="weight != null">
         weight = #{weight,jdbcType=INTEGER},
       </if>
+      <if test="roleId != null">
+        role_id = #{roleId,jdbcType=BIGINT},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -277,7 +294,8 @@
       url = #{url,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       parent_id = #{parentId,jdbcType=BIGINT},
-      weight = #{weight,jdbcType=INTEGER}
+      weight = #{weight,jdbcType=INTEGER},
+      role_id = #{roleId,jdbcType=BIGINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

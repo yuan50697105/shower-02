@@ -33,22 +33,13 @@ public class AdminController {
     public Result<?> getUserInfo(String token) {
         String username = JwtTokenUtils.getUsername(token);
         Set<String> hashSet = service.getRoleList(username);
+        Set<String> permissions = service.getRouteList(username);
         HashMap<String, Object> map = new HashMap<>();
         map.put("roles", hashSet);
         map.put("name", username);
         map.put("avtor", "");
-        return ResultInfo.success(map);
-    }
-
-    @GetMapping("getRouteList")
-    @PreAuthorize("isAuthenticated()")
-    public Result<?> getRouteList(String token) {
-        String username = JwtTokenUtils.getUsername(token);
-        Set<String> hashSet = service.getRouteList(username);
-        HashMap<String, Object> map = new HashMap<>();
-        map.put("roles", hashSet);
-        map.put("name", username);
-        map.put("avtor", "");
+        map.put("buttons", null);
+        map.put("permissions", permissions);
         return ResultInfo.success(map);
     }
 

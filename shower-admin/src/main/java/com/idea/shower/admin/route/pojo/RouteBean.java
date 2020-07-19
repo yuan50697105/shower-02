@@ -1,6 +1,8 @@
 package com.idea.shower.admin.route.pojo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -11,35 +13,22 @@ import java.util.List;
  * @create: 2020-07-07 20:57
  */
 @Data
-public class TreeNode {
-    /**
-     * path : /table
-     * component : Layout
-     * redirect : /table/complex-table
-     * name : Table
-     * meta : {"title":"Table","icon":"table"}
-     * children : []
-     */
+@JsonInclude()
+public class RouteBean {
+
     private Long id;
-    private Long parentId;
+    private String parentId;
     private String path;
-//    private String component;
-    private String redirect;
     private String name;
     private MetaBean meta;
-    private List<TreeNode> children;
+    private List<RouteBean> children;
 
-
+    @NoArgsConstructor
     @Data
     public static class MetaBean {
-        /**
-         * title : Table
-         * icon : table
-         */
-
         private String title;
         private String icon;
         private List<String> roles;
-
+        private List<String> permissions;
     }
 }

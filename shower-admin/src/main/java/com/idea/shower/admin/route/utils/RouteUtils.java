@@ -1,10 +1,10 @@
 package com.idea.shower.admin.route.utils;
 
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.alibaba.fastjson.JSON;
-import com.idea.shower.admin.route.pojo.TreeNode;
+import com.idea.shower.admin.route.pojo.RouteBean;
 import org.springframework.util.CollectionUtils;
 
 import java.util.*;
@@ -16,8 +16,8 @@ import java.util.stream.Collectors;
  * @author: yuane
  * @create: 2020-07-07 20:53
  */
-public class TreeUtils {
-    private TreeUtils() {
+public class RouteUtils {
+    private RouteUtils() {
     }
 
     /**
@@ -26,13 +26,27 @@ public class TreeUtils {
      * @param list
      * @return
      */
-    public static List<TreeNode> tree2list(List<TreeNode> list) {
-        List<TreeNode> result = new ArrayList<>();
-        for (TreeNode test : list) {
-            List<TreeNode> c = test.getChildren();
+    public static List<RouteBean> tree2list(List<RouteBean> list) {
+        List<RouteBean> result = new ArrayList<>();
+        for (RouteBean test : list) {
             result.add(test);
+            List<RouteBean> c = test.getChildren();
             if (!CollectionUtils.isEmpty(c)) {
                 result.addAll(tree2list(c));
+                test.setChildren(null);//
+            }
+        }
+        return result;
+    }
+
+    public static List<RouteBean> tree2listWithParent(List<RouteBean> list) {
+        List<RouteBean> result = new ArrayList<>();
+        for (RouteBean test : list) {
+            List<RouteBean> c = test.getChildren();
+            test.setParentId(UUID.randomUUID().toString().replace("-", ""));
+            result.add(test);
+            if (!CollectionUtils.isEmpty(c)) {
+                result.addAll(tree2listWithParent(c));
                 test.setChildren(null);//
             }
         }
@@ -45,12 +59,12 @@ public class TreeUtils {
      * @param list
      * @return
      */
-    public static List<TreeNode> list2tree(List<TreeNode> list) {
-        List<TreeNode> result = new ArrayList<>();
+    public static List<RouteBean> list2tree(List<RouteBean> list) {
+        List<RouteBean> result = new ArrayList<>();
 
-        Map<Long, TreeNode> hash = list.stream().collect(Collectors.toMap(TreeNode::getId, test -> test));
-        for (TreeNode test : list) {
-            TreeNode p = hash.get(test.getParentId());
+        Map<Long, RouteBean> hash = list.stream().collect(Collectors.toMap(RouteBean::getId, test -> test));
+        for (RouteBean test : list) {
+            RouteBean p = hash.get(test.getParentId());
             if (p == null) {
                 result.add(test);
             } else {
@@ -63,11 +77,21 @@ public class TreeUtils {
         return result;
     }
 
-    public static List<String> tree2Role(List<TreeNode> nodes) {
-        nodes = tree2list(nodes);
-        return nodes.stream().filter(Objects::nonNull).map(TreeNode::getMeta).filter(Objects::nonNull).map(TreeNode.MetaBean::getRoles).filter(Objects::nonNull).flatMap(Collection::stream).filter(Objects::nonNull).distinct().collect(Collectors.toList());
+    public static List<String> tree2Role(List<RouteBean> nodes) {
+        List<RouteBean> routeBeans = tree2list(nodes);
+        return routeBeans.stream().filter(Objects::nonNull).map(RouteBean::getMeta).filter(Objects::nonNull).map(RouteBean.MetaBean::getRoles).filter(Objects::nonNull).flatMap(Collection::stream).filter(Objects::nonNull).distinct().collect(Collectors.toList());
     }
 
+
+    public static List<String> tree2Permission(List<RouteBean> nodes) {
+        List<RouteBean> routeBeans = tree2list(nodes);
+        return routeBeans.stream().filter(Objects::nonNull).map(RouteBean::getMeta).filter(Objects::nonNull).map(RouteBean.MetaBean::getPermissions).filter(Objects::nonNull).flatMap(Collection::stream).filter(Objects::nonNull).distinct().collect(Collectors.toList());
+    }
+
+    public static List<String> tree2Route(List<RouteBean> nodes) {
+        List<RouteBean> routeBeans = tree2list(nodes);
+        return routeBeans.stream().filter(ObjectUtil::isNotEmpty).map(RouteBean::getName).filter(ObjectUtil::isNotEmpty).distinct().collect(Collectors.toList());
+    }
 
     public static void main(String[] args) {
         String json = "[" +
@@ -289,14 +313,15 @@ public class TreeUtils {
                 "  { path: '*', redirect: '/404', hidden: true }" +
                 "]";
         json = json.replaceAll("[\\s]*", "");
-        ArrayList<TreeNode> treeNodes = new ArrayList<>();
+        ArrayList<RouteBean> routeBeans = new ArrayList<>();
         JSONArray objects = JSONUtil.parseArray(json);
         for (Object object : objects) {
             JSONObject jsonObject = JSONUtil.parseObj(object);
-            treeNodes.add(JSONUtil.toBean(jsonObject, TreeNode.class));
+            routeBeans.add(JSONUtil.toBean(jsonObject, RouteBean.class));
         }
-        List<String> list = tree2Role(treeNodes);
+        List<String> list = tree2Role(routeBeans);
         System.out.println("list = " + list);
 
     }
+
 }

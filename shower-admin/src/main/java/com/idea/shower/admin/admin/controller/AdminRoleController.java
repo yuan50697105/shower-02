@@ -1,10 +1,12 @@
 package com.idea.shower.admin.admin.controller;
 
 import ai.yue.library.base.view.Result;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.idea.shower.admin.admin.pojo.AdminRoleVO;
 import com.idea.shower.admin.admin.service.AdminRoleBackService;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +23,9 @@ import java.util.List;
 @RequestMapping("admin/role")
 @AllArgsConstructor
 @Validated
+@Slf4j
 public class AdminRoleController {
     private final AdminRoleBackService adminRoleBackService;
-
 
     @PostMapping("add")
     public Result<?> add(@RequestBody AdminRoleVO vo) {
@@ -51,7 +53,12 @@ public class AdminRoleController {
     }
 
     @GetMapping("get")
-    public Result<?> get(Long id) {
+    public Result<?> getOne(Long id) {
+        return adminRoleBackService.get(id);
+    }
+
+    @GetMapping("id/{id}")
+    public Result<?> getRs(@PathVariable Long id) {
         return adminRoleBackService.get(id);
     }
 

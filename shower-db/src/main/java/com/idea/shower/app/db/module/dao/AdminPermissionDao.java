@@ -26,9 +26,9 @@ public interface AdminPermissionDao extends BaseDao<AdminPermission> {
 
     Optional<AdminPermission> selectById(Long id);
 
-    int insertSelective(AdminPermission adminPermission);
+    int insert(AdminPermission adminPermission);
 
-    int deleteById(Long id);
+    int insertSelective(AdminPermission adminPermission);
 
     int updateSelective(AdminPermission adminPermission);
 
@@ -40,5 +40,9 @@ public interface AdminPermissionDao extends BaseDao<AdminPermission> {
 
     List<AdminPermission> selectListByQuery(AdminPermissionQuery query);
 
-    List<AdminPermission> listByIds(List<Long> collect);
+    int deleteByRoleIds(List<Long> id);
+
+    List<AdminPermission> selectListByRoleId(Long id);
+
+    List<String> selectNameListByRoleId(Long id);
 }
