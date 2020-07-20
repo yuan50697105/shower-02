@@ -113,7 +113,6 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
 
     @Override
     public Result<?> get(Long id) {
-
         AdminRole adminRole = adminRoleService.getById(id);
         List<String> list = adminRouteDao.selectNameListByRoleId(id);
         Map<String, AdminRoleVO> role = MapUtil.builder("role", createRoleVo(adminRole, list)).build();

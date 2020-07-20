@@ -5,6 +5,8 @@ import com.github.pagehelper.PageInfo;
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.app.db.module.dao.AdminPermissionDao;
 import com.idea.shower.app.db.module.mapper.AdminPermissionMapper;
+import com.idea.shower.app.db.module.mapper.AdminUserMapper;
+import com.idea.shower.app.db.module.mapper.AdminUserRoleMapper;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
 import com.idea.shower.app.db.module.pojo.AdminPermissionExample;
 import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
@@ -13,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -26,6 +29,10 @@ import java.util.stream.Collectors;
 @Component
 @AllArgsConstructor
 public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPermissionMapper> implements AdminPermissionDao {
+    private final AdminPermissionMapper adminPermissionMapper;
+    private final AdminUserRoleMapper adminUserRoleMapper;
+    private final AdminUserMapper adminUserMapper;
+
     @Override
     public PageResult<AdminPermission> selectPageByCondition(AdminPermissionQuery condition) {
         PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
@@ -76,7 +83,9 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
 
     @Override
     public void deleteByIds(List<Long> ids) {
-
+        AdminPermissionExample example = new AdminPermissionExample();
+        example.or().andIdIn(ids);
+        baseMapper().selectByExample(example);
     }
 
     @Override
@@ -109,5 +118,28 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
         List<AdminPermission> adminPermissions = selectListByRoleId(id);
         return adminPermissions.stream().map(AdminPermission::getName).distinct().collect(Collectors.toList());
     }
+
+    @Override
+    public List<String> selectPermissionListByUsername(String username) {
+        Long userId = adminUserMapper.selectOneIdByUsername(username);
+        List<Long> roleIds = adminUserRoleMapper.selectRoleIdByUserId(userId);
+        return adminPermissionMapper.selectNameByRoleIdIn(roleIds);
+    }
+
+    @Override
+    public List<AdminPermission> selectAllByRoleId(Long roleId) {
+        return adminPermissionMapper.selectAllByRoleId(roleId);
+    }
+
+    @Override
+    public List<String> selectNameByRoleId(Long roleId) {
+        return adminPermissionMapper.selectNameByRoleId(roleId);
+    }
+
+    @Override
+    public List<String> selectNameByRoleIdIn(Collection<Long> roleIdCollection) {
+        return adminPermissionMapper.selectNameByRoleIdIn(roleIdCollection);
+    }
+
 
 }

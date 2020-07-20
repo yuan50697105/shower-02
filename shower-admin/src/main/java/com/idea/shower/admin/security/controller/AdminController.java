@@ -33,7 +33,7 @@ public class AdminController {
     public Result<?> getUserInfo(String token) {
         String username = JwtTokenUtils.getUsername(token);
         Set<String> hashSet = service.getRoleList(username);
-        Set<String> permissions = service.getRouteList(username);
+        Set<String> permissions = service.getPermissionList(username);
         HashMap<String, Object> map = new HashMap<>();
         map.put("roles", hashSet);
         map.put("name", username);

@@ -3,13 +3,10 @@ package com.idea.shower.admin.security.service.impl;
 import com.idea.shower.admin.security.pojo.JwtUser;
 import com.idea.shower.admin.security.pojo.User;
 import com.idea.shower.admin.security.service.UserDetailsAndRouteService;
-import com.idea.shower.app.db.module.dao.AdminRoleDao;
-import com.idea.shower.app.db.module.dao.AdminUserDao;
-import com.idea.shower.app.db.module.dao.AdminUserRoleDao;
+import com.idea.shower.app.db.module.dao.*;
 import com.idea.shower.app.db.module.pojo.AdminRole;
 import com.idea.shower.app.db.module.pojo.AdminUser;
 import com.idea.shower.app.db.module.pojo.AdminUserRole;
-import com.idea.shower.db.mybaits.dao.AdminUserRouteDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -36,7 +33,10 @@ public class UserDetailsAndRouteServiceImpl implements UserDetailsAndRouteServic
     @Autowired
     private AdminUserRoleDao adminUserRoleDao;
     @Autowired
-    private AdminUserRouteDao adminUserRouteDao;
+    private AdminPermissionDao adminPermissionDao;
+    @Autowired
+    private AdminRouteDao adminRouteDao;
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -56,8 +56,8 @@ public class UserDetailsAndRouteServiceImpl implements UserDetailsAndRouteServic
     }
 
     @Override
-    public Set<String> getRouteList(String username) {
-        List<String> routeList = adminUserRouteDao.selectRouteNameByUsername(username);
+    public Set<String> getPermissionList(String username) {
+        List<String> routeList = adminPermissionDao.selectPermissionListByUsername(username);
         return new LinkedHashSet<>(routeList);
     }
 }

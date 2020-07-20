@@ -47,4 +47,7 @@ public interface AdminUserRoleMapper extends BaseMapper {
     List<Long> selectUserIdByRoleId(@Param("roleId") Long roleId);
 
     List<String> selectRoleNameByUsername(@Param("username") String username);
+
+
+
 }

@@ -13,5 +13,5 @@ import java.util.Set;
 public interface UserDetailsAndRouteService extends UserDetailsService {
     Set<String> getRoleList(String username);
 
-    Set<String> getRouteList(String username);
+    Set<String> getPermissionList(String username);
 }

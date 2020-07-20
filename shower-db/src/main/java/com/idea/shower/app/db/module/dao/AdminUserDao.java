@@ -42,4 +42,5 @@ public interface AdminUserDao extends BaseDao<AdminUser> {
 
     boolean existByUsername(String username);
 
+    Long selectOneIdByUsername(String username);
 }

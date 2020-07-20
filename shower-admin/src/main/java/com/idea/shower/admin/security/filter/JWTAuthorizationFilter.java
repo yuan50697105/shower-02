@@ -59,7 +59,7 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
         String username = JwtTokenUtils.getUsername(token);
         if (!JwtTokenUtils.isExpiration(token)) {
             if (username != null) {
-                Set<String> roles = SpringUtil.getBean(UserDetailsAndRouteService.class).getRouteList(username);
+                Set<String> roles = SpringUtil.getBean(UserDetailsAndRouteService.class).getPermissionList(username);
                 Set<SimpleGrantedAuthority> authorities = roles.stream().distinct().map(SimpleGrantedAuthority::new).collect(Collectors.toSet());
                 return new UsernamePasswordAuthenticationToken(username, null, authorities);
             }
