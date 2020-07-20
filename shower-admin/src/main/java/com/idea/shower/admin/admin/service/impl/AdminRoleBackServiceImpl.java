@@ -116,9 +116,25 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
 
         AdminRole adminRole = adminRoleService.getById(id);
         List<String> list = adminRouteDao.selectNameListByRoleId(id);
-        AdminRoleVO adminRoleVO = converter.adminRoleWithRoute(adminRole, list);
-        Map<String, AdminRoleVO> role = MapUtil.builder("role", adminRoleVO).build();
+        Map<String, AdminRoleVO> role = MapUtil.builder("role", createRoleVo(adminRole, list)).build();
         return ResultInfo.success(role);
+    }
+
+    private AdminRoleVO createRoleVo(AdminRole adminRole, List<String> list) {
+        AdminRoleVO adminRoleVO = new AdminRoleVO();
+        adminRoleVO.setDescription(adminRole.getDescription());
+        adminRoleVO.setRoutes(null);
+        adminRoleVO.setResources(list);
+        adminRoleVO.setName(adminRole.getName());
+        adminRoleVO.setDescription(adminRole.getDescription());
+        adminRoleVO.setEnabled(adminRole.getEnabled());
+        adminRoleVO.setDeleted(adminRole.getDeleted());
+        adminRoleVO.setId(adminRole.getId());
+        adminRoleVO.setCreateTime(adminRole.getCreateTime());
+        adminRoleVO.setUpdateTime(adminRole.getUpdateTime());
+        adminRoleVO.setCreateUser(adminRole.getCreateUser());
+        adminRoleVO.setUpdateUser(adminRole.getUpdateUser());
+        return adminRoleVO;
     }
 
     @Override
