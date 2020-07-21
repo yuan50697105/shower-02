@@ -124,18 +124,63 @@ export const constantRoutes = [
  */
 export const asyncRoutes = [
   {
-    path: '/user',
+    path: '/system',
     component: Layout,
     name: '用户管理',
     meta: {
-      title: '用户',
+      title: '系统管理',
       icon: 'zip',
       roles: ['超级管理员'],
-      permissions: ['sysUser']
+      permissions: ['system']
     },
     children: [
       {
-        path: 'index',
+        path: 'role',
+        component: () => import('@/views/permission/role'),
+        name: 'RolePermission',
+        meta: {
+          title: '角色设置',
+          roles: ['超级管理员'],
+          permissions: ['system:role']
+        },
+        children: [
+          {
+            path: '/system/role/add',
+            name: 'RoleAdd',
+            meta: {
+              title: '用户添加',
+              hidden: true,
+              button: true,
+              roles: ['超级管理员'],
+              permissions: ['system:role:add']
+            }
+          },
+          {
+            path: '/system/role/update',
+            name: 'RoleAdd',
+            meta: {
+              title: '用户修改',
+              hidden: true,
+              button: true,
+              roles: ['超级管理员'],
+              permissions: ['system:role:update']
+            }
+          },
+          {
+            path: '/system/role/delete',
+            name: 'RoleDelete',
+            meta: {
+              title: '用户修改',
+              hidden: true,
+              button: true,
+              roles: ['超级管理员'],
+              permissions: ['system:role:delete']
+            }
+          }
+        ]
+      },
+      {
+        path: 'user',
         component: () => import('@/views/user/index'),
         name: '用户管理',
         meta: {
@@ -143,43 +188,40 @@ export const asyncRoutes = [
           hidden: false,
           button: false,
           roles: ['超级管理员'],
-          permissions: ['sysUser:query']
+          permissions: ['system:user:query']
         },
         children: [
           {
-            path: 'add',
-            component: () => import('@/views/user/index'),
+            path: '/system/user/add',
             name: 'UserAdd',
             meta: {
               title: '用户添加',
               hidden: true,
               button: true,
               roles: ['超级管理员'],
-              permissions: ['sysUser:add']
+              permissions: ['system:user:add']
             }
           },
           {
-            path: 'update',
-            component: () => import('@/views/user/index'),
+            path: '/system/user/update',
             name: 'UserAdd',
             meta: {
               title: '用户修改',
               hidden: true,
               button: true,
               roles: ['超级管理员'],
-              permissions: ['sysUser:update']
+              permissions: ['system:user:update']
             }
           },
           {
-            path: 'delete',
-            component: () => import('@/views/user/index'),
+            path: '/system/user/delete',
             name: 'UserDelete',
             meta: {
               title: '用户修改',
               hidden: true,
               button: true,
               roles: ['超级管理员'],
-              permissions: ['sysUser:delete']
+              permissions: ['system:user:delete']
             }
           }
 
@@ -187,47 +229,47 @@ export const asyncRoutes = [
       }
     ]
   },
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/page',
-    alwaysShow: true, // will always show the root menu
-    name: 'Permission',
-    meta: {
-      title: '权限设置',
-      icon: 'lock',
-      roles: ['超级管理员', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'page',
-        component: () => import('@/views/permission/page'),
-        name: 'PagePermission',
-        meta: {
-          title: 'Page Permission',
-          roles: ['超级管理员'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'directive',
-        component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',
-        meta: {
-          title: 'Directive Permission'
-          // if do not set roles, means: this page does not require permission
-        }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/permission/role'),
-        name: 'RolePermission',
-        meta: {
-          title: '用户角色设置',
-          roles: ['超级管理员']
-        }
-      }
-    ]
-  },
+  // {
+  //   path: '/permission',
+  //   component: Layout,
+  //   redirect: '/permission/page',
+  //   alwaysShow: true, // will always show the root menu
+  //   name: 'Permission',
+  //   meta: {
+  //     title: '权限设置',
+  //     icon: 'lock',
+  //     roles: ['超级管理员', 'editor'] // you can set roles in root nav
+  //   },
+  //   children: [
+  //     {
+  //       path: 'page',
+  //       component: () => import('@/views/permission/page'),
+  //       name: 'PagePermission',
+  //       meta: {
+  //         title: 'Page Permission',
+  //         roles: ['超级管理员'] // or you can only set roles in sub nav
+  //       }
+  //     },
+  //     {
+  //       path: 'directive',
+  //       component: () => import('@/views/permission/directive'),
+  //       name: 'DirectivePermission',
+  //       meta: {
+  //         title: 'Directive Permission'
+  //         // if do not set roles, means: this page does not require permission
+  //       }
+  //     },
+  //     {
+  //       path: 'role',
+  //       component: () => import('@/views/permission/role'),
+  //       name: 'RolePermission',
+  //       meta: {
+  //         title: '用户角色设置',
+  //         roles: ['超级管理员']
+  //       }
+  //     }
+  //   ]
+  // },
 
   {
     path: '/icon',
@@ -237,7 +279,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/icons/index'),
         name: 'Icons',
-        meta: { title: 'Icons', icon: 'icon', noCache: true }
+        meta: {title: 'Icons', icon: 'icon', noCache: true}
       }
     ]
   },

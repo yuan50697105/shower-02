@@ -1,7 +1,6 @@
 package com.idea.shower.admin.admin.controller;
 
 import ai.yue.library.base.view.Result;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.idea.shower.admin.admin.pojo.AdminRoleVO;
 import com.idea.shower.admin.admin.service.AdminRoleBackService;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
@@ -37,6 +36,11 @@ public class AdminRoleController {
         return adminRoleBackService.update(vo);
     }
 
+    @GetMapping("update/get")
+    public Result<?> updateGet(Long id) {
+        return adminRoleBackService.updateGet(id);
+    }
+
     @PutMapping({"update", ""})
     public Result<?> updateRs(@RequestBody AdminRoleVO vo) {
         return adminRoleBackService.update(vo);
@@ -58,8 +62,8 @@ public class AdminRoleController {
     }
 
     @GetMapping("id/{id}")
-    public Result<?> getRs(@PathVariable Long id) {
-        return adminRoleBackService.get(id);
+    public Result<?> getRs(@PathVariable String id) {
+        return adminRoleBackService.get(Long.valueOf(id));
     }
 
     @GetMapping("data")

@@ -55,4 +55,5 @@ public interface AdminPermissionDao extends BaseDao<AdminPermission> {
 
 	List<String> selectNameByRoleIdIn(Collection<Long> roleIdCollection);
 
+    int deleteById(Long id);
 }

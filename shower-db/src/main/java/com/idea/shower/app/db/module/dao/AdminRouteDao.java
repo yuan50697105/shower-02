@@ -22,4 +22,8 @@ public interface AdminRouteDao extends BaseDao<AdminRoute> {
     List<AdminRoute> selectListByRoleId(Long id);
 
     List<String> selectNameListByRoleId(Long id);
+
+    int deleteByIds(List<Long> ids);
+
+    int deleteById(Long id);
 }

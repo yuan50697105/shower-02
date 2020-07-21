@@ -26,7 +26,4 @@ public interface AdminPermissionBackService {
     Result<?> list(AdminPermissionQuery query);
 
 
-
-	Long selectOneIdByUsername(String username);
-
 }

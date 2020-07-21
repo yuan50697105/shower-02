@@ -141,5 +141,10 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
         return adminPermissionMapper.selectNameByRoleIdIn(roleIdCollection);
     }
 
+    @Override
+    public int deleteById(Long id) {
+        return baseMapper().deleteByPrimaryKey(id);
+    }
+
 
 }

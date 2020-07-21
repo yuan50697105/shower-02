@@ -84,13 +84,13 @@ public class RouteUtils {
 
 
     public static List<String> tree2Permission(List<RouteBean> nodes) {
-        List<RouteBean> routeBeans = tree2list(nodes);
-        return routeBeans.stream().filter(Objects::nonNull).map(RouteBean::getMeta).filter(Objects::nonNull).map(RouteBean.MetaBean::getPermissions).filter(Objects::nonNull).flatMap(Collection::stream).filter(Objects::nonNull).distinct().collect(Collectors.toList());
+//        List<RouteBean> routeBeans = tree2list(nodes);
+        return nodes.stream().filter(Objects::nonNull).map(RouteBean::getMeta).filter(Objects::nonNull).map(RouteBean.MetaBean::getPermissions).filter(Objects::nonNull).flatMap(Collection::stream).filter(Objects::nonNull).distinct().collect(Collectors.toList());
     }
 
     public static List<String> tree2Route(List<RouteBean> nodes) {
-        List<RouteBean> routeBeans = tree2list(nodes);
-        return routeBeans.stream().filter(ObjectUtil::isNotEmpty).map(RouteBean::getName).filter(ObjectUtil::isNotEmpty).distinct().collect(Collectors.toList());
+//        List<RouteBean> routeBeans = tree2list(nodes);
+        return nodes.stream().filter(ObjectUtil::isNotEmpty).map(RouteBean::getPath).filter(ObjectUtil::isNotEmpty).distinct().collect(Collectors.toList());
     }
 
     public static void main(String[] args) {

@@ -17,6 +17,8 @@ public interface AdminRoleBackService {
 
     Result<?> update(AdminRoleVO vo);
 
+    Result<?> updateGet(Long id);
+
     Result<?> get(Long id);
 
     Result<?> data(AdminRoleQuery query, int page, int size);

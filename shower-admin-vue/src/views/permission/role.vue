@@ -1,13 +1,13 @@
 <template>
   <div class="app-container">
-    <el-button type="primary" @click="handleAddRole">New Role</el-button>
+    <el-button @click="handleAddRole" type="primary">新增</el-button>
 
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
-      <el-table-column align="center" label="ID" width="220">
-        <template slot-scope="scope">
-          {{ scope.row.id }}
-        </template>
-      </el-table-column>
+      <!--      <el-table-column align="center" label="ID" width="220" hidden>-->
+      <!--        <template slot-scope="scope">-->
+      <!--          {{ scope.row.id }}-->
+      <!--        </template>-->
+      <!--      </el-table-column>-->
       <el-table-column align="center" label="角色名称" width="220">
         <template slot-scope="scope">
           {{ scope.row.name }}
@@ -46,7 +46,7 @@
             :data="routesData"
             :props="defaultProps"
             show-checkbox
-            node-key="name"
+            node-key="path"
             class="permission-tree"
           />
         </el-form-item>
@@ -60,19 +60,19 @@
 </template>
 
 <script>
-import path from 'path'
-import { deepClone } from '@/utils'
-import { addRole, deleteRole, getRoleById, getRoles, getRoutes, updateRole } from '@/api/role'
+  import path from 'path'
+  import {deepClone} from '@/utils'
+  import {addRole, deleteRole, getRoleById, getRoles, getRoutes, updateRole} from '@/api/role'
 
-const defaultRole = {
-  id: '',
-  name: '',
-  description: '',
-  routes: [],
-  resources: []
-}
+  const defaultRole = {
+    id: '',
+    name: '',
+    description: '',
+    routes: [],
+    resources: []
+  }
 
-export default {
+  export default {
   data() {
     return {
       role: Object.assign({}, defaultRole),
@@ -105,7 +105,6 @@ export default {
     },
     async getRoles() {
       const res = await getRoles()
-      console.log(res)
       this.rolesList = res.data.data
     },
 
@@ -155,21 +154,27 @@ export default {
     handleAddRole() {
       this.role = Object.assign({}, defaultRole)
       if (this.$refs.tree) {
-        this.$refs.tree.setCheckedNodes([])
+        this.$refs.tree.setCheckedKeys([])
       }
       this.dialogType = 'new'
       this.dialogVisible = true
     },
     handleEdit(scope) {
       this.dialogType = 'edit'
-      this.dialogVisible = true
-      this.checkStrictly = true
-      this.role = getRoleById(scope.id)
-      this.$nextTick(() => {
-        // const routes = this.generateRoutes(this.serviceRoutes)
-        this.$refs.tree.setCheckedKeys(this.role.resources)
-        // set checked state of a node not affects its father and child nodes
-        this.checkStrictly = false
+      if (this.$refs.tree) {
+        this.$refs.tree.setCheckedKeys([])
+      }
+      getRoleById(scope.row.id).then(value => {
+        const {role} = value.data
+        this.role = role
+        this.dialogVisible = true
+        // this.checkStrictly = true
+        this.$nextTick(() => {
+          // const routes = this.generateRoutes(this.serviceRoutes)
+          this.$refs.tree.setCheckedKeys(this.role.routes)
+          // set checked state of a node not affects its father and child nodes
+          this.checkStrictly = false
+        })
       })
     },
     handleDelete({ $index, row }) {
@@ -211,8 +216,6 @@ export default {
       const isEdit = this.dialogType === 'edit'
       const checkedKeys = this.$refs.tree.getCheckedKeys()
       this.role.routes = this.generateTree(deepClone(this.serviceRoutes), '/', checkedKeys)
-      console.log('route')
-      console.log(this.role)
       if (isEdit) {
         await updateRole(this.role.id, this.role)
         for (let index = 0; index < this.rolesList.length; index++) {
@@ -223,7 +226,6 @@ export default {
         }
       } else {
         const { data } = await addRole(this.role)
-        console.log(data)
         this.role.id = data.id
         this.rolesList.push(this.role)
       }
@@ -234,12 +236,11 @@ export default {
         title: 'Success',
         dangerouslyUseHTMLString: true,
         message: `
-            <div>Role Key: ${id}</div>
-            <div>Role Name: ${name}</div>
-            <div>Description: ${description}</div>
+            <div>保存成功</div>
           `,
         type: 'success'
       })
+      this.role = defaultRole
     },
     // reference: src/view/layout/components/Sidebar/SidebarItem.vue
     onlyOneShowingChild(children = [], parent) {

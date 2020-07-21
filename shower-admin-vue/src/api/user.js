@@ -29,3 +29,11 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getData(query) {
+  return request({
+    url: '/admin/user/data',
+    method: 'get',
+    params: query
+  })
+}

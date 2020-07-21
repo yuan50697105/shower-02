@@ -47,4 +47,16 @@ public class AdminRouteDaoImpl extends BaseDaoImpl<AdminRoute, AdminRouteMapper>
         List<AdminRoute> list = selectListByRoleId(id);
         return list.stream().map(AdminRoute::getName).distinct().collect(Collectors.toList());
     }
+
+    @Override
+    public int deleteByIds(List<Long> ids) {
+        AdminRouteExample example = new AdminRouteExample();
+        example.or().andIdIn(ids);
+        return baseMapper().deleteByExample(example);
+    }
+
+    @Override
+    public int deleteById(Long id) {
+        return baseMapper().deleteByPrimaryKey(id);
+    }
 }

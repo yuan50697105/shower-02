@@ -1,6 +1,5 @@
 import request from '@/utils/request'
-import router from '../router/index'
-import { routeList } from '../router/index'
+import {routeList} from '../router/index'
 
 export function getRoutes() {
   // return request({
@@ -19,8 +18,9 @@ export function getRoles() {
 
 export function getRoleById(id) {
   return request({
-    url: '/admin/role/id/${id}',
-    method: 'get'
+    url: '/admin/role/update/get',
+    method: 'get',
+    params: {id}
   })
 }
 
