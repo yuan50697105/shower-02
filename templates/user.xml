@@ -1,7 +1,14 @@
 <templateSet group="user">
-  <template name="di" value="@org.springframework.beans.factory.annotation.Autowired&#10;    private" description="" toReformat="true" toShortenFQNames="true">
+  <template name="autowire" value="@org.springframework.beans.factory.annotation.Autowired&#10;private $Name$ $name$;" toReformat="true" toShortenFQNames="true">
+    <variable name="Name" expression="variableOfType(&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
+    <variable name="name" expression="camelCase(&quot;&quot;)" defaultValue="" alwaysStopAt="true" />
     <context>
-      <option name="JAVA_DECLARATION" value="true" />
+      <option name="JAVA_CODE" value="true" />
+    </context>
+  </template>
+  <template name="di" value="@org.springframework.beans.factory.annotation.Autowired&#10;    private" toReformat="true" toShortenFQNames="true">
+    <context>
+      <option name="JAVA_CODE" value="true" />
     </context>
   </template>
 </templateSet>
