@@ -3,6 +3,7 @@ package com.idea.shower.admin.admin.service.impl;
 import ai.yue.library.base.exception.ResultException;
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;
 import com.idea.shower.admin.admin.converter.Converter;
 import com.idea.shower.admin.admin.pojo.AdminRoleEditVo;
@@ -29,7 +30,7 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -90,37 +91,28 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
 
     private void updateRoleRoute(Long id, List<String> routes) {
         List<AdminRoute> list = adminRouteDao.selectListByRoleId(id);
-        List<String> urls = list.stream().map(AdminRoute::getUrl).collect(Collectors.toList());
-
-        ArrayList<AdminRoute> adminRoutes = new ArrayList<>();
-        for (String route : routes) {
-            if (!urls.contains(route)) {
-                adminRoutes.add(AdminRoute.builder().roleId(id).name(route).build());
-            }
+        List<String> roleRoutes = list.stream().map(AdminRoute::getUrl).collect(Collectors.toList());
+        Collection<String> strings = CollUtil.intersection(roleRoutes, routes);
+        routes.removeAll(strings);
+        roleRoutes.removeAll(strings);
+        for (String string : strings) {
+            adminRouteDao.insert(AdminRoute.builder().roleId(id).name(string).build());
         }
-        urls.removeAll(routes);
-        List<Long> ids = list.stream().filter(adminRoute -> urls.contains(adminRoute.getUrl())).map(BaseDbEntity::getId).collect(Collectors.toList());
+        List<Long> ids = list.stream().filter(adminRoute -> roleRoutes.contains(adminRoute.getUrl())).map(BaseDbEntity::getId).collect(Collectors.toList());
         ids.forEach(adminRouteDao::deleteById);
-        for (AdminRoute adminRoute : adminRoutes) {
-            adminRouteDao.insert(adminRoute);
-        }
     }
 
     private void updateRolePermission(Long id, List<String> permissions) {
-        List<AdminPermission> adminPermissionList = adminPermissionDao.selectListByRoleId(id);
-        List<String> strings = adminPermissionList.stream().map(AdminPermission::getName).collect(Collectors.toList());
-        ArrayList<AdminPermission> adminPermissions = new ArrayList<>();
+        List<AdminPermission> adminPermissions = adminPermissionDao.selectListByRoleId(id);
+        List<String> rolePermissions = adminPermissions.stream().map(AdminPermission::getName).collect(Collectors.toList());
+        Collection<String> strings = CollUtil.intersection(rolePermissions, permissions);
+        permissions.removeAll(strings);
         for (String permission : permissions) {
-            if (!strings.contains(permission)) {
-                adminPermissions.add(new AdminPermission(permission, id));
-            }
+            adminPermissionDao.insert(new AdminPermission(permission, id));
         }
-        strings.removeAll(permissions);
-        List<Long> ids = adminPermissionList.stream().filter(adminPermission -> strings.contains(adminPermission.getName())).map(BaseDbEntity::getId).collect(Collectors.toList());
+        rolePermissions.removeAll(strings);
+        List<Long> ids = adminPermissions.stream().filter(adminPermission -> rolePermissions.contains(adminPermission.getName())).map(BaseDbEntity::getId).collect(Collectors.toList());
         ids.forEach(adminPermissionDao::deleteById);
-        for (AdminPermission adminPermission : adminPermissions) {
-            adminPermissionDao.insert(adminPermission);
-        }
 
     }
 
