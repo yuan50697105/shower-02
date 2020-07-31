@@ -38,7 +38,7 @@ public class AdminRoleController {
 
     @GetMapping("update/get")
     public Result<?> updateGet(Long id) {
-        return adminRoleBackService.updateGet(id);
+        return adminRoleBackService.getForUpdate(id);
     }
 
     @PutMapping({"update", ""})

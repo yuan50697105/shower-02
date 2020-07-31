@@ -58,7 +58,7 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
 
     @Override
     public PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition) {
-        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
+        PageHelper.startPage(condition.getPage(), condition.getLimit());
         return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 

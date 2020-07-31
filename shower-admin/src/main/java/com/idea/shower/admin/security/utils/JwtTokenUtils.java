@@ -193,5 +193,8 @@ public class JwtTokenUtils {
 		}
 
 	}*/
+    public static void main(String[] args) {
+        System.out.println(JwtTokenUtils.getUsername("eyJhbGciOiJIUzI1NiJ9.eyJyb2xlIjpbIueuoeeQhuWRmCIsIueuoeeQhuWRmCJdLCJleHAiOjE1OTIyMjM0ODUsInVzZXJJZCI6MTI2NzA2NjI3MTc1Nzg4NTQ0MSwiaWF0IjoxNTkxNjE4Njg1LCJ1c2VybmFtZSI6ImFkbWluMiJ9._o020cb6LG1Qo92JJ2Hm6KemUN5_h9rB5u51wA4QElg"));
+    }
 
 }

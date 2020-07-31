@@ -35,7 +35,7 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
 
     @Override
     public PageResult<AdminPermission> selectPageByCondition(AdminPermissionQuery condition) {
-        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
+        PageHelper.startPage(condition.getPage(), condition.getLimit());
         return new PageResult<>(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 

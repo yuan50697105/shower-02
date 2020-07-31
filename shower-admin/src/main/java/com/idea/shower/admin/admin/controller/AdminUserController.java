@@ -48,9 +48,14 @@ public class AdminUserController {
         return adminUserBackService.modifyRole(vo);
     }
 
-    @GetMapping("delete")
-    public Result<?> delete(List<Long> ids) {
+    @RequestMapping(value = "delete", method = {RequestMethod.GET})
+    public Result<?> deleteList(List<Long> ids) {
         return adminUserBackService.delete(ids);
+    }
+
+    @RequestMapping(value = "delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public Result<?> delete(@PathVariable Long id) {
+        return adminUserBackService.delete(List.of(id));
     }
 
     @GetMapping("data")
@@ -68,5 +73,10 @@ public class AdminUserController {
     @GetMapping("get")
     public Result<?> get(Long id) {
         return adminUserBackService.get(id);
+    }
+
+    @PutMapping("modify")
+    public Result<?> update(@RequestBody AdminUserVO adminUserVO) {
+        return adminUserBackService.modify(adminUserVO);
     }
 }

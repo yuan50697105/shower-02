@@ -147,7 +147,7 @@
 </template>
 
 <script>
-import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
+import { createArticle, fetchList, fetchPv, updateArticle } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -273,7 +273,7 @@ export default {
         importance: 1,
         remark: '',
         timestamp: new Date(),
-        title: '',
+        username: '',
         status: 'published',
         type: ''
       }
@@ -295,7 +295,7 @@ export default {
             this.list.unshift(this.temp)
             this.dialogFormVisible = false
             this.$notify({
-              title: 'Success',
+              username: 'Success',
               message: 'Created Successfully',
               type: 'success',
               duration: 2000
@@ -323,7 +323,7 @@ export default {
             this.list.splice(index, 1, this.temp)
             this.dialogFormVisible = false
             this.$notify({
-              title: 'Success',
+              username: 'Success',
               message: 'Update Successfully',
               type: 'success',
               duration: 2000
@@ -334,7 +334,7 @@ export default {
     },
     handleDelete(row, index) {
       this.$notify({
-        title: 'Success',
+        username: 'Success',
         message: 'Delete Successfully',
         type: 'success',
         duration: 2000

@@ -37,3 +37,42 @@ export function getData(query) {
     params: query
   })
 }
+
+export function getRoleList() {
+  return request({
+    url: 'admin/role/list',
+    method: 'get'
+    // params: query
+  })
+}
+
+export function addUser(data) {
+  return request({
+    url: 'admin/user/add',
+    method: 'post',
+    data
+  })
+}
+
+export function getUserById(id) {
+  return request({
+    url: '/admin/user/get',
+    method: 'get',
+    params: { id }
+  })
+}
+
+export function modifyUser(data) {
+  return request({
+    url: 'admin/user/modify',
+    method: 'put',
+    data
+  })
+}
+
+export function deleteUser(id) {
+  return request({
+    url: `admin/user/delete/${id}`,
+    method: 'delete'
+  })
+}

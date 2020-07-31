@@ -57,7 +57,7 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
     @Override
     @CachePut
     public Result<?> add(AdminRoleVO vo) {
-        checkRoleExist(vo);
+        validateRole(vo);
         AdminRole adminRole = createRole(vo);
         List<RouteBean> routes = vo.getRoutes();
         routes = RouteUtils.tree2listWithParent(routes);
@@ -75,45 +75,58 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
         AdminRole adminRole = adminRoleService.getById(vo.getId());
         adminRole.copyFrom(vo);
         adminRoleService.updateSelective(adminRole);
-        List<RouteBean> routes = RouteUtils.tree2listWithParent(vo.getRoutes());
+        List<RouteBean> routes = RouteUtils.tree2list(vo.getRoutes());
         updateRolePermission(id, RouteUtils.tree2Permission(routes));
         updateRoleRoute(id, RouteUtils.tree2Route(routes));
         return ResultInfo.success();
     }
 
     @Override
-    public Result<?> updateGet(Long id) {
+    public Result<?> getForUpdate(Long id) {
         AdminRole adminRole = adminRoleService.getById(id);
         List<String> list = adminRouteDao.selectNameListByRoleId(id);
         Map<String, AdminRoleEditVo> role = MapUtil.builder("role", createRoleVo(adminRole, list)).build();
         return ResultInfo.success(role);
     }
 
-    private void updateRoleRoute(Long id, List<String> routes) {
-        List<AdminRoute> list = adminRouteDao.selectListByRoleId(id);
-        List<String> roleRoutes = list.stream().map(AdminRoute::getUrl).collect(Collectors.toList());
-        Collection<String> strings = CollUtil.intersection(roleRoutes, routes);
-        routes.removeAll(strings);
-        roleRoutes.removeAll(strings);
-        for (String string : strings) {
-            adminRouteDao.insert(AdminRoute.builder().roleId(id).name(string).build());
+    /**
+     * 更新角色路由
+     *
+     * @param roleId 角色id
+     * @param routes 路由列表
+     */
+    private void updateRoleRoute(Long roleId, List<String> routes) {
+        List<AdminRoute> list = adminRouteDao.selectListByRoleId(roleId);
+        List<String> routesDb = list.stream().map(AdminRoute::getName).distinct().collect(Collectors.toList());
+        Collection<String> intersection = CollUtil.intersection(routesDb, routes);
+        routes.removeAll(intersection);
+        for (String route : routes) {
+            AdminRoute adminRoute = AdminRoute.builder().name(route).roleId(roleId).build();
+            adminRouteDao.insert(adminRoute);
         }
-        List<Long> ids = list.stream().filter(adminRoute -> roleRoutes.contains(adminRoute.getUrl())).map(BaseDbEntity::getId).collect(Collectors.toList());
-        ids.forEach(adminRouteDao::deleteById);
+        routesDb.removeAll(intersection);
+        List<Long> routeIds = list.stream().filter(adminRoute -> routesDb.contains(adminRoute.getName())).map(BaseDbEntity::getId).collect(Collectors.toList());
+        routeIds.forEach(adminRouteDao::deleteById);
     }
 
-    private void updateRolePermission(Long id, List<String> permissions) {
-        List<AdminPermission> adminPermissions = adminPermissionDao.selectListByRoleId(id);
+
+    /**
+     * 更新角色权限列表
+     *
+     * @param roleId      角色Id
+     * @param permissions 权限列表
+     */
+    private void updateRolePermission(Long roleId, List<String> permissions) {
+        List<AdminPermission> adminPermissions = adminPermissionDao.selectListByRoleId(roleId);
         List<String> rolePermissions = adminPermissions.stream().map(AdminPermission::getName).collect(Collectors.toList());
-        Collection<String> strings = CollUtil.intersection(rolePermissions, permissions);
-        permissions.removeAll(strings);
+        Collection<String> intersectionRolePermission = CollUtil.intersection(rolePermissions, permissions);
+        permissions.removeAll(intersectionRolePermission);
         for (String permission : permissions) {
-            adminPermissionDao.insert(new AdminPermission(permission, id));
+            adminPermissionDao.insert(new AdminPermission(permission, roleId));
         }
-        rolePermissions.removeAll(strings);
+        rolePermissions.removeAll(intersectionRolePermission);
         List<Long> ids = adminPermissions.stream().filter(adminPermission -> rolePermissions.contains(adminPermission.getName())).map(BaseDbEntity::getId).collect(Collectors.toList());
         ids.forEach(adminPermissionDao::deleteById);
-
     }
 
     @Override
@@ -131,22 +144,6 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
         AdminRole adminRole = adminRoleService.getById(id);
         Map<String, AdminRole> role = MapUtil.builder("role", adminRole).build();
         return ResultInfo.success(role);
-    }
-
-    private AdminRoleEditVo createRoleVo(AdminRole adminRole, List<String> list) {
-        AdminRoleEditVo adminRoleEditVo = new AdminRoleEditVo();
-        adminRoleEditVo.setRoutes(list);
-        adminRoleEditVo.setName(adminRole.getName());
-        adminRoleEditVo.setDescription(adminRole.getDescription());
-        adminRoleEditVo.setEnabled(adminRole.getEnabled());
-        adminRoleEditVo.setDeleted(adminRole.getDeleted());
-        adminRoleEditVo.setId(adminRole.getId());
-        adminRoleEditVo.setCreateTime(adminRole.getCreateTime());
-        adminRoleEditVo.setUpdateTime(adminRole.getUpdateTime());
-        adminRoleEditVo.setCreateUser(adminRole.getCreateUser());
-        adminRoleEditVo.setUpdateUser(adminRole.getUpdateUser());
-        return adminRoleEditVo;
-
     }
 
     @Override
@@ -171,7 +168,13 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
         return adminRole;
     }
 
-    private void checkRoleExist(AdminRoleVO vo) {
+    /**
+     * 验证角色存在
+     * <p>验证表单</p>
+     *
+     * @param vo 表单模型
+     */
+    private void validateRole(AdminRoleVO vo) {
         String name = vo.getName();
         boolean exist = adminRoleService.checkExistByName(name);
         if (exist) {
@@ -179,16 +182,53 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
         }
     }
 
-    private void createRoleRoute(Long id, List<String> tree2Name) {
-        for (String name : tree2Name) {
-            adminRouteDao.insert(AdminRoute.builder().url(name).roleId(id).build());
+    /**
+     * 创建角色路由
+     * <p>用于创建角色路有关联</p>
+     *
+     * @param roleId    角色id
+     * @param routeList
+     */
+    private void createRoleRoute(Long roleId, List<String> routeList) {
+        for (String name : routeList) {
+            adminRouteDao.insert(AdminRoute.builder().name(name).roleId(roleId).build());
         }
     }
 
+    /**
+     * 创建角色权限
+     * <p>用于创建角色权限关联</p>
+     *
+     * @param roleId      角色ID
+     * @param permissions 权限列表
+     */
     private void createRolePermission(Long roleId, List<String> permissions) {
         for (String permission : permissions) {
             AdminPermission adminPermission = new AdminPermission(permission, roleId);
             adminPermissionDao.insert(adminPermission);
         }
+    }
+
+    /**
+     * 创建角色表单模型
+     *
+     * @param role   角色信息
+     * @param routes 路由信息
+     * @return 角色标记表单实体
+     */
+    private AdminRoleEditVo createRoleVo(AdminRole role, List<String> routes) {
+        AdminRoleEditVo adminRoleEditVo = new AdminRoleEditVo();
+        adminRoleEditVo.setRoutes(routes);
+        adminRoleEditVo.setName(role.getName());
+        adminRoleEditVo.setDescription(role.getDescription());
+        adminRoleEditVo.setEnabled(role.getEnabled());
+        adminRoleEditVo.setDeleted(role.getDeleted());
+        adminRoleEditVo.setId(role.getId());
+        adminRoleEditVo.setCreateTime(role.getCreateTime());
+        adminRoleEditVo.setUpdateTime(role.getUpdateTime());
+        adminRoleEditVo.setCreateUser(role.getCreateUser());
+        adminRoleEditVo.setUpdateUser(role.getUpdateUser());
+        return adminRoleEditVo;
+
     }
 }

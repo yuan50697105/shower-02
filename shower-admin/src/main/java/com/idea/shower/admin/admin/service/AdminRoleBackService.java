@@ -17,7 +17,7 @@ public interface AdminRoleBackService {
 
     Result<?> update(AdminRoleVO vo);
 
-    Result<?> updateGet(Long id);
+    Result<?> getForUpdate(Long id);
 
     Result<?> get(Long id);
 

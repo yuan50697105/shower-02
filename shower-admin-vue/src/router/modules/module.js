@@ -17,7 +17,7 @@ const moduleRoute = [
         children: [
           {
             path: 'add',
-            component: () => import('@/views/user/index'),
+            component: () => import('@/views/permission/user'),
             name: 'UserAdd',
             meta: { title: '用户添加', hidden: false, button: true }
           },

@@ -32,5 +32,5 @@ public interface AdminUserRoleDao extends BaseDao<AdminUserRole> {
     List<String> selectRoleNameByUsername(String username);
 
 
-
+    int insertSelective(AdminUserRole adminUserRole);
 }

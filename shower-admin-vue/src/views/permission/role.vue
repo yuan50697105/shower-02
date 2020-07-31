@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <el-button @click="handleAddRole" type="primary">新增</el-button>
+    <el-button type="primary" @click="handleAddRole">新增</el-button>
 
     <el-table :data="rolesList" style="width: 100%;margin-top:30px;" border>
       <!--      <el-table-column align="center" label="ID" width="220" hidden>-->
@@ -52,27 +52,27 @@
         </el-form-item>
       </el-form>
       <div style="text-align:right;">
-        <el-button type="danger" @click="dialogVisible=false">Cancel</el-button>
-        <el-button type="primary" @click="confirmRole">Confirm</el-button>
+        <el-button type="danger" @click="dialogVisible=false">取消</el-button>
+        <el-button type="primary" @click="confirmRole">提交</el-button>
       </div>
     </el-dialog>
   </div>
 </template>
 
 <script>
-  import path from 'path'
-  import {deepClone} from '@/utils'
-  import {addRole, deleteRole, getRoleById, getRoles, getRoutes, updateRole} from '@/api/role'
+import path from 'path'
+import { deepClone } from '@/utils'
+import { addRole, deleteRole, getRoleById, getRoles, getRoutes, updateRole } from '@/api/role'
 
-  const defaultRole = {
-    id: '',
-    name: '',
-    description: '',
-    routes: [],
-    resources: []
-  }
+const defaultRole = {
+  id: '',
+  name: '',
+  description: '',
+  routes: [],
+  resources: []
+}
 
-  export default {
+export default {
   data() {
     return {
       role: Object.assign({}, defaultRole),
@@ -165,7 +165,7 @@
         this.$refs.tree.setCheckedKeys([])
       }
       getRoleById(scope.row.id).then(value => {
-        const {role} = value.data
+        const { role } = value.data
         this.role = role
         this.dialogVisible = true
         // this.checkStrictly = true
@@ -178,9 +178,9 @@
       })
     },
     handleDelete({ $index, row }) {
-      this.$confirm('Confirm to remove the role?', 'Warning', {
-        confirmButtonText: 'Confirm',
-        cancelButtonText: 'Cancel',
+      this.$confirm('确认删除此角色吗?', 'Warning', {
+        confirmButtonText: '确认',
+        cancelButtonText: '取消',
         type: 'warning'
       })
         .then(async() => {
@@ -188,7 +188,7 @@
           this.rolesList.splice($index, 1)
           this.$message({
             type: 'success',
-            message: 'Delete succed!'
+            message: '删除成功!'
           })
         })
         .catch(err => {
@@ -230,10 +230,9 @@
         this.rolesList.push(this.role)
       }
 
-      const { description, id, name } = this.role
       this.dialogVisible = false
       this.$notify({
-        title: 'Success',
+        username: 'Success',
         dangerouslyUseHTMLString: true,
         message: `
             <div>保存成功</div>
