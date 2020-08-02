@@ -5,10 +5,11 @@ import com.idea.shower.admin.admin.pojo.AdminRoleVO;
 import com.idea.shower.admin.admin.service.AdminRoleBackService;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -19,21 +20,30 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin/role")
-@PreAuthorize("hasAnyAuthority('超级管理员')")
 @AllArgsConstructor
 @Validated
+@Slf4j
 public class AdminRoleController {
     private final AdminRoleBackService adminRoleBackService;
-
 
     @PostMapping("add")
     public Result<?> add(@RequestBody AdminRoleVO vo) {
         return adminRoleBackService.add(vo);
     }
 
-    @PostMapping("modify")
-    public Result<?> modify(@RequestBody AdminRoleVO vo) {
-        return adminRoleBackService.modify(vo);
+    @PostMapping("update")
+    public Result<?> update(@RequestBody AdminRoleVO vo) {
+        return adminRoleBackService.update(vo);
+    }
+
+    @GetMapping("update/get")
+    public Result<?> updateGet(Long id) {
+        return adminRoleBackService.getForUpdate(id);
+    }
+
+    @PutMapping({"update", ""})
+    public Result<?> updateRs(@RequestBody AdminRoleVO vo) {
+        return adminRoleBackService.update(vo);
     }
 
     @GetMapping("delete")
@@ -41,9 +51,19 @@ public class AdminRoleController {
         return adminRoleBackService.delete(ids);
     }
 
+    @DeleteMapping({"delete/{id}", "{id}"})
+    public Result<?> delete(@PathVariable Long id) {
+        return adminRoleBackService.delete(Collections.singletonList(id));
+    }
+
     @GetMapping("get")
-    public Result<?> get(Long id) {
+    public Result<?> getOne(Long id) {
         return adminRoleBackService.get(id);
+    }
+
+    @GetMapping("id/{id}")
+    public Result<?> getRs(@PathVariable String id) {
+        return adminRoleBackService.get(Long.valueOf(id));
     }
 
     @GetMapping("data")

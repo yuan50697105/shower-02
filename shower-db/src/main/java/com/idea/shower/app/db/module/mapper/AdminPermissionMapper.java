@@ -3,9 +3,12 @@ package com.idea.shower.app.db.module.mapper;
 import com.idea.shower.app.db.commons.mapper.BaseMapper;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
 import com.idea.shower.app.db.module.pojo.AdminPermissionExample;
-import java.util.Collection;import java.util.List;
-import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;import org.apache.ibatis.annotations.Mapper;
+import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+import java.util.Collection;
+import java.util.List;
 
 @Mapper
 public interface AdminPermissionMapper extends BaseMapper {
@@ -38,4 +41,12 @@ public interface AdminPermissionMapper extends BaseMapper {
     List<Long> selectIdByIdIn(@Param("idCollection") Collection<Long> idCollection);
 
     List<AdminPermission> selectByCondition(@Param("condition") AdminPermissionQuery condition);
+
+    List<AdminPermission> selectAllByRoleId(@Param("roleId") Long roleId);
+
+    List<String> selectNameByRoleId(@Param("roleId") Long roleId);
+
+    List<String> selectNameByRoleIdIn(@Param("roleIdCollection") Collection<Long> roleIdCollection);
+
+
 }

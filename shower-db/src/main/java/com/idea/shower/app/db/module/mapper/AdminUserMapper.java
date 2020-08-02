@@ -34,4 +34,8 @@ public interface AdminUserMapper extends BaseMapper {
     List<AdminUser> selectByCondition(@Param("condition") AdminUserQuery condition);
 
     AdminUser selectOneByUsername(@Param("username") String username);
+
+    Long selectOneIdByUsername(@Param("username")String username);
+
+
 }

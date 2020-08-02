@@ -3,20 +3,26 @@ package com.idea.shower.admin.admin.service.impl;
 import ai.yue.library.base.exception.ResultException;
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
-import cn.hutool.core.util.ObjectUtil;
+import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.map.MapUtil;
+import com.idea.shower.admin.admin.converter.Converter;
+import com.idea.shower.admin.admin.pojo.AdminRoleEditVo;
 import com.idea.shower.admin.admin.pojo.AdminRoleVO;
 import com.idea.shower.admin.admin.service.AdminRoleBackService;
+import com.idea.shower.admin.route.pojo.RouteBean;
+import com.idea.shower.admin.route.utils.RouteUtils;
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
 import com.idea.shower.app.db.module.dao.AdminPermissionDao;
 import com.idea.shower.app.db.module.dao.AdminRoleDao;
-import com.idea.shower.app.db.module.dao.AdminRolePermissionDao;
+import com.idea.shower.app.db.module.dao.AdminRouteDao;
 import com.idea.shower.app.db.module.dao.AdminUserRoleDao;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
 import com.idea.shower.app.db.module.pojo.AdminRole;
-import com.idea.shower.app.db.module.pojo.AdminRolePermission;
+import com.idea.shower.app.db.module.pojo.AdminRoute;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -24,10 +30,10 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -40,53 +46,104 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @Transactional
 @CacheConfig(cacheNames = "roles")
+@Slf4j
 public class AdminRoleBackServiceImpl implements AdminRoleBackService {
     private final AdminRoleDao adminRoleService;
-    private final AdminUserRoleDao adminUserRoleService;
-    private final AdminPermissionDao adminPermissionService;
-    private final AdminRolePermissionDao adminRolePermissionService;
+    private final AdminUserRoleDao adminUserRoleDao;
+    private final AdminPermissionDao adminPermissionDao;
+    private final AdminRouteDao adminRouteDao;
+    private final Converter converter;
 
     @Override
     @CachePut
     public Result<?> add(AdminRoleVO vo) {
-        checkRoleExist(vo);
+        validateRole(vo);
         AdminRole adminRole = createRole(vo);
-        createRolePermission(vo, adminRole);
-        return ResultInfo.success();
+        List<RouteBean> routes = vo.getRoutes();
+        routes = RouteUtils.tree2listWithParent(routes);
+        List<String> permissions = RouteUtils.tree2Permission(routes);
+        List<String> tree2Name = RouteUtils.tree2Route(routes);
+        createRolePermission(adminRole.getId(), permissions);
+        createRoleRoute(adminRole.getId(), tree2Name);
+        return ResultInfo.success(adminRole);
     }
 
     @Override
     @CachePut
-    public Result<?> modify(AdminRoleVO vo) {
+    public Result<?> update(AdminRoleVO vo) {
         Long id = vo.getId();
         AdminRole adminRole = adminRoleService.getById(vo.getId());
-        checkRoleNull(adminRole);
         adminRole.copyFrom(vo);
         adminRoleService.updateSelective(adminRole);
-        adminRolePermissionService.deleteByRoleId(id);
-        createRolePermission(vo, adminRole);
+        List<RouteBean> routes = RouteUtils.tree2list(vo.getRoutes());
+        updateRolePermission(id, RouteUtils.tree2Permission(routes));
+        updateRoleRoute(id, RouteUtils.tree2Route(routes));
         return ResultInfo.success();
+    }
+
+    @Override
+    public Result<?> getForUpdate(Long id) {
+        AdminRole adminRole = adminRoleService.getById(id);
+        List<String> list = adminRouteDao.selectNameListByRoleId(id);
+        Map<String, AdminRoleEditVo> role = MapUtil.builder("role", createRoleVo(adminRole, list)).build();
+        return ResultInfo.success(role);
+    }
+
+    /**
+     * 更新角色路由
+     *
+     * @param roleId 角色id
+     * @param routes 路由列表
+     */
+    private void updateRoleRoute(Long roleId, List<String> routes) {
+        List<AdminRoute> list = adminRouteDao.selectListByRoleId(roleId);
+        List<String> routesDb = list.stream().map(AdminRoute::getName).distinct().collect(Collectors.toList());
+        Collection<String> intersection = CollUtil.intersection(routesDb, routes);
+        routes.removeAll(intersection);
+        for (String route : routes) {
+            AdminRoute adminRoute = AdminRoute.builder().name(route).roleId(roleId).build();
+            adminRouteDao.insert(adminRoute);
+        }
+        routesDb.removeAll(intersection);
+        List<Long> routeIds = list.stream().filter(adminRoute -> routesDb.contains(adminRoute.getName())).map(BaseDbEntity::getId).collect(Collectors.toList());
+        routeIds.forEach(adminRouteDao::deleteById);
+    }
+
+
+    /**
+     * 更新角色权限列表
+     *
+     * @param roleId      角色Id
+     * @param permissions 权限列表
+     */
+    private void updateRolePermission(Long roleId, List<String> permissions) {
+        List<AdminPermission> adminPermissions = adminPermissionDao.selectListByRoleId(roleId);
+        List<String> rolePermissions = adminPermissions.stream().map(AdminPermission::getName).collect(Collectors.toList());
+        Collection<String> intersectionRolePermission = CollUtil.intersection(rolePermissions, permissions);
+        permissions.removeAll(intersectionRolePermission);
+        for (String permission : permissions) {
+            adminPermissionDao.insert(new AdminPermission(permission, roleId));
+        }
+        rolePermissions.removeAll(intersectionRolePermission);
+        List<Long> ids = adminPermissions.stream().filter(adminPermission -> rolePermissions.contains(adminPermission.getName())).map(BaseDbEntity::getId).collect(Collectors.toList());
+        ids.forEach(adminPermissionDao::deleteById);
     }
 
     @Override
     @CacheEvict
     public Result<?> delete(List<Long> id) {
         adminRoleService.deleteByIds(id);
-        adminRolePermissionService.deleteByRoleIds(id);
-        adminUserRoleService.deleteByRoleIds(id);
+        adminUserRoleDao.deleteByRoleIds(id);
+        adminPermissionDao.deleteByRoleIds(id);
+        adminRouteDao.deleteByRoleIds(id);
         return ResultInfo.success();
     }
 
     @Override
     public Result<?> get(Long id) {
-        HashMap<Object, Object> data = new HashMap<>();
         AdminRole adminRole = adminRoleService.getById(id);
-        checkRoleNull(adminRole);
-        List<AdminRolePermission> adminRolePermissions = adminRolePermissionService.listByRoleId(id);
-        List<AdminPermission> adminPermissions = adminPermissionService.listByIds(adminRolePermissions.stream().map(BaseDbEntity::getId).collect(Collectors.toList()));
-        data.put("role", adminRole);
-        data.put("permission", adminPermissions);
-        return ResultInfo.success(data);
+        Map<String, AdminRole> role = MapUtil.builder("role", adminRole).build();
+        return ResultInfo.success(role);
     }
 
     @Override
@@ -103,25 +160,6 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
         return ResultInfo.success(Collections.singletonMap("list", list));
     }
 
-    private void checkRoleNull(AdminRole adminRole) {
-        if (ObjectUtil.isNull(adminRole)) {
-            throw new ResultException(ResultInfo.param_value_invalid());
-        }
-    }
-
-    private void createRolePermission(AdminRoleVO vo, AdminRole adminRole) {
-        List<Long> permissionIds = vo.getPermissionIds();
-        permissionIds = adminPermissionService.listByIds(permissionIds).stream().map(BaseDbEntity::getId).collect(Collectors.toList());
-        ArrayList<AdminRolePermission> adminRolePermissions = new ArrayList<>(permissionIds.size());
-        for (Long permissionId : permissionIds) {
-            AdminRolePermission adminRolePermission = new AdminRolePermission();
-            adminRolePermission.setPermissionId(permissionId);
-            adminRolePermission.setRoleId(adminRole.getId());
-            adminRolePermissions.add(adminRolePermission);
-        }
-        adminRolePermissionService.batchInsertSelective(adminRolePermissions);
-    }
-
 
     private AdminRole createRole(AdminRoleVO vo) {
         AdminRole adminRole = new AdminRole();
@@ -130,11 +168,67 @@ public class AdminRoleBackServiceImpl implements AdminRoleBackService {
         return adminRole;
     }
 
-    private void checkRoleExist(AdminRoleVO vo) {
+    /**
+     * 验证角色存在
+     * <p>验证表单</p>
+     *
+     * @param vo 表单模型
+     */
+    private void validateRole(AdminRoleVO vo) {
         String name = vo.getName();
         boolean exist = adminRoleService.checkExistByName(name);
         if (exist) {
             throw new ResultException(ResultInfo.param_check_not_pass());
         }
+    }
+
+    /**
+     * 创建角色路由
+     * <p>用于创建角色路有关联</p>
+     *
+     * @param roleId    角色id
+     * @param routeList
+     */
+    private void createRoleRoute(Long roleId, List<String> routeList) {
+        for (String name : routeList) {
+            adminRouteDao.insert(AdminRoute.builder().name(name).roleId(roleId).build());
+        }
+    }
+
+    /**
+     * 创建角色权限
+     * <p>用于创建角色权限关联</p>
+     *
+     * @param roleId      角色ID
+     * @param permissions 权限列表
+     */
+    private void createRolePermission(Long roleId, List<String> permissions) {
+        for (String permission : permissions) {
+            AdminPermission adminPermission = new AdminPermission(permission, roleId);
+            adminPermissionDao.insert(adminPermission);
+        }
+    }
+
+    /**
+     * 创建角色表单模型
+     *
+     * @param role   角色信息
+     * @param routes 路由信息
+     * @return 角色标记表单实体
+     */
+    private AdminRoleEditVo createRoleVo(AdminRole role, List<String> routes) {
+        AdminRoleEditVo adminRoleEditVo = new AdminRoleEditVo();
+        adminRoleEditVo.setRoutes(routes);
+        adminRoleEditVo.setName(role.getName());
+        adminRoleEditVo.setDescription(role.getDescription());
+        adminRoleEditVo.setEnabled(role.getEnabled());
+        adminRoleEditVo.setDeleted(role.getDeleted());
+        adminRoleEditVo.setId(role.getId());
+        adminRoleEditVo.setCreateTime(role.getCreateTime());
+        adminRoleEditVo.setUpdateTime(role.getUpdateTime());
+        adminRoleEditVo.setCreateUser(role.getCreateUser());
+        adminRoleEditVo.setUpdateUser(role.getUpdateUser());
+        return adminRoleEditVo;
+
     }
 }

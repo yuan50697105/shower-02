@@ -1,6 +1,5 @@
 package com.idea.shower.db.mybaits.pojo;
 
-import com.github.pagehelper.IPage;
 import com.idea.shower.db.core.pojo.BaseDbCoreQuery;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -13,12 +12,6 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class BaseDbQuery extends BaseDbCoreQuery implements IPage {
+public class BaseDbQuery extends BaseDbCoreQuery {
 
-
-    @Override
-    public String getOrderBy() {
-        return null;
-
-    }
 }
