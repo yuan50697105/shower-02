@@ -12,13 +12,13 @@ plugins {
 allprojects {
 
     group = 'com.idea.shower'
-    version = '1.0.0-M1'
+    version = '1.0.0-M2'
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
 
     repositories {
-        maven { url 'https://maven.aliyun.com/repository/public/' }
         mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/public/' }
         mavenCentral()
     }
 
