@@ -1,9 +1,9 @@
-package com.idea.shower.admin.admin.controller;
+package com.idea.shower.admin.security.controller;
 
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
-import com.idea.shower.admin.admin.service.AdminService;
-import com.idea.shower.security.JwtTokenUtils;
+import com.idea.shower.admin.security.service.UserDetailsAndRouteService;
+import com.idea.shower.admin.security.utils.JwtTokenUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,26 +23,28 @@ import java.util.Set;
  */
 @RestController
 @RequestMapping("admin")
-@AllArgsConstructor
 @Validated
+@AllArgsConstructor
 public class AdminController {
-    private final AdminService adminService;
-
+    private final UserDetailsAndRouteService service;
 
     @GetMapping("getUserInfo")
     @PreAuthorize("isAuthenticated()")
     public Result<?> getUserInfo(String token) {
         String username = JwtTokenUtils.getUsername(token);
-        Set<String> hashSet = adminService.getRoleList(username);
+        Set<String> hashSet = service.getRoleList(username);
+        Set<String> permissions = service.getPermissionList(username);
         HashMap<String, Object> map = new HashMap<>();
         map.put("roles", hashSet);
         map.put("name", username);
-        map.put("avtor","");
+        map.put("avtor", "");
+        map.put("buttons", null);
+        map.put("permissions", permissions);
         return ResultInfo.success(map);
     }
 
     @GetMapping("logout")
-    public Result<?> logout(){
+    public Result<?> logout() {
         SecurityContextHolder.clearContext();
         return ResultInfo.success();
 

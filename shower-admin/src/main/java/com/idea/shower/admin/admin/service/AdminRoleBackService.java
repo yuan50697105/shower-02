@@ -15,7 +15,9 @@ import java.util.List;
 public interface AdminRoleBackService {
     Result<?> add(AdminRoleVO vo);
 
-    Result<?> modify(AdminRoleVO vo);
+    Result<?> update(AdminRoleVO vo);
+
+    Result<?> getForUpdate(Long id);
 
     Result<?> get(Long id);
 

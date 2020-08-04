@@ -6,7 +6,6 @@ import com.idea.shower.app.db.module.pojo.AdminRole;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -44,4 +43,6 @@ public interface AdminRoleDao extends BaseDao<AdminRole> {
     boolean checkExistByName(String name);
 
     List<AdminRole> listByIds(List<Long> roleIds);
+
+    List<String> selectNameByIds(List<Long> roleIds);
 }

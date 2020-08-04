@@ -24,4 +24,6 @@ public interface AdminPermissionBackService {
     Result<?> data(AdminPermissionQuery query, int page, int size);
 
     Result<?> list(AdminPermissionQuery query);
+
+
 }

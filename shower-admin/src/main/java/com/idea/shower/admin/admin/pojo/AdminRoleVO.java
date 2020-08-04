@@ -1,9 +1,11 @@
 package com.idea.shower.admin.admin.pojo;
 
+import com.idea.shower.admin.route.pojo.RouteBean;
 import com.idea.shower.app.db.module.pojo.AdminRole;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -15,5 +17,6 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class AdminRoleVO extends AdminRole {
-    private List<Long> permissionIds;
+    private List<RouteBean> routes = new ArrayList<>();
+    private List<String> resources = new ArrayList<>();
 }

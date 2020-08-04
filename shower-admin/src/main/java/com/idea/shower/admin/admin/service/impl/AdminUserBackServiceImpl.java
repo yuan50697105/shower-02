@@ -3,6 +3,7 @@ package com.idea.shower.admin.admin.service.impl;
 import ai.yue.library.base.exception.ResultException;
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.admin.admin.pojo.AdminUserVO;
@@ -26,8 +27,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -120,12 +121,38 @@ public class AdminUserBackServiceImpl implements AdminUserBackService {
         AdminUser adminUser = adminUserService.getById(id);
         checkUserNull(adminUser);
         List<AdminUserRole> adminUserRoles = adminUserRoleService.listByUserId(id);
-        List<Long> roleIds = adminUserRoles.stream().map(BaseDbEntity::getId).collect(Collectors.toList());
-        List<AdminRole> adminRoles = adminRoleService.listByIds(roleIds);
-        HashMap<String, Object> data = new HashMap<>();
-        data.put("role", adminRoles);
-        data.put("user", adminUser);
-        return ResultInfo.success(data);
+        List<Long> roleIds = adminUserRoles.stream().map(AdminUserRole::getRoleId).collect(Collectors.toList());
+        List<AdminRole> adminRoles = adminRoleService.selectByIds(roleIds);
+
+        List<String> roleNames = adminRoles.stream().map(AdminRole::getName).collect(Collectors.toList());
+        roleIds = adminRoles.stream().map(BaseDbEntity::getId).collect(Collectors.toList());
+
+        AdminUserVO adminUserVO = new AdminUserVO();
+        adminUserVO.copyFrom(adminUser);
+        adminUserVO.setRoleNames(roleNames);
+        adminUserVO.setRoleIds(roleIds);
+        return ResultInfo.success(adminUserVO);
+    }
+
+    @Override
+    public Result<?> modify(AdminUserVO adminUserVO) {
+        AdminUser adminUser = adminUserService.getById(adminUserVO.getId());
+        adminUser.copyFrom(adminUserVO, "id", "username", "password");
+        List<Long> roleIds = adminUserVO.getRoleIds();
+        List<Long> roleDbIds = adminUserRoleService.selectRoleIdByUserId(adminUser.getId());
+        roleDbIds = adminRoleService.selectIdByIdIn(roleDbIds);
+        Collection<Long> intersection = CollUtil.intersection(roleDbIds, roleIds);
+        roleIds.removeAll(intersection);
+        if (ObjectUtil.isNotEmpty(roleIds)) {
+            roleIds = adminRoleService.selectIdByIdIn(roleIds);
+            for (Long roleId : roleIds) {
+                AdminUserRole adminUserRole = AdminUserRole.builder().roleId(roleId).userId(adminUserVO.getId()).build();
+                adminUserRoleService.insertSelective(adminUserRole);
+            }
+        }
+        roleDbIds.removeAll(intersection);
+        roleDbIds.forEach(adminUserRoleService::deleteByRoleId);
+        return ResultInfo.success();
     }
 
     /**

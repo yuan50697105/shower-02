@@ -27,9 +27,12 @@ import java.util.Optional;
 @AllArgsConstructor
 public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> implements AdminUserDao {
 
+    @org.springframework.beans.factory.annotation.Autowired
+    private final AdminUserMapper adminUserMapper;
+
     @Override
     public PageResult<AdminUser> selectPageByCondition(AdminUserQuery condition) {
-        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
+        PageHelper.startPage(condition.getPage(), condition.getLimit());
         return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
@@ -100,5 +103,13 @@ public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> im
         example.or().andUsernameEqualTo(username);
         return baseMapper().countByExample(example) > 0;
     }
+
+	@Override
+	public Long selectOneIdByUsername(String username){
+		 return adminUserMapper.selectOneIdByUsername(username);
+	}
+
+
+
 
 }

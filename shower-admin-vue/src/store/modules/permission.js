@@ -49,15 +49,41 @@ const mutations = {
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      let accessedRoutes
+      let accessedRoutes = asyncRoutes
+      accessedRoutes = filterButtonRoutes(accessedRoutes)
       if (roles.includes('admin')) {
-        accessedRoutes = asyncRoutes || []
+        accessedRoutes = accessedRoutes || []
       } else {
-        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
+        accessedRoutes = filterAsyncRoutes(accessedRoutes, roles)
       }
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
     })
+  }
+}
+
+function filterButtonRoutes(routes) {
+  const res = []
+
+  routes.filter(route => isButtonRoute(route)).forEach(route => {
+    const tmp = { ...route }
+    // if (isButtonRoute(route)) {
+    if (tmp.children) {
+      tmp.children = filterButtonRoutes(tmp.children)
+    }
+    // }
+    res.push(tmp)
+  })
+
+  return res
+}
+
+function isButtonRoute(route) {
+  if (route.meta && route.meta.button) {
+    return !route.meta.button
+    // return roles.some(role => route.meta.roles.includes(role))
+  } else {
+    return true
   }
 }
 

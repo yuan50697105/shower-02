@@ -5,7 +5,6 @@ import com.idea.shower.admin.admin.pojo.AdminUserVO;
 import com.idea.shower.admin.admin.service.AdminUserBackService;
 import com.idea.shower.app.db.module.pojo.query.AdminUserQuery;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,7 +18,6 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("admin/user")
-@PreAuthorize("hasAnyAuthority('超级管理员')")
 @AllArgsConstructor
 @Validated
 public class AdminUserController {
@@ -50,9 +48,14 @@ public class AdminUserController {
         return adminUserBackService.modifyRole(vo);
     }
 
-    @GetMapping("delete")
-    public Result<?> delete(List<Long> ids) {
+    @RequestMapping(value = "delete", method = {RequestMethod.GET})
+    public Result<?> deleteList(List<Long> ids) {
         return adminUserBackService.delete(ids);
+    }
+
+    @RequestMapping(value = "delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
+    public Result<?> delete(@PathVariable Long id) {
+        return adminUserBackService.delete(List.of(id));
     }
 
     @GetMapping("data")
@@ -70,5 +73,10 @@ public class AdminUserController {
     @GetMapping("get")
     public Result<?> get(Long id) {
         return adminUserBackService.get(id);
+    }
+
+    @PutMapping("modify")
+    public Result<?> update(@RequestBody AdminUserVO adminUserVO) {
+        return adminUserBackService.modify(adminUserVO);
     }
 }

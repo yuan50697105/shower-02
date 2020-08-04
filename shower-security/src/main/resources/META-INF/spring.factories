@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.idea.shower.security.SecurityConfig
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=com.idea.shower.admin.security.SecurityConfig

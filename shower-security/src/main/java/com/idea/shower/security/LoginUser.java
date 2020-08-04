@@ -1,4 +1,4 @@
-package com.idea.shower.security;
+package com.idea.shower.admin.security;
 
 import lombok.Data;
 
