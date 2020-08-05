@@ -14,24 +14,48 @@ import java.util.Optional;
  * @create: 2020-01-28 12:42
  */
 public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
+    /**
+     * @param deviceId
+     * @return
+     */
     Optional<DeviceInfo> getById(Long deviceId);
 
+    /**
+     * @param condition
+     * @return
+     */
     PageResult<DeviceInfo> selectPage(DeviceInfoQuery condition);
 
     /**
-    *获取设备列表
-    *@author finch
-    *@date: 2020/3/24
-    */
+     * 获取设备列表
+     *
+     * @author finch
+     * @date: 2020/3/24
+     */
     PageResult<DeviceInfo> selectAll(DeviceInfoQuery deviceInfoQuery);
 
+    /**
+     * @param code
+     * @return
+     */
     Optional<DeviceInfo> getByCode(String code);
 
     /**
      * 更新设备为使用中
+     *
      * @param deviceId
      */
     void updateStatusToUsing(Long deviceId);
 
+    /**
+     * @param deviceCode
+     * @return
+     */
     Optional<DeviceInfo> getByCodeAvailable(String deviceCode);
+
+    /**
+     * @param deviceInfo
+     * @return
+     */
+    int insert(DeviceInfo deviceInfo);
 }

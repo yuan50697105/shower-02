@@ -2,7 +2,7 @@ package com.idea.shower.admin.admin.controller;
 
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.admin.pojo.AdminPermissionVO;
-import com.idea.shower.admin.admin.service.AdminPermissionBackService;
+import com.idea.shower.admin.admin.service.AdminPermissionService;
 import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -21,37 +21,37 @@ import java.util.List;
 @AllArgsConstructor
 @Validated
 public class AdminPermissionController {
-    private final AdminPermissionBackService adminPermissionBackService;
+    private final AdminPermissionService adminPermissionService;
 
     @PostMapping("add")
     public Result<?> add(@RequestBody AdminPermissionVO vo) {
-        return adminPermissionBackService.add(vo);
+        return adminPermissionService.add(vo);
     }
 
     @PostMapping("modify")
     public Result<?> modify(@RequestBody AdminPermissionVO vo) {
-        return adminPermissionBackService.modify(vo);
+        return adminPermissionService.modify(vo);
     }
 
     @GetMapping("delete")
     public Result<?> delete(List<Long> ids) {
-        return adminPermissionBackService.delete(ids);
+        return adminPermissionService.delete(ids);
     }
 
     @GetMapping("get")
     public Result<?> get(Long id) {
-        return adminPermissionBackService.get(id);
+        return adminPermissionService.get(id);
     }
 
     @GetMapping("data")
     public Result<?> data(AdminPermissionQuery query,
                           @RequestParam(defaultValue = "1") int page,
                           @RequestParam(defaultValue = "20") int size) {
-        return adminPermissionBackService.data(query, page, size);
+        return adminPermissionService.data(query, page, size);
     }
 
     @GetMapping("list")
     public Result<?> list(AdminPermissionQuery query) {
-        return adminPermissionBackService.list(query);
+        return adminPermissionService.list(query);
     }
 }

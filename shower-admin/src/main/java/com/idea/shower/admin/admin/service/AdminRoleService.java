@@ -12,7 +12,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-05-25 17:15
  */
-public interface AdminRoleBackService {
+public interface AdminRoleService {
     Result<?> add(AdminRoleVO vo);
 
     Result<?> update(AdminRoleVO vo);

@@ -7,7 +7,7 @@ import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.admin.admin.pojo.AdminUserVO;
-import com.idea.shower.admin.admin.service.AdminUserBackService;
+import com.idea.shower.admin.admin.service.AdminUserService;
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
 import com.idea.shower.app.db.module.dao.AdminRoleDao;
 import com.idea.shower.app.db.module.dao.AdminUserDao;
@@ -40,9 +40,9 @@ import java.util.stream.Collectors;
  */
 @Service
 @AllArgsConstructor
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @CacheConfig(cacheNames = "users")
-public class AdminUserBackServiceImpl implements AdminUserBackService {
+public class AdminUserServiceImpl implements AdminUserService {
     private final AdminUserDao adminUserService;
     private final AdminUserRoleDao adminUserRoleService;
     private final AdminRoleDao adminRoleService;
