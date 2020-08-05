@@ -1,5 +1,12 @@
 import request from '@/utils/request'
 
+export function deleteDevice(id) {
+  return request({
+    uri: `/device/info/delete/${id}`,
+    method: 'delete'
+  })
+}
+
 export function addDevice(data) {
   return request({
     uri: `/device/info/add`,
@@ -26,6 +33,14 @@ export function getDevice(id) {
 export function pageDevice(data) {
   return request({
     uri: `/device/info/data`,
+    method: 'get',
+    params: data
+  })
+}
+
+export function listDevice(data) {
+  return request({
+    url: `/device/info/list`,
     method: 'get',
     params: data
   })

@@ -133,18 +133,13 @@
           <span>{{ row.runStatus | runFilter }}</span>
         </template>
       </el-table-column>
-      <!--      <el-table-column align="center" label="创建时间" width="150px">-->
-      <!--        <template slot-scope="{row}">-->
-      <!--          <span>{{ row.createTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
 
       <el-table-column align="center" class-name="small-padding fixed-width" label="操作" width="230">
-        <template slot-scope="{row,$index}">
+        <template slot-scope="{row}">
           <el-button size="mini" type="primary" @click="handleUpdate(row)">
             编辑
           </el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
+          <el-button size="mini" type="danger" @click="handleDelete(row)">
             删除
           </el-button>
         </template>
@@ -214,11 +209,9 @@
 </template>
 
 <script>
-import { fetchPv } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
-import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination/index'
-import { addUser, deleteUser, getData, getRoleList, getUserById, modifyUser } from '@/api/user'
+import { addDevice, deleteDevice, getDevice, modifyDevice, pageDevice } from '@/api/device'
 
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
@@ -316,7 +309,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      getData(this.listQuery).then(response => {
+      pageDevice(this.listQuery).then(response => {
         this.list = response.data.data
         this.total = response.data.totalRows
 
@@ -362,12 +355,6 @@ export default {
         type: ''
       }
     },
-    getRoleList() {
-      getRoleList().then(response => {
-        const { list } = response.data
-        this.roleList = list
-      })
-    },
     handleCreate() {
       this.resetTemp()
       this.dialogStatus = 'create'
@@ -382,7 +369,7 @@ export default {
         if (valid) {
           this.data.id = parseInt(Math.random() * 100) + 1024 // mock a id
           this.data.author = 'vue-element-admin'
-          addUser(this.data).then(() => {
+          addDevice(this.data).then(() => {
             // this.list.unshift(this.data)
             this.dialogFormVisible = false
             this.$notify({
@@ -402,7 +389,7 @@ export default {
       this.getRoleList()
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
-      getUserById(row.id).then(value => {
+      getDevice(row.id).then(value => {
         const { data } = value
         console.log(data)
         this.data = value.data
@@ -416,7 +403,7 @@ export default {
         if (valid) {
           // const tempData = Object.assign({}, this.data)
           // tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-          modifyUser(this.data).then(() => {
+          modifyDevice(this.data).then(() => {
             this.dialogFormVisible = false
             this.$notify({
               username: 'Success',
@@ -429,14 +416,14 @@ export default {
         }
       })
     },
-    handleDelete(row, index) {
+    handleDelete(row) {
       this.$confirm('确认删除此角色吗?', 'Warning', {
         confirmButtonText: '确认',
         cancelButtonText: '取消',
         type: 'warning'
       })
         .then(async() => {
-          await deleteUser(row.id)
+          await deleteDevice(row.id)
           this.$message({
             type: 'success',
             message: '删除成功!'
@@ -454,12 +441,6 @@ export default {
       // })
       // this.list.splice(user, 1)
     },
-    handleFetchPv(pv) {
-      fetchPv(pv).then(response => {
-        this.pvData = response.data.pvData
-        this.dialogPvVisible = true
-      })
-    },
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
@@ -473,15 +454,6 @@ export default {
         })
         this.downloadLoading = false
       })
-    },
-    formatJson(filterVal) {
-      return this.list.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
     },
     getSortClass: function(key) {
       const sort = this.listQuery.sort
