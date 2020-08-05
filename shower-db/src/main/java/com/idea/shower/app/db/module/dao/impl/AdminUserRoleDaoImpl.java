@@ -21,6 +21,9 @@ import java.util.List;
 @Component
 @AllArgsConstructor
 public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRoleMapper> implements AdminUserRoleDao {
+    @org.springframework.beans.factory.annotation.Autowired
+    private final AdminUserRoleMapper adminUserRoleMapper;
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteByUserId(Long userId) {
@@ -58,6 +61,16 @@ public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRo
         return baseMapper().selectByExample(example);
     }
 
+    @Override
+    public List<String> selectRoleNameByUsername(String username) {
+        return baseMapper().selectRoleNameByUsername(username);
+    }
+
+    @Override
+    public int insertSelective(AdminUserRole adminUserRole) {
+        return adminUserRoleMapper.insertSelective(adminUserRole);
+    }
+
 
     @Override
     public List<Long> selectRoleIdByUserId(Long userId) {
@@ -68,4 +81,8 @@ public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRo
     public List<Long> selectUserIdByRoleId(Long roleId) {
         return baseMapper().selectUserIdByRoleId(roleId);
     }
+
+
+
+
 }

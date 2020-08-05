@@ -210,7 +210,7 @@ export default {
         if (valid) {
           this.loading = true
           this.$notify({
-            title: '成功',
+            username: '成功',
             message: '发布文章成功',
             type: 'success',
             duration: 2000

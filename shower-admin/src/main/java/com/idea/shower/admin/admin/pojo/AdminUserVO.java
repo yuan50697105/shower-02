@@ -16,4 +16,5 @@ import java.util.List;
 @Data
 public class AdminUserVO extends AdminUser {
     private List<Long> roleIds;
+    private List<String> roleNames;
 }

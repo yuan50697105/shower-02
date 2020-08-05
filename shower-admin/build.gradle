@@ -1,8 +1,13 @@
 dependencies {
     compile project(':shower-webmvc-core')
     compile project(':shower-db')
-    compile project(':shower-security')
     compile group: 'ai.ylyue', name: 'yue-library-base', version: 'Finchley.SR4.1'
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('org.springframework.boot:spring-boot-starter-security')
+    compile('commons-codec:commons-codec')
+    compile('io.jsonwebtoken:jjwt:0.9.1')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+    compile('com.sun.xml.bind:jaxb-impl:2.3.3')
     testImplementation('org.springframework.security:spring-security-test')
 
 }

@@ -7,7 +7,6 @@ import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.admin.admin.pojo.AdminPermissionVO;
 import com.idea.shower.admin.admin.service.AdminPermissionBackService;
 import com.idea.shower.app.db.module.dao.AdminPermissionDao;
-import com.idea.shower.app.db.module.dao.AdminRolePermissionDao;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
 import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
@@ -34,7 +33,6 @@ import java.util.List;
 @CacheConfig(cacheNames = "permissions")
 public class AdminPermissionBackServiceImpl implements AdminPermissionBackService {
     private final AdminPermissionDao adminPermissionDao;
-    private final AdminRolePermissionDao adminRolePermissionDao;
 
     @Override
     @CachePut
@@ -58,7 +56,6 @@ public class AdminPermissionBackServiceImpl implements AdminPermissionBackServic
     @CacheEvict
     public Result<?> delete(List<Long> ids) {
         adminPermissionDao.deleteByIds(ids);
-        adminRolePermissionDao.deleteByPermissionIds(ids);
         return ResultInfo.success();
     }
 

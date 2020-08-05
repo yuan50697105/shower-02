@@ -10,7 +10,7 @@
     <result column="create_user" jdbcType="VARCHAR" property="createUser" />
     <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="desc" jdbcType="VARCHAR" property="desc" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
     <result column="enabled" jdbcType="BOOLEAN" property="enabled" />
     <result column="deleted" jdbcType="BOOLEAN" property="deleted" />
   </resultMap>
@@ -76,7 +76,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, `name`, `desc`, enabled, 
+    id, create_time, update_time, create_user, update_user, `name`, description, enabled, 
     deleted
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminRoleExample" resultMap="BaseResultMap">
@@ -116,10 +116,10 @@
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminRole" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into admin_role (create_time, update_time, create_user, 
-      update_user, `name`, `desc`, 
+      update_user, `name`, description, 
       enabled, deleted)
     values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
       #{enabled,jdbcType=BOOLEAN}, #{deleted,jdbcType=BOOLEAN})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminRole" useGeneratedKeys="true">
@@ -141,8 +141,8 @@
       <if test="name != null">
         `name`,
       </if>
-      <if test="desc != null">
-        `desc`,
+      <if test="description != null">
+        description,
       </if>
       <if test="enabled != null">
         enabled,
@@ -167,8 +167,8 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null">
-        #{desc,jdbcType=VARCHAR},
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         #{enabled,jdbcType=BOOLEAN},
@@ -207,8 +207,8 @@
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.desc != null">
-        `desc` = #{record.desc,jdbcType=VARCHAR},
+      <if test="record.description != null">
+        description = #{record.description,jdbcType=VARCHAR},
       </if>
       <if test="record.enabled != null">
         enabled = #{record.enabled,jdbcType=BOOLEAN},
@@ -230,7 +230,7 @@
       create_user = #{record.createUser,jdbcType=VARCHAR},
       update_user = #{record.updateUser,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
-      `desc` = #{record.desc,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
       enabled = #{record.enabled,jdbcType=BOOLEAN},
       deleted = #{record.deleted,jdbcType=BOOLEAN}
     <if test="_parameter != null">
@@ -256,8 +256,8 @@
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
       </if>
-      <if test="desc != null">
-        `desc` = #{desc,jdbcType=VARCHAR},
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
       </if>
       <if test="enabled != null">
         enabled = #{enabled,jdbcType=BOOLEAN},
@@ -276,7 +276,7 @@
       create_user = #{createUser,jdbcType=VARCHAR},
       update_user = #{updateUser,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
-      `desc` = #{desc,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=BOOLEAN},
       deleted = #{deleted,jdbcType=BOOLEAN}
     where id = #{id,jdbcType=BIGINT}
@@ -319,20 +319,11 @@
             <if test="condition.createUser != null and condition.createUser != ''">
                 and create_user like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
             </if>
-            <if test="condition.updateUser != null and condition.updateUser != ''">
-                and update_user like concat('%',#{condition.updateUser,jdbcType=VARCHAR},'%')
-            </if>
             <if test="condition.createDateStart != null">
                 <![CDATA[and date(create_time) >= date(#{condition.createDateStart,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.createDateEnd != null">
                 <![CDATA[and date(create_time) <= date(#{condition.createDateEnd,jdbcType=TIMESTAMP})]]>
-            </if>
-            <if test="condition.updateDateStart != null">
-                <![CDATA[and date(update_time) >= date(#{condition.updateDateStart,jdbcType=TIMESTAMP})]]>
-            </if>
-            <if test="condition.updateDateEnd != null">
-                <![CDATA[and date(update_time) <= date(#{condition.updateDateEnd,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.name != null and condition.name != ''">
                 and name like concat('%',#{condition.name,jdbcType=VARCHAR},'%')

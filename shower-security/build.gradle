@@ -4,6 +4,6 @@ dependencies {
     compile('commons-codec:commons-codec')
     compile('io.jsonwebtoken:jjwt:0.9.1')
     compile group: 'ai.ylyue', name: 'yue-library-base', version: 'Finchley.SR4.1'
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.3.1.RELEASE'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
 
 }

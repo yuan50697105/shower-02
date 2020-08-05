@@ -36,7 +36,7 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
 
     @Override
     public PageResult<DeviceInfo> selectPage(DeviceInfoQuery condition) {
-        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
+        PageHelper.startPage(condition.getPage(), condition.getLimit());
         return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 

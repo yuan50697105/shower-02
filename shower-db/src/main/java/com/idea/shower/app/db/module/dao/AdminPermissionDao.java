@@ -6,6 +6,7 @@ import com.idea.shower.app.db.module.pojo.AdminPermission;
 import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,9 +27,9 @@ public interface AdminPermissionDao extends BaseDao<AdminPermission> {
 
     Optional<AdminPermission> selectById(Long id);
 
-    int insertSelective(AdminPermission adminPermission);
+    int insert(AdminPermission adminPermission);
 
-    int deleteById(Long id);
+    int insertSelective(AdminPermission adminPermission);
 
     int updateSelective(AdminPermission adminPermission);
 
@@ -40,5 +41,19 @@ public interface AdminPermissionDao extends BaseDao<AdminPermission> {
 
     List<AdminPermission> selectListByQuery(AdminPermissionQuery query);
 
-    List<AdminPermission> listByIds(List<Long> collect);
+    int deleteByRoleIds(List<Long> id);
+
+    List<AdminPermission> selectListByRoleId(Long id);
+
+    List<String> selectNameListByRoleId(Long id);
+
+    List<String> selectPermissionListByUsername(String username);
+
+    List<AdminPermission> selectAllByRoleId(Long roleId);
+
+	List<String> selectNameByRoleId(Long roleId);
+
+	List<String> selectNameByRoleIdIn(Collection<Long> roleIdCollection);
+
+    int deleteById(Long id);
 }

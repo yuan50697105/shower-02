@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @program: shower-01
@@ -16,7 +17,8 @@ import java.util.Date;
 @Data
 public class BaseDbQuery extends BaseDbCoreQuery {
     private Long id;
+    private List<Long> ids;
     private String createUser;
-    private Date creatDateStart;
+    private Date createDateStart;
     private Date createDateEnd;
 }

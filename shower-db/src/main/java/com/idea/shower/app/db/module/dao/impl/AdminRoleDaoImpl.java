@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * @program: learning-demo-java-01
@@ -28,7 +29,7 @@ import java.util.Optional;
 public class AdminRoleDaoImpl extends BaseDaoImpl<AdminRole, AdminRoleMapper> implements AdminRoleDao {
     @Override
     public PageResult<AdminRole> selectPageByCondition(AdminRoleQuery condition) {
-        PageHelper.startPage(condition.getPageNum(), condition.getPageSize());
+        PageHelper.startPage(condition.getPage(), condition.getLimit());
         return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
     }
 
@@ -105,6 +106,14 @@ public class AdminRoleDaoImpl extends BaseDaoImpl<AdminRole, AdminRoleMapper> im
     @Override
     public List<AdminRole> listByIds(List<Long> roleIds) {
         return selectByIds(roleIds);
+    }
+
+    @Override
+    public List<String> selectNameByIds(List<Long> roleIds) {
+        AdminRoleExample example = new AdminRoleExample();
+        example.or().andIdIn(roleIds);
+        List<AdminRole> adminRoles = baseMapper().selectByExample(example);
+        return adminRoles.stream().map(AdminRole::getName).collect(Collectors.toList());
     }
 
 }

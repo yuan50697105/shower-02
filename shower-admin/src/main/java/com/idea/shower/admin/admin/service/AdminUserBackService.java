@@ -30,4 +30,6 @@ public interface AdminUserBackService {
     Result<?> list(AdminUserQuery query);
 
     Result<?> get(Long id);
+
+    Result<?> modify(AdminUserVO adminUserVO);
 }
