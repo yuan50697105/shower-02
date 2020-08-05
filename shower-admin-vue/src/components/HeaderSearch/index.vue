@@ -86,10 +86,10 @@ export default {
         maxPatternLength: 32,
         minMatchCharLength: 1,
         keys: [{
-          name: 'title',
+          deviceName: 'title',
           weight: 0.7
         }, {
-          name: 'path',
+          deviceName: 'path',
           weight: 0.3
         }]
       })

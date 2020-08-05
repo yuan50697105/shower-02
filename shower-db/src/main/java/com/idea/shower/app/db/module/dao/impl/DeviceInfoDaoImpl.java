@@ -16,6 +16,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -78,6 +79,21 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     @Transactional(rollbackFor = Exception.class)
     public int insert(DeviceInfo deviceInfo) {
         return baseMapper().insert(deviceInfo);
+    }
+
+    @Override
+    public void update(DeviceInfo deviceInfo) {
+        baseMapper().updateByPrimaryKeySelective(deviceInfo);
+    }
+
+    @Override
+    public void delete(Long id) {
+        baseMapper().deleteByPrimaryKey(id);
+    }
+
+    @Override
+    public List<DeviceInfo> selectList(DeviceInfoQuery query) {
+        return baseMapper().selectByCondition(query);
     }
 
 

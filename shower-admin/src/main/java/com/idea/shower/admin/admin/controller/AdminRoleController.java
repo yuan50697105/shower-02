@@ -69,8 +69,8 @@ public class AdminRoleController {
     @GetMapping("data")
     public Result<?> data(AdminRoleQuery query,
                           @RequestParam(defaultValue = "1") int page,
-                          @RequestParam(defaultValue = "20") int size) {
-        return adminRoleService.data(query, page, size);
+                          @RequestParam(defaultValue = "20") int limit) {
+        return adminRoleService.data(query, page, limit);
     }
 
     @GetMapping("list")

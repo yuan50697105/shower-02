@@ -2,16 +2,16 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input
-        v-model="listQuery.username"
+        v-model="listQuery.code"
         class="filter-item"
-        placeholder="请输入用户名"
+        placeholder="请输入设备编号"
         style="width: 200px;"
         @keyup.enter.native="handleFilter"
       />
       <el-input
-        v-model="listQuery.name"
+        v-model="listQuery.deviceName"
         class="filter-item"
-        placeholder="请输入昵称"
+        placeholder="请输入设备名称"
         style="width: 200px;"
         @keyup.enter.native="handleFilter"
       />
@@ -53,43 +53,91 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
-      <!--      <el-table-column-->
-      <!--        :class-name="getSortClass('id')"-->
-      <!--        align="center"-->
-      <!--        label="ID"-->
-      <!--        prop="id"-->
-      <!--        sortable="custom"-->
-      <!--        width="80"-->
-      <!--      >-->
+      <el-table-column
+        align="center"
+        label="设备编号"
+        prop="code"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.code }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="设备名称"
+        prop="deviceName"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.deviceName }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="设备类型"
+        prop="type"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.type }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="定价方案编号"
+        prop="priceCode"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.priceCode }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="区域名称"
+        prop="areaName"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.areaName }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="楼宇名称"
+        prop="buildingName"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.buildingName }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="启用状态"
+        prop="enabled"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.enabled | enableFilter }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="运行状态"
+        prop="runStatus"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.runStatus | runFilter }}</span>
+        </template>
+      </el-table-column>
+      <!--      <el-table-column align="center" label="创建时间" width="150px">-->
       <!--        <template slot-scope="{row}">-->
-      <!--          <span>{{ row.id }}</span>-->
+      <!--          <span>{{ row.createTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>-->
       <!--        </template>-->
       <!--      </el-table-column>-->
-      <el-table-column
-        align="center"
-        label="用户名"
-        prop="username"
-        sortable="custom"
-      >
-        <template slot-scope="{row}">
-          <span>{{ row.username }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column
-        align="center"
-        label="昵称"
-        prop="name"
-        sortable="custom"
-      >
-        <template slot-scope="{row}">
-          <span>{{ row.name }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" label="创建时间" width="150px">
-        <template slot-scope="{row}">
-          <span>{{ row.createTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
-        </template>
-      </el-table-column>
 
       <el-table-column align="center" class-name="small-padding fixed-width" label="操作" width="230">
         <template slot-scope="{row,$index}">
@@ -120,11 +168,14 @@
         label-width="70px"
         style="width: 400px; margin-left:50px;"
       >
-        <el-form-item v-if="dialogStatus==='create'" label="用户名" prop="username">
-          <el-input v-model="data.username" />
+        <el-form-item v-if="dialogStatus==='create'" label="设备编号" prop="code">
+          <el-input v-model="data.code" />
         </el-form-item>
-        <el-form-item v-if="dialogStatus==='create'" label="密码" prop="password">
-          <el-input v-model="data.password" show-password />
+        <el-form-item v-if="dialogStatus==='create'" label="产品编号" prop="productKey">
+          <el-input v-model="data.productKey" show-password />
+        </el-form-item>
+        <el-form-item label="产品名称" prop="deviceName">
+          <el-input v-model="data.productKey" show-password />
         </el-form-item>
         <el-form-item label="昵称" prop="name">
           <el-input v-model="data.name" />
@@ -175,6 +226,8 @@ const calendarTypeOptions = [
   { key: 'JP', display_name: 'Japan' },
   { key: 'EU', display_name: 'Eurozone' }
 ]
+const enableStatus = { 0: '未启用', 1: '已启用' }
+const runStatus = { 0: '可使用', 1: '使用中', 2: '不可用' }
 
 // arr to obj, such as { CN : "China", US : "USA" }
 const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
@@ -197,6 +250,12 @@ export default {
     },
     typeFilter(type) {
       return calendarTypeKeyValue[type]
+    },
+    enableFilter(status) {
+      return enableStatus[status]
+    },
+    runFilter(status) {
+      return runStatus[status]
     }
   },
   data() {
@@ -210,8 +269,8 @@ export default {
         page: 1,
         limit: 20,
         importance: undefined,
-        username: undefined,
-        name: undefined,
+        code: undefined,
+        deviceName: undefined,
         type: undefined,
         sort: '+id'
       },
@@ -222,15 +281,18 @@ export default {
       showReviewer: false,
       data: {
         id: undefined,
-        username: '',
-        password: '',
-        remark: '',
-        timestamp: new Date(),
-        title: '',
+        code: '',
+        productKey: '',
+        deviceName: '',
         type: '',
-        status: 'published',
-        roleIds: [],
-        roleNames: []
+        priceCode: '',
+        enabled: '',
+        areaId: undefined,
+        areaName: '',
+        buildingId: undefined,
+        buildingName: '',
+        runStatus: '',
+        picture: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
