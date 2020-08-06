@@ -66,12 +66,18 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
 
     @Override
     public void updateStatusToUsing(Long deviceId) {
-        baseMapper().updateRunStatusById(DeviceInfoConstants.DeviceRunningStatus.RUNNING,deviceId);
+        baseMapper().updateRunStatusById(DeviceInfoConstants.DeviceRunningStatus.RUNNING, deviceId);
     }
 
     @Override
     public Optional<DeviceInfo> getByCodeAvailable(String deviceCode) {
-        return Optional.ofNullable(baseMapper().getOneByCodeAndRunStatus(deviceCode,DeviceInfoConstants.DeviceRunningStatus.AVALI));
+        return Optional.ofNullable(baseMapper().getOneByCodeAndRunStatus(deviceCode, DeviceInfoConstants.DeviceRunningStatus.AVALI));
+    }
+
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int insert(DeviceInfo deviceInfo) {
+        return baseMapper().insert(deviceInfo);
     }
 
 

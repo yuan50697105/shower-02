@@ -2,7 +2,7 @@ package com.idea.shower.admin.admin.controller;
 
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.admin.pojo.AdminRoleVO;
-import com.idea.shower.admin.admin.service.AdminRoleBackService;
+import com.idea.shower.admin.admin.service.AdminRoleService;
 import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -24,58 +24,58 @@ import java.util.List;
 @Validated
 @Slf4j
 public class AdminRoleController {
-    private final AdminRoleBackService adminRoleBackService;
+    private final AdminRoleService adminRoleService;
 
     @PostMapping("add")
     public Result<?> add(@RequestBody AdminRoleVO vo) {
-        return adminRoleBackService.add(vo);
+        return adminRoleService.add(vo);
     }
 
     @PostMapping("update")
     public Result<?> update(@RequestBody AdminRoleVO vo) {
-        return adminRoleBackService.update(vo);
+        return adminRoleService.update(vo);
     }
 
     @GetMapping("update/get")
     public Result<?> updateGet(Long id) {
-        return adminRoleBackService.getForUpdate(id);
+        return adminRoleService.getForUpdate(id);
     }
 
     @PutMapping({"update", ""})
     public Result<?> updateRs(@RequestBody AdminRoleVO vo) {
-        return adminRoleBackService.update(vo);
+        return adminRoleService.update(vo);
     }
 
     @GetMapping("delete")
     public Result<?> delete(List<Long> ids) {
-        return adminRoleBackService.delete(ids);
+        return adminRoleService.delete(ids);
     }
 
     @DeleteMapping({"delete/{id}", "{id}"})
     public Result<?> delete(@PathVariable Long id) {
-        return adminRoleBackService.delete(Collections.singletonList(id));
+        return adminRoleService.delete(Collections.singletonList(id));
     }
 
     @GetMapping("get")
     public Result<?> getOne(Long id) {
-        return adminRoleBackService.get(id);
+        return adminRoleService.get(id);
     }
 
     @GetMapping("id/{id}")
     public Result<?> getRs(@PathVariable String id) {
-        return adminRoleBackService.get(Long.valueOf(id));
+        return adminRoleService.get(Long.valueOf(id));
     }
 
     @GetMapping("data")
     public Result<?> data(AdminRoleQuery query,
                           @RequestParam(defaultValue = "1") int page,
                           @RequestParam(defaultValue = "20") int size) {
-        return adminRoleBackService.data(query, page, size);
+        return adminRoleService.data(query, page, size);
     }
 
     @GetMapping("list")
     public Result<?> list(AdminRoleQuery query) {
-        return adminRoleBackService.list(query);
+        return adminRoleService.list(query);
     }
 
 

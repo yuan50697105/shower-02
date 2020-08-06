@@ -5,10 +5,10 @@ import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
 import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.map.MapUtil;
-import com.idea.shower.admin.admin.converter.Converter;
+import com.idea.shower.admin.admin.converter.AdminEntityConverter;
 import com.idea.shower.admin.admin.pojo.AdminRoleEditVo;
 import com.idea.shower.admin.admin.pojo.AdminRoleVO;
-import com.idea.shower.admin.admin.service.AdminRoleBackService;
+import com.idea.shower.admin.admin.service.AdminRoleService;
 import com.idea.shower.admin.route.pojo.RouteBean;
 import com.idea.shower.admin.route.utils.RouteUtils;
 import com.idea.shower.app.db.commons.pojo.BaseDbEntity;
@@ -47,12 +47,12 @@ import java.util.stream.Collectors;
 @Transactional
 @CacheConfig(cacheNames = "roles")
 @Slf4j
-public class AdminRoleBackServiceImpl implements AdminRoleBackService {
+public class AdminRoleServiceImpl implements AdminRoleService {
     private final AdminRoleDao adminRoleService;
     private final AdminUserRoleDao adminUserRoleDao;
     private final AdminPermissionDao adminPermissionDao;
     private final AdminRouteDao adminRouteDao;
-    private final Converter converter;
+    private final AdminEntityConverter adminEntityConverter;
 
     @Override
     @CachePut

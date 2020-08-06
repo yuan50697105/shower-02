@@ -5,7 +5,7 @@ import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
 import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.admin.admin.pojo.AdminPermissionVO;
-import com.idea.shower.admin.admin.service.AdminPermissionBackService;
+import com.idea.shower.admin.admin.service.AdminPermissionService;
 import com.idea.shower.app.db.module.dao.AdminPermissionDao;
 import com.idea.shower.app.db.module.pojo.AdminPermission;
 import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
@@ -29,9 +29,9 @@ import java.util.List;
  */
 @Service
 @AllArgsConstructor
-@Transactional
+@Transactional(rollbackFor = Exception.class)
 @CacheConfig(cacheNames = "permissions")
-public class AdminPermissionBackServiceImpl implements AdminPermissionBackService {
+public class AdminPermissionServiceImpl implements AdminPermissionService {
     private final AdminPermissionDao adminPermissionDao;
 
     @Override
