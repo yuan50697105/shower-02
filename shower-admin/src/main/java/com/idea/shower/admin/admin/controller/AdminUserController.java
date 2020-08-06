@@ -62,8 +62,8 @@ public class AdminUserController {
     @GetMapping("data")
     public Result<?> data(AdminUserQuery query,
                           @RequestParam(defaultValue = "1") int page,
-                          @RequestParam(defaultValue = "20") int size) {
-        return adminUserService.data(query, page, size);
+                          @RequestParam(defaultValue = "20") int limit) {
+        return adminUserService.data(query, page, limit);
     }
 
     @GetMapping("list")

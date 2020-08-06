@@ -5,6 +5,7 @@ import com.idea.shower.app.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -58,4 +59,13 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
      * @return
      */
     int insert(DeviceInfo deviceInfo);
+
+    /**
+     * @param deviceInfo 设备信息
+     */
+    void update(DeviceInfo deviceInfo);
+
+    void delete(Long id);
+
+    List<DeviceInfo> selectList(DeviceInfoQuery query);
 }

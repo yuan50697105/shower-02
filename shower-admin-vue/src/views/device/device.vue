@@ -2,16 +2,16 @@
   <div class="app-container">
     <div class="filter-container">
       <el-input
-        v-model="listQuery.username"
+        v-model="listQuery.code"
         class="filter-item"
-        placeholder="请输入用户名"
+        placeholder="请输入设备编号"
         style="width: 200px;"
         @keyup.enter.native="handleFilter"
       />
       <el-input
-        v-model="listQuery.name"
+        v-model="listQuery.deviceName"
         class="filter-item"
-        placeholder="请输入昵称"
+        placeholder="请输入设备名称"
         style="width: 200px;"
         @keyup.enter.native="handleFilter"
       />
@@ -53,50 +53,93 @@
       style="width: 100%;"
       @sort-change="sortChange"
     >
-      <!--      <el-table-column-->
-      <!--        :class-name="getSortClass('id')"-->
-      <!--        align="center"-->
-      <!--        label="ID"-->
-      <!--        prop="id"-->
-      <!--        sortable="custom"-->
-      <!--        width="80"-->
-      <!--      >-->
-      <!--        <template slot-scope="{row}">-->
-      <!--          <span>{{ row.id }}</span>-->
-      <!--        </template>-->
-      <!--      </el-table-column>-->
       <el-table-column
         align="center"
-        label="用户名"
-        prop="username"
+        label="设备编号"
+        prop="code"
         sortable="custom"
       >
         <template slot-scope="{row}">
-          <span>{{ row.username }}</span>
+          <span>{{ row.code }}</span>
         </template>
       </el-table-column>
       <el-table-column
         align="center"
-        label="昵称"
-        prop="name"
+        label="设备名称"
+        prop="deviceName"
         sortable="custom"
       >
         <template slot-scope="{row}">
-          <span>{{ row.name }}</span>
+          <span>{{ row.deviceName }}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" label="创建时间" width="150px">
+      <el-table-column
+        align="center"
+        label="设备类型"
+        prop="type"
+        sortable="custom"
+      >
         <template slot-scope="{row}">
-          <span>{{ row.createTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ row.type }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="定价方案编号"
+        prop="priceCode"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.priceCode }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="区域名称"
+        prop="areaName"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.areaName }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="楼宇名称"
+        prop="buildingName"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.buildingName }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="启用状态"
+        prop="enabled"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.enabled | enableFilter }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column
+        align="center"
+        label="运行状态"
+        prop="runStatus"
+        sortable="custom"
+      >
+        <template slot-scope="{row}">
+          <span>{{ row.runStatus | runFilter }}</span>
         </template>
       </el-table-column>
 
       <el-table-column align="center" class-name="small-padding fixed-width" label="操作" width="230">
-        <template slot-scope="{row,$index}">
+        <template slot-scope="{row}">
           <el-button size="mini" type="primary" @click="handleUpdate(row)">
             编辑
           </el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
+          <el-button size="mini" type="danger" @click="handleDelete(row)">
             删除
           </el-button>
         </template>
@@ -120,11 +163,14 @@
         label-width="70px"
         style="width: 400px; margin-left:50px;"
       >
-        <el-form-item v-if="dialogStatus==='create'" label="用户名" prop="username">
-          <el-input v-model="data.username" />
+        <el-form-item v-if="dialogStatus==='create'" label="设备编号" prop="code">
+          <el-input v-model="data.code" />
         </el-form-item>
-        <el-form-item v-if="dialogStatus==='create'" label="密码" prop="password">
-          <el-input v-model="data.password" show-password />
+        <el-form-item v-if="dialogStatus==='create'" label="产品编号" prop="productKey">
+          <el-input v-model="data.productKey" show-password />
+        </el-form-item>
+        <el-form-item label="产品名称" prop="deviceName">
+          <el-input v-model="data.productKey" show-password />
         </el-form-item>
         <el-form-item label="昵称" prop="name">
           <el-input v-model="data.name" />
@@ -163,11 +209,9 @@
 </template>
 
 <script>
-import { fetchPv } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
-import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination/index'
-import { addUser, deleteUser, getData, getRoleList, getUserById, modifyUser } from '@/api/user'
+import { addDevice, deleteDevice, getDevice, modifyDevice, pageDevice } from '@/api/device'
 
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
@@ -175,6 +219,8 @@ const calendarTypeOptions = [
   { key: 'JP', display_name: 'Japan' },
   { key: 'EU', display_name: 'Eurozone' }
 ]
+const enableStatus = { 0: '未启用', 1: '已启用' }
+const runStatus = { 0: '可使用', 1: '使用中', 2: '不可用' }
 
 // arr to obj, such as { CN : "China", US : "USA" }
 const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
@@ -197,6 +243,12 @@ export default {
     },
     typeFilter(type) {
       return calendarTypeKeyValue[type]
+    },
+    enableFilter(status) {
+      return enableStatus[status]
+    },
+    runFilter(status) {
+      return runStatus[status]
     }
   },
   data() {
@@ -210,8 +262,8 @@ export default {
         page: 1,
         limit: 20,
         importance: undefined,
-        username: undefined,
-        name: undefined,
+        code: undefined,
+        deviceName: undefined,
         type: undefined,
         sort: '+id'
       },
@@ -222,15 +274,18 @@ export default {
       showReviewer: false,
       data: {
         id: undefined,
-        username: '',
-        password: '',
-        remark: '',
-        timestamp: new Date(),
-        title: '',
+        code: '',
+        productKey: '',
+        deviceName: '',
         type: '',
-        status: 'published',
-        roleIds: [],
-        roleNames: []
+        priceCode: '',
+        enabled: '',
+        areaId: undefined,
+        areaName: '',
+        buildingId: undefined,
+        buildingName: '',
+        runStatus: '',
+        picture: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -254,7 +309,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      getData(this.listQuery).then(response => {
+      pageDevice(this.listQuery).then(response => {
         this.list = response.data.data
         this.total = response.data.totalRows
 
@@ -300,12 +355,6 @@ export default {
         type: ''
       }
     },
-    getRoleList() {
-      getRoleList().then(response => {
-        const { list } = response.data
-        this.roleList = list
-      })
-    },
     handleCreate() {
       this.resetTemp()
       this.dialogStatus = 'create'
@@ -320,7 +369,7 @@ export default {
         if (valid) {
           this.data.id = parseInt(Math.random() * 100) + 1024 // mock a id
           this.data.author = 'vue-element-admin'
-          addUser(this.data).then(() => {
+          addDevice(this.data).then(() => {
             // this.list.unshift(this.data)
             this.dialogFormVisible = false
             this.$notify({
@@ -340,7 +389,7 @@ export default {
       this.getRoleList()
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
-      getUserById(row.id).then(value => {
+      getDevice(row.id).then(value => {
         const { data } = value
         console.log(data)
         this.data = value.data
@@ -354,7 +403,7 @@ export default {
         if (valid) {
           // const tempData = Object.assign({}, this.data)
           // tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-          modifyUser(this.data).then(() => {
+          modifyDevice(this.data).then(() => {
             this.dialogFormVisible = false
             this.$notify({
               username: 'Success',
@@ -367,14 +416,14 @@ export default {
         }
       })
     },
-    handleDelete(row, index) {
+    handleDelete(row) {
       this.$confirm('确认删除此角色吗?', 'Warning', {
         confirmButtonText: '确认',
         cancelButtonText: '取消',
         type: 'warning'
       })
         .then(async() => {
-          await deleteUser(row.id)
+          await deleteDevice(row.id)
           this.$message({
             type: 'success',
             message: '删除成功!'
@@ -392,12 +441,6 @@ export default {
       // })
       // this.list.splice(user, 1)
     },
-    handleFetchPv(pv) {
-      fetchPv(pv).then(response => {
-        this.pvData = response.data.pvData
-        this.dialogPvVisible = true
-      })
-    },
     handleDownload() {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
@@ -411,15 +454,6 @@ export default {
         })
         this.downloadLoading = false
       })
-    },
-    formatJson(filterVal) {
-      return this.list.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
     },
     getSortClass: function(key) {
       const sort = this.listQuery.sort
