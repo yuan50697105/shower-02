@@ -36,7 +36,7 @@ Page({
         if (res.data.list != undefined){
           that.setData({
             orderList: that.data.orderList.concat(res.data.list),
-            totalPages: res.data.total
+            totalPages: res.data.totalPage
           });
         }
       }
@@ -98,7 +98,6 @@ Page({
       deviceCode: device
     }, "POST").then(function (res) {
       if (res.code === 200) {
-        that.getOrderList();
         wx.showToast({
           title: '开始成功',
           icon: 'success',
@@ -106,7 +105,7 @@ Page({
         });
       }
     });
-
+    this.refreshPage();
   },
    //订单结束
   endOrder(event) {
@@ -121,7 +120,6 @@ Page({
       deviceCode: device
     }, "POST").then(function (res) {
       if (res.code === 200) {
-        that.getOrderList();
         wx.showToast({
           title: '结束成功',
           icon: 'success',
@@ -129,7 +127,7 @@ Page({
         });
       }
     });
-    
+    this.refreshPage();
   },
   //订单详情
   lookDetail(event) {
@@ -142,23 +140,48 @@ Page({
   goPay(event){
     let that = this;
     const orderNo = event.currentTarget.dataset.orderno;
-    const price = event.currentTarget.dataset.price;
     util.request(api.OrderPay, {
       orderNo: orderNo,
-      totalPrice: price
-    }, "POST").then(function (res) {
+    }, 'POST').then(function (res) {
+      console.log(res)
       if (res.code === 200) {
-        that.getOrderList();
-        wx.showToast({
-          title: '结束成功',
-          icon: 'success',
-          duration: 2000
+        const payParam = res.data;
+        console.log("支付过程开始");
+        wx.requestPayment({
+          'timeStamp': payParam.timeStamp,
+          'nonceStr': payParam.nonceStr,
+          'package': payParam.packageValue,
+          'signType': payParam.signType,
+          'paySign': payParam.paySign,
+          'success': function (res) {
+            console.log("支付过程成功");
+            wx.redirectTo({
+              url: '/pages/payResult/payResult?status=1'
+            });
+          },
+          'fail': function (res) {
+            console.log("支付过程失败");
+            util.showErrorToast('支付失败');
+          },
+          'complete': function (res) {
+            console.log("支付过程结束")
+          }
         });
       }
     });
   },
   //下拉监控
   onPullDownRefresh: function () {
+    this.refreshPage();
+  },
+  //重新加载页面
+  refreshPage:function(){
+    this.setData({
+      orderList: [],
+      page: 1,
+      limit: 10,
+      totalPages: 1
+    });
     this.getOrderList();
   }
 })

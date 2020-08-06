@@ -8,6 +8,8 @@
       </view>
       <view class="r">
         <view class="btn active" bindtap="cancelOrder" wx:if="{{orderInfo.status==1}}">取消订单</view>
+        <view class="btn active" bindtap="startOrder" wx:if="{{orderInfo.status==1}}" data-orderNo="{{orderInfo.orderNo}}" data-device="{{orderInfo.deviceCode}}">开始使用</view>
+        <view class="btn active" bindtap="endOrder" wx:if="{{orderInfo.status==1}}" data-orderNo="{{orderInfo.orderNo}}" data-device="{{orderInfo.deviceCode}}">结束使用</view>
         <view class="btn active" bindtap="payOrder" wx:if="{{orderInfo.status==3}}">微信支付</view>
       </view>
     </view>
