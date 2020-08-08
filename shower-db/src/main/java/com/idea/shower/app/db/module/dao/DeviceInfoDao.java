@@ -16,16 +16,22 @@ import java.util.Optional;
  */
 public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
     /**
-     * @param deviceId
+     * 获取设备信息
+     *
+     * @param deviceId 设备ID
      * @return
      */
     Optional<DeviceInfo> getById(Long deviceId);
 
     /**
-     * @param condition
-     * @return
+     * 设备分页数据
+     *
+     * @param condition 查询条件
+     * @return 分页数据
      */
     PageResult<DeviceInfo> selectPage(DeviceInfoQuery condition);
+
+    List<DeviceInfo> selectList(DeviceInfoQuery query);
 
     /**
      * 获取设备列表
@@ -36,36 +42,53 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
     PageResult<DeviceInfo> selectAll(DeviceInfoQuery deviceInfoQuery);
 
     /**
-     * @param code
-     * @return
+     * 通过编号获取设备信息
+     *
+     * @param code 设备编号
+     * @return 设备新
      */
     Optional<DeviceInfo> getByCode(String code);
 
     /**
-     * 更新设备为使用中
-     *
-     * @param deviceId
-     */
-    void updateStatusToUsing(Long deviceId);
-
-    /**
-     * @param deviceCode
-     * @return
+     * 获取可用设备信息
+     * @param deviceCode 设备编号
+     * @return 设备信息
      */
     Optional<DeviceInfo> getByCodeAvailable(String deviceCode);
 
     /**
-     * @param deviceInfo
-     * @return
+     * 添加设备信息
+     *
+     * @param deviceInfo 设备信息实体
+     * @return 受影响行数
      */
     int insert(DeviceInfo deviceInfo);
 
     /**
+     * 更新设备信息
+     *
      * @param deviceInfo 设备信息
      */
     void update(DeviceInfo deviceInfo);
 
+    /**
+     * 删除设备信息
+     *
+     * @param id id
+     */
     void delete(Long id);
 
-    List<DeviceInfo> selectList(DeviceInfoQuery query);
+    /**
+     * 更新状态到可用状态
+     *
+     * @param deviceId 设备ID
+     */
+    void updateStatusToAvail(Long deviceId);
+
+    /**
+     * 更新设备为使用中
+     *
+     * @param deviceId 设备ID
+     */
+    void updateStatusToUsing(Long deviceId);
 }
