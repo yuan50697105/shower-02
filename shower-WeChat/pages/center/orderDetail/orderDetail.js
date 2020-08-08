@@ -68,7 +68,7 @@ Page({
       orderNo: that.data.orderNo,
     }, 'POST').then(function (res) {
       console.log(res)
-      if (res.errno === 200) {
+      if (res.code === 200) {
         const payParam = res.data;
         console.log("支付过程开始");
         wx.requestPayment({
@@ -120,6 +120,51 @@ Page({
         }
       }
     });
+  },
+  //订单开始
+  startOrder(event) {
+    let that = this;
+    const orderNo = event.currentTarget.dataset.orderno;
+    const device = event.currentTarget.dataset.device;
+    let userInfo = wx.getStorageSync('userInfo');
+    util.request(api.StartOrder, {
+      orderNo: orderNo,
+      openId: userInfo.openId,
+      deviceCode: device
+    }, "POST").then(function (res) {
+      if (res.code === 200) {
+        that.getOrderList();
+        wx.showToast({
+          title: '开始成功',
+          icon: 'success',
+          duration: 2000
+        });
+      }
+    });
+
+  },
+  //订单结束
+  endOrder(event) {
+    let that = this;
+    const orderNo = event.currentTarget.dataset.orderno;
+    const device = event.currentTarget.dataset.device;
+    let userInfo = wx.getStorageSync('userInfo');
+    console.log(orderNo)
+    util.request(api.EndOrder, {
+      orderNo: orderNo,
+      openId: userInfo.openId,
+      deviceCode: device
+    }, "POST").then(function (res) {
+      if (res.code === 200) {
+        that.getOrderList();
+        wx.showToast({
+          title: '结束成功',
+          icon: 'success',
+          duration: 2000
+        });
+      }
+    });
+
   },
 
   onReady: function () {
