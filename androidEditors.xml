@@ -2,6 +2,8 @@
   <component name="AndroidEditors">
     <option name="state">
       <GlobalState>
+        <option name="preferredDrawableEditorMode" value="Split" />
+        <option name="preferredEditorMode" value="Design" />
         <option name="visible" value="false" />
       </GlobalState>
     </option>
