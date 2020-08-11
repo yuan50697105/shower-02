@@ -92,6 +92,12 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     }
 
     @Override
+    @Transactional(rollbackFor = Throwable.class)
+    public void updateStatusToAvail(Long deviceId) {
+        baseMapper().updateRunStatusById(DeviceInfoConstants.DeviceRunningStatus.AVALI, deviceId);
+    }
+
+    @Override
     public List<DeviceInfo> selectList(DeviceInfoQuery query) {
         return baseMapper().selectByCondition(query);
     }

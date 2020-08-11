@@ -160,11 +160,21 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         }
         BigDecimal totalPrice = calculationOrderFee(orderInfo);
         updateOrderToEndUsing(orderInfo, totalPrice);
+        updateDeviceRunStatusAvail(orderInfo.getDeviceId());
         HashMap<String, Object> map = new HashMap<>();
         BeanUtil.beanToMap(request);
         map.put("totalPrice", totalPrice);
         map.put("endTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("订单结束成功", map);
+    }
+
+    /**
+     * 更新设备状态为可用
+     *
+     * @param deviceId
+     */
+    private void updateDeviceRunStatusAvail(Long deviceId) {
+        deviceInfoDao.updateStatusToAvail(deviceId);
     }
 
     /**
