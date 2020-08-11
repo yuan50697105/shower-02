@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import i18n from '@/i18n'
 
 import Cookies from 'js-cookie'
 
@@ -49,5 +50,6 @@ new Vue({
   el: '#app',
   router,
   store,
+  i18n,
   render: h => h(App)
 })
