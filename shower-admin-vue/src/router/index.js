@@ -283,6 +283,21 @@ export const asyncRoutes = [
       }
     ]
   },
+  {
+    path: '/order',
+    component: Layout,
+    name: '订单管理',
+    children: [
+      {
+        path: 'orderinfo',
+        component: () => import('@/views/order/orderinfo'),
+        name: '订单管理',
+        meta: { title: '订单',
+          icon: 'icon',
+          noCache: true }
+      }
+    ]
+  },
 
   /** when your routing map is too long, you can split it into small modules **/
   // componentsRouter,
