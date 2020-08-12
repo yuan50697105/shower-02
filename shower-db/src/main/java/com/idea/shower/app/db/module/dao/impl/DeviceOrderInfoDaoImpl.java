@@ -1,7 +1,7 @@
 package com.idea.shower.app.db.module.dao.impl;
 
+import com.idea.shower.app.db.commons.dao.BaseDao;
 import com.idea.shower.app.db.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.app.db.module.dao.DeviceOrderInfoDao;
 import com.idea.shower.app.db.module.mapper.DeviceOrderInfoMapper;
 import com.idea.shower.app.db.module.pojo.DeviceOrderInfo;
 import lombok.AllArgsConstructor;
@@ -20,5 +20,5 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 @Log4j2
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-public class DeviceOrderInfoDaoImpl extends BaseDaoImpl<DeviceOrderInfo, DeviceOrderInfoMapper> implements DeviceOrderInfoDao {
+public class DeviceOrderInfoDaoImpl extends BaseDaoImpl<DeviceOrderInfo, DeviceOrderInfoMapper> implements BaseDao<DeviceOrderInfo> {
 }

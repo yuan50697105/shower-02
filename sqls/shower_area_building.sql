@@ -2,10 +2,10 @@ create table area_building
 (
     id          bigint(15) auto_increment comment 'id'
         primary key,
-    create_time datetime                            null comment 'createTime',
-    update_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment 'updateTime',
-    create_user varchar(50)                         null comment 'createUser',
-    update_user varchar(50)                         null comment 'updateUser',
+    create_time datetime                            null comment '创建时间',
+    update_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    create_user varchar(50)                         null comment '创建人',
+    update_user varchar(50)                         null comment '修改人',
     name        varchar(50)                         null comment '楼宇名称',
     code        varchar(50)                         null comment '楼宇编号',
     area_id     bigint(15)                          null comment '所属区域ID'

@@ -13,5 +13,5 @@ create table device_order_info
     status      int                                 null comment '设备订单状态',
     content     varchar(50)                         null comment '详情'
 )
-    comment 'device_order_info' charset = utf8mb4;
+    comment '设备订单信息（旧）' charset = utf8mb4;
 

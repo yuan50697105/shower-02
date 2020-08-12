@@ -2,10 +2,10 @@ create table order_item
 (
     id             bigint(15) auto_increment comment 'id'
         primary key,
-    create_time    datetime                            null comment 'createTime',
-    update_time    timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment 'updateTime',
-    create_user    varchar(50)                         null comment 'createUser',
-    update_user    varchar(50)                         null comment 'updateUser',
+    create_time    datetime                            null comment '创建时间',
+    update_time    timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '修改时间',
+    create_user    varchar(50)                         null comment '创建人',
+    update_user    varchar(50)                         null comment '修改人',
     order_id       bigint(15)                          null comment '订单ID',
     order_no       varchar(50)                         null comment '订单号',
     device_id      bigint(15)                          null comment '设备ID',
@@ -59,13 +59,77 @@ INSERT INTO shower.order_item (id, create_time, update_time, create_user, update
 INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (40, '2020-05-10 20:12:13', '2020-05-10 20:12:13', null, null, 32, '1259454243799175168', 1, '1234', 2, '1245537668494921728', 2, 2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:12:13', 610, 1.0000, 5, 2, -1, 0.0000);
 INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (41, '2020-05-10 20:19:28', '2020-05-10 20:19:28', null, null, 32, '1259454243799175168', 1, '1234', 2, '1245537668494921728', 2, 2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:19:27', 618, 1.0000, 5, 2, -1, 0.0000);
 INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (42, '2020-05-10 20:20:24', '2020-05-10 20:20:24', null, null, 32, '1259454243799175168', 1, '1234', 2, '1245537668494921728', 2, 2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:19:44', 618, 1.0000, 5, 2, -1, 0.0000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (43, '2020-05-10 20:21:05', '2020-05-10 20:21:05', null, null, 32, '1259454243799175168', 1, '1234', 2, '1245537668494921728', 2, 2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:21:02', 619, 1.0000, 5, 2, -1, 123.6000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (44, '2020-05-10 20:24:18', '2020-05-10 20:24:18', null, null, 32, '1259454243799175168', 1, '1234', 2, '1245537668494921728', 2, 2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:23:39', 622, 1.0000, 5, 2, -1, 124.2000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (45, '2020-05-10 20:31:58', '2020-05-10 20:31:58', null, null, 32, '1259454243799175168', 1, '1234', 2, '5', 2, 2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:31:55', 630, 1.0000, 5, 2, -1, 125.8000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (46, '2020-05-10 20:33:25', '2020-05-10 20:33:25', null, null, 33, '1259461536582340608', 1, '1234', 1, '5', 1, 1, 0.0000, 1, null, '2020-05-10 20:33:25', '2020-05-10 20:01:25', 1, 1.0000, 1, null, 1, 2.0000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (47, '2020-05-12 21:32:28', '2020-05-12 21:32:28', null, null, 11, '1252062201175478272', 1, 'A001', 2, '5', 2, 2, 6.0000, 30, 2, '2020-04-20 10:01:06', '2020-05-12 21:32:26', 32371, 1.0000, 5, 2, -1, 6474.0000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (48, '2020-05-12 21:50:49', '2020-05-12 21:50:49', null, null, 10, '1252061831695044608', 1, 'A001', 2, '5', 2, 2, 6.0000, 30, 2, '2020-04-20 10:30:39', '2020-05-12 21:50:48', 32360, 1.0000, 5, 2, -5, 6471.0000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (49, '2020-05-12 21:51:49', '2020-05-12 21:51:49', null, null, 1, '1245533809588441088', 1, 'A001', 2, '5', 2, 2, 6.0000, 30, 2, '2020-04-02 10:01:36', '2020-05-12 21:51:49', 58310, 1.0000, 5, 2, -1, 11661.8000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (50, '2020-05-17 22:22:17', '2020-05-17 22:22:17', null, null, 34, '1262025651280547840', 1, 'A001', 1, '5', 1, 1, 0.0000, 1, null, '2020-05-17 22:22:17', '2020-05-17 22:01:17', 1, 1.0000, 1, null, 1, 2.0000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (51, '2020-05-17 22:38:20', '2020-05-17 22:38:20', null, null, 35, '1262029690470797312', 1, 'A001', 1, '5', 1, 1, 0.0000, 1, null, '2020-05-17 22:38:20', '2020-05-17 22:01:20', 1, 1.0000, 1, null, 1, 2.0000);
-INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id, device_code, device_type, price_code, price_id, price_type, time_price, time_interval, time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit, water_use, total_price) VALUES (52, '2020-05-17 22:42:33', '2020-05-17 22:42:33', null, null, 35, '1262029690470797312', 1, 'A001', 2, '5', 2, 2, 6.0000, 30, 2, '2020-05-17 22:01:20', '2020-05-17 22:42:33', 41, 1.0000, 5, 2, -1, 8.0000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (43, '2020-05-10 20:21:05', '2020-05-10 20:21:05', null, null, 32, '1259454243799175168', 1, '1234', 2,
+        '1245537668494921728', 2, 2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:21:02', 619, 1.0000, 5, 2, -1,
+        123.6000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (44, '2020-05-10 20:24:18', '2020-05-10 20:24:18', null, null, 32, '1259454243799175168', 1, '1234', 2,
+        '1245537668494921728', 2, 2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:23:39', 622, 1.0000, 5, 2, -1,
+        124.2000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (45, '2020-05-10 20:31:58', '2020-05-10 20:31:58', null, null, 32, '1259454243799175168', 1, '1234', 2, '5', 2,
+        2, 6.0000, 30, 2, '2020-05-10 10:01:26', '2020-05-10 20:31:55', 630, 1.0000, 5, 2, -1, 125.8000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (46, '2020-05-10 20:33:25', '2020-05-10 20:33:25', null, null, 33, '1259461536582340608', 1, '1234', 1, '5', 1,
+        1, 0.0000, 1, null, '2020-05-10 20:33:25', '2020-05-10 20:01:25', 1, 1.0000, 1, null, 1, 2.0000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (47, '2020-05-12 21:32:28', '2020-05-12 21:32:28', null, null, 11, '1252062201175478272', 1, 'A001', 2, '5', 2,
+        2, 6.0000, 30, 2, '2020-04-20 10:01:06', '2020-05-12 21:32:26', 32371, 1.0000, 5, 2, -1, 6474.0000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (48, '2020-05-12 21:50:49', '2020-05-12 21:50:49', null, null, 10, '1252061831695044608', 1, 'A001', 2, '5', 2,
+        2, 6.0000, 30, 2, '2020-04-20 10:30:39', '2020-05-12 21:50:48', 32360, 1.0000, 5, 2, -5, 6471.0000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (49, '2020-05-12 21:51:49', '2020-05-12 21:51:49', null, null, 1, '1245533809588441088', 1, 'A001', 2, '5', 2, 2,
+        6.0000, 30, 2, '2020-04-02 10:01:36', '2020-05-12 21:51:49', 58310, 1.0000, 5, 2, -1, 11661.8000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (50, '2020-05-17 22:22:17', '2020-05-17 22:22:17', null, null, 34, '1262025651280547840', 1, 'A001', 1, '5', 1,
+        1, 0.0000, 1, null, '2020-05-17 22:22:17', '2020-05-17 22:01:17', 1, 1.0000, 1, null, 1, 2.0000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (51, '2020-05-17 22:38:20', '2020-05-17 22:38:20', null, null, 35, '1262029690470797312', 1, 'A001', 1, '5', 1,
+        1, 0.0000, 1, null, '2020-05-17 22:38:20', '2020-05-17 22:01:20', 1, 1.0000, 1, null, 1, 2.0000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (52, '2020-05-17 22:42:33', '2020-05-17 22:42:33', null, null, 35, '1262029690470797312', 1, 'A001', 2, '5', 2,
+        2, 6.0000, 30, 2, '2020-05-17 22:01:20', '2020-05-17 22:42:33', 41, 1.0000, 5, 2, -1, 8.0000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (53, '2020-08-11 15:32:01', '2020-08-11 15:32:01', null, null, 36, '1293087758872612864', 1, 'A001', 1, '5', 1,
+        1, 0.0000, 1, null, '2020-08-11 15:32:01', '2020-08-11 15:01:01', 1, 1.0000, 1, null, 1, 2.0000);
+INSERT INTO shower.order_item (id, create_time, update_time, create_user, update_user, order_id, order_no, device_id,
+                               device_code, device_type, price_code, price_id, price_type, time_price, time_interval,
+                               time_unit, start_time, end_time, time_use, water_price, water_interval, water_unit,
+                               water_use, total_price)
+VALUES (54, '2020-08-11 15:32:24', '2020-08-11 15:32:24', null, null, 36, '1293087758872612864', 1, 'A001', 2, '5', 2,
+        2, 6.0000, 30, 2, '2020-08-11 15:01:01', '2020-08-11 15:32:24', 31, 1.0000, 5, 2, -1, 6.0000);

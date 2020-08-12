@@ -2,10 +2,10 @@ create table order_info
 (
     id                bigint(15) auto_increment comment 'id'
         primary key,
-    create_time       datetime                            null comment 'createTime',
-    update_time       timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment 'updateTime',
-    create_user       varchar(50)                         null comment 'createUser',
-    update_user       varchar(50)                         null comment 'updateUser',
+    create_time       datetime                            null comment '创建时间',
+    update_time       timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '修改时间',
+    create_user       varchar(50)                         null comment '创建人',
+    update_user       varchar(50)                         null comment '修改人',
     order_no          varchar(50)                         null comment '订单编号',
     type              int                                 null comment '订单类型',
     customer_id       bigint(15)                          null comment '客户ID',
@@ -39,13 +39,59 @@ INSERT INTO shower.order_info (id, create_time, update_time, create_user, update
 INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (16, '2020-04-25 18:52:44', '2020-05-17 21:50:52', null, null, '1254000383156686848', 2, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, 'A001', 1, 0.0100, 1, null, null, null);
 INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (17, '2020-04-25 18:52:44', '2020-05-17 21:50:52', null, null, '1254000384066850816', 2, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, 'A001', 1, 0.0100, 1, null, null, null);
 INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (25, '2020-05-10 12:22:09', '2020-05-17 21:50:52', null, null, '1259337908582748160', 1, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 2, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (26, '2020-05-10 12:22:56', '2020-05-17 21:50:52', null, null, '1259338103051653120', 1, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 2, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (27, '2020-05-10 12:23:07', '2020-05-17 21:50:52', null, null, '1259338150904467456', 1, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 2, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (28, '2020-05-10 12:23:29', '2020-05-17 21:50:52', null, null, '1259338241123946496', 2, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 1, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (29, '2020-05-10 12:25:48', '2020-05-17 21:50:52', null, null, '1259338824635518976', 2, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 6, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (30, '2020-05-10 12:37:20', '2020-05-17 21:50:52', null, null, '1259341727404265472', 2, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 1, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (31, '2020-05-10 20:03:56', '2020-05-17 21:50:52', null, null, '1259454117240246272', 2, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 6, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (32, '2020-05-10 20:04:26', '2020-05-17 21:50:43', null, null, '1259454243799175168', 2, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 3, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (33, '2020-05-10 20:33:25', '2020-05-17 21:50:52', null, null, '1259461536582340608', 1, 1246381007662354432, 'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 3, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (34, '2020-05-17 22:22:17', '2020-05-17 22:32:17', null, null, '1262025651280547840', 2, 1, 'oGhyX5EyohxFzsaj52nZTbFJG5GI', null, 'A001', 1, 0.0000, 6, null, null, null);
-INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id, customer_open_id, customer_union_id, device_code, device_id, total_price, status, use_start_time, use_end_time, transaction_id) VALUES (35, '2020-05-17 22:38:20', '2020-05-17 22:42:33', null, null, '1262029690470797312', 2, 1, 'oGhyX5EyohxFzsaj52nZTbFJG5GI', null, 'A001', 1, 10.0000, 3, '2020-05-17 22:38:31', '2020-05-17 22:42:33', null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (26, '2020-05-10 12:22:56', '2020-05-17 21:50:52', null, null, '1259338103051653120', 1, 1246381007662354432,
+        'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 2, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (27, '2020-05-10 12:23:07', '2020-05-17 21:50:52', null, null, '1259338150904467456', 1, 1246381007662354432,
+        'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 2, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (28, '2020-05-10 12:23:29', '2020-05-17 21:50:52', null, null, '1259338241123946496', 2, 1246381007662354432,
+        'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 1, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (29, '2020-05-10 12:25:48', '2020-05-17 21:50:52', null, null, '1259338824635518976', 2, 1246381007662354432,
+        'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 6, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (30, '2020-05-10 12:37:20', '2020-05-17 21:50:52', null, null, '1259341727404265472', 2, 1246381007662354432,
+        'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 1, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (31, '2020-05-10 20:03:56', '2020-05-17 21:50:52', null, null, '1259454117240246272', 2, 1246381007662354432,
+        'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 6, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (32, '2020-05-10 20:04:26', '2020-05-17 21:50:43', null, null, '1259454243799175168', 2, 1246381007662354432,
+        'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 3, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (33, '2020-05-10 20:33:25', '2020-05-17 21:50:52', null, null, '1259461536582340608', 1, 1246381007662354432,
+        'oGhyX5FRP9H9LH3NxZP3n-_5OIvM', null, '1234', 1, 0.0100, 3, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (34, '2020-05-17 22:22:17', '2020-05-17 22:32:17', null, null, '1262025651280547840', 2, 1,
+        'oGhyX5EyohxFzsaj52nZTbFJG5GI', null, 'A001', 1, 0.0000, 6, null, null, null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (35, '2020-05-17 22:38:20', '2020-05-17 22:42:33', null, null, '1262029690470797312', 2, 1,
+        'oGhyX5EyohxFzsaj52nZTbFJG5GI', null, 'A001', 1, 10.0000, 3, '2020-05-17 22:38:31', '2020-05-17 22:42:33',
+        null);
+INSERT INTO shower.order_info (id, create_time, update_time, create_user, update_user, order_no, type, customer_id,
+                               customer_open_id, customer_union_id, device_code, device_id, total_price, status,
+                               use_start_time, use_end_time, transaction_id)
+VALUES (36, '2020-08-11 15:32:01', '2020-08-11 15:32:24', null, null, '1293087758872612864', 2, 1,
+        'oGhyX5EyohxFzsaj52nZTbFJG5GI', null, 'A001', 1, 8.0000, 3, '2020-08-11 15:32:13', '2020-08-11 15:32:24', null);

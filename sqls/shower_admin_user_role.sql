@@ -11,7 +11,9 @@ create table admin_user_role
 )
     comment '管理员用户角色关联' charset = utf8mb4;
 
-INSERT INTO shower.admin_user_role (id, create_time, update_time, create_user, update_user, user_id, role_id) VALUES (1, '2020-06-20 18:44:08', '2020-06-20 18:44:10', '', '', 1, 1);
-INSERT INTO shower.admin_user_role (id, create_time, update_time, create_user, update_user, user_id, role_id) VALUES (2, null, '2020-06-20 18:49:30', null, null, 2, 1);
-INSERT INTO shower.admin_user_role (id, create_time, update_time, create_user, update_user, user_id, role_id) VALUES (11, '2020-06-20 19:33:32', '2020-06-20 19:33:32', null, null, 10, 1);
-INSERT INTO shower.admin_user_role (id, create_time, update_time, create_user, update_user, user_id, role_id) VALUES (12, null, '2020-07-08 20:47:11', null, null, 11, 1);
+INSERT INTO shower.admin_user_role (id, create_time, update_time, create_user, update_user, user_id, role_id)
+VALUES (28, null, '2020-07-31 22:32:37', null, null, 11, 1);
+INSERT INTO shower.admin_user_role (id, create_time, update_time, create_user, update_user, user_id, role_id)
+VALUES (32, '2020-07-31 22:35:12', '2020-07-31 22:35:12', null, null, 12, 1);
+INSERT INTO shower.admin_user_role (id, create_time, update_time, create_user, update_user, user_id, role_id)
+VALUES (33, '2020-07-31 22:36:33', '2020-07-31 22:36:33', null, null, 12, 2);

@@ -2,15 +2,15 @@ create table customer_info
 (
     id          bigint(15) auto_increment comment 'id'
         primary key,
-    create_time datetime                            null comment 'createTime',
-    update_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment 'updateTime',
-    create_user varchar(50)                         null comment 'createUser',
-    update_user varchar(50)                         null comment 'updateUser',
-    open_id     varchar(50)                         null comment 'openId',
-    union_id    varchar(50)                         null comment 'unionId',
-    nick_name   varchar(50)                         null comment 'nickName',
-    gender      int                                 null comment 'gender',
-    phone_num   varchar(50)                         null comment 'phoneNum'
+    create_time datetime                            null comment '创建时间',
+    update_time timestamp default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    create_user varchar(50)                         null comment '创建人',
+    update_user varchar(50)                         null comment '修改人',
+    open_id     varchar(50)                         null comment '用户微信OpenId',
+    union_id    varchar(50)                         null comment '用户微信UNIONID（未使用）',
+    nick_name   varchar(50)                         null comment '用户微信昵称',
+    gender      int                                 null comment '性别',
+    phone_num   varchar(50)                         null comment '电话'
 )
     comment 'customer_info' charset = utf8mb4;
 
