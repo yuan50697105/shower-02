@@ -229,48 +229,6 @@ export const asyncRoutes = [
       }
     ]
   },
-  // {
-  //   path: '/permission',
-  //   component: Layout,
-  //   redirect: '/permission/page',
-  //   alwaysShow: true, // will always show the root menu
-  //   name: 'Permission',
-  //   meta: {
-  //     title: '权限设置',
-  //     icon: 'lock',
-  //     roles: ['超级管理员', 'editor'] // you can set roles in root nav
-  //   },
-  //   children: [
-  //     {
-  //       path: 'page',
-  //       component: () => import('@/views/permission/page'),
-  //       name: 'PagePermission',
-  //       meta: {
-  //         title: 'Page Permission',
-  //         roles: ['超级管理员'] // or you can only set roles in sub nav
-  //       }
-  //     },
-  //     {
-  //       path: 'directive',
-  //       component: () => import('@/views/permission/directive'),
-  //       name: 'DirectivePermission',
-  //       meta: {
-  //         title: 'Directive Permission'
-  //         // if do not set roles, means: this page does not require permission
-  //       }
-  //     },
-  //     {
-  //       path: 'role',
-  //       component: () => import('@/views/permission/role'),
-  //       name: 'RolePermission',
-  //       meta: {
-  //         title: '用户角色设置',
-  //         roles: ['超级管理员']
-  //       }
-  //     }
-  //   ]
-  // },
-
   {
     path: '/icon',
     component: Layout,
@@ -280,6 +238,29 @@ export const asyncRoutes = [
         component: () => import('@/views/icons/index'),
         name: 'Icons',
         meta: { title: 'Icons', icon: 'icon', noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/area',
+    component: Layout,
+    name: '基础管理',
+    children: [
+      {
+        path: 'areainfo',
+        component: () => import('@/views/area/areainfo'),
+        name: '区域管理',
+        meta: { title: '区域',
+          icon: 'icon',
+          noCache: true }
+      },
+      {
+        path: 'areabuilding',
+        component: () => import('@/views/area/areabuilding'),
+        name: '楼宇信息',
+        meta: { title: '楼宇',
+          icon: 'icon',
+          noCache: true }
       }
     ]
   },
