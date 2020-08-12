@@ -242,9 +242,14 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/area',
+    path: '/basics',
     component: Layout,
     name: '基础管理',
+    meta: {
+      title: '基础管理',
+      icon: 'icon',
+      noCache: true
+    },
     children: [
       {
         path: 'areainfo',
@@ -259,6 +264,14 @@ export const asyncRoutes = [
         component: () => import('@/views/area/areabuilding'),
         name: '楼宇信息',
         meta: { title: '楼宇',
+          icon: 'icon',
+          noCache: true }
+      },
+      {
+        path: 'deviceinfo',
+        component: () => import('@/views/deviceinfo/deviceinfo'),
+        name: '设备信息',
+        meta: { title: '设备',
           icon: 'icon',
           noCache: true }
       }
