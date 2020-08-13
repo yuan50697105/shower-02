@@ -9,6 +9,6 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
     compile('com.sun.xml.bind:jaxb-impl:2.3.3')
     testImplementation('org.springframework.security:spring-security-test')
-    compile fileTree(dir: 'lib', includes: ['*.jar'])
+    compile fileTree(dir: '/lib', includes: ['*.jar'])
 
 }

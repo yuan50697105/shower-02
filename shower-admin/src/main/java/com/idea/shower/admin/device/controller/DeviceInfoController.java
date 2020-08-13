@@ -5,7 +5,7 @@ import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/device/info")
-@Data
+@AllArgsConstructor
 public class DeviceInfoController {
-    private DeviceInfoService deviceInfoService;
+
+    private final DeviceInfoService deviceInfoService;
 
     @PostMapping({"", "/save"})
     public Result<?> add(@RequestBody DeviceInfoVo deviceInfoVo) {
