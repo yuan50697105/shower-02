@@ -1,7 +1,7 @@
 <template>
   <el-dialog :visible.sync="visible" :title="!dataForm.id ? $t('add') : $t('update')" :close-on-click-modal="false" :close-on-press-escape="false">
     <el-form ref="dataForm" :model="dataForm" :rules="dataRule" :label-width="$i18n.locale === 'en-US' ? '120px' : '80px'" @keyup.enter.native="dataFormSubmitHandle()">
-      <el-form-item label="createTime" prop="createTime">
+      <!-- <el-form-item label="createTime" prop="createTime">
         <el-input v-model="dataForm.createTime" placeholder="createTime" />
       </el-form-item>
       <el-form-item label="updateTime" prop="updateTime">
@@ -12,26 +12,26 @@
       </el-form-item>
       <el-form-item label="updateUser" prop="updateUser">
         <el-input v-model="dataForm.updateUser" placeholder="updateUser" />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="订单编号" prop="orderNo">
         <el-input v-model="dataForm.orderNo" placeholder="订单编号" />
       </el-form-item>
       <el-form-item label="订单类型" prop="type">
         <el-input v-model="dataForm.type" placeholder="订单类型" />
       </el-form-item>
-      <el-form-item label="客户ID" prop="customerId">
-        <el-input v-model="dataForm.customerId" placeholder="客户ID" />
+      <el-form-item label="客户" prop="customerId">
+        <el-input v-model="dataForm.customerId" placeholder="客户" />
       </el-form-item>
-      <el-form-item label="客户OPENID" prop="customerOpenId">
+      <!-- <el-form-item label="客户OPENID" prop="customerOpenId">
         <el-input v-model="dataForm.customerOpenId" placeholder="客户OPENID" />
       </el-form-item>
       <el-form-item label="客户UNIONID" prop="customerUnionId">
         <el-input v-model="dataForm.customerUnionId" placeholder="客户UNIONID" />
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item label="设备号" prop="deviceCode">
         <el-input v-model="dataForm.deviceCode" placeholder="设备号" />
       </el-form-item>
-      <el-form-item label="设备ID" prop="deviceId">
+      <!-- <el-form-item label="设备ID" prop="deviceId">
         <el-input v-model="dataForm.deviceId" placeholder="设备ID" />
       </el-form-item>
       <el-form-item label="总价" prop="totalPrice">
@@ -48,7 +48,7 @@
       </el-form-item>
       <el-form-item label="微信交易号" prop="transactionId">
         <el-input v-model="dataForm.transactionId" placeholder="微信交易号" />
-      </el-form-item>
+      </el-form-item> -->
     </el-form>
     <template slot="footer">
       <el-button @click="visible = false">{{ $t('cancel') }}</el-button>

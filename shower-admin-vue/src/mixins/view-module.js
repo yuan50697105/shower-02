@@ -29,7 +29,7 @@ export default {
     }
     /* eslint-enable */
   },
-  activated() {
+  created() {
     if (this.mixinViewModuleOptions.activatedIsNeed) {
       this.getDataList()
     }
@@ -49,15 +49,15 @@ export default {
             ...this.dataForm
           }
         }
-      ).then(({ data: res }) => {
-        this.dataListLoading = false
-        if (res.code !== 0) {
+      ).then(({ data: res, code: code, msg: msg }) => {
+        if (code !== 200) {
           this.dataList = []
           this.total = 0
-          return this.$message.error(res.msg)
+          return this.$message.error(msg)
         }
-        this.dataList = this.mixinViewModuleOptions.getDataListIsPage ? res.data.list : res.data
-        this.total = this.mixinViewModuleOptions.getDataListIsPage ? res.data.total : 0
+        this.dataListLoading = false
+        this.dataList = this.mixinViewModuleOptions.getDataListIsPage ? res.list : res
+        this.total = this.mixinViewModuleOptions.getDataListIsPage ? res.total : 0
       }).catch(() => {
         this.dataListLoading = false
       })
@@ -123,9 +123,9 @@ export default {
           this.mixinViewModuleOptions.deleteIsBatch ? {
             'data': id ? [id] : this.dataListSelections.map(item => item[this.mixinViewModuleOptions.deleteIsBatchKey])
           } : {}
-        ).then(({ data: res }) => {
-          if (res.code !== 0) {
-            return this.$message.error(res.msg)
+        ).then(({ data: res, code: code, msg: msg }) => {
+          if (code !== 200) {
+            return this.$message.error(msg)
           }
           this.$message({
             message: this.$t('prompt.success'),

@@ -1,16 +1,18 @@
-package com.idea.shower.admin.order.controller;
+package com.idea.shower.admin.area.controller;
 
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
-import com.idea.shower.admin.order.dto.OrderInfoDTO;
-import com.idea.shower.admin.order.service.OrderInfoService;
+import com.idea.shower.admin.area.dto.AreaBuildingDTO;
+import com.idea.shower.admin.area.service.AreaBuildingService;
 import io.renren.common.page.PageData;
 import io.renren.common.validator.AssertUtils;
 import io.renren.common.validator.ValidatorUtils;
+import io.renren.common.validator.group.AddGroup;
 import io.renren.common.validator.group.DefaultGroup;
 import io.renren.common.validator.group.UpdateGroup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.Map;
 
 /**  
@@ -18,7 +20,7 @@ import java.util.Map;
  * Title: ${file_name}
  * </p>  
  * <p>
- * Description: order_info
+ * Description: 楼宇信息
  * </p>  
  * 
  * @author finch  
@@ -28,36 +30,37 @@ import java.util.Map;
 */
 
 @RestController
-@RequestMapping("order/orderinfo")
-public class OrderInfoController {
+@RequestMapping("area/areabuilding")
+public class AreaBuildingController {
     @Autowired
-    private OrderInfoService orderInfoService;
+    private AreaBuildingService areaBuildingService;
 
     @GetMapping("page")
-    public Result<?> page(@RequestParam Map<String, Object> params){
-        PageData<OrderInfoDTO> page = orderInfoService.page(params);
+    public Result<PageData<AreaBuildingDTO>> page(@RequestParam Map<String, Object> params){
+        PageData<AreaBuildingDTO> page = areaBuildingService.page(params);
 
         return ResultInfo.success(page);
     }
 
     @GetMapping("{id}")
-    public Result<OrderInfoDTO> get(@PathVariable("id") Long id){
-        OrderInfoDTO data = orderInfoService.get(id);
+    public Result<AreaBuildingDTO> get(@PathVariable("id") Long id){
+        AreaBuildingDTO data = areaBuildingService.get(id);
         return ResultInfo.success(data);
     }
 
     @PostMapping
-    public Result save(@RequestBody OrderInfoDTO dto){
+    public Result save(@RequestBody AreaBuildingDTO dto){
         //效验数据
-        orderInfoService.save(dto);
+        ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
+        areaBuildingService.save(dto);
         return new Result();
     }
 
     @PutMapping
-    public Result update(@RequestBody OrderInfoDTO dto){
+    public Result update(@RequestBody AreaBuildingDTO dto){
         //效验数据
         ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
-        orderInfoService.update(dto);
+        areaBuildingService.update(dto);
         return new Result();
     }
 
@@ -65,9 +68,8 @@ public class OrderInfoController {
     public Result delete(@RequestBody Long[] ids){
         //效验数据
         AssertUtils.isArrayEmpty(ids, "id");
-        orderInfoService.delete(ids);
+        areaBuildingService.delete(ids);
         return new Result();
     }
-
 
 }

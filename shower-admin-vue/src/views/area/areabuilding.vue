@@ -21,11 +21,6 @@
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;" @selection-change="dataListSelectionChangeHandle">
         <el-table-column type="selection" header-align="center" align="center" width="50" />
         <el-table-column type="index" label="序号" header-align="center" align="center" width="50" />
-        <el-table-column prop="id" label="id" header-align="center" align="center" />
-        <el-table-column prop="createTime" label="创建时间" header-align="center" align="center" />
-        <el-table-column prop="updateTime" label="更新时间" header-align="center" align="center" />
-        <el-table-column prop="createUser" label="创建人" header-align="center" align="center" />
-        <el-table-column prop="updateUser" label="修改人" header-align="center" align="center" />
         <el-table-column prop="name" label="楼宇名称" header-align="center" align="center" />
         <el-table-column prop="code" label="楼宇编号" header-align="center" align="center" />
         <el-table-column prop="areaId" label="所属区域ID" header-align="center" align="center" />
@@ -66,10 +61,10 @@ export default {
   data() {
     return {
       mixinViewModuleOptions: {
-        getDataListURL: '/order/areabuilding/page',
+        getDataListURL: 'area/areabuilding/page',
         getDataListIsPage: true,
-        exportURL: '/order/areabuilding/export',
-        deleteURL: '/order/areabuilding',
+        exportURL: '/area/areabuilding/export',
+        deleteURL: '/area/areabuilding',
         deleteIsBatch: true
       },
       dataForm: {

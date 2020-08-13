@@ -21,25 +21,19 @@
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;" @selection-change="dataListSelectionChangeHandle">
         <el-table-column type="selection" header-align="center" align="center" width="50" />
         <el-table-column type="index" label="序号" header-align="center" align="center" width="50" />
-        <el-table-column prop="id" label="id" header-align="center" align="center" />
         <el-table-column prop="createTime" label="创建时间" header-align="center" align="center" />
-        <el-table-column prop="updateTime" label="更新时间" header-align="center" align="center" />
-        <el-table-column prop="createUser" label="创建人" header-align="center" align="center" />
-        <el-table-column prop="updateUser" label="修改人" header-align="center" align="center" />
         <el-table-column prop="code" label="设备编号" header-align="center" align="center" />
         <el-table-column prop="productKey" label="产品编号" header-align="center" align="center" />
         <el-table-column prop="deviceName" label="设备名称" header-align="center" align="center" />
         <el-table-column prop="type" label="设备类型" header-align="center" align="center" />
         <el-table-column prop="priceCode" label="定价编号" header-align="center" align="center" />
-        <el-table-column prop="enabled" label="启用状态(0:未启用；1已启用)" header-align="center" align="center" />
+        <el-table-column prop="enabled" label="启用状态" header-align="center" align="center" />
         <el-table-column prop="longitude" label="经度" header-align="center" align="center" />
         <el-table-column prop="latitude" label="纬度" header-align="center" align="center" />
-        <el-table-column prop="areaId" label="区域ID" header-align="center" align="center" />
         <el-table-column prop="areaName" label="区域名称" header-align="center" align="center" />
-        <el-table-column prop="buildingId" label="楼宇ID" header-align="center" align="center" />
         <el-table-column prop="buildingName" label="楼宇名称" header-align="center" align="center" />
         <el-table-column prop="picture" label="设备图片" header-align="center" align="center" />
-        <el-table-column prop="runStatus" label="运行状态 0 可用 1 使用中 " header-align="center" align="center" />
+        <el-table-column prop="runStatus" label="运行状态" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('update') }}</el-button>
@@ -77,7 +71,7 @@ export default {
   data() {
     return {
       mixinViewModuleOptions: {
-        getDataListURL: '/order/deviceinfo/page',
+        getDataListURL: '/device/info/list',
         getDataListIsPage: true,
         exportURL: '/order/deviceinfo/export',
         deleteURL: '/order/deviceinfo',

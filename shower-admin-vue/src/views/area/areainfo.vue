@@ -21,11 +21,7 @@
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;" @selection-change="dataListSelectionChangeHandle">
         <el-table-column type="selection" header-align="center" align="center" width="50" />
         <el-table-column type="index" label="序号" header-align="center" align="center" width="50" />
-        <el-table-column prop="id" label="id" header-align="center" align="center" />
         <el-table-column prop="createTime" label="createTime" header-align="center" align="center" />
-        <el-table-column prop="updateTime" label="updateTime" header-align="center" align="center" />
-        <el-table-column prop="createUser" label="createUser" header-align="center" align="center" />
-        <el-table-column prop="updateUser" label="updateUser" header-align="center" align="center" />
         <el-table-column prop="name" label="区域名称" header-align="center" align="center" />
         <el-table-column prop="code" label="区域编号" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
@@ -65,7 +61,7 @@ export default {
   data() {
     return {
       mixinViewModuleOptions: {
-        getDataListURL: '/order/areainfo/page',
+        getDataListURL: '/area/info/list',
         getDataListIsPage: true,
         exportURL: '/order/areainfo/export',
         deleteURL: '/order/areainfo',

@@ -1,18 +1,6 @@
 <template>
   <el-dialog :visible.sync="visible" :title="!dataForm.id ? $t('add') : $t('update')" :close-on-click-modal="false" :close-on-press-escape="false">
     <el-form ref="dataForm" :model="dataForm" :rules="dataRule" :label-width="$i18n.locale === 'en-US' ? '120px' : '80px'" @keyup.enter.native="dataFormSubmitHandle()">
-      <el-form-item label="创建时间" prop="createTime">
-        <el-input v-model="dataForm.createTime" placeholder="创建时间" />
-      </el-form-item>
-      <el-form-item label="更新时间" prop="updateTime">
-        <el-input v-model="dataForm.updateTime" placeholder="更新时间" />
-      </el-form-item>
-      <el-form-item label="创建人" prop="createUser">
-        <el-input v-model="dataForm.createUser" placeholder="创建人" />
-      </el-form-item>
-      <el-form-item label="修改人" prop="updateUser">
-        <el-input v-model="dataForm.updateUser" placeholder="修改人" />
-      </el-form-item>
       <el-form-item label="楼宇名称" prop="name">
         <el-input v-model="dataForm.name" placeholder="楼宇名称" />
       </el-form-item>
