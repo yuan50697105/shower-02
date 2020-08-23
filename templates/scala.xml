@@ -3,13 +3,11 @@
     <variable name="ARG_TYPE" expression="scala_className" defaultValue="X" alwaysStopAt="false" />
     <variable name="RET_TYPE" expression="scala_primaryConstructorParamTypes" defaultValue="Int" alwaysStopAt="true" />
     <variable name="BODY" expression="" defaultValue="&quot;???&quot;" alwaysStopAt="true" />
-    <context />
   </template>
   <template name="apply" value="def apply($ARGS$): $RET_TYPE$ = new $RET_TYPE$($ARGS_NO_TYPES$)" description="Template for apply" toReformat="true" toShortenFQNames="true">
     <variable name="ARGS" expression="scala_primaryConstructorParams" defaultValue="x" alwaysStopAt="true" />
     <variable name="RET_TYPE" expression="scala_className" defaultValue="" alwaysStopAt="false" />
     <variable name="ARGS_NO_TYPES" expression="scala_primaryConstructorParamNames(ARGS)" defaultValue="" alwaysStopAt="true" />
-    <context />
   </template>
   <template name="imvc" value="implicit class $CLASS_NAME$$SUFFIX$(private val $RECEIVER_NAME$: $TYPE_NAME$) extends AnyVal {&#10;$END$&#10;}" description="Template for extension methods container" toReformat="true" toShortenFQNames="true">
     <variable name="TYPE_NAME" expression="" defaultValue="&quot;Any&quot;" alwaysStopAt="true" />
