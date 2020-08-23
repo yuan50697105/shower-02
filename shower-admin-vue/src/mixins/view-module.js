@@ -57,7 +57,7 @@ export default {
           return this.$message.error(res.msg)
         }
         this.dataListLoading = false
-        this.dataList = this.mixinViewModuleOptions.getDataListIsPage ? res.data.data : []
+        this.dataList = this.mixinViewModuleOptions.getDataListIsPage ? res.data.list : []
         this.total = this.mixinViewModuleOptions.getDataListIsPage ? res.data.totalRows : 0
       }).catch(() => {
         this.dataListLoading = false
@@ -119,6 +119,7 @@ export default {
         cancelButtonText: this.$t('cancel'),
         type: 'warning'
       }).then(() => {
+        debugger
         this.$http.delete(
           `${this.mixinViewModuleOptions.deleteURL}${this.mixinViewModuleOptions.deleteIsBatch ? '' : '/' + id}`,
           this.mixinViewModuleOptions.deleteIsBatch ? {

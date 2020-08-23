@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -92,6 +93,13 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     @Override
     public Result<?> list(DeviceInfoQuery query) {
         return ResultInfo.success(deviceInfoDao.selectList(query));
+    }
+
+    @Override
+    @Transactional
+    public Result<?> delete(List<Long> id) {
+        id.forEach(this::delete);
+        return ResultInfo.success();
     }
 
     /**

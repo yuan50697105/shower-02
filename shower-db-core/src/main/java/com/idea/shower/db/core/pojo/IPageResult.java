@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public abstract class IPageResult<T> {
     private long page;
     private long size;
-    private Iterable<T> data;
+    private Iterable<T> list;
     private long totalRows;
     private long totalPages;
 
