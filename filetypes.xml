@@ -2,36 +2,36 @@
   <component name="FileTypeManager" version="17">
     <extensionMap>
       <mapping ext="stfl" type="FTL" />
-      <mapping ext="main.kts" type="Kotlin" />
       <mapping ext="gradle.kts" type="Kotlin" />
-      <mapping pattern=".merge_file_a14156" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a12076" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a18204" type="PLAIN_TEXT" />
-      <mapping pattern="aaa" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a06220" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a12648" type="PLAIN_TEXT" />
-      <mapping pattern="aa" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a26284" type="PLAIN_TEXT" />
+      <mapping ext="main.kts" type="Kotlin" />
       <mapping pattern="application-db-core" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a08500" type="PLAIN_TEXT" />
-      <mapping pattern="application-yml" type="PLAIN_TEXT" />
-      <mapping pattern="aaaa" type="PLAIN_TEXT" />
-      <mapping pattern="a" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a23356" type="PLAIN_TEXT" />
-      <mapping pattern="application-hikari,yml" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a26684" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a12192" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a13976" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a27660" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a12648" type="PLAIN_TEXT" />
+      <mapping pattern="application-yml" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a08500" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a12192" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a16776" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a14156" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a06220" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a18204" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a12076" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a15808" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a21032" type="PLAIN_TEXT" />
-      <mapping pattern=".merge_file_a16776" type="PLAIN_TEXT" />
+      <mapping pattern="aaa" type="PLAIN_TEXT" />
+      <mapping pattern="a" type="PLAIN_TEXT" />
+      <mapping pattern="aaaa" type="PLAIN_TEXT" />
+      <mapping pattern="application-hikari,yml" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a26684" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a26284" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a13976" type="PLAIN_TEXT" />
+      <mapping pattern="aa" type="PLAIN_TEXT" />
+      <mapping pattern=".merge_file_a23356" type="PLAIN_TEXT" />
       <mapping ext="factorys" type="PLAIN_TEXT" />
-      <mapping ext="factories" type="PLAIN_TEXT" />
-      <mapping ext="lombok" type="PLAIN_TEXT" />
       <mapping ext="factory" type="PLAIN_TEXT" />
-      <mapping ext="lst" type="PLAIN_TEXT" />
+      <mapping ext="factories" type="PLAIN_TEXT" />
       <mapping ext="tpl" type="PLAIN_TEXT" />
+      <mapping ext="lst" type="PLAIN_TEXT" />
+      <mapping ext="lombok" type="PLAIN_TEXT" />
     </extensionMap>
   </component>
 </application>

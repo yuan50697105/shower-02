@@ -1,23 +1,6 @@
 <templateSet group="MybatisCodeHelperPro">
-  <template name="table" value="&lt;!--@Table $var1$--&gt;$END$" description="set table name for current xml" toReformat="true" toShortenFQNames="false">
-    <variable name="var1" expression="tableName" defaultValue="" alwaysStopAt="true" />
-  </template>
   <template name="cd" value="&lt;![CDATA[$var1$]]&gt;$END$" description="add cdata in current position" toReformat="true" toShortenFQNames="false">
     <variable name="var1" expression="sql" defaultValue="" alwaysStopAt="true" />
-  </template>
-  <template name="sql" value="&lt;!--@sql $var1$--&gt;$END$" description="add injected sql fragment" toReformat="true" toShortenFQNames="false">
-    <variable name="var1" expression="sql" defaultValue="" alwaysStopAt="true" />
-  </template>
-  <template name="ignore" value="&lt;!--@ignoreSql--&gt;$END$" description="ignore if when test injected sql" toReformat="false" toShortenFQNames="false" />
-  <template name="CD" value="&lt;![CDATA[$var1$]]&gt;$END$" description="add cdata in current position" toReformat="true" toShortenFQNames="false">
-    <variable name="var1" expression="sql" defaultValue="" alwaysStopAt="true" />
-  </template>
-  <template name="co" value="&lt;foreach item=&quot;item&quot; index=&quot;index&quot; collection=&quot;$var1$&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;&#10;             $var2$             &#10;         &lt;/foreach&gt;$END$" description="mybatis foreach collection statement" toReformat="true" toShortenFQNames="false">
-    <variable name="var1" expression="collectionName" defaultValue="" alwaysStopAt="true" />
-    <variable name="var2" expression="" defaultValue="#{item}" alwaysStopAt="true" />
-  </template>
-  <template name="CO" value="&lt;foreach item=&quot;item&quot; index=&quot;index&quot; collection=&quot;$var1$&quot; open=&quot;(&quot; separator=&quot;,&quot; close=&quot;)&quot;&gt;&#10;             $var2$             &#10;         &lt;/foreach&gt;$END$" description="mybatis foreach collection statement" toReformat="true" toShortenFQNames="false">
-    <variable name="var1" expression="collectionName" defaultValue="" alwaysStopAt="true" />
-    <variable name="var2" expression="" defaultValue="#{item}" alwaysStopAt="true" />
+    <context />
   </template>
 </templateSet>
