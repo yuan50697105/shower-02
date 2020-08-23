@@ -9,8 +9,8 @@
       <mapping pattern=".merge_file_a18204" type="PLAIN_TEXT" />
       <mapping pattern="aaa" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a06220" type="PLAIN_TEXT" />
-      <mapping pattern="aa" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a12648" type="PLAIN_TEXT" />
+      <mapping pattern="aa" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a26284" type="PLAIN_TEXT" />
       <mapping pattern="application-db-core" type="PLAIN_TEXT" />
       <mapping pattern=".merge_file_a08500" type="PLAIN_TEXT" />
