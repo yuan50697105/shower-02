@@ -64,8 +64,16 @@ allprojects {
         compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.11.0'
         compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.2.29'
         compile group: 'com.qcloud', name: 'cos_api', version: '5.6.28'
-    }
 
+    }
+    dependencyManagement{
+        imports{
+            mavenBom "org.springframework.boot:spring-boot-dependencies:2.3.2.RELEASE"
+            mavenBom "org.minbox.framework:api-boot-dependencies:2.3.0.RELEASE"
+//            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.2.0.RELEASE"
+        }
+    }
     test {
         useJUnitPlatform()
     }

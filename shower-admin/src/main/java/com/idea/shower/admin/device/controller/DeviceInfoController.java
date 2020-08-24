@@ -8,6 +8,8 @@ import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @program: shower-01
  * @description:
@@ -31,8 +33,14 @@ public class DeviceInfoController {
         return deviceInfoService.modify(deviceInfoVo);
     }
 
-    @DeleteMapping({"", "/delete"})
-    public Result<?> delete(Long id) {
+    @DeleteMapping({"/{id}", "/delete/{id}"})
+    public Result<?> delete(@PathVariable Long id) {
+        return deviceInfoService.delete(id);
+    }
+
+    @DeleteMapping(value = {"", "delete"
+    }, params = "id")
+    public Result<?> delete(List<Long> id) {
         return deviceInfoService.delete(id);
     }
 

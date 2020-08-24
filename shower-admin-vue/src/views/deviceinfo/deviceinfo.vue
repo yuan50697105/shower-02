@@ -63,6 +63,7 @@
 import mixinViewModule from '@/mixins/view-module'
 import AddOrUpdate from './deviceinfo-add-or-update'
 import viewInfo from './deviceinfo-view-info'
+
 export default {
   components: {
     AddOrUpdate, viewInfo
@@ -74,7 +75,7 @@ export default {
         getDataListURL: '/device/info/data',
         getDataListIsPage: true,
         exportURL: '/order/deviceinfo/export',
-        deleteURL: '/order/deviceinfo',
+        deleteURL: 'device/info/delete',
         deleteIsBatch: true
       },
       dataForm: {
