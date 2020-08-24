@@ -4,6 +4,8 @@ import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
 
+import java.util.List;
+
 /**
  * @program: shower-01
  * @description:
@@ -56,4 +58,6 @@ public interface DeviceInfoService {
      * @return 通知结果，列表
      */
     Result<?> list(DeviceInfoQuery query);
+
+    Result<?> delete(List<Long> id);
 }

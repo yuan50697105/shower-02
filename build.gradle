@@ -57,11 +57,16 @@ allprojects {
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
-        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.73'
-        compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.0.7.1'
-        implementation  fileTree(dir: 'lib', includes: ['*.jar'])
-    }
 
+    }
+    dependencyManagement{
+        imports{
+            mavenBom "org.springframework.boot:spring-boot-dependencies:2.3.2.RELEASE"
+            mavenBom "org.minbox.framework:api-boot-dependencies:2.3.0.RELEASE"
+//            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+//            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.2.0.RELEASE"
+        }
+    }
     test {
         useJUnitPlatform()
     }

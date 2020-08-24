@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -94,6 +95,13 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
         return ResultInfo.success(deviceInfoDao.selectList(query));
     }
 
+    @Override
+    @Transactional
+    public Result<?> delete(List<Long> id) {
+        id.forEach(this::delete);
+        return ResultInfo.success();
+    }
+
     /**
      * 检查设备是否存在
      *
@@ -101,7 +109,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
      */
     private void checkExist(DeviceInfo deviceInfo) {
         Optional<DeviceInfo> optional = deviceInfoDao.getByCode(deviceInfo.getCode());
-        if (optional.isEmpty()) {
+        if (optional.isPresent()) {
             throw new ResultException(ResultInfo.param_check_not_pass(deviceInfo.getCode() + "已存在"));
         }
     }

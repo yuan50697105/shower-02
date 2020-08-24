@@ -102,15 +102,16 @@ export default {
     },
     // 获取信息
     getInfo() {
-      this.$http.get(`/order/deviceinfo/${this.dataForm.id}`).then(({ data: res }) => {
-        if (res.code !== 0) {
+      this.$http.get(`/device/info/${this.dataForm.id}`).then(res => {
+        if (res.code !== 200) {
           return this.$message.error(res.msg)
         }
         this.dataForm = {
           ...this.dataForm,
           ...res.data
         }
-      }).catch(() => {})
+      }).catch(() => {
+      })
     }
   }
 }
