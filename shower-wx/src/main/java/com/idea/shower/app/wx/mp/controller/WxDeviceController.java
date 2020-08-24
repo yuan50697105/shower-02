@@ -30,7 +30,7 @@ public class WxDeviceController extends ResultController {
     }
 
     @GetMapping("send/info")
-    public Result sendInfo() {
-        return wxDeviceService.sendInfo(3L);
+    public Result sendInfo(String id) {
+        return wxDeviceService.sendInfo(id);
     }
 }

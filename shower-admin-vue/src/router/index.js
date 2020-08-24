@@ -281,12 +281,25 @@ export const asyncRoutes = [
     path: '/order',
     component: Layout,
     name: '订单管理',
+    meta: {
+      title: '订单管理',
+      icon: 'icon',
+      noCache: true
+    },
     children: [
       {
         path: 'orderinfo',
         component: () => import('@/views/order/orderinfo'),
-        name: '订单管理',
-        meta: { title: '订单',
+        name: '订单信息',
+        meta: { title: '订单信息',
+          icon: 'icon',
+          noCache: true }
+      },
+      {
+        path: 'deviceinfo',
+        component: () => import('@/views/order/orderinfo'),
+        name: '订单统计',
+        meta: { title: '订单统计',
           icon: 'icon',
           noCache: true }
       }

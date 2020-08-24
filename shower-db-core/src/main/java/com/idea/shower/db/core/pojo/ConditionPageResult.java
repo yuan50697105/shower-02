@@ -15,7 +15,7 @@ public class ConditionPageResult<T, E> extends IPageResult<T> {
     private E query;
 
     public ConditionPageResult(IPageResult<T> pageResult, E query) {
-        super(pageResult.getPage(), pageResult.getSize(), pageResult.getData(), pageResult.getTotalRows(), pageResult.getTotalPages());
+        super(pageResult.getPage(), pageResult.getSize(), pageResult.getList(), pageResult.getTotalRows(), pageResult.getTotalPages());
         this.query = query;
     }
 }

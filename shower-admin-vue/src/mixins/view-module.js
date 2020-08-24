@@ -1,5 +1,6 @@
 import Cookies from 'js-cookie'
 import qs from 'qs'
+
 export default {
   data() {
     /* eslint-disable */
@@ -49,15 +50,15 @@ export default {
             ...this.dataForm
           }
         }
-      ).then(({ data: res, code: code, msg: msg }) => {
-        if (code !== 200) {
+      ).then((res) => {
+        if (res.code !== 200) {
           this.dataList = []
           this.total = 0
-          return this.$message.error(msg)
+          return this.$message.error(res.msg)
         }
         this.dataListLoading = false
-        this.dataList = this.mixinViewModuleOptions.getDataListIsPage ? res.list : res
-        this.total = this.mixinViewModuleOptions.getDataListIsPage ? res.total : 0
+        this.dataList = this.mixinViewModuleOptions.getDataListIsPage ? res.data.list : []
+        this.total = this.mixinViewModuleOptions.getDataListIsPage ? res.data.totalRows : 0
       }).catch(() => {
         this.dataListLoading = false
       })
@@ -118,6 +119,7 @@ export default {
         cancelButtonText: this.$t('cancel'),
         type: 'warning'
       }).then(() => {
+        debugger
         this.$http.delete(
           `${this.mixinViewModuleOptions.deleteURL}${this.mixinViewModuleOptions.deleteIsBatch ? '' : '/' + id}`,
           this.mixinViewModuleOptions.deleteIsBatch ? {

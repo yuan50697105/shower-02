@@ -5,8 +5,10 @@ import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
-import lombok.Data;
+import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @program: shower-01
@@ -16,9 +18,10 @@ import org.springframework.web.bind.annotation.*;
  */
 @RestController
 @RequestMapping("/device/info")
-@Data
+@AllArgsConstructor
 public class DeviceInfoController {
-    private DeviceInfoService deviceInfoService;
+
+    private final DeviceInfoService deviceInfoService;
 
     @PostMapping({"", "/save"})
     public Result<?> add(@RequestBody DeviceInfoVo deviceInfoVo) {
@@ -30,8 +33,14 @@ public class DeviceInfoController {
         return deviceInfoService.modify(deviceInfoVo);
     }
 
-    @DeleteMapping({"", "/delete"})
-    public Result<?> delete(Long id) {
+    @DeleteMapping({"/{id}", "/delete/{id}"})
+    public Result<?> delete(@PathVariable Long id) {
+        return deviceInfoService.delete(id);
+    }
+
+    @DeleteMapping(value = {"", "delete"
+    }, params = "id")
+    public Result<?> delete(List<Long> id) {
         return deviceInfoService.delete(id);
     }
 

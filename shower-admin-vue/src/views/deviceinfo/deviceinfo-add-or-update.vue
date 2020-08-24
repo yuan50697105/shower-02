@@ -10,9 +10,9 @@
       <el-form-item label="设备名称" prop="deviceName">
         <el-input v-model="dataForm.deviceName" placeholder="设备名称" />
       </el-form-item>
-      <el-form-item label="设备类型" prop="type">
+      <!--<el-form-item label="设备类型" prop="type">
         <el-input v-model="dataForm.type" placeholder="设备类型" />
-      </el-form-item>
+      </el-form-item>-->
       <el-form-item label="定价编号" prop="priceCode">
         <el-input v-model="dataForm.priceCode" placeholder="定价编号" />
       </el-form-item>
@@ -25,9 +25,9 @@
       <el-form-item label="设备图片" prop="picture">
         <el-input v-model="dataForm.picture" placeholder="设备图片" />
       </el-form-item>
-      <el-form-item label="运行状态" prop="runStatus">
-        <el-input v-model="dataForm.runStatus" placeholder="运行状态" />
-      </el-form-item>
+      <!--      <el-form-item label="运行状态" prop="runStatus">-->
+      <!--        <el-input v-model="dataForm.runStatus" placeholder="运行状态" />-->
+      <!--      </el-form-item>-->
     </el-form>
     <template slot="footer">
       <el-button @click="visible = false">{{ $t('cancel') }}</el-button>
@@ -38,6 +38,7 @@
 
 <script>
 import debounce from 'lodash/debounce'
+
 export default {
   data() {
     return {
@@ -51,7 +52,7 @@ export default {
         code: '',
         productKey: '',
         deviceName: '',
-        type: '',
+        // type: '',
         priceCode: '',
         enabled: '',
         longitude: '',
@@ -60,8 +61,8 @@ export default {
         areaName: '',
         buildingId: '',
         buildingName: '',
-        picture: '',
-        runStatus: ''
+        picture: ''
+        // runStatus: ''
       }
     }
   },
@@ -89,9 +90,9 @@ export default {
         deviceName: [
           { required: true, message: this.$t('validate.required'), trigger: 'blur' }
         ],
-        type: [
-          { required: true, message: this.$t('validate.required'), trigger: 'blur' }
-        ],
+        // type: [
+        //   { required: true, message: this.$t('validate.required'), trigger: 'blur' }
+        // ],
         priceCode: [
           { required: true, message: this.$t('validate.required'), trigger: 'blur' }
         ],
@@ -118,10 +119,10 @@ export default {
         ],
         picture: [
           { required: true, message: this.$t('validate.required'), trigger: 'blur' }
-        ],
-        runStatus: [
-          { required: true, message: this.$t('validate.required'), trigger: 'blur' }
         ]
+        // runStatus: [
+        //   { required: true, message: this.$t('validate.required'), trigger: 'blur' }
+        // ]
       }
     }
   },
@@ -137,15 +138,16 @@ export default {
     },
     // 获取信息
     getInfo() {
-      this.$http.get(`/order/deviceinfo/${this.dataForm.id}`).then(({ data: res }) => {
-        if (res.code !== 0) {
+      this.$http.get(`/device/info/${this.dataForm.id}`).then((res) => {
+        if (res.code !== 200) {
           return this.$message.error(res.msg)
         }
         this.dataForm = {
           ...this.dataForm,
           ...res.data
         }
-      }).catch(() => {})
+      }).catch(() => {
+      })
     },
     // 表单提交
     dataFormSubmitHandle: debounce(function() {
@@ -153,9 +155,10 @@ export default {
         if (!valid) {
           return false
         }
-        this.$http[!this.dataForm.id ? 'post' : 'put']('/order/deviceinfo/', this.dataForm).then(({ data: res }) => {
-          if (res.code !== 0) {
-            return this.$message.error(res.msg)
+        this.$http[!this.dataForm.id ? 'post' : 'put']('/device/info/', this.dataForm).then(data => {
+          console.log(data)
+          if (data.code !== 200) {
+            return this.$message.error(data.msg)
           }
           this.$message({
             message: this.$t('prompt.success'),

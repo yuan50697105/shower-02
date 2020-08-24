@@ -8,7 +8,10 @@ dependencies {
     compile('io.jsonwebtoken:jjwt:0.9.1')
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
     compile('com.sun.xml.bind:jaxb-impl:2.3.3')
+    compile group: 'org.minbox.framework', name: 'api-boot-starter-swagger'
+    compile('com.github.xiaoymin:knife4j-spring-boot-starter:2.0.4')
     testImplementation('org.springframework.security:spring-security-test')
-    compile fileTree(dir: 'lib', includes: ['*.jar'])
-
+    compile fileTree(dir: '/lib', includes: ['*.jar'])
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.73'
+    compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.0.7.1'
 }

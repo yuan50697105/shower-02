@@ -255,7 +255,7 @@ export default {
     getList() {
       this.listLoading = true
       getData(this.listQuery).then(response => {
-        this.list = response.data.data
+        this.list = response.data.list
         this.total = response.data.totalRows
 
         // Just to simulate the time of the request
@@ -384,13 +384,13 @@ export default {
         .catch(err => {
           console.error(err)
         })
-      // this.$notify({
-      //   username: 'Success',
-      //   message: 'Delete Successfully',
-      //   type: 'success',
-      //   duration: 2000
-      // })
-      // this.list.splice(user, 1)
+        // this.$notify({
+        //   username: 'Success',
+        //   message: 'Delete Successfully',
+        //   type: 'success',
+        //   duration: 2000
+        // })
+        // this.list.splice(user, 1)
     },
     handleFetchPv(pv) {
       fetchPv(pv).then(response => {
@@ -400,17 +400,17 @@ export default {
     },
     handleDownload() {
       this.downloadLoading = true
-      import('@/vendor/Export2Excel').then(excel => {
-        const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-        const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
-        const data = this.formatJson(filterVal)
-        excel.export_json_to_excel({
-          header: tHeader,
-          data,
-          filename: 'table-list'
+        import('@/vendor/Export2Excel').then(excel => {
+          const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
+          const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
+          const data = this.formatJson(filterVal)
+          excel.export_json_to_excel({
+            header: tHeader,
+            data,
+            filename: 'table-list'
+          })
+          this.downloadLoading = false
         })
-        this.downloadLoading = false
-      })
     },
     formatJson(filterVal) {
       return this.list.map(v => filterVal.map(j => {

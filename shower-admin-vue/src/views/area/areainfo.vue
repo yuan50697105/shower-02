@@ -61,7 +61,7 @@ export default {
   data() {
     return {
       mixinViewModuleOptions: {
-        getDataListURL: '/area/info/list',
+        getDataListURL: '/area/info/data',
         getDataListIsPage: true,
         exportURL: '/order/areainfo/export',
         deleteURL: '/order/areainfo',

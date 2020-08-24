@@ -34,18 +34,24 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    if (options.scene) {
+      //这个scene的值存在则证明首页的开启来源于朋友圈分享的图,同时可以通过获取到的goodId的值跳转导航到对应的详情页
+      var scene = decodeURIComponent(options.scene);
+      console.log("scene:" + scene);
+
+
+      if (_type == 'goods') {
+        wx.navigateTo({
+          url: '../goods/goods?id=' + id
+        });
+      }
+    }
     //获取区域信息
     this.areasList();
     //获取设备列表信息
     this.deviceList();
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -54,19 +60,6 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-    
-  },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作

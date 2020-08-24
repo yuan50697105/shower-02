@@ -6,7 +6,7 @@
       <router-view v-if="$route.meta.keepAlive" />
     </keep-alive>
     <!--不需要缓存组件-->
-    <router-view v-if="!$route.meta.keepAlive" />
+    <!--    <router-view v-if="!$route.meta.keepAlive" />-->
     <moduleFooter />
     <router-view />
   </div>
@@ -15,6 +15,7 @@
 <script>
 import Cookies from 'js-cookie'
 import { messages } from '@/i18n'
+
 export default {
   name: 'App',
   watch: {
