@@ -28,6 +28,7 @@ App({
   },
   // globalData, 用户自定义函数, 开发者可以添加任意的函数或数据变量到 Object 参数中，用 this 可以访问
   globalData: {
-    hasLogin: false
+    hasLogin: false,
+    key: 'U7LBZ-YAWW3-RUP35-YGF6T-VGUBO-2UBYG'
   }
 })

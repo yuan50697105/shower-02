@@ -71,7 +71,7 @@ export default {
   data() {
     return {
       mixinViewModuleOptions: {
-        getDataListURL: '/device/info/list',
+        getDataListURL: '/device/info/data',
         getDataListIsPage: true,
         exportURL: '/order/deviceinfo/export',
         deleteURL: '/order/deviceinfo',
