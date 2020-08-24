@@ -1,6 +1,7 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="g.springframework.beans.BeanInstantiationException: Failed to instantiate [cn.binarywang.wx.miniapp.api.WxMaService]: Factory method 'service' threw exception; nested exception is java.lang.NullPointerException" />
       <item value="Base Converter" />
       <item value="描述" />
       <item value="启用" />
@@ -8,7 +9,7 @@
     <option name="languageScores">
       <map>
         <entry key="CHINESE" value="4" />
-        <entry key="ENGLISH" value="4" />
+        <entry key="ENGLISH" value="5" />
       </map>
     </option>
   </component>
