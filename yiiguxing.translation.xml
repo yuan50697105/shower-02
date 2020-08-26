@@ -1,0 +1,20 @@
+<application>
+  <component name="AppStorage">
+    <histories>
+      <item value="promote Transitive Dependencies" />
+      <item value="g.springframework.beans.BeanInstantiationException: Failed to instantiate [cn.binarywang.wx.miniapp.api.WxMaService]: Factory method 'service' threw exception; nested exception is java.lang.NullPointerException" />
+      <item value="Base Converter" />
+      <item value="描述" />
+      <item value="启用" />
+    </histories>
+    <option name="languageScores">
+      <map>
+        <entry key="CHINESE" value="5" />
+        <entry key="ENGLISH" value="6" />
+      </map>
+    </option>
+  </component>
+  <component name="Settings">
+    <option name="ignoreRegExp" value="" />
+  </component>
+</application>

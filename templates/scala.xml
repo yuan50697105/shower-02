@@ -15,5 +15,6 @@
     <variable name="TYPE_NAME" expression="" defaultValue="&quot;Any&quot;" alwaysStopAt="true" />
     <variable name="RECEIVER_NAME" expression="scala_suggestVariableNameByTypeText(TYPE_NAME)" defaultValue="&quot;target&quot;" alwaysStopAt="true" />
     <variable name="CLASS_NAME" expression="scala_implicitValueClassName(TYPE_NAME)" defaultValue="" alwaysStopAt="false" />
+    <context />
   </template>
 </templateSet>
