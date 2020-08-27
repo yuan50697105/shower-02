@@ -1,12 +1,15 @@
 package com.idea.shower.commons.storage.config;
 
 import com.idea.shower.commons.storage.*;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ComponentScan;
 
-@Configuration
+@SpringBootConfiguration
 @EnableConfigurationProperties(StorageProperties.class)
+@ComponentScan
 public class StorageAutoConfiguration {
 
     private final StorageProperties properties;
@@ -36,6 +39,7 @@ public class StorageAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = "shower.storage.active", havingValue = "local", value = "local")
     public LocalStorage localStorage() {
         LocalStorage localStorage = new LocalStorage();
         StorageProperties.Local local = this.properties.getLocal();
@@ -45,6 +49,7 @@ public class StorageAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = "shower.storage.active", havingValue = "aliyun", value = "aliyun")
     public AliyunStorage aliyunStorage() {
         AliyunStorage aliyunStorage = new AliyunStorage();
         StorageProperties.Aliyun aliyun = this.properties.getAliyun();
@@ -56,6 +61,7 @@ public class StorageAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = "shower.storage.active", havingValue = "tencent", value = "tencent")
     public TencentStorage tencentStorage() {
         TencentStorage tencentStorage = new TencentStorage();
         StorageProperties.Tencent tencent = this.properties.getTencent();
@@ -67,6 +73,7 @@ public class StorageAutoConfiguration {
     }
 
     @Bean
+    @ConditionalOnProperty(prefix = "shower.storage.active", havingValue = "qiniu", value = "qiniu")
     public QiniuStorage qiniuStorage() {
         QiniuStorage qiniuStorage = new QiniuStorage();
         StorageProperties.Qiniu qiniu = this.properties.getQiniu();

@@ -1,6 +1,6 @@
 package com.idea.shower.admin.area.dao;
 
-import com.idea.shower.app.db.module.pojo.AreaBuilding;
+import com.idea.shower.db.mybaits.module.pojo.AreaBuilding;
 import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 

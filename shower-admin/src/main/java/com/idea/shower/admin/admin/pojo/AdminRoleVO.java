@@ -1,7 +1,7 @@
 package com.idea.shower.admin.admin.pojo;
 
 import com.idea.shower.admin.route.pojo.RouteBean;
-import com.idea.shower.app.db.module.pojo.AdminRole;
+import com.idea.shower.db.mybaits.module.pojo.AdminRole;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

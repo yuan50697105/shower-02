@@ -1,6 +1,5 @@
 package com.idea.shower.app.device;
 
-import com.idea.shower.app.db.ShowerDbApplication;
 import com.idea.shower.commons.ShowerCommons;
 import com.idea.shower.web.webmvc.WebMvcCoreApplication;
 import lombok.extern.slf4j.Slf4j;

@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
  * @author: yuane
  * @create: 2020-03-28 16:57
  */
-@SpringBootTest(classes = RedisApplicaiton.class)
+@SpringBootTest(classes = RedisAutoConfiguration.class)
 public class RedisApplicaitonTests {
     @Autowired
     private ApplicationContext context;

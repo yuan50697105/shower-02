@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.app.db.module.mapper.OrderInfoMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.OrderInfo">
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.OrderInfoMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.db.mybaits.module.pojo.OrderInfo">
     <!--@mbg.generated-->
     <!--@Table order_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -88,7 +88,7 @@
     customer_open_id, customer_union_id, device_code, device_id, total_price, `status`, 
     use_start_time, use_end_time, transaction_id
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.OrderInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -115,14 +115,14 @@
     delete from order_info
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.OrderInfoExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfoExample">
     <!--@mbg.generated-->
     delete from order_info
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.OrderInfo" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into order_info (create_time, update_time, create_user, 
       update_user, order_no, `type`, 
@@ -137,7 +137,7 @@
       #{status,jdbcType=INTEGER}, #{useStartTime,jdbcType=TIMESTAMP}, #{useEndTime,jdbcType=TIMESTAMP}, 
       #{transactionId,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.OrderInfo" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into order_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -241,7 +241,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.OrderInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfoExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from order_info
     <if test="_parameter != null">
@@ -332,7 +332,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.OrderInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfo">
     <!--@mbg.generated-->
     update order_info
     <set>
@@ -387,7 +387,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.OrderInfo">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfo">
     <!--@mbg.generated-->
     update order_info
     set create_time = #{createTime,jdbcType=TIMESTAMP},
@@ -511,7 +511,7 @@
         </where>
         order by create_time desc
     </select>
-    <resultMap id="OrderInfoDeviceVO" type="com.idea.shower.app.db.module.pojo.vo.OrderInfoDeviceVO">
+    <resultMap id="OrderInfoDeviceVO" type="com.idea.shower.db.mybaits.module.pojo.vo.OrderInfoDeviceVO">
         <id column="id" property="id" />
         <result column="order_no" property="orderNo" />
         <result column="type" property="type" />

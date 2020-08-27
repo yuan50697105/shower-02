@@ -6,14 +6,14 @@ import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.alibaba.fastjson.JSONObject;
-import com.idea.shower.app.db.module.dao.CustomerInfoDao;
-import com.idea.shower.app.db.module.pojo.CustomerInfo;
 import com.idea.shower.app.wx.mp.pojo.WxLoginInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUserInfo;
 import com.idea.shower.app.wx.mp.service.WxCustomerInfoService;
 import com.idea.shower.app.wx.mp.util.EncryptedPhone;
 import com.idea.shower.app.wx.mp.util.GetPhoneNumber;
 import com.idea.shower.app.wx.mp.util.UserTokenManager;
+import com.idea.shower.db.mybaits.module.dao.CustomerInfoDao;
+import com.idea.shower.db.mybaits.module.pojo.CustomerInfo;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
@@ -34,8 +34,8 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class WxCustomerInfoServiceImpl implements WxCustomerInfoService {
-    private CustomerInfoDao customerInfoDao;
-    private WxMaService wxMaService;
+    private final CustomerInfoDao customerInfoDao;
+    private final WxMaService wxMaService;
 
     @SneakyThrows
     @Override

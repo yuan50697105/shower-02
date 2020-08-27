@@ -1,7 +1,7 @@
 package com.idea.shower.admin;
 
-import com.idea.shower.app.db.module.dao.AdminUserDao;
-import com.idea.shower.app.db.module.pojo.AdminUser;
+import com.idea.shower.db.mybaits.module.dao.AdminUserDao;
+import com.idea.shower.db.mybaits.module.pojo.AdminUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

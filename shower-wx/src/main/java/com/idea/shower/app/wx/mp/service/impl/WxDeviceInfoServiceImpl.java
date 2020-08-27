@@ -1,10 +1,9 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
-import com.idea.shower.app.db.module.dao.DeviceInfoDao;
-import com.idea.shower.app.db.module.pojo.DeviceInfo;
-import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.app.wx.mp.service.WxDeviceInfoService;
-import com.idea.shower.app.wx.mp.service.WxDeviceService;
+import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
+import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
+import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
@@ -21,7 +20,7 @@ import java.util.Optional;
 @Service
 @AllArgsConstructor
 public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
-    private DeviceInfoDao deviceInfoDao;
+    private final DeviceInfoDao deviceInfoDao;
     /**
     *@Author finch
     *@Description 获取设备列表

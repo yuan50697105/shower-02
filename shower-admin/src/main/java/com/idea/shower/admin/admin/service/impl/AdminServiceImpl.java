@@ -1,10 +1,10 @@
 package com.idea.shower.admin.admin.service.impl;
 
 import com.idea.shower.admin.admin.service.AdminService;
-import com.idea.shower.app.db.module.dao.AdminPermissionDao;
-import com.idea.shower.app.db.module.dao.AdminRoleDao;
-import com.idea.shower.app.db.module.dao.AdminUserDao;
-import com.idea.shower.app.db.module.dao.AdminUserRoleDao;
+import com.idea.shower.db.mybaits.module.dao.AdminPermissionDao;
+import com.idea.shower.db.mybaits.module.dao.AdminRoleDao;
+import com.idea.shower.db.mybaits.module.dao.AdminUserDao;
+import com.idea.shower.db.mybaits.module.dao.AdminUserRoleDao;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

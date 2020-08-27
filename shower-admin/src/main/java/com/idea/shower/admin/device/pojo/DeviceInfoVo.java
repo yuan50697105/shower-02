@@ -1,6 +1,6 @@
 package com.idea.shower.admin.device.pojo;
 
-import com.idea.shower.app.db.module.pojo.DeviceInfo;
+import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

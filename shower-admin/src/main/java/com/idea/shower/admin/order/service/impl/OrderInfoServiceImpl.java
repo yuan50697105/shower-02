@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.idea.shower.admin.order.dao.OrderInfoDao;
 import com.idea.shower.admin.order.dto.OrderInfoDTO;
 import com.idea.shower.admin.order.service.OrderInfoService;
-import com.idea.shower.app.db.module.pojo.OrderInfo;
+import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import io.renren.common.service.impl.CrudServiceImpl;
 import org.springframework.stereotype.Service;
 

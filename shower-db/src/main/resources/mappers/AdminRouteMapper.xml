@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.app.db.module.mapper.AdminRouteMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.AdminRoute">
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.AdminRouteMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.db.mybaits.module.pojo.AdminRoute">
     <!--@mbg.generated-->
     <!--@Table admin_route-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -80,7 +80,7 @@
     id, create_time, update_time, create_user, update_user, url, `name`, parent_id, weight, 
     role_id
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminRouteExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminRouteExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -107,14 +107,14 @@
     delete from admin_route
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminRouteExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminRouteExample">
     <!--@mbg.generated-->
     delete from admin_route
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminRoute" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminRoute" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into admin_route (create_time, update_time, create_user, 
       update_user, url, `name`, 
@@ -125,7 +125,7 @@
       #{parentId,jdbcType=BIGINT}, #{weight,jdbcType=INTEGER}, #{roleId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminRoute" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminRoute" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into admin_route
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -187,7 +187,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminRouteExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminRouteExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from admin_route
     <if test="_parameter != null">
@@ -250,7 +250,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.AdminRoute">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminRoute">
     <!--@mbg.generated-->
     update admin_route
     <set>
@@ -284,7 +284,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.AdminRoute">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminRoute">
     <!--@mbg.generated-->
     update admin_route
     set create_time = #{createTime,jdbcType=TIMESTAMP},

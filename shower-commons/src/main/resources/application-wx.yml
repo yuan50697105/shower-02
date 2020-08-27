@@ -1,0 +1,17 @@
+wx:
+  #  小程序
+  miniapp:
+    appid: wx4f688d98fef66fac
+    aes-key:
+    msg-data-format: JSON
+    secret: 644430f1be8a368731e3f9ba947d28c7
+    token:
+  #  商户平台
+  pay:
+    app-id: wx4f688d98fef66fac
+    key-path:
+    mch-id: 1556739721
+    mch-key: zhihuizhixiang2020zhihuizhixiang
+    sub-app-id:
+    sub-mch-id:
+    url: http://123.56.78.153:8002/wx/order/notify

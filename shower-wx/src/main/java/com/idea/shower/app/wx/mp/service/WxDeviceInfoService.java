@@ -1,6 +1,6 @@
 package com.idea.shower.app.wx.mp.service;
 
-import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
+import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.web.webmvc.pojo.Result;
 
 /**

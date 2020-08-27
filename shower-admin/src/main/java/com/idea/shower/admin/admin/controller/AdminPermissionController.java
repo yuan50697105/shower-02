@@ -3,7 +3,7 @@ package com.idea.shower.admin.admin.controller;
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.admin.pojo.AdminPermissionVO;
 import com.idea.shower.admin.admin.service.AdminPermissionService;
-import com.idea.shower.app.db.module.pojo.query.AdminPermissionQuery;
+import com.idea.shower.db.mybaits.module.pojo.query.AdminPermissionQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

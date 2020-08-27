@@ -1,6 +1,6 @@
 package com.idea.shower.admin.area.pojo;
 
-import com.idea.shower.app.db.module.pojo.AreaInfo;
+import com.idea.shower.db.mybaits.module.pojo.AreaInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

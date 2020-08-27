@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.app.db.module.mapper.DeviceInfoVolumeMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.DeviceInfoVolume">
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.DeviceInfoVolumeMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume">
     <!--@mbg.generated-->
     <!--@Table device_info_volume-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -76,7 +76,7 @@
     <!--@mbg.generated-->
     id, create_time, update_time, create_user, update_user, device_id, volume
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoVolumeExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolumeExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -103,14 +103,14 @@
     delete from device_info_volume
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoVolumeExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolumeExample">
     <!--@mbg.generated-->
     delete from device_info_volume
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoVolume" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into device_info_volume (create_time, update_time, create_user, 
       update_user, device_id, volume
@@ -119,7 +119,7 @@
       #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{volume,jdbcType=DOUBLE}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoVolume" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into device_info_volume
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -163,7 +163,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoVolumeExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolumeExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from device_info_volume
     <if test="_parameter != null">
@@ -214,7 +214,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoVolume">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume">
     <!--@mbg.generated-->
     update device_info_volume
     <set>
@@ -239,7 +239,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.DeviceInfoVolume">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume">
     <!--@mbg.generated-->
     update device_info_volume
     set create_time = #{createTime,jdbcType=TIMESTAMP},

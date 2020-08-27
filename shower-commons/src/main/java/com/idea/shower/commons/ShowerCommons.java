@@ -1,7 +1,7 @@
 package com.idea.shower.commons;
 
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.context.annotation.ComponentScan;
 
 /**
  * @program: shower-01
@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
  * @author: yuane
  * @create: 2020-05-12 20:44
  */
-@EnableAutoConfiguration
+@SpringBootConfiguration
+@ComponentScan
 public class ShowerCommons {
 }

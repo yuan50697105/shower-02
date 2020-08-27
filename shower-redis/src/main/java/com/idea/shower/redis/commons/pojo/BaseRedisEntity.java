@@ -1,8 +1,6 @@
 package com.idea.shower.redis.commons.pojo;
 
-import com.idea.shower.db.core.pojo.BaseDbCoreEntity;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 import org.springframework.data.annotation.Id;
 
 /**
@@ -11,9 +9,8 @@ import org.springframework.data.annotation.Id;
  * @author: yuane
  * @create: 2020-03-28 16:43
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
-public class BaseRedisEntity<KEY, T> extends BaseDbCoreEntity {
+public class BaseRedisEntity<KEY, T> {
     @Id
     private KEY key;
     private T data;

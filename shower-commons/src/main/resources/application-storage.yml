@@ -1,0 +1,6 @@
+shower:
+  storage:
+    active: local
+    local:
+      address: C:\\
+      storage-path: aaa

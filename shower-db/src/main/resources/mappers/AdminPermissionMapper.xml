@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.app.db.module.mapper.AdminPermissionMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.AdminPermission">
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.AdminPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.db.mybaits.module.pojo.AdminPermission">
     <!--@mbg.generated-->
     <!--@Table admin_permission-->
     <id column="id" jdbcType="BIGINT" property="id" />
@@ -76,7 +76,7 @@
     <!--@mbg.generated-->
     id, create_time, update_time, create_user, update_user, `name`, role_id
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminPermissionExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermissionExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -103,14 +103,14 @@
     delete from admin_permission
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminPermissionExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermissionExample">
     <!--@mbg.generated-->
     delete from admin_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermission" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into admin_permission (create_time, update_time, create_user, 
       update_user, `name`, role_id
@@ -119,7 +119,7 @@
       #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermission" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into admin_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -163,7 +163,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminPermissionExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermissionExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from admin_permission
     <if test="_parameter != null">
@@ -214,7 +214,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermission">
     <!--@mbg.generated-->
     update admin_permission
     <set>
@@ -239,7 +239,7 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermission">
     <!--@mbg.generated-->
     update admin_permission
     set create_time = #{createTime,jdbcType=TIMESTAMP},

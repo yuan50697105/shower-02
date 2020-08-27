@@ -1,6 +1,6 @@
 package com.idea.shower.admin.order.dao;
 
-import com.idea.shower.app.db.module.pojo.OrderInfo;
+import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 

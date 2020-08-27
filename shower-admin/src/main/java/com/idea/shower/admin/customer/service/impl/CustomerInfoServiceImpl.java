@@ -3,7 +3,7 @@ package com.idea.shower.admin.customer.service.impl;
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.customer.pojo.CustomerInfoVo;
 import com.idea.shower.admin.customer.service.CustomerInfoService;
-import com.idea.shower.app.db.module.dao.CustomerInfoDao;
+import com.idea.shower.db.mybaits.module.dao.CustomerInfoDao;
 import lombok.Data;
 import org.springframework.stereotype.Service;
 

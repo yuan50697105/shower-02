@@ -2,7 +2,7 @@ package com.idea.shower.admin.admin.service;
 
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.admin.pojo.AdminRoleVO;
-import com.idea.shower.app.db.module.pojo.query.AdminRoleQuery;
+import com.idea.shower.db.mybaits.module.pojo.query.AdminRoleQuery;
 
 import java.util.List;
 

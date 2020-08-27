@@ -1,7 +1,7 @@
 package com.idea.shower.admin.area.service;
 
 import com.idea.shower.admin.area.dto.AreaBuildingDTO;
-import com.idea.shower.app.db.module.pojo.AreaBuilding;
+import com.idea.shower.db.mybaits.module.pojo.AreaBuilding;
 import io.renren.common.service.CrudService;
 
 /**

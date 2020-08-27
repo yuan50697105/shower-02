@@ -2,7 +2,7 @@ package com.idea.shower.admin.device.service;
 
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
-import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
+import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 
 import java.util.List;
 

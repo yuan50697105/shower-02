@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.idea.shower.admin.area.dao.AreaBuildingDao;
 import com.idea.shower.admin.area.dto.AreaBuildingDTO;
 import com.idea.shower.admin.area.service.AreaBuildingService;
-import com.idea.shower.app.db.module.pojo.AreaBuilding;
+import com.idea.shower.db.mybaits.module.pojo.AreaBuilding;
 import io.renren.common.service.impl.CrudServiceImpl;
 import org.springframework.stereotype.Service;
 

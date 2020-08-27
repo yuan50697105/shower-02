@@ -4,7 +4,7 @@ import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
-import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
+import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

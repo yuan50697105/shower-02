@@ -1,6 +1,6 @@
 package com.idea.shower.admin.customer.pojo;
 
-import com.idea.shower.app.db.module.pojo.CustomerInfo;
+import com.idea.shower.db.mybaits.module.pojo.CustomerInfo;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

@@ -3,7 +3,7 @@ package com.idea.shower.admin.area.controller;
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.area.pojo.AreaInfoVo;
 import com.idea.shower.admin.area.service.AreaInfoService;
-import com.idea.shower.app.db.module.pojo.query.AreaInfoQuery;
+import com.idea.shower.db.mybaits.module.pojo.query.AreaInfoQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

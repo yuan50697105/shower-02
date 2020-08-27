@@ -3,7 +3,7 @@ package com.idea.shower.admin.admin.controller;
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.admin.pojo.AdminUserVO;
 import com.idea.shower.admin.admin.service.AdminUserService;
-import com.idea.shower.app.db.module.pojo.query.AdminUserQuery;
+import com.idea.shower.db.mybaits.module.pojo.query.AdminUserQuery;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.validation.annotation.Validated;
