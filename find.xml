@@ -7,7 +7,7 @@
     <option name="LOCAL_CASE_SENSITIVE_SEARCH" value="true" />
     <option name="LOCAL_REGULAR_EXPRESSIONS" value="true" />
     <option name="SEARCH_SCOPE" value="All Places" />
-    <option name="FILE_MASK" value="*.java" />
+    <option name="FILE_MASK" value="*.gradle" />
     <mask>*.html</mask>
     <mask>*.xml</mask>
     <mask>*.properties</mask>
@@ -16,5 +16,6 @@
     <mask>*.vue</mask>
     <mask>*.css</mask>
     <mask>*.java</mask>
+    <mask>*.gradle</mask>
   </component>
 </application>
