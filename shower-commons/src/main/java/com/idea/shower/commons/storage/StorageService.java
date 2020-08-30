@@ -2,6 +2,7 @@ package com.idea.shower.commons.storage;
 
 import com.idea.shower.commons.utils.CharUtil;
 import org.springframework.core.io.Resource;
+import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
 import java.nio.file.Path;

@@ -60,4 +60,13 @@ public interface DeviceInfoService {
     Result<?> list(DeviceInfoQuery query);
 
     Result<?> delete(List<Long> id);
+
+    /**
+     * @Description 
+     * @Param 生成二维码图片
+     * @Author finch
+     * @Date 2020/8/30 12:36
+     **/
+    
+    Result<?> QRCode(DeviceInfoVo deviceInfoVo);
 }

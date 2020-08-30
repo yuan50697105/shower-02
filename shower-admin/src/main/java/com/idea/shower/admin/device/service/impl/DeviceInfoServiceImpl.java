@@ -8,11 +8,14 @@ import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.app.db.module.dao.DeviceInfoDao;
 import com.idea.shower.app.db.module.pojo.DeviceInfo;
 import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
+import com.idea.shower.commons.qcode.QCodeService;
 import com.idea.shower.db.mybaits.pojo.PageResult;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -28,6 +31,8 @@ import java.util.Optional;
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class DeviceInfoServiceImpl implements DeviceInfoService {
     private final DeviceInfoDao deviceInfoDao;
+
+    private QCodeService qCodeService;
 
 
     /**
@@ -100,6 +105,13 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     public Result<?> delete(List<Long> id) {
         id.forEach(this::delete);
         return ResultInfo.success();
+    }
+
+    @Override
+    public Result<?> QRCode(DeviceInfoVo deviceInfoVo) {
+        String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getAreaName());
+        System.out.println(url);
+        return null;
     }
 
     /**

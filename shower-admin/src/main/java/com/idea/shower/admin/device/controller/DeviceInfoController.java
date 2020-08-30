@@ -59,5 +59,9 @@ public class DeviceInfoController {
         return deviceInfoService.list(query);
     }
 
+    @PostMapping({"", "/QRCode"})
+    public Result<?> QRCode(@RequestBody DeviceInfoVo deviceInfoVo) {
+        return deviceInfoService.QRCode(deviceInfoVo);
+    }
 
 }
