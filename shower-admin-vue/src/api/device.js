@@ -45,3 +45,11 @@ export function listDevice(data) {
     params: data
   })
 }
+
+export function QRCode(data) {
+  return request({
+    uri: `/device/info/QRCode`,
+    method: 'post',
+    data
+  })
+}

@@ -36,9 +36,11 @@
         <el-table-column prop="runStatus" label="运行状态" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('update') }}</el-button>
+            <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('info') }}</el-button>
             <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">{{ $t('update') }}</el-button>
             <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">{{ $t('delete') }}</el-button>
+            <el-button type="text" size="small" @click="QRCode(scope.row)">二维码</el-button>
+            <el-button type="text" size="small" @click="QRCode2(scope.row)">二维码2</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -63,6 +65,7 @@
 import mixinViewModule from '@/mixins/view-module'
 import AddOrUpdate from './deviceinfo-add-or-update'
 import viewInfo from './deviceinfo-view-info'
+import { QRCode } from '@/api/device'
 
 export default {
   components: {
@@ -81,6 +84,21 @@ export default {
       dataForm: {
         id: ''
       }
+    }
+  },
+  methods: {
+    async QRCode(row) {
+      console.log(row)
+      const data = {
+        id: row.id,
+        deviceName: row.deviceName,
+        picture: row.picture
+      }
+      const res = await QRCode(data)
+      console.log(res)
+    },
+    async QRCode2(row) {
+      console.log(row)
     }
   }
 }

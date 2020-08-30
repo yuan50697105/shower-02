@@ -20,7 +20,7 @@ public class QCodeService {
     private final Log logger = LogFactory.getLog(QCodeService.class);
     @Autowired
     WxMaService wxMaService;
-    @Autowired
+
     private StorageService storageService;
 
 
