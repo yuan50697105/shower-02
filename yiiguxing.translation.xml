@@ -1,6 +1,7 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="disjunction" />
       <item value="总价" />
       <item value="promote Transitive Dependencies" />
       <item value="g.springframework.beans.BeanInstantiationException: Failed to instantiate [cn.binarywang.wx.miniapp.api.WxMaService]: Factory method 'service' threw exception; nested exception is java.lang.NullPointerException" />
@@ -10,8 +11,8 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="6" />
-        <entry key="ENGLISH" value="7" />
+        <entry key="CHINESE" value="7" />
+        <entry key="ENGLISH" value="8" />
       </map>
     </option>
   </component>
