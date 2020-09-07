@@ -145,9 +145,9 @@ Page({
     }, 'POST').then(function (res) {
       console.log(res)
       if (res.code === 200) {
-        if (res.data.data != undefined){
+        if (res.data.list != undefined){
           that.setData({
-            dataList: that.data.dataList.concat(res.data.data),
+            dataList: that.data.dataList.concat(res.data.list),
             totalPages: res.data.totalPages
           });
         }

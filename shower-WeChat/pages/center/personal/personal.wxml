@@ -32,9 +32,9 @@
                <view>余额</view>
                <view class='remark'>￥0</view>
           </view>
-          <view class='right'><text class='opr'>查看</text>
+          <!-- <view class='right'><text class='opr'>查看</text>
             <image src='/static/image/icon/right.png' style='width:22px;height:12px;'></image>
-          </view>
+          </view> -->
      </view>
      <view class='line'></view>
      <view class='item'>
