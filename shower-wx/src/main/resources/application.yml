@@ -2,6 +2,10 @@ server:
   port: 8002
   servlet:
     context-path: /
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:4462608_www.yuan50697105.top.pfx
+    key-store-password: f1qw1JhG
 spring:
   profiles:
     active: dbconfig,wx,mvc,redis,commons,iot
