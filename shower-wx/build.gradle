@@ -18,5 +18,7 @@ dependencies {
     compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile('org.apache.commons:commons-pool2:2.8.1')
+    compile('redis.clients:jedis:3.3.0')
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }
