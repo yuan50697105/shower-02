@@ -125,7 +125,7 @@
 </template>
 
 <script>
-import BackToTop from '@/components/BackToTop'
+import BackToTop from '@/components/BackToTop/index'
 
 export default {
   name: 'BackToTopDemo',

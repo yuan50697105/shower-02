@@ -13,17 +13,17 @@
 </template>
 
 <script>
-import ElDragSelect from '@/components/DragSelect' // base on element-ui
+import ElDragSelect from '@/components/DragSelect/index' // base on element-ui
 
 export default {
-  name: 'DragSelectDemo',
-  components: { ElDragSelect },
-  data() {
-    return {
-      value: ['Apple', 'Banana', 'Orange'],
-      options: [{
-        value: 'Apple',
-        label: 'Apple'
+ name: 'DragSelectDemo',
+ components: {ElDragSelect},
+ data() {
+  return {
+   value: ['Apple', 'Banana', 'Orange'],
+   options: [{
+    value: 'Apple',
+    label: 'Apple'
       }, {
         value: 'Banana',
         label: 'Banana'

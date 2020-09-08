@@ -2,14 +2,14 @@ import request from '@/utils/request'
 
 export function deleteDevice(id) {
   return request({
-    uri: `/device/info/delete/${id}`,
+    url: `/device/info/delete/${id}`,
     method: 'delete'
   })
 }
 
 export function addDevice(data) {
   return request({
-    uri: `/device/info/add`,
+    url: `/device/info/add`,
     method: 'post',
     data
   })
@@ -17,7 +17,7 @@ export function addDevice(data) {
 
 export function modifyDevice(data) {
   return request({
-    uri: `/device/info/modify`,
+    url: `/device/info/modify`,
     method: 'put',
     data
   })
@@ -25,14 +25,14 @@ export function modifyDevice(data) {
 
 export function getDevice(id) {
   return request({
-    uri: `/device/info/${id}`,
+    url: `/device/info/${id}`,
     method: 'get'
   })
 }
 
 export function pageDevice(data) {
   return request({
-    uri: `/device/info/data`,
+    url: `/device/info/data`,
     method: 'get',
     params: data
   })

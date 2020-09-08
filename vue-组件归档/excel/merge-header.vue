@@ -46,18 +46,18 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
-import { parseTime } from '@/utils'
+import {fetchList} from '@/api/article'
+import {parseTime} from '@/utils'
 
 export default {
-  name: 'MergeHeader',
-  data() {
-    return {
-      list: null,
-      listLoading: true,
-      downloadLoading: false
-    }
-  },
+ name: 'MergeHeader',
+ data() {
+  return {
+   list: null,
+   listLoading: true,
+   downloadLoading: false
+  }
+ },
   created() {
     this.fetchData()
   },

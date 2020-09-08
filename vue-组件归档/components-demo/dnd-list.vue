@@ -10,18 +10,18 @@
 </template>
 
 <script>
-import DndList from '@/components/DndList'
-import { fetchList } from '@/api/article'
+import DndList from '@/components/DndList/index'
+import {fetchList} from '@/api/article'
 
 export default {
-  name: 'DndListDemo',
-  components: { DndList },
-  data() {
-    return {
-      list1: [],
-      list2: []
-    }
-  },
+ name: 'DndListDemo',
+ components: {DndList},
+ data() {
+  return {
+   list1: [],
+   list2: []
+  }
+ },
   created() {
     this.getData()
   },
