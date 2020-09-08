@@ -19,17 +19,17 @@
 
 <script>
 import clip from '@/utils/clipboard' // use clipboard directly
-import clipboard from '@/directive/clipboard/index.js' // use clipboard by v-directive
+import clipboard from '@/directive/clipboard' // use clipboard by v-directive
 
 export default {
-  name: 'ClipboardDemo',
-  directives: {
-    clipboard
-  },
-  data() {
-    return {
-      activeName: 'directly',
-      inputData: 'https://github.com/PanJiaChen/vue-element-admin'
+ name: 'ClipboardDemo',
+ directives: {
+  clipboard
+ },
+ data() {
+  return {
+   activeName: 'directly',
+   inputData: 'https://github.com/PanJiaChen/vue-element-admin'
     }
   },
   methods: {

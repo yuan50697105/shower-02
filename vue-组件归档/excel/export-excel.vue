@@ -45,18 +45,18 @@
 </template>
 
 <script>
-import { fetchList } from '@/api/article'
-import { parseTime } from '@/utils'
+import {fetchList} from '@/api/article'
+import {parseTime} from '@/utils'
 // options components
 import FilenameOption from './components/FilenameOption'
 import AutoWidthOption from './components/AutoWidthOption'
 import BookTypeOption from './components/BookTypeOption'
 
 export default {
-  name: 'ExportExcel',
-  components: { FilenameOption, AutoWidthOption, BookTypeOption },
-  data() {
-    return {
+ name: 'ExportExcel',
+ components: {FilenameOption, AutoWidthOption, BookTypeOption},
+ data() {
+  return {
       list: null,
       listLoading: true,
       downloadLoading: false,
