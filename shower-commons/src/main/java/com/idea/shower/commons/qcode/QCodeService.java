@@ -53,21 +53,21 @@ public class QCodeService {
     /**
      * 创建商品分享图
      *
-     * @param goodId
-     * @param goodPicUrl
-     * @param goodName
+     * @param deviceId
+     * @param deviceIdPicUrl
+     * @param deviceIdName
      */
-    public String createGoodShareImage(String goodId, String goodPicUrl, String goodName) {
+    public String createGoodShareImage(String deviceId, String deviceIdPicUrl, String deviceIdName) {
         try {
             //创建该商品的二维码
-            File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("goods," + goodId, "pages/index/index");
+            File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages/device/device");
             FileInputStream inputStream = new FileInputStream(file);
             //将商品图片，商品名字,商城名字画到模版图中
-            byte[] imageData = drawPicture(inputStream, goodPicUrl, goodName);
+            byte[] imageData = drawPicture(inputStream, "https://www.yuan50697105.top:8080/img"+deviceIdPicUrl, deviceIdName);
             ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
             //存储分享图
             String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
-                    getKeyName(goodId));
+                    getKeyName(deviceId));
 
             return url;
         } catch (WxErrorException e) {

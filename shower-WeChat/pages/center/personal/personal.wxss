@@ -1,7 +1,7 @@
 .amountBg{
      height: 200px;
      /* background-color: #64c5fd; */
-     background-image: url("http://123.56.78.153:8002/img/01.jpg");
+     background-image: url("https://www.yuan50697105.top:8002/img/01.jpg");
      display: flex;
      flex-direction: column;
      align-items: left;

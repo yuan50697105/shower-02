@@ -38,11 +38,14 @@ Page({
       //这个scene的值存在则证明首页的开启来源于朋友圈分享的图,同时可以通过获取到的goodId的值跳转导航到对应的详情页
       var scene = decodeURIComponent(options.scene);
       console.log("scene:" + scene);
+      let info_arr = [];
+      info_arr = scene.split(',');
+      let _type = info_arr[0];
+      let id = info_arr[1];
 
-
-      if (_type == 'goods') {
+      if (_type == 'device') {
         wx.navigateTo({
-          url: '../goods/goods?id=' + id
+          url: "/pages/deviceDetail/deviceDetail?id=" + id
         });
       }
     }
