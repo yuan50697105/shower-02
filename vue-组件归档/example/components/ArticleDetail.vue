@@ -76,23 +76,23 @@
 </template>
 
 <script>
-import Tinymce from '@/components/Tinymce'
+import Tinymce from '@/components/Tinymce/index'
 import Upload from '@/components/Upload/SingleImage3'
-import MDinput from '@/components/MDinput'
-import Sticky from '@/components/Sticky' // 粘性header组件
-import { validURL } from '@/utils/validate'
-import { fetchArticle } from '@/api/article'
-import { searchUser } from '@/api/remote-search'
+import MDinput from '@/components/MDinput/index'
+import Sticky from '@/components/Sticky/index' // 粘性header组件
+import {validURL} from '@/utils/validate'
+import {fetchArticle} from '@/api/article'
+import {searchUser} from '@/api/remote-search'
 import Warning from './Warning'
-import { CommentDropdown, PlatformDropdown, SourceUrlDropdown } from './Dropdown'
+import {CommentDropdown, PlatformDropdown, SourceUrlDropdown} from './Dropdown'
 
 const defaultForm = {
-  status: 'draft',
-  title: '', // 文章题目
-  content: '', // 文章内容
-  content_short: '', // 文章摘要
-  source_uri: '', // 文章外链
-  image_uri: '', // 文章图片
+ status: 'draft',
+ title: '', // 文章题目
+ content: '', // 文章内容
+ content_short: '', // 文章摘要
+ source_uri: '', // 文章外链
+ image_uri: '', // 文章图片
   display_time: undefined, // 前台展示时间
   id: undefined,
   platforms: ['a-platform'],
