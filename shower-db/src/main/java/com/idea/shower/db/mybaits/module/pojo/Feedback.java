@@ -1,9 +1,12 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import lombok.*;
-
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 用户反馈
@@ -14,11 +17,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Feedback extends BaseDbEntity {
-    /**
-     * id
-     */
-    private Long id;
-
     /**
      * 创建时间
      */

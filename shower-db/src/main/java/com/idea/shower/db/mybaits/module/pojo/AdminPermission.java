@@ -1,9 +1,12 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import lombok.*;
-
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 管理员权限
@@ -15,31 +18,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class AdminPermission extends BaseDbEntity {
     /**
-     * id
-     */
-    private Long id;
-
-    /**
-     * createTime
-     */
-    private Date createDate;
-
-    /**
-     * updateTime
-     */
-    private Date updateDate;
-
-    /**
-     * createUser
-     */
-    private Long creator;
-
-    /**
-     * updateUser
-     */
-    private Long updater;
-
-    /**
      * name
      */
     private String name;
@@ -48,6 +26,4 @@ public class AdminPermission extends BaseDbEntity {
      * 角色ID
      */
     private Long roleId;
-
-    private String delFlag;
 }

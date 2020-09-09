@@ -1,9 +1,12 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import lombok.*;
-
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 设备订单信息（旧）
@@ -14,33 +17,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeviceOrderInfo extends BaseDbEntity {
-    /**
-     * id
-     */
-    private Long id;
-
-    /**
-     * createTime
-     */
-    private Date createDate;
-
-    /**
-     * updateTime
-     */
-    private Date updateDate;
-
-    /**
-     * createUser
-     */
-    private Long creator;
-
-    /**
-     * updateUser
-     */
-    private Long updater;
-
-    private String delFlag;
-
     /**
      * 设备ID
      */

@@ -1,9 +1,12 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import lombok.*;
-
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 设备运行日志
@@ -14,30 +17,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeviceRunningLog extends BaseDbEntity {
-    /**
-     * id
-     */
-    private Long id;
-
-    /**
-     * 创建时间
-     */
-    private Date createDate;
-
-    /**
-     * 更新时间
-     */
-    private Date updateDate;
-
-    /**
-     * 创建人
-     */
-    private Long creator;
-
-    private Long updater;
-
-    private String delFlag;
-
     /**
      * 设备ID
      */

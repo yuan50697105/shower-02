@@ -1,16 +1,14 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.AdminRoute;
 import com.idea.shower.db.mybaits.module.pojo.AdminRouteExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 @Mapper
-public interface AdminRouteMapper extends BaseDaoMapper, BaseMapper<AdminRoute> {
+public interface AdminRouteMapper extends BaseDaoMapper {
     long countByExample(AdminRouteExample example);
 
     int deleteByExample(AdminRouteExample example);

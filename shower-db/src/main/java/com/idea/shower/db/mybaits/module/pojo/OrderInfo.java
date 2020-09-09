@@ -1,10 +1,13 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import lombok.*;
-
 import java.math.BigDecimal;
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * order_info
@@ -15,33 +18,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderInfo extends BaseDbEntity {
-    /**
-     * id
-     */
-    private Long id;
-
-    /**
-     * 创建时间
-     */
-    private Date createDate;
-
-    /**
-     * 修改时间
-     */
-    private Date updateDate;
-
-    /**
-     * 创建人
-     */
-    private Long creator;
-
-    /**
-     * 修改人
-     */
-    private Long updater;
-
-    private String delFlag;
-
     /**
      * 订单编号
      */

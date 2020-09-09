@@ -1,9 +1,12 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import lombok.*;
-
 import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * 管理员用户角色关联
@@ -14,33 +17,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminUserRole extends BaseDbEntity {
-    /**
-     * id
-     */
-    private Long id;
-
-    /**
-     * createTime
-     */
-    private Date createDate;
-
-    /**
-     * updateTime
-     */
-    private Date updateDate;
-
-    /**
-     * createUser
-     */
-    private String creator;
-
-    /**
-     * updateUser
-     */
-    private String updater;
-
-    private String delFlag;
-
     /**
      * userId
      */

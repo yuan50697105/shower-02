@@ -1,16 +1,14 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.MemberInfo;
 import com.idea.shower.db.mybaits.module.pojo.MemberInfoExample;
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import java.util.List;
-
 @Mapper
-public interface MemberInfoMapper extends BaseDaoMapper, BaseMapper<MemberInfo> {
+public interface MemberInfoMapper extends BaseDaoMapper {
     long countByExample(MemberInfoExample example);
 
     int deleteByExample(MemberInfoExample example);
