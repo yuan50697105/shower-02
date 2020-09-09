@@ -95,6 +95,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         orderItemDao.batchSave(orderItems);
         DeviceOrder deviceOrder = createDeviceOrder(deviceInfo, orderInfo);
         deviceOrderDao.insert(deviceOrder);
+        type= OrderInfoConstants.OrderType.COMMONS;
         switch (type) {
             case OrderInfoConstants.OrderType.COMMONS:
                 // TODO: 2020/4/20 开启房间
