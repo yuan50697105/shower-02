@@ -5,16 +5,15 @@ import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
+import com.idea.shower.commons.qcode.QCodeService;
 import com.idea.shower.db.mybaits.base.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.StringUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,11 +25,14 @@ import java.util.Optional;
  * @create: 2020-08-02 16:58
  */
 @Service
-@AllArgsConstructor
+//@AllArgsConstructor
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 public class DeviceInfoServiceImpl implements DeviceInfoService {
-    private final DeviceInfoDao deviceInfoDao;
 
+    @Autowired
+    private DeviceInfoDao deviceInfoDao;
+
+    @Autowired(required = false)
     private QCodeService qCodeService;
 
 

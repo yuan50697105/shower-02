@@ -291,7 +291,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     private boolean checkOrderCancel(OrderInfo orderInfo) {
         Date date = new Date();
-        Date createTime = orderInfo.getCreateTime();
+        Date createTime = orderInfo.getCreateDate();
         return DateUtil.between(createTime, date, DateUnit.MINUTE) <= CANCEL_TIME_OUT;
     }
 
@@ -371,7 +371,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         deviceOrder.setUnionId(orderInfo.getCustomerUnionId());
         deviceOrder.setOpenId(orderInfo.getCustomerOpenId());
         deviceOrder.setStatus(orderInfo.getStatus());
-        deviceOrder.setStartTime(orderInfo.getCreateTime());
+        deviceOrder.setStartTime(orderInfo.getCreateDate());
         deviceOrder.setEndTime(null);
         return deviceOrder;
     }

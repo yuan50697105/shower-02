@@ -1,6 +1,8 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
+import cn.hutool.core.util.StrUtil;
 import com.idea.shower.app.wx.mp.service.WxDeviceInfoService;
+import com.idea.shower.commons.utils.ResourceFileUtils;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
@@ -21,6 +23,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
     private final DeviceInfoDao deviceInfoDao;
+    private final ResourceFileUtils resourceFileUtils;
     /**
     *@Author finch
     *@Description 获取设备列表
@@ -34,6 +37,8 @@ public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
     @Override
     public Result sendInfo(String l) {
         Optional<DeviceInfo> deviceInfo = deviceInfoDao.getById(Long.valueOf(l));
+        DeviceInfo info = deviceInfo.get();
+        info.setPicture(resourceFileUtils.filePath(StrUtil.isNotBlank(info.getPicture()) ? info.getPicture() : ""));
         return ResultUtils.ok().setData(deviceInfo.get());
     }
 }

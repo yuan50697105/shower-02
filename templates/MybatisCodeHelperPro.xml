@@ -1,0 +1,6 @@
+<templateSet group="MybatisCodeHelperPro">
+  <template name="cd" value="&lt;![CDATA[$var1$]]&gt;$END$" description="add cdata in current position" toReformat="true" toShortenFQNames="false">
+    <variable name="var1" expression="sql" defaultValue="" alwaysStopAt="true" />
+    <context />
+  </template>
+</templateSet>

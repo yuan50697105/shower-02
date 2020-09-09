@@ -12,7 +12,7 @@ plugins {
 allprojects {
 
     group = 'com.idea.shower'
-    version = '1.0.0-M2'
+    version = '1.0.1'
     sourceCompatibility = '1.8'
     targetCompatibility = '1.8'
 
@@ -57,13 +57,15 @@ allprojects {
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
-        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.73'
-        compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.0.7.1'
-        implementation  fileTree(dir: 'lib', includes: ['*.jar'])
-        compile group: 'com.github.binarywang', name: 'weixin-java-miniapp', version: '3.8.9.B'
-        compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.11.0'
-        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.2.29'
-        compile group: 'com.qcloud', name: 'cos_api', version: '5.6.28'
+//        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.73'
+//        compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.0.7.1'
+//        compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.8.9.B'
+//        compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.8.9.B'
+//        implementation  fileTree(dir: 'lib', includes: ['*.jar'])
+//        compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.11.0'
+//        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.2.29'
+//        compile group: 'com.qcloud', name: 'cos_api', version: '5.6.28'
+
 
     }
     dependencyManagement{

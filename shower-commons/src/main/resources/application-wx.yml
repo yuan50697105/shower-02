@@ -6,6 +6,9 @@ wx:
     msg-data-format: JSON
     secret: 644430f1be8a368731e3f9ba947d28c7
     token:
+    config-storage:
+      type: memory
+      http-client-type: httpclient
   #  商户平台
   pay:
     app-id: wx4f688d98fef66fac
@@ -14,4 +17,4 @@ wx:
     mch-key: zhihuizhixiang2020zhihuizhixiang
     sub-app-id:
     sub-mch-id:
-    url: http://123.56.78.153:8002/wx/order/notify
+    url: https://www.yuan50697105.top:8002/wx/order/notify

@@ -1,6 +1,7 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.idea.shower.db.mybaits.commons.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfoExample;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
@@ -10,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface DeviceInfoMapper extends BaseMapper {
+public interface DeviceInfoMapper extends BaseDaoMapper, BaseMapper<DeviceInfo> {
     long countByExample(DeviceInfoExample example);
 
     int deleteByExample(DeviceInfoExample example);

@@ -1,6 +1,5 @@
-
 wx:
-#  小程序
+  #  小程序
   miniapp:
     appid: wx4f688d98fef66fac
     aes-key:
@@ -18,4 +17,4 @@ wx:
     mch-key: zhihuizhixiang2020zhihuizhixiang
     sub-app-id:
     sub-mch-id:
-    url: http://123.56.78.153:8002/wx/order/notify
+    url: https://www.yuan50697105.top:8002/wx/order/notify
