@@ -61,7 +61,7 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     }
 
     @Override
-    public Optional<DeviceInfo> getByCode(String code) {
+    public Optional<DeviceInfo> getByCodeOpt(String code) {
         return Optional.ofNullable(baseMapper().selectOneByCode(code));
     }
 

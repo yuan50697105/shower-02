@@ -540,10 +540,10 @@
         <result column="use_start_time" property="useStartTime" />
         <result column="use_end_time" property="useEndTime" />
         <result column="picture" property="picture" />
-        <result column="create_date" property="createTime" />
-        <result column="update_date" property="updateTime" />
-        <result column="creator" property="createUser" />
-        <result column="updater" property="updateUser" />
+        <result column="create_date" property="createDate" />
+        <result column="update_date" property="updateDate" />
+        <result column="creator" property="creator" />
+        <result column="updater" property="updater" />
     </resultMap>
     <select id="selectOrderInfoDeviceVOListByOrderNo" resultMap="OrderInfoDeviceVO">
         select o.id,

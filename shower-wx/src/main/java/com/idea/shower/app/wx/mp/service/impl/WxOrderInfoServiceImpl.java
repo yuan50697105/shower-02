@@ -410,7 +410,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param orderInfo 订单信息
      */
     private void addExtOrderItemPriceInfo(OrderInfo orderInfo, Date startTime, Date endTime, Double waterUse) {
-        DeviceInfo deviceInfo = deviceInfoDao.getByCode(orderInfo.getDeviceCode()).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
+        DeviceInfo deviceInfo = deviceInfoDao.getByCodeOpt(orderInfo.getDeviceCode()).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
         PriceInfo priceInfo = priceInfoDao.getRenewalPriceByPriceCodeOpt(deviceInfo.getPriceCode()).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxPriceNotFoundError()));
         OrderItem orderItem = new OrderItem();
         orderItem.setOrderId(orderInfo.getId());

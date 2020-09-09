@@ -47,7 +47,7 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
      * @param code 设备编号
      * @return 设备新
      */
-    Optional<DeviceInfo> getByCode(String code);
+    Optional<DeviceInfo> getByCodeOpt(String code);
 
     /**
      * 获取可用设备信息
