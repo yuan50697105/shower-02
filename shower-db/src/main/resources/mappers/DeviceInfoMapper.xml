@@ -5,10 +5,11 @@
     <!--@mbg.generated-->
     <!--@Table device_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="updater" jdbcType="BIGINT" property="updater" />
+    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
     <result column="code" jdbcType="VARCHAR" property="code" />
     <result column="product_key" jdbcType="VARCHAR" property="productKey" />
     <result column="device_name" jdbcType="VARCHAR" property="deviceName" />
@@ -86,7 +87,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, code, product_key, device_name, 
+    id, create_date, update_date, updater, creator, del_flag, code, product_key, device_name, 
     `type`, price_code, enabled, longitude, latitude, area_id, area_name, building_id, 
     building_name, picture, run_status
   </sql>
@@ -126,36 +127,39 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into device_info (create_time, update_time, create_user, 
-      update_user, code, product_key, 
-      device_name, `type`, price_code, 
-      enabled, longitude, latitude, 
-      area_id, area_name, building_id, 
-      building_name, picture, run_status
-      )
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, #{productKey,jdbcType=VARCHAR}, 
-      #{deviceName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{priceCode,jdbcType=VARCHAR}, 
-      #{enabled,jdbcType=INTEGER}, #{longitude,jdbcType=DOUBLE}, #{latitude,jdbcType=DOUBLE}, 
-      #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, #{buildingId,jdbcType=BIGINT}, 
-      #{buildingName,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, #{runStatus,jdbcType=INTEGER}
-      )
+    insert into device_info (create_date, update_date, updater, 
+      creator, del_flag, code, 
+      product_key, device_name, `type`, 
+      price_code, enabled, longitude, 
+      latitude, area_id, area_name, 
+      building_id, building_name, picture, 
+      run_status)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{updater,jdbcType=BIGINT}, 
+      #{creator,jdbcType=BIGINT}, #{delFlag,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{productKey,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{priceCode,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, #{longitude,jdbcType=DOUBLE}, 
+      #{latitude,jdbcType=DOUBLE}, #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
+      #{buildingId,jdbcType=BIGINT}, #{buildingName,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{runStatus,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into device_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        create_time,
+      <if test="createDate != null">
+        create_date,
       </if>
-      <if test="updateTime != null">
-        update_time,
+      <if test="updateDate != null">
+        update_date,
       </if>
-      <if test="createUser != null">
-        create_user,
+      <if test="updater != null">
+        updater,
       </if>
-      <if test="updateUser != null">
-        update_user,
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
       </if>
       <if test="code != null">
         code,
@@ -201,17 +205,20 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        #{updater,jdbcType=BIGINT},
       </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
@@ -271,17 +278,20 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createUser != null">
-        create_user = #{record.createUser,jdbcType=VARCHAR},
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=BIGINT},
       </if>
-      <if test="record.updateUser != null">
-        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=BIGINT},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=VARCHAR},
       </if>
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
@@ -334,10 +344,11 @@
     <!--@mbg.generated-->
     update device_info
     set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      create_user = #{record.createUser,jdbcType=VARCHAR},
-      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      updater = #{record.updater,jdbcType=BIGINT},
+      creator = #{record.creator,jdbcType=BIGINT},
+      del_flag = #{record.delFlag,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
       product_key = #{record.productKey,jdbcType=VARCHAR},
       device_name = #{record.deviceName,jdbcType=VARCHAR},
@@ -360,17 +371,20 @@
     <!--@mbg.generated-->
     update device_info
     <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        updater = #{updater,jdbcType=BIGINT},
       </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=VARCHAR},
       </if>
       <if test="code != null">
         code = #{code,jdbcType=VARCHAR},
@@ -420,10 +434,11 @@
   <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfo">
     <!--@mbg.generated-->
     update device_info
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_user = #{updateUser,jdbcType=VARCHAR},
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=BIGINT},
+      creator = #{creator,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=VARCHAR},
       code = #{code,jdbcType=VARCHAR},
       product_key = #{productKey,jdbcType=VARCHAR},
       device_name = #{deviceName,jdbcType=VARCHAR},

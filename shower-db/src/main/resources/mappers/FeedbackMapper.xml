@@ -338,6 +338,6 @@
                 and customer_id = #{query.customerId,jdbcType=BIGINT}
             </if>
         </where>
-        order by create_time desc
+        order by create_date desc
     </select>
 </mapper>

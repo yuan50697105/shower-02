@@ -3,7 +3,6 @@ package com.idea.shower.db.mybaits.module.pojo;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import lombok.*;
 
-import java.io.Serializable;
 import java.util.Date;
 
 /**
@@ -14,7 +13,29 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class DeviceOrder extends BaseDbEntity implements Serializable {
+public class DeviceOrder extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_DATE = "create_date";
+    public static final String COL_UPDATE_DATE = "update_date";
+    public static final String COL_CREATOR = "creator";
+    public static final String COL_UPDATER = "updater";
+    public static final String COL_DEL_FLAG = "del_flag";
+    public static final String COL_DEVICE_ID = "device_id";
+    public static final String COL_DEVICE_CODE = "device_code";
+    public static final String COL_RANGE_CODE = "range_code";
+    public static final String COL_DEVICE_TYPE = "device_type";
+    public static final String COL_ORDER_ID = "order_id";
+    public static final String COL_ORDER_NO = "order_no";
+    public static final String COL_ORDER_TYPE = "order_type";
+    public static final String COL_CUSTOMER_ID = "customer_id";
+    public static final String COL_UNION_ID = "union_id";
+    public static final String COL_OPEN_ID = "open_id";
+    public static final String COL_STATUS = "status";
+    public static final String COL_START_TIME = "start_time";
+    public static final String COL_END_TIME = "end_time";
+    private static final long serialVersionUID = 1L;
+    private String delFlag;
+
     /**
      * 设备ID
      */
@@ -79,6 +100,4 @@ public class DeviceOrder extends BaseDbEntity implements Serializable {
      * 结束时间、离开时间
      */
     private Date endTime;
-
-    private static final long serialVersionUID = 1L;
 }

@@ -1,5 +1,7 @@
 package com.idea.shower.db.mybaits.commons.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.idea.shower.db.mybaits.commons.interceptor.annotation.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -18,15 +20,18 @@ import java.util.Date;
 @Accessors(chain = true)
 public class BaseDbEntity extends com.idea.shower.db.mybaits.base.pojo.BaseDbEntity {
     @Id
+    @TableId
     private Long id;
-    @CreateTime
-    private Date createTime;
-    @UpdateTime
-    private Date updateTime;
     @CreateUser
-    private String createUser;
+    private String creator;
     @UpdateUser
-    private String updateUser;
+    private String updater;
+    @CreateTime
+    private Date createDate;
+    @UpdateTime
+    private Date updateDate;
+    @TableLogic(delval = "1", value = "0")
+    private String del_flag;
 
 
 }

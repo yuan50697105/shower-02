@@ -3,7 +3,6 @@ package com.idea.shower.db.mybaits.module.pojo;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import lombok.*;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -15,7 +14,35 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderItem extends BaseDbEntity implements Serializable {
+public class OrderItem extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_DATE = "create_date";
+    public static final String COL_UPDATE_DATE = "update_date";
+    public static final String COL_CREATOR = "creator";
+    public static final String COL_UPDATER = "updater";
+    public static final String COL_DEL_FLAG = "del_flag";
+    public static final String COL_ORDER_ID = "order_id";
+    public static final String COL_ORDER_NO = "order_no";
+    public static final String COL_DEVICE_ID = "device_id";
+    public static final String COL_DEVICE_CODE = "device_code";
+    public static final String COL_DEVICE_TYPE = "device_type";
+    public static final String COL_PRICE_CODE = "price_code";
+    public static final String COL_PRICE_ID = "price_id";
+    public static final String COL_PRICE_TYPE = "price_type";
+    public static final String COL_TIME_PRICE = "time_price";
+    public static final String COL_TIME_INTERVAL = "time_interval";
+    public static final String COL_TIME_UNIT = "time_unit";
+    public static final String COL_START_TIME = "start_time";
+    public static final String COL_END_TIME = "end_time";
+    public static final String COL_TIME_USE = "time_use";
+    public static final String COL_WATER_PRICE = "water_price";
+    public static final String COL_WATER_INTERVAL = "water_interval";
+    public static final String COL_WATER_UNIT = "water_unit";
+    public static final String COL_WATER_USE = "water_use";
+    public static final String COL_TOTAL_PRICE = "total_price";
+    private static final long serialVersionUID = 1L;
+    private String delFlag;
+
     /**
      * 订单ID
      */
@@ -110,6 +137,4 @@ public class OrderItem extends BaseDbEntity implements Serializable {
      * 总价
      */
     private BigDecimal totalPrice;
-
-    private static final long serialVersionUID = 1L;
 }

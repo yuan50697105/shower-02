@@ -5,10 +5,11 @@
     <!--@mbg.generated-->
     <!--@Table order_info-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="updater" jdbcType="BIGINT" property="updater" />
+    <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
     <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
     <result column="type" jdbcType="INTEGER" property="type" />
     <result column="customer_id" jdbcType="BIGINT" property="customerId" />
@@ -84,7 +85,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, order_no, `type`, customer_id, 
+    id, create_date, update_date, creator, updater, del_flag, order_no, `type`, customer_id, 
     customer_open_id, customer_union_id, device_code, device_id, total_price, `status`, 
     use_start_time, use_end_time, transaction_id
   </sql>
@@ -124,34 +125,37 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into order_info (create_time, update_time, create_user, 
-      update_user, order_no, `type`, 
-      customer_id, customer_open_id, customer_union_id, 
-      device_code, device_id, total_price, 
-      `status`, use_start_time, use_end_time, 
-      transaction_id)
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
-      #{customerId,jdbcType=BIGINT}, #{customerOpenId,jdbcType=VARCHAR}, #{customerUnionId,jdbcType=VARCHAR}, 
-      #{deviceCode,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{totalPrice,jdbcType=DECIMAL}, 
-      #{status,jdbcType=INTEGER}, #{useStartTime,jdbcType=TIMESTAMP}, #{useEndTime,jdbcType=TIMESTAMP}, 
-      #{transactionId,jdbcType=VARCHAR})
+    insert into order_info (create_date, update_date, creator, 
+      updater, del_flag, order_no, 
+      `type`, customer_id, customer_open_id, 
+      customer_union_id, device_code, device_id, 
+      total_price, `status`, use_start_time, 
+      use_end_time, transaction_id)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{creator,jdbcType=BIGINT}, 
+      #{updater,jdbcType=BIGINT}, #{delFlag,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{customerId,jdbcType=BIGINT}, #{customerOpenId,jdbcType=VARCHAR}, 
+      #{customerUnionId,jdbcType=VARCHAR}, #{deviceCode,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
+      #{totalPrice,jdbcType=DECIMAL}, #{status,jdbcType=INTEGER}, #{useStartTime,jdbcType=TIMESTAMP}, 
+      #{useEndTime,jdbcType=TIMESTAMP}, #{transactionId,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into order_info
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        create_time,
+      <if test="createDate != null">
+        create_date,
       </if>
-      <if test="updateTime != null">
-        update_time,
+      <if test="updateDate != null">
+        update_date,
       </if>
-      <if test="createUser != null">
-        create_user,
+      <if test="creator != null">
+        creator,
       </if>
-      <if test="updateUser != null">
-        update_user,
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
       </if>
       <if test="orderNo != null">
         order_no,
@@ -191,17 +195,20 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
       </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        #{updater,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=VARCHAR},
       </if>
       <if test="orderNo != null">
         #{orderNo,jdbcType=VARCHAR},
@@ -255,17 +262,20 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createUser != null">
-        create_user = #{record.createUser,jdbcType=VARCHAR},
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=BIGINT},
       </if>
-      <if test="record.updateUser != null">
-        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=BIGINT},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=VARCHAR},
       </if>
       <if test="record.orderNo != null">
         order_no = #{record.orderNo,jdbcType=VARCHAR},
@@ -312,10 +322,11 @@
     <!--@mbg.generated-->
     update order_info
     set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      create_user = #{record.createUser,jdbcType=VARCHAR},
-      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=BIGINT},
+      updater = #{record.updater,jdbcType=BIGINT},
+      del_flag = #{record.delFlag,jdbcType=VARCHAR},
       order_no = #{record.orderNo,jdbcType=VARCHAR},
       `type` = #{record.type,jdbcType=INTEGER},
       customer_id = #{record.customerId,jdbcType=BIGINT},
@@ -336,17 +347,20 @@
     <!--@mbg.generated-->
     update order_info
     <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
       </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        updater = #{updater,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=VARCHAR},
       </if>
       <if test="orderNo != null">
         order_no = #{orderNo,jdbcType=VARCHAR},
@@ -390,10 +404,11 @@
   <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.OrderInfo">
     <!--@mbg.generated-->
     update order_info
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_user = #{updateUser,jdbcType=VARCHAR},
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=BIGINT},
+      updater = #{updater,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=VARCHAR},
       order_no = #{orderNo,jdbcType=VARCHAR},
       `type` = #{type,jdbcType=INTEGER},
       customer_id = #{customerId,jdbcType=BIGINT},
@@ -462,7 +477,7 @@
                 and type = #{query.type,jdbcType=INTEGER}
             </if>
         </where>
-        order by create_time desc
+        order by create_date desc
     </select>
 
     <!--auto generated by MybatisCodeHelper on 2020-04-10-->
@@ -480,10 +495,10 @@
     </update>
     <select id="selectOrderInfoDeviceVOListByCondition" resultMap="OrderInfoDeviceVO">
         select o.id,
-        o.create_time,
-        o.update_time,
-        o.create_user,
-        o.update_user,
+        o.create_date,
+        o.update_date,
+        o.creator,
+        o.updater,
         o.order_no,
         o.type,
         o.customer_id,
@@ -509,7 +524,7 @@
                 and o.type = #{query.type,jdbcType=INTEGER}
             </if>
         </where>
-        order by create_time desc
+        order by create_date desc
     </select>
     <resultMap id="OrderInfoDeviceVO" type="com.idea.shower.db.mybaits.module.pojo.vo.OrderInfoDeviceVO">
         <id column="id" property="id" />
@@ -525,17 +540,17 @@
         <result column="use_start_time" property="useStartTime" />
         <result column="use_end_time" property="useEndTime" />
         <result column="picture" property="picture" />
-        <result column="create_time" property="createTime" />
-        <result column="update_time" property="updateTime" />
-        <result column="create_user" property="createUser" />
-        <result column="update_user" property="updateUser" />
+        <result column="create_date" property="createTime" />
+        <result column="update_date" property="updateTime" />
+        <result column="creator" property="createUser" />
+        <result column="updater" property="updateUser" />
     </resultMap>
     <select id="selectOrderInfoDeviceVOListByOrderNo" resultMap="OrderInfoDeviceVO">
         select o.id,
-        o.create_time,
-        o.update_time,
-        o.create_user,
-        o.update_user,
+        o.create_date,
+        o.update_date,
+        o.creator,
+        o.updater,
         o.order_no,
         o.type,
         o.customer_id,

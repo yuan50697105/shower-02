@@ -5,10 +5,11 @@
     <!--@mbg.generated-->
     <!--@Table device_info_volume-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="updater" jdbcType="VARCHAR" property="updater" />
+    <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
     <result column="device_id" jdbcType="BIGINT" property="deviceId" />
     <result column="volume" jdbcType="DOUBLE" property="volume" />
   </resultMap>
@@ -74,7 +75,7 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, device_id, volume
+    id, create_date, update_date, creator, updater, del_flag, device_id, volume
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolumeExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -112,28 +113,31 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into device_info_volume (create_time, update_time, create_user, 
-      update_user, device_id, volume
-      )
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, #{volume,jdbcType=DOUBLE}
-      )
+    insert into device_info_volume (create_date, update_date, creator, 
+      updater, del_flag, device_id, 
+      volume)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{creator,jdbcType=VARCHAR}, 
+      #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=VARCHAR}, #{deviceId,jdbcType=BIGINT}, 
+      #{volume,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into device_info_volume
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        create_time,
+      <if test="createDate != null">
+        create_date,
       </if>
-      <if test="updateTime != null">
-        update_time,
+      <if test="updateDate != null">
+        update_date,
       </if>
-      <if test="createUser != null">
-        create_user,
+      <if test="creator != null">
+        creator,
       </if>
-      <if test="updateUser != null">
-        update_user,
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
       </if>
       <if test="deviceId != null">
         device_id,
@@ -143,17 +147,20 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=VARCHAR},
       </if>
       <if test="deviceId != null">
         #{deviceId,jdbcType=BIGINT},
@@ -177,17 +184,20 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createUser != null">
-        create_user = #{record.createUser,jdbcType=VARCHAR},
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=VARCHAR},
       </if>
-      <if test="record.updateUser != null">
-        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=VARCHAR},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=VARCHAR},
       </if>
       <if test="record.deviceId != null">
         device_id = #{record.deviceId,jdbcType=BIGINT},
@@ -204,10 +214,11 @@
     <!--@mbg.generated-->
     update device_info_volume
     set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      create_user = #{record.createUser,jdbcType=VARCHAR},
-      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=VARCHAR},
+      updater = #{record.updater,jdbcType=VARCHAR},
+      del_flag = #{record.delFlag,jdbcType=VARCHAR},
       device_id = #{record.deviceId,jdbcType=BIGINT},
       volume = #{record.volume,jdbcType=DOUBLE}
     <if test="_parameter != null">
@@ -218,17 +229,20 @@
     <!--@mbg.generated-->
     update device_info_volume
     <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        creator = #{creator,jdbcType=VARCHAR},
       </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        updater = #{updater,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=VARCHAR},
       </if>
       <if test="deviceId != null">
         device_id = #{deviceId,jdbcType=BIGINT},
@@ -242,10 +256,11 @@
   <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume">
     <!--@mbg.generated-->
     update device_info_volume
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_user = #{updateUser,jdbcType=VARCHAR},
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=VARCHAR},
+      updater = #{updater,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=VARCHAR},
       device_id = #{deviceId,jdbcType=BIGINT},
       volume = #{volume,jdbcType=DOUBLE}
     where id = #{id,jdbcType=BIGINT}

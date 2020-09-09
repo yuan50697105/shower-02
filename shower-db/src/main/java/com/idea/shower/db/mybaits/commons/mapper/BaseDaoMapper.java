@@ -8,5 +8,5 @@ import com.idea.shower.db.mybaits.base.mapper.BaseDbMapper;
  * @author: yuane
  * @create: 2020-01-20 16:26
  */
-public interface BaseMapper extends BaseDbMapper {
+public interface BaseDaoMapper extends BaseDbMapper {
 }

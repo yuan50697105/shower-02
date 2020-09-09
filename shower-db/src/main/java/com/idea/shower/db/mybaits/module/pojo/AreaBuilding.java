@@ -3,8 +3,6 @@ package com.idea.shower.db.mybaits.module.pojo;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import lombok.*;
 
-import java.io.Serializable;
-
 /**
  * 楼宇信息
  */
@@ -13,7 +11,19 @@ import java.io.Serializable;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class AreaBuilding extends BaseDbEntity implements Serializable {
+public class AreaBuilding extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_DATE = "create_date";
+    public static final String COL_UPDATE_DATE = "update_date";
+    public static final String COL_CREATOR = "creator";
+    public static final String COL_UPDATER = "updater";
+    public static final String COL_DEL_FLAG = "del_flag";
+    public static final String COL_NAME = "name";
+    public static final String COL_CODE = "code";
+    public static final String COL_AREA_ID = "area_id";
+    private static final long serialVersionUID = 1L;
+    private String delFlag;
+
     /**
      * 楼宇名称
      */
@@ -28,6 +38,4 @@ public class AreaBuilding extends BaseDbEntity implements Serializable {
      * 所属区域ID
      */
     private Long areaId;
-
-    private static final long serialVersionUID = 1L;
 }

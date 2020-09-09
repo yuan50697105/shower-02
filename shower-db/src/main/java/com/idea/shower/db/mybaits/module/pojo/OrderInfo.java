@@ -3,7 +3,6 @@ package com.idea.shower.db.mybaits.module.pojo;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import lombok.*;
 
-import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -15,7 +14,28 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderInfo extends BaseDbEntity implements Serializable {
+public class OrderInfo extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_DATE = "create_date";
+    public static final String COL_UPDATE_DATE = "update_date";
+    public static final String COL_CREATOR = "creator";
+    public static final String COL_UPDATER = "updater";
+    public static final String COL_DEL_FLAG = "del_flag";
+    public static final String COL_ORDER_NO = "order_no";
+    public static final String COL_TYPE = "type";
+    public static final String COL_CUSTOMER_ID = "customer_id";
+    public static final String COL_CUSTOMER_OPEN_ID = "customer_open_id";
+    public static final String COL_CUSTOMER_UNION_ID = "customer_union_id";
+    public static final String COL_DEVICE_CODE = "device_code";
+    public static final String COL_DEVICE_ID = "device_id";
+    public static final String COL_TOTAL_PRICE = "total_price";
+    public static final String COL_STATUS = "status";
+    public static final String COL_USE_START_TIME = "use_start_time";
+    public static final String COL_USE_END_TIME = "use_end_time";
+    public static final String COL_TRANSACTION_ID = "transaction_id";
+    private static final long serialVersionUID = 1L;
+    private String delFlag;
+
     /**
      * 订单编号
      */
@@ -75,6 +95,4 @@ public class OrderInfo extends BaseDbEntity implements Serializable {
      * 微信交易号
      */
     private String transactionId;
-
-    private static final long serialVersionUID = 1L;
 }

@@ -1,6 +1,7 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.idea.shower.db.mybaits.commons.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.AdminRole;
 import com.idea.shower.db.mybaits.module.pojo.AdminRoleExample;
 import com.idea.shower.db.mybaits.module.pojo.query.AdminRoleQuery;
@@ -11,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Mapper
-public interface AdminRoleMapper extends BaseMapper {
+public interface AdminRoleMapper extends BaseDaoMapper, BaseMapper<AdminRole> {
     long countByExample(AdminRoleExample example);
 
     int deleteByExample(AdminRoleExample example);
