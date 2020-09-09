@@ -9,7 +9,7 @@ import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;import org.a
 import org.apache.ibatis.annotations.Param;
 
 @Mapper
-public interface DeviceInfoMapper extends BaseDaoMapper, BaseMapper<DeviceInfo> {
+public interface DeviceInfoMapper extends BaseDaoMapper<DeviceInfo>, BaseMapper<DeviceInfo> {
     long countByExample(DeviceInfoExample example);
 
     int deleteByExample(DeviceInfoExample example);

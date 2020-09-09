@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface DeviceInfoVolumeMapper extends BaseDaoMapper, BaseMapper<DeviceInfoVolume> {
+public interface DeviceInfoVolumeMapper extends BaseDaoMapper<DeviceInfoVolume>, BaseMapper<DeviceInfoVolume> {
     long countByExample(DeviceInfoVolumeExample example);
 
     int deleteByExample(DeviceInfoVolumeExample example);

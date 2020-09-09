@@ -12,7 +12,7 @@ import java.util.Collection;
 import java.util.List;
 
 @Mapper
-public interface AdminPermissionMapper extends BaseDaoMapper, BaseMapper<AdminPermission> {
+public interface AdminPermissionMapper extends BaseDaoMapper<AdminPermission>, BaseMapper<AdminPermission> {
     long countByExample(AdminPermissionExample example);
 
     int deleteByExample(AdminPermissionExample example);

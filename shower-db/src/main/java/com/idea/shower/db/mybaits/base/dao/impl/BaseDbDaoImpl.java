@@ -1,5 +1,6 @@
 package com.idea.shower.db.mybaits.base.dao.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.pagehelper.PageInfo;
 import com.idea.shower.db.mybaits.base.dao.BaseDbDao;
 import com.idea.shower.db.mybaits.base.mapper.BaseDbMapper;
@@ -8,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serializable;
 
-public abstract class BaseDbDaoImpl<T, ID extends Serializable, M extends BaseDbMapper> implements BaseDbDao<T, ID> {
+public abstract class BaseDbDaoImpl<T, ID extends Serializable, M extends BaseDbMapper<T>> extends ServiceImpl<M, T> implements BaseDbDao<T, ID> {
     @Autowired
     private M baseMapper;
 
