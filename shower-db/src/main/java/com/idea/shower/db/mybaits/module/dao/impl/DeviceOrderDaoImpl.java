@@ -23,12 +23,12 @@ import java.util.Optional;
 public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapper> implements DeviceOrderDao {
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(DeviceOrder deviceOrder) {
+    public void insert(DeviceOrder deviceOrder) {
         baseMapper().insertSelective(deviceOrder);
     }
 
     @Override
-    public Optional<DeviceOrder> getByOrderNo(String orderNo) {
+    public Optional<DeviceOrder> getByOrderNoOpt(String orderNo) {
         return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
     }
 
@@ -43,7 +43,7 @@ public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapp
     }
 
     @Override
-    public Optional<DeviceOrder> getByOrderId(Long orderId) {
+    public Optional<DeviceOrder> getByOrderIdOpt(Long orderId) {
         return Optional.ofNullable(baseMapper().selectOneByOrderId(orderId));
     }
 }

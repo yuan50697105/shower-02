@@ -61,7 +61,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     @Override
     @Transactional
     public Result<?> modify(DeviceInfoVo deviceInfoVo) {
-        Optional<DeviceInfo> optional = deviceInfoDao.getById(deviceInfoVo.getId());
+        Optional<DeviceInfo> optional = deviceInfoDao.getByIdOpt(deviceInfoVo.getId());
         if (optional.isPresent()) {
             DeviceInfo deviceInfo = optional.get();
             deviceInfo.copyFrom(deviceInfo, "id", "code");
@@ -86,7 +86,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
 
     @Override
     public Result<?> getById(Long id) {
-        Optional<DeviceInfo> deviceInfo = deviceInfoDao.getById(id);
+        Optional<DeviceInfo> deviceInfo = deviceInfoDao.getByIdOpt(id);
         return ResultInfo.success(deviceInfo);
     }
 

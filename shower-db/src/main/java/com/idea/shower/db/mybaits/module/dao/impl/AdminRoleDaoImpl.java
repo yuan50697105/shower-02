@@ -54,7 +54,7 @@ public class AdminRoleDaoImpl extends BaseDaoImpl<AdminRole, AdminRoleMapper> im
     }
 
     @Override
-    public Optional<AdminRole> selectById(Long id) {
+    public Optional<AdminRole> selectByIdOpt(Long id) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
     }
 

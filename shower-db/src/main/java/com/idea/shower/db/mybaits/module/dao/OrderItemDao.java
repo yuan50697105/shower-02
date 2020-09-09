@@ -14,11 +14,11 @@ import java.util.Optional;
  * @create: 2020-02-14 19:55
  */
 public interface OrderItemDao extends BaseDao<OrderItem> {
-    void save(OrderItem orderItem);
+    void insert(OrderItem orderItem);
 
     void batchSave(List<OrderItem> orderItems);
 
-    Optional<OrderItem> getRentalItemByOrderId(Long orderId);
+    Optional<OrderItem> getRentalItemByOrderIdOpt(Long orderId);
 
     List<OrderItem> selectListByOrderNo(String orderNo);
 

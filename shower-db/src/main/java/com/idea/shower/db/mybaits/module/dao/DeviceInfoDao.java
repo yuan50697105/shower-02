@@ -21,7 +21,7 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
      * @param deviceId 设备ID
      * @return
      */
-    Optional<DeviceInfo> getById(Long deviceId);
+    Optional<DeviceInfo> getByIdOpt(Long deviceId);
 
     /**
      * 设备分页数据

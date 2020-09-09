@@ -36,7 +36,7 @@ public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
 
     @Override
     public Result sendInfo(String l) {
-        Optional<DeviceInfo> deviceInfo = deviceInfoDao.getById(Long.valueOf(l));
+        Optional<DeviceInfo> deviceInfo = deviceInfoDao.getByIdOpt(Long.valueOf(l));
         DeviceInfo info = deviceInfo.get();
         info.setPicture(resourceFileUtils.filePath(StrUtil.isNotBlank(info.getPicture()) ? info.getPicture() : ""));
         return ResultUtils.ok().setData(deviceInfo.get());

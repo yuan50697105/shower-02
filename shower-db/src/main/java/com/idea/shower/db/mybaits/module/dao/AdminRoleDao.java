@@ -26,7 +26,7 @@ public interface AdminRoleDao extends BaseDao<AdminRole> {
 
     List<AdminRole> selectByIds(List<Long> roleIds);
 
-    Optional<AdminRole> selectById(Long id);
+    Optional<AdminRole> selectByIdOpt(Long id);
 
     int insertSelective(AdminRole adminRole);
 

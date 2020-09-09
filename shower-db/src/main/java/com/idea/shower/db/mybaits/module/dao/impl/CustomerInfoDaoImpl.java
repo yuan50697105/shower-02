@@ -30,12 +30,12 @@ public class CustomerInfoDaoImpl extends BaseDaoImpl<CustomerInfo, CustomerInfoM
     }
 
     @Override
-    public Optional<CustomerInfo> getByUnionId(String unionId) {
+    public Optional<CustomerInfo> getByUnionIdOpt(String unionId) {
         return Optional.ofNullable(baseMapper().selectOneByUnionId(unionId));
     }
 
     @Override
-    public Optional<CustomerInfo> getById(String id) {
+    public Optional<CustomerInfo> getByIdOpt(String id) {
         return Optional.ofNullable(baseMapper().selectOneById(id));
     }
 
@@ -48,7 +48,7 @@ public class CustomerInfoDaoImpl extends BaseDaoImpl<CustomerInfo, CustomerInfoM
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public int save(CustomerInfo customerInfo) {
+    public int insert(CustomerInfo customerInfo) {
         return baseMapper().insertSelective(customerInfo);
     }
 
@@ -59,7 +59,7 @@ public class CustomerInfoDaoImpl extends BaseDaoImpl<CustomerInfo, CustomerInfoM
     }
 
     @Override
-    public Optional<CustomerInfo> getByOpenId(String openId) {
+    public Optional<CustomerInfo> getByOpenIdOpt(String openId) {
         return Optional.ofNullable(baseMapper().selectOneByOpenId(openId));
     }
     @Override

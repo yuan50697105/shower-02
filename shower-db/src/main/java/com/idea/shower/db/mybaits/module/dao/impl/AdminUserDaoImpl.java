@@ -42,7 +42,7 @@ public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> im
     }
 
     @Override
-    public Optional<AdminUser> selectById(Long id) {
+    public Optional<AdminUser> selectByIdOpt(Long id) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
     }
 
