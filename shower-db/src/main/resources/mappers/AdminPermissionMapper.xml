@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.app.db.module.mapper.AdminPermissionMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.AdminPermission">
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.AdminPermissionMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.db.mybaits.module.pojo.AdminPermission">
     <!--@mbg.generated-->
     <!--@Table admin_permission-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="updater" jdbcType="BIGINT" property="updater" />
     <result column="name" jdbcType="VARCHAR" property="name" />
     <result column="role_id" jdbcType="BIGINT" property="roleId" />
+    <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -74,9 +75,9 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, `name`, role_id
+    id, create_date, update_date, creator, updater, `name`, role_id, del_flag
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminPermissionExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermissionExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -103,37 +104,37 @@
     delete from admin_permission
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminPermissionExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermissionExample">
     <!--@mbg.generated-->
     delete from admin_permission
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermission" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into admin_permission (create_time, update_time, create_user, 
-      update_user, `name`, role_id
-      )
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}
-      )
+    insert into admin_permission (create_date, update_date, creator, 
+      updater, `name`, role_id, 
+      del_flag)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{creator,jdbcType=BIGINT}, 
+      #{updater,jdbcType=BIGINT}, #{name,jdbcType=VARCHAR}, #{roleId,jdbcType=BIGINT}, 
+      #{delFlag,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermission" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into admin_permission
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        create_time,
+      <if test="createDate != null">
+        create_date,
       </if>
-      <if test="updateTime != null">
-        update_time,
+      <if test="updateDate != null">
+        update_date,
       </if>
-      <if test="createUser != null">
-        create_user,
+      <if test="creator != null">
+        creator,
       </if>
-      <if test="updateUser != null">
-        update_user,
+      <if test="updater != null">
+        updater,
       </if>
       <if test="name != null">
         `name`,
@@ -141,19 +142,22 @@
       <if test="roleId != null">
         role_id,
       </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
       </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        #{updater,jdbcType=BIGINT},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -161,9 +165,12 @@
       <if test="roleId != null">
         #{roleId,jdbcType=BIGINT},
       </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminPermissionExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermissionExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from admin_permission
     <if test="_parameter != null">
@@ -177,23 +184,26 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createUser != null">
-        create_user = #{record.createUser,jdbcType=VARCHAR},
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=BIGINT},
       </if>
-      <if test="record.updateUser != null">
-        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=BIGINT},
       </if>
       <if test="record.name != null">
         `name` = #{record.name,jdbcType=VARCHAR},
       </if>
       <if test="record.roleId != null">
         role_id = #{record.roleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -204,31 +214,32 @@
     <!--@mbg.generated-->
     update admin_permission
     set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      create_user = #{record.createUser,jdbcType=VARCHAR},
-      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=BIGINT},
+      updater = #{record.updater,jdbcType=BIGINT},
       `name` = #{record.name,jdbcType=VARCHAR},
-      role_id = #{record.roleId,jdbcType=BIGINT}
+      role_id = #{record.roleId,jdbcType=BIGINT},
+      del_flag = #{record.delFlag,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermission">
     <!--@mbg.generated-->
     update admin_permission
     <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
       </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        updater = #{updater,jdbcType=BIGINT},
       </if>
       <if test="name != null">
         `name` = #{name,jdbcType=VARCHAR},
@@ -236,18 +247,22 @@
       <if test="roleId != null">
         role_id = #{roleId,jdbcType=BIGINT},
       </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.AdminPermission">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminPermission">
     <!--@mbg.generated-->
     update admin_permission
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_user = #{updateUser,jdbcType=VARCHAR},
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=BIGINT},
+      updater = #{updater,jdbcType=BIGINT},
       `name` = #{name,jdbcType=VARCHAR},
-      role_id = #{roleId,jdbcType=BIGINT}
+      role_id = #{roleId,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
 
@@ -284,22 +299,22 @@
                 </foreach>
             </if>
             <if test="condition.createUser != null and condition.createUser != ''">
-                and create_user like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
+                and creator like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
             </if>
             <if test="condition.updateUser != null and condition.updateUser != ''">
-                and update_user like concat('%',#{condition.updateUser,jdbcType=VARCHAR},'%')
+                and updater like concat('%',#{condition.updateUser,jdbcType=VARCHAR},'%')
             </if>
             <if test="condition.createDateStart != null">
-                <![CDATA[and date(create_time) >= date(#{condition.createDateStart,jdbcType=TIMESTAMP})]]>
+                <![CDATA[and date(create_date) >= date(#{condition.createDateStart,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.createDateEnd != null">
-                <![CDATA[and date(create_time) <= date(#{condition.createDateEnd,jdbcType=TIMESTAMP})]]>
+                <![CDATA[and date(create_date) <= date(#{condition.createDateEnd,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.updateDateStart != null">
-                <![CDATA[and date(update_time) >= date(#{condition.updateDateStart,jdbcType=TIMESTAMP})]]>
+                <![CDATA[and date(update_date) >= date(#{condition.updateDateStart,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.updateDateEnd != null">
-                <![CDATA[and date(update_time) <= date(#{condition.updateDateEnd,jdbcType=TIMESTAMP})]]>
+                <![CDATA[and date(update_date) <= date(#{condition.updateDateEnd,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.name != null and condition.name != ''">
                 and name like concat('%',#{condition.name,jdbcType=VARCHAR},'%')
@@ -325,7 +340,7 @@
     </select>
 <!--auto generated by MybatisCodeHelper on 2020-07-20-->
   <select id="selectAllByRoleId" resultMap="BaseResultMap">
-    select <include refid="Base_Column_List"/>
+    select <include refid="Base_Column_List" />
     from admin_permission
     where role_id=#{roleId,jdbcType=BIGINT}
   </select>
@@ -340,8 +355,7 @@
     select `name`
     from admin_permission
     where role_id in
-    <foreach item="item" index="index" collection="roleIdCollection"
-          open="(" separator="," close=")">
+    <foreach close=")" collection="roleIdCollection" index="index" item="item" open="(" separator=",">
       #{item,jdbcType=BIGINT}
     </foreach>
   </select>

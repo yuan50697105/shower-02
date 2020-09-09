@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.idea.shower.app.db.module.mapper.AdminUserMapper">
-  <resultMap id="BaseResultMap" type="com.idea.shower.app.db.module.pojo.AdminUser">
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.AdminUserMapper">
+  <resultMap id="BaseResultMap" type="com.idea.shower.db.mybaits.module.pojo.AdminUser">
     <!--@mbg.generated-->
     <!--@Table admin_user-->
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
-    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
-    <result column="create_user" jdbcType="VARCHAR" property="createUser" />
-    <result column="update_user" jdbcType="VARCHAR" property="updateUser" />
+    <result column="create_date" jdbcType="TIMESTAMP" property="createDate" />
+    <result column="update_date" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="creator" jdbcType="BIGINT" property="creator" />
+    <result column="updater" jdbcType="BIGINT" property="updater" />
+    <result column="del_flag" jdbcType="VARCHAR" property="delFlag" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="password" jdbcType="VARCHAR" property="password" />
     <result column="name" jdbcType="VARCHAR" property="name" />
@@ -16,7 +17,6 @@
     <result column="last_login_ip" jdbcType="VARCHAR" property="lastLoginIp" />
     <result column="last_login_time" jdbcType="TIMESTAMP" property="lastLoginTime" />
     <result column="avatar" jdbcType="VARCHAR" property="avatar" />
-    <result column="deleted" jdbcType="BOOLEAN" property="deleted" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -80,10 +80,10 @@
   </sql>
   <sql id="Base_Column_List">
     <!--@mbg.generated-->
-    id, create_time, update_time, create_user, update_user, username, `password`, `name`, 
-    enabled, last_login_ip, last_login_time, avatar, deleted
+    id, create_date, update_date, creator, updater, del_flag, username, `password`, `name`, 
+    enabled, last_login_ip, last_login_time, avatar
   </sql>
-  <select id="selectByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminUserExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminUserExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
     select
     <if test="distinct">
@@ -110,41 +110,44 @@
     delete from admin_user
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminUserExample">
+  <delete id="deleteByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminUserExample">
     <!--@mbg.generated-->
     delete from admin_user
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminUser" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminUser" useGeneratedKeys="true">
     <!--@mbg.generated-->
-    insert into admin_user (create_time, update_time, create_user, 
-      update_user, username, `password`, 
-      `name`, enabled, last_login_ip, 
-      last_login_time, avatar, deleted
+    insert into admin_user (create_date, update_date, creator, 
+      updater, del_flag, username, 
+      `password`, `name`, enabled, 
+      last_login_ip, last_login_time, avatar
       )
-    values (#{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{createUser,jdbcType=VARCHAR}, 
-      #{updateUser,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, #{lastLoginIp,jdbcType=VARCHAR}, 
-      #{lastLoginTime,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}, #{deleted,jdbcType=BOOLEAN}
+    values (#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{creator,jdbcType=BIGINT}, 
+      #{updater,jdbcType=BIGINT}, #{delFlag,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, 
+      #{lastLoginIp,jdbcType=VARCHAR}, #{lastLoginTime,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.app.db.module.pojo.AdminUser" useGeneratedKeys="true">
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminUser" useGeneratedKeys="true">
     <!--@mbg.generated-->
     insert into admin_user
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        create_time,
+      <if test="createDate != null">
+        create_date,
       </if>
-      <if test="updateTime != null">
-        update_time,
+      <if test="updateDate != null">
+        update_date,
       </if>
-      <if test="createUser != null">
-        create_user,
+      <if test="creator != null">
+        creator,
       </if>
-      <if test="updateUser != null">
-        update_user,
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
       </if>
       <if test="username != null">
         username,
@@ -167,22 +170,22 @@
       <if test="avatar != null">
         avatar,
       </if>
-      <if test="deleted != null">
-        deleted,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="createTime != null">
-        #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        #{createUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
       </if>
-      <if test="updateUser != null">
-        #{updateUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        #{updater,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         #{username,jdbcType=VARCHAR},
@@ -205,12 +208,9 @@
       <if test="avatar != null">
         #{avatar,jdbcType=VARCHAR},
       </if>
-      <if test="deleted != null">
-        #{deleted,jdbcType=BOOLEAN},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.idea.shower.app.db.module.pojo.AdminUserExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminUserExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from admin_user
     <if test="_parameter != null">
@@ -224,17 +224,20 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.createTime != null">
-        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      <if test="record.createDate != null">
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.updateTime != null">
-        update_time = #{record.updateTime,jdbcType=TIMESTAMP},
+      <if test="record.updateDate != null">
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.createUser != null">
-        create_user = #{record.createUser,jdbcType=VARCHAR},
+      <if test="record.creator != null">
+        creator = #{record.creator,jdbcType=BIGINT},
       </if>
-      <if test="record.updateUser != null">
-        update_user = #{record.updateUser,jdbcType=VARCHAR},
+      <if test="record.updater != null">
+        updater = #{record.updater,jdbcType=BIGINT},
+      </if>
+      <if test="record.delFlag != null">
+        del_flag = #{record.delFlag,jdbcType=VARCHAR},
       </if>
       <if test="record.username != null">
         username = #{record.username,jdbcType=VARCHAR},
@@ -257,9 +260,6 @@
       <if test="record.avatar != null">
         avatar = #{record.avatar,jdbcType=VARCHAR},
       </if>
-      <if test="record.deleted != null">
-        deleted = #{record.deleted,jdbcType=BOOLEAN},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -269,37 +269,40 @@
     <!--@mbg.generated-->
     update admin_user
     set id = #{record.id,jdbcType=BIGINT},
-      create_time = #{record.createTime,jdbcType=TIMESTAMP},
-      update_time = #{record.updateTime,jdbcType=TIMESTAMP},
-      create_user = #{record.createUser,jdbcType=VARCHAR},
-      update_user = #{record.updateUser,jdbcType=VARCHAR},
+      create_date = #{record.createDate,jdbcType=TIMESTAMP},
+      update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+      creator = #{record.creator,jdbcType=BIGINT},
+      updater = #{record.updater,jdbcType=BIGINT},
+      del_flag = #{record.delFlag,jdbcType=VARCHAR},
       username = #{record.username,jdbcType=VARCHAR},
       `password` = #{record.password,jdbcType=VARCHAR},
       `name` = #{record.name,jdbcType=VARCHAR},
       enabled = #{record.enabled,jdbcType=INTEGER},
       last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
       last_login_time = #{record.lastLoginTime,jdbcType=TIMESTAMP},
-      avatar = #{record.avatar,jdbcType=VARCHAR},
-      deleted = #{record.deleted,jdbcType=BOOLEAN}
+      avatar = #{record.avatar,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.app.db.module.pojo.AdminUser">
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminUser">
     <!--@mbg.generated-->
     update admin_user
     <set>
-      <if test="createTime != null">
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null">
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
       </if>
-      <if test="createUser != null">
-        create_user = #{createUser,jdbcType=VARCHAR},
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
       </if>
-      <if test="updateUser != null">
-        update_user = #{updateUser,jdbcType=VARCHAR},
+      <if test="updater != null">
+        updater = #{updater,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=VARCHAR},
       </if>
       <if test="username != null">
         username = #{username,jdbcType=VARCHAR},
@@ -322,27 +325,24 @@
       <if test="avatar != null">
         avatar = #{avatar,jdbcType=VARCHAR},
       </if>
-      <if test="deleted != null">
-        deleted = #{deleted,jdbcType=BOOLEAN},
-      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.idea.shower.app.db.module.pojo.AdminUser">
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.AdminUser">
     <!--@mbg.generated-->
     update admin_user
-    set create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP},
-      create_user = #{createUser,jdbcType=VARCHAR},
-      update_user = #{updateUser,jdbcType=VARCHAR},
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      creator = #{creator,jdbcType=BIGINT},
+      updater = #{updater,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       `password` = #{password,jdbcType=VARCHAR},
       `name` = #{name,jdbcType=VARCHAR},
       enabled = #{enabled,jdbcType=INTEGER},
       last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
       last_login_time = #{lastLoginTime,jdbcType=TIMESTAMP},
-      avatar = #{avatar,jdbcType=VARCHAR},
-      deleted = #{deleted,jdbcType=BOOLEAN}
+      avatar = #{avatar,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
     <select id="selectByCondition" resultMap="BaseResultMap">
@@ -360,13 +360,13 @@
                 </foreach>
             </if>
             <if test="condition.createUser != null and condition.createUser != ''">
-                and create_user like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
+                and creator like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
             </if>
             <if test="condition.createDateEnd != null">
-                <![CDATA[and date(create_time) <= date(#{condition.createDateEnd,jdbcType=TIMESTAMP})]]>
+                <![CDATA[and date(create_date) <= date(#{condition.createDateEnd,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.createDateStart != null">
-                <![CDATA[and date(create_time) >= date(#{condition.createDateStart})]]>
+                <![CDATA[and date(create_date) >= date(#{condition.createDateStart})]]>
             </if>
             <if test="condition.username != null and condition.username != ''">
                 and username like concat('%',#{condition.username,jdbcType=VARCHAR},'%')

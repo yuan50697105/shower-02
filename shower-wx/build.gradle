@@ -1,14 +1,14 @@
 dependencies {
     compile project(':shower-commons')
-    compile project(':shower-webmvc-core')
+    compile project(':shower-web')
     compile project(':shower-db')
     compile group: 'com.qcloud', name: 'cos_api', version: '5.6.23'
     compile group: 'com.auth0', name: 'java-jwt', version: '3.10.3'
-    compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.7.5.B'
-    compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.7.5.B'
+//    compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.8.9.B'
+//    compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.8.9.B'
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
-//    compile group: 'redis.clients', name: 'jedis', version: '3.3.0'
     compile project(':shower-redis')
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis'
 //阿里云IOT
     compile group: 'com.aliyun.alink.linksdk', name: 'iot-linkkit-java', version: '1.2.0.1'
     compile group: 'com.aliyun', name: 'aliyun-java-sdk-core', version: '4.5.1'
@@ -18,5 +18,7 @@ dependencies {
     compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
     compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
     compile 'org.springframework.boot:spring-boot-starter-web'
+    compile('org.apache.commons:commons-pool2:2.8.1')
+    compile('redis.clients:jedis:3.3.0')
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }

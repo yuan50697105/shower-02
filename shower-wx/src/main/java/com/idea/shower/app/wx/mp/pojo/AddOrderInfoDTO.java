@@ -1,7 +1,7 @@
 package com.idea.shower.app.wx.mp.pojo;
 
-import com.idea.shower.app.db.module.pojo.OrderInfo;
-import com.idea.shower.app.db.module.pojo.OrderItem;
+import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
+import com.idea.shower.db.mybaits.module.pojo.OrderItem;
 import lombok.Builder;
 import lombok.Data;
 

@@ -1,0 +1,17 @@
+package com.idea.shower.db.mybaits.base.pojo;
+
+import com.idea.shower.db.mybaits.core.pojo.BaseDbCoreQuery;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * @program: learning-demo-02
+ * @description:
+ * @author: yuane
+ * @create: 2019-12-29 14:30
+ */
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class BaseDbQuery extends BaseDbCoreQuery {
+
+}

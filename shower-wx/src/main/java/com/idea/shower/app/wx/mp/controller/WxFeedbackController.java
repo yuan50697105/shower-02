@@ -1,8 +1,8 @@
 package com.idea.shower.app.wx.mp.controller;
 
-import com.idea.shower.app.db.module.pojo.query.FeedbackQuery;
 import com.idea.shower.app.wx.mp.pojo.WxFeedbackDTO;
 import com.idea.shower.app.wx.mp.service.WxFeedbackService;
+import com.idea.shower.db.mybaits.module.pojo.query.FeedbackQuery;
 import com.idea.shower.web.webmvc.controller.ResultController;
 import com.idea.shower.web.webmvc.pojo.Result;
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("wx/feedback")
 @AllArgsConstructor
 public class WxFeedbackController extends ResultController {
-    private WxFeedbackService wxFeedbackService;
+    private final WxFeedbackService wxFeedbackService;
 
      /**
       * @Author finch

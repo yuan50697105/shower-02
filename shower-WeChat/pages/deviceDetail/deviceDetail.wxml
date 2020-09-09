@@ -1,22 +1,43 @@
 <view class="container">
   <swiper class="goodsimgs" indicator-dots="true" autoplay="true" interval="3000" duration="1000">
-    <swiper-item wx:for="1" wx:key="*this">
-      <image src="http://123.56.78.153:8002/img/01.jpg" background-size="cover"></image>
+    <swiper-item wx:for="{{img}}" wx:key="*this">
+      <image src="{{item}}" background-size="cover"></image>
     </swiper-item>
   </swiper>
 
   <view class="goods-info">
     <view class="c">
-      <text class="desc">山科</text>
+      <text class="desc">{{item.areaName}}</text>
       <view class="price">
-        <view class="build">1号楼</view>
-        <view class="retailPrice">价格：￥5/Min</view>
+        <view class="build">{{item.buildingName}}</view>
+        <view class="retailPrice">价格：￥{{item.priceCode}}/Min</view>
       </view>
     </view>
   </view>
   <view class="section-nav">
-    <view class="code">A001</view>
-    <view class="t" bindtap="useDevice">开始使用</view>
+    <view class="code">{{item.code}}</view>
+    <view class="t" bindtap="useDevice">开始下单</view>
+  </view>
+</view>
+<view class="page-body">
+  <view class="page-section page-section-gap">
+    <map
+      id="myMap"
+      style="width: 100%; height:47vh;"
+      subkey="ZEOBZ-H426K-ZBIJL-A5YNU-BNQZS-L7FBF"
+      scale='16'
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      polyline="{{polyline}}"
+      markers="{{markers}}"
+      include-points="{{includePoints}}"
+      show-location
+      show-compass
+      show-scale
+      bindcallouttap="bindcallouttap"
+      bindmarkertap = "bindmarkertap"
+    >
+    </map>
   </view>
 </view>
 

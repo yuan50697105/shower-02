@@ -1,6 +1,6 @@
 package com.idea.shower.admin.admin.pojo;
 
-import com.idea.shower.app.db.module.pojo.AdminPermission;
+import com.idea.shower.db.mybaits.module.pojo.AdminPermission;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

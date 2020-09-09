@@ -1,5 +1,5 @@
 dependencies {
-    compile project(':shower-webmvc-core')
+    compile project(':shower-web')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('commons-codec:commons-codec')
     compile('io.jsonwebtoken:jjwt:0.9.1')

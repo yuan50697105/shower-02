@@ -1,6 +1,6 @@
 package com.idea.shower.app.wx.mp.service;
 
-import com.idea.shower.app.db.module.pojo.query.DeviceInfoQuery;
+import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.web.webmvc.pojo.Result;
 
 /**
@@ -12,5 +12,5 @@ import com.idea.shower.web.webmvc.pojo.Result;
 public interface WxDeviceInfoService {
     Result deviceInfoList(DeviceInfoQuery deviceInfoQuery);
 
-    Result sendInfo(long l);
+    Result sendInfo(String id);
 }

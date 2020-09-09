@@ -1,7 +1,7 @@
 package com.idea.shower.app.wx.mp.listener;
 
-import com.idea.shower.app.db.module.dao.DeviceOrderDao;
-import com.idea.shower.app.db.module.dao.OrderInfoDao;
+import com.idea.shower.db.mybaits.module.dao.DeviceOrderDao;
+import com.idea.shower.db.mybaits.module.dao.OrderInfoDao;
 import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

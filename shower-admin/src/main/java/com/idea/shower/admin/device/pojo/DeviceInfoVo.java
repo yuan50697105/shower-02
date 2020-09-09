@@ -1,0 +1,16 @@
+package com.idea.shower.admin.device.pojo;
+
+import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+/**
+ * @program: shower-01
+ * @description:
+ * @author: yuane
+ * @create: 2020-08-02 16:57
+ */
+@EqualsAndHashCode(callSuper = true)
+@Data
+public class DeviceInfoVo extends DeviceInfo {
+}

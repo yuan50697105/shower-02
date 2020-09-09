@@ -1,7 +1,5 @@
 rootProject.name = 'shower-01'
-include 'shower-db-core'
-include 'shower-db-mybatis'
-include 'shower-webmvc-core'
+include 'shower-web'
 include 'shower-commons'
 include 'shower-db'
 include 'shower-redis'

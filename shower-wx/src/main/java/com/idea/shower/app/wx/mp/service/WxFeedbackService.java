@@ -1,7 +1,7 @@
 package com.idea.shower.app.wx.mp.service;
 
-import com.idea.shower.app.db.module.pojo.query.FeedbackQuery;
 import com.idea.shower.app.wx.mp.pojo.WxFeedbackDTO;
+import com.idea.shower.db.mybaits.module.pojo.query.FeedbackQuery;
 import com.idea.shower.web.webmvc.pojo.Result;
 
 /**

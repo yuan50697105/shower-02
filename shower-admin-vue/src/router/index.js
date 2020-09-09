@@ -73,35 +73,35 @@ export const constantRoutes = [
         path: 'dashboard',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
+        meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
   },
-  {
-    path: '/documentation',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
-      }
-    ]
-  },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }
-      }
-    ]
-  },
+  // {
+  //   path: '/documentation',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/documentation/index'),
+  //       name: 'Documentation',
+  //       meta: { title: 'Documentation', icon: 'documentation', affix: true }
+  //     }
+  //   ]
+  // },
+  // {
+  //   path: '/guide',
+  //   component: Layout,
+  //   redirect: '/guide/index',
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/guide/index'),
+  //       name: 'Guide',
+  //       meta: { title: 'Guide', icon: 'guide', noCache: true }
+  //     }
+  //   ]
+  // },
   {
     path: '/profile',
     component: Layout,
@@ -230,56 +230,78 @@ export const asyncRoutes = [
     ]
   },
   // {
-  //   path: '/permission',
+  //   path: '/icon',
   //   component: Layout,
-  //   redirect: '/permission/page',
-  //   alwaysShow: true, // will always show the root menu
-  //   name: 'Permission',
-  //   meta: {
-  //     title: '权限设置',
-  //     icon: 'lock',
-  //     roles: ['超级管理员', 'editor'] // you can set roles in root nav
-  //   },
   //   children: [
   //     {
-  //       path: 'page',
-  //       component: () => import('@/views/permission/page'),
-  //       name: 'PagePermission',
-  //       meta: {
-  //         title: 'Page Permission',
-  //         roles: ['超级管理员'] // or you can only set roles in sub nav
-  //       }
-  //     },
-  //     {
-  //       path: 'directive',
-  //       component: () => import('@/views/permission/directive'),
-  //       name: 'DirectivePermission',
-  //       meta: {
-  //         title: 'Directive Permission'
-  //         // if do not set roles, means: this page does not require permission
-  //       }
-  //     },
-  //     {
-  //       path: 'role',
-  //       component: () => import('@/views/permission/role'),
-  //       name: 'RolePermission',
-  //       meta: {
-  //         title: '用户角色设置',
-  //         roles: ['超级管理员']
-  //       }
+  //       path: 'index',
+  //       component: () => import('@/views/icons/index'),
+  //       name: 'Icons',
+  //       meta: { title: 'Icons', icon: 'icon', noCache: true }
   //     }
   //   ]
   // },
-
   {
-    path: '/icon',
+    path: '/basics',
     component: Layout,
+    name: '基础管理',
+    meta: {
+      title: '基础管理',
+      icon: 'icon',
+      noCache: true
+    },
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/icons/index'),
-        name: 'Icons',
-        meta: { title: 'Icons', icon: 'icon', noCache: true }
+        path: 'areainfo',
+        component: () => import('@/views/area/areainfo'),
+        name: '区域管理',
+        meta: { title: '区域',
+          icon: 'icon',
+          noCache: true }
+      },
+      {
+        path: 'areabuilding',
+        component: () => import('@/views/area/areabuilding'),
+        name: '楼宇信息',
+        meta: { title: '楼宇',
+          icon: 'icon',
+          noCache: true }
+      },
+      {
+        path: 'deviceinfo',
+        component: () => import('@/views/deviceinfo/deviceinfo'),
+        name: '设备信息',
+        meta: { title: '设备',
+          icon: 'icon',
+          noCache: true }
+      }
+    ]
+  },
+  {
+    path: '/order',
+    component: Layout,
+    name: '订单管理',
+    meta: {
+      title: '订单管理',
+      icon: 'icon',
+      noCache: true
+    },
+    children: [
+      {
+        path: 'orderinfo',
+        component: () => import('@/views/order/orderinfo'),
+        name: '订单信息',
+        meta: { title: '订单信息',
+          icon: 'icon',
+          noCache: true }
+      },
+      {
+        path: 'deviceinfo',
+        component: () => import('@/views/order/orderinfo'),
+        name: '订单统计',
+        meta: { title: '订单统计',
+          icon: 'icon',
+          noCache: true }
       }
     ]
   },

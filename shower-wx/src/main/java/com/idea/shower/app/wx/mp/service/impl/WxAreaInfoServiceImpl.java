@@ -1,8 +1,8 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
-import com.idea.shower.app.db.module.dao.AreaBuildingDao;
-import com.idea.shower.app.db.module.dao.AreaInfoDao;
 import com.idea.shower.app.wx.mp.service.WxAreaInfoService;
+import com.idea.shower.db.mybaits.module.dao.AreaBuildingDao;
+import com.idea.shower.db.mybaits.module.dao.AreaInfoDao;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
@@ -19,8 +19,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(rollbackFor = Exception.class)
 @AllArgsConstructor
 public class WxAreaInfoServiceImpl implements WxAreaInfoService {
-    private AreaInfoDao areaInfoDao;
-    private AreaBuildingDao areaBuildingDao;
+    private final AreaInfoDao areaInfoDao;
+    private final AreaBuildingDao areaBuildingDao;
 
     /**
      * 获取所有的区域信息

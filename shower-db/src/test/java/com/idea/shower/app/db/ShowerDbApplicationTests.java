@@ -1,12 +1,12 @@
 package com.idea.shower.app.db;
 
 import cn.hutool.core.lang.Snowflake;
-import com.idea.shower.app.db.module.constants.PriceInfoConstants;
-import com.idea.shower.app.db.module.mapper.DeviceInfoMapper;
-import com.idea.shower.app.db.module.mapper.PriceInfoMapper;
-import com.idea.shower.app.db.module.pojo.DeviceInfo;
-import com.idea.shower.app.db.module.pojo.DeviceInfoExample;
-import com.idea.shower.app.db.module.pojo.PriceInfo;
+import com.idea.shower.db.mybaits.module.constants.PriceInfoConstants;
+import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
+import com.idea.shower.db.mybaits.module.mapper.PriceInfoMapper;
+import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
+import com.idea.shower.db.mybaits.module.pojo.DeviceInfoExample;
+import com.idea.shower.db.mybaits.module.pojo.PriceInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

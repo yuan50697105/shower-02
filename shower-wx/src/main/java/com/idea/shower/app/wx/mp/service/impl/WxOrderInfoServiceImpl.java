@@ -11,19 +11,19 @@ import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
-import com.idea.shower.app.db.module.constants.OrderInfoConstants;
-import com.idea.shower.app.db.module.constants.PriceInfoConstants;
-import com.idea.shower.app.db.module.dao.*;
-import com.idea.shower.app.db.module.pojo.*;
-import com.idea.shower.app.db.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.app.db.module.pojo.vo.OrderInfoDeviceVO;
 import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.app.wx.mp.util.AliyunIotPublishUtils;
-import com.idea.shower.db.core.pojo.IWxPageResult;
+import com.idea.shower.db.mybaits.core.pojo.IWxPageResult;
+import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
+import com.idea.shower.db.mybaits.module.constants.PriceInfoConstants;
+import com.idea.shower.db.mybaits.module.dao.*;
+import com.idea.shower.db.mybaits.module.pojo.*;
+import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
+import com.idea.shower.db.mybaits.module.pojo.vo.OrderInfoDeviceVO;
 import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
 import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
@@ -160,11 +160,21 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         }
         BigDecimal totalPrice = calculationOrderFee(orderInfo);
         updateOrderToEndUsing(orderInfo, totalPrice);
+        updateDeviceRunStatusAvail(orderInfo.getDeviceId());
         HashMap<String, Object> map = new HashMap<>();
         BeanUtil.beanToMap(request);
         map.put("totalPrice", totalPrice);
         map.put("endTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
         return ResultUtils.ok("订单结束成功", map);
+    }
+
+    /**
+     * 更新设备状态为可用
+     *
+     * @param deviceId
+     */
+    private void updateDeviceRunStatusAvail(Long deviceId) {
+        deviceInfoDao.updateStatusToAvail(deviceId);
     }
 
     /**
@@ -281,7 +291,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     private boolean checkOrderCancel(OrderInfo orderInfo) {
         Date date = new Date();
-        Date createTime = orderInfo.getCreateTime();
+        Date createTime = orderInfo.getCreateDate();
         return DateUtil.between(createTime, date, DateUnit.MINUTE) <= CANCEL_TIME_OUT;
     }
 
@@ -361,7 +371,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         deviceOrder.setUnionId(orderInfo.getCustomerUnionId());
         deviceOrder.setOpenId(orderInfo.getCustomerOpenId());
         deviceOrder.setStatus(orderInfo.getStatus());
-        deviceOrder.setStartTime(orderInfo.getCreateTime());
+        deviceOrder.setStartTime(orderInfo.getCreateDate());
         deviceOrder.setEndTime(null);
         return deviceOrder;
     }
