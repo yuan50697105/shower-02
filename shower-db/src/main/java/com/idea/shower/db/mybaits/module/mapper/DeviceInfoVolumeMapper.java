@@ -1,14 +1,16 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolumeExample;
-import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 @Mapper
-public interface DeviceInfoVolumeMapper extends BaseDaoMapper {
+public interface DeviceInfoVolumeMapper extends BaseDaoMapper, BaseMapper<DeviceInfoVolume> {
     long countByExample(DeviceInfoVolumeExample example);
 
     int deleteByExample(DeviceInfoVolumeExample example);

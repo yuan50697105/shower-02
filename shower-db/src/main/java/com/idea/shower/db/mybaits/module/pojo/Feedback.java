@@ -17,6 +17,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Feedback extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_TIME = "create_time";
+    public static final String COL_UPDATE_TIME = "update_time";
+    public static final String COL_CREATE_USER = "create_user";
+    public static final String COL_UPDATE_USER = "update_user";
+    public static final String COL_CUSTOMER_ID = "customer_id";
+    public static final String COL_TITLE = "title";
+    public static final String COL_CONTENT = "content";
+    public static final String COL_IMAGE = "image";
+    public static final String COL_RESPOND_STATUS = "respond_status";
+    public static final String COL_RESPOND_CONTENT = "respond_content";
+    public static final String COL_RESPOND_TIME = "respond_time";
     /**
      * 创建时间
      */

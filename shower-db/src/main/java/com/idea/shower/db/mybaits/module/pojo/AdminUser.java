@@ -17,6 +17,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminUser extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_DATE = "create_date";
+    public static final String COL_UPDATE_DATE = "update_date";
+    public static final String COL_CREATOR = "creator";
+    public static final String COL_UPDATER = "updater";
+    public static final String COL_DEL_FLAG = "del_flag";
+    public static final String COL_USERNAME = "username";
+    public static final String COL_PASSWORD = "password";
+    public static final String COL_NAME = "name";
+    public static final String COL_ENABLED = "enabled";
+    public static final String COL_LAST_LOGIN_IP = "last_login_ip";
+    public static final String COL_LAST_LOGIN_TIME = "last_login_time";
+    public static final String COL_AVATAR = "avatar";
     /**
      * 账户
      */

@@ -17,6 +17,17 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CustomerInfo extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_DATE = "create_date";
+    public static final String COL_UPDATE_DATE = "update_date";
+    public static final String COL_CREATOR = "creator";
+    public static final String COL_UPDATER = "updater";
+    public static final String COL_DEL_FLAG = "del_flag";
+    public static final String COL_OPEN_ID = "open_id";
+    public static final String COL_UNION_ID = "union_id";
+    public static final String COL_NICK_NAME = "nick_name";
+    public static final String COL_GENDER = "gender";
+    public static final String COL_PHONE_NUM = "phone_num";
     /**
      * 用户微信OpenId
      */

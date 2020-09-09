@@ -17,6 +17,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AdminRole extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_DATE = "create_date";
+    public static final String COL_UPDATE_DATE = "update_date";
+    public static final String COL_CREATE_USER = "create_user";
+    public static final String COL_UPDATE_USER = "update_user";
+    public static final String COL_NAME = "name";
+    public static final String COL_DESCRIPTION = "description";
+    public static final String COL_ENABLED = "enabled";
+    public static final String COL_DELETED = "deleted";
     /**
      * 创建人
      */

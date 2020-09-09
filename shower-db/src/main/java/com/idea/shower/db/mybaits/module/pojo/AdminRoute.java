@@ -28,8 +28,6 @@ public class AdminRoute extends BaseDbEntity {
     public static final String COL_PARENT_ID = "parent_id";
     public static final String COL_WEIGHT = "weight";
     public static final String COL_ROLE_ID = "role_id";
-    private String delFlag;
-
     /**
      * 链接
      */

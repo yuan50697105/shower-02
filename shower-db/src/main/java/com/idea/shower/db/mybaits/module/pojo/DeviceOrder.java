@@ -17,6 +17,25 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DeviceOrder extends BaseDbEntity {
+    public static final String COL_ID = "id";
+    public static final String COL_CREATE_DATE = "create_date";
+    public static final String COL_UPDATE_DATE = "update_date";
+    public static final String COL_CREATOR = "creator";
+    public static final String COL_UPDATER = "updater";
+    public static final String COL_DEL_FLAG = "del_flag";
+    public static final String COL_DEVICE_ID = "device_id";
+    public static final String COL_DEVICE_CODE = "device_code";
+    public static final String COL_RANGE_CODE = "range_code";
+    public static final String COL_DEVICE_TYPE = "device_type";
+    public static final String COL_ORDER_ID = "order_id";
+    public static final String COL_ORDER_NO = "order_no";
+    public static final String COL_ORDER_TYPE = "order_type";
+    public static final String COL_CUSTOMER_ID = "customer_id";
+    public static final String COL_UNION_ID = "union_id";
+    public static final String COL_OPEN_ID = "open_id";
+    public static final String COL_STATUS = "status";
+    public static final String COL_START_TIME = "start_time";
+    public static final String COL_END_TIME = "end_time";
     /**
      * 设备ID
      */
