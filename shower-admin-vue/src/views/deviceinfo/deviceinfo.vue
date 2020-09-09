@@ -40,7 +40,6 @@
             <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">{{ $t('update') }}</el-button>
             <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">{{ $t('delete') }}</el-button>
             <el-button type="text" size="small" @click="QRCode(scope.row)">二维码</el-button>
-            <el-button type="text" size="small" @click="QRCode2(scope.row)">二维码2</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -94,11 +93,9 @@ export default {
         deviceName: row.deviceName,
         picture: row.picture
       }
-      const res = await QRCode(data)
-      console.log(res)
-    },
-    async QRCode2(row) {
-      console.log(row)
+      QRCode(data).then(response => {
+        console.log(response)
+      })
     }
   }
 }

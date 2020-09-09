@@ -48,7 +48,7 @@ export function listDevice(data) {
 
 export function QRCode(data) {
   return request({
-    url: `/device/info/QRCode`,
+    url: 'device/info/QRCode',
     method: 'post',
     data
   })
