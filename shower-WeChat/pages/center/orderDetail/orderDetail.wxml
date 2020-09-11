@@ -1,6 +1,6 @@
 <view class="container">
   <view class="order-info">
-    <view class="item-a">下单时间：{{orderInfo.createTime}}</view>
+    <view class="item-a">下单时间：{{orderInfo.createDate}}</view>
     <view class="item-b">订单编号：{{orderInfo.orderNo}}</view>
     <view class="item-c">
       <view class="l">实付：
@@ -38,6 +38,7 @@
           <view class="charged" wx:if="{{orderInfo.status==4}}">已支付</view>
           <view class="charged" wx:if="{{orderInfo.status==5}}">订单完成</view>
           <view class="charged" wx:if="{{orderInfo.status==6}}">订单超时</view>
+          <view class="charged" wx:if="{{orderInfo.status==7}}">订单取消</view>
         </view> 
       </view>
     </view>
