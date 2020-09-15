@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface CustomerInfoMapper extends BaseDaoMapper, BaseMapper<CustomerInfo> {
+public interface CustomerInfoMapper extends BaseDaoMapper<CustomerInfo>, BaseMapper<CustomerInfo> {
     long countByExample(CustomerInfoExample example);
 
     int deleteByExample(CustomerInfoExample example);

@@ -10,6 +10,6 @@ import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
  * @author: yuane
  * @create: 2020-01-20 16:27
  */
-public abstract class BaseDaoImpl<T, M extends BaseDaoMapper> extends BaseDbDaoImpl<T, Long, M> implements BaseDao<T> {
+public abstract class BaseDaoImpl<T, M extends BaseDaoMapper<T>> extends BaseDbDaoImpl<T, Long, M> implements BaseDao<T> {
 
 }

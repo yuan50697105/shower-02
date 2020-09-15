@@ -15,9 +15,9 @@ import java.util.Optional;
  */
 public interface FeedbackDao extends BaseDao<Feedback> {
 
-    void save(Feedback feedback);
+    void insert(Feedback feedback);
 
-    Optional<Feedback> getById(Long id);
+    Optional<Feedback> getByIdOpt(Long id);
 
     IWxPageResult<Feedback> selectPageByConditionWeXin(FeedbackQuery query);
 }

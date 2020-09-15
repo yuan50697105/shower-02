@@ -28,7 +28,7 @@ public interface AdminUserDao extends BaseDao<AdminUser> {
 
     int deleteById(Long id);
 
-    Optional<AdminUser> selectById(Long id);
+    Optional<AdminUser> selectByIdOpt(Long id);
 
     int deleteByIds(List<Long> ids);
 

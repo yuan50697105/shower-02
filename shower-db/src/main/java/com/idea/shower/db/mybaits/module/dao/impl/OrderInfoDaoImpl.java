@@ -39,14 +39,13 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     private final OrderInfoMapper orderInfoMapper;
     private final ResourceFileUtils resourceFileUtils;
 
-    @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(OrderInfo orderInfo) {
+    public void insert(OrderInfo orderInfo) {
         baseMapper().insertSelective(orderInfo);
     }
 
     @Override
-    public Optional<OrderInfo> getById(Long orderId) {
+    public Optional<OrderInfo> getByIdOpt(Long orderId) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(orderId));
     }
 
@@ -70,7 +69,7 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     }
 
     @Override
-    public Optional<OrderInfo> getByOrderNo(String orderNo) {
+    public Optional<OrderInfo> getByOrderNoOpt(String orderNo) {
         return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
     }
 
@@ -106,7 +105,7 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
     }
 
     @Override
-    public Optional<OrderInfoDeviceVO> getByOrderNoDeviceVo(String orderNo) {
+    public Optional<OrderInfoDeviceVO> getByOrderNoDeviceVoOpt(String orderNo) {
         OrderInfoDeviceVO orderInfoDeviceVO = baseMapper().selectOrderInfoDeviceVOListByOrderNo(orderNo);
         if (ObjectUtil.isNotEmpty(orderInfoDeviceVO)) {
             orderInfoDeviceVO.setPicture(resourceFileUtils.filePath(orderInfoDeviceVO.getPicture()));

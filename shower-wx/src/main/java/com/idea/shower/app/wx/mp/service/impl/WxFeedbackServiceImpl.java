@@ -35,7 +35,7 @@ public class WxFeedbackServiceImpl implements WxFeedbackService {
     public Result addFeedback(WxFeedbackDTO wxFeedbackDTO) {
         try {
             Feedback feedback = new Feedback();
-            feedbackDao.save(feedback);
+            feedbackDao.insert(feedback);
         }catch (Exception e){
             log.error(e.getMessage());
             throw new ResultRuntimeException(ResultUtils.dataParamsError("提交失败"));

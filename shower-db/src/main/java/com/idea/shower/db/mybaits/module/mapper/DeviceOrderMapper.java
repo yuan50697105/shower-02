@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface DeviceOrderMapper extends BaseDaoMapper, BaseMapper<DeviceOrder> {
+public interface DeviceOrderMapper extends BaseDaoMapper<DeviceOrder>, BaseMapper<DeviceOrder> {
     long countByExample(DeviceOrderExample example);
 
     int deleteByExample(DeviceOrderExample example);

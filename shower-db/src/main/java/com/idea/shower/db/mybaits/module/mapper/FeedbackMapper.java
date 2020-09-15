@@ -11,7 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface FeedbackMapper extends BaseDaoMapper, BaseMapper<Feedback> {
+public interface FeedbackMapper extends BaseDaoMapper<Feedback>, BaseMapper<Feedback> {
     long countByExample(FeedbackExample example);
 
     int deleteByExample(FeedbackExample example);

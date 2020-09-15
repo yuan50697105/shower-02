@@ -48,7 +48,7 @@ public class WxCustomerInfoServiceImpl implements WxCustomerInfoService {
         if (!isExistCustomerInfo(sessionResult)) {
             customerInfo = saveCustomerInfo(sessionResult,wxLoginInfo);
         }else {
-            Optional<CustomerInfo> infoOptional = customerInfoDao.getByOpenId(sessionResult.getOpenid());
+            Optional<CustomerInfo> infoOptional = customerInfoDao.getByOpenIdOpt(sessionResult.getOpenid());
             customerInfo = infoOptional.get();
         }
         // token
@@ -111,7 +111,7 @@ public class WxCustomerInfoServiceImpl implements WxCustomerInfoService {
      */
     private void updateCustomerUserInfo(WxMaUserInfo userInfo, WxMaPhoneNumberInfo phoneNoInfo) {
         String unionId = userInfo.getUnionId();
-        Optional<CustomerInfo> optional = customerInfoDao.getByUnionId(unionId);
+        Optional<CustomerInfo> optional = customerInfoDao.getByUnionIdOpt(unionId);
         optional.ifPresent(customerInfo -> {
             customerInfo.setGender(Integer.valueOf(userInfo.getGender()));
             customerInfo.setNickName(userInfo.getNickName());

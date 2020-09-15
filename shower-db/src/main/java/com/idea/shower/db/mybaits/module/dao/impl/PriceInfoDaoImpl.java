@@ -22,17 +22,17 @@ import java.util.Optional;
 public class PriceInfoDaoImpl extends BaseDaoImpl<PriceInfo, PriceInfoMapper> implements PriceInfoDao {
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(PriceInfo priceInfo) {
+    public void insert(PriceInfo priceInfo) {
         baseMapper().insert(priceInfo);
     }
 
     @Override
-    public Optional<PriceInfo> getStartingPricesPriceCode(String priceCode) {
+    public Optional<PriceInfo> getStartingPricesPriceCodeOpt(String priceCode) {
         return Optional.ofNullable(baseMapper().selectOneByPriceCodeAndType(priceCode, PriceInfoConstants.PriceType.STARTING_PRICE));
     }
 
     @Override
-    public Optional<PriceInfo> getRenewalPriceByPriceCode(String priceCode) {
+    public Optional<PriceInfo> getRenewalPriceByPriceCodeOpt(String priceCode) {
         return Optional.ofNullable(baseMapper().selectOneByPriceCodeAndType(priceCode, PriceInfoConstants.PriceType.RENEWAL_PRICE));
     }
 }

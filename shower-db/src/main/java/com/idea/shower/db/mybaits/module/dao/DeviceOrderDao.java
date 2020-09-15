@@ -13,11 +13,11 @@ import java.util.Optional;
  * @create: 2020-02-14 22:57
  */
 public interface DeviceOrderDao extends BaseDao<DeviceOrder> {
-    void save(DeviceOrder deviceOrder);
+    void insert(DeviceOrder deviceOrder);
 
-    Optional<DeviceOrder> getByOrderNo(String orderNo);
+    Optional<DeviceOrder> getByOrderNoOpt(String orderNo);
 
-    Optional<DeviceOrder> getByOrderId(Long orderId);
+    Optional<DeviceOrder> getByOrderIdOpt(Long orderId);
 
     void updateStatusUsingById(Long id);
 

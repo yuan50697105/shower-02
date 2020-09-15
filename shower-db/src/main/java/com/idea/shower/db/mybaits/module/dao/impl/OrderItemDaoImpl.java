@@ -21,8 +21,7 @@ import java.util.Optional;
 @Component
 @AllArgsConstructor
 public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem, OrderItemMapper> implements OrderItemDao {
-    @Override
-    public void save(OrderItem orderItem) {
+    public void insert(OrderItem orderItem) {
         baseMapper().insertSelective(orderItem);
     }
 
@@ -33,7 +32,7 @@ public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem, OrderItemMapper> im
     }
 
     @Override
-    public Optional<OrderItem> getRentalItemByOrderId(Long orderId) {
+    public Optional<OrderItem> getRentalItemByOrderIdOpt(Long orderId) {
         return Optional.ofNullable(baseMapper().selectOneByOrderIdAndGoodsType(orderId, PriceInfoConstants.PriceType.STARTING_PRICE));
     }
 

@@ -14,7 +14,7 @@ import java.util.Date;
 import java.util.List;
 
 @Mapper
-public interface OrderInfoMapper extends BaseDaoMapper, BaseMapper<OrderInfo> {
+public interface OrderInfoMapper extends BaseDaoMapper<OrderInfo>, BaseMapper<OrderInfo> {
     long countByExample(OrderInfoExample example);
 
     int deleteByExample(OrderInfoExample example);

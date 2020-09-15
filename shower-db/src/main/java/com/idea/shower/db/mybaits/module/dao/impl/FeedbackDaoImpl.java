@@ -26,12 +26,12 @@ import java.util.Optional;
 public class FeedbackDaoImpl extends BaseDaoImpl<Feedback, FeedbackMapper> implements FeedbackDao {
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(Feedback feedback) {
+    public void insert(Feedback feedback) {
         baseMapper().insertSelective(feedback);
     }
 
     @Override
-    public Optional<Feedback> getById(Long id) {
+    public Optional<Feedback> getByIdOpt(Long id) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
     }
 

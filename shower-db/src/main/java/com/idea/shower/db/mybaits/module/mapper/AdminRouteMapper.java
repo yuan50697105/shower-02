@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface AdminRouteMapper extends BaseDaoMapper, BaseMapper<AdminRoute> {
+public interface AdminRouteMapper extends BaseDaoMapper<AdminRoute>, BaseMapper<AdminRoute> {
     long countByExample(AdminRouteExample example);
 
     int deleteByExample(AdminRouteExample example);

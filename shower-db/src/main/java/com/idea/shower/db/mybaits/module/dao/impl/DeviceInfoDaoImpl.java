@@ -31,7 +31,7 @@ import java.util.Optional;
 public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper> implements DeviceInfoDao {
 
     @Override
-    public Optional<DeviceInfo> getById(Long deviceId) {
+    public Optional<DeviceInfo> getByIdOpt(Long deviceId) {
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(deviceId));
     }
 
@@ -61,7 +61,7 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
     }
 
     @Override
-    public Optional<DeviceInfo> getByCode(String code) {
+    public Optional<DeviceInfo> getByCodeOpt(String code) {
         return Optional.ofNullable(baseMapper().selectOneByCode(code));
     }
 

@@ -1,6 +1,8 @@
 package com.idea.shower.app.wx.mp.controller;
 
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.json.JSONUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
@@ -30,6 +32,7 @@ import java.nio.charset.StandardCharsets;
 @AllArgsConstructor
 public class WxOrderInfoController extends ResultController {
     private final WxOrderInfoService wxOrderInfoService;
+    private final ObjectMapper objectMapper;
 
     @PostMapping("data")
     public Result data(@RequestBody(required = false) OrderInfoQuery condition) {
@@ -41,14 +44,13 @@ public class WxOrderInfoController extends ResultController {
         return wxOrderInfoService.getOrderItemByOrderNo(orderNo);
     }
 
-
     @PostMapping("add")
     public Result addOrder(@RequestBody WxAddOrderRequest wxAddOrderRequest) {
         return wxOrderInfoService.addOrder(wxAddOrderRequest);
     }
 
     @PostMapping("open")
-    public Result open(@RequestBody WxUseOrderRequest request){
+    public Result open(@RequestBody WxUseOrderRequest request) {
         return wxOrderInfoService.openRoom(request);
     }
 
@@ -77,6 +79,7 @@ public class WxOrderInfoController extends ResultController {
 
     @PostMapping("cancel")
     public Result cancel(@RequestBody String orderNo) {
+        orderNo = JSONUtil.parse(orderNo).getByPath("orderNo", String.class);
         return wxOrderInfoService.cancelOrderByOrderNo(orderNo);
     }
 }

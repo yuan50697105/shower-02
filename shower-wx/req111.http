@@ -4,3 +4,12 @@ Content-Type: application/json
 {}
 
 ###
+
+
+POST https://localhost:8002/wx/order/cancel
+Content-Type: application/json
+Accept: application/json
+
+{
+"orderNo":"1303949976644227072"
+}
