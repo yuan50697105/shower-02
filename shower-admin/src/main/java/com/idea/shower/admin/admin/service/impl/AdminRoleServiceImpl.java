@@ -224,8 +224,8 @@ public class AdminRoleServiceImpl implements AdminRoleService {
         adminRoleEditVo.setEnabled(role.getEnabled());
         adminRoleEditVo.setDeleted(role.getDeleted());
         adminRoleEditVo.setId(role.getId());
-        adminRoleEditVo.setCreateTime(role.getCreateTime());
-        adminRoleEditVo.setUpdateTime(role.getUpdateTime());
+        adminRoleEditVo.setCreateDate(role.getCreateDate());
+        adminRoleEditVo.setUpdateDate(role.getUpdateDate());
         adminRoleEditVo.setCreateUser(role.getCreateUser());
         adminRoleEditVo.setUpdateUser(role.getUpdateUser());
         return adminRoleEditVo;
