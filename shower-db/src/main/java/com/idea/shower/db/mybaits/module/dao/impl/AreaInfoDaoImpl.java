@@ -24,7 +24,7 @@ import java.util.Map;
  */
 @Component
 @AllArgsConstructor
-public class AreaInfoDaoImpl extends CommonsDaoImpl<AreaInfo, AreaInfoMapper> implements AreaInfoDao {
+public class AreaInfoDaoImpl extends CommonsDaoImpl<AreaInfo,AreaInfo, AreaInfoMapper> implements AreaInfoDao {
     @Override
     public QueryWrapper<AreaInfo> getWrapper(Map<String, Object> params) {
         return null;

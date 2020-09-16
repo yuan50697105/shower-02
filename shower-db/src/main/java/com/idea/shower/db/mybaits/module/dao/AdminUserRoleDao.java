@@ -12,7 +12,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-02-08 16:22
  */
-public interface AdminUserRoleDao extends CommonsDao<AdminUserRole> {
+public interface AdminUserRoleDao extends CommonsDao<AdminUserRole,AdminUserRole> {
     int deleteByUserId(Long userId);
 
     void deleteByUserIds(List<Long> userIds);

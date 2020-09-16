@@ -14,6 +14,7 @@ import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.OrderInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.OrderInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
+import com.idea.shower.db.mybaits.module.pojo.ao.OrderInfoAo;
 import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.db.mybaits.module.pojo.vo.OrderInfoDeviceVO;
 import lombok.AllArgsConstructor;
@@ -35,7 +36,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoMapper> implements OrderInfoDao {
+public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoAo, OrderInfoMapper> implements OrderInfoDao {
     @Autowired
     private final OrderInfoMapper orderInfoMapper;
     private final ResourceFileUtils resourceFileUtils;

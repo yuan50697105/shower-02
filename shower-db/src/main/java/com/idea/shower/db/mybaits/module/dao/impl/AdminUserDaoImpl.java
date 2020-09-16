@@ -27,7 +27,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class AdminUserDaoImpl extends CommonsDaoImpl<AdminUser, AdminUserMapper> implements AdminUserDao {
+public class AdminUserDaoImpl extends CommonsDaoImpl<AdminUser,AdminUser, AdminUserMapper> implements AdminUserDao {
 
     @org.springframework.beans.factory.annotation.Autowired
     private final AdminUserMapper adminUserMapper;

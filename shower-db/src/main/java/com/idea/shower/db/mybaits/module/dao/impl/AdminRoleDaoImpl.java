@@ -28,7 +28,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @AllArgsConstructor
-public class AdminRoleDaoImpl extends CommonsDaoImpl<AdminRole, AdminRoleMapper> implements AdminRoleDao {
+public class AdminRoleDaoImpl extends CommonsDaoImpl<AdminRole,AdminRole, AdminRoleMapper> implements AdminRoleDao {
     @Override
     public PageResult<AdminRole> selectPageByCondition(AdminRoleQuery condition) {
         PageHelper.startPage(condition.getPage(), condition.getLimit());

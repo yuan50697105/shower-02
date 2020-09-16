@@ -13,7 +13,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-03-22 10:52
  */
-public interface AreaInfoDao extends CommonsDao<AreaInfo> {
+public interface AreaInfoDao extends CommonsDao<AreaInfo,AreaInfo> {
     List<AreaInfo> selectAll();
 
     PageResult<AreaInfo> selectPageByQuery(AreaInfoQuery query);

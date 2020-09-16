@@ -4,6 +4,7 @@ import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
+import com.idea.shower.db.mybaits.module.pojo.ao.OrderInfoAo;
 import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.db.mybaits.module.pojo.vo.OrderInfoDeviceVO;
 
@@ -17,7 +18,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 20:12
  */
-public interface OrderInfoDao extends CommonsDao<OrderInfo> {
+public interface OrderInfoDao extends CommonsDao<OrderInfo, OrderInfoAo> {
 
     Optional<OrderInfo> getByIdOpt(Long orderId);
 

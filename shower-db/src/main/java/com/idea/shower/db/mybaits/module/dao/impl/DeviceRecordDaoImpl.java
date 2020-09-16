@@ -16,7 +16,7 @@ import java.util.Map;
  * @create: 2020-05-31 12:40
  */
 @Component
-public class DeviceRecordDaoImpl extends CommonsDaoImpl<DeviceRecord, DeviceRecordMapper> implements DeviceRecordDao {
+public class DeviceRecordDaoImpl extends CommonsDaoImpl<DeviceRecord,DeviceRecord, DeviceRecordMapper> implements DeviceRecordDao {
     @Override
     public QueryWrapper<DeviceRecord> getWrapper(Map<String, Object> params) {
         return null;

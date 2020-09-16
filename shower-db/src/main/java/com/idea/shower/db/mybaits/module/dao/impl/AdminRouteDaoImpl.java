@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
  * @create: 2020-07-02 12:21
  */
 @Component
-public class AdminRouteDaoImpl extends CommonsDaoImpl<AdminRoute, AdminRouteMapper> implements AdminRouteDao {
+public class AdminRouteDaoImpl extends CommonsDaoImpl<AdminRoute,AdminRoute, AdminRouteMapper> implements AdminRouteDao {
     @Override
     public List<AdminRoute> selectByExample(AdminRouteExample adminRouteExample) {
         return baseDao().selectByExample(adminRouteExample);

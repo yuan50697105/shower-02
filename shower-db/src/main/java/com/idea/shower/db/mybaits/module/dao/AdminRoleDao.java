@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-08 16:20
  */
-public interface AdminRoleDao extends CommonsDao<AdminRole> {
+public interface AdminRoleDao extends CommonsDao<AdminRole,AdminRole> {
     PageResult<AdminRole> selectPageByCondition(AdminRoleQuery condition);
 
     List<AdminRole> selectListByCondition(AdminRoleQuery condition);

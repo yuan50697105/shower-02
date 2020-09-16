@@ -320,10 +320,10 @@
                 and create_user like concat('%',#{condition.creator,jdbcType=VARCHAR},'%')
             </if>
             <if test="condition.createDateStart != null">
-                <![CDATA[and date(create_time) >= date(#{condition.createDateStart,jdbcType=TIMESTAMP})]]>
+                <![CDATA[and date(create_date) >= date(#{condition.createDateStart,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.createDateEnd != null">
-                <![CDATA[and date(create_time) <= date(#{condition.createDateEnd,jdbcType=TIMESTAMP})]]>
+                <![CDATA[and date(create_date) <= date(#{condition.createDateEnd,jdbcType=TIMESTAMP})]]>
             </if>
             <if test="condition.name != null and condition.name != ''">
                 and name like concat('%',#{condition.name,jdbcType=VARCHAR},'%')

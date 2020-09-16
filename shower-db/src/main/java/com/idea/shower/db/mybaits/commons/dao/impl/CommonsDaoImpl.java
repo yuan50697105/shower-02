@@ -13,7 +13,7 @@ import io.renren.common.page.PageData;
  * @author: yuane
  * @create: 2020-01-20 16:27
  */
-public abstract class CommonsDaoImpl<T, M extends BaseDaoMapper<T>> extends io.renren.common.service.impl.CrudServiceImpl<M, T, T> implements CommonsDao<T>, io.renren.common.service.CrudService<T, T> {
+public abstract class CommonsDaoImpl<T, D, M extends BaseDaoMapper<T>> extends io.renren.common.service.impl.CrudServiceImpl<M, T, D> implements CommonsDao<T, D>, io.renren.common.service.CrudService<T, D> {
 
     public M baseDao() {
         return super.baseDao;

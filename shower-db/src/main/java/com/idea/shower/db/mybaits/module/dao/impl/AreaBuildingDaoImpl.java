@@ -20,7 +20,7 @@ import java.util.Map;
  */
 @Component
 @AllArgsConstructor
-public class AreaBuildingDaoImpl extends CommonsDaoImpl<AreaBuilding, AreaBuildingMapper> implements AreaBuildingDao {
+public class AreaBuildingDaoImpl extends CommonsDaoImpl<AreaBuilding,AreaBuilding, AreaBuildingMapper> implements AreaBuildingDao {
     @Override
     public QueryWrapper<AreaBuilding> getWrapper(Map<String, Object> params) {
         return null;

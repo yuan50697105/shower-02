@@ -13,7 +13,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 12:42
  */
-public interface CustomerInfoDao extends CommonsDao<CustomerInfo> {
+public interface CustomerInfoDao extends CommonsDao<CustomerInfo,CustomerInfo> {
     /**
      * 通过UnionId获取用户信息
      *

@@ -12,7 +12,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 20:18
  */
-public interface PriceInfoDao extends CommonsDao<PriceInfo> {
+public interface PriceInfoDao extends CommonsDao<PriceInfo,PriceInfo> {
 
     Optional<PriceInfo> getStartingPricesPriceCodeOpt(String rangeCode);
 

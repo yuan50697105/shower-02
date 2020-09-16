@@ -11,6 +11,6 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-03-22 11:00
  */
-public interface AreaBuildingDao extends CommonsDao<AreaBuilding> {
+public interface AreaBuildingDao extends CommonsDao<AreaBuilding,AreaBuilding> {
     List<AreaBuilding> selectAllByAreaId(Long areaId);
 }

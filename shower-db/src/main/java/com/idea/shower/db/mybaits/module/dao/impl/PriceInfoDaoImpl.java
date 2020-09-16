@@ -20,7 +20,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class PriceInfoDaoImpl extends CommonsDaoImpl<PriceInfo, PriceInfoMapper> implements PriceInfoDao {
+public class PriceInfoDaoImpl extends CommonsDaoImpl<PriceInfo, PriceInfo, PriceInfoMapper> implements PriceInfoDao {
 
 
     @Override

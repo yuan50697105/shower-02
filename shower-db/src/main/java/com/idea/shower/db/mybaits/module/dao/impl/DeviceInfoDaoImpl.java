@@ -30,7 +30,7 @@ import java.util.Optional;
 @Component
 @AllArgsConstructor
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo, DeviceInfoMapper> implements DeviceInfoDao {
+public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo,DeviceInfo, DeviceInfoMapper> implements DeviceInfoDao {
     @Override
     public QueryWrapper<DeviceInfo> getWrapper(Map<String, Object> params) {
         return null;

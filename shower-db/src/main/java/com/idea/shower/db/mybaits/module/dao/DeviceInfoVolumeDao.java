@@ -9,5 +9,5 @@ import com.idea.shower.db.mybaits.module.pojo.DeviceInfoVolume;
  * @author: yuane
  * @create: 2020-05-13 13:43
  */
-public interface DeviceInfoVolumeDao extends CommonsDao<DeviceInfoVolume> {
+public interface DeviceInfoVolumeDao extends CommonsDao<DeviceInfoVolume,DeviceInfoVolume> {
 }

@@ -21,7 +21,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class DeviceOrderDaoImpl extends CommonsDaoImpl<DeviceOrder, DeviceOrderMapper> implements DeviceOrderDao {
+public class DeviceOrderDaoImpl extends CommonsDaoImpl<DeviceOrder,DeviceOrder, DeviceOrderMapper> implements DeviceOrderDao {
 
     @Override
     public Optional<DeviceOrder> getByOrderNoOpt(String orderNo) {

@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-08 16:21
  */
-public interface AdminUserDao extends CommonsDao<AdminUser> {
+public interface AdminUserDao extends CommonsDao<AdminUser,AdminUser> {
     PageResult<AdminUser> selectPageByCondition(AdminUserQuery condition);
 
     List<AdminUser> selectListByCondition(AdminUserQuery condition);

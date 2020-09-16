@@ -16,7 +16,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-08 16:15
  */
-public interface AdminPermissionDao extends CommonsDao<AdminPermission> {
+public interface AdminPermissionDao extends CommonsDao<AdminPermission, AdminPermission> {
     PageResult<AdminPermission> selectPageByCondition(AdminPermissionQuery condition);
 
     List<AdminPermission> selectListByCondition(AdminPermissionQuery condition);
@@ -50,9 +50,9 @@ public interface AdminPermissionDao extends CommonsDao<AdminPermission> {
 
     List<AdminPermission> selectAllByRoleId(Long roleId);
 
-	List<String> selectNameByRoleId(Long roleId);
+    List<String> selectNameByRoleId(Long roleId);
 
-	List<String> selectNameByRoleIdIn(Collection<Long> roleIdCollection);
+    List<String> selectNameByRoleIdIn(Collection<Long> roleIdCollection);
 
     int deleteById(Long id);
 }

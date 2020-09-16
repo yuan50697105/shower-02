@@ -22,7 +22,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class OrderItemDaoImpl extends CommonsDaoImpl<OrderItem, OrderItemMapper> implements OrderItemDao {
+public class OrderItemDaoImpl extends CommonsDaoImpl<OrderItem,OrderItem, OrderItemMapper> implements OrderItemDao {
 
     @Override
     @Transactional(rollbackFor = Exception.class)

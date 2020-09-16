@@ -13,7 +13,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 19:55
  */
-public interface OrderItemDao extends CommonsDao<OrderItem> {
+public interface OrderItemDao extends CommonsDao<OrderItem,OrderItem> {
 
     void batchSave(List<OrderItem> orderItems);
 

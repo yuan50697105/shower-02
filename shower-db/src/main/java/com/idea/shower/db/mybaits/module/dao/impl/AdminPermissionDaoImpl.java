@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @AllArgsConstructor
-public class AdminPermissionDaoImpl extends CommonsDaoImpl<AdminPermission, AdminPermissionMapper> implements AdminPermissionDao {
+public class AdminPermissionDaoImpl extends CommonsDaoImpl<AdminPermission,AdminPermission, AdminPermissionMapper> implements AdminPermissionDao {
     private final AdminPermissionMapper adminPermissionMapper;
     private final AdminUserRoleMapper adminUserRoleMapper;
     private final AdminUserMapper adminUserMapper;

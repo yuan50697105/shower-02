@@ -13,7 +13,7 @@ import java.util.Optional;
  * @projectName shower-01
  * @date 2020/4/169:59
  */
-public interface FeedbackDao extends CommonsDao<Feedback> {
+public interface FeedbackDao extends CommonsDao<Feedback,Feedback> {
 
     Optional<Feedback> getByIdOpt(Long id);
 

@@ -22,7 +22,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class CustomerInfoDaoImpl extends CommonsDaoImpl<CustomerInfo, CustomerInfoMapper> implements CustomerInfoDao {
+public class CustomerInfoDaoImpl extends CommonsDaoImpl<CustomerInfo,CustomerInfo, CustomerInfoMapper> implements CustomerInfoDao {
     @Override
     public QueryWrapper<CustomerInfo> getWrapper(Map<String, Object> params) {
         return null;

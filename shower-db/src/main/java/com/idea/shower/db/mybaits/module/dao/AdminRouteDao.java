@@ -12,7 +12,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-07-02 12:21
  */
-public interface AdminRouteDao extends CommonsDao<AdminRoute> {
+public interface AdminRouteDao extends CommonsDao<AdminRoute,AdminRoute> {
     List<AdminRoute> selectByExample(AdminRouteExample adminRouteExample);
 
 

@@ -6,5 +6,5 @@ package com.idea.shower.db.mybaits.commons.dao;
  * @author: yuane
  * @create: 2020-01-20 16:26
  */
-public interface CommonsDao<T> extends io.renren.common.service.CrudService<T, T> {
+public interface CommonsDao<T,D> extends io.renren.common.service.CrudService<T, D> {
 }

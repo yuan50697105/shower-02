@@ -20,7 +20,7 @@ import java.util.Map;
 @Component
 @AllArgsConstructor
 @Transactional
-public class DeviceInfoVolumeDaoImpl extends CommonsDaoImpl<DeviceInfoVolume, DeviceInfoVolumeMapper> implements DeviceInfoVolumeDao {
+public class DeviceInfoVolumeDaoImpl extends CommonsDaoImpl<DeviceInfoVolume,DeviceInfoVolume, DeviceInfoVolumeMapper> implements DeviceInfoVolumeDao {
 
     @Override
     public QueryWrapper<DeviceInfoVolume> getWrapper(Map<String, Object> params) {

@@ -23,7 +23,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class FeedbackDaoImpl extends CommonsDaoImpl<Feedback, FeedbackMapper> implements FeedbackDao {
+public class FeedbackDaoImpl extends CommonsDaoImpl<Feedback,Feedback, FeedbackMapper> implements FeedbackDao {
 
     @Override
     public Optional<Feedback> getByIdOpt(Long id) {

@@ -9,5 +9,5 @@ import com.idea.shower.db.mybaits.module.pojo.DeviceRecord;
  * @author: yuane
  * @create: 2020-05-31 12:40
  */
-public interface DeviceRecordDao extends CommonsDao<DeviceRecord> {
+public interface DeviceRecordDao extends CommonsDao<DeviceRecord,DeviceRecord> {
 }

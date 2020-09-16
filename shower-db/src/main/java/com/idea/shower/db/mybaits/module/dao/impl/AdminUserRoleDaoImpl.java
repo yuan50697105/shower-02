@@ -22,7 +22,7 @@ import java.util.Map;
  */
 @Component
 @AllArgsConstructor
-public class AdminUserRoleDaoImpl extends CommonsDaoImpl<AdminUserRole, AdminUserRoleMapper> implements AdminUserRoleDao {
+public class AdminUserRoleDaoImpl extends CommonsDaoImpl<AdminUserRole,AdminUserRole, AdminUserRoleMapper> implements AdminUserRoleDao {
     @org.springframework.beans.factory.annotation.Autowired
     private final AdminUserRoleMapper adminUserRoleMapper;
 

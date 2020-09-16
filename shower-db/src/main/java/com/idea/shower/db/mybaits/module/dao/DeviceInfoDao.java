@@ -14,7 +14,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-01-28 12:42
  */
-public interface DeviceInfoDao extends CommonsDao<DeviceInfo> {
+public interface DeviceInfoDao extends CommonsDao<DeviceInfo,DeviceInfo> {
     /**
      * 获取设备信息
      *
