@@ -289,8 +289,8 @@
         <include refid="Base_Column_List" />
         from admin_permission
         <where>
-            <if test="condition.id != null">
-                and id = #{condition.id,jdbcType=BIGINT}
+            <if test="condition.ids != null">
+                and id = #{condition.ids,jdbcType=BIGINT}
             </if>
             <if test="condition.ids != null and condition.ids.size() != 0">
                 and id in

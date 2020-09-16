@@ -17,7 +17,8 @@ public class BaseDbQuery {
     private Integer limit = 20;
     private String order;
     private String sort;
-    private List<Long> id;
+    private Long id;
+    private List<Long> ids;
     private String creator;
     private Date createDateStart;
     private Date createDateEnd;
