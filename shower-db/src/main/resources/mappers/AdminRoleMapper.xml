@@ -307,12 +307,12 @@
         <include refid="Base_Column_List" />
         from admin_role
         <where>
-            <if test="condition.id != null">
-                and id = #{condition.id,jdbcType=BIGINT}
-            </if>
-            <if test="condition.ids != null and condition.ids.size() != 0">
+<!--            <if test="condition.id != null">-->
+<!--                and id = #{condition.id,jdbcType=BIGINT}-->
+<!--            </if>-->
+            <if test="condition.id != null and condition.id.size() != 0">
                 and id in
-                <foreach close=")" collection="condition.ids" index="index" item="item" open="(" separator=",">
+                <foreach close=")" collection="condition.id" index="index" item="item" open="(" separator=",">
                     #{item,jdbcType=BIGINT}
                 </foreach>
             </if>
