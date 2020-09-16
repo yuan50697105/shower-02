@@ -262,31 +262,31 @@ export default {
           myChart.setOption(option)
         }
       })
-    },
-    // 点击服务商块
-    toProvider() {
-      this.$router.push({
-        name: 'provider-serviceprovider'
-      })
-    },
-    // 点击服务人员块
-    toServicePeople() {
-      this.$router.push({
-        name: 'subsidyRules-servicepeople'
-      })
-    },
-    // 点击客户档案块
-    toHealthPeople() {
-      this.$router.push({
-        name: 'healthPeople-healthpeoplecore'
-      })
-    },
-    // 点击订单块
-    toOrder() {
-      this.$router.push({
-        name: 'order-order'
-      })
     }
+    // 点击服务商块
+    // toProvider() {
+    //   this.$router.push({
+    //     name: 'provider-serviceprovider'
+    //   })
+    // },
+    // // 点击服务人员块
+    // toServicePeople() {
+    //   this.$router.push({
+    //     name: 'subsidyRules-servicepeople'
+    //   })
+    // },
+    // // 点击客户档案块
+    // toHealthPeople() {
+    //   this.$router.push({
+    //     name: 'healthPeople-healthpeoplecore'
+    //   })
+    // },
+    // // 点击订单块
+    // toOrder() {
+    //   this.$router.push({
+    //     name: 'order-order'
+    //   })
+    // }
   }
 
 }
