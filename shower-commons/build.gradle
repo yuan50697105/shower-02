@@ -8,7 +8,7 @@ dependencies {
     compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.11.0'
     compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.2.29'
     compile group: 'com.qcloud', name: 'cos_api', version: '5.6.28'
-    compileOnly group: 'com.alibaba', name: 'druid', version: '1.1.23'
+//    compileOnly group: 'com.alibaba', name: 'druid', version: '1.1.23'
 
 }
 bootJar {
