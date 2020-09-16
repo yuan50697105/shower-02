@@ -1,6 +1,6 @@
 package com.idea.shower.db.mybaits.commons.mapper;
 
-import com.idea.shower.db.mybaits.base.mapper.BaseDbMapper;
+import io.renren.common.dao.BaseDao;
 
 /**
  * @program: shower-01
@@ -8,5 +8,5 @@ import com.idea.shower.db.mybaits.base.mapper.BaseDbMapper;
  * @author: yuane
  * @create: 2020-01-20 16:26
  */
-public interface BaseDaoMapper<T> extends BaseDbMapper<T> {
+public interface BaseDaoMapper<T> extends BaseDao<T> {
 }

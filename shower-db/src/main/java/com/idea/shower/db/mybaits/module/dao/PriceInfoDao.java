@@ -1,7 +1,7 @@
 package com.idea.shower.db.mybaits.module.dao;
 
 
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.PriceInfo;
 
 import java.util.Optional;
@@ -12,8 +12,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 20:18
  */
-public interface PriceInfoDao extends BaseDao<PriceInfo> {
-    void insert(PriceInfo priceInfo);
+public interface PriceInfoDao extends CommonsDao<PriceInfo> {
 
     Optional<PriceInfo> getStartingPricesPriceCodeOpt(String rangeCode);
 

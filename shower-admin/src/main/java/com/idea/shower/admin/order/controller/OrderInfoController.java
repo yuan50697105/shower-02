@@ -1,6 +1,6 @@
 package com.idea.shower.admin.order.controller;
 
-import com.idea.shower.db.mybaits.module.pojo.dto.OrderInfoDTO;
+import com.idea.shower.db.mybaits.module.pojo.ao.OrderInfoAo;
 import com.idea.shower.admin.order.service.OrderInfoService;
 import io.renren.common.constant.Constant;
 import io.renren.common.page.PageData;
@@ -42,16 +42,16 @@ public class OrderInfoController {
             @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType="String") ,
             @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType="String")
     })
-    public Result<PageData<OrderInfoDTO>> page(@RequestParam Map<String, Object> params){
-        PageData<OrderInfoDTO> page = orderInfoService.page(params);
+    public Result<PageData<OrderInfoAo>> page(@RequestParam Map<String, Object> params){
+        PageData<OrderInfoAo> page = orderInfoService.page(params);
 
-        return new Result<PageData<OrderInfoDTO>>().ok(page);
+        return new Result<PageData<OrderInfoAo>>().ok(page);
     }
 
     @GetMapping("{id}")
-    public Result<OrderInfoDTO> get(@PathVariable("id") Long id){
-        OrderInfoDTO data = orderInfoService.get(id);
-        return new Result<OrderInfoDTO>().ok(data);
+    public Result<OrderInfoAo> get(@PathVariable("id") Long id){
+        OrderInfoAo data = orderInfoService.get(id);
+        return new Result<OrderInfoAo>().ok(data);
     }
 
     @GetMapping("selectPage")
@@ -64,7 +64,7 @@ public class OrderInfoController {
             @ApiImplicitParam(name = "peopleName", value = "老人名称", paramType = "query", dataType="String"),
             @ApiImplicitParam(name = "idnumber", value = "身份证号", paramType = "query", dataType="String")
     })
-    public Result<PageData<OrderInfoDTO>> selectPage(@ApiIgnore @RequestParam Map<String, Object> params){
+    public Result<PageData<OrderInfoAo>> selectPage(@ApiIgnore @RequestParam Map<String, Object> params){
 
         return orderInfoService.selectPage(params);
     }

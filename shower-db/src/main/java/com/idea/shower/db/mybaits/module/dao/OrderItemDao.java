@@ -1,7 +1,7 @@
 package com.idea.shower.db.mybaits.module.dao;
 
 
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.OrderItem;
 
 import java.util.List;
@@ -13,8 +13,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 19:55
  */
-public interface OrderItemDao extends BaseDao<OrderItem> {
-    void insert(OrderItem orderItem);
+public interface OrderItemDao extends CommonsDao<OrderItem> {
 
     void batchSave(List<OrderItem> orderItems);
 

@@ -1,4 +1,4 @@
-package com.idea.shower.db.mybaits.module.pojo.dto;
+package com.idea.shower.db.mybaits.module.pojo.ao;
 
 import lombok.Data;
 
@@ -21,7 +21,7 @@ import java.math.BigDecimal;
  * @version 1.0.0
 */
 @Data
-public class OrderInfoDTO implements Serializable {
+public class OrderInfoAo implements Serializable {
     private static final long serialVersionUID = 1L;
 
 	private Long id;

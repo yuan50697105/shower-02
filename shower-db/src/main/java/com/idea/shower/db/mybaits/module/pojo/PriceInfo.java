@@ -1,8 +1,10 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import java.math.BigDecimal;
-import java.util.Date;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -83,4 +85,8 @@ public class PriceInfo extends BaseDbEntity {
      * 有效
      */
     private Integer enabled;
+
+    public void copyFromByOptions(BaseDbEntity t, CopyOptions copyOptions) {
+        BeanUtil.copyProperties(t, this, copyOptions);
+    }
 }

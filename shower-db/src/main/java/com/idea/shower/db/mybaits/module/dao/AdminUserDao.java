@@ -1,8 +1,8 @@
 package com.idea.shower.db.mybaits.module.dao;
 
 
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.AdminUser;
 import com.idea.shower.db.mybaits.module.pojo.query.AdminUserQuery;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-08 16:21
  */
-public interface AdminUserDao extends BaseDao<AdminUser> {
+public interface AdminUserDao extends CommonsDao<AdminUser> {
     PageResult<AdminUser> selectPageByCondition(AdminUserQuery condition);
 
     List<AdminUser> selectListByCondition(AdminUserQuery condition);

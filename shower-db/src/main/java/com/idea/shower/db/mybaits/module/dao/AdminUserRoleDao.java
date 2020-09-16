@@ -1,7 +1,7 @@
 package com.idea.shower.db.mybaits.module.dao;
 
 
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.AdminUserRole;
 
 import java.util.List;
@@ -12,7 +12,7 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-02-08 16:22
  */
-public interface AdminUserRoleDao extends BaseDao<AdminUserRole> {
+public interface AdminUserRoleDao extends CommonsDao<AdminUserRole> {
     int deleteByUserId(Long userId);
 
     void deleteByUserIds(List<Long> userIds);

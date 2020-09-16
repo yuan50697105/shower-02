@@ -1,8 +1,8 @@
 package com.idea.shower.db.mybaits.module.dao;
 
 
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.AdminPermission;
 import com.idea.shower.db.mybaits.module.pojo.query.AdminPermissionQuery;
 
@@ -16,7 +16,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-08 16:15
  */
-public interface AdminPermissionDao extends BaseDao<AdminPermission> {
+public interface AdminPermissionDao extends CommonsDao<AdminPermission> {
     PageResult<AdminPermission> selectPageByCondition(AdminPermissionQuery condition);
 
     List<AdminPermission> selectListByCondition(AdminPermissionQuery condition);
@@ -27,7 +27,6 @@ public interface AdminPermissionDao extends BaseDao<AdminPermission> {
 
     Optional<AdminPermission> selectById(Long id);
 
-    int insert(AdminPermission adminPermission);
 
     int insertSelective(AdminPermission adminPermission);
 

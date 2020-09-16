@@ -1,5 +1,7 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import lombok.*;
 
@@ -30,4 +32,8 @@ public class AreaTower extends BaseDbEntity implements Serializable {
     private Long areaId;
 
     private static final long serialVersionUID = 1L;
+
+    public void copyFromByOptions(BaseDbEntity t, CopyOptions copyOptions) {
+        BeanUtil.copyProperties(t, this, copyOptions);
+    }
 }

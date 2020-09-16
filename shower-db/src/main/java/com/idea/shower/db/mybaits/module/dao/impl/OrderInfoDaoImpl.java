@@ -3,13 +3,13 @@ package com.idea.shower.db.mybaits.module.dao.impl;
 
 import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.core.util.StrUtil;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.idea.shower.commons.utils.ResourceFileUtils;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.base.pojo.WxPageResult;
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
-import com.idea.shower.db.mybaits.core.pojo.IWxPageResult;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.OrderInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.OrderInfoMapper;
@@ -24,6 +24,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -34,53 +35,48 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> implements OrderInfoDao {
+public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoMapper> implements OrderInfoDao {
     @Autowired
     private final OrderInfoMapper orderInfoMapper;
     private final ResourceFileUtils resourceFileUtils;
 
-    @Transactional(rollbackFor = Exception.class)
-    public void insert(OrderInfo orderInfo) {
-        baseMapper().insertSelective(orderInfo);
-    }
-
     @Override
     public Optional<OrderInfo> getByIdOpt(Long orderId) {
-        return Optional.ofNullable(baseMapper().selectByPrimaryKey(orderId));
+        return Optional.ofNullable(baseDao().selectByPrimaryKey(orderId));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateStatusCompleteByOrderNo(String outTradeNo) {
-        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_COMPLETED, outTradeNo);
+        baseDao().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_COMPLETED, outTradeNo);
     }
 
     @Override
     public PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition) {
         PageHelper.startPage(condition.getPage(), condition.getLimit());
-        return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
+        return pageResult(PageInfo.of(baseDao().selectByCondition(condition)));
     }
 
     @Override
-    public IWxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
+    public WxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
-        PageInfo<OrderInfo> pageInfo = new PageInfo<>(baseMapper().selectByConditionWeXin(query));
+        PageInfo<OrderInfo> pageInfo = new PageInfo<>(baseDao().selectByConditionWeXin(query));
         return new WxPageResult<>(pageInfo);
     }
 
     @Override
     public Optional<OrderInfo> getByOrderNoOpt(String orderNo) {
-        return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
+        return Optional.ofNullable(baseDao().selectOneByOrderNo(orderNo));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void updateTotalPriceByOrderNo(BigDecimal totalprice, String orderNo) {
-        baseMapper().updateTotalPriceByOrderNo(totalprice, orderNo);
+        baseDao().updateTotalPriceByOrderNo(totalprice, orderNo);
     }
 
     @Override
-    public IWxPageResult<OrderInfoDeviceVO> selectOrderInfoDeviceVOPageByCondition(OrderInfoQuery query) {
+    public WxPageResult<OrderInfoDeviceVO> selectOrderInfoDeviceVOPageByCondition(OrderInfoQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
         List<OrderInfoDeviceVO> orderInfoDeviceVOS = orderInfoMapper.selectOrderInfoDeviceVOListByCondition(query);
         for (OrderInfoDeviceVO orderInfoDeviceVO : orderInfoDeviceVOS) {
@@ -91,22 +87,22 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
 
     @Override
     public void updateStatusUsingById(Long id) {
-        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
+        baseDao().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
     }
 
     @Override
     public void updateStatusTimeOutById(Long id) {
-        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, id);
+        baseDao().updateStatusById(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, id);
     }
 
     @Override
     public void updateStatusEndUseById(Long id) {
-        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.END_USE, id);
+        baseDao().updateStatusById(OrderInfoConstants.OrderStatus.END_USE, id);
     }
 
     @Override
     public Optional<OrderInfoDeviceVO> getByOrderNoDeviceVoOpt(String orderNo) {
-        OrderInfoDeviceVO orderInfoDeviceVO = baseMapper().selectOrderInfoDeviceVOListByOrderNo(orderNo);
+        OrderInfoDeviceVO orderInfoDeviceVO = baseDao().selectOrderInfoDeviceVOListByOrderNo(orderNo);
         if (ObjectUtil.isNotEmpty(orderInfoDeviceVO)) {
             orderInfoDeviceVO.setPicture(resourceFileUtils.filePath(orderInfoDeviceVO.getPicture()));
         }
@@ -115,22 +111,27 @@ public class OrderInfoDaoImpl extends BaseDaoImpl<OrderInfo, OrderInfoMapper> im
 
     @Override
     public void updateEndTimeByOrderId(Date date, Long id) {
-        baseMapper().updateUseEndTimeById(date, id);
+        baseDao().updateUseEndTimeById(date, id);
     }
 
 
     @Override
     public void updateUseStartTime(Date date, Long id) {
-        baseMapper().updateUseStartTimeById(date, id);
+        baseDao().updateUseStartTimeById(date, id);
     }
 
     @Override
     public void updateStatusCancelByOrderNo(String orderNo) {
-        baseMapper().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_CANCEL, orderNo);
+        baseDao().updateStatusByOrderNo(OrderInfoConstants.OrderStatus.ORDER_CANCEL, orderNo);
     }
 
     @Override
     public void updateTransactionIdByOrderNo(String transactionId, String outTradeNo) {
-        baseMapper().updateTransactionIdByOrderNo(transactionId, outTradeNo);
+        baseDao().updateTransactionIdByOrderNo(transactionId, outTradeNo);
+    }
+
+    @Override
+    public QueryWrapper<OrderInfo> getWrapper(Map<String, Object> params) {
+        return null;
     }
 }

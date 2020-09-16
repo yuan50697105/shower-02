@@ -1,7 +1,8 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
 
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.dao.AdminUserRoleDao;
 import com.idea.shower.db.mybaits.module.mapper.AdminUserRoleMapper;
 import com.idea.shower.db.mybaits.module.pojo.AdminUserRole;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: learning-demo-java-01
@@ -20,50 +22,50 @@ import java.util.List;
  */
 @Component
 @AllArgsConstructor
-public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRoleMapper> implements AdminUserRoleDao {
+public class AdminUserRoleDaoImpl extends CommonsDaoImpl<AdminUserRole, AdminUserRoleMapper> implements AdminUserRoleDao {
     @org.springframework.beans.factory.annotation.Autowired
     private final AdminUserRoleMapper adminUserRoleMapper;
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteByUserId(Long userId) {
-        return baseMapper().deleteByUserId(userId);
+        return baseDao().deleteByUserId(userId);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByUserIds(List<Long> userIds) {
-         baseMapper().deleteByUserIdIn(userIds);
+         baseDao().deleteByUserIdIn(userIds);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteByRoleId(Long roleId) {
-        return baseMapper().deleteByRoleId(roleId);
+        return baseDao().deleteByRoleId(roleId);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteByRoleIds(List<Long> roleIds) {
-         baseMapper().deleteByRoleIdIn(roleIds);
+         baseDao().deleteByRoleIdIn(roleIds);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int batchInsertSelective(List<AdminUserRole> adminUserRoles) {
-        return adminUserRoles.stream().map(baseMapper()::insertSelective).reduce(Integer::sum).orElse(0);
+        return adminUserRoles.stream().map(baseDao()::insertSelective).reduce(Integer::sum).orElse(0);
     }
 
     @Override
     public List<AdminUserRole> listByUserId(Long id) {
         AdminUserRoleExample example = new AdminUserRoleExample();
         example.or().andUserIdEqualTo(id);
-        return baseMapper().selectByExample(example);
+        return baseDao().selectByExample(example);
     }
 
     @Override
     public List<String> selectRoleNameByUsername(String username) {
-        return baseMapper().selectRoleNameByUsername(username);
+        return baseDao().selectRoleNameByUsername(username);
     }
 
     @Override
@@ -74,15 +76,17 @@ public class AdminUserRoleDaoImpl extends BaseDaoImpl<AdminUserRole, AdminUserRo
 
     @Override
     public List<Long> selectRoleIdByUserId(Long userId) {
-        return baseMapper().selectRoleIdByUserId(userId);
+        return baseDao().selectRoleIdByUserId(userId);
     }
 
     @Override
     public List<Long> selectUserIdByRoleId(Long roleId) {
-        return baseMapper().selectUserIdByRoleId(roleId);
+        return baseDao().selectUserIdByRoleId(roleId);
     }
 
 
-
-
+    @Override
+    public QueryWrapper<AdminUserRole> getWrapper(Map<String, Object> params) {
+        return null;
+    }
 }
