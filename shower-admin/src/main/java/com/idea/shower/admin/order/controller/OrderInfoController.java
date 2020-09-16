@@ -1,14 +1,10 @@
 package com.idea.shower.admin.order.controller;
 
-import com.idea.shower.admin.order.dto.OrderInfoDTO;
+import com.idea.shower.db.mybaits.module.pojo.dto.OrderInfoDTO;
 import com.idea.shower.admin.order.service.OrderInfoService;
 import io.renren.common.constant.Constant;
 import io.renren.common.page.PageData;
 import io.renren.common.utils.Result;
-import io.renren.common.validator.AssertUtils;
-import io.renren.common.validator.ValidatorUtils;
-import io.renren.common.validator.group.DefaultGroup;
-import io.renren.common.validator.group.UpdateGroup;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;

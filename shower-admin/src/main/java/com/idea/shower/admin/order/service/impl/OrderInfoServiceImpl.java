@@ -4,7 +4,7 @@ import ai.yue.library.base.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.idea.shower.admin.order.dao.OrderInfoDao;
-import com.idea.shower.admin.order.dto.OrderInfoDTO;
+import com.idea.shower.db.mybaits.module.pojo.dto.OrderInfoDTO;
 import com.idea.shower.admin.order.service.OrderInfoService;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import io.renren.common.page.PageData;

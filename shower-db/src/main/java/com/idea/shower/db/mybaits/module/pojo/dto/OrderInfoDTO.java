@@ -1,4 +1,4 @@
-package com.idea.shower.admin.order.dto;
+package com.idea.shower.db.mybaits.module.pojo.dto;
 
 import lombok.Data;
 
