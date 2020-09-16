@@ -51,7 +51,6 @@ export default {
           }
         }
       ).then((res) => {
-        console.log(res)
         if (res.code !== 200 && res.code !== 0) {
           this.dataList = []
           this.total = 0

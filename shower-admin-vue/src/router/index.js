@@ -182,9 +182,9 @@ export const asyncRoutes = [
       {
         path: 'user',
         component: () => import('@/views/permission/user'),
-        name: '用户管理',
+        name: '平台账号管理',
         meta: {
-          title: '用户管理',
+          title: '平台账号管理',
           hidden: false,
           button: false,
           roles: ['超级管理员'],
@@ -226,6 +226,19 @@ export const asyncRoutes = [
           }
 
         ]
+      },
+      // 客户管理
+      {
+        path: 'customer',
+        component: () => import('@/views/customer/customerinfo'),
+        name: '客户管理',
+        meta: {
+          title: '客户管理',
+          hidden: false,
+          button: false,
+          roles: ['超级管理员'],
+          permissions: ['system:customer:page']
+        }
       }
     ]
   },
