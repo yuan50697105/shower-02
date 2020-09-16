@@ -271,9 +271,6 @@
         <include refid="Base_Column_List" />
         from area_info ai
         <where>
-            <if test="id != null">
-                and id = #{id,jdbcType=BIGINT}
-            </if>
             <if test="id != null and id.size() != 0">
                 and id in (<foreach collection="id" item="item" separator=",">#{item,jdbcType=BIGINT}</foreach> )
             </if>
