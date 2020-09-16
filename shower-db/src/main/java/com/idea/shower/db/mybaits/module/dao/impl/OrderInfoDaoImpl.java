@@ -42,6 +42,11 @@ public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoAo, Ord
     private final ResourceFileUtils resourceFileUtils;
 
     @Override
+    public QueryWrapper<OrderInfo> getWrapper(Map<String, Object> params) {
+        return null;
+    }
+
+    @Override
     public Optional<OrderInfo> getByIdOpt(Long orderId) {
         return Optional.ofNullable(baseDao().selectByPrimaryKey(orderId));
     }
@@ -129,10 +134,5 @@ public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoAo, Ord
     @Override
     public void updateTransactionIdByOrderNo(String transactionId, String outTradeNo) {
         baseDao().updateTransactionIdByOrderNo(transactionId, outTradeNo);
-    }
-
-    @Override
-    public QueryWrapper<OrderInfo> getWrapper(Map<String, Object> params) {
-        return null;
     }
 }
