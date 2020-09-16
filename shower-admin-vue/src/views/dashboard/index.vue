@@ -43,6 +43,7 @@ export default {
       info: {}
     }
   },
+
   mounted() {
     this.getInfo()
     this.drawLine()

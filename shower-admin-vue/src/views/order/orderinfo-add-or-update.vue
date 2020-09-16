@@ -1,25 +1,27 @@
 <template>
-  <el-dialog :visible.sync="visible" :title="!dataForm.id ? $t('add') : $t('update')" :close-on-click-modal="false" :close-on-press-escape="false">
-    <el-form ref="dataForm" :model="dataForm" :rules="dataRule" :label-width="$i18n.locale === 'en-US' ? '120px' : '80px'" @keyup.enter.native="dataFormSubmitHandle()">
-      <el-form-item label="订单编号" prop="orderNo">
-        <el-input v-model="dataForm.orderNo" placeholder="订单编号" :disabled="true" />
-      </el-form-item>
-      <el-form-item label="订单状态" prop="status">
-        <el-select v-model="dataForm.status" clearable placeholder="请选择订单状态">
-          <el-option
-            v-for="item in statusOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
-    </el-form>
-    <template slot="footer">
-      <el-button @click="visible = false">{{ $t('cancel') }}</el-button>
-      <el-button type="primary" @click="dataFormSubmitHandle()">{{ $t('confirm') }}</el-button>
-    </template>
-  </el-dialog>
+  <div class="order_update">
+    <el-dialog :visible.sync="visible" :title="!dataForm.id ? $t('add') : $t('update')" :close-on-click-modal="false" :close-on-press-escape="false">
+      <el-form ref="dataForm" :model="dataForm" :rules="dataRule" :label-width="$i18n.locale === 'en-US' ? '120px' : '80px'" @keyup.enter.native="dataFormSubmitHandle()">
+        <el-form-item label="订单编号" prop="orderNo">
+          <el-input v-model="dataForm.orderNo" placeholder="订单编号" :disabled="true" />
+        </el-form-item>
+        <el-form-item label="订单状态" prop="status">
+          <el-select v-model="dataForm.status" clearable placeholder="请选择订单状态">
+            <el-option
+              v-for="item in statusOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <template slot="footer">
+        <el-button @click="visible = false">{{ $t('cancel') }}</el-button>
+        <el-button type="primary" @click="dataFormSubmitHandle()">{{ $t('confirm') }}</el-button>
+      </template>
+    </el-dialog>
+  </div>
 </template>
 
 <script>
@@ -123,7 +125,8 @@ export default {
   }
 }
 </script>
-<style >
+<style lang="scss">
+.order_update{
   .el-select {
     width: 85%;
   }
@@ -139,4 +142,6 @@ export default {
   .el-select > .el-input{
     width: 100% !important;
   }
+}
+
 </style>
