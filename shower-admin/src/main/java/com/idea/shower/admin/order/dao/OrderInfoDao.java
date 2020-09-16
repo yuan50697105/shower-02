@@ -1,10 +1,14 @@
 package com.idea.shower.admin.order.dao;
 
+import com.idea.shower.admin.order.dto.OrderInfoDTO;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
- /**  
+import java.util.List;
+import java.util.Map;
+
+/**  
  * <p>
  * Title: ${file_name}
  * </p>  
@@ -20,5 +24,6 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface OrderInfoDao extends BaseDao<OrderInfo> {
-	
-}
+
+     List<OrderInfoDTO> selectPageByChoices(Map<String, Object> params);
+ }

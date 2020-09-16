@@ -30,6 +30,7 @@
         <view class="r" wx:if="{{item.status==4}}">已支付</view>
         <view class="r" wx:if="{{item.status==5}}">订单完成</view>
         <view class="r" wx:if="{{item.status==6}}">订单超时</view>
+        <view class="r" wx:if="{{item.status==7}}">订单取消</view>
       </view>
       <view class="goods">
         <view class="img">
@@ -37,7 +38,7 @@
         </view>
         <view class="info"  bindtap="lookDetail" data-no="{{item.orderNo}}">
           <text class="name">{{item.deviceCode}}</text>
-          <text class="number">下单:{{item.createTime}}</text>
+          <text class="number">下单:{{item.createDate}}</text>
           <text class="charged">结束:{{item.useEndTime}}</text>
           <text class="charged">￥5/min</text>
         </view>

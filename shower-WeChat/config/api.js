@@ -1,5 +1,5 @@
 // 以下是业务服务器API地址
-// var WxApiRoot = 'http://127.0.0.1:8002/wx/';
+// var WxApiRoot = 'https://127.0.0.1:8002/wx/';
 var WxApiRoot = 'https://www.yuan50697105.top:8002/wx/';
 module.exports = {
    //微信登录
@@ -22,4 +22,6 @@ module.exports = {
   OrderDetail: WxApiRoot + 'order/item',
   //付款
   OrderPay: WxApiRoot + 'order/pay',
+  //取消订单
+  OrderCancel: WxApiRoot + 'order/cancel'
 };
