@@ -110,7 +110,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
 
     @Override
     public Result<?> QRCode(DeviceInfoVo deviceInfoVo) {
-        String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getAreaName());
+        String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
         System.out.println(url);
         return null;
     }
