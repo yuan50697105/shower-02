@@ -26,13 +26,9 @@ public class OrderInfoDTO implements Serializable {
 
 	private Long id;
 
-	private Date createTime;
+	private Date createDate;
 
-	private Date updateTime;
-
-	private String createUser;
-
-	private String updateUser;
+	private Date updateDate;
 
 	private String orderNo;
 

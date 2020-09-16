@@ -2,7 +2,11 @@ package com.idea.shower.admin.order.service;
 
 import com.idea.shower.admin.order.dto.OrderInfoDTO;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
+import io.renren.common.page.PageData;
 import io.renren.common.service.CrudService;
+import io.renren.common.utils.Result;
+
+import java.util.Map;
 
 /**
  * order_info
@@ -12,4 +16,5 @@ import io.renren.common.service.CrudService;
  */
 public interface OrderInfoService extends CrudService<OrderInfo, OrderInfoDTO> {
 
+    Result<PageData<OrderInfoDTO>> selectPage(Map<String, Object> params);
 }

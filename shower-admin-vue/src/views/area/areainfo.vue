@@ -21,7 +21,7 @@
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;" @selection-change="dataListSelectionChangeHandle">
         <el-table-column type="selection" header-align="center" align="center" width="50" />
         <el-table-column type="index" label="序号" header-align="center" align="center" width="50" />
-        <el-table-column prop="createTime" label="createTime" header-align="center" align="center" />
+        <el-table-column prop="createDate" label="创建时间" header-align="center" align="center" />
         <el-table-column prop="name" label="区域名称" header-align="center" align="center" />
         <el-table-column prop="code" label="区域编号" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">

@@ -21,11 +21,11 @@
       <el-table v-loading="dataListLoading" :data="dataList" border style="width: 100%;" @selection-change="dataListSelectionChangeHandle">
         <el-table-column type="selection" header-align="center" align="center" width="50" />
         <el-table-column type="index" label="序号" header-align="center" align="center" width="50" />
-        <el-table-column prop="createTime" label="创建时间" header-align="center" align="center" />
+        <el-table-column prop="createDate" label="创建时间" header-align="center" align="center" />
         <el-table-column prop="code" label="设备编号" header-align="center" align="center" />
         <el-table-column prop="productKey" label="产品编号" header-align="center" align="center" />
         <el-table-column prop="deviceName" label="设备名称" header-align="center" align="center" />
-        <el-table-column prop="type" label="设备类型" header-align="center" align="center" />
+        <!-- <el-table-column prop="type" label="设备类型" header-align="center" align="center" /> -->
         <el-table-column prop="priceCode" label="定价编号" header-align="center" align="center" />
         <el-table-column prop="enabled" label="启用状态" header-align="center" align="center" />
         <el-table-column prop="longitude" label="经度" header-align="center" align="center" />
