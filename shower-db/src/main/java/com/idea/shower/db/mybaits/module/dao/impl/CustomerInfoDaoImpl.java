@@ -1,16 +1,17 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
 
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.dao.CustomerInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.CustomerInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.CustomerInfo;
 import com.idea.shower.db.mybaits.module.pojo.CustomerInfoExample;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -21,51 +22,46 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class CustomerInfoDaoImpl extends BaseDaoImpl<CustomerInfo, CustomerInfoMapper> implements CustomerInfoDao {
+public class CustomerInfoDaoImpl extends CommonsDaoImpl<CustomerInfo, CustomerInfoMapper> implements CustomerInfoDao {
+    @Override
+    public QueryWrapper<CustomerInfo> getWrapper(Map<String, Object> params) {
+        return null;
+    }
+
     @Override
     public List<CustomerInfo> selectByUnionId(String unionId) {
         CustomerInfoExample example = new CustomerInfoExample();
         example.or().andUnionIdEqualTo(unionId);
-        return baseMapper().selectByExample(example);
+        return baseDao().selectByExample(example);
     }
 
     @Override
     public Optional<CustomerInfo> getByUnionIdOpt(String unionId) {
-        return Optional.ofNullable(baseMapper().selectOneByUnionId(unionId));
+        return Optional.ofNullable(baseDao().selectOneByUnionId(unionId));
     }
 
     @Override
     public Optional<CustomerInfo> getByIdOpt(String id) {
-        return Optional.ofNullable(baseMapper().selectOneById(id));
+        return Optional.ofNullable(baseDao().selectOneById(id));
     }
 
     @Override
     public long countByUnionId(String unionId) {
         CustomerInfoExample example = new CustomerInfoExample();
         example.or().andUnionIdEqualTo(unionId);
-        return baseMapper().countByExample(example);
+        return baseDao().countByExample(example);
     }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int insert(CustomerInfo customerInfo) {
-        return baseMapper().insertSelective(customerInfo);
-    }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int update(CustomerInfo customerInfo) {
-        return baseMapper().updateByPrimaryKeySelective(customerInfo);
-    }
 
     @Override
     public Optional<CustomerInfo> getByOpenIdOpt(String openId) {
-        return Optional.ofNullable(baseMapper().selectOneByOpenId(openId));
+        return Optional.ofNullable(baseDao().selectOneByOpenId(openId));
     }
     @Override
     public long countByOpenId(String openid) {
         CustomerInfoExample example = new CustomerInfoExample();
         example.or().andOpenIdEqualTo(openid);
-        return baseMapper().countByExample(example);
+        return baseDao().countByExample(example);
     }
 }

@@ -1,8 +1,8 @@
 package com.idea.shower.db.mybaits.module.dao;
 
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
-import com.idea.shower.db.mybaits.core.pojo.IWxPageResult;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.db.mybaits.module.pojo.vo.OrderInfoDeviceVO;
@@ -17,8 +17,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 20:12
  */
-public interface OrderInfoDao extends BaseDao<OrderInfo> {
-    void insert(OrderInfo orderInfo);
+public interface OrderInfoDao extends CommonsDao<OrderInfo> {
 
     Optional<OrderInfo> getByIdOpt(Long orderId);
 
@@ -26,13 +25,13 @@ public interface OrderInfoDao extends BaseDao<OrderInfo> {
 
     PageResult<OrderInfo> selectPageByCondition(OrderInfoQuery condition);
 
-    IWxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query);
+    WxPageResult<OrderInfo> selectPageByConditionWeXin(OrderInfoQuery query);
 
     Optional<OrderInfo> getByOrderNoOpt(String orderNo);
 
     void updateTotalPriceByOrderNo(BigDecimal totalprice, String orderNo);
 
-    IWxPageResult<OrderInfoDeviceVO> selectOrderInfoDeviceVOPageByCondition(OrderInfoQuery query);
+    WxPageResult<OrderInfoDeviceVO> selectOrderInfoDeviceVOPageByCondition(OrderInfoQuery query);
 
     void updateStatusUsingById(Long id);
 

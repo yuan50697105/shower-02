@@ -316,8 +316,8 @@
                     #{item,jdbcType=BIGINT}
                 </foreach>
             </if>
-            <if test="condition.createUser != null and condition.createUser != ''">
-                and create_user like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
+            <if test="condition.creator != null and condition.creator != ''">
+                and create_user like concat('%',#{condition.creator,jdbcType=VARCHAR},'%')
             </if>
             <if test="condition.createDateStart != null">
                 <![CDATA[and date(create_time) >= date(#{condition.createDateStart,jdbcType=TIMESTAMP})]]>

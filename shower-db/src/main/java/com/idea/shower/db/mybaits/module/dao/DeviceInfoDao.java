@@ -1,7 +1,7 @@
 package com.idea.shower.db.mybaits.module.dao;
 
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 
@@ -14,7 +14,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-01-28 12:42
  */
-public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
+public interface DeviceInfoDao extends CommonsDao<DeviceInfo> {
     /**
      * 获取设备信息
      *
@@ -55,14 +55,6 @@ public interface DeviceInfoDao extends BaseDao<DeviceInfo> {
      * @return 设备信息
      */
     Optional<DeviceInfo> getByCodeAvailable(String deviceCode);
-
-    /**
-     * 添加设备信息
-     *
-     * @param deviceInfo 设备信息实体
-     * @return 受影响行数
-     */
-    int insert(DeviceInfo deviceInfo);
 
     /**
      * 更新设备信息

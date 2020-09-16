@@ -17,7 +17,7 @@ import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.app.wx.mp.util.AliyunIotPublishUtils;
-import com.idea.shower.db.mybaits.core.pojo.IWxPageResult;
+import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
 import com.idea.shower.db.mybaits.module.constants.PriceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.*;
@@ -242,7 +242,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      */
     @Override
     public Result selectPage(OrderInfoQuery condition) {
-        IWxPageResult<OrderInfoDeviceVO> pageResult = orderInfoDao.selectOrderInfoDeviceVOPageByCondition(condition);
+        WxPageResult<OrderInfoDeviceVO> pageResult = orderInfoDao.selectOrderInfoDeviceVOPageByCondition(condition);
         return ResultUtils.data(pageResult);
     }
 

@@ -1,6 +1,5 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.AdminUser;
 import com.idea.shower.db.mybaits.module.pojo.AdminUserExample;
@@ -11,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface AdminUserMapper extends BaseDaoMapper<AdminUser>, BaseMapper<AdminUser> {
+public interface AdminUserMapper extends BaseDaoMapper<AdminUser> {
     long countByExample(AdminUserExample example);
 
     int deleteByExample(AdminUserExample example);

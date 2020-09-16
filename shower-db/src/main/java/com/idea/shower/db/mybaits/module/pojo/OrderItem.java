@@ -1,5 +1,7 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -137,4 +139,8 @@ public class OrderItem extends BaseDbEntity {
      * 总价
      */
     private BigDecimal totalPrice;
+
+    public void copyFromByOptions(BaseDbEntity t, CopyOptions copyOptions) {
+        BeanUtil.copyProperties(t, this, copyOptions);
+    }
 }

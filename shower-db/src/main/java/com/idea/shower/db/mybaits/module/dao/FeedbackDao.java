@@ -1,7 +1,7 @@
 package com.idea.shower.db.mybaits.module.dao;
 
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
-import com.idea.shower.db.mybaits.core.pojo.IWxPageResult;
+import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.Feedback;
 import com.idea.shower.db.mybaits.module.pojo.query.FeedbackQuery;
 
@@ -13,11 +13,9 @@ import java.util.Optional;
  * @projectName shower-01
  * @date 2020/4/169:59
  */
-public interface FeedbackDao extends BaseDao<Feedback> {
-
-    void insert(Feedback feedback);
+public interface FeedbackDao extends CommonsDao<Feedback> {
 
     Optional<Feedback> getByIdOpt(Long id);
 
-    IWxPageResult<Feedback> selectPageByConditionWeXin(FeedbackQuery query);
+    WxPageResult<Feedback> selectPageByConditionWeXin(FeedbackQuery query);
 }

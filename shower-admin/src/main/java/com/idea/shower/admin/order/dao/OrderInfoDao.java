@@ -1,6 +1,6 @@
 package com.idea.shower.admin.order.dao;
 
-import com.idea.shower.admin.order.dto.OrderInfoDTO;
+import com.idea.shower.db.mybaits.module.pojo.ao.OrderInfoAo;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import io.renren.common.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
@@ -25,5 +25,5 @@ import java.util.Map;
 @Mapper
 public interface OrderInfoDao extends BaseDao<OrderInfo> {
 
-     List<OrderInfoDTO> selectPageByChoices(Map<String, Object> params);
+     List<OrderInfoAo> selectPageByChoices(Map<String, Object> params);
  }

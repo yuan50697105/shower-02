@@ -13,7 +13,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class DeviceOrderInfoQuery extends BaseDbQuery {
-    private Long id;
     private String orderId;
     private String orderNo;
     private Long deviceId;

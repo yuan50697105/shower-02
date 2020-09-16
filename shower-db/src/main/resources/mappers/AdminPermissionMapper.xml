@@ -298,8 +298,8 @@
                     #{item,jdbcType=BIGINT}
                 </foreach>
             </if>
-            <if test="condition.createUser != null and condition.createUser != ''">
-                and creator like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
+            <if test="condition.creator != null and condition.creator != ''">
+                and creator like concat('%',#{condition.creator,jdbcType=VARCHAR},'%')
             </if>
             <if test="condition.updateUser != null and condition.updateUser != ''">
                 and updater like concat('%',#{condition.updateUser,jdbcType=VARCHAR},'%')

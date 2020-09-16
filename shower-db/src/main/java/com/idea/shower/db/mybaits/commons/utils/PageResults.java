@@ -1,7 +1,7 @@
-package com.idea.shower.db.mybaits.base.utils;
+package com.idea.shower.db.mybaits.commons.utils;
 
 import com.github.pagehelper.PageInfo;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 
 /**
  * @program: shower-01

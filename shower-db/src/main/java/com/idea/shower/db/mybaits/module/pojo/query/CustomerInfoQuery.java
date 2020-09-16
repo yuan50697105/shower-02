@@ -13,7 +13,6 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class CustomerInfoQuery extends BaseDbQuery {
-    private Long id;
     private String nickName;
     private String phone;
 

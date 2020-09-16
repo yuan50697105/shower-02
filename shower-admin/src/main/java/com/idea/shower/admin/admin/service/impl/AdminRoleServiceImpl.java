@@ -11,7 +11,7 @@ import com.idea.shower.admin.admin.pojo.AdminRoleVO;
 import com.idea.shower.admin.admin.service.AdminRoleService;
 import com.idea.shower.admin.route.pojo.RouteBean;
 import com.idea.shower.admin.route.utils.RouteUtils;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import com.idea.shower.db.mybaits.module.dao.AdminPermissionDao;
 import com.idea.shower.db.mybaits.module.dao.AdminRoleDao;

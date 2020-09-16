@@ -6,7 +6,7 @@ import ai.yue.library.base.view.ResultInfo;
 import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.admin.admin.pojo.AdminPermissionVO;
 import com.idea.shower.admin.admin.service.AdminPermissionService;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.AdminPermissionDao;
 import com.idea.shower.db.mybaits.module.pojo.AdminPermission;
 import com.idea.shower.db.mybaits.module.pojo.query.AdminPermissionQuery;

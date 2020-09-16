@@ -1,9 +1,10 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.dao.AdminPermissionDao;
 import com.idea.shower.db.mybaits.module.mapper.AdminPermissionMapper;
 import com.idea.shower.db.mybaits.module.mapper.AdminUserMapper;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -28,7 +30,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @AllArgsConstructor
-public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPermissionMapper> implements AdminPermissionDao {
+public class AdminPermissionDaoImpl extends CommonsDaoImpl<AdminPermission, AdminPermissionMapper> implements AdminPermissionDao {
     private final AdminPermissionMapper adminPermissionMapper;
     private final AdminUserRoleMapper adminUserRoleMapper;
     private final AdminUserMapper adminUserMapper;
@@ -36,81 +38,77 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
     @Override
     public PageResult<AdminPermission> selectPageByCondition(AdminPermissionQuery condition) {
         PageHelper.startPage(condition.getPage(), condition.getLimit());
-        return new PageResult<>(PageInfo.of(baseMapper().selectByCondition(condition)));
+        return new PageResult<>(PageInfo.of(baseDao().selectByCondition(condition)));
     }
 
     @Override
     public List<AdminPermission> selectListByCondition(AdminPermissionQuery condition) {
-        return baseMapper().selectByCondition(condition);
+        return baseDao().selectByCondition(condition);
     }
 
     @Override
     public List<AdminPermission> selectByIds(List<Long> ids) {
-        return baseMapper().selectByIdIn(ids);
+        return baseDao().selectByIdIn(ids);
     }
 
     @Override
     public List<Long> selectIdByIds(List<Long> permissionIds) {
-        return baseMapper().selectIdByIdIn(permissionIds);
+        return baseDao().selectIdByIdIn(permissionIds);
     }
 
     @Override
     public Optional<AdminPermission> selectById(Long id) {
-        return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
+        return Optional.ofNullable(baseDao().selectByPrimaryKey(id));
     }
 
-    @Override
-    public int insert(AdminPermission adminPermission) {
-        return baseMapper().insert(adminPermission);
-    }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertSelective(AdminPermission adminPermission) {
-        return baseMapper().insertSelective(adminPermission);
+        return baseDao().insertSelective(adminPermission);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateSelective(AdminPermission adminPermission) {
-        return baseMapper().updateByPrimaryKeySelective(adminPermission);
+        return baseDao().updateByPrimaryKeySelective(adminPermission);
     }
 
     @Override
     public AdminPermission getById(Long id) {
-        return baseMapper().selectByPrimaryKey(id);
+        return baseDao().selectByPrimaryKey(id);
     }
 
     @Override
     public void deleteByIds(List<Long> ids) {
         AdminPermissionExample example = new AdminPermissionExample();
         example.or().andIdIn(ids);
-        baseMapper().selectByExample(example);
+        baseDao().selectByExample(example);
     }
 
     @Override
     public PageResult<AdminPermission> selectPageByQuery(AdminPermissionQuery query, int page, int size) {
         PageHelper.startPage(page, size);
-        return new PageResult<>(new PageInfo<>(baseMapper().selectByCondition(query)));
+        return new PageResult<>(new PageInfo<>(baseDao().selectByCondition(query)));
     }
 
     @Override
     public List<AdminPermission> selectListByQuery(AdminPermissionQuery query) {
-        return baseMapper().selectByCondition(query);
+        return baseDao().selectByCondition(query);
     }
 
     @Override
     public int deleteByRoleIds(List<Long> roleIds) {
         AdminPermissionExample example = new AdminPermissionExample();
         example.or().andRoleIdIn(roleIds);
-        return baseMapper().deleteByExample(example);
+        return baseDao().deleteByExample(example);
     }
 
     @Override
     public List<AdminPermission> selectListByRoleId(Long id) {
         AdminPermissionExample example = new AdminPermissionExample();
         example.or().andRoleIdEqualTo(id);
-        return baseMapper().selectByExample(example);
+        return baseDao().selectByExample(example);
     }
 
     @Override
@@ -143,8 +141,12 @@ public class AdminPermissionDaoImpl extends BaseDaoImpl<AdminPermission, AdminPe
 
     @Override
     public int deleteById(Long id) {
-        return baseMapper().deleteByPrimaryKey(id);
+        return baseDao().deleteByPrimaryKey(id);
     }
 
 
+    @Override
+    public QueryWrapper<AdminPermission> getWrapper(Map<String, Object> params) {
+        return null;
+    }
 }

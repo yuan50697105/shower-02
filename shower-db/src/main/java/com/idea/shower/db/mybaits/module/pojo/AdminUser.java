@@ -1,12 +1,11 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+import lombok.*;
+
 import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  * 管理员用户
@@ -64,4 +63,8 @@ public class AdminUser extends BaseDbEntity {
      * 头像图片
      */
     private String avatar;
+
+    public void copyFromByOptions(BaseDbEntity t, CopyOptions copyOptions) {
+        BeanUtil.copyProperties(t, this, copyOptions);
+    }
 }

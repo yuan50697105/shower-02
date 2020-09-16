@@ -1,15 +1,16 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
 
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.DeviceOrderDao;
 import com.idea.shower.db.mybaits.module.mapper.DeviceOrderMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -20,30 +21,30 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapper> implements DeviceOrderDao {
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void insert(DeviceOrder deviceOrder) {
-        baseMapper().insertSelective(deviceOrder);
-    }
+public class DeviceOrderDaoImpl extends CommonsDaoImpl<DeviceOrder, DeviceOrderMapper> implements DeviceOrderDao {
 
     @Override
     public Optional<DeviceOrder> getByOrderNoOpt(String orderNo) {
-        return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
+        return Optional.ofNullable(baseDao().selectOneByOrderNo(orderNo));
     }
 
     @Override
     public void updateStatusUsingById(Long id) {
-        baseMapper().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
+        baseDao().updateStatusById(OrderInfoConstants.OrderStatus.USING, id);
     }
 
     @Override
     public void updateStatusTimeOutByOrderId(Long orderId) {
-        baseMapper().updateStatusByOrderId(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, orderId);
+        baseDao().updateStatusByOrderId(OrderInfoConstants.OrderStatus.ORDER_OUT_TIME, orderId);
     }
 
     @Override
     public Optional<DeviceOrder> getByOrderIdOpt(Long orderId) {
-        return Optional.ofNullable(baseMapper().selectOneByOrderId(orderId));
+        return Optional.ofNullable(baseDao().selectOneByOrderId(orderId));
+    }
+
+    @Override
+    public QueryWrapper<DeviceOrder> getWrapper(Map<String, Object> params) {
+        return null;
     }
 }
