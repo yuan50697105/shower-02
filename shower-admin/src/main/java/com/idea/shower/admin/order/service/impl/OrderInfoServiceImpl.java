@@ -3,8 +3,10 @@ package com.idea.shower.admin.order.service.impl;
 import ai.yue.library.base.util.StringUtils;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.idea.shower.admin.order.dao.OrderInfoDao;
 import com.idea.shower.admin.order.service.OrderInfoService;
+import com.idea.shower.db.mybaits.module.dao.OrderInfoDao;
+import com.idea.shower.db.mybaits.module.dao.impl.OrderInfoDaoImpl;
+import com.idea.shower.db.mybaits.module.mapper.OrderInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import com.idea.shower.db.mybaits.module.pojo.ao.OrderInfoAo;
 import io.renren.common.page.PageData;
@@ -22,24 +24,17 @@ import java.util.Map;
  * @since 1.0.0 2020-08-12
  */
 @Service
-public class OrderInfoServiceImpl extends CrudServiceImpl<OrderInfoDao, OrderInfo, OrderInfoAo> implements OrderInfoService {
+public class OrderInfoServiceImpl extends CrudServiceImpl<OrderInfoMapper, OrderInfo, OrderInfoAo> implements OrderInfoService {
 
 
     @Override
     public QueryWrapper<OrderInfo> getWrapper(Map<String, Object> params) {
-        String id = (String) params.get("id");
+        String orderNo = (String) params.get("orderNo");
 
         QueryWrapper<OrderInfo> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(id), "id", id);
+        wrapper.eq(StringUtils.isNotBlank(orderNo), "order_no", orderNo);
 
         return wrapper;
     }
 
-
-    @Override
-    public Result<PageData<OrderInfoAo>> selectPage(Map<String, Object> params) {
-        IPage<OrderInfo> page = getPage(params, "id", false);
-        List<OrderInfoAo> list = baseDao.selectPageByChoices(params);
-        return new Result<PageData<OrderInfoAo>>().ok(new PageData<OrderInfoAo>(list, page.getTotal()));
-    }
 }

@@ -16,5 +16,4 @@ import java.util.Map;
  */
 public interface OrderInfoService extends CrudService<OrderInfo, OrderInfoAo> {
 
-    Result<PageData<OrderInfoAo>> selectPage(Map<String, Object> params);
 }
