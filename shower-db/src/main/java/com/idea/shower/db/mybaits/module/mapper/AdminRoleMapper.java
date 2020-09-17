@@ -11,7 +11,11 @@ import java.util.Collection;
 import java.util.List;
 
 @Mapper
+<<<<<<< HEAD
 public interface AdminRoleMapper extends BaseDaoMapper<AdminRole> {
+=======
+public interface AdminRoleMapper extends BaseDaoMapper<AdminRole>, BaseMapper<AdminRole> {
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     long countByExample(AdminRoleExample example);
 
     int deleteByExample(AdminRoleExample example);

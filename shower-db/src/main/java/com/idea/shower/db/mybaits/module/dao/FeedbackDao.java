@@ -15,7 +15,15 @@ import java.util.Optional;
  */
 public interface FeedbackDao extends CommonsDao<Feedback,Feedback> {
 
+<<<<<<< HEAD
     Optional<Feedback> getByIdOpt(Long id);
 
     WxPageResult<Feedback> selectPageByConditionWeXin(FeedbackQuery query);
+=======
+    void insert(Feedback feedback);
+
+    Optional<Feedback> getByIdOpt(Long id);
+
+    IWxPageResult<Feedback> selectPageByConditionWeXin(FeedbackQuery query);
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 }

@@ -18,7 +18,12 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 20:12
  */
+<<<<<<< HEAD
 public interface OrderInfoDao extends CommonsDao<OrderInfo, OrderInfoAo> {
+=======
+public interface OrderInfoDao extends BaseDao<OrderInfo> {
+    void insert(OrderInfo orderInfo);
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 
     Optional<OrderInfo> getByIdOpt(Long orderId);
 

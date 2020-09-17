@@ -1,8 +1,13 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
+<<<<<<< HEAD
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+=======
+import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+import java.util.Date;
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,8 +46,11 @@ public class AreaBuilding extends BaseDbEntity {
      * 所属区域ID
      */
     private Long areaId;
+<<<<<<< HEAD
 
     public void copyFromByOptions(BaseDbEntity t, CopyOptions copyOptions) {
         BeanUtil.copyProperties(t, this, copyOptions);
     }
+=======
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 }
