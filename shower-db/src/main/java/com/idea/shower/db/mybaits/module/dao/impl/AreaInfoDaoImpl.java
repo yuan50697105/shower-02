@@ -1,9 +1,10 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.dao.AreaInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.AreaInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.AreaInfo;
@@ -13,6 +14,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: shower-01
@@ -22,31 +24,32 @@ import java.util.List;
  */
 @Component
 @AllArgsConstructor
-public class AreaInfoDaoImpl extends BaseDaoImpl<AreaInfo, AreaInfoMapper> implements AreaInfoDao {
+public class AreaInfoDaoImpl extends CommonsDaoImpl<AreaInfo,AreaInfo, AreaInfoMapper> implements AreaInfoDao {
+    @Override
+    public QueryWrapper<AreaInfo> getWrapper(Map<String, Object> params) {
+        return null;
+    }
+
     @Override
     public List<AreaInfo> selectAll() {
         AreaInfoExample example = new AreaInfoExample();
-        return baseMapper().selectByExample(example);
+        return baseDao().selectByExample(example);
     }
 
     @Override
     public PageResult<AreaInfo> selectPageByQuery(AreaInfoQuery query) {
         PageHelper.startPage(query.getPage(), query.getLimit());
-        return new PageResult<>(new PageInfo<>(baseMapper().selectByQuery(query)));
+        return new PageResult<>(new PageInfo<>(baseDao().selectByQuery(query)));
     }
 
     @Override
     public List<AreaInfo> selectListByQuery(AreaInfoQuery query) {
-        return baseMapper().selectByQuery(query);
+        return baseDao().selectByQuery(query);
     }
 
     @Override
     public AreaInfo get(Long id) {
-        return baseMapper().selectByPrimaryKey(id);
+        return baseDao().selectByPrimaryKey(id);
     }
 
-    @Override
-    public int insert(AreaInfo areaInfo) {
-        return baseMapper().insert(areaInfo);
-    }
 }

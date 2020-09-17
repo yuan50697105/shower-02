@@ -91,6 +91,12 @@ Page({
             console.log("支付过程结束")
           }
         });
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          duration: 2000
+        })
       }
     });
 
@@ -106,7 +112,7 @@ Page({
       success: function (res) {
         if (res.confirm) {
           util.request(api.OrderCancel, {
-            orderId: orderInfo.id
+            orderNo: orderInfo.orderNo
           }, 'POST').then(function (res) {
             if (res.errno === 0) {
               wx.showToast({
@@ -139,6 +145,12 @@ Page({
           icon: 'success',
           duration: 2000
         });
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          duration: 2000
+        })
       }
     });
 
@@ -162,6 +174,12 @@ Page({
           icon: 'success',
           duration: 2000
         });
+      }else{
+        wx.showToast({
+          title: res.msg,
+          icon: 'none',
+          duration: 2000
+        })
       }
     });
 

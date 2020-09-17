@@ -51,14 +51,15 @@ export default {
           }
         }
       ).then((res) => {
-        if (res.code !== 200) {
+        console.log(res)
+        if (res.code !== 200 && res.code !== 0) {
           this.dataList = []
           this.total = 0
           return this.$message.error(res.msg)
         }
         this.dataListLoading = false
         this.dataList = this.mixinViewModuleOptions.getDataListIsPage ? res.data.list : []
-        this.total = this.mixinViewModuleOptions.getDataListIsPage ? res.data.totalRows : 0
+        this.total = this.mixinViewModuleOptions.getDataListIsPage ? res.data.total : 0
       }).catch(() => {
         this.dataListLoading = false
       })
@@ -126,7 +127,7 @@ export default {
             'data': id ? [id] : this.dataListSelections.map(item => item[this.mixinViewModuleOptions.deleteIsBatchKey])
           } : {}
         ).then(({ data: res, code: code, msg: msg }) => {
-          if (code !== 200) {
+          if (code !== 200 && code !== 0) {
             return this.$message.error(msg)
           }
           this.$message({

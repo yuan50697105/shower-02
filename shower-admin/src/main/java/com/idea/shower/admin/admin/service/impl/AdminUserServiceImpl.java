@@ -8,7 +8,7 @@ import cn.hutool.core.lang.Validator;
 import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.admin.admin.pojo.AdminUserVO;
 import com.idea.shower.admin.admin.service.AdminUserService;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import com.idea.shower.db.mybaits.module.dao.AdminRoleDao;
 import com.idea.shower.db.mybaits.module.dao.AdminUserDao;

@@ -1,10 +1,11 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.dao.AdminUserDao;
 import com.idea.shower.db.mybaits.module.mapper.AdminUserMapper;
 import com.idea.shower.db.mybaits.module.pojo.AdminUser;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -25,7 +27,7 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> implements AdminUserDao {
+public class AdminUserDaoImpl extends CommonsDaoImpl<AdminUser,AdminUser, AdminUserMapper> implements AdminUserDao {
 
     @org.springframework.beans.factory.annotation.Autowired
     private final AdminUserMapper adminUserMapper;
@@ -33,39 +35,43 @@ public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> im
     @Override
     public PageResult<AdminUser> selectPageByCondition(AdminUserQuery condition) {
         PageHelper.startPage(condition.getPage(), condition.getLimit());
-        return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
+        return pageResult(PageInfo.of(baseDao().selectByCondition(condition)));
     }
 
     @Override
     public List<AdminUser> selectListByCondition(AdminUserQuery condition) {
-        return baseMapper().selectByCondition(condition);
+        return baseDao().selectByCondition(condition);
     }
 
     @Override
-    public Optional<AdminUser> selectById(Long id) {
+    public Optional<AdminUser> selectByIdOpt(Long id) {
+<<<<<<< HEAD
+        return Optional.ofNullable(baseDao().selectByPrimaryKey(id));
+=======
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
     public AdminUser getById(Long id) {
-        return baseMapper().selectByPrimaryKey(id);
+        return baseDao().selectByPrimaryKey(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertSelective(AdminUser adminUser) {
-        return baseMapper().insertSelective(adminUser);
+        return baseDao().insertSelective(adminUser);
     }
 
     @Override
     public int updateSelective(AdminUser adminUser) {
-        return baseMapper().updateByPrimaryKeySelective(adminUser);
+        return baseDao().updateByPrimaryKeySelective(adminUser);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteById(Long id) {
-        return baseMapper().deleteByPrimaryKey(id);
+        return baseDao().deleteByPrimaryKey(id);
     }
 
     @Override
@@ -73,12 +79,12 @@ public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> im
     public int deleteByIds(List<Long> ids) {
         AdminUserExample example = new AdminUserExample();
         example.or().andIdIn(ids);
-        return baseMapper().deleteByExample(example);
+        return baseDao().deleteByExample(example);
     }
 
     @Override
     public AdminUser selectByUsername(String username) {
-        return baseMapper().selectOneByUsername(username);
+        return baseDao().selectOneByUsername(username);
     }
 
     @Override
@@ -89,19 +95,19 @@ public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> im
     @Override
     public PageResult<AdminUser> selectPageByQuery(AdminUserQuery query, int page, int size) {
         PageHelper.startPage(page, size);
-        return new PageResult<>(new PageInfo<>(baseMapper().selectByCondition(query)));
+        return new PageResult<>(new PageInfo<>(baseDao().selectByCondition(query)));
     }
 
     @Override
     public List<AdminUser> selectListByQuery(AdminUserQuery query) {
-        return baseMapper().selectByCondition(query);
+        return baseDao().selectByCondition(query);
     }
 
     @Override
     public boolean existByUsername(String username) {
         AdminUserExample example = new AdminUserExample();
         example.or().andUsernameEqualTo(username);
-        return baseMapper().countByExample(example) > 0;
+        return baseDao().countByExample(example) > 0;
     }
 
 	@Override
@@ -110,6 +116,8 @@ public class AdminUserDaoImpl extends BaseDaoImpl<AdminUser, AdminUserMapper> im
 	}
 
 
-
-
+    @Override
+    public QueryWrapper<AdminUser> getWrapper(Map<String, Object> params) {
+        return null;
+    }
 }

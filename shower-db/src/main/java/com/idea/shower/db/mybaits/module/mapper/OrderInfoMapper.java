@@ -1,6 +1,5 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import com.idea.shower.db.mybaits.module.pojo.OrderInfoExample;
@@ -14,7 +13,11 @@ import java.util.Date;
 import java.util.List;
 
 @Mapper
-public interface OrderInfoMapper extends BaseDaoMapper, BaseMapper<OrderInfo> {
+<<<<<<< HEAD
+public interface OrderInfoMapper extends BaseDaoMapper<OrderInfo> {
+=======
+public interface OrderInfoMapper extends BaseDaoMapper<OrderInfo>, BaseMapper<OrderInfo> {
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     long countByExample(OrderInfoExample example);
 
     int deleteByExample(OrderInfoExample example);

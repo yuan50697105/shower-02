@@ -63,7 +63,7 @@ public class QCodeService {
             File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages/device/device");
             FileInputStream inputStream = new FileInputStream(file);
             //将商品图片，商品名字,商城名字画到模版图中
-            byte[] imageData = drawPicture(inputStream, "https://www.yuan50697105.top:8080/img"+deviceIdPicUrl, deviceIdName);
+            byte[] imageData = drawPicture(inputStream, "https://www.yuan50697105.top:8002/img"+deviceIdPicUrl, deviceIdName);
             ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
             //存储分享图
             String url = storageService.store(inputStream2, imageData.length, "image/jpeg",

@@ -1,6 +1,5 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.Feedback;
 import com.idea.shower.db.mybaits.module.pojo.FeedbackExample;
@@ -11,7 +10,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface FeedbackMapper extends BaseDaoMapper, BaseMapper<Feedback> {
+<<<<<<< HEAD
+public interface FeedbackMapper extends BaseDaoMapper<Feedback> {
+=======
+public interface FeedbackMapper extends BaseDaoMapper<Feedback>, BaseMapper<Feedback> {
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     long countByExample(FeedbackExample example);
 
     int deleteByExample(FeedbackExample example);

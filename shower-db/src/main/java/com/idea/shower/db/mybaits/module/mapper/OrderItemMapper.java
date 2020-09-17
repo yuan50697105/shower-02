@@ -1,6 +1,5 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.OrderItem;
 import com.idea.shower.db.mybaits.module.pojo.OrderItemExample;
@@ -10,7 +9,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface OrderItemMapper extends BaseDaoMapper, BaseMapper<OrderItem> {
+<<<<<<< HEAD
+public interface OrderItemMapper extends BaseDaoMapper<OrderItem> {
+=======
+public interface OrderItemMapper extends BaseDaoMapper<OrderItem>, BaseMapper<OrderItem> {
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     long countByExample(OrderItemExample example);
 
     int deleteByExample(OrderItemExample example);

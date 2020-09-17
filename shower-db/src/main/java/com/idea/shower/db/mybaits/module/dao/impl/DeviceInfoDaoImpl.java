@@ -1,9 +1,10 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
@@ -17,6 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -28,17 +30,26 @@ import java.util.Optional;
 @Component
 @AllArgsConstructor
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper> implements DeviceInfoDao {
+public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo,DeviceInfo, DeviceInfoMapper> implements DeviceInfoDao {
+    @Override
+    public QueryWrapper<DeviceInfo> getWrapper(Map<String, Object> params) {
+        return null;
+    }
+
 
     @Override
-    public Optional<DeviceInfo> getById(Long deviceId) {
+    public Optional<DeviceInfo> getByIdOpt(Long deviceId) {
+<<<<<<< HEAD
+        return Optional.ofNullable(baseDao().selectByPrimaryKey(deviceId));
+=======
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(deviceId));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
     public PageResult<DeviceInfo> selectPage(DeviceInfoQuery condition) {
         PageHelper.startPage(condition.getPage(), condition.getLimit());
-        return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
+        return pageResult(PageInfo.of(baseDao().selectByCondition(condition)));
     }
 
     @Override
@@ -57,49 +68,48 @@ public class DeviceInfoDaoImpl extends BaseDaoImpl<DeviceInfo, DeviceInfoMapper>
             criteria.andEnabledEqualTo(deviceInfoQuery.getEnabled());
         }
         PageHelper.startPage(deviceInfoQuery.getPage(), deviceInfoQuery.getLimit());
-        return pageResult(PageInfo.of(baseMapper().selectByExample(example)));
+        return pageResult(PageInfo.of(baseDao().selectByExample(example)));
     }
 
     @Override
-    public Optional<DeviceInfo> getByCode(String code) {
+    public Optional<DeviceInfo> getByCodeOpt(String code) {
+<<<<<<< HEAD
+        return Optional.ofNullable(baseDao().selectOneByCode(code));
+=======
         return Optional.ofNullable(baseMapper().selectOneByCode(code));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
     public void updateStatusToUsing(Long deviceId) {
-        baseMapper().updateRunStatusById(DeviceInfoConstants.DeviceRunningStatus.RUNNING, deviceId);
+        baseDao().updateRunStatusById(DeviceInfoConstants.DeviceRunningStatus.RUNNING, deviceId);
     }
 
     @Override
     public Optional<DeviceInfo> getByCodeAvailable(String deviceCode) {
-        return Optional.ofNullable(baseMapper().getOneByCodeAndRunStatus(deviceCode, DeviceInfoConstants.DeviceRunningStatus.AVALI));
+        return Optional.ofNullable(baseDao().getOneByCodeAndRunStatus(deviceCode, DeviceInfoConstants.DeviceRunningStatus.AVALI));
     }
 
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public int insert(DeviceInfo deviceInfo) {
-        return baseMapper().insert(deviceInfo);
-    }
 
     @Override
     public void update(DeviceInfo deviceInfo) {
-        baseMapper().updateByPrimaryKeySelective(deviceInfo);
+        baseDao().updateByPrimaryKeySelective(deviceInfo);
     }
 
     @Override
     public void delete(Long id) {
-        baseMapper().deleteByPrimaryKey(id);
+        baseDao().deleteByPrimaryKey(id);
     }
 
     @Override
     @Transactional(rollbackFor = Throwable.class)
     public void updateStatusToAvail(Long deviceId) {
-        baseMapper().updateRunStatusById(DeviceInfoConstants.DeviceRunningStatus.AVALI, deviceId);
+        baseDao().updateRunStatusById(DeviceInfoConstants.DeviceRunningStatus.AVALI, deviceId);
     }
 
     @Override
     public List<DeviceInfo> selectList(DeviceInfoQuery query) {
-        return baseMapper().selectByCondition(query);
+        return baseDao().selectByCondition(query);
     }
 
 

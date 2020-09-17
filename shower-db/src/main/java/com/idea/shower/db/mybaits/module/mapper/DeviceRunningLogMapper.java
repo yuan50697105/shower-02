@@ -1,6 +1,5 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceRunningLog;
 import com.idea.shower.db.mybaits.module.pojo.DeviceRunningLogExample;
@@ -10,7 +9,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface DeviceRunningLogMapper extends BaseDaoMapper, BaseMapper<DeviceRunningLog> {
+<<<<<<< HEAD
+public interface DeviceRunningLogMapper extends BaseDaoMapper<DeviceRunningLog> {
+=======
+public interface DeviceRunningLogMapper extends BaseDaoMapper<DeviceRunningLog>, BaseMapper<DeviceRunningLog> {
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     long countByExample(DeviceRunningLogExample example);
 
     int deleteByExample(DeviceRunningLogExample example);

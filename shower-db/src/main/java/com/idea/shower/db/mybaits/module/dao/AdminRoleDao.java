@@ -1,8 +1,8 @@
 package com.idea.shower.db.mybaits.module.dao;
 
 
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.AdminRole;
 import com.idea.shower.db.mybaits.module.pojo.query.AdminRoleQuery;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-08 16:20
  */
-public interface AdminRoleDao extends BaseDao<AdminRole> {
+public interface AdminRoleDao extends CommonsDao<AdminRole,AdminRole> {
     PageResult<AdminRole> selectPageByCondition(AdminRoleQuery condition);
 
     List<AdminRole> selectListByCondition(AdminRoleQuery condition);
@@ -26,7 +26,7 @@ public interface AdminRoleDao extends BaseDao<AdminRole> {
 
     List<AdminRole> selectByIds(List<Long> roleIds);
 
-    Optional<AdminRole> selectById(Long id);
+    Optional<AdminRole> selectByIdOpt(Long id);
 
     int insertSelective(AdminRole adminRole);
 

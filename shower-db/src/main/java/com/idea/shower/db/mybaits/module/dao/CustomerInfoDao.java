@@ -1,7 +1,7 @@
 package com.idea.shower.db.mybaits.module.dao;
 
 
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.CustomerInfo;
 
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 12:42
  */
-public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
+public interface CustomerInfoDao extends CommonsDao<CustomerInfo,CustomerInfo> {
     /**
      * 通过UnionId获取用户信息
      *
@@ -28,15 +28,17 @@ public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
      * @param unionId unionId
      * @return 用户信息
      */
-    Optional<CustomerInfo> getByUnionId(String unionId);
+    Optional<CustomerInfo> getByUnionIdOpt(String unionId);
 
+<<<<<<< HEAD
+=======
     /**
      * 保存
      *
      * @param customerInfo 用户信息
      * @return 受影响行数
      */
-    int save(CustomerInfo customerInfo);
+    int insert(CustomerInfo customerInfo);
 
     /**
      * 更新
@@ -45,6 +47,7 @@ public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
      * @return 受影响行数
      */
     int update(CustomerInfo customerInfo);
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 
     /**
      * 通过id获取用户信息
@@ -52,7 +55,7 @@ public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
      * @param id id
      * @return 用户信息
      */
-    Optional<CustomerInfo> getById(String id);
+    Optional<CustomerInfo> getByIdOpt(String id);
 
     /**
      * 通过openId获取用户信息
@@ -60,7 +63,7 @@ public interface CustomerInfoDao extends BaseDao<CustomerInfo> {
      * @param openId openId
      * @return 用户信息
      */
-    Optional<CustomerInfo> getByOpenId(String openId);
+    Optional<CustomerInfo> getByOpenIdOpt(String openId);
     /**
      * 通过openid统计数量
      *

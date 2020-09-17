@@ -1,7 +1,7 @@
 package com.idea.shower.db.mybaits.module.dao;
 
 
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceOrder;
 
 import java.util.Optional;
@@ -12,12 +12,16 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 22:57
  */
+<<<<<<< HEAD
+public interface DeviceOrderDao extends CommonsDao<DeviceOrder,DeviceOrder> {
+=======
 public interface DeviceOrderDao extends BaseDao<DeviceOrder> {
-    void save(DeviceOrder deviceOrder);
+    void insert(DeviceOrder deviceOrder);
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 
-    Optional<DeviceOrder> getByOrderNo(String orderNo);
+    Optional<DeviceOrder> getByOrderNoOpt(String orderNo);
 
-    Optional<DeviceOrder> getByOrderId(Long orderId);
+    Optional<DeviceOrder> getByOrderIdOpt(Long orderId);
 
     void updateStatusUsingById(Long id);
 

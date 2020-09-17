@@ -272,10 +272,10 @@
         from area_info ai
         <where>
             <if test="id != null">
-                and id = #{id,jdbcType=BIGINT}
+              and id = #{id,jdbcType=BIGINT}
             </if>
             <if test="ids != null and ids.size() != 0">
-                and id in (<foreach collection="ids" item="id" separator=",">#{id,jdbcType=BIGINT}</foreach> )
+                and id in (<foreach collection="ids" item="item" separator=",">#{item,jdbcType=BIGINT}</foreach> )
             </if>
             <if test="name != null and name != ''">
                 <bind name="likeName" value="'%' + name + '%'" />

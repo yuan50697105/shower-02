@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idea.shower.admin.dashboard.dao.DashboardDao">
+
+
+    <select id="getDeviceNum" resultType="java.lang.Integer">
+        SELECT
+            count(*) AS num
+        FROM
+            device_info
+        WHERE
+            del_flag = '0'
+    </select>
+    <select id="getPeopleNum" resultType="java.lang.Integer">
+        SELECT
+            count(*) AS num
+        FROM
+            customer_info
+        WHERE
+            del_flag = '0'
+    </select>
+    <select id="getBuildingNum" resultType="java.lang.Integer">
+        SELECT
+            count(*) AS num
+        FROM
+            area_building
+        WHERE
+            del_flag = '0'
+    </select>
+    <select id="getOrderNum" resultType="java.lang.Integer">
+        SELECT
+            count(*) AS num
+        FROM
+            order_info
+        WHERE
+            del_flag = '0'
+    </select>
+
+    <select id="monthOrderData" resultType="java.util.Map">
+        SELECT
+            mid.i AS mon,
+            IFNULL( t1.number, 0 ) AS num
+        FROM
+            middle_month AS mid
+            LEFT JOIN ( SELECT MONTH ( info.create_date ) AS date, count(*) AS number FROM order_info info GROUP BY MONTH ( info.create_date ) ) t1 ON t1.date = mid.i
+    </select>
+    <select id="deviceOrderData" resultType="java.util.Map">
+        SELECT
+            device.device_name as name,
+            COUNT(*) as num
+        from
+        device_info device
+        LEFT JOIN order_info ord on ord.device_id = device.id
+        GROUP BY device.id
+    </select>
+</mapper>

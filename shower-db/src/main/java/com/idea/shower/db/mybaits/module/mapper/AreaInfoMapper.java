@@ -1,6 +1,5 @@
 package com.idea.shower.db.mybaits.module.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.idea.shower.db.mybaits.commons.mapper.BaseDaoMapper;
 import com.idea.shower.db.mybaits.module.pojo.AreaInfo;
 import com.idea.shower.db.mybaits.module.pojo.AreaInfoExample;
@@ -11,7 +10,11 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface AreaInfoMapper extends BaseDaoMapper, BaseMapper<AreaInfo> {
+<<<<<<< HEAD
+public interface AreaInfoMapper extends BaseDaoMapper<AreaInfo> {
+=======
+public interface AreaInfoMapper extends BaseDaoMapper<AreaInfo>, BaseMapper<AreaInfo> {
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     long countByExample(AreaInfoExample example);
 
     int deleteByExample(AreaInfoExample example);

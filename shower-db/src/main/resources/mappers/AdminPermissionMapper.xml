@@ -289,8 +289,8 @@
         <include refid="Base_Column_List" />
         from admin_permission
         <where>
-            <if test="condition.id != null">
-                and id = #{condition.id,jdbcType=BIGINT}
+            <if test="condition.ids != null">
+                and id = #{condition.ids,jdbcType=BIGINT}
             </if>
             <if test="condition.ids != null and condition.ids.size() != 0">
                 and id in
@@ -298,8 +298,8 @@
                     #{item,jdbcType=BIGINT}
                 </foreach>
             </if>
-            <if test="condition.createUser != null and condition.createUser != ''">
-                and creator like concat('%',#{condition.createUser,jdbcType=VARCHAR},'%')
+            <if test="condition.creator != null and condition.creator != ''">
+                and creator like concat('%',#{condition.creator,jdbcType=VARCHAR},'%')
             </if>
             <if test="condition.updateUser != null and condition.updateUser != ''">
                 and updater like concat('%',#{condition.updateUser,jdbcType=VARCHAR},'%')

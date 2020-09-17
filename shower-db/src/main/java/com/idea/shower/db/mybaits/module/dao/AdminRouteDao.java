@@ -1,6 +1,6 @@
 package com.idea.shower.db.mybaits.module.dao;
 
-import com.idea.shower.db.mybaits.commons.dao.BaseDao;
+import com.idea.shower.db.mybaits.commons.dao.CommonsDao;
 import com.idea.shower.db.mybaits.module.pojo.AdminRoute;
 import com.idea.shower.db.mybaits.module.pojo.AdminRouteExample;
 
@@ -12,10 +12,9 @@ import java.util.List;
  * @author: yuane
  * @create: 2020-07-02 12:21
  */
-public interface AdminRouteDao extends BaseDao<AdminRoute> {
+public interface AdminRouteDao extends CommonsDao<AdminRoute,AdminRoute> {
     List<AdminRoute> selectByExample(AdminRouteExample adminRouteExample);
 
-    int insert(AdminRoute sysRoute);
 
     int deleteByRoleIds(List<Long> id);
 

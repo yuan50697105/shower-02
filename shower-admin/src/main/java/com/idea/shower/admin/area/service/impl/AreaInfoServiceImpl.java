@@ -4,7 +4,7 @@ import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.area.pojo.AreaInfoVo;
 import com.idea.shower.admin.area.service.AreaInfoService;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.AreaInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.AreaInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.AreaInfoQuery;

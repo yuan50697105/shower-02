@@ -6,7 +6,7 @@ import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.commons.qcode.QCodeService;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
@@ -61,7 +61,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     @Override
     @Transactional
     public Result<?> modify(DeviceInfoVo deviceInfoVo) {
-        Optional<DeviceInfo> optional = deviceInfoDao.getById(deviceInfoVo.getId());
+        Optional<DeviceInfo> optional = deviceInfoDao.getByIdOpt(deviceInfoVo.getId());
         if (optional.isPresent()) {
             DeviceInfo deviceInfo = optional.get();
             deviceInfo.copyFrom(deviceInfo, "id", "code");
@@ -86,7 +86,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
 
     @Override
     public Result<?> getById(Long id) {
-        Optional<DeviceInfo> deviceInfo = deviceInfoDao.getById(id);
+        Optional<DeviceInfo> deviceInfo = deviceInfoDao.getByIdOpt(id);
         return ResultInfo.success(deviceInfo);
     }
 
@@ -110,7 +110,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
 
     @Override
     public Result<?> QRCode(DeviceInfoVo deviceInfoVo) {
-        String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getAreaName());
+        String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
         System.out.println(url);
         return null;
     }
@@ -121,7 +121,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
      * @param deviceInfo 设备信息
      */
     private void checkExist(DeviceInfo deviceInfo) {
-        Optional<DeviceInfo> optional = deviceInfoDao.getByCode(deviceInfo.getCode());
+        Optional<DeviceInfo> optional = deviceInfoDao.getByCodeOpt(deviceInfo.getCode());
         if (optional.isPresent()) {
             throw new ResultException(ResultInfo.param_check_not_pass(deviceInfo.getCode() + "已存在"));
         }

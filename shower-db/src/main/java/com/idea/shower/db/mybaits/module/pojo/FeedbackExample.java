@@ -894,7 +894,7 @@ public class FeedbackExample {
     }
 
     public static class Criterion {
-        private final String condition;
+        private String condition;
 
         private Object value;
 
@@ -908,7 +908,7 @@ public class FeedbackExample {
 
         private boolean listValue;
 
-        private final String typeHandler;
+        private String typeHandler;
 
         public String getCondition() {
             return condition;

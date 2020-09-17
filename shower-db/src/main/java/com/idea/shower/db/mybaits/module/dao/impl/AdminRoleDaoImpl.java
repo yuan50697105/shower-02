@@ -1,10 +1,11 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.idea.shower.db.mybaits.base.pojo.PageResult;
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.dao.AdminRoleDao;
 import com.idea.shower.db.mybaits.module.mapper.AdminRoleMapper;
 import com.idea.shower.db.mybaits.module.pojo.AdminRole;
@@ -15,6 +16,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -26,54 +28,58 @@ import java.util.stream.Collectors;
  */
 @Component
 @AllArgsConstructor
-public class AdminRoleDaoImpl extends BaseDaoImpl<AdminRole, AdminRoleMapper> implements AdminRoleDao {
+public class AdminRoleDaoImpl extends CommonsDaoImpl<AdminRole,AdminRole, AdminRoleMapper> implements AdminRoleDao {
     @Override
     public PageResult<AdminRole> selectPageByCondition(AdminRoleQuery condition) {
         PageHelper.startPage(condition.getPage(), condition.getLimit());
-        return pageResult(PageInfo.of(baseMapper().selectByCondition(condition)));
+        return pageResult(PageInfo.of(baseDao().selectByCondition(condition)));
     }
 
     @Override
     public List<AdminRole> selectListByCondition(AdminRoleQuery condition) {
-        return baseMapper().selectByCondition(condition);
+        return baseDao().selectByCondition(condition);
     }
 
     @Override
     public AdminRole getById(Long id) {
-        return baseMapper().selectByPrimaryKey(id);
+        return baseDao().selectByPrimaryKey(id);
     }
 
     @Override
     public List<Long> selectIdByIdIn(List<Long> roleIds) {
-        return baseMapper().selectIdByIdIn(roleIds);
+        return baseDao().selectIdByIdIn(roleIds);
     }
 
     @Override
     public List<AdminRole> selectByIds(List<Long> roleIds) {
-        return baseMapper().selectByIdIn(roleIds);
+        return baseDao().selectByIdIn(roleIds);
     }
 
     @Override
-    public Optional<AdminRole> selectById(Long id) {
+    public Optional<AdminRole> selectByIdOpt(Long id) {
+<<<<<<< HEAD
+        return Optional.ofNullable(baseDao().selectByPrimaryKey(id));
+=======
         return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int insertSelective(AdminRole adminRole) {
-        return baseMapper().insertSelective(adminRole);
+        return baseDao().insertSelective(adminRole);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int updateSelective(AdminRole adminRole) {
-        return baseMapper().updateByPrimaryKeySelective(adminRole);
+        return baseDao().updateByPrimaryKeySelective(adminRole);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public int deleteById(Long id) {
-        return baseMapper().deleteByPrimaryKey(id);
+        return baseDao().deleteByPrimaryKey(id);
     }
 
     @Override
@@ -81,25 +87,25 @@ public class AdminRoleDaoImpl extends BaseDaoImpl<AdminRole, AdminRoleMapper> im
     public void deleteByIds(List<Long> id) {
         AdminRoleExample example = new AdminRoleExample();
         example.or().andIdIn(id);
-        baseMapper().deleteByExample(example);
+        baseDao().deleteByExample(example);
     }
 
     @Override
     public PageResult<AdminRole> selectPageByQuery(AdminRoleQuery query, int page, int size) {
         PageHelper.startPage(page, size);
-        return new PageResult<>(new PageInfo<>(baseMapper().selectByCondition(query)));
+        return new PageResult<>(new PageInfo<>(baseDao().selectByCondition(query)));
     }
 
     @Override
     public List<AdminRole> selectListByQuery(AdminRoleQuery query) {
-        return baseMapper().selectByCondition(query);
+        return baseDao().selectByCondition(query);
     }
 
     @Override
     public boolean checkExistByName(String name) {
         AdminRoleExample example = new AdminRoleExample();
         example.or().andNameEqualTo(name);
-        long count = baseMapper().countByExample(example);
+        long count = baseDao().countByExample(example);
         return count > 0;
     }
 
@@ -112,8 +118,12 @@ public class AdminRoleDaoImpl extends BaseDaoImpl<AdminRole, AdminRoleMapper> im
     public List<String> selectNameByIds(List<Long> roleIds) {
         AdminRoleExample example = new AdminRoleExample();
         example.or().andIdIn(roleIds);
-        List<AdminRole> adminRoles = baseMapper().selectByExample(example);
+        List<AdminRole> adminRoles = baseDao().selectByExample(example);
         return adminRoles.stream().map(AdminRole::getName).collect(Collectors.toList());
     }
 
+    @Override
+    public QueryWrapper<AdminRole> getWrapper(Map<String, Object> params) {
+        return null;
+    }
 }
