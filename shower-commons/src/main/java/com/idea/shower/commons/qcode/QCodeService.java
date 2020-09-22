@@ -91,10 +91,11 @@ public class QCodeService {
             byte[] imageData = drawPicture(inputStream, "https://www.yuan50697105.top:8002/img" + deviceIdPicUrl, deviceIdName);
             ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
             //存储分享图
-            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
-                    getKeyName(deviceId));
+//            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
+//                    getKeyName(deviceId));
+            ApiBootObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
 
-            return url;
+            return response.getObjectUrl();
         } catch (WxErrorException e) {
             logger.error(e.getMessage(), e);
         } catch (FileNotFoundException e) {
