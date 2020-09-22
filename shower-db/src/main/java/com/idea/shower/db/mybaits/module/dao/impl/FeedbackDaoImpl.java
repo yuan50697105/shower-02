@@ -3,8 +3,8 @@ package com.idea.shower.db.mybaits.module.dao.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
+import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.module.dao.FeedbackDao;
 import com.idea.shower.db.mybaits.module.mapper.FeedbackMapper;
 import com.idea.shower.db.mybaits.module.pojo.Feedback;
@@ -23,24 +23,11 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-<<<<<<< HEAD
 public class FeedbackDaoImpl extends CommonsDaoImpl<Feedback,Feedback, FeedbackMapper> implements FeedbackDao {
 
     @Override
     public Optional<Feedback> getByIdOpt(Long id) {
         return Optional.ofNullable(baseDao().selectByPrimaryKey(id));
-=======
-public class FeedbackDaoImpl extends BaseDaoImpl<Feedback, FeedbackMapper> implements FeedbackDao {
-    @Override
-    @Transactional(rollbackFor = Exception.class)
-    public void insert(Feedback feedback) {
-        baseMapper().insertSelective(feedback);
-    }
-
-    @Override
-    public Optional<Feedback> getByIdOpt(Long id) {
-        return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override

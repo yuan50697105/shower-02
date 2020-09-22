@@ -4,3 +4,14 @@ shower:
     local:
       address: C:\\
       storage-path: aaa
+api:
+  boot:
+    oss:
+      access-key-id: LTAI4G6JqVQSxEfDmH1h3eDA
+      access-key-secret: m1EMLFWbP1ITcGPQFNcJ6Ca9sRHIM2
+      bucket-name: qingmuwu-picture
+      domain: https://qingmuwu-picure2.oss-cn-beijing.aliyuncs.com
+      region: beijing
+
+storage:
+  domain-url: https://www.yuan50697105.top:8002/img
