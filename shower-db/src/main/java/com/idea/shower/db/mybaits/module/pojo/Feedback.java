@@ -1,17 +1,11 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
-<<<<<<< HEAD
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
-=======
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+import lombok.*;
+
 import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  * 用户反馈
@@ -88,11 +82,8 @@ public class Feedback extends BaseDbEntity {
      * 官方回复时间
      */
     private Date respondTime;
-<<<<<<< HEAD
 
     public void copyFromByOptions(BaseDbEntity t, CopyOptions copyOptions) {
         BeanUtil.copyProperties(t, this, copyOptions);
     }
-=======
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 }
