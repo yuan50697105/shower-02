@@ -18,4 +18,5 @@ public interface FeedbackDao extends CommonsDao<Feedback, Feedback> {
     Optional<Feedback> getByIdOpt(Long id);
 
     WxPageResult<Feedback> selectPageByConditionWeXin(FeedbackQuery query);
+//
 }
