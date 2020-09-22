@@ -10,11 +10,9 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-<<<<<<< HEAD
 public interface AdminUserMapper extends BaseDaoMapper<AdminUser> {
-=======
-public interface AdminUserMapper extends BaseDaoMapper<AdminUser>, BaseMapper<AdminUser> {
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
+
+
     long countByExample(AdminUserExample example);
 
     int deleteByExample(AdminUserExample example);

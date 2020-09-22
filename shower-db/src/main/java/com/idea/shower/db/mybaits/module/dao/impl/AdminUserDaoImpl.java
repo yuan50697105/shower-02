@@ -45,11 +45,7 @@ public class AdminUserDaoImpl extends CommonsDaoImpl<AdminUser,AdminUser, AdminU
 
     @Override
     public Optional<AdminUser> selectByIdOpt(Long id) {
-<<<<<<< HEAD
         return Optional.ofNullable(baseDao().selectByPrimaryKey(id));
-=======
-        return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override

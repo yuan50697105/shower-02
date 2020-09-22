@@ -57,11 +57,7 @@ public class AdminRoleDaoImpl extends CommonsDaoImpl<AdminRole,AdminRole, AdminR
 
     @Override
     public Optional<AdminRole> selectByIdOpt(Long id) {
-<<<<<<< HEAD
         return Optional.ofNullable(baseDao().selectByPrimaryKey(id));
-=======
-        return Optional.ofNullable(baseMapper().selectByPrimaryKey(id));
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
