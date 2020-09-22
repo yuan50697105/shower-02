@@ -5,6 +5,8 @@ import com.idea.shower.commons.storage.StorageService;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.minbox.framework.api.boot.oss.ApiBootOssService;
+import org.minbox.framework.api.boot.storage.response.ApiBootObjectStorageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -17,12 +19,14 @@ import java.net.URL;
 
 @Service
 public class QCodeService {
+    public static final String DOMAIN_URL = "https://www.yuan50697105.top:8002/img";
     private final Log logger = LogFactory.getLog(QCodeService.class);
     @Autowired
     WxMaService wxMaService;
 
     private StorageService storageService;
-
+    @Autowired
+    private ApiBootOssService apiBootOssService;
 
     public String createGrouponShareImage(String goodName, String goodPicUrl, String deviceId) {
         try {
@@ -32,38 +36,6 @@ public class QCodeService {
             FileInputStream inputStream = new FileInputStream(file);
             //将商品图片，商品名字,商城名字画到模版图中
             byte[] imageData = drawPicture(inputStream, goodPicUrl, goodName);
-            ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
-            //存储分享图
-            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
-                    getKeyName(deviceId.toString()));
-
-            return url;
-        } catch (WxErrorException e) {
-            logger.error(e.getMessage(), e);
-        } catch (FileNotFoundException e) {
-            logger.error(e.getMessage(), e);
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
-        }
-
-        return "";
-    }
-
-
-    /**
-     * 创建商品分享图
-     *
-     * @param deviceId
-     * @param deviceIdPicUrl
-     * @param deviceIdName
-     */
-    public String createGoodShareImage(String deviceId, String deviceIdPicUrl, String deviceIdName) {
-        try {
-            //创建该商品的二维码
-            File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages/device/device");
-            FileInputStream inputStream = new FileInputStream(file);
-            //将商品图片，商品名字,商城名字画到模版图中
-            byte[] imageData = drawPicture(inputStream, "https://www.yuan50697105.top:8002/img"+deviceIdPicUrl, deviceIdName);
             ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
             //存储分享图
             String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
@@ -79,6 +51,50 @@ public class QCodeService {
         }
 
         return "";
+    }
+
+    public ApiBootObjectStorageResponse createGrouponShareImageOss(String goodName, String goodPicUrl, String deviceId) {
+        try {
+            //创建该商品的二维码
+            File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages" +
+                    "/index/index");
+            FileInputStream inputStream = new FileInputStream(file);
+            //将商品图片，商品名字,商城名字画到模版图中
+            byte[] imageData = drawPicture(inputStream, goodPicUrl, goodName);
+            ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
+            //存储分享图
+//            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
+//                    getKeyName(deviceId));
+            ApiBootObjectStorageResponse response = apiBootOssService.upload(getKeyName(deviceId), inputStream2);
+
+            return response;
+        } catch (WxErrorException | IOException e) {
+            logger.error(e.getMessage(), e);
+            return null;
+        }
+
+    }
+
+
+    /**
+     * 创建商品分享图
+     *
+     * @param deviceId
+     * @param deviceIdPicUrl
+     * @param deviceIdName
+     */
+    public String createGoodShareImage(String deviceId, String deviceIdPicUrl, String deviceIdName) {
+        //创建该商品的二维码
+//            File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages/device/device");
+//            FileInputStream inputStream = new FileInputStream(file);
+//            //将商品图片，商品名字,商城名字画到模版图中
+//            byte[] imageData = drawPicture(inputStream, DOMAIN_URL + deviceIdPicUrl, deviceIdName);
+//            ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
+        //存储分享图
+//            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
+//                    getKeyName(deviceId));
+        ApiBootObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
+        return response.getObjectUrl();
     }
 
     private String getKeyName(String goodId) {
