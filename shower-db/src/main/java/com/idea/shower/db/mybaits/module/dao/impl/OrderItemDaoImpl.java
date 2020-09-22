@@ -1,6 +1,7 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.constants.PriceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.OrderItemDao;
@@ -22,14 +23,8 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
-<<<<<<< HEAD
 public class OrderItemDaoImpl extends CommonsDaoImpl<OrderItem,OrderItem, OrderItemMapper> implements OrderItemDao {
-=======
-public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem, OrderItemMapper> implements OrderItemDao {
-    public void insert(OrderItem orderItem) {
-        baseMapper().insertSelective(orderItem);
-    }
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
+
 
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -39,11 +34,7 @@ public class OrderItemDaoImpl extends BaseDaoImpl<OrderItem, OrderItemMapper> im
 
     @Override
     public Optional<OrderItem> getRentalItemByOrderIdOpt(Long orderId) {
-<<<<<<< HEAD
         return Optional.ofNullable(baseDao().selectOneByOrderIdAndGoodsType(orderId, PriceInfoConstants.PriceType.STARTING_PRICE));
-=======
-        return Optional.ofNullable(baseMapper().selectOneByOrderIdAndGoodsType(orderId, PriceInfoConstants.PriceType.STARTING_PRICE));
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override

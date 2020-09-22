@@ -1,18 +1,10 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
-import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+import io.renren.common.entity.BaseEntity;
+import lombok.*;
+
 import java.math.BigDecimal;
 import java.util.Date;
-<<<<<<< HEAD
-
-import io.renren.common.entity.BaseEntity;
-=======
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  * order_info
@@ -22,11 +14,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-<<<<<<< HEAD
 public class OrderInfo extends BaseEntity {
-=======
-public class OrderInfo extends BaseDbEntity {
->>>>>>> a178c58e5809b456110adbffef77878d464c4e92
+
     public static final String COL_ID = "id";
     public static final String COL_CREATE_DATE = "create_date";
     public static final String COL_UPDATE_DATE = "update_date";
