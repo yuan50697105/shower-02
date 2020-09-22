@@ -1,6 +1,7 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="======= public interface DeviceRecordMapper extends BaseDaoMapper&lt;DeviceRecord&gt;, BaseMapper&lt;DeviceRecord&gt; { &gt;&gt;&gt;&gt;&gt;&gt;&gt; a178c58e5809b456110adbffef77878d464c4e92" />
       <item value="Subinterface of AOP Alliance Advice that allows additional interfaces * to be implemented by an Advice, and available via a proxy using that * interceptor. This is a fundamental AOP concept called &lt;b&gt;introduction&lt;/b&gt;. * * &lt;p&gt;Introductions are often &lt;b&gt;mixins&lt;/b&gt;, enabling the building of composite * objects that can achieve many of the goals of multiple inheritance in Java. * * &lt;p&gt;Compared to {qlink IntroductionInfo}, this interface allows an advice to * implement a range of interfaces that is not necessarily known in advance. * Thus an {@link IntroductionAdvisor} can be used to specify which interfaces * will be exposed in an advised object." />
       <item value="brief" />
       <item value="Customers" />
@@ -10,7 +11,7 @@
     <option name="languageScores">
       <map>
         <entry key="CHINESE" value="4" />
-        <entry key="ENGLISH" value="4" />
+        <entry key="ENGLISH" value="5" />
       </map>
     </option>
   </component>
