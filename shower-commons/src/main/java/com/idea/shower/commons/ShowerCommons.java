@@ -1,7 +1,9 @@
 package com.idea.shower.commons;
 
-import org.springframework.boot.SpringBootConfiguration;
+import com.idea.shower.commons.storage.StoreConfiguration;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * @program: shower-01
@@ -9,7 +11,8 @@ import org.springframework.context.annotation.ComponentScan;
  * @author: yuane
  * @create: 2020-05-12 20:44
  */
-@SpringBootConfiguration
+@Configuration
+@Import(StoreConfiguration.class)
 @ComponentScan
 public class ShowerCommons {
 }
