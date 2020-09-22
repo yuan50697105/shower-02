@@ -2,9 +2,9 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'java'
-    id 'org.springframework.boot' version '2.3.2.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.9.RELEASE'
-    id "com.github.ben-manes.versions" version "0.29.0"
+    id 'org.springframework.boot' version '2.3.3.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id "com.github.ben-manes.versions" version "0.33.0"
     id 'se.patrikerdes.use-latest-versions' version '0.2.14'
     id 'maven-publish'
 }
@@ -43,34 +43,33 @@ allprojects {
     }
 
     dependencies {
-        compile group: 'org.mapstruct', name: 'mapstruct', version: '1.4.0.Beta3'
+        compile group: 'org.mapstruct', name: 'mapstruct', version: '1.4.0.CR1'
         compile group: 'com.google.guava', name: 'guava', version: '29.0-jre'
-        compile group: 'cn.hutool', name: 'hutool-all', version: '5.3.10'
+        compile group: 'cn.hutool', name: 'hutool-all', version: '5.4.2'
         implementation 'org.springframework.boot:spring-boot-starter'
 //        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
         compileOnly 'org.projectlombok:lombok'
-        compileOnly group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.4.0.Beta3'
+        compileOnly group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.4.0.CR1'
         developmentOnly 'org.springframework.boot:spring-boot-devtools'
         annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
         annotationProcessor 'org.projectlombok:lombok'
-        annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.4.0.Beta3'
+        annotationProcessor group: 'org.mapstruct', name: 'mapstruct-processor', version: '1.4.0.CR1'
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
 //        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.73'
-//        compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.0.7.1'
-//        compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.8.9.B'
-//        compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.8.9.B'
+//        compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.4.0'
+//        compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.9.2.B'
+//        compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.9.2.B'
 //        implementation  fileTree(dir: 'lib', includes: ['*.jar'])
 //        compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.11.0'
-//        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.2.29'
+//        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.3.0'
 //        compile group: 'com.qcloud', name: 'cos_api', version: '5.6.28'
 
 
     }
     dependencyManagement{
         imports{
-            mavenBom "org.springframework.boot:spring-boot-dependencies:2.3.2.RELEASE"
             mavenBom "org.minbox.framework:api-boot-dependencies:2.3.0.RELEASE"
 //            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
 //            mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:2.2.0.RELEASE"
