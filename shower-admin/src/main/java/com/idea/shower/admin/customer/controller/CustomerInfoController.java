@@ -1,28 +1,61 @@
 package com.idea.shower.admin.customer.controller;
 
-import ai.yue.library.base.view.Result;
-import com.idea.shower.admin.customer.pojo.CustomerInfoVo;
 import com.idea.shower.admin.customer.service.CustomerInfoService;
-import lombok.Data;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.idea.shower.db.mybaits.module.pojo.ao.CustomerInfoAo;
+import io.renren.common.constant.Constant;
+import io.renren.common.page.PageData;
+import io.renren.common.utils.Result;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
-/**
- * @program: shower-01
- * @description:
- * @author: yuane
- * @create: 2020-08-02 17:06
- */
+import java.util.Map;
+
+/**  
+ * <p>
+ * Title: ${file_name}
+ * </p>  
+ * <p>
+ * Description: customer_info
+ * </p>  
+ * 
+ * @author finch  
+ * @email  2410015564@qq.com  
+ * @date   2020-09-16 ${time} 
+ * @version 1.0.0
+*/
+
 @RestController
-@RequestMapping("/customer/info")
-@Data
+@RequestMapping("customer/customerinfo")
+@Api(tags="customer_info")
 public class CustomerInfoController {
+    @Autowired
     private CustomerInfoService customerInfoService;
 
-    @PostMapping({"", "/add"})
-    public Result<?> add(@RequestBody CustomerInfoVo customerInfoVo) {
-        return customerInfoService.add(customerInfoVo);
+    @GetMapping("page")
+    @ApiOperation("分页")
+    @ApiImplicitParams({
+        @ApiImplicitParam(name = Constant.PAGE, value = "当前页码，从1开始", paramType = "query", required = true, dataType="int") ,
+        @ApiImplicitParam(name = Constant.LIMIT, value = "每页显示记录数", paramType = "query",required = true, dataType="int") ,
+        @ApiImplicitParam(name = Constant.ORDER_FIELD, value = "排序字段", paramType = "query", dataType="String") ,
+        @ApiImplicitParam(name = Constant.ORDER, value = "排序方式，可选值(asc、desc)", paramType = "query", dataType="String")
+    })
+    public Result<PageData<CustomerInfoAo>> page(@ApiIgnore @RequestParam Map<String, Object> params){
+        PageData<CustomerInfoAo> page = customerInfoService.page(params);
+
+        return new Result<PageData<CustomerInfoAo>>().ok(page);
     }
+
+    @GetMapping("{id}")
+    @ApiOperation("信息")
+    public Result<CustomerInfoAo> get(@PathVariable("id") Long id){
+        CustomerInfoAo data = customerInfoService.get(id);
+        return new Result<CustomerInfoAo>().ok(data);
+    }
+
+
 }
