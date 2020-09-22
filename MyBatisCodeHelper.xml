@@ -1,0 +1,15 @@
+<application>
+  <component name="MyBatisCodeHelper">
+    <option name="profile">
+      <Profile>
+        <option name="generateWithIfTest" value="true" />
+        <option name="userMacSet">
+          <set>
+            <option value="D4-3A-65-07-AE-11" />
+          </set>
+        </option>
+        <option name="valid" value="true" />
+      </Profile>
+    </option>
+  </component>
+</application>

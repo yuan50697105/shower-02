@@ -41,14 +41,24 @@ public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoAo, Ord
     private final OrderInfoMapper orderInfoMapper;
     private final ResourceFileUtils resourceFileUtils;
 
+<<<<<<< HEAD
     @Override
     public QueryWrapper<OrderInfo> getWrapper(Map<String, Object> params) {
         return null;
+=======
+    @Transactional(rollbackFor = Exception.class)
+    public void insert(OrderInfo orderInfo) {
+        baseMapper().insertSelective(orderInfo);
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
     public Optional<OrderInfo> getByIdOpt(Long orderId) {
+<<<<<<< HEAD
         return Optional.ofNullable(baseDao().selectByPrimaryKey(orderId));
+=======
+        return Optional.ofNullable(baseMapper().selectByPrimaryKey(orderId));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
@@ -72,7 +82,11 @@ public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoAo, Ord
 
     @Override
     public Optional<OrderInfo> getByOrderNoOpt(String orderNo) {
+<<<<<<< HEAD
         return Optional.ofNullable(baseDao().selectOneByOrderNo(orderNo));
+=======
+        return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
@@ -108,7 +122,11 @@ public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoAo, Ord
 
     @Override
     public Optional<OrderInfoDeviceVO> getByOrderNoDeviceVoOpt(String orderNo) {
+<<<<<<< HEAD
         OrderInfoDeviceVO orderInfoDeviceVO = baseDao().selectOrderInfoDeviceVOListByOrderNo(orderNo);
+=======
+        OrderInfoDeviceVO orderInfoDeviceVO = baseMapper().selectOrderInfoDeviceVOListByOrderNo(orderNo);
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
         if (ObjectUtil.isNotEmpty(orderInfoDeviceVO)) {
             orderInfoDeviceVO.setPicture(resourceFileUtils.filePath(orderInfoDeviceVO.getPicture()));
         }

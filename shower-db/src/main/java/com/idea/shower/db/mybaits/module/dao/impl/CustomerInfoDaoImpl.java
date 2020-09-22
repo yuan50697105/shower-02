@@ -37,12 +37,20 @@ public class CustomerInfoDaoImpl extends CommonsDaoImpl<CustomerInfo,CustomerInf
 
     @Override
     public Optional<CustomerInfo> getByUnionIdOpt(String unionId) {
+<<<<<<< HEAD
         return Optional.ofNullable(baseDao().selectOneByUnionId(unionId));
+=======
+        return Optional.ofNullable(baseMapper().selectOneByUnionId(unionId));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
     public Optional<CustomerInfo> getByIdOpt(String id) {
+<<<<<<< HEAD
         return Optional.ofNullable(baseDao().selectOneById(id));
+=======
+        return Optional.ofNullable(baseMapper().selectOneById(id));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
@@ -52,11 +60,23 @@ public class CustomerInfoDaoImpl extends CommonsDaoImpl<CustomerInfo,CustomerInf
         return baseDao().countByExample(example);
     }
 
+<<<<<<< HEAD
+=======
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public int insert(CustomerInfo customerInfo) {
+        return baseMapper().insertSelective(customerInfo);
+    }
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 
 
     @Override
     public Optional<CustomerInfo> getByOpenIdOpt(String openId) {
+<<<<<<< HEAD
         return Optional.ofNullable(baseDao().selectOneByOpenId(openId));
+=======
+        return Optional.ofNullable(baseMapper().selectOneByOpenId(openId));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
     @Override
     public long countByOpenId(String openid) {

@@ -12,7 +12,12 @@ import java.util.Optional;
  * @author: yuane
  * @create: 2020-02-14 22:57
  */
+<<<<<<< HEAD
 public interface DeviceOrderDao extends CommonsDao<DeviceOrder,DeviceOrder> {
+=======
+public interface DeviceOrderDao extends BaseDao<DeviceOrder> {
+    void insert(DeviceOrder deviceOrder);
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
 
     Optional<DeviceOrder> getByOrderNoOpt(String orderNo);
 

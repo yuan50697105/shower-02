@@ -21,11 +21,24 @@ import java.util.Optional;
  */
 @Component
 @AllArgsConstructor
+<<<<<<< HEAD
 public class DeviceOrderDaoImpl extends CommonsDaoImpl<DeviceOrder,DeviceOrder, DeviceOrderMapper> implements DeviceOrderDao {
 
     @Override
     public Optional<DeviceOrder> getByOrderNoOpt(String orderNo) {
         return Optional.ofNullable(baseDao().selectOneByOrderNo(orderNo));
+=======
+public class DeviceOrderDaoImpl extends BaseDaoImpl<DeviceOrder, DeviceOrderMapper> implements DeviceOrderDao {
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public void insert(DeviceOrder deviceOrder) {
+        baseMapper().insertSelective(deviceOrder);
+    }
+
+    @Override
+    public Optional<DeviceOrder> getByOrderNoOpt(String orderNo) {
+        return Optional.ofNullable(baseMapper().selectOneByOrderNo(orderNo));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 
     @Override
@@ -44,7 +57,12 @@ public class DeviceOrderDaoImpl extends CommonsDaoImpl<DeviceOrder,DeviceOrder, 
     }
 
     @Override
+<<<<<<< HEAD
     public QueryWrapper<DeviceOrder> getWrapper(Map<String, Object> params) {
         return null;
+=======
+    public Optional<DeviceOrder> getByOrderIdOpt(Long orderId) {
+        return Optional.ofNullable(baseMapper().selectOneByOrderId(orderId));
+>>>>>>> a178c58e5809b456110adbffef77878d464c4e92
     }
 }
