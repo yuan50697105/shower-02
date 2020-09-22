@@ -19,6 +19,7 @@ import java.net.URL;
 
 @Service
 public class QCodeService {
+    public static final String DOMAIN_URL = "https://www.yuan50697105.top:8002/img";
     private final Log logger = LogFactory.getLog(QCodeService.class);
     @Autowired
     WxMaService wxMaService;
@@ -83,28 +84,17 @@ public class QCodeService {
      * @param deviceIdName
      */
     public String createGoodShareImage(String deviceId, String deviceIdPicUrl, String deviceIdName) {
-        try {
-            //创建该商品的二维码
-            File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages/device/device");
-            FileInputStream inputStream = new FileInputStream(file);
-            //将商品图片，商品名字,商城名字画到模版图中
-            byte[] imageData = drawPicture(inputStream, "https://www.yuan50697105.top:8002/img" + deviceIdPicUrl, deviceIdName);
-            ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
-            //存储分享图
+        //创建该商品的二维码
+//            File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages/device/device");
+//            FileInputStream inputStream = new FileInputStream(file);
+//            //将商品图片，商品名字,商城名字画到模版图中
+//            byte[] imageData = drawPicture(inputStream, DOMAIN_URL + deviceIdPicUrl, deviceIdName);
+//            ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
+        //存储分享图
 //            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
 //                    getKeyName(deviceId));
-            ApiBootObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
-
-            return response.getObjectUrl();
-        } catch (WxErrorException e) {
-            logger.error(e.getMessage(), e);
-        } catch (FileNotFoundException e) {
-            logger.error(e.getMessage(), e);
-        } catch (IOException e) {
-            logger.error(e.getMessage(), e);
-        }
-
-        return "";
+        ApiBootObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
+        return response.getObjectUrl();
     }
 
     private String getKeyName(String goodId) {
