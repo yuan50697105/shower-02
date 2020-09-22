@@ -1,7 +1,6 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.idea.shower.db.mybaits.commons.dao.impl.BaseDaoImpl;
 import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.module.constants.PriceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.OrderItemDao;
