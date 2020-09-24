@@ -26,7 +26,7 @@
         <el-table-column prop="code" label="区域编号" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('update') }}</el-button>
+            <!--            <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('update') }}</el-button>-->
             <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">{{ $t('update') }}</el-button>
             <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">{{ $t('delete') }}</el-button>
           </template>
@@ -63,8 +63,8 @@ export default {
       mixinViewModuleOptions: {
         getDataListURL: '/area/info/data',
         getDataListIsPage: true,
-        exportURL: '/order/areainfo/export',
-        deleteURL: '/order/areainfo',
+        exportURL: 'area/info/export',
+        deleteURL: 'area/info',
         deleteIsBatch: true
       },
       dataForm: {

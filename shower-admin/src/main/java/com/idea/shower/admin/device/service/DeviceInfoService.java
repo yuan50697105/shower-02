@@ -4,6 +4,7 @@ import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -69,4 +70,6 @@ public interface DeviceInfoService {
      **/
     
     Result<?> QRCode(DeviceInfoVo deviceInfoVo);
+
+    InputStream downPicture(Long id);
 }

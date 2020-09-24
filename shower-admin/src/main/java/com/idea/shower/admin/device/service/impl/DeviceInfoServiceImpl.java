@@ -10,11 +10,13 @@ import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
+import org.minbox.framework.api.boot.oss.ApiBootOssService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.io.InputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -34,7 +36,8 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
 
     @Autowired(required = false)
     private QCodeService qCodeService;
-
+    @Autowired
+    private ApiBootOssService ossService;
 
     /**
      * 添加设备
@@ -64,7 +67,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
         Optional<DeviceInfo> optional = deviceInfoDao.getByIdOpt(deviceInfoVo.getId());
         if (optional.isPresent()) {
             DeviceInfo deviceInfo = optional.get();
-            deviceInfo.copyFrom(deviceInfo, "id", "code");
+            deviceInfo.copyFrom(deviceInfoVo, "id", "code");
             deviceInfoDao.update(deviceInfo);
         }
         return ResultInfo.success();
@@ -81,7 +84,8 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     public Result<?> delete(Long id) {
         checkDelete(id);
         deviceInfoDao.delete(id);
-        return ResultInfo.success();
+
+        return ResultInfo.success("success");
     }
 
     @Override
@@ -115,6 +119,14 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
         return null;
     }
 
+    @Override
+    public InputStream downPicture(Long id) {
+        String picture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getPicture).orElse(null);
+        ossService.download(picture, picture);
+
+        return null;
+    }
+
     /**
      * 检查设备是否存在
      *
@@ -123,7 +135,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     private void checkExist(DeviceInfo deviceInfo) {
         Optional<DeviceInfo> optional = deviceInfoDao.getByCodeOpt(deviceInfo.getCode());
         if (optional.isPresent()) {
-            throw new ResultException(ResultInfo.param_check_not_pass(deviceInfo.getCode() + "已存在"));
+            throw new ResultException(ResultInfo.paramCheckNotPass(deviceInfo.getCode() + "已存在"));
         }
     }
 

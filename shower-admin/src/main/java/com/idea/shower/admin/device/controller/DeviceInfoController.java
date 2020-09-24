@@ -6,8 +6,10 @@ import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -19,6 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/device/info")
 @AllArgsConstructor
+@Slf4j
 public class DeviceInfoController {
 
     private final DeviceInfoService deviceInfoService;
@@ -33,14 +36,14 @@ public class DeviceInfoController {
         return deviceInfoService.modify(deviceInfoVo);
     }
 
-    @DeleteMapping({"/{id}", "/delete/{id}"})
+    @DeleteMapping({"/{id}"})
     public Result<?> delete(@PathVariable Long id) {
         return deviceInfoService.delete(id);
     }
 
-    @DeleteMapping(value = {"", "delete"
-    }, params = "id")
-    public Result<?> delete(List<Long> id) {
+
+    @DeleteMapping(value = {"delete"})
+    public Result<?> delete(@RequestBody List<Long> id) {
         return deviceInfoService.delete(id);
     }
 
@@ -64,4 +67,7 @@ public class DeviceInfoController {
         return deviceInfoService.QRCode(deviceInfoVo);
     }
 
+    public void downPicture(Long id) {
+        InputStream inputStream = deviceInfoService.downPicture(id);
+    }
 }

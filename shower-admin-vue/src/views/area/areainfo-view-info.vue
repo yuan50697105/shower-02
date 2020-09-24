@@ -2,16 +2,16 @@
   <el-dialog :visible.sync="visible" title="查看" :close-on-click-modal="false" :close-on-press-escape="false">
     <el-form ref="dataForm" :model="dataForm" :label-width="$i18n.locale === 'en-US' ? '120px' : '80px'">
       <el-form-item label="createTime" prop="createTime">
-        <el-input v-model="dataForm.createTime" placeholder="createTime" />
+        <el-input v-model="dataForm.createDate" placeholder="createTime" />
       </el-form-item>
       <el-form-item label="updateTime" prop="updateTime">
-        <el-input v-model="dataForm.updateTime" placeholder="updateTime" />
+        <el-input v-model="dataForm.updateDate" placeholder="updateTime" />
       </el-form-item>
       <el-form-item label="createUser" prop="createUser">
-        <el-input v-model="dataForm.createUser" placeholder="createUser" />
+        <el-input v-model="dataForm.creator" placeholder="createUser" />
       </el-form-item>
       <el-form-item label="updateUser" prop="updateUser">
-        <el-input v-model="dataForm.updateUser" placeholder="updateUser" />
+        <el-input v-model="dataForm.updater" placeholder="updateUser" />
       </el-form-item>
       <el-form-item label="区域名称" prop="name">
         <el-input v-model="dataForm.name" placeholder="区域名称" />
@@ -33,10 +33,10 @@ export default {
       visible: false,
       dataForm: {
         id: '',
-        createTime: '',
-        updateTime: '',
-        createUser: '',
-        updateUser: '',
+        createDate: '',
+        updateDate: '',
+        creator: '',
+        updater: '',
         name: '',
         code: ''
       }
@@ -54,7 +54,7 @@ export default {
     },
     // 获取信息
     getInfo() {
-      this.$http.get(`/order/areainfo/${this.dataForm.id}`).then(({ data: res }) => {
+      this.$http.get(`/area/info/${this.dataForm.id}`).then(({ data: res }) => {
         if (res.code !== 0) {
           return this.$message.error(res.msg)
         }

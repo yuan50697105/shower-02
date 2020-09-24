@@ -1,6 +1,17 @@
 <template>
-  <el-dialog :visible.sync="visible" :title="!dataForm.id ? $t('add') : $t('update')" :close-on-click-modal="false" :close-on-press-escape="false">
-    <el-form ref="dataForm" :model="dataForm" :rules="dataRule" :label-width="$i18n.locale === 'en-US' ? '120px' : '80px'" @keyup.enter.native="dataFormSubmitHandle()">
+  <el-dialog
+    :visible.sync="visible"
+    :title="!dataForm.id ? $t('add') : $t('update')"
+    :close-on-click-modal="false"
+    :close-on-press-escape="false"
+  >
+    <el-form
+      ref="dataForm"
+      :model="dataForm"
+      :rules="dataRule"
+      :label-width="$i18n.locale === 'en-US' ? '120px' : '80px'"
+      @keyup.enter.native="dataFormSubmitHandle()"
+    >
       <el-form-item label="设备编号" prop="code">
         <el-input v-model="dataForm.code" placeholder="设备编号" />
       </el-form-item>
@@ -45,10 +56,10 @@ export default {
       visible: false,
       dataForm: {
         id: '',
-        createTime: '',
-        updateTime: '',
-        createUser: '',
-        updateUser: '',
+        createDate: '',
+        updateDate: '',
+        creator: '',
+        updater: '',
         code: '',
         productKey: '',
         deviceName: '',
@@ -142,10 +153,12 @@ export default {
         if (res.code !== 200) {
           return this.$message.error(res.msg)
         }
-        this.dataForm = {
-          ...this.dataForm,
-          ...res.data
-        }
+        // this.dataForm = {
+        // ...this.dataForm,
+        // ...res.data
+        // }
+        this.dataForm = res.data.data
+        console.log(this.dataForm)
       }).catch(() => {
       })
     },
@@ -169,7 +182,8 @@ export default {
               this.$emit('refreshDataList')
             }
           })
-        }).catch(() => {})
+        }).catch(() => {
+        })
       })
     }, 1000, { 'leading': true, 'trailing': false })
   }

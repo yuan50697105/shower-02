@@ -32,7 +32,11 @@
         <el-table-column prop="latitude" label="纬度" header-align="center" align="center" />
         <el-table-column prop="areaName" label="区域名称" header-align="center" align="center" />
         <el-table-column prop="buildingName" label="楼宇名称" header-align="center" align="center" />
-        <el-table-column prop="picture" label="设备图片" header-align="center" align="center" />
+        <el-table-column prop="picture" label="设备图片" header-align="center" align="center">
+          <template slot-scope="scope">
+            <img :src="scope.row.pictureUrl" style="width: 50px;height: 50px">
+          </template>
+        </el-table-column>
         <el-table-column prop="runStatus" label="运行状态" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
@@ -76,7 +80,7 @@ export default {
       mixinViewModuleOptions: {
         getDataListURL: '/device/info/data',
         getDataListIsPage: true,
-        exportURL: '/order/deviceinfo/export',
+        exportURL: 'deviceinfo/export',
         deleteURL: 'device/info/delete',
         deleteIsBatch: true
       },
