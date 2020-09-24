@@ -178,7 +178,7 @@ public class AdminRoleServiceImpl implements AdminRoleService {
         String name = vo.getName();
         boolean exist = adminRoleService.checkExistByName(name);
         if (exist) {
-            throw new ResultException(ResultInfo.param_check_not_pass());
+            throw new ResultException(ResultInfo.paramCheckNotPass());
         }
     }
 
