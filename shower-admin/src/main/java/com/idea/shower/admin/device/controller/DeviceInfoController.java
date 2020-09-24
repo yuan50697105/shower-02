@@ -42,7 +42,7 @@ public class DeviceInfoController {
     }
 
 
-    @DeleteMapping(value = {"delete"})
+    @DeleteMapping(value = {""})
     public Result<?> delete(@RequestBody List<Long> id) {
         return deviceInfoService.delete(id);
     }
