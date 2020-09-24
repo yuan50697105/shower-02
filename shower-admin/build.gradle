@@ -17,5 +17,6 @@ dependencies {
     compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.0.7.1'
     compile('org.apache.commons:commons-pool2:2.8.1')
     compile('redis.clients:jedis:3.3.0')
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.2'
 
 }

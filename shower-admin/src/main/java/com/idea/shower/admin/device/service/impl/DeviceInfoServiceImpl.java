@@ -80,7 +80,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
      * @return
      */
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public Result<?> delete(Long id) {
         checkDelete(id);
         deviceInfoDao.delete(id);
@@ -106,7 +106,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public Result<?> delete(List<Long> id) {
         id.forEach(this::delete);
         return ResultInfo.success();
