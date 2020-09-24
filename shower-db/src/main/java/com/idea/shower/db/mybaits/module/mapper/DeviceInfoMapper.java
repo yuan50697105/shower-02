@@ -17,6 +17,7 @@ public interface DeviceInfoMapper extends BaseDaoMapper<DeviceInfo> {
 
     int deleteByPrimaryKey(Long id);
 
+
     int insertSelective(DeviceInfo record);
 
     List<DeviceInfo> selectByExample(DeviceInfoExample example);
