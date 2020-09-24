@@ -81,7 +81,7 @@ export default {
         getDataListURL: '/device/info/data',
         getDataListIsPage: true,
         exportURL: 'deviceinfo/export',
-        deleteURL: 'device/info/delete',
+        deleteURL: 'device/info',
         deleteIsBatch: true
       },
       dataForm: {

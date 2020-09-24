@@ -107,6 +107,18 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    <!--@mbg.generated-->
+    select 
+    <include refid="Base_Column_List" />
+    from device_info
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    <!--@mbg.generated-->
+    delete from device_info
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
   <delete id="deleteByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoExample">
     <!--@mbg.generated-->
     delete from device_info
@@ -114,6 +126,151 @@
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into device_info (create_date, update_date, updater, 
+      creator, del_flag, code, 
+      product_key, device_name, `type`, 
+      price_code, enabled, longitude, 
+      latitude, area_id, area_name, 
+      building_id, building_name, picture, 
+      run_status, picture_url)
+    values (#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{updater,jdbcType=BIGINT}, 
+      #{creator,jdbcType=BIGINT}, #{delFlag,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{productKey,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{priceCode,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, #{longitude,jdbcType=DOUBLE}, 
+      #{latitude,jdbcType=DOUBLE}, #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
+      #{buildingId,jdbcType=BIGINT}, #{buildingName,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
+      #{runStatus,jdbcType=INTEGER}, #{pictureUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfo" useGeneratedKeys="true">
+    <!--@mbg.generated-->
+    insert into device_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        create_date,
+      </if>
+      <if test="updateDate != null">
+        update_date,
+      </if>
+      <if test="updater != null">
+        updater,
+      </if>
+      <if test="creator != null">
+        creator,
+      </if>
+      <if test="delFlag != null">
+        del_flag,
+      </if>
+      <if test="code != null">
+        code,
+      </if>
+      <if test="productKey != null">
+        product_key,
+      </if>
+      <if test="deviceName != null">
+        device_name,
+      </if>
+      <if test="type != null">
+        `type`,
+      </if>
+      <if test="priceCode != null">
+        price_code,
+      </if>
+      <if test="enabled != null">
+        enabled,
+      </if>
+      <if test="longitude != null">
+        longitude,
+      </if>
+      <if test="latitude != null">
+        latitude,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="areaName != null">
+        area_name,
+      </if>
+      <if test="buildingId != null">
+        building_id,
+      </if>
+      <if test="buildingName != null">
+        building_name,
+      </if>
+      <if test="picture != null">
+        picture,
+      </if>
+      <if test="runStatus != null">
+        run_status,
+      </if>
+      <if test="pictureUrl != null">
+        picture_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="createDate != null">
+        #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        #{updater,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="productKey != null">
+        #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null">
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="priceCode != null">
+        #{priceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null">
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingName != null">
+        #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="runStatus != null">
+        #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="pictureUrl != null">
+        #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
   <select id="countByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoExample" resultType="java.lang.Long">
     <!--@mbg.generated-->
     select count(*) from device_info
@@ -220,6 +377,98 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfo">
+    <!--@mbg.generated-->
+    update device_info
+    <set>
+      <if test="createDate != null">
+        create_date = #{createDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateDate != null">
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updater != null">
+        updater = #{updater,jdbcType=BIGINT},
+      </if>
+      <if test="creator != null">
+        creator = #{creator,jdbcType=BIGINT},
+      </if>
+      <if test="delFlag != null">
+        del_flag = #{delFlag,jdbcType=VARCHAR},
+      </if>
+      <if test="code != null">
+        code = #{code,jdbcType=VARCHAR},
+      </if>
+      <if test="productKey != null">
+        product_key = #{productKey,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceName != null">
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null">
+        `type` = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="priceCode != null">
+        price_code = #{priceCode,jdbcType=VARCHAR},
+      </if>
+      <if test="enabled != null">
+        enabled = #{enabled,jdbcType=INTEGER},
+      </if>
+      <if test="longitude != null">
+        longitude = #{longitude,jdbcType=DOUBLE},
+      </if>
+      <if test="latitude != null">
+        latitude = #{latitude,jdbcType=DOUBLE},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="areaName != null">
+        area_name = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="buildingId != null">
+        building_id = #{buildingId,jdbcType=BIGINT},
+      </if>
+      <if test="buildingName != null">
+        building_name = #{buildingName,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null">
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="runStatus != null">
+        run_status = #{runStatus,jdbcType=INTEGER},
+      </if>
+      <if test="pictureUrl != null">
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfo">
+    <!--@mbg.generated-->
+    update device_info
+    set create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      updater = #{updater,jdbcType=BIGINT},
+      creator = #{creator,jdbcType=BIGINT},
+      del_flag = #{delFlag,jdbcType=VARCHAR},
+      code = #{code,jdbcType=VARCHAR},
+      product_key = #{productKey,jdbcType=VARCHAR},
+      device_name = #{deviceName,jdbcType=VARCHAR},
+      `type` = #{type,jdbcType=INTEGER},
+      price_code = #{priceCode,jdbcType=VARCHAR},
+      enabled = #{enabled,jdbcType=INTEGER},
+      longitude = #{longitude,jdbcType=DOUBLE},
+      latitude = #{latitude,jdbcType=DOUBLE},
+      area_id = #{areaId,jdbcType=BIGINT},
+      area_name = #{areaName,jdbcType=VARCHAR},
+      building_id = #{buildingId,jdbcType=BIGINT},
+      building_name = #{buildingName,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      run_status = #{runStatus,jdbcType=INTEGER},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByCondition" resultMap="BaseResultMap">
     select <include refid="Base_Column_List" />
