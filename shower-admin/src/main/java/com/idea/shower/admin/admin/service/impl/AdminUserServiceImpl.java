@@ -174,7 +174,7 @@ public class AdminUserServiceImpl implements AdminUserService {
     private void createUserRole(AdminUserVO vo, AdminUser adminUser) {
         List<Long> roleIds = vo.getRoleIds();
         if (!ObjectUtil.isNotEmpty(roleIds)) {
-            throw new ResultException(ResultInfo.paramCheckNotPass());
+            throw new ResultException(ResultInfo.param_check_not_pass());
         }
         roleIds = adminRoleService.listByIds(roleIds).stream().map(BaseDbEntity::getId).collect(Collectors.toList());
         ArrayList<AdminUserRole> adminUserRoles = new ArrayList<>(roleIds.size());
@@ -206,17 +206,17 @@ public class AdminUserServiceImpl implements AdminUserService {
     private void checkUserExist(AdminUserVO vo) {
         String username = vo.getUsername();
         if (Validator.isEmpty(username)) {
-            throw new ResultException(ResultInfo.paramCheckNotPass(username + "不能为空"));
+            throw new ResultException(ResultInfo.param_check_not_pass(username + "不能为空"));
         }
         boolean exist = adminUserService.existByUsername(username);
         if (exist) {
-            throw new ResultException(ResultInfo.paramCheckNotPass(username + "用户已存在"));
+            throw new ResultException(ResultInfo.param_check_not_pass(username + "用户已存在"));
         }
     }
 
     private void checkUserNull(AdminUser adminUser) {
         if (ObjectUtil.isNull(adminUser)) {
-            throw new ResultException(ResultInfo.paramCheckNotPass("用户不存在"));
+            throw new ResultException(ResultInfo.param_check_not_pass("用户不存在"));
         }
     }
 }

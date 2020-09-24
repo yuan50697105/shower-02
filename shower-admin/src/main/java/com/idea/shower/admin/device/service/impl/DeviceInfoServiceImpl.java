@@ -135,7 +135,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     private void checkExist(DeviceInfo deviceInfo) {
         Optional<DeviceInfo> optional = deviceInfoDao.getByCodeOpt(deviceInfo.getCode());
         if (optional.isPresent()) {
-            throw new ResultException(ResultInfo.paramCheckNotPass(deviceInfo.getCode() + "已存在"));
+            throw new ResultException(ResultInfo.param_check_not_pass(deviceInfo.getCode() + "已存在"));
         }
     }
 

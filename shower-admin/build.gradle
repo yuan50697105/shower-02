@@ -2,7 +2,7 @@ dependencies {
     compile project(':shower-web')
     compile project(':shower-db')
     compile project(':shower-commons')
-    compile group: 'ai.ylyue', name: 'yue-library-base'
+    compile 'ai.ylyue:yue-library-base:Greenwich.SR2.1'
     compile('org.springframework.boot:spring-boot-starter-aop')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('commons-codec:commons-codec')

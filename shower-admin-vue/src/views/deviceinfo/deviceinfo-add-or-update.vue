@@ -153,11 +153,11 @@ export default {
         if (res.code !== 200) {
           return this.$message.error(res.msg)
         }
-        // this.dataForm = {
-        // ...this.dataForm,
-        // ...res.data
-        // }
-        this.dataForm = res.data.data
+        this.dataForm = {
+          ...this.dataForm,
+          ...res.data.data
+        }
+        // this.dataForm = res.data.data
         console.log(this.dataForm)
       }).catch(() => {
       })

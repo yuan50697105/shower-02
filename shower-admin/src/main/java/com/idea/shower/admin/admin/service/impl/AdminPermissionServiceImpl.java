@@ -81,7 +81,7 @@ public class AdminPermissionServiceImpl implements AdminPermissionService {
 
     private void checkPermissionNull(AdminPermission adminPermission) {
         if (ObjectUtil.isNull(adminPermission)) {
-            throw new ResultException(ResultInfo.paramCheckNotPass());
+            throw new ResultException(ResultInfo.param_check_not_pass());
         }
     }
 
