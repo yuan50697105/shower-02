@@ -1,8 +1,10 @@
 package com.idea.shower.admin.device.service.impl;
 
 import ai.yue.library.base.exception.ResultException;
+import ai.yue.library.base.util.StringUtils;
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.commons.qcode.QCodeService;
@@ -10,18 +12,17 @@ import com.idea.shower.commons.storage.CommonsOssService;
 import com.idea.shower.commons.storage.StorageProperties;
 import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
+import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
+import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
-import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
-import org.minbox.framework.api.boot.storage.response.ApiBootObjectStorageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.InputStream;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -45,6 +46,16 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     private CommonsOssService ossService;
     @Autowired
     private StorageProperties storageProperties;
+
+    @Override
+    public QueryWrapper<DeviceInfo> getWrapper(Map<String, Object> params) {
+        String orderNo = (String) params.get("orderNo");
+
+        QueryWrapper<DeviceInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq(StringUtils.isNotBlank(orderNo), "order_no", orderNo);
+
+        return wrapper;
+    }
 
     /**
      * 添加设备

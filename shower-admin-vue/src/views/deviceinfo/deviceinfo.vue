@@ -38,12 +38,13 @@
           </template>
         </el-table-column>
         <el-table-column prop="runStatus" label="运行状态" header-align="center" align="center" />
+        <el-table-column prop="runStatus" label="运行状态" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <!--            <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('info') }}</el-button>-->
             <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">{{ $t('update') }}</el-button>
             <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">{{ $t('delete') }}</el-button>
-            <el-button type="text" size="small" @click="QRCode(scope.row)">二维码</el-button>
+            <el-button type="text" size="small" @click="QRCode(scope.row)">重新生成二维码</el-button>
           </template>
         </el-table-column>
       </el-table>
