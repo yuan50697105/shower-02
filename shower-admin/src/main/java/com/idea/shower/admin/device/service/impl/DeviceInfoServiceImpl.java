@@ -13,6 +13,8 @@ import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.minbox.framework.api.boot.storage.response.ApiBootObjectStorageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -30,7 +32,9 @@ import java.util.*;
 @Service
 //@AllArgsConstructor
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
+@Slf4j
 public class DeviceInfoServiceImpl implements DeviceInfoService {
+
 
     @Autowired
     private DeviceInfoDao deviceInfoDao;
@@ -117,8 +121,10 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
 
     @Override
     public Result<?> QRCode(DeviceInfoVo deviceInfoVo) {
-        String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
-        System.out.println(url);
+        ApiBootObjectStorageResponse response = qCodeService.createGoodShareImageResponse(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
+//        String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
+        String objectUrl = response.getObjectUrl();
+        log.info("objectUrl=" + objectUrl);
         return null;
     }
 
@@ -128,7 +134,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
         String picture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getPicture).orElse(null);
         String path = storageProperties.getDownloadPath() + picture;
 //        ossService.download(picture, path);
-        InputStream inputStream = ossService.downloadFile(Objects.requireNonNull(picture).replaceAll("/",""));
+        InputStream inputStream = ossService.downloadFile(Objects.requireNonNull(picture).replaceAll("/", ""));
         HashMap<String, Object> map = new HashMap<>();
         map.put("fileName", picture);
         map.put("stream", inputStream);
