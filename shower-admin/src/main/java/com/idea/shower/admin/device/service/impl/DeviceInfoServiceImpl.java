@@ -6,19 +6,20 @@ import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.commons.qcode.QCodeService;
+import com.idea.shower.commons.storage.CommonsOssService;
+import com.idea.shower.commons.storage.StorageProperties;
 import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
-import org.minbox.framework.api.boot.oss.ApiBootOssService;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.InputStream;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 /**
  * @program: shower-01
@@ -37,7 +38,9 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     @Autowired(required = false)
     private QCodeService qCodeService;
     @Autowired
-    private ApiBootOssService ossService;
+    private CommonsOssService ossService;
+    @Autowired
+    private StorageProperties storageProperties;
 
     /**
      * 添加设备
@@ -119,12 +122,17 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
         return null;
     }
 
+    @SneakyThrows
     @Override
-    public InputStream downPicture(Long id) {
+    public Map<String, Object> downPicture(Long id) {
         String picture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getPicture).orElse(null);
-        ossService.download(picture, picture);
-
-        return null;
+        String path = storageProperties.getDownloadPath() + picture;
+//        ossService.download(picture, path);
+        InputStream inputStream = ossService.downloadFile(Objects.requireNonNull(picture).replaceAll("/",""));
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("fileName", picture);
+        map.put("stream", inputStream);
+        return map;
     }
 
     /**

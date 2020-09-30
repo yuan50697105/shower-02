@@ -2,15 +2,23 @@ package com.idea.shower.admin.device.controller;
 
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
+import cn.hutool.extra.servlet.ServletUtil;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: shower-01
@@ -67,7 +75,12 @@ public class DeviceInfoController {
         return deviceInfoService.QRCode(deviceInfoVo);
     }
 
-    public void downPicture(Long id) {
-        InputStream inputStream = deviceInfoService.downPicture(id);
+    @SneakyThrows
+    @GetMapping("/{id}/picture")
+    public void downPicture(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = deviceInfoService.downPicture(id);
+        Path fileName = Paths.get((String) map.get("fileName"));
+        String contentType = Files.probeContentType(fileName);
+        ServletUtil.write(response, (InputStream) map.get("stream"), contentType, fileName.getFileName().toFile().getName());
     }
 }
