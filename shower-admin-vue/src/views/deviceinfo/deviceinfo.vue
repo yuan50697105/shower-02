@@ -98,7 +98,14 @@ export default {
         picture: row.picture
       }
       QRCode(data).then(response => {
-        console.log(response)
+        if(response.code == 200){
+          this.$message({
+            message: '生成成功',
+            type: 'success'
+          });
+        }else{
+          this.$message.error('生成失败');
+        }
       })
     }
   }
