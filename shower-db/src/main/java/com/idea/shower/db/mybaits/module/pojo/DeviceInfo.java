@@ -108,7 +108,12 @@ public class DeviceInfo extends BaseDbEntity {
      */
     private Integer runStatus;
 
-    private String pictureUrl;
+    private String qrPictureUrl;
+
+    /**
+     * 二维码图片名称
+     */
+    private String qrPicture;
 
     public void copyFromByOptions(BaseDbEntity t, CopyOptions copyOptions) {
         BeanUtil.copyProperties(t, this, copyOptions);
