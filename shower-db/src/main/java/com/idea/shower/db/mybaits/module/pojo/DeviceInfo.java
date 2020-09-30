@@ -105,6 +105,9 @@ public class DeviceInfo extends BaseDbEntity {
      */
     private Integer runStatus;
 
+    /**
+     * 二维码图片路径
+     */
     private String qrPictureUrl;
 
     /**
