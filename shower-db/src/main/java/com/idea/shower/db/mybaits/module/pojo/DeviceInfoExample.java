@@ -1385,73 +1385,143 @@ public class DeviceInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlIsNull() {
-            addCriterion("picture_url is null");
+        public Criteria andQrPictureUrlIsNull() {
+            addCriterion("qr_picture_url is null");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlIsNotNull() {
-            addCriterion("picture_url is not null");
+        public Criteria andQrPictureUrlIsNotNull() {
+            addCriterion("qr_picture_url is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlEqualTo(String value) {
-            addCriterion("picture_url =", value, "pictureUrl");
+        public Criteria andQrPictureUrlEqualTo(String value) {
+            addCriterion("qr_picture_url =", value, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlNotEqualTo(String value) {
-            addCriterion("picture_url <>", value, "pictureUrl");
+        public Criteria andQrPictureUrlNotEqualTo(String value) {
+            addCriterion("qr_picture_url <>", value, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlGreaterThan(String value) {
-            addCriterion("picture_url >", value, "pictureUrl");
+        public Criteria andQrPictureUrlGreaterThan(String value) {
+            addCriterion("qr_picture_url >", value, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlGreaterThanOrEqualTo(String value) {
-            addCriterion("picture_url >=", value, "pictureUrl");
+        public Criteria andQrPictureUrlGreaterThanOrEqualTo(String value) {
+            addCriterion("qr_picture_url >=", value, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlLessThan(String value) {
-            addCriterion("picture_url <", value, "pictureUrl");
+        public Criteria andQrPictureUrlLessThan(String value) {
+            addCriterion("qr_picture_url <", value, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlLessThanOrEqualTo(String value) {
-            addCriterion("picture_url <=", value, "pictureUrl");
+        public Criteria andQrPictureUrlLessThanOrEqualTo(String value) {
+            addCriterion("qr_picture_url <=", value, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlLike(String value) {
-            addCriterion("picture_url like", value, "pictureUrl");
+        public Criteria andQrPictureUrlLike(String value) {
+            addCriterion("qr_picture_url like", value, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlNotLike(String value) {
-            addCriterion("picture_url not like", value, "pictureUrl");
+        public Criteria andQrPictureUrlNotLike(String value) {
+            addCriterion("qr_picture_url not like", value, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlIn(List<String> values) {
-            addCriterion("picture_url in", values, "pictureUrl");
+        public Criteria andQrPictureUrlIn(List<String> values) {
+            addCriterion("qr_picture_url in", values, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlNotIn(List<String> values) {
-            addCriterion("picture_url not in", values, "pictureUrl");
+        public Criteria andQrPictureUrlNotIn(List<String> values) {
+            addCriterion("qr_picture_url not in", values, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlBetween(String value1, String value2) {
-            addCriterion("picture_url between", value1, value2, "pictureUrl");
+        public Criteria andQrPictureUrlBetween(String value1, String value2) {
+            addCriterion("qr_picture_url between", value1, value2, "qrPictureUrl");
             return (Criteria) this;
         }
 
-        public Criteria andPictureUrlNotBetween(String value1, String value2) {
-            addCriterion("picture_url not between", value1, value2, "pictureUrl");
+        public Criteria andQrPictureUrlNotBetween(String value1, String value2) {
+            addCriterion("qr_picture_url not between", value1, value2, "qrPictureUrl");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureIsNull() {
+            addCriterion("qr_picture is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureIsNotNull() {
+            addCriterion("qr_picture is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureEqualTo(String value) {
+            addCriterion("qr_picture =", value, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureNotEqualTo(String value) {
+            addCriterion("qr_picture <>", value, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureGreaterThan(String value) {
+            addCriterion("qr_picture >", value, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureGreaterThanOrEqualTo(String value) {
+            addCriterion("qr_picture >=", value, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureLessThan(String value) {
+            addCriterion("qr_picture <", value, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureLessThanOrEqualTo(String value) {
+            addCriterion("qr_picture <=", value, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureLike(String value) {
+            addCriterion("qr_picture like", value, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureNotLike(String value) {
+            addCriterion("qr_picture not like", value, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureIn(List<String> values) {
+            addCriterion("qr_picture in", values, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureNotIn(List<String> values) {
+            addCriterion("qr_picture not in", values, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureBetween(String value1, String value2) {
+            addCriterion("qr_picture between", value1, value2, "qrPicture");
+            return (Criteria) this;
+        }
+
+        public Criteria andQrPictureNotBetween(String value1, String value2) {
+            addCriterion("qr_picture not between", value1, value2, "qrPicture");
             return (Criteria) this;
         }
     }

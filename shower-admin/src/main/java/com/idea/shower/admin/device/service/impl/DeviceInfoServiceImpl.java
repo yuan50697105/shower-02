@@ -133,11 +133,11 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper,Devi
     @SneakyThrows
     @Override
     public Map<String, Object> downPicture(Long id) {
-        String picture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getPicture).orElse(null);
-        String path = storageProperties.getDownloadPath() + picture;
-        InputStream inputStream = ossService.downloadFile(Objects.requireNonNull(picture).replaceAll("/", ""));
+        String qrPicture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getQrPicture).orElse(null);
+        String path = storageProperties.getDownloadPath() + qrPicture;
+        InputStream inputStream = ossService.downloadFile(Objects.requireNonNull(qrPicture).replaceAll("/", ""));
         HashMap<String, Object> map = new HashMap<>();
-        map.put("fileName", picture);
+        map.put("fileName", qrPicture);
         map.put("stream", inputStream);
         return map;
     }
