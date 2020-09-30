@@ -1,7 +1,6 @@
 package com.idea.shower.admin.device.service.impl;
 
 import ai.yue.library.base.exception.ResultException;
-import ai.yue.library.base.util.StringUtils;
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -14,15 +13,18 @@ import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
-import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
+import io.renren.common.service.impl.CrudServiceImpl;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
+import org.minbox.framework.api.boot.storage.response.ApiBootObjectStorageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.InputStream;
+import java.util.*;
 
 /**
  * @program: shower-01
@@ -31,10 +33,9 @@ import java.util.Optional;
  * @create: 2020-08-02 16:58
  */
 @Service
-//@AllArgsConstructor
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 @Slf4j
-public class DeviceInfoServiceImpl implements DeviceInfoService {
+public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper,DeviceInfo,DeviceInfoVo> implements DeviceInfoService {
 
 
     @Autowired
@@ -46,16 +47,6 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     private CommonsOssService ossService;
     @Autowired
     private StorageProperties storageProperties;
-
-    @Override
-    public QueryWrapper<DeviceInfo> getWrapper(Map<String, Object> params) {
-        String orderNo = (String) params.get("orderNo");
-
-        QueryWrapper<DeviceInfo> wrapper = new QueryWrapper<>();
-        wrapper.eq(StringUtils.isNotBlank(orderNo), "order_no", orderNo);
-
-        return wrapper;
-    }
 
     /**
      * 添加设备
@@ -144,7 +135,6 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     public Map<String, Object> downPicture(Long id) {
         String picture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getPicture).orElse(null);
         String path = storageProperties.getDownloadPath() + picture;
-//        ossService.download(picture, path);
         InputStream inputStream = ossService.downloadFile(Objects.requireNonNull(picture).replaceAll("/", ""));
         HashMap<String, Object> map = new HashMap<>();
         map.put("fileName", picture);
@@ -170,7 +160,10 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
      * @param id 主键
      */
     private void checkDelete(Long id) {
-//        throw new ResultException(ResultInfo.dev_defined(""));
     }
 
+    @Override
+    public QueryWrapper<DeviceInfo> getWrapper(Map<String, Object> params) {
+        return null;
+    }
 }
