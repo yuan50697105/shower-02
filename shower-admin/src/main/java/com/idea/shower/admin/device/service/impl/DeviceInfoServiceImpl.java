@@ -6,17 +6,20 @@ import ai.yue.library.base.view.ResultInfo;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.commons.qcode.QCodeService;
+import com.idea.shower.commons.storage.CommonsOssService;
+import com.idea.shower.commons.storage.StorageProperties;
 import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.Optional;
+import java.io.InputStream;
+import java.util.*;
 
 /**
  * @program: shower-01
@@ -34,7 +37,10 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
 
     @Autowired(required = false)
     private QCodeService qCodeService;
-
+    @Autowired
+    private CommonsOssService ossService;
+    @Autowired
+    private StorageProperties storageProperties;
 
     /**
      * 添加设备
@@ -64,7 +70,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
         Optional<DeviceInfo> optional = deviceInfoDao.getByIdOpt(deviceInfoVo.getId());
         if (optional.isPresent()) {
             DeviceInfo deviceInfo = optional.get();
-            deviceInfo.copyFrom(deviceInfo, "id", "code");
+            deviceInfo.copyFrom(deviceInfoVo, "id", "code");
             deviceInfoDao.update(deviceInfo);
         }
         return ResultInfo.success();
@@ -77,11 +83,12 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
      * @return
      */
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public Result<?> delete(Long id) {
         checkDelete(id);
         deviceInfoDao.delete(id);
-        return ResultInfo.success();
+
+        return ResultInfo.success("success");
     }
 
     @Override
@@ -102,7 +109,7 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     }
 
     @Override
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED)
     public Result<?> delete(List<Long> id) {
         id.forEach(this::delete);
         return ResultInfo.success();
@@ -113,6 +120,19 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
         String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
         System.out.println(url);
         return null;
+    }
+
+    @SneakyThrows
+    @Override
+    public Map<String, Object> downPicture(Long id) {
+        String picture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getPicture).orElse(null);
+        String path = storageProperties.getDownloadPath() + picture;
+//        ossService.download(picture, path);
+        InputStream inputStream = ossService.downloadFile(Objects.requireNonNull(picture).replaceAll("/",""));
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("fileName", picture);
+        map.put("stream", inputStream);
+        return map;
     }
 
     /**

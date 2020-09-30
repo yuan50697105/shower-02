@@ -2,13 +2,23 @@ package com.idea.shower.admin.device.controller;
 
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
+import cn.hutool.extra.servlet.ServletUtil;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: shower-01
@@ -19,6 +29,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/device/info")
 @AllArgsConstructor
+@Slf4j
 public class DeviceInfoController {
 
     private final DeviceInfoService deviceInfoService;
@@ -33,14 +44,14 @@ public class DeviceInfoController {
         return deviceInfoService.modify(deviceInfoVo);
     }
 
-    @DeleteMapping({"/{id}", "/delete/{id}"})
+    @DeleteMapping({"/{id}"})
     public Result<?> delete(@PathVariable Long id) {
         return deviceInfoService.delete(id);
     }
 
-    @DeleteMapping(value = {"", "delete"
-    }, params = "id")
-    public Result<?> delete(List<Long> id) {
+
+    @DeleteMapping(value = {""})
+    public Result<?> delete(@RequestBody List<Long> id) {
         return deviceInfoService.delete(id);
     }
 
@@ -64,4 +75,12 @@ public class DeviceInfoController {
         return deviceInfoService.QRCode(deviceInfoVo);
     }
 
+    @SneakyThrows
+    @GetMapping("/{id}/picture")
+    public void downPicture(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) {
+        Map<String, Object> map = deviceInfoService.downPicture(id);
+        Path fileName = Paths.get((String) map.get("fileName"));
+        String contentType = Files.probeContentType(fileName);
+        ServletUtil.write(response, (InputStream) map.get("stream"), contentType, fileName.getFileName().toFile().getName());
+    }
 }

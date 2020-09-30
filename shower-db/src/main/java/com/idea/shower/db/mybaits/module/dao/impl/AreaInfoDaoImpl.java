@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -50,6 +51,16 @@ public class AreaInfoDaoImpl extends CommonsDaoImpl<AreaInfo,AreaInfo, AreaInfoM
     @Override
     public AreaInfo get(Long id) {
         return baseDao().selectByPrimaryKey(id);
+    }
+
+    @Override
+    public void delete(Long id) {
+        baseDao.deleteById(id);
+    }
+
+    @Override
+    public Optional<AreaInfo> getOpt(Long id) {
+        return Optional.ofNullable(get(id));
     }
 
 }
