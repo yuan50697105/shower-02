@@ -1,9 +1,12 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
-import cn.hutool.core.bean.BeanUtil;
-import cn.hutool.core.bean.copier.CopyOptions;
-import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import lombok.*;
+import cn.hutool.core.bean.BeanUtil;import cn.hutool.core.bean.copier.CopyOptions;import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+import java.util.Date;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 /**
  * device_info
@@ -34,6 +37,7 @@ public class DeviceInfo extends BaseDbEntity {
     public static final String COL_BUILDING_NAME = "building_name";
     public static final String COL_PICTURE = "picture";
     public static final String COL_RUN_STATUS = "run_status";
+    public static final String COL_PICTURE_URL = "picture_url";
     /**
      * 设备编号
      */
@@ -104,20 +108,12 @@ public class DeviceInfo extends BaseDbEntity {
      */
     private Integer runStatus;
 
-    /**
-     * 二维码图片路径
-     */
     private String qrPictureUrl;
 
     /**
      * 二维码图片名称
      */
     private String qrPicture;
-
-    /**
-     * 设备图片路径
-     */
-    private String pictureUrl;
 
     public void copyFromByOptions(BaseDbEntity t, CopyOptions copyOptions) {
         BeanUtil.copyProperties(t, this, copyOptions);
