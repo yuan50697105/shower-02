@@ -39,7 +39,7 @@ public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo,DeviceInfo, Dev
 
     @Override
     public Optional<DeviceInfo> getByIdOpt(Long deviceId) {
-        return Optional.ofNullable(baseDao().selectByPrimaryKey(deviceId));
+        return Optional.ofNullable(baseDao().selectById(deviceId));
     }
 
     @Override

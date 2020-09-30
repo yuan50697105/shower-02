@@ -169,7 +169,8 @@ create table if not exists device_info
     building_id   bigint(15)                           null comment '楼宇ID',
     building_name varchar(50)                          null comment '楼宇名称',
     picture       varchar(50)                          null comment '设备图片',
-    run_status    int        default 0                 null comment '运行状态 0 可用 1 使用中 '
+    run_status    int        default 0                 null comment '运行状态 0 可用 1 使用中 ',
+    picture_url   varchar(500)                         null
 )
     comment 'device_info' charset = utf8mb4;
 
@@ -302,6 +303,12 @@ create table if not exists member_info
     code               varchar(50)                          null comment '会员编号'
 )
     comment '会员信息' charset = utf8mb4;
+
+create table if not exists middle_month
+(
+    i int null
+)
+    comment '中间表' charset = utf8;
 
 create table if not exists order_info
 (

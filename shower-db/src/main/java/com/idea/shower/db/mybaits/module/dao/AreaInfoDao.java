@@ -6,6 +6,7 @@ import com.idea.shower.db.mybaits.module.pojo.AreaInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.AreaInfoQuery;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -22,4 +23,7 @@ public interface AreaInfoDao extends CommonsDao<AreaInfo,AreaInfo> {
 
     AreaInfo get(Long id);
 
+    void delete(Long id);
+
+    Optional<AreaInfo> getOpt(Long id);
 }

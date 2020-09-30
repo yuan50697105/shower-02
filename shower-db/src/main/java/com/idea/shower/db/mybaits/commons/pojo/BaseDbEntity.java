@@ -22,9 +22,9 @@ public class BaseDbEntity {
     @TableId
     private Long id;
     @CreateUser
-    private String creator;
+    private Long creator;
     @UpdateUser
-    private String updater;
+    private Long updater;
     @CreateTime
     private Date createDate;
     @UpdateTime

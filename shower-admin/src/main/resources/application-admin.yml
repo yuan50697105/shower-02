@@ -1,2 +1,5 @@
 server:
   port: 8003
+logging:
+  level:
+    web: debug

@@ -5,10 +5,9 @@ import com.idea.shower.admin.area.pojo.AreaInfoVo;
 import com.idea.shower.admin.area.service.AreaInfoService;
 import com.idea.shower.db.mybaits.module.pojo.query.AreaInfoQuery;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * @program: shower-01
@@ -32,13 +31,33 @@ public class AreaInfoController {
         return areaInfoService.list(query);
     }
 
-    @GetMapping("/get")
+    @GetMapping({"/get"})
     public Result<?> get(Long id) {
         return areaInfoService.get(id);
     }
 
-    @PostMapping({"", "add"})
-    public Result<?> add(AreaInfoVo areaInfo) {
+    @GetMapping({"/{id}"})
+    public Result<?> get1(@PathVariable Long id) {
+        return areaInfoService.get(id);
+    }
+
+    @PostMapping({"/", "/save"})
+    public Result<?> add(@RequestBody AreaInfoVo areaInfo) {
         return areaInfoService.add(areaInfo);
+    }
+
+    @PutMapping({"/", "/save"})
+    public Result<?> update(@RequestBody AreaInfoVo areaInfo) {
+        return areaInfoService.update(areaInfo);
+    }
+
+    @DeleteMapping("/{id}")
+    public Result<?> delete(@PathVariable Long id) {
+        return areaInfoService.delete(id);
+    }
+
+    @DeleteMapping("")
+    public Result<?> delete(@RequestBody List<Long> id) {
+        return areaInfoService.delete(id);
     }
 }

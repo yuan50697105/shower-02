@@ -14,4 +14,5 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class StorageProperties {
     public static final String STORAGE = "storage";
     private String domainUrl;
+    private String downloadPath;
 }

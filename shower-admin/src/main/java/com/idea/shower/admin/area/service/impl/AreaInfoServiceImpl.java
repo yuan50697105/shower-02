@@ -12,6 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
+
 /**
  * @program: shower-01
  * @description:
@@ -38,6 +41,29 @@ public class AreaInfoServiceImpl implements AreaInfoService {
     @Override
     public Result<?> add(AreaInfoVo areaInfo) {
         areaInfoDao.insert(areaInfo);
+        return ResultInfo.success();
+    }
+
+    @Override
+    public Result<?> delete(Long id) {
+        areaInfoDao.delete(id);
+        return ResultInfo.success();
+    }
+
+    @Override
+    public Result<?> delete(List<Long> id) {
+        id.forEach(this::delete);
+        return ResultInfo.success();
+    }
+
+    @Override
+    public Result<?> update(AreaInfoVo areaInfo) {
+        Optional<AreaInfo> optional = areaInfoDao.getOpt(areaInfo.getId());
+        if (optional.isPresent()) {
+            AreaInfo info = optional.get();
+            info.copyFrom(areaInfo, "id,code,createDate");
+            areaInfoDao.update(info);
+        }
         return ResultInfo.success();
     }
 

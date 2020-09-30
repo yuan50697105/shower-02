@@ -5,6 +5,7 @@ import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: shower-01
@@ -69,4 +70,6 @@ public interface DeviceInfoService {
      **/
     
     Result<?> QRCode(DeviceInfoVo deviceInfoVo);
+
+    Map<String, Object> downPicture(Long id);
 }
