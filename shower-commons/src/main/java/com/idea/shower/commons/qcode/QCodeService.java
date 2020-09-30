@@ -92,7 +92,7 @@ public class QCodeService {
         //存储分享图
 //            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
 //                    getKeyName(deviceId));
-        deviceIdPicUrl = DOMAIN_URL + "/" + deviceIdPicUrl;
+//        deviceIdPicUrl = DOMAIN_URL + "/" + deviceIdPicUrl;
         ApiBootObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
         return response.getObjectUrl();
     }
