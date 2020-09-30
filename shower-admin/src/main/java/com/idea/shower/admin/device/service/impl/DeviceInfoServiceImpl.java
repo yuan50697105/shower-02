@@ -142,7 +142,8 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
 
     @Override
     public Result<?> QRCode(DeviceInfoVo deviceInfoVo) {
-        ApiBootObjectStorageResponse response = qCodeService.createGoodShareImageResponse(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
+        String pictureUrl = deviceInfoDao.getByIdOpt(deviceInfoVo.getId()).map(DeviceInfo::getPictureUrl).orElse("");
+        ApiBootObjectStorageResponse response = qCodeService.createGoodShareImageResponse(deviceInfoVo.getId().toString(), pictureUrl, deviceInfoVo.getDeviceName());
         DeviceInfoVo infoVo = get(deviceInfoVo.getId());
         if (infoVo == null) {
             return ResultInfo.error("未找到设备");
