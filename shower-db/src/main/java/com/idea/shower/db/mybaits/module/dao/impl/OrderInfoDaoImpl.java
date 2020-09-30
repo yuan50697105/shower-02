@@ -46,9 +46,10 @@ public class OrderInfoDaoImpl extends CommonsDaoImpl<OrderInfo, OrderInfoAo, Ord
         return null;
     }
 
+
     @Override
     public Optional<OrderInfo> getByIdOpt(Long orderId) {
-        return Optional.ofNullable(baseDao().selectByPrimaryKey(orderId));
+        return Optional.ofNullable(baseDao().selectById(orderId));
     }
 
     @Override

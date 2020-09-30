@@ -3,13 +3,9 @@ package com.idea.shower.db.mybaits.module.pojo;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import java.math.BigDecimal;
+import lombok.*;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import java.math.BigDecimal;
 
 /**
  * price_info

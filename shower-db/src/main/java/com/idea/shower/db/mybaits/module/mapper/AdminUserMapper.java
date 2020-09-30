@@ -11,6 +11,8 @@ import java.util.List;
 
 @Mapper
 public interface AdminUserMapper extends BaseDaoMapper<AdminUser> {
+
+
     long countByExample(AdminUserExample example);
 
     int deleteByExample(AdminUserExample example);

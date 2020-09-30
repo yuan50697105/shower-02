@@ -46,5 +46,6 @@ public class DeviceOrderDaoImpl extends CommonsDaoImpl<DeviceOrder,DeviceOrder, 
     @Override
     public QueryWrapper<DeviceOrder> getWrapper(Map<String, Object> params) {
         return null;
+
     }
 }

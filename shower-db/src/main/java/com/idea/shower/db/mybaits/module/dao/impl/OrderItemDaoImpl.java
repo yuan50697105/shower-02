@@ -24,6 +24,7 @@ import java.util.Optional;
 @AllArgsConstructor
 public class OrderItemDaoImpl extends CommonsDaoImpl<OrderItem,OrderItem, OrderItemMapper> implements OrderItemDao {
 
+
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void batchSave(List<OrderItem> orderItems) {

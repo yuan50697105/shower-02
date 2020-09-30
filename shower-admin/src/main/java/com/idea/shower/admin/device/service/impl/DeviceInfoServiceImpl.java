@@ -1,21 +1,28 @@
 package com.idea.shower.admin.device.service.impl;
 
 import ai.yue.library.base.exception.ResultException;
+import ai.yue.library.base.util.StringUtils;
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.admin.device.service.DeviceInfoService;
 import com.idea.shower.commons.qcode.QCodeService;
 import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
+import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
+import com.idea.shower.db.mybaits.module.pojo.OrderInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
+import io.renren.common.service.impl.BaseServiceImpl;
+import io.renren.common.service.impl.CrudServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -27,7 +34,7 @@ import java.util.Optional;
 @Service
 //@AllArgsConstructor
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
-public class DeviceInfoServiceImpl implements DeviceInfoService {
+public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper,DeviceInfo,DeviceInfoVo> implements DeviceInfoService{
 
     @Autowired
     private DeviceInfoDao deviceInfoDao;
@@ -35,6 +42,15 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     @Autowired(required = false)
     private QCodeService qCodeService;
 
+    @Override
+    public QueryWrapper<DeviceInfo> getWrapper(Map<String, Object> params) {
+        String orderNo = (String) params.get("orderNo");
+
+        QueryWrapper<DeviceInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq(StringUtils.isNotBlank(orderNo), "order_no", orderNo);
+
+        return wrapper;
+    }
 
     /**
      * 添加设备
@@ -111,8 +127,16 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     @Override
     public Result<?> QRCode(DeviceInfoVo deviceInfoVo) {
         String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
-        System.out.println(url);
-        return null;
+        DeviceInfoVo infoVo = get(deviceInfoVo.getId());
+        if(infoVo == null){
+            return ResultInfo.error("未找到设备");
+        }else{
+            //修改
+            infoVo.setPictureUrl(url);
+            update(infoVo);
+            return ResultInfo.success();
+        }
+
     }
 
     /**

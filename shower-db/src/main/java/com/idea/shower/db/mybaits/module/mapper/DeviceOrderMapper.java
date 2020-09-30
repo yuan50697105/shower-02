@@ -10,6 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface DeviceOrderMapper extends BaseDaoMapper<DeviceOrder> {
+
     long countByExample(DeviceOrderExample example);
 
     int deleteByExample(DeviceOrderExample example);

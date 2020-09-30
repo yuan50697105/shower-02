@@ -1,15 +1,10 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
-import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+import io.renren.common.entity.BaseEntity;
+import lombok.*;
+
 import java.math.BigDecimal;
 import java.util.Date;
-
-import io.renren.common.entity.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 /**
  * order_info
@@ -20,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class OrderInfo extends BaseEntity {
+
     public static final String COL_ID = "id";
     public static final String COL_CREATE_DATE = "create_date";
     public static final String COL_UPDATE_DATE = "update_date";

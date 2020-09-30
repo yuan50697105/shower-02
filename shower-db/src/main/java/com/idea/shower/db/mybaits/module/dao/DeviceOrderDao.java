@@ -14,6 +14,8 @@ import java.util.Optional;
  */
 public interface DeviceOrderDao extends CommonsDao<DeviceOrder,DeviceOrder> {
 
+
+
     Optional<DeviceOrder> getByOrderNoOpt(String orderNo);
 
     Optional<DeviceOrder> getByOrderIdOpt(Long orderId);

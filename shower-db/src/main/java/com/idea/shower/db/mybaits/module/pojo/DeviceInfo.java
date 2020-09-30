@@ -104,6 +104,10 @@ public class DeviceInfo extends BaseDbEntity {
     private String picture;
 
     /**
+     * 设备图片
+     */
+    private String pictureUrl;
+    /**
      * 运行状态 0 可用 1 使用中
      */
     private Integer runStatus;

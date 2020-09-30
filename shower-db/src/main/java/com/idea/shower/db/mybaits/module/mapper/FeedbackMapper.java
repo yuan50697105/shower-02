@@ -11,6 +11,7 @@ import java.util.List;
 
 @Mapper
 public interface FeedbackMapper extends BaseDaoMapper<Feedback> {
+
     long countByExample(FeedbackExample example);
 
     int deleteByExample(FeedbackExample example);

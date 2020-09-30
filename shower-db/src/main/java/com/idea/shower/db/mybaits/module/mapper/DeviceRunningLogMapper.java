@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
+
 public interface DeviceRunningLogMapper extends BaseDaoMapper<DeviceRunningLog> {
     long countByExample(DeviceRunningLogExample example);
 

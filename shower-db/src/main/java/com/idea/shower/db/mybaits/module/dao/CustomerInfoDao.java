@@ -30,7 +30,6 @@ public interface CustomerInfoDao extends CommonsDao<CustomerInfo,CustomerInfo> {
      */
     Optional<CustomerInfo> getByUnionIdOpt(String unionId);
 
-
     /**
      * 通过id获取用户信息
      *

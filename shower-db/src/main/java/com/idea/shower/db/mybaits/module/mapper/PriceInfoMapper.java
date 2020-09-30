@@ -10,6 +10,7 @@ import java.util.List;
 
 @Mapper
 public interface PriceInfoMapper extends BaseDaoMapper<PriceInfo> {
+
     long countByExample(PriceInfoExample example);
 
     int deleteByExample(PriceInfoExample example);

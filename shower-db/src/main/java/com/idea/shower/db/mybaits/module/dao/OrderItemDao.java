@@ -15,6 +15,7 @@ import java.util.Optional;
  */
 public interface OrderItemDao extends CommonsDao<OrderItem,OrderItem> {
 
+
     void batchSave(List<OrderItem> orderItems);
 
     Optional<OrderItem> getRentalItemByOrderIdOpt(Long orderId);
