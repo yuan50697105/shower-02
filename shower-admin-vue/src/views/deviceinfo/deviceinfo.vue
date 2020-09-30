@@ -38,7 +38,7 @@
           </template>
         </el-table-column>
         <el-table-column prop="runStatus" label="运行状态" header-align="center" align="center" />
-        <el-table-column prop="runStatus" label="运行状态" header-align="center" align="center" />
+        <el-table-column prop="qrPictureUrl" label="二维码" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <!--            <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('info') }}</el-button>-->
@@ -99,7 +99,14 @@ export default {
         picture: row.picture
       }
       QRCode(data).then(response => {
-        console.log(response)
+        if (response.code == 200) {
+          this.$message({
+            message: '生成成功',
+            type: 'success'
+          })
+        } else {
+          this.$message.error('生成失败')
+        }
       })
     }
   }

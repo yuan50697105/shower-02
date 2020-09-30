@@ -1,12 +1,9 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
-import cn.hutool.core.bean.BeanUtil;import cn.hutool.core.bean.copier.CopyOptions;import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import java.util.Date;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.bean.copier.CopyOptions;
+import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+import lombok.*;
 
 /**
  * device_info
@@ -37,7 +34,6 @@ public class DeviceInfo extends BaseDbEntity {
     public static final String COL_BUILDING_NAME = "building_name";
     public static final String COL_PICTURE = "picture";
     public static final String COL_RUN_STATUS = "run_status";
-    public static final String COL_PICTURE_URL = "picture_url";
     /**
      * 设备编号
      */
