@@ -149,28 +149,30 @@ create table if not exists customer_info
 
 create table if not exists device_info
 (
-    id            bigint(15) auto_increment comment 'id'
+    id             bigint(15) auto_increment comment 'id'
         primary key,
-    create_date   datetime                             null comment '创建时间',
-    update_date   datetime   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
-    updater       bigint                               null comment '修改人',
-    creator       bigint                               null comment '创建人',
-    del_flag      varchar(2) default '0'               null,
-    code          varchar(50)                          null comment '设备编号',
-    product_key   varchar(50)                          null comment '产品编号',
-    device_name   varchar(50)                          null comment '设备名称',
-    type          int                                  null comment '设备类型',
-    price_code    varchar(50)                          null comment '定价编号',
-    enabled       int        default 0                 null comment '启用状态(0:未启用；1已启用)',
-    longitude     double(16, 4)                        null comment '经度',
-    latitude      double(16, 4)                        null comment '纬度',
-    area_id       bigint(15)                           null comment '区域ID',
-    area_name     varchar(50)                          null comment '区域名称',
-    building_id   bigint(15)                           null comment '楼宇ID',
-    building_name varchar(50)                          null comment '楼宇名称',
-    picture       varchar(50)                          null comment '设备图片',
-    run_status    int        default 0                 null comment '运行状态 0 可用 1 使用中 ',
-    picture_url   varchar(500)                         null
+    create_date    datetime                             null comment '创建时间',
+    update_date    datetime   default CURRENT_TIMESTAMP not null on update CURRENT_TIMESTAMP comment '更新时间',
+    updater        bigint                               null comment '修改人',
+    creator        bigint                               null comment '创建人',
+    del_flag       varchar(2) default '0'               null,
+    code           varchar(50)                          null comment '设备编号',
+    product_key    varchar(50)                          null comment '产品编号',
+    device_name    varchar(50)                          null comment '设备名称',
+    type           int                                  null comment '设备类型',
+    price_code     varchar(50)                          null comment '定价编号',
+    enabled        int        default 0                 null comment '启用状态(0:未启用；1已启用)',
+    longitude      double(16, 4)                        null comment '经度',
+    latitude       double(16, 4)                        null comment '纬度',
+    area_id        bigint(15)                           null comment '区域ID',
+    area_name      varchar(50)                          null comment '区域名称',
+    building_id    bigint(15)                           null comment '楼宇ID',
+    building_name  varchar(50)                          null comment '楼宇名称',
+    picture        varchar(50)                          null comment '设备图片',
+    run_status     int        default 0                 null comment '运行状态 0 可用 1 使用中 ',
+    qr_picture_url varchar(500)                         null,
+    qr_picture     varchar(200)                         null comment '二维码图片名称',
+    picture_url    varchar(500)                         null comment '设备图片路径'
 )
     comment 'device_info' charset = utf8mb4;
 
