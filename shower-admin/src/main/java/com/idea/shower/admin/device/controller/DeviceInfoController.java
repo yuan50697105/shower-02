@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -33,6 +34,11 @@ import java.util.Map;
 public class DeviceInfoController {
 
     private final DeviceInfoService deviceInfoService;
+
+    @PostMapping("upload/picture")
+    public Result<?> uploadPicture(MultipartFile file) {
+        return deviceInfoService.uploadPicture(file);
+    }
 
     @PostMapping({"", "/save"})
     public Result<?> add(@RequestBody DeviceInfoVo deviceInfoVo) {
@@ -78,7 +84,7 @@ public class DeviceInfoController {
     @SneakyThrows
     @GetMapping("/{id}/picture")
     public void downPicture(@PathVariable("id") Long id, HttpServletRequest request, HttpServletResponse response) {
-        Map<String, Object> map = deviceInfoService.downPicture(id);
+        Map<String, Object> map = deviceInfoService.downQrCode(id);
         Path fileName = Paths.get((String) map.get("fileName"));
         String contentType = Files.probeContentType(fileName);
         ServletUtil.write(response, (InputStream) map.get("stream"), contentType, fileName.getFileName().toFile().getName());

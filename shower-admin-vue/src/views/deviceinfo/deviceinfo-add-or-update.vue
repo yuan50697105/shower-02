@@ -34,7 +34,22 @@
         <el-input v-model="dataForm.buildingName" placeholder="楼宇名称" />
       </el-form-item>
       <el-form-item label="设备图片" prop="picture">
-        <el-input v-model="dataForm.picture" placeholder="设备图片" />
+        <!--        <el-input v-model="dataForm.picture" placeholder="设备图片"/>-->
+        <el-upload
+          class="upload-demo"
+          :action="action"
+          :on-preview="handlePreview"
+          :on-remove="handleRemove"
+          :on-success="handleSuccess"
+          :on-error="handlerError"
+          :on-progress="handlerProcess"
+          :file-list="fileList"
+          :before-upload="beforeUpload"
+          list-type="picture"
+        >
+          <el-button size="small" type="primary">点击上传</el-button>
+          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
+        </el-upload>
       </el-form-item>
       <!--      <el-form-item label="运行状态" prop="runStatus">-->
       <!--        <el-input v-model="dataForm.runStatus" placeholder="运行状态" />-->
@@ -53,6 +68,10 @@ import debounce from 'lodash/debounce'
 export default {
   data() {
     return {
+      action: process.env.VUE_APP_BASE_API + '/upload/picture',
+      fileList: [
+        { name: '', url: '' }
+      ],
       visible: false,
       dataForm: {
         id: '',
@@ -127,10 +146,10 @@ export default {
         ],
         buildingName: [
           { required: true, message: this.$t('validate.required'), trigger: 'blur' }
-        ],
-        picture: [
-          { required: true, message: this.$t('validate.required'), trigger: 'blur' }
         ]
+        // picture: [
+        //   {required: true, message: this.$t('validate.required'), trigger: 'blur'}
+        // ]
         // runStatus: [
         //   { required: true, message: this.$t('validate.required'), trigger: 'blur' }
         // ]
@@ -138,6 +157,28 @@ export default {
     }
   },
   methods: {
+    beforeUpload: function(file) {
+      console.log(file)
+      return true
+    },
+    handleSuccess: function(response, file, fileList) {
+      console.log(response)
+      console.log(fileList)
+      console.log(file)
+    },
+    handleRemove: function(file, fileList) {
+      console.log(file)
+      console.log(fileList)
+    },
+    handlePreview: function(file) {
+      console.log(file)
+    },
+    handlerError: function(err, file, fileList) {
+      console.log(err)
+    },
+    handlerProcess: function(event, file, fileList) {
+      console.log(event)
+    },
     init() {
       this.visible = true
       this.$nextTick(() => {

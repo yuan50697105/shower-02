@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Import;
  * @create: 2020-05-12 20:44
  */
 @Configuration
-@Import(StoreConfiguration.class)
+@Import({StoreConfiguration.class,StoreConfiguration.class})
 @ComponentScan
 public class ShowerCommons {
 }

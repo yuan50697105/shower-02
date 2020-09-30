@@ -4,8 +4,8 @@ import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
-import io.renren.common.service.BaseService;
 import io.renren.common.service.CrudService;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Map;
@@ -74,5 +74,17 @@ public interface DeviceInfoService extends CrudService<DeviceInfo,DeviceInfoVo> 
     
     Result<?> QRCode(DeviceInfoVo deviceInfoVo);
 
-    Map<String, Object> downPicture(Long id);
+    /**
+     * 下载二维码图片
+     * @param id
+     * @return
+     */
+    Map<String, Object> downQrCode(Long id);
+
+    /**
+     * 上传图片
+     * @param file
+     * @return
+     */
+    Result<?> uploadPicture(MultipartFile file);
 }

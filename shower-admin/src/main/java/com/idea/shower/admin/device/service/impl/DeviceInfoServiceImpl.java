@@ -14,6 +14,7 @@ import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import io.renren.common.service.impl.CrudServiceImpl;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.minbox.framework.api.boot.storage.response.ApiBootObjectStorageResponse;
@@ -21,6 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.InputStream;
 import java.util.*;
@@ -70,6 +72,7 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
         DeviceInfo deviceInfo = new DeviceInfo();
         deviceInfo.copyFrom(deviceInfoVo);
         checkExist(deviceInfo);
+        String picture = deviceInfo.getPicture();
         deviceInfoDao.insert(deviceInfo);
         return ResultInfo.success();
     }
@@ -166,7 +169,7 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
     }
 
     @Override
-    public Map<String, Object> downPicture(Long id) {
+    public Map<String, Object> downQrCode(Long id) {
         String qrPicture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getQrPicture).orElse(null);
         String path = storageProperties.getDownloadPath() + qrPicture;
         InputStream inputStream = ossService.downloadFile(Objects.requireNonNull(qrPicture).replaceAll("/", ""));
@@ -174,6 +177,21 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
         map.put("fileName", qrPicture);
         map.put("stream", inputStream);
         return map;
+    }
+
+    @SneakyThrows
+
+    @Override
+    public Result<?> uploadPicture(MultipartFile file) {
+        String originalFilename = file.getOriginalFilename();
+        InputStream inputStream = file.getInputStream();
+        ApiBootObjectStorageResponse response = ossService.upload(originalFilename, inputStream);
+        String objectUrl = response.getObjectUrl();
+        String objectName = response.getObjectName();
+        HashMap<String, Object> map = new HashMap<>();
+        map.put("name", objectName);
+        map.put("url", objectUrl);
+        return ResultInfo.success(map);
     }
 
 
