@@ -26,6 +26,7 @@
     <result column="run_status" jdbcType="INTEGER" property="runStatus" />
     <result column="qr_picture_url" jdbcType="VARCHAR" property="qrPictureUrl" />
     <result column="qr_picture" jdbcType="VARCHAR" property="qrPicture" />
+    <result column="picture_url" jdbcType="VARCHAR" property="pictureUrl" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <!--@mbg.generated-->
@@ -91,7 +92,7 @@
     <!--@mbg.generated-->
     id, create_date, update_date, updater, creator, del_flag, code, product_key, device_name, 
     `type`, price_code, enabled, longitude, latitude, area_id, area_name, building_id, 
-    building_name, picture, run_status, qr_picture_url, qr_picture
+    building_name, picture, run_status, qr_picture_url, qr_picture, picture_url
   </sql>
   <select id="selectByExample" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfoExample" resultMap="BaseResultMap">
     <!--@mbg.generated-->
@@ -135,16 +136,16 @@
       price_code, enabled, longitude, 
       latitude, area_id, area_name, 
       building_id, building_name, picture, 
-      run_status, qr_picture_url, qr_picture
-      )
+      run_status, qr_picture_url, qr_picture, 
+      picture_url)
     values (#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{updater,jdbcType=BIGINT}, 
       #{creator,jdbcType=BIGINT}, #{delFlag,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
       #{productKey,jdbcType=VARCHAR}, #{deviceName,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
       #{priceCode,jdbcType=VARCHAR}, #{enabled,jdbcType=INTEGER}, #{longitude,jdbcType=DOUBLE}, 
       #{latitude,jdbcType=DOUBLE}, #{areaId,jdbcType=BIGINT}, #{areaName,jdbcType=VARCHAR}, 
       #{buildingId,jdbcType=BIGINT}, #{buildingName,jdbcType=VARCHAR}, #{picture,jdbcType=VARCHAR}, 
-      #{runStatus,jdbcType=INTEGER}, #{qrPictureUrl,jdbcType=VARCHAR}, #{qrPicture,jdbcType=VARCHAR}
-      )
+      #{runStatus,jdbcType=INTEGER}, #{qrPictureUrl,jdbcType=VARCHAR}, #{qrPicture,jdbcType=VARCHAR}, 
+      #{pictureUrl,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.idea.shower.db.mybaits.module.pojo.DeviceInfo" useGeneratedKeys="true">
     <!--@mbg.generated-->
@@ -213,6 +214,9 @@
       <if test="qrPicture != null">
         qr_picture,
       </if>
+      <if test="pictureUrl != null">
+        picture_url,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="createDate != null">
@@ -277,6 +281,9 @@
       </if>
       <if test="qrPicture != null">
         #{qrPicture,jdbcType=VARCHAR},
+      </if>
+      <if test="pictureUrl != null">
+        #{pictureUrl,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -357,6 +364,9 @@
       <if test="record.qrPicture != null">
         qr_picture = #{record.qrPicture,jdbcType=VARCHAR},
       </if>
+      <if test="record.pictureUrl != null">
+        picture_url = #{record.pictureUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -386,7 +396,8 @@
       picture = #{record.picture,jdbcType=VARCHAR},
       run_status = #{record.runStatus,jdbcType=INTEGER},
       qr_picture_url = #{record.qrPictureUrl,jdbcType=VARCHAR},
-      qr_picture = #{record.qrPicture,jdbcType=VARCHAR}
+      qr_picture = #{record.qrPicture,jdbcType=VARCHAR},
+      picture_url = #{record.pictureUrl,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -458,6 +469,9 @@
       <if test="qrPicture != null">
         qr_picture = #{qrPicture,jdbcType=VARCHAR},
       </if>
+      <if test="pictureUrl != null">
+        picture_url = #{pictureUrl,jdbcType=VARCHAR},
+      </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
@@ -484,7 +498,8 @@
       picture = #{picture,jdbcType=VARCHAR},
       run_status = #{runStatus,jdbcType=INTEGER},
       qr_picture_url = #{qrPictureUrl,jdbcType=VARCHAR},
-      qr_picture = #{qrPicture,jdbcType=VARCHAR}
+      qr_picture = #{qrPicture,jdbcType=VARCHAR},
+      picture_url = #{pictureUrl,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
   <select id="selectByCondition" resultMap="BaseResultMap">
