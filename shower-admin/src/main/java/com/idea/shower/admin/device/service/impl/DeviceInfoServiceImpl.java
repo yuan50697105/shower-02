@@ -1,6 +1,5 @@
 package com.idea.shower.admin.device.service.impl;
 
-import ai.yue.library.base.exception.ResultException;
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -15,8 +14,8 @@ import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import io.renren.common.service.impl.CrudServiceImpl;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.minbox.framework.api.boot.storage.response.ApiBootObjectStorageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +34,7 @@ import java.util.*;
 @Service
 @Transactional(propagation = Propagation.NOT_SUPPORTED, readOnly = true)
 @Slf4j
-public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper,DeviceInfo,DeviceInfoVo> implements DeviceInfoService {
+public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, DeviceInfo, DeviceInfoVo> implements DeviceInfoService {
 
 
     @Autowired
@@ -43,10 +42,21 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper,Devi
 
     @Autowired(required = false)
     private QCodeService qCodeService;
+
     @Autowired
     private CommonsOssService ossService;
     @Autowired
     private StorageProperties storageProperties;
+
+    @Override
+    public QueryWrapper<DeviceInfo> getWrapper(Map<String, Object> params) {
+        String orderNo = (String) params.get("orderNo");
+
+        QueryWrapper<DeviceInfo> wrapper = new QueryWrapper<>();
+        wrapper.eq(StringUtils.isNotBlank(orderNo), "order_no", orderNo);
+
+        return wrapper;
+    }
 
     /**
      * 添加设备
@@ -62,6 +72,15 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper,Devi
         checkExist(deviceInfo);
         deviceInfoDao.insert(deviceInfo);
         return ResultInfo.success();
+    }
+
+    /**
+     * 检查是否存在
+     *
+     * @param deviceInfo
+     */
+    private void checkExist(DeviceInfo deviceInfo) {
+        deviceInfoDao.getByCodeOpt(deviceInfo.getCode()).orElseThrow();
     }
 
     /**
@@ -123,14 +142,29 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper,Devi
 
     @Override
     public Result<?> QRCode(DeviceInfoVo deviceInfoVo) {
-        ApiBootObjectStorageResponse response = qCodeService.createGoodShareImageResponse(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
-//        String url = qCodeService.createGoodShareImage(deviceInfoVo.getId().toString(), deviceInfoVo.getPicture(), deviceInfoVo.getDeviceName());
-        String objectUrl = response.getObjectUrl();
-        log.info("objectUrl=" + objectUrl);
-        return null;
+        String pictureUrl = deviceInfoDao.getByIdOpt(deviceInfoVo.getId()).map(DeviceInfo::getPictureUrl).orElse("");
+        ApiBootObjectStorageResponse response = qCodeService.createGoodShareImageResponse(deviceInfoVo.getId().toString(), pictureUrl, deviceInfoVo.getDeviceName());
+        DeviceInfoVo infoVo = get(deviceInfoVo.getId());
+        if (infoVo == null) {
+            return ResultInfo.error("未找到设备");
+        } else {
+            //修改
+            infoVo.setQrPictureUrl(response.getObjectUrl());
+            infoVo.setQrPicture(response.getObjectName());
+            update(infoVo);
+            return ResultInfo.success();
+        }
+
+
+        /**
+         * 检查设备是否存在
+         *
+         * @param deviceInfo 设备信息
+         */
+
+
     }
 
-    @SneakyThrows
     @Override
     public Map<String, Object> downPicture(Long id) {
         String qrPicture = deviceInfoDao.getByIdOpt(id).map(DeviceInfo::getQrPicture).orElse(null);
@@ -142,28 +176,13 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper,Devi
         return map;
     }
 
-    /**
-     * 检查设备是否存在
-     *
-     * @param deviceInfo 设备信息
-     */
-    private void checkExist(DeviceInfo deviceInfo) {
-        Optional<DeviceInfo> optional = deviceInfoDao.getByCodeOpt(deviceInfo.getCode());
-        if (optional.isPresent()) {
-            throw new ResultException(ResultInfo.param_check_not_pass(deviceInfo.getCode() + "已存在"));
-        }
-    }
 
     /**
-     * 检查设备是否可以删除
+     * 删除检查
      *
-     * @param id 主键
+     * @param id
      */
     private void checkDelete(Long id) {
-    }
 
-    @Override
-    public QueryWrapper<DeviceInfo> getWrapper(Map<String, Object> params) {
-        return null;
     }
 }
