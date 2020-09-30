@@ -8,6 +8,7 @@ import io.renren.common.service.BaseService;
 import io.renren.common.service.CrudService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @program: shower-01
@@ -72,4 +73,6 @@ public interface DeviceInfoService extends CrudService<DeviceInfo,DeviceInfoVo> 
      **/
     
     Result<?> QRCode(DeviceInfoVo deviceInfoVo);
+
+    Map<String, Object> downPicture(Long id);
 }

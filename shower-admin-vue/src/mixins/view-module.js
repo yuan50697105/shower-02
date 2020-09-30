@@ -114,18 +114,22 @@ export default {
           duration: 500
         })
       }
+      console.log(`${this.mixinViewModuleOptions.deleteURL}${this.mixinViewModuleOptions.deleteIsBatch ? '' : '/' + id}`,
+        this.mixinViewModuleOptions.deleteIsBatch ? {
+          'data': id ? [id] : this.dataListSelections.map(item => item[this.mixinViewModuleOptions.deleteIsBatchKey])
+        } : {})
       this.$confirm(this.$t('prompt.info', { 'handle': this.$t('delete') }), this.$t('prompt.title'), {
         confirmButtonText: this.$t('confirm'),
         cancelButtonText: this.$t('cancel'),
         type: 'warning'
       }).then(() => {
-        debugger
         this.$http.delete(
           `${this.mixinViewModuleOptions.deleteURL}${this.mixinViewModuleOptions.deleteIsBatch ? '' : '/' + id}`,
           this.mixinViewModuleOptions.deleteIsBatch ? {
             'data': id ? [id] : this.dataListSelections.map(item => item[this.mixinViewModuleOptions.deleteIsBatchKey])
           } : {}
-        ).then(({ data: res, code: code, msg: msg }) => {
+        ).then(({ data: data, code: code, msg: msg }) => {
+          console.log('data=' + data)
           if (code !== 200 && code !== 0) {
             return this.$message.error(msg)
           }
@@ -137,8 +141,10 @@ export default {
               this.getDataList()
             }
           })
-        }).catch(() => {})
-      }).catch(() => {})
+        }).catch(() => {
+        })
+      }).catch(() => {
+      })
     },
     // 导出
     exportHandle() {

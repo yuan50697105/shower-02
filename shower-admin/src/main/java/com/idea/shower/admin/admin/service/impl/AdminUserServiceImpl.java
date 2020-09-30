@@ -216,7 +216,7 @@ public class AdminUserServiceImpl implements AdminUserService {
 
     private void checkUserNull(AdminUser adminUser) {
         if (ObjectUtil.isNull(adminUser)) {
-            throw new ResultException(ResultInfo.param_value_invalid("用户不存在"));
+            throw new ResultException(ResultInfo.param_check_not_pass("用户不存在"));
         }
     }
 }
