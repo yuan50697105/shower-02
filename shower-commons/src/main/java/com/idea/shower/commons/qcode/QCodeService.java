@@ -96,6 +96,9 @@ public class QCodeService {
         ApiBootObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
         return response.getObjectUrl();
     }
+    public ApiBootObjectStorageResponse createGoodShareImageResponse(String deviceId, String deviceIdPicUrl, String deviceIdName) {
+        return createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
+    }
 
     private String getKeyName(String goodId) {
         return "GOOD_QCODE_" + goodId + ".jpg";
