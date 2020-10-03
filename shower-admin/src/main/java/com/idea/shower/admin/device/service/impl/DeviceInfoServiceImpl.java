@@ -69,12 +69,24 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
     @Override
     @Transactional
     public Result<?> add(DeviceInfoVo deviceInfoVo) {
-        DeviceInfo deviceInfo = new DeviceInfo();
-        deviceInfo.copyFrom(deviceInfoVo);
-        checkExist(deviceInfo);
-        String picture = deviceInfo.getPicture();
-        deviceInfoDao.insert(deviceInfo);
+//        DeviceInfo deviceInfo = new DeviceInfo();
+//        deviceInfo.copyFrom(deviceInfoVo);
+        checkExist(deviceInfoVo);
+        DeviceInfoVo.PictureModel pictures = deviceInfoVo.getPictures();
+        String name = pictures.getName();
+        String url = pictures.getUrl();
+        deviceInfoVo.setPicture(name);
+        deviceInfoVo.setPictureUrl(url);
+        QRCodeCreate(deviceInfoVo);
+        deviceInfoDao.insert(deviceInfoVo);
         return ResultInfo.success();
+    }
+
+    private void QRCodeCreate(DeviceInfoVo deviceInfoVo) {
+        String pictureUrl = deviceInfoVo.getPictureUrl();
+        ApiBootObjectStorageResponse response = qCodeService.createGoodShareImageResponse(deviceInfoVo.getId().toString(), pictureUrl, deviceInfoVo.getDeviceName());
+        deviceInfoVo.setQrPictureUrl(response.getObjectUrl());
+        deviceInfoVo.setQrPicture(response.getObjectName());
     }
 
     /**
@@ -83,7 +95,8 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
      * @param deviceInfo
      */
     private void checkExist(DeviceInfo deviceInfo) {
-        deviceInfoDao.getByCodeOpt(deviceInfo.getCode()).orElseThrow();
+//        deviceInfoDao.getByCodeOpt(deviceInfo.getCode()).orElseThrow(() -> new ResultException(ResultInfo.param_check_not_pass("设备已存在")));
+//        deviceInfoDao.getByCodeOpt(deviceInfo.getCode()).orElseThrow();
     }
 
     /**
@@ -122,6 +135,9 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
     @Override
     public Result<?> getById(Long id) {
         Optional<DeviceInfo> deviceInfo = deviceInfoDao.getByIdOpt(id);
+        if (deviceInfo.isPresent()) {
+
+        }
         return ResultInfo.success(deviceInfo);
     }
 
@@ -180,7 +196,6 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
     }
 
     @SneakyThrows
-
     @Override
     public Result<?> uploadPicture(MultipartFile file) {
         String originalFilename = file.getOriginalFilename();

@@ -43,7 +43,7 @@
           :on-success="handleSuccess"
           :on-error="handlerError"
           :on-progress="handlerProcess"
-          :file-list="fileList"
+          :file-list="this.dataForm.pictures"
           :before-upload="beforeUpload"
           list-type="picture"
         >
@@ -68,10 +68,8 @@ import debounce from 'lodash/debounce'
 export default {
   data() {
     return {
-      action: process.env.VUE_APP_BASE_API + '/upload/picture',
-      fileList: [
-        { name: '', url: '' }
-      ],
+      action: process.env.VUE_APP_BASE_API + 'device/info/upload/picture',
+      fileList: [],
       visible: false,
       dataForm: {
         id: '',
@@ -91,8 +89,12 @@ export default {
         areaName: '',
         buildingId: '',
         buildingName: '',
-        picture: ''
-        // runStatus: ''
+        picture: '',
+        pictures: {
+          name: '',
+          url: ''
+        },
+        runStatus: 1
       }
     }
   },
@@ -158,31 +160,31 @@ export default {
   },
   methods: {
     beforeUpload: function(file) {
-      console.log(file)
+      // console.log(file)
       return true
     },
     handleSuccess: function(response, file, fileList) {
-      console.log(response)
-      console.log(fileList)
-      console.log(file)
+      this.dataForm.pictures = response.data
     },
     handleRemove: function(file, fileList) {
       console.log(file)
-      console.log(fileList)
+      // console.log(fileList)
     },
     handlePreview: function(file) {
-      console.log(file)
+      // console.log(file)
     },
     handlerError: function(err, file, fileList) {
-      console.log(err)
+      this.$message.error(err)
+      // console.log(err)
     },
     handlerProcess: function(event, file, fileList) {
-      console.log(event)
+      // console.log(event)
     },
     init() {
       this.visible = true
       this.$nextTick(() => {
         this.$refs['dataForm'].resetFields()
+        this.dataForm.pictures = {}
         if (this.dataForm.id) {
           this.getInfo()
         }

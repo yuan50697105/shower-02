@@ -2,9 +2,9 @@
   <el-card shadow="never" class="aui-card--fill">
     <div class="mod-order__deviceinfo}">
       <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
-        <el-form-item>
-          <el-input v-model="dataForm.id" placeholder="id" clearable />
-        </el-form-item>
+        <!--        <el-form-item>-->
+        <!--          <el-input v-model="dataForm.id" placeholder="id" clearable />-->
+        <!--        </el-form-item>-->
         <el-form-item>
           <el-button @click="getDataList()">{{ $t('query') }}</el-button>
         </el-form-item>

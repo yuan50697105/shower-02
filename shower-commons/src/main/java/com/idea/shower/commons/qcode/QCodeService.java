@@ -83,16 +83,7 @@ public class QCodeService {
      * @param deviceIdName
      */
     public String createGoodShareImage(String deviceId, String deviceIdPicUrl, String deviceIdName) {
-        //创建该商品的二维码
-//            File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages/device/device");
-//            FileInputStream inputStream = new FileInputStream(file);
-//            //将商品图片，商品名字,商城名字画到模版图中
-//            byte[] imageData = drawPicture(inputStream, DOMAIN_URL + deviceIdPicUrl, deviceIdName);
-//            ByteArrayInputStream inputStream2 = new ByteArrayInputStream(imageData);
-        //存储分享图
-//            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
-//                    getKeyName(deviceId));
-//        deviceIdPicUrl = DOMAIN_URL + "/" + deviceIdPicUrl;
+
         ApiBootObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
         return response.getObjectUrl();
     }

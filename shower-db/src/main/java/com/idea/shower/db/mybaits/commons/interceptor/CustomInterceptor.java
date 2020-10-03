@@ -1,6 +1,7 @@
 package com.idea.shower.db.mybaits.commons.interceptor;
 
 import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.util.ObjectUtil;
 import com.idea.shower.db.mybaits.commons.interceptor.annotation.CreateTime;
 import com.idea.shower.db.mybaits.commons.interceptor.annotation.Id;
 import com.idea.shower.db.mybaits.commons.interceptor.annotation.UpdateTime;
@@ -36,19 +37,25 @@ public class CustomInterceptor implements Interceptor {
             if (field.getAnnotation(Id.class) != null) {
                 if (SqlCommandType.INSERT.equals(sqlCommandType)) {
                     field.setAccessible(true);
-                    field.set(parameter, snowflake.nextId());
+                    if (ObjectUtil.isEmpty(field.get(parameter))) {
+                        field.set(parameter, snowflake.nextId());
+                    }
                 }
             }
             if (field.getAnnotation(CreateTime.class) != null) {
                 if (SqlCommandType.INSERT.equals(sqlCommandType)) {
                     field.setAccessible(true);
-                    field.set(parameter, new Date());
+                    if (ObjectUtil.isEmpty(field.get(parameter))) {
+                        field.set(parameter, new Date());
+                    }
                 }
             }
             if (field.getAnnotation(UpdateTime.class) != null) {
                 if (SqlCommandType.INSERT.equals(sqlCommandType) || SqlCommandType.UPDATE.equals(sqlCommandType)) {
                     field.setAccessible(true);
-                    field.set(parameter, new Date());
+                    if (ObjectUtil.isEmpty(field.get(parameter))) {
+                        field.set(parameter, new Date());
+                    }
                 }
             }
 

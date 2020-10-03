@@ -13,4 +13,11 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class DeviceInfoVo extends DeviceInfo {
+    private PictureModel pictures;
+
+    @Data
+    public static class PictureModel {
+        private String name;
+        private String url;
+    }
 }
