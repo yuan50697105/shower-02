@@ -1,13 +1,12 @@
 <application>
   <component name="FindSettings">
     <option name="caseSensitive" value="true" />
-    <option name="customScope" value="File '...\spring-boot-admin-apps\spring-boot-admin-apps-commons\src\main\java\com\example\java\apps\shower\commons\service\impl\WxQrCodeServiceImpl.java [spring-boot-admin-apps-commons]'" />
-    <option name="defaultScopeName" value="File '...\spring-boot-admin-apps\spring-boot-admin-apps-commons\src\main\java\com\example\java\apps\shower\commons\service\impl\WxQrCodeServiceImpl.java [spring-boot-admin-apps-commons]'" />
+    <option name="customScope" value="All Places" />
+    <option name="defaultScopeName" value="All Places" />
     <option name="localRegularExpressions" value="true" />
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
     <option name="LOCAL_REGULAR_EXPRESSIONS" value="true" />
-    <option name="SEARCH_SCOPE" value="File '...\spring-boot-admin-apps\spring-boot-admin-apps-commons\src\main\java\com\example\java\apps\shower\commons\service\impl\WxQrCodeServiceImpl.java [spring-boot-admin-apps-commons]'" />
-    <option name="FILE_MASK" value="pom.xml" />
+    <option name="SEARCH_SCOPE" value="All Places" />
     <mask>pom.xml</mask>
   </component>
 </application>
