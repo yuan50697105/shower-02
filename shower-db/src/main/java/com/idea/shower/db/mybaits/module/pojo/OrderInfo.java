@@ -1,6 +1,6 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
-import io.renren.common.entity.BaseEntity;
+import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -14,7 +14,7 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class OrderInfo extends BaseEntity {
+public class OrderInfo extends BaseDbEntity {
 
     public static final String COL_ID = "id";
     public static final String COL_CREATE_DATE = "create_date";
