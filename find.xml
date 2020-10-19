@@ -5,8 +5,9 @@
     <option name="localRegularExpressions" value="true" />
     <option name="LOCAL_REGULAR_EXPRESSIONS" value="true" />
     <option name="SEARCH_SCOPE" value="All Places" />
-    <option name="FILE_MASK" value="*Mapper.xml" />
+    <option name="FILE_MASK" value="POM.xml" />
     <mask>pom.xml</mask>
     <mask>*Mapper.xml</mask>
+    <mask>POM.xml</mask>
   </component>
 </application>
