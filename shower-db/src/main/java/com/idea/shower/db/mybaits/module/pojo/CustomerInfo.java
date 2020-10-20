@@ -3,12 +3,7 @@ package com.idea.shower.db.mybaits.module.pojo;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
-import io.renren.common.entity.BaseEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * customer_info
@@ -18,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerInfo extends BaseEntity {
+public class CustomerInfo extends BaseDbEntity {
     public static final String COL_ID = "id";
     public static final String COL_CREATE_DATE = "create_date";
     public static final String COL_UPDATE_DATE = "update_date";
