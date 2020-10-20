@@ -75,6 +75,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
      * @param wxAddOrderRequest 订单信息封装
      * @return 订单信息
      */
+    @SuppressWarnings("ConstantConditions")
     @Override
     @Transactional(rollbackFor = Exception.class)
     public Result addOrder(WxAddOrderRequest wxAddOrderRequest) {
