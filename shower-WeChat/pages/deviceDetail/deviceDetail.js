@@ -103,9 +103,12 @@ Page({
       return;
     }
     let userInfo = wx.getStorageSync('userInfo');
+  
     var deviceCode = e.target.dataset.code;
+    // var deviceCode = this.data.item.code;
     var enabled = e.target.dataset.enabled
-
+    console.log(e)
+    console.log(deviceCode)
     util.request(api.AddOrder, {
       openId: userInfo.openId,
       deviceCode: deviceCode,
