@@ -5,7 +5,9 @@ import cn.hutool.core.bean.copier.CopyOptions;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.idea.shower.db.mybaits.commons.interceptor.annotation.*;
+import io.renren.common.entity.BaseEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.Date;
 import java.util.Map;
@@ -16,8 +18,9 @@ import java.util.Map;
  * @author: yuane
  * @create: 2020-01-20 16:24
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class BaseDbEntity {
+public class BaseDbEntity extends BaseEntity {
     @Id
     @TableId
     private Long id;
