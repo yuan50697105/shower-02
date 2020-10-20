@@ -2,6 +2,7 @@ package com.idea.shower.app.wx.mp.controller;
 
 import cn.hutool.core.io.IoUtil;
 import cn.hutool.json.JSONUtil;
+import cn.hutool.log.StaticLog;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
@@ -15,6 +16,7 @@ import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletInputStream;
@@ -30,6 +32,7 @@ import java.nio.charset.StandardCharsets;
 @RestController
 @RequestMapping("wx/order")
 @AllArgsConstructor
+@Slf4j
 public class WxOrderInfoController extends ResultController {
     private final WxOrderInfoService wxOrderInfoService;
     private final ObjectMapper objectMapper;
@@ -46,6 +49,7 @@ public class WxOrderInfoController extends ResultController {
 
     @PostMapping("add")
     public Result addOrder(@RequestBody WxAddOrderRequest wxAddOrderRequest) {
+        log.info("wxAddOrderRequest=" + JSONUtil.toJsonStr(wxAddOrderRequest));
         return wxOrderInfoService.addOrder(wxAddOrderRequest);
     }
 
