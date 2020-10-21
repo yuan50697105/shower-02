@@ -31,6 +31,7 @@ public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
     */
     @Override
     public Result deviceInfoList(DeviceInfoQuery deviceInfoQuery) {
+
         return ResultUtils.data(deviceInfoDao.selectAll(deviceInfoQuery));
     }
 
