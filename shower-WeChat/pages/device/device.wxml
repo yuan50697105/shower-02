@@ -29,10 +29,10 @@
   <view class="device-list js_device_list ">
 
     <block wx:for="{{dataList}}" wx:key="k">
-      <view class="device-list-item  " bindtap="deviceDetail" data-id="{{item.id}}">
-        <view class="device-time">{{item.code}}</view>
+      <view class="device-list-item  " >
+        <view class="device-time" bindtap="deviceDetail" data-id="{{item.id}}">{{item.code}}</view>
         <view class="tobooking" data-code="{{item.code}}" data-enabled="{{item.enabled}}" bindtap="useDevice"> 下单 </view>
-        <view class="detail">
+        <view class="detail" bindtap="deviceDetail" data-id="{{item.id}}">
           <view class="detail1">
             <view class="start">
               <text class="icon-circle s-icon1"></text>{{item.buildingName}}</view>
