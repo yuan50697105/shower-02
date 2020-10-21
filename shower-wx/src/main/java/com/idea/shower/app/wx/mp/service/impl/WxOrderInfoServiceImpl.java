@@ -5,6 +5,7 @@ import cn.hutool.core.date.DateUnit;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.crypto.SecureUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.binarywang.wxpay.bean.notify.WxPayOrderNotifyResult;
 import com.github.binarywang.wxpay.bean.request.WxPayUnifiedOrderRequest;
 import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
@@ -30,6 +31,7 @@ import com.idea.shower.web.webmvc.exception.ResultRuntimeException;
 import com.idea.shower.web.webmvc.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
@@ -68,6 +70,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final WxPayService wxPayService;
     private final AliyunIotPublishUtils aliyunIotPublishUtils;
     private final Environment environment;
+    private final ObjectMapper objectMapper;
 
     /**
      * 添加订单
@@ -96,7 +99,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         orderItemDao.batchSave(orderItems);
         DeviceOrder deviceOrder = createDeviceOrder(deviceInfo, orderInfo);
         deviceOrderDao.insert(deviceOrder);
-        type= OrderInfoConstants.OrderType.COMMONS;
+        type = OrderInfoConstants.OrderType.COMMONS;
         switch (type) {
             case OrderInfoConstants.OrderType.COMMONS:
                 // TODO: 2020/4/20 开启房间
@@ -144,9 +147,11 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         }
     }
 
+    @SneakyThrows
     @Override
     @Transactional
     public Result endOrder(WxUseOrderRequest request) {
+        log.info("接收参数Request=" + objectMapper.writeValueAsString(request));
         Date finalTime = new Date();
         String orderNo = request.getOrderNo();
         OrderInfo orderInfo = orderInfoDao.getByOrderNoOpt(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
