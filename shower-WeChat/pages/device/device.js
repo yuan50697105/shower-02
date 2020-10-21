@@ -204,29 +204,37 @@ Page({
         url: "/pages/auth/login/login"
       });
       return;
+    }else{
+      let userInfo = wx.getStorageSync('userInfo');
+      var deviceCode = e.target.dataset.code;
+      var enabled = e.target.dataset.enabled
+      
+      util.request(api.AddOrder, {
+        openId: userInfo.openId,
+        deviceCode: deviceCode,
+        type: 2
+      }, 'POST').then(function (res) {
+        console.log(res)
+        if (res.code === 200) {
+          util.showSuccessToast("下单成功")
+        }else{
+          util.showErrorToast(res.message)
+        }
+      });
     }
-    let userInfo = wx.getStorageSync('userInfo');
-    var deviceCode = e.target.dataset.code;
-    var enabled = e.target.dataset.enabled
-    
-    util.request(api.AddOrder, {
-      openId: userInfo.openId,
-      deviceCode: deviceCode,
-      type: 2
-    }, 'POST').then(function (res) {
-      console.log(res)
-      if (res.code === 200) {
-        util.showSuccessToast("下单成功")
-      }else{
-        util.showErrorToast(res.message)
-      }
-    });
   },
   //跳转进入设备详情页
   deviceDetail: function (event){
-    var id = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: "/pages/deviceDetail/deviceDetail?id=" + id
-    });
+    if (!app.globalData.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+      return;
+    }else{
+      var id = event.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: "/pages/deviceDetail/deviceDetail?id=" + id
+      });
+    }
   }
 })
