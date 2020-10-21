@@ -58,6 +58,7 @@ public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo,DeviceInfo, Dev
         if (!StringUtils.isEmpty(deviceInfoQuery.getCode())) {
             criteria.andCodeLike("%" + deviceInfoQuery.getCode().trim() + "%");
         }
+        criteria.andRunStatusEqualTo(DeviceInfoConstants.DeviceRunningStatus.AVALI);
         //启用状态标识2：全部；0：未启用；1：已启用
         int allStatus = DeviceInfoConstants.DeviceRunningStatus.ALL_STATUS;
         if (!StringUtils.isEmpty(deviceInfoQuery.getEnabled()) && deviceInfoQuery.getEnabled().intValue() != allStatus) {
