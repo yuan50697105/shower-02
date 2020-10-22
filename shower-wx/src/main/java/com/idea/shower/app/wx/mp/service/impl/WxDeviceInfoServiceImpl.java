@@ -24,14 +24,15 @@ import java.util.Optional;
 public class WxDeviceInfoServiceImpl implements WxDeviceInfoService {
     private final DeviceInfoDao deviceInfoDao;
     private final ResourceFileUtils resourceFileUtils;
+
     /**
-    *@Author finch
-    *@Description 获取设备列表
-    *@date: 8:50 2020/3/24
-    */
+     * @Author finch
+     * @Description 获取设备列表
+     * @date: 8:50 2020/3/24
+     */
     @Override
     public Result deviceInfoList(DeviceInfoQuery deviceInfoQuery) {
-
+        deviceInfoQuery.setPlatform(DeviceInfoQuery.Platform.WX);
         return ResultUtils.data(deviceInfoDao.selectAll(deviceInfoQuery));
     }
 
