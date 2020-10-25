@@ -86,7 +86,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String openId = wxAddOrderRequest.getOpenId();
         Integer type = wxAddOrderRequest.getType();
 //        设备信息
-        DeviceInfo deviceInfo = deviceInfoDao.getByCodeAvailable(deviceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
+        DeviceInfo deviceInfo = deviceInfoDao.getByCodeOpt(deviceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
 //        用户信息
         CustomerInfo customerInfo = customerInfoDao.getByOpenIdOpt(openId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxUserNotFoundError()));
 //        计费编号
@@ -112,7 +112,11 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             default:
                 throw new ResultRuntimeException(ResultUtils.dataParamsError("错误订单类型"));
         }
-        return ResultUtils.data(orderInfo);
+        Map<String, Object> map = BeanUtil.beanToMap(orderInfo);
+        //region 是否可下单
+        map.put("isAddOrder", deviceInfo.getRunStatus());
+        //endregion
+        return ResultUtils.data(map);
     }
 
     /**
