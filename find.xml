@@ -7,10 +7,10 @@
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
     <option name="LOCAL_REGULAR_EXPRESSIONS" value="true" />
     <option name="SEARCH_SCOPE" value="All Places" />
-    <option name="FILE_MASK" value="pom.xml.versionsBackup" />
-    <mask>pom.xml</mask>
+    <option name="FILE_MASK" value="pom.xml" />
     <mask>*Mapper.xml</mask>
     <mask>POM.xml</mask>
     <mask>pom.xml.versionsBackup</mask>
+    <mask>pom.xml</mask>
   </component>
 </application>
