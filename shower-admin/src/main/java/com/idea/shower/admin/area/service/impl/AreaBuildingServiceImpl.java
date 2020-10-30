@@ -1,8 +1,6 @@
 package com.idea.shower.admin.area.service.impl;
 
 import ai.yue.library.base.util.StringUtils;
-import ai.yue.library.base.view.Result;
-import ai.yue.library.base.view.ResultInfo;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
@@ -11,7 +9,6 @@ import com.idea.shower.admin.area.service.AreaBuildingService;
 import com.idea.shower.db.mybaits.module.dao.AreaBuildingDao;
 import com.idea.shower.db.mybaits.module.mapper.AreaBuildingMapper;
 import com.idea.shower.db.mybaits.module.pojo.AreaBuilding;
-import com.idea.shower.db.mybaits.module.pojo.ao.AreaBuildingAo;
 import com.idea.shower.db.mybaits.module.pojo.ao.AreaBuildingAo;
 import com.idea.shower.db.mybaits.module.pojo.query.AreaBuildingQuery;
 import io.renren.common.page.PageData;
@@ -34,8 +31,9 @@ public class AreaBuildingServiceImpl extends CrudServiceImpl<AreaBuildingMapper,
     private AreaBuildingDao areaBuildingDao;
 
     @Override
-    public QueryWrapper<AreaBuilding> getWrapper(Map<String, Object> params){
-        String name = (String)params.get("name");
+    public QueryWrapper<AreaBuilding> getWrapper(Map<String, Object> params) {
+        String name = (String) params.get("name");
+
         QueryWrapper<AreaBuilding> wrapper = new QueryWrapper<>();
         wrapper.eq(StringUtils.isNotBlank(name), "name", name);
 

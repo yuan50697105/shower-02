@@ -1,7 +1,5 @@
 package com.idea.shower.admin.price;
 
-import com.idea.shower.admin.price.service.PriceInfoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -14,6 +12,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("price/priceinfo")
 public class PriceInfoController {
-    @Autowired
-    private PriceInfoService priceInfoService;
+    private priceinfo
 }
