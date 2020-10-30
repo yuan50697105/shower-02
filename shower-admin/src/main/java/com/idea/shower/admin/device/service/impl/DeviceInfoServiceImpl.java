@@ -9,6 +9,7 @@ import com.idea.shower.commons.qcode.QCodeService;
 import com.idea.shower.commons.storage.CommonsOssService;
 import com.idea.shower.commons.storage.StorageProperties;
 import com.idea.shower.db.mybaits.commons.pojo.PageResult;
+import com.idea.shower.db.mybaits.module.constants.EnableConstants;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
@@ -68,6 +69,7 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
     @Transactional
     public Result<?> add(DeviceInfoVo deviceInfoVo) {
         DeviceInfo deviceInfo = new DeviceInfo();
+        deviceInfo.setEnabled(EnableConstants.ENABLE);
         deviceInfo.copyFrom(deviceInfoVo);
         checkExist(deviceInfo);
         deviceInfoDao.insert(deviceInfo);

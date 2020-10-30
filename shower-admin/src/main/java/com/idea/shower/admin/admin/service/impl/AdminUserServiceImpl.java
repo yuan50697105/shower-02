@@ -135,9 +135,11 @@ public class AdminUserServiceImpl implements AdminUserService {
     }
 
     @Override
+    @Transactional
     public Result<?> modify(AdminUserVO adminUserVO) {
         AdminUser adminUser = adminUserService.getById(adminUserVO.getId());
         adminUser.copyFrom(adminUserVO, "id", "username", "password");
+        adminUserService.update(adminUser);
         List<Long> roleIds = adminUserVO.getRoleIds();
         List<Long> roleDbIds = adminUserRoleService.selectRoleIdByUserId(adminUser.getId());
         roleDbIds = adminRoleService.selectIdByIdIn(roleDbIds);

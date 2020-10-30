@@ -5,24 +5,30 @@
         v-model="listQuery.username"
         class="filter-item"
         placeholder="请输入用户名"
-        style="width: 200px;"
+        style="width: 200px"
         @keyup.enter.native="handleFilter"
       />
       <el-input
         v-model="listQuery.name"
         class="filter-item"
         placeholder="请输入昵称"
-        style="width: 200px;"
+        style="width: 200px"
         @keyup.enter.native="handleFilter"
       />
 
-      <el-button v-waves class="filter-item" icon="el-icon-search" type="primary" @click="handleFilter">
+      <el-button
+        v-waves
+        class="filter-item"
+        icon="el-icon-search"
+        type="primary"
+        @click="handleFilter"
+      >
         查询
       </el-button>
       <el-button
         class="filter-item"
         icon="el-icon-edit"
-        style="margin-left: 10px;"
+        style="margin-left: 10px"
         type="primary"
         @click="handleCreate"
       >
@@ -50,7 +56,7 @@
       border
       fit
       highlight-current-row
-      style="width: 100%;"
+      style="width: 100%"
       @sort-change="sortChange"
     >
       <!--      <el-table-column-->
@@ -71,7 +77,7 @@
         prop="username"
         sortable="custom"
       >
-        <template slot-scope="{row}">
+        <template slot-scope="{ row }">
           <span>{{ row.username }}</span>
         </template>
       </el-table-column>
@@ -81,22 +87,31 @@
         prop="name"
         sortable="custom"
       >
-        <template slot-scope="{row}">
+        <template slot-scope="{ row }">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
       <el-table-column align="center" label="创建时间" width="150px">
-        <template slot-scope="{row}">
-          <span>{{ row.createTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+        <template slot-scope="{ row }">
+          <span>{{ row.createTime | parseTime("{y}-{m}-{d} {h}:{i}") }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" class-name="small-padding fixed-width" label="操作" width="230">
-        <template slot-scope="{row,$index}">
+      <el-table-column
+        align="center"
+        class-name="small-padding fixed-width"
+        label="操作"
+        width="230"
+      >
+        <template slot-scope="{ row, $index }">
           <el-button size="mini" type="primary" @click="handleUpdate(row)">
             编辑
           </el-button>
-          <el-button size="mini" type="danger" @click="handleDelete(row,$index)">
+          <el-button
+            size="mini"
+            type="danger"
+            @click="handleDelete(row, $index)"
+          >
             删除
           </el-button>
         </template>
@@ -104,7 +119,7 @@
     </el-table>
 
     <pagination
-      v-show="total>0"
+      v-show="total > 0"
       :limit.sync="listQuery.limit"
       :page.sync="listQuery.page"
       :total="total"
@@ -118,12 +133,20 @@
         :rules="rules"
         label-position="left"
         label-width="70px"
-        style="width: 400px; margin-left:50px;"
+        style="width: 400px; margin-left: 50px"
       >
-        <el-form-item v-if="dialogStatus==='create'" label="用户名" prop="username">
+        <el-form-item
+          v-if="dialogStatus === 'create'"
+          label="用户名"
+          prop="username"
+        >
           <el-input v-model="data.username" />
         </el-form-item>
-        <el-form-item v-if="dialogStatus==='create'" label="密码" prop="password">
+        <el-form-item
+          v-if="dialogStatus === 'create'"
+          label="密码"
+          prop="password"
+        >
           <el-input v-model="data.password" show-password />
         </el-form-item>
         <el-form-item label="昵称" prop="name">
@@ -141,22 +164,32 @@
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">
-          Cancel
-        </el-button>
-        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
+        <el-button @click="dialogFormVisible = false"> Cancel </el-button>
+        <el-button
+          type="primary"
+          @click="dialogStatus === 'create' ? createData() : updateData()"
+        >
           Confirm
         </el-button>
       </div>
     </el-dialog>
 
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
-      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
+      <el-table
+        :data="pvData"
+        border
+        fit
+        highlight-current-row
+        style="width: 100%"
+      >
         <el-table-column label="Channel" prop="key" />
         <el-table-column label="Pv" prop="pv" />
       </el-table>
       <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
+        <el-button
+          type="primary"
+          @click="dialogPvVisible = false"
+        >Confirm</el-button>
       </span>
     </el-dialog>
   </div>
@@ -167,7 +200,14 @@ import { fetchPv } from '@/api/article'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination/index'
-import { addUser, deleteUser, getData, getRoleList, getUserById, modifyUser } from '@/api/user'
+import {
+  addUser,
+  deleteUser,
+  getData,
+  getRoleList,
+  getUserById,
+  modifyUser
+} from '@/api/user'
 
 const calendarTypeOptions = [
   { key: 'CN', display_name: 'China' },
@@ -217,7 +257,10 @@ export default {
       },
       importanceOptions: [1, 2, 3],
       calendarTypeOptions,
-      sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
+      sortOptions: [
+        { label: 'ID Ascending', key: '+id' },
+        { label: 'ID Descending', key: '-id' }
+      ],
       statusOptions: ['published', 'draft', 'deleted'],
       showReviewer: false,
       data: {
@@ -230,7 +273,8 @@ export default {
         type: '',
         status: 'published',
         roleIds: [],
-        roleNames: []
+        roleNames: [],
+        name: ''
       },
       dialogFormVisible: false,
       dialogStatus: '',
@@ -254,7 +298,7 @@ export default {
   methods: {
     getList() {
       this.listLoading = true
-      getData(this.listQuery).then(response => {
+      getData(this.listQuery).then((response) => {
         this.list = response.data.list
         this.total = response.data.totalRows
 
@@ -301,7 +345,7 @@ export default {
       }
     },
     getRoleList() {
-      getRoleList().then(response => {
+      getRoleList().then((response) => {
         const { list } = response.data
         this.roleList = list
       })
@@ -340,7 +384,7 @@ export default {
       this.getRoleList()
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
-      getUserById(row.id).then(value => {
+      getUserById(row.id).then((value) => {
         const { data } = value
         console.log(data)
         this.data = value.data
@@ -350,19 +394,30 @@ export default {
       })
     },
     updateData() {
+      console.log(this.data)
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           // const tempData = Object.assign({}, this.data)
           // tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-          modifyUser(this.data).then(() => {
-            this.dialogFormVisible = false
-            this.$notify({
-              username: 'Success',
-              message: 'Update Successfully',
-              type: 'success',
-              duration: 2000
-            })
-            this.getList()
+          modifyUser(this.data).then((response) => {
+            if (response.code === 200) {
+              this.dialogFormVisible = false
+              this.$notify({
+                username: 'Success',
+                message: 'Update Successfully',
+                type: 'success',
+                duration: 2000
+              })
+              this.getList()
+            } else {
+              this.dialogFormVisible = true
+              this.$notify({
+                username: 'Success',
+                message: 'Update Successfully',
+                type: 'error',
+                duration: 2000
+              })
+            }
           })
         }
       })
@@ -381,45 +436,53 @@ export default {
           })
           this.getList()
         })
-        .catch(err => {
+        .catch((err) => {
           console.error(err)
         })
-        // this.$notify({
-        //   username: 'Success',
-        //   message: 'Delete Successfully',
-        //   type: 'success',
-        //   duration: 2000
-        // })
-        // this.list.splice(user, 1)
+      // this.$notify({
+      //   username: 'Success',
+      //   message: 'Delete Successfully',
+      //   type: 'success',
+      //   duration: 2000
+      // })
+      // this.list.splice(user, 1)
     },
     handleFetchPv(pv) {
-      fetchPv(pv).then(response => {
+      fetchPv(pv).then((response) => {
         this.pvData = response.data.pvData
         this.dialogPvVisible = true
       })
     },
     handleDownload() {
       this.downloadLoading = true
-        import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-          const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
-          const data = this.formatJson(filterVal)
-          excel.export_json_to_excel({
-            header: tHeader,
-            data,
-            filename: 'table-list'
-          })
-          this.downloadLoading = false
+      import('@/vendor/Export2Excel').then((excel) => {
+        const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
+        const filterVal = [
+          'timestamp',
+          'title',
+          'type',
+          'importance',
+          'status'
+        ]
+        const data = this.formatJson(filterVal)
+        excel.export_json_to_excel({
+          header: tHeader,
+          data,
+          filename: 'table-list'
         })
+        this.downloadLoading = false
+      })
     },
     formatJson(filterVal) {
-      return this.list.map(v => filterVal.map(j => {
-        if (j === 'timestamp') {
-          return parseTime(v[j])
-        } else {
-          return v[j]
-        }
-      }))
+      return this.list.map((v) =>
+        filterVal.map((j) => {
+          if (j === 'timestamp') {
+            return parseTime(v[j])
+          } else {
+            return v[j]
+          }
+        })
+      )
     },
     getSortClass: function(key) {
       const sort = this.listQuery.sort
