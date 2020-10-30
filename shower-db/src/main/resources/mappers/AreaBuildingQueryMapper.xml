@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.query.AreaBuildingQueryMapper">
+    <resultMap id="AreaBuildingAo" type="com.idea.shower.db.mybaits.module.pojo.ao.AreaBuildingAo">
+        <id column="id" property="id"/>
+        <result column="create_date" property="createTime"/>
+        <result column="update_date" property="updateTime"/>
+        <result column="create_date" property="createUser"/>
+        <result column="updater" property="updateUser"/>
+        <result column="name" property="name"/>
+        <result column="code" property="code"/>
+        <result column="area_id" property="areaId"/>
+        <result column="area_name" property="areaName"/>
+    </resultMap>
+    <select id="selectPageByQuery" resultMap="AreaBuildingAo">
+        select ab.id,
+               ab.create_date,
+               ab.update_date,
+               ab.creator,
+               ab.updater,
+               ab.del_flag,
+               ab.name,
+               ab.code,
+               ab.area_id,
+               ai.name as area_name
+        from area_building ab
+                     left join area_info ai on ai.id = ab.area_id
+        <where>
+            <if test="param2.areaId != null">
+                and ab.area_id = #{param2.areaId,jdbcType=BIGINT}
+            </if>
+            <if test="param2.name != null and param2.name != ''">
+                <bind name="likeName" value="'%' + param2.name + '%'"/>
+                and ab.name like #{likeName,jdbcType=VARCHAR}
+            </if>
+            <if test="param2.code != null and param2.code != ''">
+                <bind name="likeCode" value="'%' + param2.code + '%'"/>
+                and ab.code like #{likeCode,jdbcType=VARCHAR}
+            </if>
+        </where>
+    </select>
+</mapper>

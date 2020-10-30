@@ -3,7 +3,7 @@
     <div class="mod-order__areabuilding}">
       <el-form :inline="true" :model="dataForm" @keyup.enter.native="getDataList()">
         <el-form-item>
-          <el-input v-model="dataForm.id" placeholder="id" clearable />
+          <el-input v-model="dataForm.name" placeholder="楼宇名称" clearable />
         </el-form-item>
         <el-form-item>
           <el-button @click="getDataList()">{{ $t('query') }}</el-button>
@@ -23,10 +23,10 @@
         <el-table-column type="index" label="序号" header-align="center" align="center" width="50" />
         <el-table-column prop="name" label="楼宇名称" header-align="center" align="center" />
         <el-table-column prop="code" label="楼宇编号" header-align="center" align="center" />
-        <el-table-column prop="areaId" label="所属区域ID" header-align="center" align="center" />
+        <el-table-column prop="areaName" label="所属区域" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
-            <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('update') }}</el-button>
+            <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('info') }}</el-button>
             <el-button type="text" size="small" @click="addOrUpdateHandle(scope.row.id)">{{ $t('update') }}</el-button>
             <el-button type="text" size="small" @click="deleteHandle(scope.row.id)">{{ $t('delete') }}</el-button>
           </template>
@@ -68,7 +68,7 @@ export default {
         deleteIsBatch: true
       },
       dataForm: {
-        id: ''
+        name: ''
       }
     }
   }
