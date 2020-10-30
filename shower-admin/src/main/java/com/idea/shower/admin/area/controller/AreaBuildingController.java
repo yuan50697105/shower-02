@@ -1,10 +1,10 @@
 package com.idea.shower.admin.area.controller;
 
-import ai.yue.library.base.view.Result;
-import ai.yue.library.base.view.ResultInfo;
-import com.idea.shower.admin.area.dto.AreaBuildingDTO;
 import com.idea.shower.admin.area.service.AreaBuildingService;
+import com.idea.shower.db.mybaits.module.pojo.ao.AreaBuildingAo;
+import com.idea.shower.db.mybaits.module.pojo.ao.CustomerInfoAo;
 import io.renren.common.page.PageData;
+import io.renren.common.utils.Result;
 import io.renren.common.validator.AssertUtils;
 import io.renren.common.validator.ValidatorUtils;
 import io.renren.common.validator.group.AddGroup;
@@ -30,26 +30,25 @@ import java.util.Map;
 */
 
 @RestController
-@RequestMapping("area/areabuilding")
+@RequestMapping("/area/areabuilding")
 public class AreaBuildingController {
     @Autowired
     private AreaBuildingService areaBuildingService;
 
     @GetMapping("page")
-    public Result<PageData<AreaBuildingDTO>> page(@RequestParam Map<String, Object> params){
-        PageData<AreaBuildingDTO> page = areaBuildingService.page(params);
-
-        return ResultInfo.success(page);
+    public Result<PageData<AreaBuildingAo>> page(@RequestParam Map<String, Object> params){
+        PageData<AreaBuildingAo> page = areaBuildingService.page(params);
+        return new Result<PageData<AreaBuildingAo>>().ok(page);
     }
 
     @GetMapping("{id}")
-    public Result<AreaBuildingDTO> get(@PathVariable("id") Long id){
-        AreaBuildingDTO data = areaBuildingService.get(id);
-        return ResultInfo.success(data);
+    public Result<AreaBuildingAo> get(@PathVariable("id") Long id){
+        AreaBuildingAo data = areaBuildingService.get(id);
+        return new Result().ok (data);
     }
 
     @PostMapping
-    public Result save(@RequestBody AreaBuildingDTO dto){
+    public Result save(@RequestBody AreaBuildingAo dto){
         //效验数据
         ValidatorUtils.validateEntity(dto, AddGroup.class, DefaultGroup.class);
         areaBuildingService.save(dto);
@@ -57,7 +56,7 @@ public class AreaBuildingController {
     }
 
     @PutMapping
-    public Result update(@RequestBody AreaBuildingDTO dto){
+    public Result update(@RequestBody AreaBuildingAo dto){
         //效验数据
         ValidatorUtils.validateEntity(dto, UpdateGroup.class, DefaultGroup.class);
         areaBuildingService.update(dto);

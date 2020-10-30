@@ -77,6 +77,7 @@ Page({
     })
     //获取设备列表信息
     this.deviceList();
+    wx.stopPullDownRefresh();
   },
 
   /**
@@ -141,7 +142,7 @@ Page({
     let that = this;
     util.request(api.DeviceInfoList,{
       areaId:that.data.school,
-      enabled:that.data.status,
+      runStatus:that.data.status,
       code: that.data.code,
       page: that.data.page,
       limit: that.data.limit
