@@ -4,6 +4,8 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.bean.copier.CopyOptions;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableLogic;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.ser.std.ToStringSerializer;
 import com.idea.shower.db.mybaits.commons.interceptor.annotation.*;
 import io.renren.common.entity.BaseEntity;
 import lombok.Data;
@@ -23,6 +25,7 @@ import java.util.Map;
 public class BaseDbEntity extends BaseEntity {
     @Id
     @TableId
+    @JsonSerialize(using = ToStringSerializer.class)
     private Long id;
     @CreateUser
     private Long creator;

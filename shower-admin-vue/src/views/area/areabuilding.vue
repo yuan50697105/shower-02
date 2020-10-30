@@ -23,7 +23,7 @@
         <el-table-column type="index" label="序号" header-align="center" align="center" width="50" />
         <el-table-column prop="name" label="楼宇名称" header-align="center" align="center" />
         <el-table-column prop="code" label="楼宇编号" header-align="center" align="center" />
-        <el-table-column prop="areaId" label="所属区域ID" header-align="center" align="center" />
+        <el-table-column prop="areaName" label="所属区域" header-align="center" align="center" />
         <el-table-column :label="$t('handle')" fixed="right" header-align="center" align="center" width="150">
           <template slot-scope="scope">
             <el-button type="text" size="small" @click="viewInfoHandle(scope.row.id)">{{ $t('info') }}</el-button>

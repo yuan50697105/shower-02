@@ -4,7 +4,10 @@ import ai.yue.library.base.view.Result;
 import com.idea.shower.db.mybaits.module.pojo.AreaBuilding;
 import com.idea.shower.db.mybaits.module.pojo.ao.AreaBuildingAo;
 import com.idea.shower.db.mybaits.module.pojo.query.AreaInfoQuery;
+import io.renren.common.page.PageData;
 import io.renren.common.service.CrudService;
+
+import java.util.Map;
 
 /**
  * 楼宇信息
@@ -14,4 +17,5 @@ import io.renren.common.service.CrudService;
  */
 public interface AreaBuildingService extends CrudService<AreaBuilding, AreaBuildingAo> {
 
+    PageData<AreaBuildingAo> selectPageByQuery(Map<String, Object> params);
 }
