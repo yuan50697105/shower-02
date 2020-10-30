@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.query.PriceInfoQueryMapper">
+    <resultMap id="PriceInfoAo" type="com.idea.shower.db.mybaits.module.pojo.ao.PriceInfoAo">
+        <id column="id" property="id"/>
+        <result column="code" property="code"/>
+        <result column="type" property="type"/>
+        <result column="price_code" property="priceCode"/>
+        <result column="time_price" property="timePrice"/>
+        <result column="time_interval" property="timeInterval"/>
+        <result column="time_unit" property="timeUnit"/>
+        <result column="water_price" property="waterPrice"/>
+        <result column="water_interval" property="waterInterval"/>
+        <result column="water_unit" property="waterUnit"/>
+        <result column="enabled" property="enabled"/>
+        <result column="creator" property="creator"/>
+        <result column="updater" property="updater"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="creator" property="creator"/>
+        <result column="create_date" property="createDate"/>
+    </resultMap>
+    <select id="selectPageByQuery" resultType="com.idea.shower.db.mybaits.module.pojo.ao.PriceInfoAo">
+        select pi.id,
+               pi.create_date,
+               pi.update_date,
+               pi.creator,
+               pi.updater,
+               pi.del_flag,
+               pi.code,
+               pi.type,
+               pi.price_code,
+               pi.time_price,
+               pi.time_interval,
+               pi.time_unit,
+               pi.water_price,
+               pi.water_interval,
+               pi.water_unit,
+               pi.enabled
+        from price_info pi
+    </select>
+</mapper>
