@@ -7,8 +7,17 @@
       <el-form-item label="楼宇编号" prop="code">
         <el-input v-model="dataForm.code" placeholder="楼宇编号" />
       </el-form-item>
-      <el-form-item label="所属区域ID" prop="areaId">
-        <el-input v-model="dataForm.areaId" placeholder="所属区域ID" />
+      <el-form-item label="所属区域" prop="areaId">
+        <template>
+          <el-select v-model="dataForm.areaId" placeholder="请选择区域">
+            <el-option
+              v-for="(item,index) in areaList"
+              :key="index"
+              :label="item.name"
+              :value="item.id">
+            </el-option>
+          </el-select>
+        </template>
       </el-form-item>
     </el-form>
     <template slot="footer">
@@ -20,10 +29,12 @@
 
 <script>
 import debounce from 'lodash/debounce'
+import { getInfo, update, save } from '@/api/areabuild'
 export default {
   data() {
     return {
       visible: false,
+      areaList: [],
       dataForm: {
         id: '',
         createTime: '',
@@ -66,6 +77,7 @@ export default {
   methods: {
     init() {
       this.visible = true
+      this.getAreaList()
       this.$nextTick(() => {
         this.$refs['dataForm'].resetFields()
         if (this.dataForm.id) {
@@ -75,14 +87,18 @@ export default {
     },
     // 获取信息
     getInfo() {
-      this.$http.get(`/order/areabuilding/${this.dataForm.id}`).then(({ data: res }) => {
-        if (res.code !== 0) {
-          return this.$message.error(res.msg)
-        }
+      getInfo(this.dataForm.id).then(respone => {
+        console.log(respone)
         this.dataForm = {
           ...this.dataForm,
-          ...res.data
+          ...respone.data
         }
+      })
+    },
+    // 获取区域信息
+    getAreaList() {
+      this.$http.get(`/area/info/list`).then(({ data: res }) => {
+        this.areaList = res
       }).catch(() => {})
     },
     // 表单提交
@@ -91,10 +107,8 @@ export default {
         if (!valid) {
           return false
         }
-        this.$http[!this.dataForm.id ? 'post' : 'put']('/order/areabuilding/', this.dataForm).then(({ data: res }) => {
-          if (res.code !== 0) {
-            return this.$message.error(res.msg)
-          }
+        console.log(this.dataForm)
+        save(this.dataForm).then(respone => {
           this.$message({
             message: this.$t('prompt.success'),
             type: 'success',
@@ -104,7 +118,7 @@ export default {
               this.$emit('refreshDataList')
             }
           })
-        }).catch(() => {})
+        })
       })
     }, 1000, { 'leading': true, 'trailing': false })
   }
