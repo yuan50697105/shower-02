@@ -1,11 +1,13 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
+import cn.hutool.core.util.ObjectUtil;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
 import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants;
+import com.idea.shower.db.mybaits.module.constants.EnableConstants;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
@@ -17,6 +19,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -72,6 +75,13 @@ public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo, DeviceInfo, De
         if (!StringUtils.isEmpty(deviceInfoQuery.getCode())) {
             criteria.andCodeLike("%" + deviceInfoQuery.getCode().trim() + "%");
         }
+        if (ObjectUtil.isNotEmpty(deviceInfoQuery.getRunStatus())) {
+            if (deviceInfoQuery.getRunStatus().equals(DeviceInfoConstants.DeviceRunningStatus.ALL_STATUS)) {
+                criteria.andRunStatusIn(Arrays.asList(DeviceInfoConstants.DeviceRunningStatus.AVALI, DeviceInfoConstants.DeviceRunningStatus.RUNNING));
+            } else {
+                criteria.andRunStatusEqualTo(deviceInfoQuery.getRunStatus());
+            }
+        }
     }
 
     /**
@@ -98,7 +108,10 @@ public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo, DeviceInfo, De
      */
     private void addPlatformWxCondition(DeviceInfoQuery deviceInfoQuery, DeviceInfoExample.Criteria criteria) {
         if (deviceInfoQuery.getPlatform().equals(DeviceInfoQuery.Platform.WX)) {
-            criteria.andRunStatusEqualTo(DeviceInfoConstants.DeviceRunningStatus.AVALI);
+            criteria.andEnabledEqualTo(EnableConstants.ENABLE);
+            if (deviceInfoQuery.getPlatform().equals(DeviceInfoQuery.Platform.WX)) {
+                criteria.andRunStatusEqualTo(DeviceInfoConstants.DeviceRunningStatus.AVALI);
+            }
         }
     }
 

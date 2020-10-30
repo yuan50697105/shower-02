@@ -68,6 +68,7 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
     @Transactional
     public Result<?> add(DeviceInfoVo deviceInfoVo) {
         DeviceInfo deviceInfo = new DeviceInfo();
+        deviceInfo.setEnabled(1);
         deviceInfo.copyFrom(deviceInfoVo);
         checkExist(deviceInfo);
         deviceInfoDao.insert(deviceInfo);

@@ -19,6 +19,7 @@ public class DeviceInfoQuery extends BaseDbQuery {
     private Integer page = 1;
     private Integer limit = 8;
     private Platform platform;
+    private Integer runStatus;
 
     public enum Platform {
         ADMIN, WX,
