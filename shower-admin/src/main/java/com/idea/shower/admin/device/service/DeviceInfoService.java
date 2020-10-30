@@ -2,7 +2,10 @@ package com.idea.shower.admin.device.service;
 
 import ai.yue.library.base.view.Result;
 import com.idea.shower.admin.device.pojo.DeviceInfoVo;
+import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
+import io.renren.common.service.BaseService;
+import io.renren.common.service.CrudService;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +16,7 @@ import java.util.Map;
  * @author: yuane
  * @create: 2020-08-02 17:01
  */
-public interface DeviceInfoService {
+public interface DeviceInfoService extends CrudService<DeviceInfo,DeviceInfoVo> {
     /**
      * 添加设备
      *

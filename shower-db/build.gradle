@@ -8,6 +8,7 @@ dependencies {
     compile('com.baomidou:mybatis-plus-boot-starter:3.0.7.1')
     compile group: 'mysql', name: 'mysql-connector-java'
     compile fileTree(dir: '../lib', includes: ['*.jar'])
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.6.2'
 }
 
 bootJar {
