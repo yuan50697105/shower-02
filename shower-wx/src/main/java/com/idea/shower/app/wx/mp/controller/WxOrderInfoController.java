@@ -1,8 +1,8 @@
 package com.idea.shower.app.wx.mp.controller;
 
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
-import cn.hutool.log.StaticLog;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
@@ -39,6 +39,11 @@ public class WxOrderInfoController extends ResultController {
 
     @PostMapping("data")
     public Result data(@RequestBody(required = false) OrderInfoQuery condition) {
+        if (ObjectUtil.isNotEmpty(condition)) {
+            if (ObjectUtil.isEmpty(condition.getOpenId())) {
+                return ResultUtils.wxOpenIdEmptyError();
+            }
+        }
         return wxOrderInfoService.selectPage(condition);
     }
 
