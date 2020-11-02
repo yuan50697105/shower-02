@@ -1,4 +1,15 @@
 <application>
+  <component name="GitRememberedInputs">
+    <option name="visitedUrls">
+      <list>
+        <UrlAndUserName>
+          <option name="url" value="https://gitee.com/yuan50697105/kotlin_spring_1.0.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
+      </list>
+    </option>
+    <option name="cloneParentDir" value="D:\git" />
+  </component>
   <component name="Vcs.Log.App.Settings">
     <option name="COLUMN_ORDER">
       <list>
