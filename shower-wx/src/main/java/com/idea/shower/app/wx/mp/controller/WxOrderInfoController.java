@@ -1,6 +1,7 @@
 package com.idea.shower.app.wx.mp.controller;
 
 import cn.hutool.core.io.IoUtil;
+import cn.hutool.core.util.ObjectUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.log.StaticLog;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -39,6 +40,9 @@ public class WxOrderInfoController extends ResultController {
 
     @PostMapping("data")
     public Result data(@RequestBody(required = false) OrderInfoQuery condition) {
+        if (ObjectUtil.isNotEmpty(condition)) {
+            if (ObjectUtil.isNotEmpty(condition))
+        }
         return wxOrderInfoService.selectPage(condition);
     }
 
