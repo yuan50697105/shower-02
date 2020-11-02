@@ -93,9 +93,13 @@ public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo, DeviceInfo, De
     private void addPlatformAdminCondition(DeviceInfoQuery deviceInfoQuery, DeviceInfoExample.Criteria criteria) {
         if (deviceInfoQuery.getPlatform().equals(DeviceInfoQuery.Platform.ADMIN)) {
             //启用状态标识2：全部；0：未启用；1：已启用
-            int allStatus = DeviceInfoConstants.DeviceRunningStatus.ALL_STATUS;
-            if (!StringUtils.isEmpty(deviceInfoQuery.getEnabled()) && deviceInfoQuery.getEnabled().intValue() != allStatus) {
+            if (ObjectUtil.isNotEmpty(deviceInfoQuery.getEnabled())) {
                 criteria.andEnabledEqualTo(deviceInfoQuery.getEnabled());
+            }
+            if (ObjectUtil.isNotEmpty(deviceInfoQuery.getRunStatus())) {
+                if (deviceInfoQuery.getRunStatus().equals(DeviceInfoConstants.DeviceRunningStatus.ALL_STATUS)) {
+                    criteria.andRunStatusIn(Arrays.asList(DeviceInfoConstants.DeviceRunningStatus.RUNNING, DeviceInfoConstants.DeviceRunningStatus.AVALI));
+                }
             }
         }
     }
@@ -108,9 +112,8 @@ public class DeviceInfoDaoImpl extends CommonsDaoImpl<DeviceInfo, DeviceInfo, De
      */
     private void addPlatformWxCondition(DeviceInfoQuery deviceInfoQuery, DeviceInfoExample.Criteria criteria) {
         if (deviceInfoQuery.getPlatform().equals(DeviceInfoQuery.Platform.WX)) {
-            criteria.andEnabledEqualTo(EnableConstants.ENABLE);
             if (deviceInfoQuery.getPlatform().equals(DeviceInfoQuery.Platform.WX)) {
-                criteria.andRunStatusEqualTo(DeviceInfoConstants.DeviceRunningStatus.AVALI);
+                criteria.andEnabledEqualTo(EnableConstants.ENABLE);
             }
         }
     }
