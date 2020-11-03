@@ -87,7 +87,8 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
 //        设备信息
         DeviceInfo deviceInfo = deviceInfoDao.getByCodeOpt(deviceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
         if (deviceInfo.getRunStatus().equals(DeviceInfoConstants.DeviceRunningStatus.RUNNING)) {
-            throw new ResultRuntimeException(ResultUtils.wxDeviceUsingError());
+//            throw new ResultRuntimeException(ResultUtils.wxDeviceUsingError());
+            return ResultUtils.wxDeviceUsingError();
         }
 //        用户信息
         CustomerInfo customerInfo = customerInfoDao.getByOpenIdOpt(openId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxUserNotFoundError()));
