@@ -42,8 +42,8 @@ Page({
       }
     });
   },
-  //监听下滑
-  onReachBottom() {
+  //下滑
+  onScrollBottom() {
     console.log(this.data.totalPages + "." + this.data.page)
     if (this.data.totalPages > this.data.page) {
       this.setData({
@@ -183,5 +183,6 @@ Page({
       totalPages: 1
     });
     this.getOrderList();
+    wx.stopPullDownRefresh();
   }
 })

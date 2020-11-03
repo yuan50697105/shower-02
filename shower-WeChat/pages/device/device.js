@@ -1,7 +1,7 @@
 var api = require('../../config/api.js');
 var util = require('../../utils/util.js');
 var user = require('../../utils/user.js');
-
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 const app = getApp()
 Page({
 
@@ -11,6 +11,7 @@ Page({
   data: {
     dataList: [],
     schoolList: [],
+    orderList: [],
     school: undefined,
     schoolName: undefined,
     statusMap: [{
@@ -53,6 +54,8 @@ Page({
     this.areasList();
     //获取设备列表信息
     this.deviceList();
+    //获取订单信息
+    this.getOrderList();
   },
 
 
@@ -79,14 +82,6 @@ Page({
     this.deviceList();
     wx.stopPullDownRefresh();
   },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
   /**
    * 用户点击右上角分享
    */
@@ -181,8 +176,8 @@ Page({
   },
 
   //监听下滑
-  onReachBottom() {
-    console.log(this.data.totalPages + "/" + this.data.page)
+  onScrollBottom() {
+    this.getOrderList()
     if (this.data.totalPages > this.data.page) {
       this.setData({
         page: this.data.page + 1
@@ -208,7 +203,11 @@ Page({
     }else{
       let userInfo = wx.getStorageSync('userInfo');
       var deviceCode = e.target.dataset.code;
-      var enabled = e.target.dataset.enabled
+      var runStatus = e.target.dataset.runStatus
+      if(runStatus != 0){
+        Toast("设备正在使用,不可下单。")
+        return
+      }
       
       util.request(api.AddOrder, {
         openId: userInfo.openId,
@@ -237,5 +236,42 @@ Page({
         url: "/pages/deviceDetail/deviceDetail?id=" + id
       });
     }
-  }
+  },
+  //获取开始状态的订单
+  getOrderList() {
+    let userInfo = wx.getStorageSync('userInfo');
+    let that = this;
+    util.request(api.OrderList, {
+      openId: userInfo.openId,
+      status: 2,
+      page: 1,
+      limit: 1
+    },"POST").then(function(res) {
+      console.log(res.data)
+      if (res.code === 200) {
+        if (res.data.list != undefined){
+          that.setData({
+            orderList: that.data.orderList.concat(res.data.list),
+          });
+        }
+      }
+    });
+  },
+  //到使用中的订单页面
+  onUseOrder: function () {
+    if (app.globalData.hasLogin) {
+      try {
+        wx.setStorageSync('tab', 2);
+      } catch (e) {
+
+      }
+      wx.navigateTo({
+        url: "/pages/center/order/order"
+      });
+    } else {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+    }
+  },
 })
