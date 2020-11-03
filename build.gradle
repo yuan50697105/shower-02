@@ -66,7 +66,7 @@ allprojects {
 //        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.3.0'
 //        compile group: 'com.qcloud', name: 'cos_api', version: '5.6.31'
 
-        implementation(platform("org.minbox.framework:api-boot-dependencies:2.3.2.RELEASE"))
+        implementation(platform("org.minbox.framework:api-boot-dependencies:2.3.0.RELEASE"))
         implementation(platform("ai.ylyue:yue-library-dependencies:2.1.0"))
     }
 
