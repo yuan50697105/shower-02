@@ -12,14 +12,11 @@ plugins {
 allprojects {
 
     group = 'com.idea.shower'
-    version = '1.0.5-SNAPSHOT'
+    version = '1.0.0-SNAPSHOT'
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 
     repositories {
-        maven {
-            url 'https://maven.aliyun.com/repository/public/'
-        }
         maven {
             url 'https://mirrors.huaweicloud.com/repository/maven/'
         }
