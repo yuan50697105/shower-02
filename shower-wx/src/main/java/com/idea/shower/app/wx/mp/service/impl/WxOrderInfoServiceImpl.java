@@ -17,7 +17,6 @@ import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
-import com.idea.shower.app.wx.mp.util.AliyunIotPublishUtils;
 import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants;
 import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
@@ -69,7 +68,6 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final OrderRedisDao orderRedisDao;
     private final DeviceOrderDao deviceOrderDao;
     private final WxPayService wxPayService;
-    private final AliyunIotPublishUtils aliyunIotPublishUtils;
     private final Environment environment;
     private final ObjectMapper objectMapper;
 
@@ -581,7 +579,6 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private void updateOrderStatusToUsing(OrderInfo orderInfo, DeviceOrder deviceOrder) {
         Long deviceId = orderInfo.getDeviceId();
         DeviceInfo deviceInfo = deviceInfoDao.getByIdOpt(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
-        aliyunIotPublishUtils.open(deviceInfo.getProductKey(), deviceInfo.getDeviceName());
         orderInfoDao.updateStatusUsingById(orderInfo.getId());
         orderInfoDao.updateUseStartTime(new Date(), orderInfo.getId());
         deviceOrderDao.updateStatusUsingById(deviceOrder.getId());
