@@ -17,8 +17,8 @@ import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
-import com.idea.shower.app.wx.mp.util.AliyunIotPublishUtils;
 import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
+import com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants;
 import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
 import com.idea.shower.db.mybaits.module.constants.PriceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.*;
@@ -68,7 +68,6 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final OrderRedisDao orderRedisDao;
     private final DeviceOrderDao deviceOrderDao;
     private final WxPayService wxPayService;
-    private final AliyunIotPublishUtils aliyunIotPublishUtils;
     private final Environment environment;
     private final ObjectMapper objectMapper;
 
@@ -87,6 +86,10 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         Integer type = wxAddOrderRequest.getType();
 //        设备信息
         DeviceInfo deviceInfo = deviceInfoDao.getByCodeOpt(deviceCode).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
+        if (deviceInfo.getRunStatus().equals(DeviceInfoConstants.DeviceRunningStatus.RUNNING)) {
+//            throw new ResultRuntimeException(ResultUtils.wxDeviceUsingError());
+            return ResultUtils.wxDeviceUsingError();
+        }
 //        用户信息
         CustomerInfo customerInfo = customerInfoDao.getByOpenIdOpt(openId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxUserNotFoundError()));
 //        计费编号
@@ -577,7 +580,6 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private void updateOrderStatusToUsing(OrderInfo orderInfo, DeviceOrder deviceOrder) {
         Long deviceId = orderInfo.getDeviceId();
         DeviceInfo deviceInfo = deviceInfoDao.getByIdOpt(deviceId).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxDeviceNotFoundError()));
-        aliyunIotPublishUtils.open(deviceInfo.getProductKey(), deviceInfo.getDeviceName());
         orderInfoDao.updateStatusUsingById(orderInfo.getId());
         orderInfoDao.updateUseStartTime(new Date(), orderInfo.getId());
         deviceOrderDao.updateStatusUsingById(deviceOrder.getId());

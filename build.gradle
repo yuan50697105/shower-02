@@ -12,16 +12,16 @@ plugins {
 allprojects {
 
     group = 'com.idea.shower'
-    version = '1.0.5-SNAPSHOT'
+    version = '1.0.0-SNAPSHOT'
     sourceCompatibility = JavaVersion.VERSION_11
     targetCompatibility = JavaVersion.VERSION_11
 
     repositories {
         maven {
-            url 'https://maven.aliyun.com/repository/public/'
+            url 'https://mirrors.huaweicloud.com/repository/maven/'
         }
         maven {
-            url 'https://mirrors.huaweicloud.com/repository/maven/'
+            url 'https://maven.aliyun.com/repository/public/'
         }
     }
 
@@ -69,7 +69,7 @@ allprojects {
 //        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.3.0'
 //        compile group: 'com.qcloud', name: 'cos_api', version: '5.6.31'
 
-        implementation(platform("org.minbox.framework:api-boot-dependencies:2.3.2.RELEASE"))
+        implementation(platform("org.minbox.framework:api-boot-dependencies:2.3.0.RELEASE"))
         implementation(platform("ai.ylyue:yue-library-dependencies:2.1.0"))
     }
 

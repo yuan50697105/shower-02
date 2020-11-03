@@ -5,10 +5,11 @@
     line-height: 1.5;
     color: #333;
     background-color: #efefef;
-    overflow-x: hidden;
+    /* overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: transparent;
-    min-height:1500rpx;
+    min-height:1500rpx; */
+    height: 92vh;
 }
 
 .device-list .device-list-item {
@@ -143,9 +144,6 @@
   line-height: 100rpx;
   background-color: #64c5fd ;
   color: #fff;
-  top: 0;
-  left: 0;
-  position: fixed;
 }
 
  .calendar-bar .tabs-item {

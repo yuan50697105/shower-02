@@ -1,9 +1,10 @@
+<van-notice-bar wx:if="{{orderList.length>0}}" left-icon="volume-o" text="您有{{orderList.length}}个订单正在使用中。<点击查看详情>" bindtap="onUseOrder"/>
 <view class="page-wrapper ">
   <view class="calendar-bar-wrapper js_calendar_wrapper">
     <view class="device-tabs calendar-bar">
       <view class="tabs-item js_pre_day">
         <picker id="school" mode="selector" range="{{schoolList}}" value="{{school}}" range-key="name" bindchange="schoolSelectChange">
-          <input id="school" class="input" name="school" type="text" placeholder="全部学校" bindblur="bindblurSchool" value="{{schoolName}}" disabled="true" placeholder-class="phClass"/>
+          <input id="school" class="input" name="school" type="text" placeholder="全部区域" bindblur="bindblurSchool" value="{{schoolName}}" disabled="true" placeholder-class="phClass"/>
         </picker>
       </view>
       <view ontap="showCalendar" class="tabs-item js_show_calendar" style="-webkit-flex: 3; flex: 3;">
@@ -27,35 +28,37 @@
     </view>
   </view>
   <view class="device-list js_device_list ">
-
-    <block wx:for="{{dataList}}" wx:key="k">
-      <view class="device-list-item  " >
-        <view class="device-time" bindtap="deviceDetail" data-id="{{item.id}}">{{item.code}}</view>
-        <view class="tobooking" data-code="{{item.code}}" data-enabled="{{item.enabled}}" bindtap="useDevice"> 下单 </view>
-        <view class="detail" bindtap="deviceDetail" data-id="{{item.id}}">
-          <view class="detail1">
-            <view class="start">
-              <text class="icon-circle s-icon1"></text>{{item.buildingName}}</view>
-            <view class="end">
-              <text class="icon-circle s-icon2"></text>{{item.areaName}}</view>
-          </view>
-          <view class="tags">
-            <view>
-              <text class="price">￥{{item.priceCode}}/min</text>
+    <scroll-view class="order-list js_order_list " scroll-y="true" style="height: 60vh;" bindscrolltolower="onScrollBottom">
+      <block wx:for="{{dataList}}" wx:key="k">
+        <view class="device-list-item " >
+          <view class="device-time" bindtap="deviceDetail" data-id="{{item.id}}">{{item.code}}</view>
+          <view class="tobooking" data-code="{{item.code}}" data-runStatus="{{item.runStatus}}" bindtap="useDevice"> 下单 </view>
+          <view class="detail" bindtap="deviceDetail" data-id="{{item.id}}">
+            <view class="detail1">
+              <view class="start">
+                <text class="icon-circle s-icon1"></text>{{item.buildingName}}</view>
+              <view class="end">
+                <text class="icon-circle s-icon2"></text>{{item.areaName}}</view>
             </view>
-            <view>
-              <text wx:if="{{item.enabled==0}}" class="countleft">可以使用</text>
-              <text wx:if="{{item.enabled==1}}" class="countleft" style="color:red;" >不可使用</text>
-            </view>
-            <view>
-              <text class="b-tags js_tags"></text>
+            <view class="tags">
+              <view>
+                <text class="price">￥{{item.priceCode}}/min</text>
+              </view>
+              <view>
+                <text wx:if="{{item.runStatus==0}}" class="countleft">可以使用</text>
+                <text wx:if="{{item.runStatus==1}}" class="countleft" style="color:red;" >不可使用</text>
+              </view>
+              <view>
+                <text class="b-tags js_tags"></text>
+              </view>
             </view>
           </view>
         </view>
-      </view>
 
-    </block>
+      </block>
+    </scroll-view>
 
   </view>
 
 </view>
+<van-toast id="van-toast" />
