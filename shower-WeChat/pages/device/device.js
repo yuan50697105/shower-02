@@ -80,6 +80,7 @@ Page({
     })
     //获取设备列表信息
     this.deviceList();
+    this.getOrderList()
     wx.stopPullDownRefresh();
   },
   /**
@@ -177,7 +178,6 @@ Page({
 
   //监听下滑
   onScrollBottom() {
-    this.getOrderList()
     if (this.data.totalPages > this.data.page) {
       this.setData({
         page: this.data.page + 1
@@ -203,7 +203,8 @@ Page({
     }else{
       let userInfo = wx.getStorageSync('userInfo');
       var deviceCode = e.target.dataset.code;
-      var runStatus = e.target.dataset.runStatus
+      var runStatus = e.target.dataset.runstatus
+      console.log(runStatus)
       if(runStatus != 0){
         Toast("设备正在使用,不可下单。")
         return
@@ -221,6 +222,21 @@ Page({
           util.showErrorToast(res.message)
         }
       });
+    }
+    ///刷新
+    this.getOrderList()
+    if (this.data.totalPages > this.data.page) {
+      this.setData({
+        page: this.data.page + 1
+      });
+      this.deviceList();
+    } else {
+      wx.showToast({
+        title: '没有更多房间了',
+        icon: 'none',
+        duration: 2000
+      });
+      return false;
     }
   },
   //跳转进入设备详情页

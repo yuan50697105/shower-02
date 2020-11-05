@@ -106,7 +106,7 @@ Page({
     let userInfo = wx.getStorageSync('userInfo');
   
     var deviceCode = e.target.dataset.code;
-    var runStatus = e.target.dataset.runStatus
+    var runStatus = e.target.dataset.runstatus
     if(runStatus != 0){
       Toast("设备正在使用,不可下单。")
       return
@@ -118,6 +118,10 @@ Page({
     }, 'POST').then(function (res) {
       console.log(res)
       if (res.code === 200) {
+        wx.setStorageSync('tab', 2);
+        wx.navigateTo({
+          url: "/pages/center/order/order"
+        });
         util.showSuccessToast("下单成功")
       } else {
         Toast(res.message)
