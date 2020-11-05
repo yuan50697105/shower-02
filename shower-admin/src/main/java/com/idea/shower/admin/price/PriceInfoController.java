@@ -43,8 +43,8 @@ public class PriceInfoController {
     }
 
     @PostMapping({"/", "/save"})
-    public Result<?> add(@RequestBody PriceInfo areaInfo) {
-        return ResultInfo.success(priceInfoService.add(areaInfo));
+    public Result<?> add(@RequestBody PriceInfo priceInfo) {
+        return ResultInfo.success(priceInfoService.add(priceInfo));
     }
 
     @PutMapping({"/", "/save"})
