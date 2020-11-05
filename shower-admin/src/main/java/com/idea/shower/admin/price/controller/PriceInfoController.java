@@ -1,4 +1,4 @@
-package com.idea.shower.admin.price;
+package com.idea.shower.admin.price.controller;
 
 import ai.yue.library.base.view.Result;
 import ai.yue.library.base.view.ResultInfo;
