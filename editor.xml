@@ -4,6 +4,10 @@
     <option name="COLLAPSE_DOC_COMMENTS" value="true" />
     <option name="COLLAPSE_CUSTOM_FOLDING_REGIONS" value="true" />
   </component>
+  <component name="CodeInsightSettings">
+    <option name="completionCaseSensitive" value="2" />
+    <option name="COMPLETION_CASE_SENSITIVE" value="2" />
+  </component>
   <component name="JavaCodeFoldingSettings">
     <option name="collapseAccessors" value="true" />
     <option name="collapseAnnotations" value="true" />
