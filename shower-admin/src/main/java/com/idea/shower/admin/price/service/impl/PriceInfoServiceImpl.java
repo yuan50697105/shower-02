@@ -2,13 +2,16 @@ package com.idea.shower.admin.price.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.idea.shower.admin.price.service.PriceInfoService;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.mapper.PriceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.PriceInfo;
 import com.idea.shower.db.mybaits.module.pojo.ao.PriceInfoAo;
+import com.idea.shower.db.mybaits.module.pojo.query.PriceInfoQuery;
 import io.renren.common.service.impl.CrudServiceImpl;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,4 +29,33 @@ public class PriceInfoServiceImpl extends CrudServiceImpl<PriceInfoMapper, Price
     }
 
 
+    @Override
+    public PageResult<PriceInfo> data(PriceInfoQuery query) {
+        return null;
+    }
+
+    @Override
+    public List<PriceInfoAo> list(PriceInfoQuery query) {
+        return null;
+    }
+
+    @Override
+    public Object add(PriceInfo areaInfo) {
+        return null;
+    }
+
+    @Override
+    public Object update(PriceInfo priceInfo) {
+        return null;
+    }
+
+    @Override
+    public Object delete(Long id) {
+        return null;
+    }
+
+    @Override
+    public Object delete(List<Long> id) {
+        return null;
+    }
 }
