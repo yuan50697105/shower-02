@@ -16,7 +16,7 @@
   </view>
   <view class="section-nav">
     <view class="code">{{item.code}}</view>
-    <view class="t" data-code="{{item.code}}" data-runStatus="{{item.runStatus}}" bindtap="useDevice">开始下单</view>
+    <view class="t" data-code="{{item.code}}" data-runstatus="{{item.runStatus}}" bindtap="useDevice">开始下单</view>
   </view>
 </view>
 <view class="page-body">

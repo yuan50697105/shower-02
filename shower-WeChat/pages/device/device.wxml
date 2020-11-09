@@ -32,7 +32,7 @@
       <block wx:for="{{dataList}}" wx:key="k">
         <view class="device-list-item " >
           <view class="device-time" bindtap="deviceDetail" data-id="{{item.id}}">{{item.code}}</view>
-          <view class="tobooking" data-code="{{item.code}}" data-runStatus="{{item.runStatus}}" bindtap="useDevice"> 下单 </view>
+          <view class="tobooking" data-code="{{item.code}}" data-runstatus="{{item.runStatus}}" bindtap="useDevice"> 下单 </view>
           <view class="detail" bindtap="deviceDetail" data-id="{{item.id}}">
             <view class="detail1">
               <view class="start">
