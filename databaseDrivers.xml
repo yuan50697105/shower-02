@@ -91,7 +91,7 @@
     <driver id="mysql_aurora">
       <option name="auto-sync" value="true" />
     </driver>
-    <driver id="oracle">
+    <driver id="oracle" dialect="OracleSqlPlus">
       <artifact id="Oracle" name="Oracle" use="true" version="12.2.0.1" />
       <option name="auto-sync" value="true" />
       <option name="auto-commit" value="false" />
