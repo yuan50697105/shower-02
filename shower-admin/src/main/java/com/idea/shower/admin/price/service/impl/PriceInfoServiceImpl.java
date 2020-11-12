@@ -35,7 +35,7 @@ public class PriceInfoServiceImpl extends CrudServiceImpl<PriceInfoMapper, Price
 
 
     @Override
-    public PageResult<PriceInfo> data(PriceInfoQuery query) {
+    public PageResult<PriceInfoAo> data(PriceInfoQuery query) {
         return priceInfoDao.selectPageByQuery(query);
     }
 

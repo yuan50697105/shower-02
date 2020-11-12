@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.idea.shower.db.mybaits.module.pojo.ao.PriceInfoAo;
 import com.idea.shower.db.mybaits.module.pojo.query.PriceInfoQuery;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 /**
  * @program: shower-01
@@ -13,5 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface PriceInfoQueryMapper {
-    IPage<PriceInfoAo> selectPageByQuery(IPage<?> page, PriceInfoQuery query);
+    IPage<PriceInfoAo> selectPageByQuery(@Param("page") IPage<?> page, @Param("query") PriceInfoQuery query);
+
+    List<PriceInfoAo> selectListByQuery(@Param("query") PriceInfoQuery query);
 }

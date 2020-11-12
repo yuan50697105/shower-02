@@ -8,10 +8,12 @@ import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.constants.PriceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.PriceInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.PriceInfoMapper;
+import com.idea.shower.db.mybaits.module.mapper.query.PriceInfoQueryMapper;
 import com.idea.shower.db.mybaits.module.pojo.PriceInfo;
 import com.idea.shower.db.mybaits.module.pojo.ao.PriceInfoAo;
 import com.idea.shower.db.mybaits.module.pojo.query.PriceInfoQuery;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -27,7 +29,8 @@ import java.util.Optional;
 @Component
 @AllArgsConstructor
 public class PriceInfoDaoImpl extends CommonsDaoImpl<PriceInfo, PriceInfo, PriceInfoMapper> implements PriceInfoDao {
-
+    @Autowired
+    private final PriceInfoQueryMapper priceInfoQueryMapper;
 
     @Override
     public Optional<PriceInfo> getStartingPricesPriceCodeOpt(String priceCode) {
@@ -40,16 +43,16 @@ public class PriceInfoDaoImpl extends CommonsDaoImpl<PriceInfo, PriceInfo, Price
     }
 
     @Override
-    public PageResult<PriceInfo> selectPageByQuery(PriceInfoQuery query) {
+    public PageResult<PriceInfoAo> selectPageByQuery(PriceInfoQuery query) {
         Integer page = query.getPage();
         Integer limit = query.getLimit();
         PageHelper.startPage(page, limit);
-        return new PageResult<>(PageInfo.of(baseDao.selectList(query)));
+        return new PageResult<>(PageInfo.of(priceInfoQueryMapper.selectListByQuery(query)));
     }
 
     @Override
     public List<PriceInfoAo> selectListByQuery(PriceInfoQuery query) {
-        return null;
+        return priceInfoQueryMapper.selectListByQuery(query);
     }
 
     @Override

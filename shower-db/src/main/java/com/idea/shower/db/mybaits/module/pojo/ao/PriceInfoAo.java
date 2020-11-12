@@ -1,17 +1,89 @@
 package com.idea.shower.db.mybaits.module.pojo.ao;
 
-import com.idea.shower.db.mybaits.module.pojo.PriceInfo;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
-/**
- * @program: shower-01
- * @description:
- * @author: yuane
- * @create: 2020-10-30 12:32
- */
-@EqualsAndHashCode(callSuper = true)
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
+
 @Data
-public class PriceInfoAo extends PriceInfo {
+public class PriceInfoAo implements Serializable {
+    /**
+     *
+     */
 
+    private static final long serialVersionUID = 1L;
+    /**
+     *
+     */
+    private Long id;
+    /**
+     *
+     */
+    private Date createDate;
+    /**
+     *
+     */
+    private Date updateDate;
+    /**
+     *
+     */
+    private Long creator;
+    /**
+     *
+     */
+    private String updater;
+    /**
+     *
+     */
+    private String delFlag;
+    /**
+     *
+     */
+    private String code;
+    /**
+     *
+     */
+    private Integer type;
+    /**
+     *
+     */
+    private String priceCode;
+    /**
+     *
+     */
+    private BigDecimal timePrice;
+    /**
+     *
+     */
+    private Double timeInterval;
+    /**
+     *
+     */
+    private Integer timeUnit;
+    /**
+     *
+     */
+    private BigDecimal waterPrice;
+    /**
+     *
+     */
+    private Double waterInterval;
+    /**
+     *
+     */
+    private Integer waterUnit;
+    /**
+     *
+     */
+    private Integer enabled;
+    /**
+     *
+     */
+    private Long areaId;
+    /**
+     *
+     */
+    private String name;
 }
+

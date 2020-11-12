@@ -16,7 +16,7 @@ import java.util.List;
  */
 public interface PriceInfoService extends CrudService<PriceInfo, PriceInfoAo> {
 
-    PageResult<PriceInfo> data(PriceInfoQuery query);
+    PageResult<PriceInfoAo> data(PriceInfoQuery query);
 
     List<PriceInfoAo> list(PriceInfoQuery query);
 

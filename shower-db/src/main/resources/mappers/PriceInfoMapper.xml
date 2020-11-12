@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.idea.shower.db.mybaits.module.mapper.PriceInfoMapper">
+    <resultMap id="PriceInfoAo" type="com.idea.shower.db.mybaits.module.pojo.ao.PriceInfoAo">
+        <result column="id" property="id"/>
+        <result column="create_date" property="createDate"/>
+        <result column="update_date" property="updateDate"/>
+        <result column="creator" property="creator"/>
+        <result column="updater" property="updater"/>
+        <result column="del_flag" property="delFlag"/>
+        <result column="code" property="code"/>
+        <result column="type" property="type"/>
+        <result column="price_code" property="priceCode"/>
+        <result column="time_price" property="timePrice"/>
+        <result column="time_interval" property="timeInterval"/>
+        <result column="time_unit" property="timeUnit"/>
+        <result column="water_price" property="waterPrice"/>
+        <result column="water_interval" property="waterInterval"/>
+        <result column="water_unit" property="waterUnit"/>
+        <result column="enabled" property="enabled"/>
+        <result column="area_id" property="areaId"/>
+        <result column="name" property="name"/>
+    </resultMap>
     <resultMap id="BaseResultMap" type="com.idea.shower.db.mybaits.module.pojo.PriceInfo">
         <!--@mbg.generated-->
         <!--@Table price_info-->
@@ -131,17 +151,17 @@
             useGeneratedKeys="true">
         <!--@mbg.generated-->
         insert into price_info (create_date, update_date, creator,
-                                updater, del_flag, code,
-                                `type`, price_code, time_price,
-                                time_interval, time_unit, water_price,
-                                water_interval, water_unit, enabled,
-                                area_id)
+        updater, del_flag, code,
+        `type`, price_code, time_price,
+        time_interval, time_unit, water_price,
+        water_interval, water_unit, enabled,
+        area_id)
         values (#{createDate,jdbcType=TIMESTAMP}, #{updateDate,jdbcType=TIMESTAMP}, #{creator,jdbcType=BIGINT},
-                #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
-                #{type,jdbcType=INTEGER}, #{priceCode,jdbcType=VARCHAR}, #{timePrice,jdbcType=DECIMAL},
-                #{timeInterval,jdbcType=DOUBLE}, #{timeUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL},
-                #{waterInterval,jdbcType=DOUBLE}, #{waterUnit,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER},
-                #{areaId,jdbcType=BIGINT})
+        #{updater,jdbcType=VARCHAR}, #{delFlag,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR},
+        #{type,jdbcType=INTEGER}, #{priceCode,jdbcType=VARCHAR}, #{timePrice,jdbcType=DECIMAL},
+        #{timeInterval,jdbcType=DOUBLE}, #{timeUnit,jdbcType=INTEGER}, #{waterPrice,jdbcType=DECIMAL},
+        #{waterInterval,jdbcType=DOUBLE}, #{waterUnit,jdbcType=INTEGER}, #{enabled,jdbcType=INTEGER},
+        #{areaId,jdbcType=BIGINT})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id"
             parameterType="com.idea.shower.db.mybaits.module.pojo.PriceInfo" useGeneratedKeys="true">
@@ -320,23 +340,23 @@
     <update id="updateByExample" parameterType="map">
         <!--@mbg.generated-->
         update price_info
-        set id             = #{record.id,jdbcType=BIGINT},
-            create_date    = #{record.createDate,jdbcType=TIMESTAMP},
-            update_date    = #{record.updateDate,jdbcType=TIMESTAMP},
-            creator        = #{record.creator,jdbcType=BIGINT},
-            updater        = #{record.updater,jdbcType=VARCHAR},
-            del_flag       = #{record.delFlag,jdbcType=VARCHAR},
-            code           = #{record.code,jdbcType=VARCHAR},
-            `type`         = #{record.type,jdbcType=INTEGER},
-            price_code     = #{record.priceCode,jdbcType=VARCHAR},
-            time_price     = #{record.timePrice,jdbcType=DECIMAL},
-            time_interval  = #{record.timeInterval,jdbcType=DOUBLE},
-            time_unit      = #{record.timeUnit,jdbcType=INTEGER},
-            water_price    = #{record.waterPrice,jdbcType=DECIMAL},
-            water_interval = #{record.waterInterval,jdbcType=DOUBLE},
-            water_unit     = #{record.waterUnit,jdbcType=INTEGER},
-            enabled        = #{record.enabled,jdbcType=INTEGER},
-            area_id        = #{record.areaId,jdbcType=BIGINT}
+        set id = #{record.id,jdbcType=BIGINT},
+        create_date = #{record.createDate,jdbcType=TIMESTAMP},
+        update_date = #{record.updateDate,jdbcType=TIMESTAMP},
+        creator = #{record.creator,jdbcType=BIGINT},
+        updater = #{record.updater,jdbcType=VARCHAR},
+        del_flag = #{record.delFlag,jdbcType=VARCHAR},
+        code = #{record.code,jdbcType=VARCHAR},
+        `type` = #{record.type,jdbcType=INTEGER},
+        price_code = #{record.priceCode,jdbcType=VARCHAR},
+        time_price = #{record.timePrice,jdbcType=DECIMAL},
+        time_interval = #{record.timeInterval,jdbcType=DOUBLE},
+        time_unit = #{record.timeUnit,jdbcType=INTEGER},
+        water_price = #{record.waterPrice,jdbcType=DECIMAL},
+        water_interval = #{record.waterInterval,jdbcType=DOUBLE},
+        water_unit = #{record.waterUnit,jdbcType=INTEGER},
+        enabled = #{record.enabled,jdbcType=INTEGER},
+        area_id = #{record.areaId,jdbcType=BIGINT}
         <if test="_parameter != null">
             <include refid="Update_By_Example_Where_Clause"/>
         </if>
@@ -399,22 +419,22 @@
     <update id="updateByPrimaryKey" parameterType="com.idea.shower.db.mybaits.module.pojo.PriceInfo">
         <!--@mbg.generated-->
         update price_info
-        set create_date    = #{createDate,jdbcType=TIMESTAMP},
-            update_date    = #{updateDate,jdbcType=TIMESTAMP},
-            creator        = #{creator,jdbcType=BIGINT},
-            updater        = #{updater,jdbcType=VARCHAR},
-            del_flag       = #{delFlag,jdbcType=VARCHAR},
-            code           = #{code,jdbcType=VARCHAR},
-            `type`         = #{type,jdbcType=INTEGER},
-            price_code     = #{priceCode,jdbcType=VARCHAR},
-            time_price     = #{timePrice,jdbcType=DECIMAL},
-            time_interval  = #{timeInterval,jdbcType=DOUBLE},
-            time_unit      = #{timeUnit,jdbcType=INTEGER},
-            water_price    = #{waterPrice,jdbcType=DECIMAL},
-            water_interval = #{waterInterval,jdbcType=DOUBLE},
-            water_unit     = #{waterUnit,jdbcType=INTEGER},
-            enabled        = #{enabled,jdbcType=INTEGER},
-            area_id        = #{areaId,jdbcType=BIGINT}
+        set create_date = #{createDate,jdbcType=TIMESTAMP},
+        update_date = #{updateDate,jdbcType=TIMESTAMP},
+        creator = #{creator,jdbcType=BIGINT},
+        updater = #{updater,jdbcType=VARCHAR},
+        del_flag = #{delFlag,jdbcType=VARCHAR},
+        code = #{code,jdbcType=VARCHAR},
+        `type` = #{type,jdbcType=INTEGER},
+        price_code = #{priceCode,jdbcType=VARCHAR},
+        time_price = #{timePrice,jdbcType=DECIMAL},
+        time_interval = #{timeInterval,jdbcType=DOUBLE},
+        time_unit = #{timeUnit,jdbcType=INTEGER},
+        water_price = #{waterPrice,jdbcType=DECIMAL},
+        water_interval = #{waterInterval,jdbcType=DOUBLE},
+        water_unit = #{waterUnit,jdbcType=INTEGER},
+        enabled = #{enabled,jdbcType=INTEGER},
+        area_id = #{areaId,jdbcType=BIGINT}
         where id = #{id,jdbcType=BIGINT}
     </update>
 
@@ -424,25 +444,31 @@
         <include refid="Base_Column_List"/>
         from price_info
         where price_code = #{priceCode,jdbcType=VARCHAR}
-          and `type` = #{type,jdbcType=INTEGER}
+        and `type` = #{type,jdbcType=INTEGER}
     </select>
 
-    <select id="selectList" resultMap="BaseResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from price_info
-        <where>
-            <if test="areaId != null">
-                and area_id = #{areaId,jdbcType=BIGINT}
-            </if>
-            <if test="code != null and code != ''">
-                <bind name="likeCode" value="'%' + code + '%'"/>
-                and code like #{likeCode,jdbcType=VARCHAR}
-            </if>
-            <if test="type != null">
-                and type = #{type,jdbcType=INTEGER }
-            </if>
-        </where>
+    <select id="selectList" resultMap="PriceInfoAo">
+        select pi.id,
+               pi.create_date,
+               pi.update_date,
+               pi.creator,
+               pi.updater,
+               pi.del_flag,
+               pi.code,
+               pi.type,
+               pi.price_code,
+               pi.time_price,
+               pi.time_interval,
+               pi.time_unit,
+               pi.water_price,
+               pi.water_interval,
+               pi.water_unit,
+               pi.enabled,
+               pi.area_id,
+               ai.name,
+               ai.code
+        from price_info pi
+                     left join area_info ai on ai.id = pi.area_id
     </select>
 
     <!--auto generated by MybatisCodeHelper on 2020-02-14-->

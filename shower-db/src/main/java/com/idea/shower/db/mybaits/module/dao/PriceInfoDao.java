@@ -22,7 +22,7 @@ public interface PriceInfoDao extends CommonsDao<PriceInfo,PriceInfo> {
 
     Optional<PriceInfo> getRenewalPriceByPriceCodeOpt(String rangeCode);
 
-    PageResult<PriceInfo> selectPageByQuery(PriceInfoQuery query);
+    PageResult<PriceInfoAo> selectPageByQuery(PriceInfoQuery query);
 
     List<PriceInfoAo> selectListByQuery(PriceInfoQuery query);
 }
