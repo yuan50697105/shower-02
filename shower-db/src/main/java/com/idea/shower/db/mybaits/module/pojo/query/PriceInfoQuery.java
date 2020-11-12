@@ -13,6 +13,7 @@ import lombok.EqualsAndHashCode;
 @EqualsAndHashCode(callSuper = true)
 @Data
 public class PriceInfoQuery extends BaseDbQuery {
+    private Long areaId;
     private String code;
     private Integer type;
 

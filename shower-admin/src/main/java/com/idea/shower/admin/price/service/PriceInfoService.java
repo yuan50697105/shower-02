@@ -20,11 +20,11 @@ public interface PriceInfoService extends CrudService<PriceInfo, PriceInfoAo> {
 
     List<PriceInfoAo> list(PriceInfoQuery query);
 
-    Object add(PriceInfo areaInfo);
+    void add(PriceInfo areaInfo);
 
-    Object update(PriceInfo priceInfo);
+    void update(PriceInfo priceInfo);
 
-    Object delete(Long id);
+    void delete(Long id);
 
-    Object delete(List<Long> id);
+    void delete(List<Long> id);
 }

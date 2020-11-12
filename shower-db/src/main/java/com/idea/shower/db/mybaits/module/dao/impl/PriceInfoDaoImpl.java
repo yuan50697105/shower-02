@@ -1,14 +1,20 @@
 package com.idea.shower.db.mybaits.module.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.idea.shower.db.mybaits.commons.dao.impl.CommonsDaoImpl;
+import com.idea.shower.db.mybaits.commons.pojo.PageResult;
 import com.idea.shower.db.mybaits.module.constants.PriceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.PriceInfoDao;
 import com.idea.shower.db.mybaits.module.mapper.PriceInfoMapper;
 import com.idea.shower.db.mybaits.module.pojo.PriceInfo;
+import com.idea.shower.db.mybaits.module.pojo.ao.PriceInfoAo;
+import com.idea.shower.db.mybaits.module.pojo.query.PriceInfoQuery;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -31,6 +37,19 @@ public class PriceInfoDaoImpl extends CommonsDaoImpl<PriceInfo, PriceInfo, Price
     @Override
     public Optional<PriceInfo> getRenewalPriceByPriceCodeOpt(String priceCode) {
         return Optional.ofNullable(baseDao().selectOneByPriceCodeAndType(priceCode, PriceInfoConstants.PriceType.RENEWAL_PRICE));
+    }
+
+    @Override
+    public PageResult<PriceInfo> selectPageByQuery(PriceInfoQuery query) {
+        Integer page = query.getPage();
+        Integer limit = query.getLimit();
+        PageHelper.startPage(page, limit);
+        return new PageResult<>(PageInfo.of(baseDao.selectList(query)));
+    }
+
+    @Override
+    public List<PriceInfoAo> selectListByQuery(PriceInfoQuery query) {
+        return null;
     }
 
     @Override
