@@ -2,8 +2,10 @@ package com.idea.shower.app.device.service;
 
 import com.idea.shower.app.device.pojo.dto.DeviceAddOrderDto;
 import com.idea.shower.app.device.sender.SSHCommandSender;
+import com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
+import com.idea.shower.web.webmvc.utils.ResultUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +28,15 @@ public class DeviceProcessService {
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceAddOrderDto.getDeviceId());
         if (deviceInfoOptional.isPresent()) {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
+            if (deviceInfo.getRunStatus().equals(DeviceInfoConstants.DeviceRunningStatus.AVALI)) {
+//                可以下单
+                String deviceName = deviceInfo.getDeviceName();
+                sshCommandSender.send(deviceName);
+            } else {
+                deviceAddOrderDto.setResult(ResultUtils.wxDeviceUsingError());
+                return deviceAddOrderDto;
+            }
         }
+        return deviceAddOrderDto;
     }
 }

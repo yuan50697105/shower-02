@@ -46,12 +46,12 @@ public class SSHCommandSender {
 
 
     @SneakyThrows
-    public void send(String deviceName) throws ServerException, ClientException, UnsupportedEncodingException {
+    public void send(String deviceName, String payload) throws ServerException, ClientException, UnsupportedEncodingException {
 
 
         // linux 远程命令
 
-        String payload = "uname -a";
+//        String payload = "uname -a";
 
 
         // 构建RRPC请求
