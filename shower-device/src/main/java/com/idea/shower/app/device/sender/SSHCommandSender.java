@@ -46,7 +46,7 @@ public class SSHCommandSender {
 
 
     @SneakyThrows
-    public void send(String deviceName, String payload) throws ServerException, ClientException, UnsupportedEncodingException {
+    public void send(String topic,String productKey,String deviceName, String payload) throws ServerException, ClientException, UnsupportedEncodingException {
 
 
         // linux 远程命令
@@ -58,13 +58,14 @@ public class SSHCommandSender {
 
         RRpcRequest request = new RRpcRequest();
 
-        request.setProductKey(properties.getProductKey());
+        request.setProductKey(productKey);
 
         request.setDeviceName(deviceName);
 
         request.setRequestBase64Byte(Base64.encodeBase64String(payload.getBytes()));
 
         request.setTimeout(5000);
+        request.setTopic(topic);
 
 
         // 获取服务端请求客户端

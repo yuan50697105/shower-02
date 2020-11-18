@@ -2,15 +2,10 @@ package com.idea.shower.app.device.service;
 
 import com.idea.shower.app.device.pojo.dto.DeviceAddOrderDto;
 import com.idea.shower.app.device.sender.SSHCommandSender;
-import com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
-import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
-import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -27,18 +22,22 @@ public class DeviceProcessService {
 
     @SneakyThrows
     public DeviceAddOrderDto addOrder(DeviceAddOrderDto deviceAddOrderDto) {
-        Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceAddOrderDto.getDeviceId());
-        if (deviceInfoOptional.isPresent()) {
-            DeviceInfo deviceInfo = deviceInfoOptional.get();
-            if (deviceInfo.getRunStatus().equals(DeviceInfoConstants.DeviceRunningStatus.AVALI)) {
+        String s = "/a1PPvXQ57zD/work_2/user/request";
+        String work_2 = "work_2";
+        String a1PPvXQ57zD = "a1PPvXQ57zD";
+        sshCommandSender.send(s, a1PPvXQ57zD, work_2, "test");
+//        Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceAddOrderDto.getDeviceId());
+//        if (deviceInfoOptional.isPresent()) {
+//            DeviceInfo deviceInfo = deviceInfoOptional.get();
+//            if (deviceInfo.getRunStatus().equals(DeviceInfoConstants.DeviceRunningStatus.AVALI)) {
 //                可以下单
-                String deviceName = deviceInfo.getDeviceName();
-                sshCommandSender.send(deviceName,"");
-            } else {
-                deviceAddOrderDto.setResult(ResultUtils.wxDeviceUsingError());
-                return deviceAddOrderDto;
-            }
-        }
+//                String deviceName = deviceInfo.getDeviceName();
+
+//            } else {
+//                deviceAddOrderDto.setResult(ResultUtils.wxDeviceUsingError());
+//                return deviceAddOrderDto;
+//            }
+//        }
         return deviceAddOrderDto;
     }
 }

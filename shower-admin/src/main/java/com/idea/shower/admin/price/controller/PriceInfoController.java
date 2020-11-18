@@ -44,21 +44,25 @@ public class PriceInfoController {
 
     @PostMapping({"/", "/save"})
     public Result<?> add(@RequestBody PriceInfo priceInfo) {
-        return ResultInfo.success(priceInfoService.add(priceInfo));
+        priceInfoService.add(priceInfo);
+        return ResultInfo.success();
     }
 
     @PutMapping({"/", "/save"})
     public Result<?> update(@RequestBody PriceInfo priceInfo) {
-        return ResultInfo.success(priceInfoService.update(priceInfo));
+        priceInfoService.update(priceInfo);
+        return ResultInfo.success();
     }
 
     @DeleteMapping("/{id}")
     public Result<?> delete(@PathVariable Long id) {
-        return ResultInfo.success(priceInfoService.delete(id));
+        priceInfoService.delete(id);
+        return ResultInfo.success();
     }
 
     @DeleteMapping("")
     public Result<?> delete(@RequestBody List<Long> id) {
-        return ResultInfo.success(priceInfoService.delete(id));
+        priceInfoService.delete(id);
+        return ResultInfo.success();
     }
 }
