@@ -23,7 +23,6 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import java.lang.IllegalStateException;
 import java.net.URI;
 import java.util.Hashtable;
 import java.util.UUID;
@@ -154,7 +153,7 @@ public class AmqpJavaClient implements InitializingBean, ApplicationContextAware
             Integer totalServiceTime;
             switch (topic0) {
 //                心跳维持
-                case "heartbeat":
+                case "response":
                     objects = JSONUtil.parseArray(content);
                     deviceId = (Long) objects.get(0);
                     status = (Long) objects.get(1);
@@ -168,18 +167,7 @@ public class AmqpJavaClient implements InitializingBean, ApplicationContextAware
                     waterUse = (Double) objects.get(9);
                     break;
 //                    工作状态
-                case "work":
-                    objects = JSONUtil.parseArray(content);
-                    deviceId = (Long) objects.get(0);
-                    status = (Long) objects.get(1);
-                    waterSpeed01 = (Double) objects.get(2);
-//                    waterSpeed02 = (Double) objects.get(3);
-                    lightingCount = (Integer) objects.get(4);
-                    waterOpen = (Integer) objects.get(5);
-                    totalServiceTime = (Integer) objects.get(6);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + topic0);
+
             }
         } catch (Exception e) {
             log.error("processMessage occurs error ", e);

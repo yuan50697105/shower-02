@@ -18,6 +18,7 @@ import java.util.UUID;
 @ConfigurationProperties(prefix = "device.listener")
 @Data
 public class DeviceListenerProperties {
+    private String regionId = "cn-shanghai";
     private String accessKey = "LTAI4G1NSa1oinSKH6xwBcgm";
     private String accessSecret = "sMWMGOTnC0Pebux3tW3BSwUN4Cb6IY";
     private String consumerGroupId = "P3cswVgmUE5zwq53V6YI000100";
