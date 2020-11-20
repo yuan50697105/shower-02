@@ -23,13 +23,13 @@ public class MqttSender {
     @Autowired
     private DeviceListenerProperties properties;
 
-    public PubResponse send(String productKey, String deviceName, String object) {
+    public PubResponse send(String productKey, String topic, String object) {
         DefaultProfile profile = DefaultProfile.getProfile(properties.getRegionId(),properties.getAccessKey(), properties.getAccessSecret());
         IAcsClient client = new DefaultAcsClient(profile);
         PubRequest request = new PubRequest();
         request.setQos(0);
 //设置发布消息的topic。
-        request.setTopicFullName("/" + productKey + "/" + deviceName + "/user/cloudmsg");
+        request.setTopicFullName(topic);
         request.setProductKey(productKey);
 //设置消息的内容，一定要用base64编码，否则乱码。
         request.setMessageContent(Base64.encode(object));

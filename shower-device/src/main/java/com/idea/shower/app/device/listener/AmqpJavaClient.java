@@ -1,6 +1,5 @@
 package com.idea.shower.app.device.listener;
 
-import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
@@ -131,44 +130,7 @@ public class AmqpJavaClient implements InitializingBean, ApplicationContextAware
                     + ", topic = " + topic
                     + ", messageId = " + messageId
                     + ", content = " + content);
-            String[] strings = topic.split("/");
-            String productKey = strings[1];
-            String deviceName = strings[2];
-            String user = strings[3];
-            String topic0 = strings[4];
-            JSONArray objects;
-            Long deviceId;
-            Long status;
-            Double lat;
-            Double longa;
-            Double waterTemp01;
-            Double waterTemp02;
-            Double waterAmount01;
-            Double waterAmount02;
-            Integer lightingCount;
-            Double waterUse;
-            Double waterSpeed01;
-            Double waterSpeed02;
-            Integer waterOpen;
-            Integer totalServiceTime;
-            switch (topic0) {
-//                心跳维持
-                case "response":
-                    objects = JSONUtil.parseArray(content);
-                    deviceId = (Long) objects.get(0);
-                    status = (Long) objects.get(1);
-                    lat = (Double) objects.get(2);
-                    longa = (Double) objects.get(3);
-                    waterTemp01 = (Double) objects.get(4);
-//                    waterTemp02 = (Double) objects.get(5);
-                    waterAmount01 = (Double) objects.get(6);
-//                    waterAmount02 = (Double) objects.get(7);
-                    lightingCount = (Integer) objects.get(8);
-                    waterUse = (Double) objects.get(9);
-                    break;
-//                    工作状态
-
-            }
+//
         } catch (Exception e) {
             log.error("processMessage occurs error ", e);
         }

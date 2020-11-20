@@ -22,7 +22,7 @@ public class DeviceListenerProperties {
     private String accessKey = "LTAI4G1NSa1oinSKH6xwBcgm";
     private String accessSecret = "sMWMGOTnC0Pebux3tW3BSwUN4Cb6IY";
     private String consumerGroupId = "P3cswVgmUE5zwq53V6YI000100";
-    private String productKey = "";
+    private String productKey = "a1PPvXQ57zD";
     private String signMethod = "hmacsha1";
     private String clientId = UUID.randomUUID().toString();
     private String iotInstanceId = "";

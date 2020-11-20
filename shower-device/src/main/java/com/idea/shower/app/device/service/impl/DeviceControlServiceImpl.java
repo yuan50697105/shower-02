@@ -19,7 +19,8 @@ public class DeviceControlServiceImpl implements DeviceControlService {
 
     @Override
     public PubResponse control(String productKey, String deviceName, String object) {
-        return sender.send(productKey, deviceName, object);
+        String topic = "/" + productKey + "/" + deviceName + "/user/control";
+        return sender.send(productKey, topic, object);
     }
 
     @Override
