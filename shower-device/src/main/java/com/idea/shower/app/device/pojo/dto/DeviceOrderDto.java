@@ -1,7 +1,6 @@
 package com.idea.shower.app.device.pojo.dto;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 
 /**
  * @program: shower-01
@@ -11,7 +10,11 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class DeviceAddOrderDto extends BaseMessageDto {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@With
+public class DeviceOrderDto extends BaseMessageDto {
     private Long deviceId;
     private String orderNo;
     private String customerOpenId;

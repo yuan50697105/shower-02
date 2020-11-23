@@ -2,7 +2,7 @@ package com.idea.shower.app.device.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.iot.model.v20180120.PubResponse;
-import com.idea.shower.app.device.pojo.dto.DeviceAddOrderDto;
+import com.idea.shower.app.device.pojo.dto.DeviceOrderDto;
 import com.idea.shower.app.device.properties.DeviceListenerProperties;
 import com.idea.shower.app.device.sender.MqttSender;
 import com.idea.shower.app.device.service.DeviceControlService;
@@ -41,18 +41,18 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
 
     @Override
     @SneakyThrows
-    public DeviceAddOrderDto addOrder(DeviceAddOrderDto deviceAddOrderDto) {
+    public DeviceOrderDto addOrder(DeviceOrderDto deviceOrderDto) {
         String s = "/a1PPvXQ57zD/work_2/user/control    ";
         String work_2 = "work_2";
         String a1PPvXQ57zD = "a1PPvXQ57zD";
         String productKey = properties.getProductKey();
 //        sshCommandSender.send(s, a1PPvXQ57zD, work_2, "{71,1234}}");
-        Long deviceId = deviceAddOrderDto.getDeviceId();
+        Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
         if (deviceInfoOptional.isPresent()) {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
             String deviceName = deviceInfo.getDeviceName();
-            PubResponse pubResponse = deviceControlService.workStart(deviceInfo.getProductKey(), deviceInfo.getCode(), deviceAddOrderDto.getOrderNo());
+            PubResponse pubResponse = deviceControlService.workStart(deviceInfo.getProductKey(), deviceInfo.getCode(), deviceOrderDto.getOrderNo());
             log.info("pubResponse=" + JSON.toJSONString(pubResponse));
         } else {
             throw new ResultException(ResultUtils.wxDeviceNotFoundError());
@@ -69,57 +69,89 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
 //                return deviceAddOrderDto;
 //            }
 //        }
-        return deviceAddOrderDto;
+        return deviceOrderDto;
     }
 
     @Override
-    public DeviceAddOrderDto openTheDoor(DeviceAddOrderDto deviceAddOrderDto) throws ResultException {
-        Long deviceId = deviceAddOrderDto.getDeviceId();
+    public DeviceOrderDto openTheDoor(DeviceOrderDto deviceOrderDto) throws ResultException {
+        Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
         if (deviceInfoOptional.isPresent()) {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
             String deviceName = deviceInfo.getDeviceName();
             PubResponse pubResponse = deviceRequestService.openTheDoor(deviceInfo.getProductKey(), deviceInfo.getCode());
-            deviceAddOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
+            deviceOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
             log.info("pubResponse=" + JSON.toJSONString(pubResponse));
         } else {
             throw new ResultException(ResultUtils.wxDeviceNotFoundError());
         }
 
-        return deviceAddOrderDto;
+        return deviceOrderDto;
     }
 
     @Override
-    public DeviceAddOrderDto closeTheDoor(DeviceAddOrderDto deviceAddOrderDto) throws ResultException {
-        Long deviceId = deviceAddOrderDto.getDeviceId();
+    public DeviceOrderDto closeTheDoor(DeviceOrderDto deviceOrderDto) throws ResultException {
+        Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
         if (deviceInfoOptional.isPresent()) {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
             String deviceName = deviceInfo.getDeviceName();
             PubResponse pubResponse = deviceRequestService.closeTheDoor(deviceInfo.getProductKey(), deviceInfo.getCode());
-            deviceAddOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
+            deviceOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
             log.info("pubResponse=" + JSON.toJSONString(pubResponse));
         } else {
             throw new ResultException(ResultUtils.wxDeviceNotFoundError());
         }
 
-        return deviceAddOrderDto;
+        return deviceOrderDto;
     }
 
     @Override
-    public DeviceAddOrderDto turnOnTheShowerValve(DeviceAddOrderDto deviceAddOrderDto) throws ResultException {
-        Long deviceId = deviceAddOrderDto.getDeviceId();
+    public DeviceOrderDto turnOnTheShowerValve(DeviceOrderDto deviceOrderDto) throws ResultException {
+        Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
         if (deviceInfoOptional.isPresent()) {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
             String deviceName = deviceInfo.getDeviceName();
             PubResponse pubResponse = deviceRequestService.turnOnTheShowerValve(deviceInfo.getProductKey(), deviceInfo.getCode());
-            deviceAddOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
+            deviceOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
             log.info("pubResponse=" + JSON.toJSONString(pubResponse));
         } else {
             throw new ResultException(ResultUtils.wxDeviceNotFoundError());
         }
 
-        return deviceAddOrderDto;
+        return deviceOrderDto;
+    }
+
+    @Override
+    public DeviceOrderDto turnOffTheShowerValve(DeviceOrderDto deviceOrderDto) throws ResultException {
+        Long deviceId = deviceOrderDto.getDeviceId();
+        Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
+        if (deviceInfoOptional.isPresent()) {
+            DeviceInfo deviceInfo = deviceInfoOptional.get();
+            String deviceName = deviceInfo.getDeviceName();
+            PubResponse pubResponse = deviceRequestService.turnOffTheShowerValve(deviceInfo.getProductKey(), deviceInfo.getCode());
+            deviceOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
+            log.info("pubResponse=" + JSON.toJSONString(pubResponse));
+        } else {
+            throw new ResultException(ResultUtils.wxDeviceNotFoundError());
+        }
+
+        return deviceOrderDto;
+    }
+
+    public DeviceOrderDto openTheCleaningWaterValve(DeviceOrderDto deviceOrderDto) throws ResultException {
+        Long deviceId = deviceOrderDto.getDeviceId();
+        Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
+        if (deviceInfoOptional.isPresent()) {
+            DeviceInfo deviceInfo = deviceInfoOptional.get();
+            String deviceName = deviceInfo.getDeviceName();
+            PubResponse pubResponse = deviceRequestService.openTheCleaningWaterValve(deviceInfo.getProductKey(), deviceInfo.getCode());
+            deviceOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
+            log.info("pubResponse=" + JSON.toJSONString(pubResponse));
+        } else {
+            throw new ResultException(ResultUtils.wxDeviceNotFoundError());
+        }
+        return deviceOrderDto;
     }
 }

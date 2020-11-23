@@ -1,6 +1,6 @@
 package com.idea.shower.app.device.service;
 
-import com.idea.shower.app.device.pojo.dto.DeviceAddOrderDto;
+import com.idea.shower.app.device.pojo.dto.DeviceOrderDto;
 import com.idea.shower.web.webmvc.exception.ResultException;
 
 /**
@@ -10,11 +10,24 @@ import com.idea.shower.web.webmvc.exception.ResultException;
  * @create: 2020-11-20 21:58
  */
 public interface DeviceProcessService {
-    DeviceAddOrderDto addOrder(DeviceAddOrderDto deviceAddOrderDto);
+    /**
+     * 添加订单
+     * @param deviceOrderDto
+     * @return
+     */
+    DeviceOrderDto addOrder(DeviceOrderDto deviceOrderDto);
 
-    DeviceAddOrderDto openTheDoor(DeviceAddOrderDto deviceAddOrderDto) throws ResultException;
+    /**
+     * 开门
+     * @param deviceOrderDto
+     * @return
+     * @throws ResultException
+     */
+    DeviceOrderDto openTheDoor(DeviceOrderDto deviceOrderDto) throws ResultException;
 
-    DeviceAddOrderDto closeTheDoor(DeviceAddOrderDto deviceAddOrderDto) throws ResultException;
+    DeviceOrderDto closeTheDoor(DeviceOrderDto deviceOrderDto) throws ResultException;
 
-    DeviceAddOrderDto turnOnTheShowerValve(DeviceAddOrderDto deviceAddOrderDto) throws ResultException;
+    DeviceOrderDto turnOnTheShowerValve(DeviceOrderDto deviceOrderDto) throws ResultException;
+
+    DeviceOrderDto turnOffTheShowerValve(DeviceOrderDto deviceOrderDto) throws ResultException;
 }
