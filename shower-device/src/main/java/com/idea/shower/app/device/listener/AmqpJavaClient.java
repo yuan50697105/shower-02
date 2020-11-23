@@ -2,6 +2,7 @@ package com.idea.shower.app.device.listener;
 
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
+import com.idea.shower.app.device.service.DeviceReceiveService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.qpid.jms.JmsConnection;
@@ -12,6 +13,7 @@ import org.apache.qpid.jms.meta.JmsConsumerId;
 import org.apache.qpid.jms.meta.JmsConsumerInfo;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -33,7 +35,6 @@ import java.util.concurrent.TimeUnit;
 @Component
 @Slf4j
 public class AmqpJavaClient implements InitializingBean, ApplicationContextAware {
-
     private final JmsConnectionListener myJmsConnectionListener = new JmsConnectionListener() {
         /**
          * 连接成功建立
@@ -112,6 +113,8 @@ public class AmqpJavaClient implements InitializingBean, ApplicationContextAware
             }
         }
     };
+    @Autowired
+    private DeviceReceiveService deviceReceiveService;
 
     public static void main(String[] args) {
         System.out.println("JSONUtil.toJsonStr(\"/a12mkmuZtyi/${deviceName}/user/contro\".split(\"/\")) = " + JSONUtil.toJsonStr("/a12mkmuZtyi/${deviceName}/user/contro".split("/")));
@@ -130,6 +133,11 @@ public class AmqpJavaClient implements InitializingBean, ApplicationContextAware
                     + ", topic = " + topic
                     + ", messageId = " + messageId
                     + ", content = " + content);
+            String[] strings = topic.split("/");
+            String productKey = strings[0];
+            String deviceName = strings[1];
+            String operating = strings[3];
+            deviceReceiveService.receiveData(productKey, deviceName, operating, messageId, content);
 //
         } catch (Exception e) {
             log.error("processMessage occurs error ", e);
