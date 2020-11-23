@@ -1,5 +1,7 @@
 package com.idea.shower.app.device.service;
 
+import com.idea.shower.web.webmvc.exception.ResultException;
+
 /**
  * @program: shower-01
  * @description:
@@ -8,7 +10,7 @@ package com.idea.shower.app.device.service;
  */
 public interface DeviceReceiveService {
 
-    void receiveData(String productKey, String deviceName, String operating, String messageId, String content);
+    void receiveData(String productKey, String deviceName, String operating, String messageId, String content) throws ResultException;
 
     /**
      * 作用：
