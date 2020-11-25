@@ -10,6 +10,16 @@ import com.idea.shower.web.webmvc.exception.ResultException;
  */
 public interface DeviceReceiveService {
 
+    /**
+     * 结束数据
+     *
+     * @param productKey 产品编号
+     * @param deviceName 设备名称
+     * @param operating  操作
+     * @param messageId  消息Id
+     * @param content    消息内容
+     * @throws ResultException 接收异常
+     */
     void receiveData(String productKey, String deviceName, String operating, String messageId, String content) throws ResultException;
 
     /**

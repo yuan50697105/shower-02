@@ -5,8 +5,8 @@ import com.idea.shower.commons.storage.StorageService;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.minbox.framework.api.boot.oss.ApiBootOssService;
-import org.minbox.framework.api.boot.storage.response.ApiBootObjectStorageResponse;
+import org.minbox.framework.oss.ObjectStorageResponse;
+import org.minbox.framework.oss.ObjectStorageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -26,7 +26,7 @@ public class QCodeService {
 
     private StorageService storageService;
     @Autowired
-    private ApiBootOssService apiBootOssService;
+    private ObjectStorageService apiBootOssService;
 
     public String createGrouponShareImage(String goodName, String goodPicUrl, String deviceId) {
         try {
@@ -53,7 +53,7 @@ public class QCodeService {
         return "";
     }
 
-    public ApiBootObjectStorageResponse createGrouponShareImageOss(String goodName, String goodPicUrl, String deviceId) {
+    public ObjectStorageResponse createGrouponShareImageOss(String goodName, String goodPicUrl, String deviceId) {
         try {
             //创建该商品的二维码
             File file = wxMaService.getQrcodeService().createWxaCodeUnlimit("device," + deviceId, "pages/device/device");
@@ -64,7 +64,7 @@ public class QCodeService {
             //存储分享图
 //            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
 //                    getKeyName(deviceId));
-            ApiBootObjectStorageResponse response = apiBootOssService.upload(getKeyName(deviceId), inputStream2);
+            ObjectStorageResponse response = apiBootOssService.upload(getKeyName(deviceId), inputStream2);
 
             return response;
         } catch (WxErrorException | IOException e) {
@@ -93,10 +93,10 @@ public class QCodeService {
 //            String url = storageService.store(inputStream2, imageData.length, "image/jpeg",
 //                    getKeyName(deviceId));
 //        deviceIdPicUrl = DOMAIN_URL + "/" + deviceIdPicUrl;
-        ApiBootObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
+        ObjectStorageResponse response = createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
         return response.getObjectUrl();
     }
-    public ApiBootObjectStorageResponse createGoodShareImageResponse(String deviceId, String deviceIdPicUrl, String deviceIdName) {
+    public ObjectStorageResponse createGoodShareImageResponse(String deviceId, String deviceIdPicUrl, String deviceIdName) {
         return createGrouponShareImageOss(deviceId, deviceIdPicUrl, deviceIdName);
     }
 

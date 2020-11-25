@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.aliyuncs.iot.model.v20180120.PubResponse;
 import com.idea.shower.app.device.pojo.dto.DeviceOrderDto;
 import com.idea.shower.app.device.properties.DeviceListenerProperties;
-import com.idea.shower.app.device.sender.MqttSender;
 import com.idea.shower.app.device.service.DeviceControlService;
 import com.idea.shower.app.device.service.DeviceProcessService;
 import com.idea.shower.app.device.service.DeviceRequestService;
@@ -30,8 +29,6 @@ import java.util.Optional;
 public class DeviceProcessServiceImpl implements DeviceProcessService {
     @Autowired
     private DeviceInfoDao deviceInfoDao;
-    @Autowired
-    private MqttSender sender;
     @Autowired
     private DeviceListenerProperties properties;
     @Autowired

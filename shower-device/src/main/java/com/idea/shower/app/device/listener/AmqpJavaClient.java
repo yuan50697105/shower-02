@@ -136,7 +136,7 @@ public class AmqpJavaClient implements InitializingBean, ApplicationContextAware
             String[] strings = topic.split("/");
             String productKey = strings[0];
             String deviceName = strings[1];
-            String operating = strings[3];
+            String operating = strings[4];
             deviceReceiveService.receiveData(productKey, deviceName, operating, messageId, content);
 //
         } catch (Exception e) {

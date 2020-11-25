@@ -1,7 +1,7 @@
 package com.idea.shower.commons.storage;
 
 import com.aliyun.oss.OSSClient;
-import org.minbox.framework.api.boot.oss.ApiBootOssService;
+import org.minbox.framework.oss.support.aliyun.AliyunObjectStorageService;
 
 import java.io.InputStream;
 
@@ -11,7 +11,7 @@ import java.io.InputStream;
  * @author: yuane
  * @create: 2020-09-30 09:54
  */
-public class CommonsOssService extends ApiBootOssService {
+public class CommonsOssService extends AliyunObjectStorageService {
     /**
      * Initialize global variables using constructor
      *

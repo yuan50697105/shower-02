@@ -71,6 +71,7 @@ public class DeviceProcessController {
      * 开清洗水阀
      *
      */
+    @SneakyThrows
     @PostMapping("open/cleaning/water")
     public Result openTheCleaningWaterValve(@RequestBody DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.openTheCleaningWaterValve(deviceOrderDto);

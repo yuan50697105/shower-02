@@ -2,9 +2,9 @@ plugins {
     id 'idea'
     id 'eclipse'
     id 'java'
-    id 'org.springframework.boot' version '2.3.5.RELEASE'
+    id 'org.springframework.boot' version '2.3.6.RELEASE'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
-    id "com.github.ben-manes.versions" version "0.34.0"
+    id "com.github.ben-manes.versions" version "0.36.0"
     id 'se.patrikerdes.use-latest-versions' version '0.2.15'
     id 'maven-publish'
 }
@@ -48,7 +48,7 @@ allprojects {
     dependencies {
         compile group: 'org.mapstruct', name: 'mapstruct', version: '1.4.1.Final'
         compile group: 'com.google.guava', name: 'guava', version: '30.0-jre'
-        compile group: 'cn.hutool', name: 'hutool-all', version: '5.4.7'
+        compile group: 'cn.hutool', name: 'hutool-all', version: '5.5.1'
         implementation 'org.springframework.boot:spring-boot-starter'
 //        implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
         compileOnly 'org.projectlombok:lombok'
@@ -60,16 +60,16 @@ allprojects {
         testImplementation('org.springframework.boot:spring-boot-starter-test') {
             exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
         }
-//        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.74'
-//        compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.4.0'
-//        compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.9.7.B'
-//        compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.9.7.B'
+//        compile group: 'com.alibaba', name: 'fastjson', version: '1.2.75'
+//        compile group: 'com.baomidou', name: 'mybatis-plus-boot-starter', version: '3.4.1'
+//        compile group: 'com.github.binarywang', name: 'wx-java-pay-spring-boot-starter', version: '3.9.9.B'
+//        compile group: 'com.github.binarywang', name: 'wx-java-miniapp-spring-boot-starter', version: '3.9.9.B'
 //        implementation  fileTree(dir: 'lib', includes: ['*.jar'])
 //        compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.11.1'
-//        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.3.0'
-//        compile group: 'com.qcloud', name: 'cos_api', version: '5.6.31'
+//        compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.4.0'
+//        compile group: 'com.qcloud', name: 'cos_api', version: '5.6.32'
 
-        implementation(platform("org.minbox.framework:api-boot-dependencies:2.3.0.RELEASE"))
+        implementation(platform("org.minbox.framework:api-boot-dependencies:2.3.3.RELEASE"))
         implementation(platform("ai.ylyue:yue-library-dependencies:2.1.0"))
     }
 

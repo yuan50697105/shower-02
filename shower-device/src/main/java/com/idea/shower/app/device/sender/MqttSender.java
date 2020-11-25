@@ -17,17 +17,18 @@ import org.springframework.stereotype.Component;
  * @author: yuane
  * @create: 2020-11-19 22:36
  */
+@SuppressWarnings("FieldMayBeFinal")
 @Component
 @Slf4j
 public class MqttSender {
     @Autowired
     private DeviceListenerProperties properties;
-    private final DefaultProfile profile = DefaultProfile.getProfile(properties.getRegionId(), properties.getAccessKey(), properties.getAccessSecret());
-    private final IAcsClient client = new DefaultAcsClient(profile);
 
     public PubResponse send(String productKey, String topic, String object) {
 //        DefaultProfile profile = DefaultProfile.getProfile(properties.getRegionId(),properties.getAccessKey(), properties.getAccessSecret());
 //        IAcsClient client = new DefaultAcsClient(profile);
+        DefaultProfile profile = DefaultProfile.getProfile(properties.getRegionId(), properties.getAccessKey(), properties.getAccessSecret());
+        IAcsClient client = new DefaultAcsClient(profile);
         PubRequest request = new PubRequest();
         request.setQos(0);
 //设置发布消息的topic。
