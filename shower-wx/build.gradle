@@ -20,5 +20,6 @@ dependencies {
     compile 'org.springframework.boot:spring-boot-starter-web'
     compile('org.apache.commons:commons-pool2:2.8.1')
     compile('redis.clients:jedis:3.3.0')
+    compile 'com.github.lianjiatech:retrofit-spring-boot-starter:2.2.2'
     annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
 }

@@ -1,4 +1,4 @@
-package com.idea.shower.app.device.pojo.dto;
+package com.idea.shower.commons.pojo.dto;
 
 import lombok.*;
 
