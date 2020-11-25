@@ -44,10 +44,6 @@ public class OrderInfoTimeOutListener extends KeyExpirationEventMessageListener 
         }
     }
 
-    private void updateOrderNotCancel(Message message) {
-        Long orderId = Long.valueOf(new String(message.getBody(), StandardCharsets.UTF_8).replace(OrderRedisDao.ORDER_INFO_COMMONS, ""));
-    }
-
     private void updateReservationOrderCancel(Message message) {
         //如果是Order:开头的key，进行处理
         Long orderId = Long.valueOf(new String(message.getBody(), StandardCharsets.UTF_8).replace(OrderRedisDao.ORDER_INFO_RESERVATION, ""));
