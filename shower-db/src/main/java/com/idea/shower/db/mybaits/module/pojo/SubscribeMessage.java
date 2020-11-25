@@ -1,6 +1,6 @@
 package com.idea.shower.db.mybaits.module.pojo;
 
-import com.idea.shower.db.mybaits.commons.pojo.BaseDbEntity;
+import io.renren.common.entity.BaseEntity;
 import lombok.*;
 
 import java.util.Date;
@@ -18,7 +18,7 @@ import java.util.Date;
 @AllArgsConstructor
 @With
 @Builder
-public class SubscribeMessage extends BaseDbEntity {
+public class SubscribeMessage extends BaseEntity {
     /**
      * 产品编号
      */

@@ -80,22 +80,13 @@ public class DeviceReceiveServiceImpl implements DeviceReceiveService {
 //        {经度,纬度,工作状态,订单,工作时间,暖风开启时间,门状态,淋浴水阀状态,冲洗水阀状态,暖风状态,换气扇状态,串口1状态,串口2状态,是否有人状态}
         SubscribeMessageBody messageBody = SubscribeMessageBody.builder().productKey(productKey).deviceName(deviceName).messageId(messageId).operating("timing5Min").build();
         JSONArray objects = JSONUtil.parseArray(content);
-//        暖风开启时间
-        messageBody.withWarmAirOnTime(objects.getStr(3));
-//        门状态
-        messageBody.withDoorStatus(objects.getStr(4));
-//        淋浴水阀状态
-        messageBody.withShowerValveStatus(objects.getStr(5));
-//        冲洗水阀状态
-        messageBody.withFlushingWaterValveStatus(objects.getStr(6));
-//        暖风状态
-        messageBody.withWarmAirCondition(objects.getStr(7));
-//        换气扇状态
-        messageBody.withVentilatorStatus(objects.getStr(8));
-//        串口1状态
-        messageBody.withSerial1Status(objects.getStr(9));
-//        串口2状态
-        messageBody.withSerial2Status(objects.getStr(10));
+        messageBody.withWarmAirOnTime(objects.getStr(0));
+        messageBody.withShowerValveStatus(objects.getStr(1));
+        messageBody.withFlushingWaterValveStatus(objects.getStr(2));
+        messageBody.withWarmAirCondition(objects.getStr(3));
+        messageBody.withVentilatorStatus(objects.getStr(4));
+        messageBody.withSerial1Status(objects.getStr(5));
+        messageBody.withSerial2Status(objects.getStr(6));
         SubscribeMessage subscribeMessage = messageBodyConverter.convert(messageBody);
         subscribeMessageDao.save(subscribeMessage);
     }
