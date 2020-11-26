@@ -4,7 +4,7 @@ import com.idea.shower.app.wx.mp.pojo.WxLoginInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUserInfo;
 import com.idea.shower.app.wx.mp.service.WxCustomerInfoService;
 import com.idea.shower.web.webmvc.controller.ResultController;
-import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.commons.pojo.dto.Result;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;

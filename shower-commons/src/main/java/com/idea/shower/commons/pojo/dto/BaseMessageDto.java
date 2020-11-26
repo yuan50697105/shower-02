@@ -1,6 +1,5 @@
 package com.idea.shower.commons.pojo.dto;
 
-import com.idea.shower.web.webmvc.pojo.Result;
 import lombok.Data;
 
 /**

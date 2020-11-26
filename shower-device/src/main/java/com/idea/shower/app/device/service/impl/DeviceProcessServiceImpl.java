@@ -9,7 +9,7 @@ import com.idea.shower.app.device.service.DeviceProcessService;
 import com.idea.shower.app.device.service.DeviceRequestService;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
-import com.idea.shower.web.webmvc.exception.ResultException;
+import com.idea.shower.commons.exception.ResultException;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;

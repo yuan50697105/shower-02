@@ -1,9 +1,8 @@
-package com.idea.shower.web.webmvc.exception;
+package com.idea.shower.commons.exception;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.idea.shower.web.webmvc.pojo.Result;
-import com.idea.shower.web.webmvc.utils.ResultUtils;
-import lombok.Data;
+import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.utils.ResultUtils;
 import lombok.EqualsAndHashCode;
 
 /**
@@ -13,7 +12,6 @@ import lombok.EqualsAndHashCode;
  * @create: 2019-12-29 16:53
  */
 @EqualsAndHashCode(callSuper = true)
-@Data
 public class NoValidateResultRuntimeException extends ResultRuntimeException {
     public NoValidateResultRuntimeException() {
         super(ResultUtils.dataParamsError());

@@ -4,7 +4,7 @@ import com.idea.shower.app.wx.mp.pojo.WxFeedbackDTO;
 import com.idea.shower.app.wx.mp.service.WxFeedbackService;
 import com.idea.shower.db.mybaits.module.pojo.query.FeedbackQuery;
 import com.idea.shower.web.webmvc.controller.ResultController;
-import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.commons.pojo.dto.Result;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

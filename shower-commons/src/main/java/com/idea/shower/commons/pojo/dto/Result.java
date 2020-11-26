@@ -1,4 +1,4 @@
-package com.idea.shower.web.webmvc.pojo;
+package com.idea.shower.commons.pojo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

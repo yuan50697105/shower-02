@@ -1,4 +1,4 @@
-package com.idea.shower.web.webmvc.utils;
+package com.idea.shower.commons.utils;
 
 
 import com.idea.shower.commons.pojo.dto.Result;

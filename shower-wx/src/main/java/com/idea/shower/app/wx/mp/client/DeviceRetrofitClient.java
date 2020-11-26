@@ -10,5 +10,4 @@ import com.github.lianjiatech.retrofit.spring.boot.annotation.RetrofitClient;
  */
 @RetrofitClient(baseUrl = "${device.terminal.device-terminal-url}")
 public interface DeviceRetrofitClient {
-
 }

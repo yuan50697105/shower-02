@@ -42,6 +42,7 @@ public class SubscribeMessageBody extends BaseMessageDto {
     /**
      * 接收时间
      */
+    @Builder.Default
     private Date receivingTime = new Date();
     /**
      * 经度

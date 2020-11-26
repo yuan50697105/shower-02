@@ -1,6 +1,6 @@
 package com.idea.shower.app.wx.mp.service;
 
-import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.commons.pojo.dto.Result;
 
 /**
  * @program: shower-01

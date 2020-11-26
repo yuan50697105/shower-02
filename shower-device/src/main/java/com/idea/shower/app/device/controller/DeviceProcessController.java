@@ -2,8 +2,8 @@ package com.idea.shower.app.device.controller;
 
 import com.idea.shower.commons.pojo.dto.DeviceOrderDto;
 import com.idea.shower.app.device.service.impl.DeviceProcessServiceImpl;
-import com.idea.shower.web.webmvc.exception.ResultException;
-import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.commons.exception.ResultException;
+import com.idea.shower.commons.pojo.dto.Result;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

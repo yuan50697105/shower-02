@@ -12,7 +12,7 @@ import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.web.webmvc.controller.ResultController;
-import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.commons.pojo.dto.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;

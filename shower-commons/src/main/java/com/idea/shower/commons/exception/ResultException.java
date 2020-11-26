@@ -1,6 +1,6 @@
-package com.idea.shower.web.webmvc.exception;
+package com.idea.shower.commons.exception;
 
-import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.commons.pojo.dto.Result;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

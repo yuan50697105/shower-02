@@ -14,7 +14,7 @@ import com.idea.shower.app.wx.mp.util.GetPhoneNumber;
 import com.idea.shower.app.wx.mp.util.UserTokenManager;
 import com.idea.shower.db.mybaits.module.dao.CustomerInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.CustomerInfo;
-import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.commons.pojo.dto.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;

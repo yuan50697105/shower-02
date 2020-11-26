@@ -1,6 +1,6 @@
 package com.idea.shower.app.wx.mp.exception;
 
-import com.idea.shower.web.webmvc.pojo.Result;
+import com.idea.shower.commons.pojo.dto.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import me.chanjar.weixin.common.error.WxErrorException;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
