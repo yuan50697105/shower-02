@@ -24,6 +24,7 @@ public class DeviceProcessController {
      * 订单下单
      */
     @PostMapping("order/add")
+    @ResponseBody
     public Result orderAdd(@RequestBody DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.addOrder(deviceOrderDto);
         return deviceOrderDto.getResult();

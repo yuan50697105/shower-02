@@ -45,6 +45,7 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
             PubResponse pubResponse = deviceControlService.workStart(deviceInfo.getProductKey(), deviceInfo.getCode(), deviceOrderDto.getOrderNo());
             log.info("pubResponse=" + JSON.toJSONString(pubResponse));
+            deviceOrderDto.setResult(ResultUtils.data(pubResponse));
         } else {
             throw new ResultException(ResultUtils.wxDeviceNotFoundError());
         }

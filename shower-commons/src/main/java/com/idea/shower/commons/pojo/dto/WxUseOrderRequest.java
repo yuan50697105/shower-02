@@ -1,4 +1,4 @@
-package com.idea.shower.app.wx.mp.pojo;
+package com.idea.shower.commons.pojo.dto;
 
 import lombok.Data;
 

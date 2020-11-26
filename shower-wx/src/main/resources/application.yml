@@ -12,3 +12,8 @@ spring:
 logging:
   level:
     web: debug
+retrofit:
+  global-converter-factories:
+    - retrofit2.converter.jackson.JacksonConverterFactory
+  global-call-adapter-factories:
+    - com.github.lianjiatech.retrofit.spring.boot.core.ResponseCallAdapterFactory

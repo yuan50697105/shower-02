@@ -15,7 +15,7 @@ import com.github.binarywang.wxpay.service.WxPayService;
 import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
-import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
+import com.idea.shower.commons.pojo.dto.WxUseOrderRequest;
 import com.idea.shower.app.wx.mp.service.WxDeviceOrderService;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.commons.exception.ResultRuntimeException;

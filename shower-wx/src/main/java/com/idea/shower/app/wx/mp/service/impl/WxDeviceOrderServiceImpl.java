@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
+import retrofit2.Response;
 
 /**
  * @program: shower-01
@@ -35,6 +36,7 @@ public class WxDeviceOrderServiceImpl implements WxDeviceOrderService {
 //        String url = deviceTerminalUrl + "/device/process/order/add";
 //        return restTemplate.postForObject(url, deviceOrderDto, Result.class);
 //        return restTemplate.postForEntity(url, null, Result.class, BeanUtil.beanToMap(deviceOrderDto)).getBody();
-        return deviceRetrofitClient.addOrder(deviceOrderDto);
+        Response<Result> string = deviceRetrofitClient.addOrder(deviceOrderDto);
+        return string.body();
     }
 }

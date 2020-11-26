@@ -4,7 +4,7 @@ import com.github.lianjiatech.retrofit.spring.boot.annotation.RetrofitClient;
 import com.idea.shower.commons.pojo.dto.DeviceOrderDto;
 import com.idea.shower.commons.pojo.dto.Result;
 import org.springframework.stereotype.Component;
-import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 
@@ -18,5 +18,5 @@ import retrofit2.http.POST;
 @RetrofitClient(baseUrl = "${device.terminal.device-terminal-url}")
 public interface DeviceRetrofitClient {
     @POST("/device/process/order/add")
-    Result addOrder(@Body DeviceOrderDto deviceOrderDto);
+    Response<Result> addOrder(@Body DeviceOrderDto deviceOrderDto);
 }
