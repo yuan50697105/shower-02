@@ -16,7 +16,11 @@ import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
 import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
 import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
 import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
+import com.idea.shower.app.wx.mp.service.WxDeviceOrderService;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
+import com.idea.shower.commons.exception.ResultRuntimeException;
+import com.idea.shower.commons.pojo.dto.DeviceOrderDto;
+import com.idea.shower.commons.pojo.dto.Result;
 import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants;
 import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
@@ -27,8 +31,6 @@ import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
 import com.idea.shower.db.mybaits.module.pojo.vo.OrderInfoDeviceVO;
 import com.idea.shower.redis.module.order.dao.OrderRedisDao;
 import com.idea.shower.redis.module.order.pojo.OrderTimeOutRedisEntity;
-import com.idea.shower.commons.exception.ResultRuntimeException;
-import com.idea.shower.commons.pojo.dto.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
@@ -70,6 +72,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final WxPayService wxPayService;
     private final Environment environment;
     private final ObjectMapper objectMapper;
+    private final WxDeviceOrderService wxDeviceOrderService;
 
     /**
      * 添加订单
@@ -111,6 +114,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             case OrderInfoConstants.OrderType.RESERVATION:
                 // TODO: 2020/4/20 添加超时处理
                 addOrderTimeOutToRedis(orderInfo);
+                addOrderToDevice(orderInfo);
                 break;
             default:
                 throw new ResultRuntimeException(ResultUtils.dataParamsError("错误订单类型"));
@@ -120,6 +124,19 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         map.put("isAddOrder", deviceInfo.getRunStatus());
         //endregion
         return ResultUtils.data(map);
+    }
+
+    private void addOrderToDevice(OrderInfo orderInfo) {
+        String orderNo = orderInfo.getOrderNo();
+        Long deviceId = orderInfo.getDeviceId();
+        DeviceOrderDto deviceOrderDto = new DeviceOrderDto();
+        deviceOrderDto.withDeviceId(deviceId);
+        deviceOrderDto.withOrderNo(orderNo);
+        Result result = wxDeviceOrderService.addOrder(deviceOrderDto);
+        if (ResultUtils.ifOk(result)) {
+            log.info(orderNo + "添加成功");
+            Object data = result.getData();
+        }
     }
 
     /**

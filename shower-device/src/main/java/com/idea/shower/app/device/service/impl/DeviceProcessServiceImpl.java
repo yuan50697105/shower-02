@@ -39,16 +39,10 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
     @Override
     @SneakyThrows
     public DeviceOrderDto addOrder(DeviceOrderDto deviceOrderDto) {
-        String s = "/a1PPvXQ57zD/work_2/user/control    ";
-        String work_2 = "work_2";
-        String a1PPvXQ57zD = "a1PPvXQ57zD";
-        String productKey = properties.getProductKey();
-//        sshCommandSender.send(s, a1PPvXQ57zD, work_2, "{71,1234}}");
         Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
         if (deviceInfoOptional.isPresent()) {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
-            String deviceName = deviceInfo.getDeviceName();
             PubResponse pubResponse = deviceControlService.workStart(deviceInfo.getProductKey(), deviceInfo.getCode(), deviceOrderDto.getOrderNo());
             log.info("pubResponse=" + JSON.toJSONString(pubResponse));
         } else {
@@ -75,14 +69,12 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
         if (deviceInfoOptional.isPresent()) {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
-            String deviceName = deviceInfo.getDeviceName();
             PubResponse pubResponse = deviceRequestService.openTheDoor(deviceInfo.getProductKey(), deviceInfo.getCode());
             deviceOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
             log.info("pubResponse=" + JSON.toJSONString(pubResponse));
         } else {
             throw new ResultException(ResultUtils.wxDeviceNotFoundError());
         }
-
         return deviceOrderDto;
     }
 

@@ -23,7 +23,7 @@ public class DeviceProcessController {
     /**
      * 订单下单
      */
-    @GetMapping("order/add")
+    @PostMapping("order/add")
     public Result orderAdd(@RequestBody DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.addOrder(deviceOrderDto);
         return deviceOrderDto.getResult();
@@ -33,7 +33,7 @@ public class DeviceProcessController {
      * 开门
      */
     @PostMapping("open/door")
-    public Result openTheDoor(@RequestBody DeviceOrderDto deviceOrderDto) throws ResultException {
+    public Result openTheDoor( DeviceOrderDto deviceOrderDto) throws ResultException {
         deviceOrderDto = deviceProcessService.openTheDoor(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
@@ -42,7 +42,7 @@ public class DeviceProcessController {
      * 关门
      */
     @PostMapping("close/door")
-    public Result closeTheDoor(@RequestBody DeviceOrderDto deviceOrderDto) throws ResultException {
+    public Result closeTheDoor( DeviceOrderDto deviceOrderDto) throws ResultException {
         deviceOrderDto = deviceProcessService.closeTheDoor(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
@@ -52,7 +52,7 @@ public class DeviceProcessController {
      */
     @SneakyThrows
     @PostMapping("turn/on/shower")
-    public Result turnOnTheShowerValve(@RequestBody DeviceOrderDto deviceOrderDto) {
+    public Result turnOnTheShowerValve( DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.turnOnTheShowerValve(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
@@ -62,7 +62,7 @@ public class DeviceProcessController {
      */
     @SneakyThrows
     @PostMapping("turn/off/shower")
-    private Result turnOffTheShowerValve(@RequestBody DeviceOrderDto deviceOrderDto) {
+    private Result turnOffTheShowerValve( DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.turnOffTheShowerValve(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
@@ -73,7 +73,7 @@ public class DeviceProcessController {
      */
     @SneakyThrows
     @PostMapping("open/cleaning/water")
-    public Result openTheCleaningWaterValve(@RequestBody DeviceOrderDto deviceOrderDto) {
+    public Result openTheCleaningWaterValve( DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.openTheCleaningWaterValve(deviceOrderDto);
         return deviceOrderDto.getResult();
     }

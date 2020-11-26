@@ -132,6 +132,9 @@ public class ResultUtils {
         return error(ResultConstants.WX_ERROR_CODE, ResultConstants.THE_CURRENT_DEVICE_IS_IN_USE_CANNOT_PLACE_AN_ORDER);
     }
 
+    public static boolean ifOk(Result result){
+        return result.getCode().equals(ResultConstants.OK_CODE);
+    }
     public static class ResultConstants {
         public final static Integer OK_CODE = 200;
         public final static String OK_MESSAGE = "操作成功";

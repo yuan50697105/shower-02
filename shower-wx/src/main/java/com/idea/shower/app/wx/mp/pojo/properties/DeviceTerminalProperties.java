@@ -1,5 +1,6 @@
 package com.idea.shower.app.wx.mp.pojo.properties;
 
+import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -9,6 +10,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @create: 2020-11-25 20:55
  */
 @ConfigurationProperties(prefix = DeviceTerminalProperties.DEVICE_TERMINAL)
+@Data
 public class DeviceTerminalProperties {
     public static final String DEVICE_TERMINAL = "device.terminal";
     private String deviceTerminalUrl;

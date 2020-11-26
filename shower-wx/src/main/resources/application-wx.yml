@@ -20,4 +20,4 @@ wx:
     url: https://www.yuan50697105.top:8002/wx/order/notify
 device:
   terminal:
-    device-terminal-url: http://localhost:8081/
+    device-terminal-url: http://localhost:8080/
