@@ -6,7 +6,7 @@ import cn.binarywang.wx.miniapp.bean.WxMaJscode2SessionResult;
 import cn.binarywang.wx.miniapp.bean.WxMaPhoneNumberInfo;
 import cn.binarywang.wx.miniapp.bean.WxMaUserInfo;
 import com.alibaba.fastjson.JSONObject;
-import com.idea.shower.commons.pojo.WxLoginInfo;
+import com.idea.shower.app.wx.mp.pojo.WxLoginInfo;
 import com.idea.shower.commons.pojo.WxUserInfo;
 import com.idea.shower.app.wx.mp.service.WxCustomerInfoService;
 import com.idea.shower.app.wx.mp.util.EncryptedPhone;

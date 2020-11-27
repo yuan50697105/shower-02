@@ -1,6 +1,7 @@
-package com.idea.shower.commons.pojo;
+package com.idea.shower.app.wx.mp.pojo;
 
 import com.idea.shower.app.wx.mp.util.EncryptedPhone;
+import com.idea.shower.commons.pojo.UserInfo;
 import lombok.Data;
 
 /**

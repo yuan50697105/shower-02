@@ -1,7 +1,7 @@
 package com.idea.shower.app.wx.mp.service;
 
 
-import com.idea.shower.commons.pojo.WxLoginInfo;
+import com.idea.shower.app.wx.mp.pojo.WxLoginInfo;
 import com.idea.shower.commons.pojo.WxUserInfo;
 import com.idea.shower.commons.pojo.Result;
 
