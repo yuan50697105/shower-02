@@ -1,8 +1,8 @@
 package com.idea.shower.app.wx.mp.client;
 
 import com.github.lianjiatech.retrofit.spring.boot.annotation.RetrofitClient;
-import com.idea.shower.commons.pojo.dto.DeviceOrderDto;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.DeviceOrderDto;
+import com.idea.shower.commons.pojo.Result;
 import org.springframework.stereotype.Component;
 import retrofit2.Response;
 import retrofit2.http.Body;

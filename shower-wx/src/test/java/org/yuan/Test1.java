@@ -2,8 +2,8 @@ package org.yuan;
 
 import com.idea.shower.app.wx.ShowerWxApplication;
 import com.idea.shower.app.wx.mp.service.WxDeviceOrderService;
-import com.idea.shower.commons.pojo.dto.DeviceOrderDto;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.DeviceOrderDto;
+import com.idea.shower.commons.pojo.Result;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

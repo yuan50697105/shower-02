@@ -2,7 +2,7 @@ package com.idea.shower.app.device.service.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.iot.model.v20180120.PubResponse;
-import com.idea.shower.commons.pojo.dto.DeviceOrderDto;
+import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.app.device.properties.DeviceListenerProperties;
 import com.idea.shower.app.device.service.DeviceControlService;
 import com.idea.shower.app.device.service.DeviceProcessService;

@@ -1,7 +1,7 @@
 package com.idea.shower.commons.utils;
 
 
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.Result;
 
 /**
  * @program: shower-01

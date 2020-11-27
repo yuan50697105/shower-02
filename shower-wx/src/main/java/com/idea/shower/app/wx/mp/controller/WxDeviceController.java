@@ -3,7 +3,7 @@ package com.idea.shower.app.wx.mp.controller;
 import com.idea.shower.app.wx.mp.service.WxDeviceInfoService;
 import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import com.idea.shower.web.webmvc.controller.ResultController;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.Result;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 

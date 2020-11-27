@@ -1,6 +1,6 @@
 package com.idea.shower.app.device.converter;
 
-import com.idea.shower.app.device.pojo.dto.SubscribeMessageBody;
+import com.idea.shower.commons.pojo.SubscribeMessageBody;
 import com.idea.shower.db.mybaits.module.pojo.SubscribeMessage;
 import org.mapstruct.Mapper;
 

@@ -1,7 +1,7 @@
 package com.idea.shower.commons.exception;
 
 
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.Result;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

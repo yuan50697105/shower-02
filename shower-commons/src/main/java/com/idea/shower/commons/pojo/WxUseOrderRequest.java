@@ -1,4 +1,4 @@
-package com.idea.shower.commons.pojo.dto;
+package com.idea.shower.commons.pojo;
 
 import lombok.Data;
 

@@ -2,12 +2,12 @@ package com.idea.shower.app.wx.mp.service;
 
 
 import com.github.binarywang.wxpay.exception.WxPayException;
-import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
-import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
-import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
-import com.idea.shower.commons.pojo.dto.WxUseOrderRequest;
+import com.idea.shower.commons.pojo.WxAddOrderRequest;
+import com.idea.shower.commons.pojo.WxPayOrderInfo;
+import com.idea.shower.commons.pojo.WxReturnInfo;
+import com.idea.shower.commons.pojo.WxUseOrderRequest;
 import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.Result;
 
 /**
  * @program: learning-demo-java-01

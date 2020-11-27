@@ -2,7 +2,7 @@ package com.idea.shower.web.webmvc.exception.handler;
 
 import com.idea.shower.commons.exception.ResultException;
 import com.idea.shower.commons.exception.ResultRuntimeException;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.web.bind.annotation.ControllerAdvice;

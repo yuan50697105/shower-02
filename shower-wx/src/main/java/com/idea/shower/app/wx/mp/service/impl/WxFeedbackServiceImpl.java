@@ -1,13 +1,13 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
-import com.idea.shower.app.wx.mp.pojo.WxFeedbackDTO;
+import com.idea.shower.commons.pojo.WxFeedbackDTO;
 import com.idea.shower.app.wx.mp.service.WxFeedbackService;
 import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.module.dao.FeedbackDao;
 import com.idea.shower.db.mybaits.module.pojo.Feedback;
 import com.idea.shower.db.mybaits.module.pojo.query.FeedbackQuery;
 import com.idea.shower.commons.exception.ResultRuntimeException;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;

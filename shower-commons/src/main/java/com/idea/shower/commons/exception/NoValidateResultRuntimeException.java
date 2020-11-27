@@ -1,7 +1,7 @@
 package com.idea.shower.commons.exception;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.Result;
 import com.idea.shower.commons.utils.ResultUtils;
 import lombok.EqualsAndHashCode;
 

@@ -3,7 +3,7 @@ package com.idea.shower.app.device.service.impl;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
 import com.idea.shower.app.device.converter.MessageBodyConverter;
-import com.idea.shower.app.device.pojo.dto.SubscribeMessageBody;
+import com.idea.shower.commons.pojo.SubscribeMessageBody;
 import com.idea.shower.app.device.service.DeviceReceiveService;
 import com.idea.shower.commons.constants.EquipmentOperationConstant;
 import com.idea.shower.db.mybaits.module.dao.SubscribeMessageDao;

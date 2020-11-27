@@ -1,6 +1,5 @@
-package com.idea.shower.app.device.pojo.dto;
+package com.idea.shower.commons.pojo;
 
-import com.idea.shower.commons.pojo.dto.BaseMessageDto;
 import lombok.*;
 
 import java.util.Date;

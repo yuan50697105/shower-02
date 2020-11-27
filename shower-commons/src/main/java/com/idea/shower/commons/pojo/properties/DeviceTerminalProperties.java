@@ -1,4 +1,4 @@
-package com.idea.shower.app.wx.mp.pojo.properties;
+package com.idea.shower.commons.pojo.properties;
 
 import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;

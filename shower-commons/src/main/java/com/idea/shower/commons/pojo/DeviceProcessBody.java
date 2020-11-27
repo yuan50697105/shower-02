@@ -1,4 +1,4 @@
-package com.idea.shower.app.wx.mp.pojo;
+package com.idea.shower.commons.pojo;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

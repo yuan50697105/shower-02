@@ -3,7 +3,7 @@ package com.idea.shower.app.wx.mp.service.impl;
 import com.idea.shower.app.wx.mp.service.WxAreaInfoService;
 import com.idea.shower.db.mybaits.module.dao.AreaBuildingDao;
 import com.idea.shower.db.mybaits.module.dao.AreaInfoDao;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.Result;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

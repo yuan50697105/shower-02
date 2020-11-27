@@ -1,10 +1,10 @@
 package com.idea.shower.app.wx.mp.service.impl;
 
 import com.idea.shower.app.wx.mp.client.DeviceRetrofitClient;
-import com.idea.shower.app.wx.mp.pojo.properties.DeviceTerminalProperties;
+import com.idea.shower.commons.pojo.properties.DeviceTerminalProperties;
 import com.idea.shower.app.wx.mp.service.WxDeviceOrderService;
-import com.idea.shower.commons.pojo.dto.DeviceOrderDto;
-import com.idea.shower.commons.pojo.dto.Result;
+import com.idea.shower.commons.pojo.DeviceOrderDto;
+import com.idea.shower.commons.pojo.Result;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

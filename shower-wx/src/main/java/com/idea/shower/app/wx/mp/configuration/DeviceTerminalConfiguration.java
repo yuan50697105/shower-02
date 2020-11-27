@@ -1,6 +1,6 @@
 package com.idea.shower.app.wx.mp.configuration;
 
-import com.idea.shower.app.wx.mp.pojo.properties.DeviceTerminalProperties;
+import com.idea.shower.commons.pojo.properties.DeviceTerminalProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
