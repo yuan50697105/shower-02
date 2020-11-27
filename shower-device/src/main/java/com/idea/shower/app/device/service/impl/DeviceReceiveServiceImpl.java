@@ -2,19 +2,27 @@ package com.idea.shower.app.device.service.impl;
 
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
+import com.idea.shower.app.device.client.WxRetrofitClient;
 import com.idea.shower.app.device.converter.MessageBodyConverter;
-import com.idea.shower.commons.pojo.SubscribeMessageBody;
 import com.idea.shower.app.device.service.DeviceReceiveService;
 import com.idea.shower.commons.constants.EquipmentOperationConstant;
+import com.idea.shower.commons.exception.ResultException;
+import com.idea.shower.commons.pojo.SubscribeMessageBody;
+import com.idea.shower.commons.pojo.WxUseOrderRequest;
+import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
+import com.idea.shower.db.mybaits.module.dao.DeviceOrderDao;
 import com.idea.shower.db.mybaits.module.dao.SubscribeMessageDao;
 import com.idea.shower.db.mybaits.module.mapper.DeviceInfoMapper;
 import com.idea.shower.db.mybaits.module.mapper.DeviceRunningLogMapper;
+import com.idea.shower.db.mybaits.module.pojo.DeviceOrder;
 import com.idea.shower.db.mybaits.module.pojo.SubscribeMessage;
-import com.idea.shower.commons.exception.ResultException;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -32,7 +40,11 @@ public class DeviceReceiveServiceImpl implements DeviceReceiveService {
     @Autowired
     private SubscribeMessageDao subscribeMessageDao;
     @Autowired
+    private DeviceOrderDao deviceOrderDao;
+    @Autowired
     private MessageBodyConverter messageBodyConverter;
+    @Autowired
+    private WxRetrofitClient wxRetrofitClient;
 
     @Override
     public void receiveData(String productKey, String deviceName, String operating, String messageId, String content) throws ResultException {
@@ -112,6 +124,20 @@ public class DeviceReceiveServiceImpl implements DeviceReceiveService {
         messageBody.withSerial2Status(objects.getStr(12));
         SubscribeMessage subscribeMessage = messageBodyConverter.convert(messageBody);
         subscribeMessageDao.save(subscribeMessage);
+        List<SubscribeMessage> subscribeMessages = subscribeMessageDao.getByOrderNo(subscribeMessage.getOrderNo());
+        Optional<DeviceOrder> deviceOrderOptional = deviceOrderDao.getByOrderNoOpt(subscribeMessage.getOrderNo());
+        if (deviceOrderOptional.isPresent()) {
+            DeviceOrder deviceOrder = deviceOrderOptional.get();
+            if (deviceOrder.getStatus().equals(OrderInfoConstants.OrderStatus.USING)) {
+                if ("0".equals(subscribeMessage.getWorkingStatus())) {
+                    WxUseOrderRequest request = new WxUseOrderRequest();
+                    request.setOrderNo(subscribeMessage.getOrderNo());
+                    request.setDeviceCode(deviceOrder.getDeviceCode());
+                    request.setOpenId(deviceOrder.getOpenId());
+                    wxRetrofitClient.endOrder(request);
+                }
+            }
+        }
     }
 
 }

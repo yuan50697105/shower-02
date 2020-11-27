@@ -8,6 +8,7 @@ import io.renren.common.service.impl.CrudServiceImpl;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,4 +24,10 @@ public class SubscribeMessageDaoImpl extends CrudServiceImpl<SubscribeMessageMap
     public QueryWrapper<SubscribeMessage> getWrapper(Map<String, Object> params) {
         return null;
     }
+
+    @Override
+    public List<SubscribeMessage> getByOrderNo(String orderNo) {
+        return baseDao.selectListByOrderNo(orderNo);
+    }
+
 }
