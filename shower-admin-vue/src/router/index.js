@@ -138,7 +138,7 @@ export const asyncRoutes = [
   {
     path: '/system',
     component: Layout,
-    name: '用户管理',
+    name: '系统管理',
     meta: {
       title: '系统管理',
       icon: 'zip',
@@ -191,36 +191,6 @@ export const asyncRoutes = [
           }
         ]
       },
-
-      // 客户管理
-      {
-        path: 'customer',
-        component: () => import('@/views/customer/customerinfo'),
-        name: '客户管理',
-        meta: {
-          title: '客户管理',
-          hidden: false,
-          button: false,
-          roles: ['超级管理员'],
-          permissions: ['system:customer:page'],
-          children: [
-
-          ]
-        }
-      }
-    ]
-  },
-  {
-    path: '/customer',
-    component: Layout,
-    name: '客户管理',
-    meta: {
-      title: '系统管理',
-      icon: 'zip',
-      roles: ['超级管理员'],
-      permissions: ['system']
-    },
-    children: [
       {
         path: 'user',
         component: () => import('@/views/permission/user'),
@@ -268,6 +238,69 @@ export const asyncRoutes = [
           }
 
         ]
+      }
+
+    ]
+  },
+  {
+    path: '/customer',
+    component: Layout,
+    name: '客户信息',
+    meta: {
+      title: '客户信息',
+      icon: 'zip',
+      roles: ['超级管理员'],
+      permissions: ['system']
+    },
+    children: [
+      // 客户管理
+      {
+        path: 'customer',
+        component: () => import('@/views/customer/customerinfo'),
+        name: '客户管理',
+        meta: {
+          title: '客户管理',
+          hidden: false,
+          button: false,
+          roles: ['超级管理员'],
+          permissions: ['system:customer:page'],
+          children: [
+            {
+              path: '/customerinfo/add',
+              name: 'CustomerInfoAdd',
+              meta: {
+                title: '客户添加',
+                hidden: true,
+                button: true,
+                roles: ['超级管理员'],
+                permissions: ['customerinfo:add']
+              }
+            },
+            {
+              path: '/customerinfo/update',
+              name: 'CustomerInfoUpdate',
+              meta: {
+                title: '客户修改',
+                hidden: true,
+                button: true,
+                roles: ['超级管理员'],
+                permissions: ['customerinfo:update']
+              }
+            },
+            {
+              path: '/customerinfo/delete',
+              name: 'CustomerInfoDelete',
+              meta: {
+                title: '客户修改',
+                hidden: true,
+                button: true,
+                roles: ['超级管理员'],
+                permissions: ['customerinfo:delete']
+              }
+            }
+
+          ]
+        }
       }
     ]
   },
