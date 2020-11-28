@@ -175,7 +175,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     @SneakyThrows
     @Override
     @Transactional
-    public Result endOrder(WxUseOrderRequest request) {
+    public Result endOrder(WxEndOrderRequest request) {
         log.info("接收参数Request=" + objectMapper.writeValueAsString(request));
         Date finalTime = new Date();
         String orderNo = request.getOrderNo();

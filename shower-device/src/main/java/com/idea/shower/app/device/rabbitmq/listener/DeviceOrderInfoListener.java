@@ -6,6 +6,7 @@ import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.rabbitmq.client.Channel;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
@@ -31,9 +32,11 @@ public class DeviceOrderInfoListener {
 
     @SneakyThrows
     @RabbitHandler
-    public void addOrder(@Payload DeviceOrderDto deviceOrderDto, @Headers Map<String, Object> headers, Channel channel) {
+    public void addOrder(@Payload DeviceOrderDto deviceOrderDto, @Headers Map<String, Object> headers, Channel channel, Message message) {
         log.info(deviceOrderDto.toString());
         deviceProcessService.addOrder(deviceOrderDto);
+        String messageId = message.getMessageProperties().getMessageId();
+        log.info("messageId:" + messageId);
 //        String messageId = (String) headers.get(AmqpHeaders.CORRELATION_ID);
         channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
     }
