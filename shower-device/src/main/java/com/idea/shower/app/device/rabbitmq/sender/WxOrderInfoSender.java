@@ -1,6 +1,6 @@
 package com.idea.shower.app.device.rabbitmq.sender;
 
-import com.idea.shower.commons.pojo.WxUseOrderRequest;
+import com.idea.shower.commons.pojo.WxEndOrderRequest;
 
 /**
  * @program: shower-01
@@ -10,5 +10,5 @@ import com.idea.shower.commons.pojo.WxUseOrderRequest;
  */
 public interface WxOrderInfoSender {
 
-    void endOrder(WxUseOrderRequest request);
+    void endOrder(WxEndOrderRequest request);
 }

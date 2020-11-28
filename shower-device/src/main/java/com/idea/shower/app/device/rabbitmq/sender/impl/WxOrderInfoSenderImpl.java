@@ -3,7 +3,7 @@ package com.idea.shower.app.device.rabbitmq.sender.impl;
 import cn.hutool.core.lang.Snowflake;
 import com.idea.shower.app.device.rabbitmq.sender.WxOrderInfoSender;
 import com.idea.shower.commons.constants.Queues;
-import com.idea.shower.commons.pojo.WxUseOrderRequest;
+import com.idea.shower.commons.pojo.WxEndOrderRequest;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +22,7 @@ public class WxOrderInfoSenderImpl implements WxOrderInfoSender {
     @Autowired
     private Snowflake snowflake;
     @Override
-    public void endOrder(WxUseOrderRequest request) {
+    public void endOrder(WxEndOrderRequest request) {
         rabbitTemplate.convertAndSend(Queues.QUEUE_WX_ORDER_END,request,new CorrelationData(snowflake.nextIdStr()));
     }
 }
