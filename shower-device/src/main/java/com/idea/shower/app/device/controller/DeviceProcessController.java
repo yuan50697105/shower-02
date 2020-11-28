@@ -1,8 +1,8 @@
 package com.idea.shower.app.device.controller;
 
-import com.idea.shower.commons.pojo.DeviceOrderDto;
-import com.idea.shower.app.device.service.impl.DeviceProcessServiceImpl;
+import com.idea.shower.app.device.service.DeviceProcessService;
 import com.idea.shower.commons.exception.ResultException;
+import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.commons.pojo.Result;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("device/process")
 public class DeviceProcessController {
     @Autowired
-    private DeviceProcessServiceImpl deviceProcessService;
+    private DeviceProcessService deviceProcessService;
 
     /**
      * 订单下单

@@ -130,6 +130,7 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
         return deviceOrderDto;
     }
 
+    @Override
     public DeviceOrderDto openTheCleaningWaterValve(DeviceOrderDto deviceOrderDto) throws ResultException {
         Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);

@@ -8,7 +8,7 @@ server:
     key-store-password: f1qw1JhG
 spring:
   profiles:
-    active: dbconfig,wx,mvc,redis,commons,iot
+    active: dbconfig,wx,mvc,redis,commons,iot,amqp
 logging:
   level:
     web: debug

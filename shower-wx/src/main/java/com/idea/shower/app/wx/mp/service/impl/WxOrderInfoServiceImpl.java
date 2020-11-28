@@ -12,15 +12,11 @@ import com.github.binarywang.wxpay.bean.result.WxPayUnifiedOrderResult;
 import com.github.binarywang.wxpay.constant.WxPayConstants;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.github.binarywang.wxpay.service.WxPayService;
-import com.idea.shower.commons.pojo.WxAddOrderRequest;
-import com.idea.shower.commons.pojo.WxPayOrderInfo;
-import com.idea.shower.commons.pojo.WxReturnInfo;
-import com.idea.shower.commons.pojo.WxUseOrderRequest;
+import com.idea.shower.app.wx.mp.rabbitmq.sender.DeviceOrderInfoSender;
 import com.idea.shower.app.wx.mp.service.WxDeviceOrderService;
 import com.idea.shower.app.wx.mp.service.WxOrderInfoService;
 import com.idea.shower.commons.exception.ResultRuntimeException;
-import com.idea.shower.commons.pojo.DeviceOrderDto;
-import com.idea.shower.commons.pojo.Result;
+import com.idea.shower.commons.pojo.*;
 import com.idea.shower.db.mybaits.commons.pojo.WxPageResult;
 import com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants;
 import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
@@ -73,6 +69,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     private final Environment environment;
     private final ObjectMapper objectMapper;
     private final WxDeviceOrderService wxDeviceOrderService;
+    private final DeviceOrderInfoSender deviceOrderInfoSender;
 
     /**
      * 添加订单
@@ -126,17 +123,21 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         return ResultUtils.data(map);
     }
 
+    /**
+     * @param orderInfo
+     */
     private void addOrderToDevice(OrderInfo orderInfo) {
         String orderNo = orderInfo.getOrderNo();
         Long deviceId = orderInfo.getDeviceId();
         DeviceOrderDto deviceOrderDto = new DeviceOrderDto();
         deviceOrderDto.withDeviceId(deviceId);
         deviceOrderDto.withOrderNo(orderNo);
-        Result result = wxDeviceOrderService.addOrder(deviceOrderDto);
-        if (ResultUtils.ifOk(result)) {
-            log.info(orderNo + "添加成功");
-            Object data = result.getData();
-        }
+        deviceOrderInfoSender.addOrder(deviceOrderDto);
+//        Result result = wxDeviceOrderService.addOrder(deviceOrderDto);
+//        if (ResultUtils.ifOk(result)) {
+//            log.info(orderNo + "添加成功");
+//            Object data = result.getData();
+//        }
     }
 
     /**

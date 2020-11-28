@@ -1,0 +1,11 @@
+spring:
+  rabbitmq:
+    password: root
+    username: root
+    host: www.yuan50697105.top
+    listener:
+      simple:
+        acknowledge-mode: manual
+      direct:
+        acknowledge-mode: manual
+    publisher-confirm-type: correlated

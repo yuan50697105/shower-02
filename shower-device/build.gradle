@@ -9,4 +9,5 @@ dependencies {
     compile project(':shower-web')
     compile project(':shower-db')
     compile 'com.github.lianjiatech:retrofit-spring-boot-starter:2.2.2'
+    compile 'org.springframework.boot:spring-boot-starter-amqp'
 }

@@ -1,7 +1,5 @@
 package com.idea.shower.app.device.service.impl;
 
-import cn.hutool.json.JSONArray;
-import cn.hutool.json.JSONUtil;
 import com.idea.shower.app.device.client.WxRetrofitClient;
 import com.idea.shower.app.device.converter.MessageBodyConverter;
 import com.idea.shower.app.device.service.DeviceReceiveService;
@@ -69,18 +67,19 @@ public class DeviceReceiveServiceImpl implements DeviceReceiveService {
         log.info("当前方法DeviceReceiveServiceImpl.work15Sec");
 //        {经度,纬度,工作状态,订单,工作时间,暖风开启时间,门状态,淋浴水阀状态,冲洗水阀状态,暖风状态,换气扇状态,串口1状态,串口2状态,是否有人状态}
         SubscribeMessageBody messageBody = SubscribeMessageBody.builder().productKey(productKey).deviceName(deviceName).messageId(messageId).operating("work15Sec").build();
-        JSONArray objects = JSONUtil.parseArray(content);
-        messageBody.withWorkingStatus(objects.getStr(0));
-        messageBody.withOrderNo(objects.getStr(1));
-        messageBody.withWorkingTime(objects.getStr(2));
-        messageBody.withWarmAirOnTime(objects.getStr(3));
-        messageBody.withDoorStatus(objects.getStr(4));
-        messageBody.withShowerValveStatus(objects.getStr(5));
-        messageBody.withFlushingWaterValveStatus(objects.getStr(6));
-        messageBody.withWarmAirCondition(objects.getStr(7));
-        messageBody.withVentilatorStatus(objects.getStr(8));
-        messageBody.withSerial1Status(objects.getStr(9));
-        messageBody.withSerial2Status(objects.getStr(10));
+//        JSONArray objects = JSONUtil.parseArray(content);
+        String[] strings = getStrings(content);
+        messageBody.setWorkingStatus(strings[0]);
+        messageBody.setOrderNo(strings[1]);
+        messageBody.setWorkingTime(strings[2]);
+        messageBody.setWarmAirOnTime(strings[3]);
+        messageBody.setDoorStatus(strings[4]);
+        messageBody.setShowerValveStatus(strings[5]);
+        messageBody.setFlushingWaterValveStatus(strings[6]);
+        messageBody.setWarmAirCondition(strings[7]);
+        messageBody.setVentilatorStatus(strings[8]);
+        messageBody.setSerial1Status(strings[9]);
+        messageBody.setSerial2Status(strings[10]);
         SubscribeMessage subscribeMessage = messageBodyConverter.convert(messageBody);
         subscribeMessageDao.save(subscribeMessage);
 
@@ -91,14 +90,15 @@ public class DeviceReceiveServiceImpl implements DeviceReceiveService {
         log.info("当前方法DeviceReceiveServiceImpl.timing5Min");
 //        {经度,纬度,工作状态,订单,工作时间,暖风开启时间,门状态,淋浴水阀状态,冲洗水阀状态,暖风状态,换气扇状态,串口1状态,串口2状态,是否有人状态}
         SubscribeMessageBody messageBody = SubscribeMessageBody.builder().productKey(productKey).deviceName(deviceName).messageId(messageId).operating("timing5Min").build();
-        JSONArray objects = JSONUtil.parseArray(content);
-        messageBody.withWarmAirOnTime(objects.getStr(0));
-        messageBody.withShowerValveStatus(objects.getStr(1));
-        messageBody.withFlushingWaterValveStatus(objects.getStr(2));
-        messageBody.withWarmAirCondition(objects.getStr(3));
-        messageBody.withVentilatorStatus(objects.getStr(4));
-        messageBody.withSerial1Status(objects.getStr(5));
-        messageBody.withSerial2Status(objects.getStr(6));
+//        JSONArray objects = JSONUtil.parseArray(content);
+        String[] strings = getStrings(content);
+        messageBody.setWarmAirOnTime(strings[0]);
+        messageBody.setShowerValveStatus(strings[1]);
+        messageBody.setFlushingWaterValveStatus(strings[2]);
+        messageBody.setWarmAirCondition(strings[3]);
+        messageBody.setVentilatorStatus(strings[4]);
+        messageBody.setSerial1Status(strings[5]);
+        messageBody.setSerial2Status(strings[6]);
         SubscribeMessage subscribeMessage = messageBodyConverter.convert(messageBody);
         subscribeMessageDao.save(subscribeMessage);
     }
@@ -108,20 +108,21 @@ public class DeviceReceiveServiceImpl implements DeviceReceiveService {
         log.info("当前方法DeviceReceiveServiceImpl.response");
 //        {经度,纬度,工作状态,订单,工作时间,暖风开启时间,门状态,淋浴水阀状态,冲洗水阀状态,暖风状态,换气扇状态,串口1状态,串口2状态,是否有人状态}
         SubscribeMessageBody messageBody = SubscribeMessageBody.builder().productKey(productKey).deviceName(deviceName).messageId(messageId).operating("response").build();
-        JSONArray objects = JSONUtil.parseArray(content);
-        messageBody.withLongitude(objects.getStr(0));
-        messageBody.withLatitude(objects.getStr(1));
-        messageBody.withWorkingStatus(objects.getStr(2));
-        messageBody.withOrderNo(objects.getStr(3));
-        messageBody.withWorkingTime(objects.getStr(4));
-        messageBody.withWarmAirOnTime(objects.getStr(5));
-        messageBody.withDoorStatus(objects.getStr(6));
-        messageBody.withShowerValveStatus(objects.getStr(7));
-        messageBody.withFlushingWaterValveStatus(objects.getStr(8));
-        messageBody.withWarmAirCondition(objects.getStr(9));
-        messageBody.withVentilatorStatus(objects.getStr(10));
-        messageBody.withSerial1Status(objects.getStr(11));
-        messageBody.withSerial2Status(objects.getStr(12));
+//        JSONArray objects = JSONUtil.parseArray(content);
+        String[] strings = getStrings(content);
+        messageBody.setLongitude(strings[0]);
+        messageBody.setLatitude(strings[1]);
+        messageBody.setWorkingStatus(strings[2]);
+        messageBody.setOrderNo(strings[3]);
+        messageBody.setWorkingTime(strings[4]);
+        messageBody.setWarmAirOnTime(strings[5]);
+        messageBody.setDoorStatus(strings[6]);
+        messageBody.setShowerValveStatus(strings[7]);
+        messageBody.setFlushingWaterValveStatus(strings[8]);
+        messageBody.setWarmAirCondition(strings[9]);
+        messageBody.setVentilatorStatus(strings[10]);
+        messageBody.setSerial1Status(strings[11]);
+        messageBody.setSerial2Status(strings[12]);
         SubscribeMessage subscribeMessage = messageBodyConverter.convert(messageBody);
         subscribeMessageDao.save(subscribeMessage);
         List<SubscribeMessage> subscribeMessages = subscribeMessageDao.getByOrderNo(subscribeMessage.getOrderNo());
@@ -140,4 +141,9 @@ public class DeviceReceiveServiceImpl implements DeviceReceiveService {
         }
     }
 
+
+    private String[] getStrings(String content) {
+        content = content.replace("\\{|\\}", "");
+        return content.split(",");
+    }
 }

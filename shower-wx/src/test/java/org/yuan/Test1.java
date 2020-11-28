@@ -1,6 +1,7 @@
 package org.yuan;
 
 import com.idea.shower.app.wx.ShowerWxApplication;
+import com.idea.shower.app.wx.mp.rabbitmq.sender.DeviceOrderInfoSender;
 import com.idea.shower.app.wx.mp.service.WxDeviceOrderService;
 import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.commons.pojo.Result;
@@ -21,14 +22,25 @@ public class Test1 {
 
     @Autowired
     private WxDeviceOrderService deviceOrderService;
+    @Autowired
+    private DeviceOrderInfoSender deviceOrderInfoSender;
 
     @Test
     void t2() {
         DeviceOrderDto deviceOrderDto = new DeviceOrderDto();
-        deviceOrderDto.setOrderNo(UUID.randomUUID().toString().replace("-",""));
+        deviceOrderDto.setOrderNo(UUID.randomUUID().toString().replace("-", ""));
         deviceOrderDto.setDeviceId(3L);
         Result result = deviceOrderService.addOrder(deviceOrderDto);
 
         System.out.println("result = " + result);
+    }
+
+    @Test
+    void t3() {
+        DeviceOrderDto deviceOrderDto = new DeviceOrderDto();
+        deviceOrderDto.setOrderNo(UUID.randomUUID().toString().replace("-", ""));
+        deviceOrderDto.setDeviceId(3L);
+        deviceOrderInfoSender.addOrder(deviceOrderDto);
+
     }
 }
