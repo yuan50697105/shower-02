@@ -42,4 +42,8 @@ public interface DeviceOrderMapper extends BaseDaoMapper<DeviceOrder> {
     int updateStatusByOrderNo(@Param("updatedStatus") Integer updatedStatus, @Param("orderNo") String orderNo);
 
     int updateStatusById(@Param("updatedStatus") Integer updatedStatus, @Param("id") Long id);
+
+    int updateStatusByOrderIdAndDeviceId(@Param("updatedStatus") Integer updatedStatus, @Param("orderId") Long orderId, @Param("deviceId") Long deviceId);
+
+
 }

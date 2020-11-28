@@ -6,7 +6,7 @@ import com.idea.shower.app.device.service.DeviceReceiveService;
 import com.idea.shower.commons.constants.EquipmentOperationConstant;
 import com.idea.shower.commons.exception.ResultException;
 import com.idea.shower.commons.pojo.SubscribeMessageBody;
-import com.idea.shower.commons.pojo.WxUseOrderRequest;
+import com.idea.shower.commons.pojo.WxEndOrderRequest;
 import com.idea.shower.db.mybaits.module.constants.OrderInfoConstants;
 import com.idea.shower.db.mybaits.module.dao.DeviceOrderDao;
 import com.idea.shower.db.mybaits.module.dao.SubscribeMessageDao;
@@ -131,9 +131,8 @@ public class DeviceReceiveServiceImpl implements DeviceReceiveService {
             DeviceOrder deviceOrder = deviceOrderOptional.get();
             if (deviceOrder.getStatus().equals(OrderInfoConstants.OrderStatus.USING)) {
                 if ("0".equals(subscribeMessage.getWorkingStatus())) {
-                    WxUseOrderRequest request = new WxUseOrderRequest();
+                    WxEndOrderRequest request = new WxEndOrderRequest();
                     request.setOrderNo(subscribeMessage.getOrderNo());
-                    request.setDeviceCode(deviceOrder.getDeviceCode());
                     request.setOpenId(deviceOrder.getOpenId());
                     wxRetrofitClient.endOrder(request);
                 }
