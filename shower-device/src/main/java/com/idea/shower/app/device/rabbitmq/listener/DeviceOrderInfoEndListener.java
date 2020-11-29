@@ -4,11 +4,9 @@ import com.idea.shower.app.device.service.control.DeviceProcessService;
 import com.idea.shower.commons.constants.Queues;
 import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
-import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.rabbitmq.client.Channel;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.rabbit.annotation.RabbitHandler;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -19,7 +17,6 @@ import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
-import java.util.Optional;
 
 /**
  * @program: shower-01
@@ -43,13 +40,7 @@ public class DeviceOrderInfoEndListener {
         deviceProcessService.endOrder(deviceOrderDto);
         String messageId = message.getMessageProperties().getMessageId();
         log.info("messageId:" + messageId);
-        Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceOrderDto.getDeviceId());
-        if (deviceInfoOptional.isPresent()) {
-            deviceProcessService.endOrder(deviceOrderDto);
-        } else {
-            throw new AmqpException("设备异常");
-        }
-//        String messageId = (String) headers.get(AmqpHeaders.CORRELATION_ID);
+        deviceProcessService.endOrder(deviceOrderDto);
         channel.basicAck((Long) headers.get(AmqpHeaders.DELIVERY_TAG), false);
     }
 }
