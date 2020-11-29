@@ -11,4 +11,5 @@ dependencies {
     compile 'com.github.lianjiatech:retrofit-spring-boot-starter:2.2.2'
     compile 'org.springframework.boot:spring-boot-starter-amqp'
     compile('org.apache.commons:commons-pool2:2.9.0')
+    compile('redis.clients:jedis:3.3.0')
 }
