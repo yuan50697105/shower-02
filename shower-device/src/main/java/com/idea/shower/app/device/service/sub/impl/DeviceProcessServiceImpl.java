@@ -2,14 +2,14 @@ package com.idea.shower.app.device.service.sub.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.iot.model.v20180120.PubResponse;
-import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.app.device.properties.DeviceListenerProperties;
-import com.idea.shower.app.device.service.sub.DeviceControlService;
 import com.idea.shower.app.device.service.control.DeviceProcessService;
+import com.idea.shower.app.device.service.sub.DeviceControlService;
 import com.idea.shower.app.device.service.sub.DeviceRequestService;
+import com.idea.shower.commons.exception.ResultException;
+import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
-import com.idea.shower.commons.exception.ResultException;
 import com.idea.shower.web.webmvc.utils.ResultUtils;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -51,6 +51,8 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
         }
         return deviceOrderDto;
     }
+
+    @Override
     public DeviceOrderDto endOrder(DeviceOrderDto deviceOrderDto) throws ResultException {
         Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);

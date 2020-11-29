@@ -46,7 +46,7 @@ public class DeviceOrderInfoEndListener {
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceOrderDto.getDeviceId());
         if (deviceInfoOptional.isPresent()) {
             DeviceInfo deviceInfo = deviceInfoOptional.get();
-            deviceProcessService.
+            deviceProcessService
         } else {
             throw new AmqpException("设备异常");
         }

@@ -17,6 +17,8 @@ public interface DeviceProcessService {
      */
     DeviceOrderDto addOrder(DeviceOrderDto deviceOrderDto);
 
+    DeviceOrderDto endOrder(DeviceOrderDto deviceOrderDto) throws ResultException;
+
     /**
      * 开门
      * @param deviceOrderDto

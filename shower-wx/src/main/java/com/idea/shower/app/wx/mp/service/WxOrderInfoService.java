@@ -4,7 +4,6 @@ package com.idea.shower.app.wx.mp.service;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.commons.pojo.*;
 import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
-import lombok.SneakyThrows;
 import org.springframework.transaction.annotation.Transactional;
 
 /**
