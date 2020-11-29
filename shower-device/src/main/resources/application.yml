@@ -7,7 +7,7 @@ aliyun:
 
 spring:
   profiles:
-    active: dbconfig,amqp,redis,mvc,commons
+    active: dbconfig,amqp,redis,mvc,commons,wx
 wx:
   terminal:
     url: http://localhost:8002
