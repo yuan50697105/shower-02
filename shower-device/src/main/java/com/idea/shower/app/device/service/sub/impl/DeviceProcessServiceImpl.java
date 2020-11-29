@@ -1,12 +1,12 @@
-package com.idea.shower.app.device.service.impl;
+package com.idea.shower.app.device.service.sub.impl;
 
 import com.alibaba.fastjson.JSON;
 import com.aliyuncs.iot.model.v20180120.PubResponse;
 import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.app.device.properties.DeviceListenerProperties;
-import com.idea.shower.app.device.service.DeviceControlService;
-import com.idea.shower.app.device.service.DeviceProcessService;
-import com.idea.shower.app.device.service.DeviceRequestService;
+import com.idea.shower.app.device.service.sub.DeviceControlService;
+import com.idea.shower.app.device.service.control.DeviceProcessService;
+import com.idea.shower.app.device.service.sub.DeviceRequestService;
 import com.idea.shower.db.mybaits.module.dao.DeviceInfoDao;
 import com.idea.shower.db.mybaits.module.pojo.DeviceInfo;
 import com.idea.shower.commons.exception.ResultException;
@@ -49,18 +49,19 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
         } else {
             throw new ResultException(ResultUtils.wxDeviceNotFoundError());
         }
-//        Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceAddOrderDto.getDeviceId());
-//        if (deviceInfoOptional.isPresent()) {
-//            DeviceInfo deviceInfo = deviceInfoOptional.get();
-//            if (deviceInfo.getRunStatus().equals(DeviceInfoConstants.DeviceRunningStatus.AVALI)) {
-//                可以下单
-//                String deviceName = deviceInfo.getDeviceName();
-
-//            } else {
-//                deviceAddOrderDto.setResult(ResultUtils.wxDeviceUsingError());
-//                return deviceAddOrderDto;
-//            }
-//        }
+        return deviceOrderDto;
+    }
+    public DeviceOrderDto endOrder(DeviceOrderDto deviceOrderDto) throws ResultException {
+        Long deviceId = deviceOrderDto.getDeviceId();
+        Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
+        if (deviceInfoOptional.isPresent()) {
+            DeviceInfo deviceInfo = deviceInfoOptional.get();
+            PubResponse pubResponse = deviceControlService.workEnd(deviceInfo.getProductKey(), deviceInfo.getCode(), deviceOrderDto.getOrderNo());
+            log.info("pubResponse=" + JSON.toJSONString(pubResponse));
+            deviceOrderDto.setResult(ResultUtils.data(pubResponse));
+        } else {
+            throw new ResultException(ResultUtils.wxDeviceNotFoundError());
+        }
         return deviceOrderDto;
     }
 

@@ -1,8 +1,8 @@
-package com.idea.shower.app.device.service.impl;
+package com.idea.shower.app.device.service.receive.impl;
 
 import com.idea.shower.app.device.client.WxRetrofitClient;
 import com.idea.shower.app.device.converter.MessageBodyConverter;
-import com.idea.shower.app.device.service.DeviceReceiveService;
+import com.idea.shower.app.device.service.receive.DeviceReceiveService;
 import com.idea.shower.commons.constants.EquipmentOperationConstant;
 import com.idea.shower.commons.exception.ResultException;
 import com.idea.shower.commons.pojo.SubscribeMessageBody;

@@ -1,4 +1,4 @@
-package com.idea.shower.app.device.service;
+package com.idea.shower.app.device.service.receive;
 
 import com.idea.shower.commons.exception.ResultException;
 

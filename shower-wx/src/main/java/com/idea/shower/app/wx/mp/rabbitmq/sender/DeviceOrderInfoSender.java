@@ -10,4 +10,7 @@ import com.idea.shower.commons.pojo.DeviceOrderDto;
  */
 public interface DeviceOrderInfoSender {
     void addOrder(DeviceOrderDto deviceOrderDto);
+
+    void endOrder(DeviceOrderDto deviceOrderDto);
+
 }

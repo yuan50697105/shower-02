@@ -4,6 +4,8 @@ package com.idea.shower.app.wx.mp.service;
 import com.github.binarywang.wxpay.exception.WxPayException;
 import com.idea.shower.commons.pojo.*;
 import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
+import lombok.SneakyThrows;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @program: learning-demo-java-01
@@ -19,6 +21,10 @@ public interface WxOrderInfoService {
      * @return 处理结果
      */
     Result addOrder(WxAddOrderRequest wxAddOrderRequest);
+
+    @SneakyThrows
+    @Transactional
+    Result deviceEndOrder(WxEndOrderRequest request);
 
     /**
      * 结束订单

@@ -26,7 +26,7 @@ public class DeviceOrderListener {
 
     @SneakyThrows
     public void endOrder(@Payload WxEndOrderRequest request, @Headers Map<String, Object> map, Channel channel) {
-        wxOrderInfoService.endOrder(request);
+        wxOrderInfoService.deviceEndOrder(request);
         channel.basicAck((Long) map.get(AmqpHeaders.DELIVERY_TAG), false);
     }
 }

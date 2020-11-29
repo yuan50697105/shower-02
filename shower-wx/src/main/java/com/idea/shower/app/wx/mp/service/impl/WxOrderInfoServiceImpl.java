@@ -172,6 +172,35 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         }
     }
 
+    @Override
+    @SneakyThrows
+    @Transactional
+    public Result deviceEndOrder(WxEndOrderRequest request) {
+        log.info("接收参数Request=" + objectMapper.writeValueAsString(request));
+        Date finalTime = new Date();
+        String orderNo = request.getOrderNo();
+        OrderInfo orderInfo = orderInfoDao.getByOrderNoOpt(orderNo).orElseThrow(() -> new ResultRuntimeException(ResultUtils.wxOrderNotExistError()));
+        if (orderInfo.getStatus().equals(OrderInfoConstants.OrderStatus.END_USE)) {
+            throw new ResultRuntimeException(ResultUtils.wxOrderHasCompelete());
+        }
+        OrderItem startingItem = orderItemDao.getStartingItemByOrderId(orderInfo.getId());
+        Date endTime = startingItem.getEndTime();
+        Double waterUse = startingItem.getWaterUse();
+        Double deviceWaterUse = getDeviceWaterUse();
+        if (checkHasExtPriceInfo(finalTime, endTime, waterUse, deviceWaterUse)) {
+            addExtOrderItemPriceInfo(orderInfo, endTime, finalTime, deviceWaterUse - waterUse);
+        }
+        BigDecimal totalPrice = calculationOrderFee(orderInfo);
+        updateOrderToEndUsing(orderInfo, totalPrice);
+        updateDeviceRunStatusAvail(orderInfo.getDeviceId());
+        updateDeviceOrderEnd(orderInfo.getId(), orderInfo.getDeviceId());
+        HashMap<String, Object> map = new HashMap<>();
+        BeanUtil.beanToMap(request);
+        map.put("totalPrice", totalPrice);
+        map.put("endTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        return ResultUtils.ok("订单结束成功", map);
+    }
+
     @SneakyThrows
     @Override
     @Transactional
@@ -198,6 +227,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         BeanUtil.beanToMap(request);
         map.put("totalPrice", totalPrice);
         map.put("endTime", DateUtil.format(new Date(), "yyyy-MM-dd HH:mm:ss"));
+        DeviceOrderDto deviceOrderDto = new DeviceOrderDto();
+        deviceOrderDto.setOrderNo(orderNo);
+        deviceOrderDto.setDeviceId(orderInfo.getDeviceId());
+        deviceOrderDto.setCustomerId(orderInfo.getCustomerId());
+        deviceOrderDto.setCustomerOpenId(orderInfo.getCustomerOpenId());
+        deviceOrderInfoSender.endOrder(deviceOrderDto);
         return ResultUtils.ok("订单结束成功", map);
     }
 

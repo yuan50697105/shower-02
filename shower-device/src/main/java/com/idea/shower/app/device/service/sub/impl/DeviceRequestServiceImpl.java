@@ -1,8 +1,8 @@
-package com.idea.shower.app.device.service.impl;
+package com.idea.shower.app.device.service.sub.impl;
 
 import com.aliyuncs.iot.model.v20180120.PubResponse;
 import com.idea.shower.app.device.sender.MqttSender;
-import com.idea.shower.app.device.service.DeviceRequestService;
+import com.idea.shower.app.device.service.sub.DeviceRequestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

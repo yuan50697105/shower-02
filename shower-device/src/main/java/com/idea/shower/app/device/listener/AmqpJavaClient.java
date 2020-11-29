@@ -2,7 +2,7 @@ package com.idea.shower.app.device.listener;
 
 import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSON;
-import com.idea.shower.app.device.service.DeviceReceiveService;
+import com.idea.shower.app.device.service.receive.DeviceReceiveService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.qpid.jms.JmsConnection;

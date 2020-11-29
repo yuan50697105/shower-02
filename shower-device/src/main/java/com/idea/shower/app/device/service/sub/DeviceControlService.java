@@ -1,4 +1,4 @@
-package com.idea.shower.app.device.service;
+package com.idea.shower.app.device.service.sub;
 
 import com.aliyuncs.iot.model.v20180120.PubResponse;
 

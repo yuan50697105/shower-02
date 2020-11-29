@@ -1,4 +1,4 @@
-package com.idea.shower.app.device.service;
+package com.idea.shower.app.device.service.control;
 
 import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.commons.exception.ResultException;

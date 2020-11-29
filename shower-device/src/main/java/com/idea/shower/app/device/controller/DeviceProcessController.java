@@ -1,6 +1,6 @@
 package com.idea.shower.app.device.controller;
 
-import com.idea.shower.app.device.service.DeviceProcessService;
+import com.idea.shower.app.device.service.control.DeviceProcessService;
 import com.idea.shower.commons.exception.ResultException;
 import com.idea.shower.commons.pojo.DeviceOrderDto;
 import com.idea.shower.commons.pojo.Result;
