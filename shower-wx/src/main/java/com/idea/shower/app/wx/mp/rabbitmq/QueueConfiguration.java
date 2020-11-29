@@ -24,4 +24,9 @@ public class QueueConfiguration {
     public Queue queue1() {
         return QueueBuilder.nonDurable(Queues.QUEUE_WX_ORDER_END).build();
     }
+
+    @Bean(Queues.QUEUE_DEVICE_ORDER_END)
+    public Queue queue2() {
+        return QueueBuilder.nonDurable(Queues.QUEUE_DEVICE_ORDER_END).build();
+    }
 }

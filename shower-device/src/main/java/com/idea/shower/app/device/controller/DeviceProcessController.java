@@ -30,6 +30,13 @@ public class DeviceProcessController {
         return deviceOrderDto.getResult();
     }
 
+    @PostMapping("order/end")
+    @SneakyThrows
+    public Result orderEnd(@RequestBody DeviceOrderDto deviceOrderDto) {
+        deviceOrderDto = deviceProcessService.endOrder(deviceOrderDto);
+        return deviceOrderDto.getResult();
+    }
+
     /**
      * 开门
      */
@@ -76,6 +83,13 @@ public class DeviceProcessController {
     @PostMapping("open/cleaning/water")
     public Result openTheCleaningWaterValve( DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.openTheCleaningWaterValve(deviceOrderDto);
+        return deviceOrderDto.getResult();
+    }
+
+    @SneakyThrows
+    @GetMapping("reset/device")
+    public Result resetDevice(DeviceOrderDto deviceOrderDto) {
+        deviceOrderDto = deviceProcessService.resetDevice(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
 

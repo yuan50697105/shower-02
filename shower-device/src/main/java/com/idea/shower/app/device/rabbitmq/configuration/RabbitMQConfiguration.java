@@ -25,4 +25,8 @@ public class RabbitMQConfiguration {
     }
 
 
+    @Bean(Queues.QUEUE_DEVICE_ORDER_END)
+    public Queue queue3(){
+        return QueueBuilder.nonDurable(Queues.QUEUE_DEVICE_ORDER_END).build();
+    }
 }

@@ -148,4 +148,20 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
         }
         return deviceOrderDto;
     }
+
+    @Override
+    public DeviceOrderDto resetDevice(DeviceOrderDto deviceOrderDto) throws ResultException {
+        Long deviceId = deviceOrderDto.getDeviceId();
+        Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
+        if (deviceInfoOptional.isPresent()) {
+            DeviceInfo deviceInfo = deviceInfoOptional.get();
+            String deviceName = deviceInfo.getDeviceName();
+            PubResponse pubResponse = deviceRequestService.resetDevice(deviceInfo.getProductKey(), deviceInfo.getCode());
+            deviceOrderDto.setResult(ResultUtils.ok("成功", pubResponse));
+            log.info("pubResponse=" + JSON.toJSONString(pubResponse));
+        } else {
+            throw new ResultException(ResultUtils.wxDeviceNotFoundError());
+        }
+        return deviceOrderDto;
+    }
 }
