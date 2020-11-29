@@ -3,5 +3,10 @@
     <histories>
       <item value="终端" />
     </histories>
+    <option name="languageScores">
+      <map>
+        <entry key="ENGLISH" value="1" />
+      </map>
+    </option>
   </component>
 </application>
