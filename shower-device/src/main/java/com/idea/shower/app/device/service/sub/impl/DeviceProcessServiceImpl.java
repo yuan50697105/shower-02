@@ -39,6 +39,7 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
     @Override
     @SneakyThrows
     public DeviceOrderDto addOrder(DeviceOrderDto deviceOrderDto) {
+        log.info("DeviceProcessServiceImpl.addOrder");
         Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
         if (deviceInfoOptional.isPresent()) {
@@ -54,6 +55,7 @@ public class DeviceProcessServiceImpl implements DeviceProcessService {
 
     @Override
     public DeviceOrderDto endOrder(DeviceOrderDto deviceOrderDto) throws ResultException {
+        log.info("DeviceProcessServiceImpl.endOrder");
         Long deviceId = deviceOrderDto.getDeviceId();
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceId);
         if (deviceInfoOptional.isPresent()) {
