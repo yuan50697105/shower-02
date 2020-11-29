@@ -22,7 +22,6 @@ public interface WxOrderInfoService {
      */
     Result addOrder(WxAddOrderRequest wxAddOrderRequest);
 
-    @SneakyThrows
     @Transactional
     Result deviceEndOrder(WxEndOrderRequest request);
 
