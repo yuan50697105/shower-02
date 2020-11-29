@@ -1,6 +1,7 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="connector" />
       <item value="1332998964047470080" />
       <item value="终端" />
     </histories>
@@ -10,5 +11,13 @@
         <entry key="ENGLISH" value="1" />
       </map>
     </option>
+  </component>
+  <component name="Settings">
+    <option name="googleTranslateSettings">
+      <google-translate>
+        <option name="useTranslateGoogleCom" value="true" />
+      </google-translate>
+    </option>
+    <option name="ignoreRegExp" value="" />
   </component>
 </application>
