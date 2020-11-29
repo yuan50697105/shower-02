@@ -10,5 +10,5 @@ dependencies {
     compile project(':shower-db')
     compile 'com.github.lianjiatech:retrofit-spring-boot-starter:2.2.2'
     compile 'org.springframework.boot:spring-boot-starter-amqp'
-    compile('commons-pool:commons-pool:20030825.183949')
+    compile('org.apache.commons:commons-pool2:2.9.0')
 }

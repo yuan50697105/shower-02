@@ -12,7 +12,6 @@ dependencies {
     compile('org.minbox.framework:api-boot-starter-alibaba-oss')
     implementation("org.minbox.framework:api-boot-starter-alibaba-oss")
     runtime('mysql:mysql-connector-java')
-    compile('commons-pool:commons-pool:20030825.183949')
 }
 bootJar {
     enabled = false
