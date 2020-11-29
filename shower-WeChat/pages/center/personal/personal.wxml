@@ -12,11 +12,11 @@
                <view><image src='/static/image/order/orderAll.png' style='width:22px;height:25px;'></image></view>
                <view>全部订单</view>
           </view>
-          <view class='desc'bindtap='WaitPayOrder'>
+          <view class='desc'bindtap='WaitUseOrder'>
                <view><image src='/static/image/order/orderWait.png' style='width:22px;height:25px;'></image></view>
-               <view>待使用订单</view>
+               <view>使用中订单</view>
           </view>
-          <view class='desc' bindtap='WaitUseOrder'>
+          <view class='desc' bindtap='WaitPayOrder'>
                <view><image src='/static/image/order/orderOn.png' style='width:22px;height:25px;'></image></view>
                <view>未付款订单</view>
           </view>

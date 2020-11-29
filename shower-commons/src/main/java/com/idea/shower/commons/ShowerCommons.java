@@ -1,5 +1,6 @@
 package com.idea.shower.commons;
 
+import com.idea.shower.commons.configuration.SnowflakeAlgorithmConfiguration;
 import com.idea.shower.commons.storage.StoreConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.Import;
  * @create: 2020-05-12 20:44
  */
 @Configuration
-@Import(StoreConfiguration.class)
+@Import({StoreConfiguration.class, SnowflakeAlgorithmConfiguration.class})
 @ComponentScan
 public class ShowerCommons {
 }

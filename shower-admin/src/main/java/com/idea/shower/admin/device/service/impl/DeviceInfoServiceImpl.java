@@ -17,7 +17,7 @@ import com.idea.shower.db.mybaits.module.pojo.query.DeviceInfoQuery;
 import io.renren.common.service.impl.CrudServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
-import org.minbox.framework.api.boot.storage.response.ApiBootObjectStorageResponse;
+import org.minbox.framework.oss.ObjectStorageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -145,7 +145,7 @@ public class DeviceInfoServiceImpl extends CrudServiceImpl<DeviceInfoMapper, Dev
     @Override
     public Result<?> QRCode(DeviceInfoVo deviceInfoVo) {
         String pictureUrl = deviceInfoDao.getByIdOpt(deviceInfoVo.getId()).map(DeviceInfo::getPictureUrl).orElse("");
-        ApiBootObjectStorageResponse response = qCodeService.createGoodShareImageResponse(deviceInfoVo.getId().toString(), pictureUrl, deviceInfoVo.getDeviceName());
+        ObjectStorageResponse response = qCodeService.createGoodShareImageResponse(deviceInfoVo.getId().toString(), pictureUrl, deviceInfoVo.getDeviceName());
         DeviceInfoVo infoVo = get(deviceInfoVo.getId());
         if (infoVo == null) {
             return ResultInfo.error("未找到设备");

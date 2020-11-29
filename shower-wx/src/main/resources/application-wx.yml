@@ -18,3 +18,6 @@ wx:
     sub-app-id:
     sub-mch-id:
     url: https://www.yuan50697105.top:8002/wx/order/notify
+device:
+  terminal:
+    device-terminal-url: http://localhost:8080/

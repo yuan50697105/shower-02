@@ -21,24 +21,35 @@
         <result column="del_flag" property="delFlag"/>
         <result column="creator" property="creator"/>
         <result column="create_date" property="createDate"/>
+        <result column="area_id" property="areaId"/>
+        <result column="name" property="name"/>
     </resultMap>
     <select id="selectPageByQuery" resultType="com.idea.shower.db.mybaits.module.pojo.ao.PriceInfoAo">
         select pi.id,
-               pi.create_date,
-               pi.update_date,
-               pi.creator,
-               pi.updater,
-               pi.del_flag,
-               pi.code,
-               pi.type,
-               pi.price_code,
-               pi.time_price,
-               pi.time_interval,
-               pi.time_unit,
-               pi.water_price,
-               pi.water_interval,
-               pi.water_unit,
-               pi.enabled
+        pi.create_date,
+        pi.update_date,
+        pi.creator,
+        pi.updater,
+        pi.del_flag,
+        pi.code,
+        pi.type,
+        pi.price_code,
+        pi.time_price,
+        pi.time_interval,
+        pi.time_unit,
+        pi.water_price,
+        pi.water_interval,
+        pi.water_unit,
+        pi.enabled,
+        pi.area_id,
+        ai.name,
+        ai.code
         from price_info pi
+        left join area_info ai on ai.id = pi.area_id
+        <where>
+            <if test="query.areaId != null">
+                and pi.area_id = #{query.areaId,jdbcType=BIGINT}
+            </if>
+        </where>
     </select>
 </mapper>

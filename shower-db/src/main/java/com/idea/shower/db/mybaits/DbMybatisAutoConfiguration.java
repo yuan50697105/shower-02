@@ -18,7 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 @ComponentScan
 @MapperScan(basePackages = "com.idea.shower.db.mybaits.module.mapper")
 public class DbMybatisAutoConfiguration {
-    @Bean
+//    @Bean
     public Snowflake snowflake() {
         return IdUtil.createSnowflake(1, 1);
     }

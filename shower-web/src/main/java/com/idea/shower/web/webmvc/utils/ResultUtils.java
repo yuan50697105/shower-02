@@ -1,6 +1,7 @@
 package com.idea.shower.web.webmvc.utils;
 
-import com.idea.shower.web.webmvc.pojo.Result;
+
+import com.idea.shower.commons.pojo.Result;
 
 /**
  * @program: shower-01
@@ -127,6 +128,14 @@ public class ResultUtils {
         return error(ResultConstants.WX_ERROR_CODE, ResultConstants.OPEN_ID_CANNOT_BE_EMPTY);
     }
 
+    public static Result wxDeviceUsingError() {
+        return error(ResultConstants.WX_ERROR_CODE, ResultConstants.THE_CURRENT_DEVICE_IS_IN_USE_CANNOT_PLACE_AN_ORDER);
+    }
+
+    public static boolean ifOk(Result result) {
+        return result.getCode().equals(ResultConstants.OK_CODE);
+    }
+
     public static class ResultConstants {
         public final static Integer OK_CODE = 200;
         public final static String OK_MESSAGE = "操作成功";
@@ -150,5 +159,6 @@ public class ResultUtils {
         public static final String ORDER_HAS_COMPLETE = "订单已完成";
         public static final String ORDER_NOT_CANCEL_MESSAGE = "此订单超出可取消时间";
         public static final String OPEN_ID_CANNOT_BE_EMPTY = "openId 不能为空";
+        public static final String THE_CURRENT_DEVICE_IS_IN_USE_CANNOT_PLACE_AN_ORDER = "当前设备使用中，不能下单";
     }
 }

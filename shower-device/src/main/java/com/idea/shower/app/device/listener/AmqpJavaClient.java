@@ -1,12 +1,21 @@
 package com.idea.shower.app.device.listener;
 
-import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
+import com.alibaba.fastjson.JSON;
+import com.idea.shower.app.device.service.receive.DeviceReceiveService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.qpid.jms.JmsConnection;
 import org.apache.qpid.jms.JmsConnectionListener;
 import org.apache.qpid.jms.message.JmsInboundMessageDispatch;
+import org.apache.qpid.jms.message.JmsMessage;
+import org.apache.qpid.jms.meta.JmsConsumerId;
+import org.apache.qpid.jms.meta.JmsConsumerInfo;
+import org.springframework.beans.BeansException;
+import org.springframework.beans.factory.InitializingBean;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -15,7 +24,6 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.jms.*;
 import javax.naming.Context;
 import javax.naming.InitialContext;
-import java.lang.IllegalStateException;
 import java.net.URI;
 import java.util.Hashtable;
 import java.util.UUID;
@@ -26,8 +34,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 @Slf4j
-public class AmqpJavaClient {
-
+public class AmqpJavaClient implements InitializingBean, ApplicationContextAware {
     private final JmsConnectionListener myJmsConnectionListener = new JmsConnectionListener() {
         /**
          * 连接成功建立
@@ -63,6 +70,13 @@ public class AmqpJavaClient {
 
         @Override
         public void onInboundMessage(JmsInboundMessageDispatch envelope) {
+            JmsConsumerId consumerId = envelope.getConsumerId();
+            JmsConsumerInfo consumerInfo = envelope.getConsumerInfo();
+            JmsMessage message = envelope.getMessage();
+            int redeliveryCount = envelope.getRedeliveryCount();
+            log.info("consumerId:" + JSON.toJSONString(consumerId));
+            log.info("consumerInfo:" + JSON.toJSONString(consumerInfo));
+            log.info("message:" + JSON.toJSONString(message));
         }
 
         @Override
@@ -99,6 +113,8 @@ public class AmqpJavaClient {
             }
         }
     };
+    @Autowired
+    private DeviceReceiveService deviceReceiveService;
 
     public static void main(String[] args) {
         System.out.println("JSONUtil.toJsonStr(\"/a12mkmuZtyi/${deviceName}/user/contro\".split(\"/\")) = " + JSONUtil.toJsonStr("/a12mkmuZtyi/${deviceName}/user/contro".split("/")));
@@ -120,52 +136,9 @@ public class AmqpJavaClient {
             String[] strings = topic.split("/");
             String productKey = strings[1];
             String deviceName = strings[2];
-            String user = strings[3];
-            String topic0 = strings[4];
-            JSONArray objects;
-            Long deviceId;
-            Long status;
-            Double lat;
-            Double longa;
-            Double waterTemp01;
-            Double waterTemp02;
-            Double waterAmount01;
-            Double waterAmount02;
-            Integer lightingCount;
-            Double waterUse;
-            Double waterSpeed01;
-            Double waterSpeed02;
-            Integer waterOpen;
-            Integer totalServiceTime;
-            switch (topic0) {
-//                心跳维持
-                case "heartbeat":
-                    objects = JSONUtil.parseArray(content);
-                    deviceId = (Long) objects.get(0);
-                    status = (Long) objects.get(1);
-                    lat = (Double) objects.get(2);
-                    longa = (Double) objects.get(3);
-                    waterTemp01 = (Double) objects.get(4);
-//                    waterTemp02 = (Double) objects.get(5);
-                    waterAmount01 = (Double) objects.get(6);
-//                    waterAmount02 = (Double) objects.get(7);
-                    lightingCount = (Integer) objects.get(8);
-                    waterUse = (Double) objects.get(9);
-                    break;
-//                    工作状态
-                case "work":
-                    objects = JSONUtil.parseArray(content);
-                    deviceId = (Long) objects.get(0);
-                    status = (Long) objects.get(1);
-                    waterSpeed01 = (Double) objects.get(2);
-//                    waterSpeed02 = (Double) objects.get(3);
-                    lightingCount = (Integer) objects.get(4);
-                    waterOpen = (Integer) objects.get(5);
-                    totalServiceTime = (Integer) objects.get(6);
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + topic0);
-            }
+            String operating = strings[4];
+            deviceReceiveService.receiveData(productKey, deviceName, operating, messageId, content);
+//
         } catch (Exception e) {
             log.error("processMessage occurs error ", e);
         }
@@ -229,5 +202,14 @@ public class AmqpJavaClient {
         // Create Receiver Link
         MessageConsumer consumer = session.createConsumer(queue);
         consumer.setMessageListener(messageListener);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+
+    }
+
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
     }
 }

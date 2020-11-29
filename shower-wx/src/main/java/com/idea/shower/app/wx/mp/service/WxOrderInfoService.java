@@ -2,12 +2,9 @@ package com.idea.shower.app.wx.mp.service;
 
 
 import com.github.binarywang.wxpay.exception.WxPayException;
-import com.idea.shower.app.wx.mp.pojo.WxAddOrderRequest;
-import com.idea.shower.app.wx.mp.pojo.WxPayOrderInfo;
-import com.idea.shower.app.wx.mp.pojo.WxReturnInfo;
-import com.idea.shower.app.wx.mp.pojo.WxUseOrderRequest;
+import com.idea.shower.commons.pojo.*;
 import com.idea.shower.db.mybaits.module.pojo.query.OrderInfoQuery;
-import com.idea.shower.web.webmvc.pojo.Result;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @program: learning-demo-java-01
@@ -24,13 +21,16 @@ public interface WxOrderInfoService {
      */
     Result addOrder(WxAddOrderRequest wxAddOrderRequest);
 
+    @Transactional
+    Result deviceEndOrder(WxEndOrderRequest request);
+
     /**
      * 结束订单
      *
      * @param wxAddOrderRequest 订单信息封装
      * @return 处理结果
      */
-    Result endOrder(WxUseOrderRequest wxAddOrderRequest);
+    Result endOrder(WxEndOrderRequest wxAddOrderRequest);
 
     /**
      * 预约订单开启房间

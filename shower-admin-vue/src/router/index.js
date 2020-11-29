@@ -123,10 +123,22 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
+  // {
+  //   path: '/icon',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/icons/index'),
+  //       name: 'Icons',
+  //       meta: { title: 'Icons', icon: 'icon', noCache: true }
+  //     }
+  //   ]
+  // },
   {
     path: '/system',
     component: Layout,
-    name: '用户管理',
+    name: '系统管理',
     meta: {
       title: '系统管理',
       icon: 'zip',
@@ -226,7 +238,21 @@ export const asyncRoutes = [
           }
 
         ]
-      },
+      }
+
+    ]
+  },
+  {
+    path: '/customer',
+    component: Layout,
+    name: '客户信息',
+    meta: {
+      title: '客户信息',
+      icon: 'zip',
+      roles: ['超级管理员'],
+      permissions: ['system']
+    },
+    children: [
       // 客户管理
       {
         path: 'customer',
@@ -237,23 +263,47 @@ export const asyncRoutes = [
           hidden: false,
           button: false,
           roles: ['超级管理员'],
-          permissions: ['system:customer:page']
+          permissions: ['system:customer:page'],
+          children: [
+            {
+              path: '/customerinfo/add',
+              name: 'CustomerInfoAdd',
+              meta: {
+                title: '客户添加',
+                hidden: true,
+                button: true,
+                roles: ['超级管理员'],
+                permissions: ['customerinfo:add']
+              }
+            },
+            {
+              path: '/customerinfo/update',
+              name: 'CustomerInfoUpdate',
+              meta: {
+                title: '客户修改',
+                hidden: true,
+                button: true,
+                roles: ['超级管理员'],
+                permissions: ['customerinfo:update']
+              }
+            },
+            {
+              path: '/customerinfo/delete',
+              name: 'CustomerInfoDelete',
+              meta: {
+                title: '客户修改',
+                hidden: true,
+                button: true,
+                roles: ['超级管理员'],
+                permissions: ['customerinfo:delete']
+              }
+            }
+
+          ]
         }
       }
     ]
   },
-  // {
-  //   path: '/icon',
-  //   component: Layout,
-  //   children: [
-  //     {
-  //       path: 'index',
-  //       component: () => import('@/views/icons/index'),
-  //       name: 'Icons',
-  //       meta: { title: 'Icons', icon: 'icon', noCache: true }
-  //     }
-  //   ]
-  // },
   {
     path: '/basics',
     component: Layout,
@@ -261,32 +311,91 @@ export const asyncRoutes = [
     meta: {
       title: '基础管理',
       icon: 'icon',
-      noCache: true
+      noCache: true,
+      hidden: false,
+      button: false,
+      roles: ['超级管理员'],
+      permissions: ['system']
     },
     children: [
       {
         path: 'areainfo',
         component: () => import('@/views/area/areainfo'),
         name: '区域管理',
-        meta: { title: '区域',
+        meta: {
+          title: '区域',
           icon: 'icon',
-          noCache: true }
+          noCache: true,
+          hidden: false,
+          button: false,
+          roles: ['超级管理员'],
+          permissions: ['system:areainfo:page']
+        },
+        children: [
+          {
+            path: '/areainfo/add',
+            name: 'AreaInfoAdd',
+            meta: {
+              title: '区域信息添加',
+              hidden: true,
+              button: true,
+              roles: ['超级管理员'],
+              permissions: ['system:role:add']
+            }
+          },
+          {
+            path: '/areainfo/update',
+            name: 'AreaInfoUpdate',
+            meta: {
+              title: '区域信息编辑',
+              hidden: true,
+              button: true,
+              roles: ['超级管理员'],
+              permissions: ['system:role:update']
+            }
+          },
+          {
+            path: '/system/role/delete',
+            name: 'RoleDelete',
+            meta: {
+              title: '用户修改',
+              hidden: true,
+              button: true,
+              roles: ['超级管理员'],
+              permissions: ['system:role:delete']
+            }
+          }
+        ]
       },
       {
         path: 'areabuilding',
         component: () => import('@/views/area/areabuilding'),
         name: '楼宇信息',
-        meta: { title: '楼宇',
+        meta: {
+          title: '楼宇',
           icon: 'icon',
-          noCache: true }
+          noCache: true
+        }
       },
       {
         path: 'deviceinfo',
         component: () => import('@/views/deviceinfo/deviceinfo'),
         name: '设备信息',
-        meta: { title: '设备',
+        meta: {
+          title: '设备',
           icon: 'icon',
-          noCache: true }
+          noCache: true
+        }
+      },
+      {
+        path: 'priceinfo',
+        component: () => import('@/views/price/priceinfo.vue'),
+        name: '定价信息',
+        meta: {
+          title: '定价信息',
+          icon: 'icon',
+          noCache: true
+        }
       }
     ]
   },
@@ -304,17 +413,21 @@ export const asyncRoutes = [
         path: 'orderinfo',
         component: () => import('@/views/order/orderinfo'),
         name: '订单信息',
-        meta: { title: '订单信息',
+        meta: {
+          title: '订单信息',
           icon: 'icon',
-          noCache: true }
+          noCache: true
+        }
       },
       {
         path: 'deviceinfo',
         component: () => import('@/views/order/orderinfo'),
         name: '订单统计',
-        meta: { title: '订单统计',
+        meta: {
+          title: '订单统计',
           icon: 'icon',
-          noCache: true }
+          noCache: true
+        }
       }
     ]
   },

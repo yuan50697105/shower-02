@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idea.shower.db.mybaits.module.mapper.SubscribeMessageMapper">
+    <select id="selectListByOrderNo" resultType="com.idea.shower.db.mybaits.module.pojo.SubscribeMessage">
+        select id,
+        creator,
+        updater,
+        create_date,
+        update_date,
+        del_flag,
+        product_key,
+        device_name,
+        message_id,
+        operating,
+        receiving_time,
+        longitude,
+        latitude,
+        working_status,
+        order_no,
+        working_time,
+        warm_air_on_time,
+        door_status,
+        shower_valve_status,
+        flushing_water_valve_status,
+        warm_air_condition,
+        ventilator_status,
+        serial1_status,
+        serial2_status,
+        has_someone_status from subscribe_message where
+        order_no=#{orderNo,jdbcType=VARCHAR} and operating='response'
+        order by create_date desc
+    </select>
+</mapper>

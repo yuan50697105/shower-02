@@ -8,4 +8,8 @@ dependencies {
     compile group: 'commons-codec', name: 'commons-codec', version: '1.14'
     compile project(':shower-web')
     compile project(':shower-db')
+    compile 'com.github.lianjiatech:retrofit-spring-boot-starter:2.2.2'
+    compile 'org.springframework.boot:spring-boot-starter-amqp'
+    compile('org.apache.commons:commons-pool2:2.9.0')
+    compile('redis.clients:jedis:3.3.0')
 }

@@ -3,6 +3,7 @@ var util = require('../../utils/util.js');
 var user = require('../../utils/user.js');
 // 引入SDK核心类
 var QQMapWX = require('../../lib/qqmap/qqmap-wx-jssdk.js');
+import Toast from '../../miniprogram_npm/@vant/weapp/toast/toast';
 var qqmapsdk;
 
 const app = getApp()
@@ -105,10 +106,11 @@ Page({
     let userInfo = wx.getStorageSync('userInfo');
   
     var deviceCode = e.target.dataset.code;
-    // var deviceCode = this.data.item.code;
-    var enabled = e.target.dataset.enabled
-    console.log(e)
-    console.log(deviceCode)
+    var runStatus = e.target.dataset.runstatus
+    if(runStatus != 0){
+      Toast("设备正在使用,不可下单。")
+      return
+    }
     util.request(api.AddOrder, {
       openId: userInfo.openId,
       deviceCode: deviceCode,
@@ -116,9 +118,13 @@ Page({
     }, 'POST').then(function (res) {
       console.log(res)
       if (res.code === 200) {
+        wx.setStorageSync('tab', 2);
+        wx.navigateTo({
+          url: "/pages/center/order/order"
+        });
         util.showSuccessToast("下单成功")
       } else {
-        util.showErrorToast(res.message)
+        Toast(res.message)
       }
     });
   },

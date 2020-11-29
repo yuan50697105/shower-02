@@ -23,4 +23,6 @@ public interface DeviceOrderDao extends CommonsDao<DeviceOrder,DeviceOrder> {
     void updateStatusUsingById(Long id);
 
     void updateStatusTimeOutByOrderId(Long orderId);
+
+    void updateStatusEndById(Long orderId, Long deviceId);
 }

@@ -19,39 +19,40 @@
       <text>还没有任何订单呢</text>
     </view>
   </view>
-
-  <view class="orders">
-    <view  class="order"  wx:for="{{orderList}}" wx:key="id">
-      <view class="h" >
-        <view class="l">订单编号：{{item.orderNo}}</view>
-        <view class="r" wx:if="{{item.status==1}}">已下单</view>
-        <view class="r" wx:if="{{item.status==2}}">使用中</view>
-        <view class="r" wx:if="{{item.status==3}}">待付款</view>
-        <view class="r" wx:if="{{item.status==4}}">已支付</view>
-        <view class="r" wx:if="{{item.status==5}}">订单完成</view>
-        <view class="r" wx:if="{{item.status==6}}">订单超时</view>
-        <view class="r" wx:if="{{item.status==7}}">订单取消</view>
-      </view>
-      <view class="goods">
-        <view class="img">
-          <image src="{{item.picture}}"></image>
+  <scroll-view class="order-list js_order_list " scroll-y="true" style="height: 93vh;" bindscrolltolower="onScrollBottom">
+    <view class="orders">
+      <view  class="order"  wx:for="{{orderList}}" wx:key="id">
+        <view class="h" >
+          <view class="l">订单编号：{{item.orderNo}}</view>
+          <view class="r" wx:if="{{item.status==1}}">已下单</view>
+          <view class="r" wx:if="{{item.status==2}}">使用中</view>
+          <view class="r" wx:if="{{item.status==3}}">待付款</view>
+          <view class="r" wx:if="{{item.status==4}}">已支付</view>
+          <view class="r" wx:if="{{item.status==5}}">订单完成</view>
+          <view class="r" wx:if="{{item.status==6}}">订单超时</view>
+          <view class="r" wx:if="{{item.status==7}}">订单取消</view>
         </view>
-        <view class="info"  bindtap="lookDetail" data-no="{{item.orderNo}}">
-          <text class="name">{{item.deviceCode}}</text>
-          <text class="number">下单:{{item.createDate}}</text>
-          <text class="charged">结束:{{item.useEndTime}}</text>
-          <text class="charged">￥5/min</text>
+        <view class="goods">
+          <view class="img">
+            <image src="{{item.picture}}"></image>
+          </view>
+          <view class="info"  bindtap="lookDetail" data-no="{{item.orderNo}}">
+            <text class="name">{{item.deviceCode}}</text>
+            <text class="number">下单:{{item.createDate}}</text>
+            <text class="charged">结束:{{item.useEndTime}}</text>
+            <text class="charged">￥5/min</text>
+          </view>
+          <view class="tab">
+            <view class="chargedCode" wx:if="{{item.status==1}}" data-orderNo="{{item.orderNo}}" data-device="{{item.deviceCode}}"  bindtap="startOrder">开始</view>
+            <view class="chargedCode" wx:if="{{item.status==2}}" data-orderNo="{{item.orderNo}}" data-device="{{item.deviceCode}}"  bindtap="endOrder">结束</view>
+            <view class="chargedCode" wx:if="{{item.status==3}}" data-orderNo="{{item.orderNo}}" data-price="{{item.totalPrice}}" bindtap="goPay">付款</view>
+          </view>
+          
         </view>
-        <view class="tab">
-          <view class="chargedCode" wx:if="{{item.status==1}}" data-orderNo="{{item.orderNo}}" data-device="{{item.deviceCode}}"  bindtap="startOrder">开始</view>
-          <view class="chargedCode" wx:if="{{item.status==2}}" data-orderNo="{{item.orderNo}}" data-device="{{item.deviceCode}}"  bindtap="endOrder">结束</view>
-          <view class="chargedCode" wx:if="{{item.status==3}}" data-orderNo="{{item.orderNo}}" data-price="{{item.totalPrice}}" bindtap="goPay">付款</view>
+        <view class="b">
+          <view class="l">实付：￥{{item.totalPrice}}</view>
         </view>
-        
-      </view>
-      <view class="b">
-        <view class="l">实付：￥{{item.totalPrice}}</view>
       </view>
     </view>
-  </view>
+  </scroll-view>
 </view>

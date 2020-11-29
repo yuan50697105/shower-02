@@ -39,6 +39,11 @@ public class DeviceOrderDaoImpl extends CommonsDaoImpl<DeviceOrder,DeviceOrder, 
     }
 
     @Override
+    public void updateStatusEndById(Long orderId, Long deviceId) {
+        baseDao.updateStatusByOrderIdAndDeviceId(OrderInfoConstants.OrderStatus.END_USE, orderId, deviceId);
+    }
+
+    @Override
     public Optional<DeviceOrder> getByOrderIdOpt(Long orderId) {
         return Optional.ofNullable(baseDao().selectOneByOrderId(orderId));
     }

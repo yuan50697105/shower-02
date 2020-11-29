@@ -1,0 +1,30 @@
+-- auto Generated on 2020-11-25
+-- DROP TABLE IF EXISTS subscribe_message;
+CREATE TABLE subscribe_message(
+	id BIGINT (15) NOT NULL AUTO_INCREMENT COMMENT 'id',
+	creator BIGINT (15) DEFAULT -1 COMMENT 'creator',
+	updater BIGINT (15) DEFAULT -1 COMMENT 'updater',
+	create_date DATETIME DEFAULT '1000-01-01 00:00:00' COMMENT 'createDate',
+	update_date DATETIME DEFAULT '1000-01-01 00:00:00' COMMENT 'updateDate',
+	del_flag VARCHAR (50) DEFAULT '' COMMENT 'delFlag',
+	product_key VARCHAR (50) DEFAULT '' COMMENT '产品编号',
+	device_name VARCHAR (50) DEFAULT '' COMMENT '设备名称',
+	message_id VARCHAR (50) DEFAULT '' COMMENT '消息ID',
+	operating VARCHAR (50) DEFAULT '' COMMENT '操作',
+	receiving_time DATETIME DEFAULT '1000-01-01 00:00:00' COMMENT '接收时间',
+	longitude VARCHAR (50) DEFAULT '' COMMENT '经度',
+	latitude VARCHAR (50) DEFAULT '' COMMENT '纬度',
+	working_status VARCHAR (50) DEFAULT '' COMMENT '工作状态',
+	order_no VARCHAR (50) DEFAULT '' COMMENT '订单号',
+	working_time VARCHAR (50) DEFAULT '' COMMENT '工作时间',
+	warm_air_on_time VARCHAR (50) DEFAULT '' COMMENT '暖风开启时间',
+	door_status VARCHAR (50) DEFAULT '' COMMENT '门状态',
+	shower_valve_status VARCHAR (50) DEFAULT '' COMMENT '淋浴水阀状态',
+	flushing_water_valve_status VARCHAR (50) DEFAULT '' COMMENT '冲洗水阀状态',
+	warm_air_condition VARCHAR (50) DEFAULT '' COMMENT '暖风状态',
+	ventilator_status VARCHAR (50) DEFAULT '' COMMENT '换气扇状态',
+	serial1_status VARCHAR (50) DEFAULT '' COMMENT '串口1状态',
+	serial2_status VARCHAR (50) DEFAULT '' COMMENT '串口2状态',
+	has_someone_status VARCHAR (50) DEFAULT '' COMMENT '是否有人状态',
+	PRIMARY KEY (id)
+)ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT 'subscribe_message';

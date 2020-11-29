@@ -7,8 +7,7 @@ page {
 .orders-switch {
   width: 100%;
   background: #fff;
-  height: 84rpx;
-  /* border-bottom: 1px solid rgba(0,0,0,.15); */
+  height: 6vh;
 }
 
 .orders-switch .item {

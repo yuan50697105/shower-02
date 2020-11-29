@@ -62,6 +62,7 @@ public class DeviceInfo extends BaseDbEntity {
 
     /**
      * 启用状态(0:未启用；1已启用)
+     * @see com.idea.shower.db.mybaits.module.constants.EnableConstants
      */
     private Integer enabled;
 
@@ -102,6 +103,7 @@ public class DeviceInfo extends BaseDbEntity {
 
     /**
      * 运行状态 0 可用 1 使用中
+     * @see com.idea.shower.db.mybaits.module.constants.DeviceInfoConstants.DeviceRunningStatus
      */
     private Integer runStatus;
 
