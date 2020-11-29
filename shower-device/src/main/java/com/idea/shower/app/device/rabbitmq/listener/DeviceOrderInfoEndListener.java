@@ -38,15 +38,14 @@ public class DeviceOrderInfoEndListener {
 
     @SneakyThrows
     @RabbitHandler
-    public void addOrder(@Payload DeviceOrderDto deviceOrderDto, @Headers Map<String, Object> headers, Channel channel, Message message) {
+    public void endOrder(@Payload DeviceOrderDto deviceOrderDto, @Headers Map<String, Object> headers, Channel channel, Message message) {
         log.info(deviceOrderDto.toString());
         deviceProcessService.addOrder(deviceOrderDto);
         String messageId = message.getMessageProperties().getMessageId();
         log.info("messageId:" + messageId);
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceOrderDto.getDeviceId());
         if (deviceInfoOptional.isPresent()) {
-            DeviceInfo deviceInfo = deviceInfoOptional.get();
-            deviceProcessService
+            deviceProcessService.endOrder(deviceOrderDto);
         } else {
             throw new AmqpException("设备异常");
         }
