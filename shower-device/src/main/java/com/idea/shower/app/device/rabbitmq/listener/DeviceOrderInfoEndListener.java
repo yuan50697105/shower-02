@@ -40,7 +40,7 @@ public class DeviceOrderInfoEndListener {
     @RabbitHandler
     public void endOrder(@Payload DeviceOrderDto deviceOrderDto, @Headers Map<String, Object> headers, Channel channel, Message message) {
         log.info(deviceOrderDto.toString());
-        deviceProcessService.addOrder(deviceOrderDto);
+        deviceProcessService.endOrder(deviceOrderDto);
         String messageId = message.getMessageProperties().getMessageId();
         log.info("messageId:" + messageId);
         Optional<DeviceInfo> deviceInfoOptional = deviceInfoDao.getByIdOpt(deviceOrderDto.getDeviceId());
