@@ -1,6 +1,7 @@
 package com.idea.shower.app.wx.mp.rabbitmq.sender.impl;
 
 import cn.hutool.core.lang.Snowflake;
+import cn.hutool.core.lang.UUID;
 import com.idea.shower.app.wx.mp.rabbitmq.sender.DeviceOrderInfoSender;
 import com.idea.shower.commons.constants.Queues;
 import com.idea.shower.commons.pojo.DeviceOrderDto;
@@ -24,7 +25,12 @@ public class DeviceOrderInfoSenderImpl implements DeviceOrderInfoSender {
 
     @Override
     public void addOrder(DeviceOrderDto deviceOrderDto) {
-        rabbitTemplate.convertAndSend(Queues.QUEUE_DEVICE_ORDER_ADD, deviceOrderDto, new CorrelationData(snowflake.nextIdStr()));
+        rabbitTemplate.convertAndSend(Queues.QUEUE_DEVICE_ORDER_ADD, deviceOrderDto, new CorrelationData(UUID.fastUUID().toString()));
+    }
+
+    @Override
+    public void endOrder(DeviceOrderDto deviceOrderDto) {
+        rabbitTemplate.convertAndSend(Queues.QUEUE_DEVICE_ORDER_END, deviceOrderDto, new CorrelationData(UUID.fastUUID().toString()));
     }
 
 }
