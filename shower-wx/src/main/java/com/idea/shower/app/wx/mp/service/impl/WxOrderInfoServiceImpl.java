@@ -111,11 +111,12 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
             case OrderInfoConstants.OrderType.RESERVATION:
                 // TODO: 2020/4/20 添加超时处理
                 addOrderTimeOutToRedis(orderInfo);
-                addOrderToDevice(orderInfo);
+
                 break;
             default:
                 throw new ResultRuntimeException(ResultUtils.dataParamsError("错误订单类型"));
         }
+        addOrderToDevice(orderInfo);
         Map<String, Object> map = BeanUtil.beanToMap(orderInfo);
         //region 是否可下单
         map.put("isAddOrder", deviceInfo.getRunStatus());
@@ -130,8 +131,8 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
         String orderNo = orderInfo.getOrderNo();
         Long deviceId = orderInfo.getDeviceId();
         DeviceOrderDto deviceOrderDto = new DeviceOrderDto();
-        deviceOrderDto.withDeviceId(deviceId);
-        deviceOrderDto.withOrderNo(orderNo);
+        deviceOrderDto.setDeviceId(deviceId);
+        deviceOrderDto.setOrderNo(orderNo);
         deviceOrderInfoSender.addOrder(deviceOrderDto);
 //        Result result = wxDeviceOrderService.addOrder(deviceOrderDto);
 //        if (ResultUtils.ifOk(result)) {
@@ -176,6 +177,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     @SneakyThrows
     @Transactional
     public Result deviceEndOrder(WxEndOrderRequest request) {
+        log.info("WxOrderInfoServiceImpl.deviceEndOrder");
         log.info("接收参数Request=" + objectMapper.writeValueAsString(request));
         Date finalTime = new Date();
         String orderNo = request.getOrderNo();
@@ -205,6 +207,7 @@ public class WxOrderInfoServiceImpl implements WxOrderInfoService {
     @Override
     @Transactional
     public Result endOrder(WxEndOrderRequest request) {
+        log.info("WxOrderInfoServiceImpl.endOrder");
         log.info("接收参数Request=" + objectMapper.writeValueAsString(request));
         Date finalTime = new Date();
         String orderNo = request.getOrderNo();

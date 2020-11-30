@@ -8,6 +8,7 @@ import com.idea.shower.commons.pojo.DeviceOrderDto;
 import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 /**
@@ -24,11 +25,13 @@ public class DeviceOrderInfoSenderImpl implements DeviceOrderInfoSender {
     private Snowflake snowflake;
 
     @Override
+    @Async
     public void addOrder(DeviceOrderDto deviceOrderDto) {
         rabbitTemplate.convertAndSend(Queues.QUEUE_DEVICE_ORDER_ADD, deviceOrderDto, new CorrelationData(UUID.fastUUID().toString()));
     }
 
     @Override
+    @Async
     public void endOrder(DeviceOrderDto deviceOrderDto) {
         rabbitTemplate.convertAndSend(Queues.QUEUE_DEVICE_ORDER_END, deviceOrderDto, new CorrelationData(UUID.fastUUID().toString()));
     }

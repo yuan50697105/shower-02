@@ -13,7 +13,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@With
 public class DeviceOrderDto extends BaseMessageDto {
     private Long deviceId;
     private String orderNo;

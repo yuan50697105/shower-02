@@ -18,4 +18,8 @@ public class WxEndOrderRequest {
      * 用户ID
      */
     private String openId;
+    /**
+     * 设备编号
+     */
+    private String deviceCode;
 }

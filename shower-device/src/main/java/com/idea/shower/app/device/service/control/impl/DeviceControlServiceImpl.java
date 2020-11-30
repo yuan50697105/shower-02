@@ -24,12 +24,12 @@ public class DeviceControlServiceImpl implements DeviceControlService {
     }
 
     @Override
-    public PubResponse workStart(String productKey, String deviceName, String orderNo) {
-        return control(productKey, deviceName, "{71," + orderNo + "}");
+    public PubResponse workEnd(String productKey, String deviceName, String orderNo) {
+        return control(productKey, deviceName, "{72," + orderNo + "}");
     }
 
     @Override
-    public PubResponse workEnd(String productKey, String deviceName, String orderNo) {
-        return control(productKey, deviceName, "{72," + orderNo + "}");
+    public PubResponse workStart(String productKey, String deviceName, String orderNo) {
+        return control(productKey, deviceName, "{71," + orderNo + "}");
     }
 }
