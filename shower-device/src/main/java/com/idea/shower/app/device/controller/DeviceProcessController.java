@@ -41,7 +41,7 @@ public class DeviceProcessController {
      * 开门
      */
     @PostMapping("open/door")
-    public Result openTheDoor( DeviceOrderDto deviceOrderDto) throws ResultException {
+    public Result openTheDoor(@RequestBody DeviceOrderDto deviceOrderDto) throws ResultException {
         deviceOrderDto = deviceProcessService.openTheDoor(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
@@ -50,7 +50,7 @@ public class DeviceProcessController {
      * 关门
      */
     @PostMapping("close/door")
-    public Result closeTheDoor( DeviceOrderDto deviceOrderDto) throws ResultException {
+    public Result closeTheDoor(@RequestBody DeviceOrderDto deviceOrderDto) throws ResultException {
         deviceOrderDto = deviceProcessService.closeTheDoor(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
@@ -60,7 +60,7 @@ public class DeviceProcessController {
      */
     @SneakyThrows
     @PostMapping("turn/on/shower")
-    public Result turnOnTheShowerValve( DeviceOrderDto deviceOrderDto) {
+    public Result turnOnTheShowerValve(@RequestBody DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.turnOnTheShowerValve(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
@@ -70,7 +70,7 @@ public class DeviceProcessController {
      */
     @SneakyThrows
     @PostMapping("turn/off/shower")
-    private Result turnOffTheShowerValve( DeviceOrderDto deviceOrderDto) {
+    private Result turnOffTheShowerValve(@RequestBody DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.turnOffTheShowerValve(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
@@ -81,14 +81,25 @@ public class DeviceProcessController {
      */
     @SneakyThrows
     @PostMapping("open/cleaning/water")
-    public Result openTheCleaningWaterValve( DeviceOrderDto deviceOrderDto) {
+    public Result openTheCleaningWaterValve(@RequestBody DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.openTheCleaningWaterValve(deviceOrderDto);
+        return deviceOrderDto.getResult();
+    }
+
+    /**
+     * 开清洗水阀
+     *
+     */
+    @SneakyThrows
+    @PostMapping("close/cleaning/water")
+    public Result closeTheCleaningWaterValve(@RequestBody DeviceOrderDto deviceOrderDto) {
+        deviceOrderDto = deviceProcessService.closeTheCleaningWaterValve(deviceOrderDto);
         return deviceOrderDto.getResult();
     }
 
     @SneakyThrows
     @GetMapping("reset/device")
-    public Result resetDevice(DeviceOrderDto deviceOrderDto) {
+    public Result resetDevice( DeviceOrderDto deviceOrderDto) {
         deviceOrderDto = deviceProcessService.resetDevice(deviceOrderDto);
         return deviceOrderDto.getResult();
     }

@@ -35,5 +35,7 @@ public interface DeviceProcessService {
 
     DeviceOrderDto openTheCleaningWaterValve(DeviceOrderDto deviceOrderDto) throws ResultException;
 
+    DeviceOrderDto closeTheCleaningWaterValve(DeviceOrderDto deviceOrderDto) throws ResultException;
+
     DeviceOrderDto resetDevice(DeviceOrderDto deviceOrderDto) throws ResultException;
 }
