@@ -1,4 +1,9 @@
 <application>
+  <component name="GiteeAccounts">
+    <account id="67b2243d-7c2f-4977-b131-df60156b9351" name="710575900@qq.com">
+      <Server host="gitee.com" />
+    </account>
+  </component>
   <component name="GiteeSettings">
     <option name="CLONE_GIT_USING_SSH" value="true" />
   </component>
