@@ -16,7 +16,8 @@
   </view>
   <view class="section-nav">
     <view class="code">{{item.code}}</view>
-    <view class="t" data-code="{{item.code}}" data-runstatus="{{item.runStatus}}" bindtap="useDevice">开始下单</view>
+    <view wx:if="{{item.runStatus==0}}" class="t" data-code="{{item.code}}" data-runstatus="{{item.runStatus}}" bindtap="useDevice">开始下单</view>
+    <view wx:if="{{item.runStatus==1}}" class="t" >正在使用</view>
   </view>
 </view>
 <view class="page-body">

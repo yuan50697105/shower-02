@@ -50,12 +50,7 @@ Page({
         });
       }
     }
-    //获取区域信息
-    this.areasList();
-    //获取设备列表信息
-    this.deviceList();
-    //获取订单信息
-    this.getOrderList();
+    
   },
 
 
@@ -63,7 +58,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.setData({
+      //先清空列表及分页信息
+      dataList: [],
+      page: 1,
+      totalPages: 1,
+      orderList: []
+    })
+    //获取区域信息
+    this.areasList();
+    //获取设备列表信息
+    this.deviceList();
+    //获取订单信息
+    this.getOrderList();
   },
 
 
@@ -195,6 +202,7 @@ Page({
 
   //页面下单
   useDevice:function(e){
+    let that = this
     if (!app.globalData.hasLogin) {
       wx.navigateTo({
         url: "/pages/auth/login/login"
@@ -217,41 +225,23 @@ Page({
       }, 'POST').then(function (res) {
         console.log(res)
         if (res.code === 200) {
+          wx.setStorageSync('tab', 2);
+          wx.navigateTo({
+            url: "/pages/center/order/order"
+          });
           util.showSuccessToast("下单成功")
+           ///刷新
+           that.getOrderList();
+           that.setData({
+             dataList: []
+           })
+           that.deviceList();
         }else{
           util.showErrorToast(res.message)
         }
       });
     }
-    ///刷新
-    this.getOrderList()
-    if (this.data.totalPages > this.data.page) {
-      this.setData({
-        page: this.data.page + 1
-      });
-      this.deviceList();
-    } else {
-      wx.showToast({
-        title: '没有更多房间了',
-        icon: 'none',
-        duration: 2000
-      });
-      return false;
-    }
-  },
-  //跳转进入设备详情页
-  deviceDetail: function (event){
-    if (!app.globalData.hasLogin) {
-      wx.navigateTo({
-        url: "/pages/auth/login/login"
-      });
-      return;
-    }else{
-      var id = event.currentTarget.dataset.id;
-      wx.navigateTo({
-        url: "/pages/deviceDetail/deviceDetail?id=" + id
-      });
-    }
+
   },
   //获取开始状态的订单
   getOrderList() {
@@ -267,7 +257,7 @@ Page({
       if (res.code === 200) {
         if (res.data.list != undefined){
           that.setData({
-            orderList: that.data.orderList.concat(res.data.list),
+            orderList: res.data.list
           });
         }
       }
@@ -290,4 +280,18 @@ Page({
       });
     }
   },
+  //跳转进入设备详情页
+  deviceDetail: function (event){
+    if (!app.globalData.hasLogin) {
+      wx.navigateTo({
+        url: "/pages/auth/login/login"
+      });
+      return;
+    }else{
+      var id = event.currentTarget.dataset.id;
+      wx.navigateTo({
+        url: "/pages/deviceDetail/deviceDetail?id=" + id
+      });
+    }
+  }
 })
