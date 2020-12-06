@@ -8,6 +8,7 @@
         <option name="generateWithIfTest" value="true" />
         <option name="userMacSet">
           <set>
+            <option value="0025_3855_81" />
             <option value="D4-3A-65-07-AE-11" />
           </set>
         </option>
