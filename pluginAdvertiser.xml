@@ -2569,6 +2569,11 @@
                       <FeaturePluginData displayName="Spring" pluginName="Spring" pluginId="com.intellij.spring" />
                     </value>
                   </entry>
+                  <entry key="Struts2">
+                    <value>
+                      <FeaturePluginData displayName="Struts 2" pluginName="Struts 2" pluginId="com.intellij.struts2" />
+                    </value>
+                  </entry>
                   <entry key="WebServicesClient">
                     <value>
                       <FeaturePluginData displayName="WebServices Client" pluginName="Java EE: Web Services (JAX-WS)" pluginId="com.jetbrains.jax.ws" />
