@@ -1,6 +1,9 @@
 <application>
   <component name="AppStorage">
     <histories>
+      <item value="springfox" />
+      <item value="Enable Swagger 2" />
+      <item value="org" />
       <item value="紧急联系人" />
       <item value="编译" />
       <item value="connector" />
@@ -10,11 +13,11 @@
     <option name="languageScores">
       <map>
         <entry key="CHINESE" value="3" />
-        <entry key="ENGLISH" value="2" />
+        <entry key="ENGLISH" value="3" />
       </map>
     </option>
   </component>
   <component name="Cache">
-    <option name="lastTrimTime" value="1607248683685" />
+    <option name="lastTrimTime" value="1607698772838" />
   </component>
 </application>
