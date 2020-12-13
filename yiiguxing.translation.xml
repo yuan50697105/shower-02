@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="spring" />
       <item value="409 Conflict" />
       <item value="Enable Spring Util" />
       <item value="springfox" />
