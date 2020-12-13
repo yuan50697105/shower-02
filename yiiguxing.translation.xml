@@ -1,6 +1,10 @@
 <application>
   <component name="AppStorage">
+    <option name="newTranslationDialogWidth" value="598" />
+    <option name="newTranslationDialogX" value="760" />
+    <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="409 Conflict" />
       <item value="Enable Spring Util" />
       <item value="springfox" />
       <item value="Enable Swagger 2" />
