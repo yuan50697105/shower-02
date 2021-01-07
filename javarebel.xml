@@ -1,6 +1,6 @@
 <application>
   <component name="JavaRebelPlugin">
-    <option name="javaRebelPath" value="C:\Users\yuane\AppData\Local\JetBrains\Toolbox\apps\IDEA-U\ch-0\203.6682.168.plugins\jr-ide-idea\lib\jrebel6\jrebel.jar" />
+    <option name="javaRebelPath" value="C:\Users\yuane\.jrebel\nightly_cache\202101060141\jrebel\jrebel.jar" />
     <option name="griffin" value="false" />
     <option name="ideInstallationStorage">
       <map>
