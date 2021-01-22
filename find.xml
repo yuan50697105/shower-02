@@ -1,8 +1,8 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="All Places" />
-    <option name="defaultScopeName" value="All Places" />
-    <option name="SEARCH_SCOPE" value="All Places" />
+    <option name="customScope" value="Project 'spring-physical-examination'" />
+    <option name="defaultScopeName" value="Project 'spring-physical-examination'" />
+    <option name="SEARCH_SCOPE" value="Project 'spring-physical-examination'" />
     <mask>*.css</mask>
     <mask>*.html</mask>
     <mask>*.properties</mask>
