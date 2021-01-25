@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="Order评价" />
       <item value="the" />
       <item value="Failed to write core dump. Minidumps are not enabled by default on client versions of Windows" />
       <item value="artifact Id" />
@@ -29,7 +30,7 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="7" />
+        <entry key="CHINESE" value="8" />
         <entry key="ENGLISH" value="8" />
       </map>
     </option>
