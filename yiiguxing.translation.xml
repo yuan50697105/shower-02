@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="Whether to allow usage of a SNAPSHOT version of the Release Plugin. This in an internal property used to support testing of the plugin itself in batch mode." />
       <item value="Configuration on demand is an incubating feature" />
       <item value="demand" />
       <item value="Order评价" />
@@ -32,8 +33,8 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="9" />
-        <entry key="ENGLISH" value="10" />
+        <entry key="CHINESE" value="10" />
+        <entry key="ENGLISH" value="11" />
       </map>
     </option>
   </component>
