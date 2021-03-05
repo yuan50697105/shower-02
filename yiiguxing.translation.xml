@@ -4,6 +4,13 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="TARGET IMMUTABLE" />
+      <item value="ADDER PREFERRED" />
+      <item value="SETTER PREFERRED" />
+      <item value="ACCESSOR ONLY" />
+      <item value="ACCESSOR_ONLY, SETTER_PREFERRED, ADDER_PREFERRED, TARGET_IMMUTABLE;" />
+      <item value="EXPLICIT" />
+      <item value="mapping Inheritance Strategy" />
       <item value="THRESHOLD" />
       <item value="Whether to allow usage of a SNAPSHOT version of the Release Plugin. This in an internal property used to support testing of the plugin itself in batch mode." />
       <item value="Configuration on demand is an incubating feature" />
@@ -34,8 +41,8 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="11" />
-        <entry key="ENGLISH" value="12" />
+        <entry key="CHINESE" value="18" />
+        <entry key="ENGLISH" value="19" />
       </map>
     </option>
   </component>
