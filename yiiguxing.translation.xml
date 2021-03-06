@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="sharde" />
       <item value="TARGET IMMUTABLE" />
       <item value="ADDER PREFERRED" />
       <item value="SETTER PREFERRED" />
@@ -41,8 +42,9 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="18" />
+        <entry key="CHINESE" value="19" />
         <entry key="ENGLISH" value="19" />
+        <entry key="HINDI" value="1" />
       </map>
     </option>
   </component>
