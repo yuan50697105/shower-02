@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="Constraint Violation Exception" />
       <item value="sharde" />
       <item value="TARGET IMMUTABLE" />
       <item value="ADDER PREFERRED" />
@@ -43,7 +44,7 @@
     <option name="languageScores">
       <map>
         <entry key="CHINESE" value="19" />
-        <entry key="ENGLISH" value="19" />
+        <entry key="ENGLISH" value="20" />
         <entry key="HINDI" value="1" />
       </map>
     </option>
