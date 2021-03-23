@@ -84,8 +84,13 @@
       <option name="auto-sync" value="true" />
     </driver>
     <driver id="oracle.19">
+      <artifact id="Oracle" name="Oracle" use="true" version="21.1.0.0" />
       <option name="auto-sync" value="true" />
       <option name="auto-commit" value="false" />
+      <option name="format-sources-on-sync" value="true" />
+      <option name="send-app-info" value="true" />
+      <option name="source-loading" value="USER_SOURCES" />
+      <option name="schema-control" value="AUTOMATIC" />
     </driver>
     <driver id="oracle">
       <artifact id="Oracle" name="Oracle" use="true" version="19.8.0.0" />
