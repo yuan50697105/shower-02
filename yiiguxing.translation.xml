@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="Mutable User Details" />
       <item value="Conversion Service" />
       <item value="The event classes that this listener handles. &lt;p&gt;If this attribute is specified with a single value, the annotated method may optionally accept a single parameter. However, if this attribute is specified with multiple values, the annotated method must &lt;em&gt;not&lt;em&gt; declare any parameters." />
       <item value="single" />
@@ -48,8 +49,8 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="24" />
-        <entry key="ENGLISH" value="25" />
+        <entry key="CHINESE" value="25" />
+        <entry key="ENGLISH" value="26" />
         <entry key="HINDI" value="1" />
       </map>
     </option>
