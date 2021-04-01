@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="durable" />
       <item value="Long" />
       <item value="authentication" />
       <item value="Mutable User Details" />
@@ -52,7 +53,7 @@
     <option name="languageScores">
       <map>
         <entry key="CHINESE" value="28" />
-        <entry key="ENGLISH" value="27" />
+        <entry key="ENGLISH" value="28" />
         <entry key="HINDI" value="1" />
       </map>
     </option>
