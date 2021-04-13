@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="Unable to init enough connections amount" />
       <item value="put If Absent" />
       <item value="ON IMPLICIT CONVERSION" />
       <item value="Infinite Recursion" />
