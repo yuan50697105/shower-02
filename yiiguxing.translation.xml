@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="PHRASE" />
       <item value="search Similar" />
       <item value="Unable to init enough connections amount" />
       <item value="put If Absent" />
@@ -53,7 +54,6 @@
       <item value="紧急联系人" />
       <item value="编译" />
       <item value="connector" />
-      <item value="1332998964047470080" />
     </histories>
     <option name="languageScores">
       <map>
