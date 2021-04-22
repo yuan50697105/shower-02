@@ -5,13 +5,14 @@
     <option name="defaultScopeName" value="All Places" />
     <option name="CASE_SENSITIVE_SEARCH" value="true" />
     <option name="SEARCH_SCOPE" value="All Places" />
+    <option name="FILE_MASK" value="*.java" />
     <mask>*.css</mask>
     <mask>*.html</mask>
     <mask>*.properties</mask>
     <mask>pom.xml</mask>
     <mask>*.yml</mask>
-    <mask>*.java</mask>
     <mask>*.jsp</mask>
     <mask>*.xml</mask>
+    <mask>*.java</mask>
   </component>
 </application>
