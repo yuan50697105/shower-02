@@ -1,15 +1,17 @@
 <application>
   <component name="FindSettings">
-    <option name="customScope" value="All Places" />
-    <option name="defaultScopeName" value="All Places" />
-    <option name="SEARCH_SCOPE" value="All Places" />
+    <option name="customScope" value="Project Files" />
+    <option name="defaultScopeName" value="Project Files" />
+    <option name="showResultsInSeparateView" value="true" />
+    <option name="SHOW_RESULTS_IN_SEPARATE_VIEW" value="true" />
+    <option name="SEARCH_SCOPE" value="Project Files" />
     <mask>*.css</mask>
     <mask>*.html</mask>
     <mask>*.properties</mask>
-    <mask>pom.xml</mask>
     <mask>*.yml</mask>
     <mask>*.jsp</mask>
     <mask>*.java</mask>
+    <mask>pom.xml</mask>
     <mask>*.xml</mask>
   </component>
 </application>
