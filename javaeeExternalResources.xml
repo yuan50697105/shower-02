@@ -1,0 +1,5 @@
+<application>
+  <component name="ExternalResourceManagerImpl">
+    <resource url="http://www.ehcache.org/schema/ehcache-core-3.3.xsd" location="$USER_HOME$/AppData/Local/JetBrains/IntelliJIdea2021.1/extResources/df61d05e_ehcache-core-3.3.xsd" />
+  </component>
+</application>
