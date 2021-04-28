@@ -4,8 +4,9 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
-      <item value="Whether to allow usage of a SNAPSHOT version of the Release Plugin. This in an internal property used to support testing of the plugin itself in batch mode." />
       <item value="A list of additional exclude filters that will be skipped when checking for modifications on the working copy. Is ignored, when checkModificationExcludes is set." />
+      <item value="Wait the specified number of seconds before creating the tag. &amp;lt;br&amp;gt; &amp;lt;code&amp;gt;waitBeforeTagging&amp;lt;code&amp;gt; is useful when your source repository is synced between several instances and access to it is determined by geographical location, like the SVN repository at the Apache Software Foundation." />
+      <item value="Whether to allow usage of a SNAPSHOT version of the Release Plugin. This in an internal property used to support testing of the plugin itself in batch mode." />
       <item value="ON IMPLICIT CONVERSION" />
       <item value="mapping Inheritance Strategy" />
       <item value="trampoline" />
@@ -53,7 +54,6 @@
       <item value="&lt;![CDATA[ Activates various annotations to be detected in bean classes: Spring's @Required and @Autowired, as well as JSR 250's @PostConstruct, @PreDestroy and @Resource (if available), JAX-WS's @WebServiceRef (if available), EJB 3's @EJB (if available), and JPA's @PersistenceContext and @PersistenceUnit (if available). Alternatively, you may choose to activate the individual BeanPostProcessors for those annotations. Note: This tag does not activate processing of Spring's @Transactional or EJB 3's @TransactionAttribute annotation. Consider the use of the &lt;tx:annotation-driven&gt; tag for that purpose. See javadoc for org.springframework.context.annotation.AnnotationConfigApplicationContext for information on code-based alternatives to bootstrapping annotation-driven support. ]]&gt;" />
       <item value="spring" />
       <item value="409 Conflict" />
-      <item value="Enable Spring Util" />
     </histories>
     <option name="languageScores">
       <map>
