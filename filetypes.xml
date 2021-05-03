@@ -5,6 +5,7 @@
       <mapping pattern="OLDER_USERS" type="AUTO_DETECTED" />
       <mapping pattern="log" type="AUTO_DETECTED" />
       <mapping pattern="tomcat" type="AUTO_DETECTED" />
+      <mapping pattern="docker-compose" type="AUTO_DETECTED" />
       <mapping pattern="aa" type="AUTO_DETECTED" />
       <mapping ext="html" type="FTL" />
       <mapping ext="gson" type="Groovy" />
