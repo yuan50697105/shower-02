@@ -1,5 +1,6 @@
 <application>
   <component name="ExternalResourceManagerImpl">
+    <resource url="http://mybatis.org/dtd/mybatis-3-mapper.dtd" location="$USER_HOME$/AppData/Local/JetBrains/IntelliJIdea2021.1/extResources/b36fadae_mybatis-3-mapper.dtd" />
     <resource url="http://www.ehcache.org/schema/ehcache-core-3.3.xsd" location="$USER_HOME$/AppData/Local/JetBrains/IntelliJIdea2021.1/extResources/df61d05e_ehcache-core-3.3.xsd" />
     <resource url="https://maven.apache.org/xsd/maven-4.0.0.xsd" location="$USER_HOME$/AppData/Local/JetBrains/IntelliJIdea2021.1/extResources/a3e953d2_maven-4.0.0.xsd" />
   </component>
