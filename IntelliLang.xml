@@ -1,0 +1,8 @@
+<application>
+  <component name="LanguageInjectionConfiguration">
+    <injection language="OracleSqlPlus" injector-id="java">
+      <display-name>EntityManager.createNamedQuery (javax.persistence)</display-name>
+      <place><![CDATA[psiParameter().ofMethod(0, psiMethod().withName("createNamedQuery").withParameters("java.lang.String").definedInClass("javax.persistence.EntityManager"))]]></place>
+    </injection>
+  </component>
+</application>
