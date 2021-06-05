@@ -1,0 +1,9 @@
+<application>
+  <component name="Trusted.Paths.Settings">
+    <option name="TRUSTED_PATHS">
+      <list>
+        <option value="D:/IdeaProjects/spring-build-project-1/spring-micro-services" />
+      </list>
+    </option>
+  </component>
+</application>
