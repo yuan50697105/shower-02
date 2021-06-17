@@ -4,6 +4,8 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="Absent" />
+      <item value="put If Absent" />
       <item value="T Potential Customers" />
       <item value="Reserved Code Cache Size" />
       <item value="金额" />
@@ -20,7 +22,6 @@
       <item value="PHRASE" />
       <item value="search Similar" />
       <item value="Unable to init enough connections amount" />
-      <item value="put If Absent" />
       <item value="Infinite Recursion" />
       <item value="false to acknowledge just the supplied delivery tag" />
       <item value="durable" />
@@ -53,12 +54,11 @@
       <item value="com" />
       <item value="apache" />
       <item value="HCT" />
-      <item value="true" />
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="34" />
-        <entry key="ENGLISH" value="35" />
+        <entry key="CHINESE" value="36" />
+        <entry key="ENGLISH" value="37" />
         <entry key="HINDI" value="1" />
       </map>
     </option>
