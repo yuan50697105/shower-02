@@ -4,6 +4,7 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="hazards" />
       <item value="Absent" />
       <item value="put If Absent" />
       <item value="T Potential Customers" />
@@ -53,12 +54,11 @@
       <item value="commons_2" />
       <item value="com" />
       <item value="apache" />
-      <item value="HCT" />
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="36" />
-        <entry key="ENGLISH" value="37" />
+        <entry key="CHINESE" value="37" />
+        <entry key="ENGLISH" value="38" />
         <entry key="HINDI" value="1" />
       </map>
     </option>
