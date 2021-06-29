@@ -10,5 +10,6 @@
     <entry key="ide.images.show.chessboard" value="true" />
     <entry key="scala.erase.compiler.process.jdk.once" value="false" />
     <entry key="ide.windowSystem.autoShowProcessPopup" value="true" />
+    <entry key="go.run.processes.with.pty" value="false" />
   </component>
 </application>
