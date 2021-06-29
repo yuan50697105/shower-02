@@ -137,6 +137,26 @@
                       <FeaturePluginData displayName="GlassFish Server" pluginName="GlassFish" pluginId="GlassFish" bundled="true" />
                     </value>
                   </entry>
+                  <entry key="GoAppEngineRunConfiguration">
+                    <value>
+                      <FeaturePluginData displayName="Go App Engine" pluginName="Go" pluginId="org.jetbrains.plugins.go" />
+                    </value>
+                  </entry>
+                  <entry key="GoApplicationRunConfiguration">
+                    <value>
+                      <FeaturePluginData displayName="Go Build" pluginName="Go" pluginId="org.jetbrains.plugins.go" />
+                    </value>
+                  </entry>
+                  <entry key="GoRemoteDebugConfigurationType">
+                    <value>
+                      <FeaturePluginData displayName="Go Remote" pluginName="Go" pluginId="org.jetbrains.plugins.go" />
+                    </value>
+                  </entry>
+                  <entry key="GoTestRunConfiguration">
+                    <value>
+                      <FeaturePluginData displayName="Go Test" pluginName="Go" pluginId="org.jetbrains.plugins.go" />
+                    </value>
+                  </entry>
                   <entry key="GradleRunConfiguration">
                     <value>
                       <FeaturePluginData displayName="Gradle" pluginName="Gradle" pluginId="com.intellij.gradle" bundled="true" />
