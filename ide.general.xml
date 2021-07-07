@@ -12,4 +12,11 @@
     <entry key="ide.windowSystem.autoShowProcessPopup" value="true" />
     <entry key="go.run.processes.with.pty" value="false" />
   </component>
+  <component name="StatusBar">
+    <option name="widgets">
+      <map>
+        <entry key="ReadOnlyAttribute" value="false" />
+      </map>
+    </option>
+  </component>
 </application>
