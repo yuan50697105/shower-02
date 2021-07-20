@@ -4,10 +4,10 @@
     <option name="newTranslationDialogX" value="760" />
     <option name="newTranslationDialogY" value="451" />
     <histories>
+      <item value="put If Absent" />
       <item value="CORRELATION ID" />
       <item value="hazards" />
       <item value="Absent" />
-      <item value="put If Absent" />
       <item value="T Potential Customers" />
       <item value="Reserved Code Cache Size" />
       <item value="金额" />
@@ -57,8 +57,8 @@
     </histories>
     <option name="languageScores">
       <map>
-        <entry key="CHINESE" value="38" />
-        <entry key="ENGLISH" value="39" />
+        <entry key="CHINESE" value="39" />
+        <entry key="ENGLISH" value="40" />
         <entry key="HINDI" value="1" />
       </map>
     </option>
